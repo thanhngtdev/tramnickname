@@ -1,0 +1,449 @@
+.training-include {
+	margin-top: 200px;
+	position: relative;
+}
+
+.training-include .slide-item {
+	display: flex;
+	flex-direction: row;
+}
+
+.training-include .slide-image {
+	flex: 1;
+	padding: 15px;
+}
+
+.training-include .slide-text {
+	padding-top: 4rem;
+	padding-left: 5rem;
+	padding-bottom: 6rem;
+	flex: 2;
+}
+
+.training-include .slide-control {
+	position: absolute;
+	bottom: 5rem;
+	left: 45%;
+}
+
+.training-include .slide-button {
+	padding: 1rem 1.5rem;
+	border: 1px solid #5a5a5a;
+	border-radius: 6px;
+	background-color: white;
+}
+
+.training-include .slide-button .icon {
+	color: #5a5a5a;
+	font-size: 14px;
+	margin-left: 15px;
+}
+
+.box-acc-review {
+	border-top-color: #5a5a5a;
+}
+
+.box-slide-review .slide .box-acc-review .description {
+	color: #5a5a5a;
+}
+
+.camp-review {
+	background-color: #EF9042;
+	padding-top: 170px;
+	margin-top: -60px;
+}
+
+.about-info-birthday {
+	margin-top: -70px;
+	position: absolute;
+	width: 100%
+}
+
+.about-info-birthday img {
+	margin-left: -40px
+}
+
+.about-info-birthday .slide-text {
+	margin-left: 300px;
+	display: inline-block;
+	margin-top: -100px,
+}
+
+.birthday-review {
+	background-color: #EF9042;
+	padding-top: 250px;
+	margin-top: 0px;
+}
+
+.football-skill {
+	background: none;
+	position: relative;
+}
+
+.football-skill::before {
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	content: '';
+	background: #ef9042;
+	height: 800px;
+}
+
+.football-skill .box-beginning-list {
+	box-shadow: 0px 20px 60px rgba(2, 2, 30, 0.088833);
+}
+
+.football-skill .heading::before {
+	content: none;
+}
+
+.why-wmf .heading {
+	font-size: 75px;
+	text-align: center;
+}
+
+.why-wmf .list-item {
+	padding: 4.5rem 2rem;
+	height: 420px;
+}
+
+.why-wmf .list-number {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	font-size: 155px;
+	font-weight: bold;
+	color: #FF7100;
+	opacity: 0.1;
+}
+
+.birthday-package .heading {
+	font-weight: bold;
+	font-size: 75px;
+	line-height: 99px;
+	text-align: center;
+	margin: auto;
+	position: relative;
+	padding-bottom: 25px;
+	max-width: 750px;
+	width: 100%;
+}
+
+.birthday-package .package-item {
+	display: flex;
+	flex-direction: row;
+}
+
+.birthday-package .package-item .package-image {
+	flex: 10;
+	padding: 3rem 4rem 6rem;
+	background-color: #F2F2F2;
+	margin-bottom: 8rem;
+}
+
+.birthday-package .package-item .package-text {
+	flex: 9;
+}
+
+.birthday-package .package-item .package-include {
+	opacity: 1;
+	font-weight: 500;
+}
+
+.birthday-package .package-item .package-des {
+	color: #1A1919;
+	opacity: 0.7;
+	margin-bottom: 2rem;
+}
+
+.birthday-package .package-item .text-left {
+	padding-right: 60px;
+}
+
+.birthday-package .package-item .text-right {
+	padding-left: 60px;
+}
+
+.birthday-package .package-item .package-cost {
+	background-color: #F2F2F2;
+	padding: 20px;
+	color: #FF7100;
+}
+
+.birthday-extra .extra-column {
+	box-shadow: 0px 20px 60px rgba(2, 2, 30, 0.088833);
+	padding: 4rem;
+}
+
+.birthday-extra .extra-column h3.heading {
+	font-size: 45px;
+	font-weight: bold;
+}
+
+.birthday-extra .extra-column .extra-item {
+	margin-top: 3rem;
+	overflow: hidden;
+}
+
+.birthday-extra .extra-column .extra-item img {
+	margin-right: 2rem;
+	display: block;
+	float: left;
+}
+
+.birthday-gallery {
+	position: relative;
+}
+
+.birthday-gallery::before {
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	content: '';
+	background: #ef9042;
+	height: 800px;
+}
+
+.provides {
+	margin-bottom: 4rem;
+}
+
+.provides .heading {
+	font-weight: bold;
+	font-size: 75px;
+	line-height: 99px;
+	margin: auto;
+	position: relative;
+	padding-bottom: 25px;
+	width: 100%;
+}
+
+.provides .provides-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.provides .provides-image {
+	flex: 2;
+}
+
+.provides .provides-text {
+	flex: 3;
+}
+
+.provides .provides-wrap-text {
+	max-width: 650px;
+	margin-left: 4rem;
+	padding-right: 15px,
+}
+
+.enquire {
+	text-align: center;
+	color: white;
+	background-color: #EF9042;
+	padding: 4rem 1rem;
+	border-radius: 6px
+}
+ul.camp-paid{
+	display: inline-block;
+	list-style: none;
+}
+ul.camp-paid li {
+	color: #5A5A5A;
+	padding: 0.5rem;
+}
+ul.camp-paid li::before {
+	content: '\2022';
+	color: #FF7100;
+	font-weight: bold;
+	display: inline-block;
+	width: 1em;
+	margin-left: -1em;
+	font-size: 2rem;
+}
+
+@media only screen and (max-width: 767px) and (min-width: 320px) {
+	.about-info {
+		margin-top: 50px;
+	}
+
+	.about-secure {
+		margin-top: -100px;
+		text-align: center;
+	}
+
+	.training-include .slide-item {
+		flex-direction: column;
+	}
+
+	.training-include .slide-image {
+		order: 2;
+	}
+
+	.training-include .slide-text {
+		order: 1;
+		padding-left: 15px;
+	}
+
+	.training-include .slide-control {
+		top: 25rem;
+		left: 30px;
+	}
+
+	.football-skill {
+		background: white;
+	}
+
+	.football-skill::before {
+		height: 0;
+	}
+
+	.football-skill .heading {
+		color: black;
+	}
+
+	.football-skill .box-beginning-list .list {
+		display: flex;
+		flex-direction: column;
+		width: auto;
+		height: auto;
+	}
+
+	.football-skill .box-beginning-list .list .item {
+		text-align: center;
+		width: 100%;
+	}
+
+	.box-slide-review {
+		background-color: #ef9042;
+		margin-top: -180px;
+		padding: 200px 15px 2rem;
+	}
+
+	.box-slide-review .slide .box-acc-review {
+		border-top-color: white;
+	}
+
+	.football-skill .box-beginning-list {
+		box-shadow: none;
+	}
+
+	.box-football-beginning {
+		padding-left: 0;
+	}
+
+	.why-wmf .list-item {
+		border: 1px solid #EFEFEF;
+		border-radius: 6px;
+	}
+
+	.about-info-birthday {
+		position: relative;
+	}
+
+	.birthday-review {
+		margin-top: 0;
+		padding-top: 0;
+	}
+
+	.birthday-review .slide .box-acc-review {
+		border-top-color: transparent;
+	}
+
+	.about-info-birthday img {
+		margin-left: 0;
+		max-width: 60px;
+	}
+
+	.about-info-birthday .slide-text {
+		display: block;
+		width: 100%;
+		margin: 0 auto;
+		padding-top: 10px;
+		padding-bottom: 5rem;
+	}
+
+	.one-training {
+		background-color: white;
+	}
+
+	.one-training .slide .box-acc-review {
+		border-top-color: black;
+	}
+
+	.why-wmf .heading,
+	.provides .heading,
+	.birthday-package .heading {
+		font-size: 38px;
+		line-height: 57px;
+	}
+
+	.birthday-package .package-item {
+		flex-direction: column;
+		margin-bottom: 5rem;
+	}
+
+	.birthday-package .package-item .package-image {
+		margin-bottom: 1rem;
+		order: 1;
+	}
+
+	.birthday-package .package-item .package-text {
+		order: 2;
+	}
+
+	.birthday-package .package-item .text-right,
+	.birthday-package .package-item .text-left {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.birthday-package .package-item .package-cost {
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+
+	.birthday-extra .extra-column {
+		margin-bottom: 2rem;
+		padding: 3rem 1rem;
+	}
+
+	.birthday-extra .extra-column h3.heading {
+		font-size: 24px;
+	}
+
+	.provides .provides-row {
+		flex-direction: column;
+	}
+
+	.provides .provides-image {
+		order: 2;
+		padding: 15px;
+	}
+
+	.provides .provides-text {
+		order: 1;
+	}
+
+	.provides .provides-wrap-text {
+		max-width: 650px;
+		margin-left: 0;
+		padding-right: 0;
+	}
+
+	.provides .provides-wrap-text p,
+	.provides .provides-wrap-text>b {
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+
+	.enquire {
+		margin-left: -15px;
+		margin-right: -15px;
+		border-radius: 0;
+		margin-top: -250px;
+		padding-top: 250px;
+	}
+}

@@ -1,0 +1,332 @@
+[
+  {
+    "location_id": 2,
+    "loc_name": "Teddington Academy",
+    "company_id": 1,
+    "company_name": "We Make Footballers TW"
+  },
+  {
+    "location_id": 3,
+    "loc_name": "Isleworth Academy",
+    "company_id": 1,
+    "company_name": "We Make Footballers TW"
+  },
+  {
+    "location_id": 8,
+    "loc_name": "Twickenham Academy",
+    "company_id": 1,
+    "company_name": "We Make Footballers TW"
+  },
+  {
+    "location_id": 1,
+    "loc_name": "Hounslow Academy",
+    "company_id": 1,
+    "company_name": "We Make Footballers TW"
+  },
+  {
+    "location_id": 104,
+    "loc_name": "Teddington Academy",
+    "company_id": 1,
+    "company_name": "We Make Footballers TW"
+  },
+  {
+    "location_id": 30,
+    "loc_name": "Stanley Park High School",
+    "company_id": 10,
+    "company_name": "WMF Carshalton/Coulsdon"
+  },
+  {
+    "location_id": 66,
+    "loc_name": "Walcountians Sports Club",
+    "company_id": 10,
+    "company_name": "WMF Carshalton/Coulsdon"
+  },
+  {
+    "location_id": 62,
+    "loc_name": "Carshalton High School for Girls",
+    "company_id": 10,
+    "company_name": "WMF Carshalton/Coulsdon"
+  },
+  {
+    "location_id": 59,
+    "loc_name": "Oasis Academy",
+    "company_id": 10,
+    "company_name": "WMF Carshalton/Coulsdon"
+  },
+  {
+    "location_id": 105,
+    "loc_name": "Teddington Academy",
+    "company_id": 12,
+    "company_name": "We Make Footballers Chiswick & Southall"
+  },
+  {
+    "location_id": 41,
+    "loc_name": "Chiswick Academy",
+    "company_id": 12,
+    "company_name": "We Make Footballers Chiswick & Southall"
+  },
+  {
+    "location_id": 43,
+    "loc_name": "Southall Academy",
+    "company_id": 12,
+    "company_name": "We Make Footballers Chiswick & Southall"
+  },
+  {
+    "location_id": 44,
+    "loc_name": "test localtion",
+    "company_id": 13,
+    "company_name": "Testing Account 3"
+  },
+  {
+    "location_id": 48,
+    "loc_name": "South Cheshire College Academy",
+    "company_id": 14,
+    "company_name": "We Make Footballers Cheshire"
+  },
+  {
+    "location_id": 53,
+    "loc_name": "Ham Academy",
+    "company_id": 15,
+    "company_name": "We Make Footballers Richmond & Ham"
+  },
+  {
+    "location_id": 54,
+    "loc_name": "Richmond Academy",
+    "company_id": 15,
+    "company_name": "We Make Footballers Richmond & Ham"
+  },
+  {
+    "location_id": 82,
+    "loc_name": "Mill Hill Academy",
+    "company_id": 17,
+    "company_name": "We Make Footballers Barnet"
+  },
+  {
+    "location_id": 92,
+    "loc_name": "High Barnet Academy",
+    "company_id": 17,
+    "company_name": "We Make Footballers Barnet"
+  },
+  {
+    "location_id": 58,
+    "loc_name": "Finchley Academy",
+    "company_id": 17,
+    "company_name": "We Make Footballers Barnet"
+  },
+  {
+    "location_id": 60,
+    "loc_name": "Manchester",
+    "company_id": 18,
+    "company_name": "Russell Live Test Account"
+  },
+  {
+    "location_id": 68,
+    "loc_name": "Ashford Town FC",
+    "company_id": 20,
+    "company_name": "We Make Footballers Sunbury"
+  },
+  {
+    "location_id": 61,
+    "loc_name": "Sunbury Academy",
+    "company_id": 20,
+    "company_name": "We Make Footballers Sunbury"
+  },
+  {
+    "location_id": 69,
+    "loc_name": "Feltham Academy",
+    "company_id": 20,
+    "company_name": "We Make Footballers Sunbury"
+  },
+  {
+    "location_id": 83,
+    "loc_name": "Sir Herbert Leon Academy",
+    "company_id": 21,
+    "company_name": "We Make Footballers Milton Keynes"
+  },
+  {
+    "location_id": 63,
+    "loc_name": "Fairfield Primary School",
+    "company_id": 21,
+    "company_name": "We Make Footballers Milton Keynes"
+  },
+  {
+    "location_id": 71,
+    "loc_name": "Harris Academy Bromley",
+    "company_id": 22,
+    "company_name": "We Make Footballers Beckenham & Bromley"
+  },
+  {
+    "location_id": 64,
+    "loc_name": "Harris Academy Beckenham",
+    "company_id": 22,
+    "company_name": "We Make Footballers Beckenham & Bromley"
+  },
+  {
+    "location_id": 75,
+    "loc_name": "Haberdasher’s Aske’s Knights Academy",
+    "company_id": 22,
+    "company_name": "We Make Footballers Beckenham & Bromley"
+  },
+  {
+    "location_id": 70,
+    "loc_name": "St Andrews C of E High School",
+    "company_id": 23,
+    "company_name": "We Make Footballers Sussex"
+  },
+  {
+    "location_id": 72,
+    "loc_name": "Redbridge",
+    "company_id": 24,
+    "company_name": "We Make Footballers (NE London) LLP"
+  },
+  {
+    "location_id": 90,
+    "loc_name": "Loughton",
+    "company_id": 24,
+    "company_name": "We Make Footballers (NE London) LLP"
+  },
+  {
+    "location_id": 73,
+    "loc_name": "Barking & Dagenham College",
+    "company_id": 25,
+    "company_name": "We Make Footballers (Essex)"
+  },
+  {
+    "location_id": 81,
+    "loc_name": "Sanders School",
+    "company_id": 25,
+    "company_name": "We Make Footballers (Essex)"
+  },
+  {
+    "location_id": 74,
+    "loc_name": "Brentside High School",
+    "company_id": 26,
+    "company_name": "We Make Footballers Ealing"
+  },
+  {
+    "location_id": 103,
+    "loc_name": "Pitshanger Park",
+    "company_id": 26,
+    "company_name": "We Make Footballers Ealing"
+  },
+  {
+    "location_id": 98,
+    "loc_name": "Erith Academy",
+    "company_id": 27,
+    "company_name": "We Make Footballers Bexley"
+  },
+  {
+    "location_id": 76,
+    "loc_name": "Bexleyheath Academy",
+    "company_id": 27,
+    "company_name": "We Make Footballers Bexley"
+  },
+  {
+    "location_id": 101,
+    "loc_name": "Barnhill Community High School",
+    "company_id": 28,
+    "company_name": "We Make Footballers Osterley & Heston"
+  },
+  {
+    "location_id": 77,
+    "loc_name": "Oaklands School",
+    "company_id": 28,
+    "company_name": "We Make Footballers Osterley & Heston"
+  },
+  {
+    "location_id": 94,
+    "loc_name": "Archbishop Lanfranc Academy",
+    "company_id": 29,
+    "company_name": "We Make Footballers Croydon"
+  },
+  {
+    "location_id": 78,
+    "loc_name": "Trinity School",
+    "company_id": 29,
+    "company_name": "We Make Footballers Croydon"
+  },
+  {
+    "location_id": 96,
+    "loc_name": "Shooters hill College",
+    "company_id": 31,
+    "company_name": "We Make Footballers Greenwich"
+  },
+  {
+    "location_id": 80,
+    "loc_name": "Harris Academy Greenwich",
+    "company_id": 31,
+    "company_name": "We Make Footballers Greenwich"
+  },
+  {
+    "location_id": 87,
+    "loc_name": "The Tiffin Girl's School",
+    "company_id": 32,
+    "company_name": "We Make Footballers Kingston Area"
+  },
+  {
+    "location_id": 86,
+    "loc_name": "Southborough High School",
+    "company_id": 32,
+    "company_name": "We Make Footballers Kingston Area"
+  },
+  {
+    "location_id": 84,
+    "loc_name": "The Crest Academy",
+    "company_id": 33,
+    "company_name": "We Make Footballers Willesden & Brent"
+  },
+  {
+    "location_id": 85,
+    "loc_name": "Southfileds Academy",
+    "company_id": 34,
+    "company_name": "We Make Footballers Wimbledon"
+  },
+  {
+    "location_id": 88,
+    "loc_name": "Queens Park Community School",
+    "company_id": 35,
+    "company_name": "We Make Footballers Camden"
+  },
+  {
+    "location_id": 89,
+    "loc_name": "Vandyke Upper School",
+    "company_id": 36,
+    "company_name": "We Make Footballers Bedfordshire"
+  },
+  {
+    "location_id": 91,
+    "loc_name": "The Woodlands Sports Centre",
+    "company_id": 37,
+    "company_name": "We Make Footballers Medway"
+  },
+  {
+    "location_id": 95,
+    "loc_name": "The Wavell School",
+    "company_id": 38,
+    "company_name": "We Make Footballers (Farnborough) LLP"
+  },
+  {
+    "location_id": 97,
+    "loc_name": "The Warwick School",
+    "company_id": 39,
+    "company_name": "We Make Footballers Redhill & Reigate"
+  },
+  {
+    "location_id": 102,
+    "loc_name": "location test",
+    "company_id": 40,
+    "company_name": "company for test"
+  },
+  {
+    "location_id": 99,
+    "loc_name": "Birmingham Academy",
+    "company_id": 41,
+    "company_name": "We Make Footballers Birmingham"
+  },
+  {
+    "location_id": 100,
+    "loc_name": "Swindon Academy",
+    "company_id": 42,
+    "company_name": "We Make Footballers Swindon"
+  }
+]

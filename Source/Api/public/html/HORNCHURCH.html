@@ -1,0 +1,116 @@
+<div class="academy_data">            <div id="academyouter" class="academy_outer">
+    <div class="inner_academy_outer"></div>
+    <div class="outer-of-acadmy" message_count="0.0">
+        <style>
+            .modal-content-align{
+                position: absolute;
+                z-index: 9;
+            }
+            .function-btn-modal-cross{
+                width: 3% !important;
+            }
+            button.close{
+                padding: 0 !important;
+            }
+            .subinnerform {
+                padding: 0 5% 5% 0% !important;
+            }
+        </style>
+
+
+        <div id="hornchurch-form" class="innerform subinnerform modal-content-align" role="dialog" style="width: 100%; display: none;">
+            <div class="" style="">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close function-btn-modal-cross" data-number="hornchurch-close" id="hornchurch"><img src="https://www.wemakefootballers.com/wp-content/themes/wmf/assets/img/close_icon_white.png"></button>
+                        <h4 class="modal-title">Book Your Free Trial</h4>
+                        <h4 class="modal-title">@ Hornchurch Academy</h4>
+                    </div>
+                    <div class="triangle-down"></div>
+                    <div class="modal-body" style="padding: 15px 20px 15px!important;">
+
+                        <!--form start -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $('#hornchurch-form').css('display', 'none');
+
+                $('#hornchurch').click(function(){
+                    $('#'+$(this).attr('id')+'-form').hide();
+                });
+
+                $('.book-session-link').click(function(){
+                    $('#'+$(this).attr('data-value')+'-form').addClass('in');
+                    $('#'+$(this).attr('data-value')+'-form').css('cssText', 'display: block;width: 100%;');
+                    $('#'+$(this).attr('data-value')+'-form .dob > input').attr('data-field', 'date');
+                });
+            });
+        </script>
+
+        <div class="left_sec">
+            <div class="img-left-sec">
+                <img src="https://www.wemakefootballers.com/wp-content/uploads/sites/97/2019/06Acland-Web-13-628x350.jpg">
+            </div>
+            <ul class="detail-ul">
+                <li>Hornchurch RM12 6RT, UK</li>                                <li>david@wemakefootballers.com</li>                                <li>07956 677 462</li>                            </ul>
+        </div>
+        <div class="right_sec">
+            <h4>Hornchurch  <span class="academy_dis">  </span></h4>
+
+            <h5></h5>
+
+            <h4 class="weekly-training">Weekly Training</h4>
+            <span class="weelly_price">£70 per 9 weeks</span>
+            <!-- <span class="traning_time">a:2:{i:0;s:15:"5:30pm - 6:30pm";i:1;s:15:"6:30pm - 7:30pm";}</span> -->
+            <div class="clearfix"></div><br>
+            <table class="table table-hover">
+                <tbody>
+                <tr>
+                    <td>
+                        <p>
+                            <a class="freetrial-trigger ">Monday 5:30pm - 6:30pm</a>
+                        </p>
+                    </td>
+                    <td>
+                        <p>4–7 year olds</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <a class="freetrial-trigger ">Monday 6:30pm - 7:30pm</a>
+                        </p>
+                    </td>
+                    <td>
+                        <p>8-12 year olds</p>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+            <div class="btn btn-primary">
+                <a class="book-session-link" href="javascript:void(0);" id="hornchurch-close" data-number="hornchurch" data-value="hornchurch">Book a Free Session</a>
+                <!-- <a class="book-session-link" data-number="" id="-close">Book a Free Session</a> -->
+            </div>
+
+
+            <div class="btn btn-primary visit_web">
+                <a class="book-session-link" href="https://www.wemakefootballers.com/hornchurch/">Visit Hornchurch Website</a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+    <!-- Load more -->
+
+    <div class="text-center">
+        <div id="load_more" class="btn btn-primary" style="display: none;">
+            <a class="book-session-link">Load more</a>
+        </div>
+    </div>
+
+</div>

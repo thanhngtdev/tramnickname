@@ -1,0 +1,110 @@
+.article-menu {
+    background-color: #F2F2F2;
+    overflow: hidden;
+}
+
+.article-menu ul {
+    float: left;
+    margin: 0;
+    padding: 20px 0;
+}
+
+.article-menu li {
+    float: left;
+    font-size: 16px;
+    color: #2E2D2D;
+    line-height: 32px;
+    list-style: none;
+    padding-right: 35px;
+}
+.article-menu li.active {
+    font-weight: bold;
+}
+
+.article-menu .search {
+    float: right;
+    padding: 20px;
+}
+
+.article-feature {
+    height: 500px;
+    padding: 100px;
+}
+
+.article-feature h4 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #FFF;
+    margin-top: 0;
+}
+
+.article-feature h2 {
+    font-size: 60px;
+    max-width: 770px;
+    color: #FFF;
+    margin-top: 0;
+}
+
+.article-list .article-item {
+    background-color: #fff;
+    box-shadow: 0 20px 60px rgba(2, 2, 30, 0.09);
+    margin-bottom: 55px;
+}
+
+.article-list .title {
+    color: #1A1919;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+    padding: 30px;
+    margin: 0;
+    display: block;
+    /* max-height: 150px; */
+}
+
+.article-list h2 {
+    color: #5A5A5A;
+    font-size: 45px;
+    text-align: center;
+}
+
+.article-list h6 {
+    font-size: 18px;
+    color: #1A1919;
+    text-align: center;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.view-all {
+    padding: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.article-detail .article-content {
+    padding: 30px 0;
+}
+
+.article-detail .article-sharing {
+    position: absolute;
+    left: -100px;
+    top: 50px
+}
+
+.article-detail .article-sharing img {
+    display: block;
+    margin-bottom: 40px
+}
+
+
+@media only screen and (max-width: 767px) and (min-width: 320px) {
+    .article-feature {
+        padding: 15px;
+    }
+
+    .article-feature h2 {
+        font-size: 38px;
+        max-width: 100%;
+    }
+}

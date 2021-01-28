@@ -1,0 +1,52 @@
+/* font converted using font-converter.net. thank you! */
+@font-face {
+  font-family: "GothamProRRegular";
+  src: url("../font/GothamProRRegular.eot"); /* IE9 Compat Modes */
+  src: url("../font/GothamProRRegular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../font/GothamProRRegular.svg") format("svg"), /* Legacy iOS */
+    url("../font/GothamProRRegular.ttf") format("truetype"), /* Safari, Android, iOS */
+    url("../font/GothamProRRegular.woff") format("woff"), /* Modern Browsers */
+    url("../font/GothamProRRegular.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* red-hat-text-regular - latin */
+@font-face {
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../font/red-hat-text-v2-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Red Hat Text'), local('RedHatText-Regular'),
+       url('../font/red-hat-text-v2-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../font/red-hat-text-v2-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../font/red-hat-text-v2-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../font/red-hat-text-v2-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../font/red-hat-text-v2-latin-regular.svg#RedHatText') format('svg'); /* Legacy iOS */
+}
+/* red-hat-text-500 - latin */
+@font-face {
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../font/red-hat-text-v2-latin-500.eot'); /* IE9 Compat Modes */
+  src: local('Red Hat Text Medium'), local('RedHatText-Medium'),
+       url('../font/red-hat-text-v2-latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../font/red-hat-text-v2-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../font/red-hat-text-v2-latin-500.woff') format('woff'), /* Modern Browsers */
+       url('../font/red-hat-text-v2-latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../font/red-hat-text-v2-latin-500.svg#RedHatText') format('svg'); /* Legacy iOS */
+}
+/* red-hat-text-700 - latin */
+@font-face {
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../font/red-hat-text-v2-latin-700.eot'); /* IE9 Compat Modes */
+  src: local('Red Hat Text Bold'), local('RedHatText-Bold'),
+       url('../font/red-hat-text-v2-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../font/red-hat-text-v2-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../font/red-hat-text-v2-latin-700.woff') format('woff'), /* Modern Browsers */
+       url('../font/red-hat-text-v2-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../font/red-hat-text-v2-latin-700.svg#RedHatText') format('svg'); /* Legacy iOS */
+}

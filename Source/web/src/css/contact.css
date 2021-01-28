@@ -1,0 +1,251 @@
+
+
+.get-in-touch {
+    overflow: hidden;
+}
+
+.get-in-touch .list-form {
+    width: 445px;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+.get-in-touch .list-form li {
+    width: 100%;
+    float: left;
+    list-style: none;
+    margin-bottom: 45px;
+}
+
+.get-in-touch .list-form li .label {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 33px;
+    display: block;
+    letter-spacing: 1.71429px;
+    text-transform: uppercase;
+    color: #000000;
+}
+
+.get-in-touch .custom-select {
+    position: relative;
+    width: 100%;
+    display: inline-block;
+}
+
+.get-in-touch .custom-select select {
+    display: none;
+    /*hide original SELECT element:*/
+}
+
+.get-in-touch .select-selected {
+    background: #ffffff;
+    border: 1px solid #e7e7e7;
+    border-radius: 6px;
+}
+
+.get-in-touch .select-selected:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0px;
+    width: 45px;
+    height: 0;
+    height: 70px;
+    background: url(../images/chevron-down.png) no-repeat left center;
+}
+
+.get-in-touch .select-selected.select-arrow-active:after {
+    top: 0;
+}
+
+.get-in-touch .select-selected {
+    color: rgba(0, 0, 0, 0.3);
+    padding: 17px 30px;
+    cursor: pointer;
+    user-select: none;
+    height: 70px;
+    line-height: 31px;
+    padding-right: 50px;
+    font-weight: normal;
+    font-size: 24px;
+}
+
+.get-in-touch .select-items div {
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 24px;
+    padding: 17px 30px;
+}
+
+.get-in-touch .select-items {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    border: 1px solid #ededed;
+    background-color: #fff;
+    border-top: 0;
+    max-height: 320px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.get-in-touch .select-items::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+.get-in-touch .select-items::-webkit-scrollbar {
+    width: 6px;
+    background-color: #fff;
+}
+
+.get-in-touch.select-items::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #d62929;
+}
+
+.get-in-touch .select-hide {
+    display: none;
+}
+
+.get-in-touch .select-items div:hover,
+.same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.get-in-touch .input-text {
+    background: #ffffff;
+    border: 1px solid #e7e7e7;
+    border-radius: 6px;
+    color: rgba(0, 0, 0, 0.3);
+    padding: 17px 30px;
+    cursor: pointer;
+    height: 70px;
+    line-height: 31px;
+    padding-right: 95px;
+    font-weight: normal;
+    font-size: 24px;
+    width: 100%;
+    display: inline-block;
+}
+
+.get-in-touch .location {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 30px;
+    color: #ee7925;
+    text-decoration: underline;
+    background: url(../images/map-marker.png) no-repeat 0 center;
+    padding-left: 28px;
+    float: right;
+    letter-spacing: 0px;
+    text-transform: none;
+}
+
+.get-in-touch .list-form .btn-button-s {
+    background: #ff7531;
+    border-radius: 6px;
+    width: 390px;
+    display: inline-block;
+    height: 70px;
+    line-height: 70px;
+    border: 0;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 1.71429px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.get-in-touch .list-form li:last-child {
+    margin-bottom: 0;
+}
+
+.get-in-touch .list-form button.btn-button-s {
+    line-height: normal;
+}
+
+.get-in-touch .col-right {
+    width: 50%;
+    float: right;
+    padding-left: 30px;
+}
+
+.get-in-touch .pro-text {
+    font-size: 32px;
+    color: #5a5a5a;
+}
+
+.get-in-touch .pro-sub-text {
+    font-size: 18px;
+    color: #1a1919;
+    line-height: 24px;
+}
+
+.contact-map {
+    position: absolute;
+    top: 400px;
+	left: 10%;
+	z-index: 999;
+}
+
+.contact-map .text-content {
+    background-color: white;
+    border-radius: 6px;
+    max-width: 285px;
+    padding: 40px;
+}
+
+.contact-map .text-content h2 {
+    font-size: 24;
+    margin-bottom: 0;
+}
+
+.contact-map .text-content p {
+    color: rgb(26, 25, 25);
+    opacity: 0.7;
+    font-size: 18px;
+}
+
+.contact-header {
+    font-weight: bold;
+    font-size: 75px;
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 768px) {
+    .contact-header {
+        font-size: 38px;
+    }
+
+}
+
+@media only screen and (max-width: 767px) and (min-width: 320px) {
+    .get-in-touch .list-form {
+        width: auto;
+        padding: 15px;
+    }
+
+    .get-in-touch .list-form .btn-button-s {
+        width: 100%;
+    }
+
+    .contact-map {
+        top: -20px;
+        left: 5%;
+        right: 5%;
+    }
+
+    .contact-map .text-content {
+        max-width: 100%;
+    }
+
+    .contact-header {
+        font-size: 38px;
+        text-align: center;
+    }
+}

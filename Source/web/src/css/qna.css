@@ -1,0 +1,112 @@
+.qna-search {
+    padding: 100px 0;
+    background-color: #F2F2F2;
+    text-align: center;
+}
+
+.qna-search h2 {
+    font-size: 75px;
+    text-align: center;
+}
+
+.qna-search .input-search {
+    border-bottom: 1px solid #E67738;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.qna-search .input-search input {
+    flex: 1;
+    border: none;
+    box-shadow: none;
+    background-color: #F2F2F2;
+
+}
+
+.qna-search .input-search input::placeholder {
+    color: #1A1919;
+    opacity: 0.2;
+}
+
+.qna-search .input-search .icon {
+    padding: 20px 20px 15px 0;
+}
+.qna-search .input-search button {
+    color: #EE7925;
+    font-size: 24px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;;
+}
+.qna-search p {
+    font-size: 24px;
+    color: #1A1919;
+    margin-top: 3rem;
+}
+.qna-list {
+    padding-top: 100px;
+    text-align: center;
+}
+.qna-list h2 {
+    font-size: 75px;
+}
+.qna-list .qna-cate {
+    border-radius: 6px;
+    box-shadow: 0 20px 60px rgba(2, 2, 30, 0.09);
+    padding: 40px;
+    margin-bottom: 30px;
+}
+.qna-list .qna-cate h4{
+    font-size: 24px;
+    color: #1A1919;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+.qna-list .qna-cate a{
+    font-size: 18px;
+    color: #1A1919;
+    opacity: 0.7;
+    line-height: 30px;
+    display: block;
+    text-align: left;
+}
+.qna-list .qna-cate a:last-child{
+    color: #EE7925;
+    opacity: 1;
+    margin-top: 15px;
+    text-decoration: underline;
+}
+.qna-contact {
+    max-width: 600px;
+    background-color: #F2F2F2;
+    padding: 20px 60px 60px;
+    margin: 50px 0 100px;
+    text-align: center;
+    border-radius: 6px;
+}
+.qna-contact h2 {
+    font-size: 45px;
+}
+.qna-contact p {
+    font-size: 18px;
+    color: #1A1919;
+}
+.qna-contact button {
+    font-size: 16px;
+    color: #EE7925;
+    border: 1px solid;
+    background-color: transparent;
+    padding: 15px 40px;
+    border-radius: 6px;
+    margin-top: 15px;
+}
+.qna-detail h2 {
+    text-align: center;
+}
+.qna-detail h3 {
+    font-size: 45px;
+    color: #5A5A5A;
+    margin-bottom: 1.5rem;
+    margin-top: 6rem;
+}
