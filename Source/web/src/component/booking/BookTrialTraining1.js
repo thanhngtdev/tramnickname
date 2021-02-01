@@ -9,7 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Radiobox from '../include/Radiobox/Radiobox';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import Utils from './../../common/Utils';
+import Utils from '../../common/Utils';
 
 BookTrialTraining1.propTypes = {
     onNext: PropTypes.func,
@@ -52,8 +52,18 @@ function BookTrialTraining1(props) {
         window.scrollTo(0, 0);
         dispatch({ type: siteActionType.GET_LIST_SITE });
     }, [dispatch]);
+    
+    useEffect(() => {
+        let defaultAcademy = JSON.parse(localStorage.getItem("defaultAcademy"));
+        if(defaultAcademy){
+        setSiteSelected(defaultAcademy);
+        }
+    }, []);
+
+    
 
     const siteReducer = useSelector((state) => state.siteReducer);
+ 
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
@@ -79,7 +89,15 @@ function BookTrialTraining1(props) {
                     }
                 }
             }
-            if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
+            if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
+                setSiteSelected(
+                    JSON.parse(localStorage.getItem('defaultAcademy')),
+                );
+            }
+            if (siteReducer.type === siteActionType.SELECT_ACADEMY) {
+                setSiteSelected(siteReducer.data);
+            }
+            if (siteReducer.type === siteActionType) {
                 // console.log(siteReducer.data);
                 setLstCourse(siteReducer.data);
             }
@@ -88,6 +106,11 @@ function BookTrialTraining1(props) {
             }
         }
     }, [siteReducer]);
+
+    function getClassTime(birth){
+        const age = ~~((Date.now() - birth) / (31557600000));
+        console.log(age);
+    }
 
     function validateData() {
         let _validate = true;
@@ -172,7 +195,8 @@ function BookTrialTraining1(props) {
                     className="input-text"
                     selected={date}
                     onChange={(date) => {
-                        setDate(date);
+                        getClassTime(new Date(date));
+                        setDate(date)
                     }}
                 />
                 <label className="input-error">{dateError}</label>

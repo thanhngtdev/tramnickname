@@ -36,6 +36,11 @@ const siteReducer = (state = initialState, action) => {
                 type: siteActionType.GET_DETAIL_SITE_FAILED,
                 message: action.message,
             };
+        case siteActionType.SELECT_ACADEMY:
+            return {
+                type: siteActionType.SELECT_ACADEMY,
+                data: action.data,
+            };
         case siteActionType.BOOK_TRAINING_SUCCESS:
             return {
                 type: siteActionType.BOOK_TRAINING_SUCCESS,

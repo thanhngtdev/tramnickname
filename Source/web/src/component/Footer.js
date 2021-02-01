@@ -46,9 +46,28 @@ function Footer() {
         }
     }, [siteReducer, location]);
 
-    function onClickLocation(event) {
+    useEffect(() => {
+        let defaultLocation = JSON.parse(localStorage.getItem("defaultAcademy"));
+        if(defaultLocation){
+        setLocation(defaultLocation.ms_name);
+        }
+        else{
+        setLocation ("Select an academy")
+        }
+    }, []);
+
+    function onClickLocation(e,item) {
         setShowSelect(false);
-        setLocation(event.target.textContent);
+        setLocation(e.target.textContent);
+        localStorage.setItem(
+                'defaultAcademy',
+                JSON.stringify(
+                    item
+                ),
+            );
+            dispatch({
+                type: siteActionType.PICK_DEFAULT_ACADEMY,
+            });       
     }
 
     return (
@@ -129,13 +148,13 @@ function Footer() {
                                     className={`select-items ${
                                         !showSelect && 'select-hide'
                                     }`}>
-                                    {/* {lstSite.map((item) => (
+                                    {lstSite.map((item) => (
                                         <div
                                             key={item.ms_id}
-                                            onClick={() => onClickLocation}>
+                                            onClick={(e) => {onClickLocation(e,item)}}>
                                             {item.ms_name}
                                         </div>
-                                    ))} */}
+                                    ))}
                                 </div>
                             </div>
                         </li>

@@ -19,6 +19,9 @@ function DetailNews(props) {
     }, [dispatch]);
 
     const articleReducer = useSelector((state) => state.articleReducer);
+    const articleImg = (article?.atc_featureImg);
+
+    console.log(articleImg)
 
     useEffect(() => {
         if (articleReducer.type) {
@@ -38,7 +41,7 @@ function DetailNews(props) {
             <div
                 className="article-feature"
                 style={{
-                    backgroundImage: `url(${require('../images/feature_1.jpg')})`,
+                    backgroundImage: `url(${require(articleImg)})`,
                 }}>
                 <h2>{article.atc_title}</h2>
                 <h4>
