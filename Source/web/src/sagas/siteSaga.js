@@ -189,7 +189,6 @@ function* getListCourse({ company_id, location_id, course_type }) {
         location_id,
         type: course_type,
     });
-    console.log("aa")
     if (response && response.status === 200) {
         yield put({
             type: siteActionType.GET_LIST_COURSE_SUCCESS,

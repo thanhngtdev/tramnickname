@@ -15,6 +15,7 @@ import Radiobox from './include/Radiobox/Radiobox';
 import moment from 'moment';
 import Utils from '../common/Utils';
 import swal from 'sweetalert';
+import useTrustpilot from '../hooks/useTrustpilot';
 
 function BookTrialTraining() {
     const dispatch = useDispatch();
@@ -38,6 +39,9 @@ function BookTrialTraining() {
     const [token, setToken] = useState('');
 
     const siteReducer = useSelector((state) => state.siteReducer);
+
+    useTrustpilot();
+
     useEffect(() => {
         if (siteReducer.type) {
             if (
