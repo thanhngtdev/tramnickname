@@ -63,12 +63,8 @@ function BookTrialTraining1(props) {
     }, []);
 
     useEffect(() => {
-        setCourseSatisfied([]);
-        for(let i=0; i<lstCourse.length; i++ ){        
-            if (lstCourse[i].min_age <= ageStudent && ageStudent <= lstCourse[i].max_age) {
-                setCourseSatisfied([lstCourse[i]]);
-            }
-        }
+        const newLstCourse = lstCourse.filter(course => course.min_age<= ageStudent && ageStudent <= course.max_age)
+        setCourseSatisfied(newLstCourse);
     },[ageStudent,siteSelected]);
     
     const siteReducer = useSelector((state) => state.siteReducer);
@@ -152,7 +148,6 @@ function BookTrialTraining1(props) {
         } else setDateError('');
         return _validate;
     }
-
 
 
     return (

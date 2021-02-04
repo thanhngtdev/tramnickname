@@ -1800,7 +1800,7 @@ border-radius: 4px;
     margin-top: 50px;
 }
 .book_your_child_free_session .col-right { display:none;}
-.book_your_child_free_session .heading {
+.book_your_child_free_session .heading, .we-flare-policies .heading {
   
     font-size: 65px;
     line-height: 85px;
@@ -2032,7 +2032,7 @@ color: #1A1919;}
     margin-top: 50px;
 }
 .book_your_child_free_session .col-right { display:none;}
-.book_your_child_free_session .heading {  
+.book_your_child_free_session .heading, .we-flare-policies .heading {  
     font-weight: bold;
 	font-size: 38px;
 	line-height: 50px;
@@ -2041,7 +2041,7 @@ color: #1A1919;}
 }
 .book_your_child_free_session .location { padding-left:0; background:none;} 
 .book_your_child_free_session .text-sub { width:100%; text-align:center;}
-.book_your_child_free_session .heading:before { left:50%; margin-left:-85px;}
+.book_your_child_free_session .heading:before, .we-flare-policies .heading:before { left:50%; margin-left:-85px;}
 .book_your_child_free_session .heading br { display:none;}
 .book_your_child_free_session:before {
 	width:100%;
@@ -2228,7 +2228,7 @@ line-height: 24px;
     font-size: 30px;
     line-height: 40px;
 }
-.book_your_child_free_session .heading {
+.book_your_child_free_session .heading, .we-flare-policies .heading{
    
     font-size: 34px;
     line-height: 45px;
