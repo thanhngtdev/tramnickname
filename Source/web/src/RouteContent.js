@@ -27,6 +27,10 @@ import ScrollToTop from './component/include/ScrollToTop';
 import ThankYou from './component/ThankYou';
 import Policies from './component/Policies';
 import ErrorPage from './component/PageError';
+import ChildWelfarePolicy from './component/policies/ChildWelfarePolicy';
+import AntiBullying from './component/policies/AntiBullying';
+import EqualityAndDiversity from './component/policies/EqualityAndDiversity';
+import PrivacyPolicy from './component/policies/PrivacyPolicy';
 
 const DEFAULT_LAT = 51.5285582;
 const DEFAULT_LOG = -0.2416794;
@@ -158,6 +162,18 @@ function RouteContent(props) {
 
                 <Route path={'/error'}>
                     <ErrorPage/>
+                    </Route>
+                <Route path={PathRoute.WeFlarePolicy}>
+                    <ChildWelfarePolicy />
+                </Route>
+                <Route path={PathRoute.AntiBullying}>
+                    <AntiBullying/>
+                </Route>
+                <Route path={PathRoute.EqualityAndDiversity}>
+                    <EqualityAndDiversity/>
+                </Route>
+                <Route path={PathRoute.PrivacyPolicy}>
+                    <PrivacyPolicy/>
                 </Route>
             </Switch>
             <LocationModal />
