@@ -17,5 +17,9 @@ let PathRoute = {
     BookTrialCamp: '/book-trial-camp',
     ThankYou: '/thank-you',
     AcademyNews: '/:alias/news',
+    WeFlarePolicy:'/child-welfare-policy/',
+    AntiBullying:'/anti-bullying-make-footballers/',
+    EqualityAndDiversity:'/equality-and-diversity/',
+    PrivacyPolicy:'/privacy-policy/',
 };
 export default PathRoute;
