@@ -1,0 +1,47 @@
+.about-us {
+	position: relative;
+	overflow: hidden;
+	background-color: #f2f2f2;
+	min-height: 600px;
+}
+
+/* .policies-content h2{
+    text-align: center;
+    font-size: 75px;
+} */
+.policies-content {
+    margin: 55px 0;
+}
+
+.policies-content .policy {
+    margin-top: 280px;
+    padding-bottom: 100px;
+}
+
+
+@media only screen and (max-width: 1000px) and (min-width: 768px) {
+	.about-info {
+		margin-top: 10px;
+	}
+}
+
+@media only screen and (max-width: 767px) and (min-width: 320px) {
+	.about-us {
+		overflow: visible;
+	}
+
+	.about-us .get-in-touch {
+		margin-top: 200px;
+		background-color: white;
+		border-radius: 6px;
+		box-shadow: 0 20px 60px rgba(2, 2, 30, 0.09);
+	}
+
+	.get-in-touch .about {
+		padding: 30px;
+	}
+
+	.policies-content {
+		margin-top: 540px;
+	}
+}

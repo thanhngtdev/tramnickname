@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-
 import { Switch, Route } from 'react-router-dom';
 import { geolocated } from 'react-geolocated';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,6 +25,8 @@ import HolidayCamp from './component/HolidayCamp';
 import PathRoute from './common/PathRoute';
 import ScrollToTop from './component/include/ScrollToTop';
 import ThankYou from './component/ThankYou';
+import Policies from './component/Policies';
+import ErrorPage from './component/PageError';
 import ChildWelfarePolicy from './component/policies/ChildWelfarePolicy';
 import AntiBullying from './component/policies/AntiBullying';
 import EqualityAndDiversity from './component/policies/EqualityAndDiversity';
@@ -154,6 +155,14 @@ function RouteContent(props) {
                 <Route path={PathRoute.ThankYou}>
                     <ThankYou />
                 </Route>
+                
+                <Route path={'/policies'}>
+                    <Policies/>
+                </Route>
+
+                <Route path={'/error'}>
+                    <ErrorPage/>
+                    </Route>
                 <Route path={PathRoute.WeFlarePolicy}>
                     <ChildWelfarePolicy />
                 </Route>
