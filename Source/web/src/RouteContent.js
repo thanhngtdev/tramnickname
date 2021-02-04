@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-
 import { Switch, Route } from 'react-router-dom';
 import { geolocated } from 'react-geolocated';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,6 +25,8 @@ import HolidayCamp from './component/HolidayCamp';
 import PathRoute from './common/PathRoute';
 import ScrollToTop from './component/include/ScrollToTop';
 import ThankYou from './component/ThankYou';
+import Policies from './component/Policies';
+import ErrorPage from './component/PageError';
 
 const DEFAULT_LAT = 51.5285582;
 const DEFAULT_LOG = -0.2416794;
@@ -149,6 +150,14 @@ function RouteContent(props) {
                 </Route>
                 <Route path={PathRoute.ThankYou}>
                     <ThankYou />
+                </Route>
+                
+                <Route path={'/policies'}>
+                    <Policies/>
+                </Route>
+
+                <Route path={'/error'}>
+                    <ErrorPage/>
                 </Route>
             </Switch>
             <LocationModal />
