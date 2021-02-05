@@ -155,25 +155,25 @@ function RouteContent(props) {
                 <Route path={PathRoute.ThankYou}>
                     <ThankYou />
                 </Route>
-                
-                <Route path={'/policies'}>
-                    <Policies/>
+
+                <Route path={PathRoute.Policies}>
+                    <Policies />
                 </Route>
 
-                <Route path={'/error'}>
-                    <ErrorPage/>
-                    </Route>
                 <Route path={PathRoute.WeFlarePolicy}>
                     <ChildWelfarePolicy />
                 </Route>
                 <Route path={PathRoute.AntiBullying}>
-                    <AntiBullying/>
+                    <AntiBullying />
                 </Route>
                 <Route path={PathRoute.EqualityAndDiversity}>
-                    <EqualityAndDiversity/>
+                    <EqualityAndDiversity />
                 </Route>
                 <Route path={PathRoute.PrivacyPolicy}>
-                    <PrivacyPolicy/>
+                    <PrivacyPolicy />
+                </Route>
+                <Route>
+                    <ErrorPage />
                 </Route>
             </Switch>
             <LocationModal />
