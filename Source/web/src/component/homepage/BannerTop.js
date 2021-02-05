@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { headerActionType, homeActionType } from '../../actions/actionTypes';
+import { headerActionType, homeActionType, siteActionType } from '../../actions/actionTypes';
 import PathRoute from '../../common/PathRoute';
 
 function BannerTop() {
@@ -11,7 +11,8 @@ function BannerTop() {
     const [defaultAcademy, setDefaultAcademy] = useState(
         JSON.parse(localStorage.getItem('defaultAcademy')) || {},
     );
-    
+    const siteReducer = useSelector((state) => state.siteReducer);
+
     useEffect(() => {
         if (homeReducer.type) {
             if (homeReducer.type === homeActionType.GET_HOME_SUCCESS) {
@@ -20,7 +21,12 @@ function BannerTop() {
         }
     }, [homeReducer]);
 
-console.log(defaultAcademy);
+    useEffect(() => {
+            if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
+                setDefaultAcademy(JSON.parse(localStorage.getItem('defaultAcademy')));
+        }
+    }, [siteReducer]);
+
     return (
         <div className="banner-top">
             <div className="container">
