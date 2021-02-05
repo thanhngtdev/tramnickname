@@ -20,12 +20,13 @@ function DetailNews(props) {
     }, [dispatch]);
 
     const articleReducer = useSelector((state) => state.articleReducer);
-    const articleImg = (article?.atc_featureImg);
+    // const articleImg = (article?.atc_featureImg);
 
-    console.log(articleImg)
+    // console.log(articleImg)
 
     useEffect(() => {
         if (articleReducer.type) {
+            console.log(articleReducer.type,'detail');
             if (
                 articleReducer.type === articleActionType.DETAIL_ARTICLE_SUCCESS
             ) {
