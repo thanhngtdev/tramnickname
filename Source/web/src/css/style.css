@@ -1934,6 +1934,10 @@ table {
 		content: "";
 }
 
+.box-button{
+	width:70%;
+}
+
 @media only screen and (min-width: 1500px) {
 	.box-insta .box-slide .row {
 		margin: auto;
@@ -2870,6 +2874,10 @@ table {
 	.box-pin .box .btn-pin {
 		height: 50px;
 		font-size: 18px;
+	}
+
+	.box-button{
+		width:100%;
 	}
 
 	/*end mobile*/
