@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import parse from 'html-react-parser';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
+import Utils from '../common/Utils';
 
 function DetailNews(props) {
     let { id } = useParams();
@@ -19,12 +20,13 @@ function DetailNews(props) {
     }, [dispatch]);
 
     const articleReducer = useSelector((state) => state.articleReducer);
-    const articleImg = (article?.atc_featureImg);
+    // const articleImg = (article?.atc_featureImg);
 
-    console.log(articleImg)
+    // console.log(articleImg)
 
     useEffect(() => {
         if (articleReducer.type) {
+            console.log(articleReducer.type,'detail');
             if (
                 articleReducer.type === articleActionType.DETAIL_ARTICLE_SUCCESS
             ) {
@@ -41,7 +43,9 @@ function DetailNews(props) {
             <div
                 className="article-feature"
                 style={{
-                    backgroundImage: `url(${require(articleImg)})`,
+                    backgroundImage: "url("+ Utils.getThumb(article.atc_featureImg,'c2') + ")",
+                    backgroundRepeat:'no-repeat',
+                    backgroundSize:'cover',
                 }}>
                 <h2>{article.atc_title}</h2>
                 <h4>
