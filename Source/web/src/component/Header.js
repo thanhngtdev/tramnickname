@@ -152,7 +152,7 @@ function Header() {
                         <li>
                             <Link to={PathRoute.Location} onClick={hideMenu}>
                                 Locations
-                            </Link>
+                            </Link> 
                         </li>
                         <li className="login">
                             <a

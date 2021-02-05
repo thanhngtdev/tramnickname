@@ -98,7 +98,6 @@ const igIcon = (
 
 export default function ThankYou() {
     const defaultAcademy = JSON.parse(localStorage.getItem('defaultAcademy'));
-    console.log('aaaa: ', defaultAcademy.social);
     return (
         <div style={{ backgroundColor: '#F2F2F2', padding: '4rem 0' }}>
             <div className="container" style={{ textAlign: 'center' }}>
