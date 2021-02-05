@@ -21,5 +21,6 @@ let PathRoute = {
     AntiBullying:'/anti-bullying-make-footballers/',
     EqualityAndDiversity:'/equality-and-diversity/',
     PrivacyPolicy:'/privacy-policy/',
+    Policies: '/policies',
 };
 export default PathRoute;
