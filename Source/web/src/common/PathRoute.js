@@ -22,5 +22,6 @@ let PathRoute = {
     EqualityAndDiversity:'/equality-and-diversity/',
     PrivacyPolicy:'/privacy-policy/',
     Policies: '/policies',
+    Error: '/error',
 };
 export default PathRoute;

@@ -172,6 +172,10 @@ function RouteContent(props) {
                 <Route path={PathRoute.PrivacyPolicy}>
                     <PrivacyPolicy />
                 </Route>
+                <Route path={PathRoute.Error}>
+                    <ErrorPage />
+                </Route>
+
                 <Route>
                     <ErrorPage />
                 </Route>
