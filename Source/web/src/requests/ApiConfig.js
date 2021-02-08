@@ -1,4 +1,4 @@
-const BASE_URL = 'https://staging.wemakefootballers.com/';
+const BASE_URL = 'https://staging-admin.wemakefootballers.com/';
 // const BASE_URL = 'http://local.wmf.com/';
 export const BASE_API = `${BASE_URL}api/`;
 // export const PARENT_API = 'https://parentarea.co/api/v2/';
