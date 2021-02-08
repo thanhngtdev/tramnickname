@@ -44,7 +44,7 @@ function ckeditor (name,toolbar) {
                 height : 300,
                 toolbar:[
                     ['Maximize','Preview','Find'],
-                    [ 'Font','FontSize','Bold','Italic','Underline','Strike','RemoveFormat'],
+                    ['Styles','Font','FontSize','Bold','Italic','Underline','Strike','RemoveFormat'],
                     ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
                     ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
                     ['Link','Unlink','Anchor'],

@@ -28,6 +28,11 @@ class ApiController extends Controller
             Common::buildApiResponse($this->_bzApi->getAboutUs())
         );
     }
+    public function getPolicy(){
+        return response()->json(
+            Common::buildApiResponse($this->_bzApi->getPolicy())
+        );
+    }
 
     public function getFooter(){
         return response()->json(
