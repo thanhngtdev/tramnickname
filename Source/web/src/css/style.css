@@ -1621,7 +1621,7 @@ table {
 	border: 1px solid #EDEDED;
 	background-color: #fff;
 	border-top: 0;
-	max-height: 212px;
+	max-height: 320px;
 	overflow: scroll;
 	overflow-x: hidden;
 }
@@ -1892,50 +1892,6 @@ table {
 
 .menu-ft a:last-child {
 	padding-right: 0;
-}
-
-/*policies*/
-
-.btn-view-policies{
-	border: 1px solid #FF7100;
-	border-radius: 6px;
-	width: 172px;
-	height: 50px;
-	text-align: center;
-	line-height: 48px;
-	font-weight: 400;
-	font-size: 16px;
-	letter-spacing: 1.71429px;
-	color: #EE7925;
-	display: inline-block;
-	margin:50px 0;
-}
-
-.we-flare-policies .heading{
-	width: 100%;
-	display: inline-block;
-	font-weight: bold;
-	font-size: 75px;
-	line-height: 99px;
-	color: #000000;
-	margin: 0;
-	position: relative;
-	margin-bottom: 23px;
-	padding-bottom: 20px;
-}
-
-.we-flare-policies .heading::before{
-		position: absolute;
-		left: 0;
-		bottom: 0;
-		background: #EE7925;
-		width: 170px;
-		height: 2px;
-		content: "";
-}
-
-.box-button{
-	width:70%;
 }
 
 @media only screen and (min-width: 1500px) {
@@ -2244,7 +2200,7 @@ table {
 		display: none;
 	}
 
-	.book_your_child_free_session .heading, .we-flare-policies .heading {
+	.book_your_child_free_session .heading {
 
 		font-size: 65px;
 		line-height: 85px;
@@ -2642,12 +2598,6 @@ table {
 
 	}
 
-	.we-flare-policies .heading{
-		font-weight: bold;
-		font-size: 38px;
-		line-height: 50px;
-	}
-
 	.book_your_child_free_session .location {
 		padding-left: 0;
 		background: none;
@@ -2876,10 +2826,6 @@ table {
 		font-size: 18px;
 	}
 
-	.box-button{
-		width:100%;
-	}
-
 	/*end mobile*/
 }
 
@@ -2952,7 +2898,7 @@ table {
 		line-height: 40px;
 	}
 
-	.book_your_child_free_session .heading, .we-flare-policies .heading{
+	.book_your_child_free_session .heading {
 
 		font-size: 34px;
 		line-height: 45px;

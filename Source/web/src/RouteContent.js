@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+
 import { Switch, Route } from 'react-router-dom';
 import { geolocated } from 'react-geolocated';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,12 +26,8 @@ import HolidayCamp from './component/HolidayCamp';
 import PathRoute from './common/PathRoute';
 import ScrollToTop from './component/include/ScrollToTop';
 import ThankYou from './component/ThankYou';
-import Policies from './component/Policies';
-import ErrorPage from './component/PageError';
-import ChildWelfarePolicy from './component/policies/ChildWelfarePolicy';
-import AntiBullying from './component/policies/AntiBullying';
-import EqualityAndDiversity from './component/policies/EqualityAndDiversity';
-import PrivacyPolicy from './component/policies/PrivacyPolicy';
+import Policy from './component/Policy';
+import NotFound from './component/NotFound';
 
 const DEFAULT_LAT = 51.5285582;
 const DEFAULT_LOG = -0.2416794;
@@ -104,80 +101,62 @@ function RouteContent(props) {
                 <Route exact path="/">
                     <HomePage />
                 </Route>
-                <Route path="/about-us">
+                <Route exact path="/about-us">
                     <About />
                 </Route>
-                <Route path={PathRoute.Contact}>
+                <Route exact path={PathRoute.Contact}>
                     <Contact />
                 </Route>
-                <Route path={PathRoute.HolidayCamp}>
+                <Route exact path={PathRoute.HolidayCamp}>
                     <HolidayCamp />
                 </Route>
-                <Route path={PathRoute.BookTrialCamp}>
+                <Route exact path={PathRoute.BookTrialCamp}>
                     <BookTrialCamp />
                 </Route>
-                <Route path={PathRoute.BookTrialTraining}>
+                <Route exact path={PathRoute.BookTrialTraining}>
                     <BookTrialTraining />
                 </Route>
-                <Route path={PathRoute.OneTraining}>
+                <Route exact path={PathRoute.OneTraining}>
                     <OneTraining />
                 </Route>
-                <Route path={PathRoute.BirthdayParty}>
+                <Route exact path={PathRoute.BirthdayParty}>
                     <BirthdayParty />
                 </Route>
-                <Route path={PathRoute.WeeklyTraining}>
+                <Route exact path={PathRoute.WeeklyTraining}>
                     <WeeklyTraining />
                 </Route>
-                <Route path={PathRoute.DetailNews}>
+                <Route exact path={PathRoute.DetailNews}>
                     <DetailNews />
                 </Route>
-                <Route path={PathRoute.AcademyNews}>
+                <Route exact path={PathRoute.AcademyNews}>
                     <ListNews />
                 </Route>
-                <Route path={PathRoute.ListNews}>
+                <Route exact path={PathRoute.ListNews}>
                     <ListNews />
                 </Route>
-                <Route path={PathRoute.HomeNews}>
+                <Route exact path={PathRoute.HomeNews}>
                     <ListNews />
                 </Route>
-                <Route path={PathRoute.DetailQNA}>
+                <Route exact path={PathRoute.DetailQNA}>
                     <DetailQNA />
                 </Route>
-                <Route path={PathRoute.ListQNA}>
+                <Route exact path={PathRoute.ListQNA}>
                     <ListQNA />
                 </Route>
-                <Route path={PathRoute.Location}>
+                <Route exact path={PathRoute.Location}>
                     <Location />
                 </Route>
-                <Route path={PathRoute.Franchise}>
+                <Route exact path={PathRoute.Franchise}>
                     <Franchise />
                 </Route>
-                <Route path={PathRoute.ThankYou}>
+                <Route exact path={PathRoute.ThankYou}>
                     <ThankYou />
                 </Route>
-
-                <Route path={PathRoute.Policies}>
-                    <Policies />
+                <Route exact path={PathRoute.Policy}>
+                    <Policy />
                 </Route>
-
-                <Route path={PathRoute.WeFlarePolicy}>
-                    <ChildWelfarePolicy />
-                </Route>
-                <Route path={PathRoute.AntiBullying}>
-                    <AntiBullying />
-                </Route>
-                <Route path={PathRoute.EqualityAndDiversity}>
-                    <EqualityAndDiversity />
-                </Route>
-                <Route path={PathRoute.PrivacyPolicy}>
-                    <PrivacyPolicy />
-                </Route>
-                <Route path={PathRoute.Error}>
-                    <ErrorPage />
-                </Route>
-
-                <Route>
-                    <ErrorPage />
+                <Route path="/:otherAlias">
+                    <NotFound />
                 </Route>
             </Switch>
             <LocationModal />

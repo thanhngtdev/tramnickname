@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { siteActionType } from '../actions/actionTypes';
 import PathRoute from '../common/PathRoute';
 
@@ -8,6 +8,7 @@ import logo from '../images/logo.svg';
 import NearbyAcademy from './include/NearbyAcademy';
 
 function Header() {
+    const history = useHistory();
     const [menuMobile, setMenuMobile] = useState(false);
     const [fixHeader, setFixHeader] = useState(true);
     const [defaultAcademy, setDefaultAcademy] = useState(
@@ -105,7 +106,19 @@ function Header() {
                                 <a
                                     className="btn-book-free-session"
                                     href={PathRoute.BookTrialTraining}
-                                    onClick={hideMenu}>
+                                    onClick={(evt) => {
+                                        evt.preventDefault();
+                                        setMenuMobile(false);
+                                        if (defaultAcademy)
+                                            global.bookTraining = {
+                                                siteId: defaultAcademy.ms_id,
+                                                siteName:
+                                                    defaultAcademy.ms_name,
+                                            };
+                                        history.push(
+                                            PathRoute.BookTrialTraining,
+                                        );
+                                    }}>
                                     Book a{' '}
                                     {defaultAcademy &&
                                     defaultAcademy.ms_trial === 1
@@ -128,8 +141,7 @@ function Header() {
                             data-businessunit-id="5630b23d0000ff000584db47"
                             data-style-height="24px"
                             data-style-width="100%"
-                            data-theme="light"
-                            style={{marginLeft:"-16px"}}>
+                            data-theme="light">
                             <a
                                 href="https://uk.trustpilot.com/review/wemakefootballers.com"
                                 target="_blank"
@@ -152,7 +164,7 @@ function Header() {
                         <li>
                             <Link to={PathRoute.Location} onClick={hideMenu}>
                                 Locations
-                            </Link> 
+                            </Link>
                         </li>
                         <li className="login">
                             <a

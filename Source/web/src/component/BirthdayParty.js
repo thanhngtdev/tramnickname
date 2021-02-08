@@ -12,7 +12,6 @@ import BirthdayExtra from './camp/BirthdayExtra';
 import { useDispatch, useSelector } from 'react-redux';
 import ModelManager from '../common/ModelManager';
 import { siteActionType } from '../actions/actionTypes';
-import useTrustpilot from '../hooks/useTrustpilot';
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;
@@ -32,8 +31,6 @@ export default function BirthdayParty() {
     const [partyInclude, setPartyInclude] = useState({});
     const [partyOptional, setPartyOptional] = useState({});
 
-    useTrustpilot();
-    
     useEffect(() => {
         dispatch({
             type: 'GET_DETAIL_SITE',

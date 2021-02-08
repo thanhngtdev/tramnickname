@@ -19,6 +19,7 @@ import {
     watchGetFooter,
     watchGetListSiteHasCamp,
     refreshDefaultData,
+    watchGetPolicy,
 } from './siteSaga';
 import {
     watchGetListArticle,
@@ -51,5 +52,6 @@ export default function* rootSaga() {
         watchGetFooter(),
         watchGetListSiteHasCamp(),
         refreshDefaultData(),
+        watchGetPolicy(),
     ]);
 }

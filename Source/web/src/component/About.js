@@ -21,7 +21,7 @@ function About() {
     const [about5, setAbout5] = useState({});
     useEffect(() => {
         dispatch({
-            type: 'GET_ABOUT',
+            type: homeActionType.GET_ABOUT,
         });
     }, [dispatch]);
 

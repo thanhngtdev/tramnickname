@@ -35,9 +35,9 @@ function Footer() {
                 setDefaultAcademy(siteReducer.data);
             }
             if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
-                const localDefaultAcademy = JSON.parse(localStorage.getItem('defaultAcademy'));
-                setDefaultAcademy(localDefaultAcademy);
-                setLocation(localDefaultAcademy.ms_name);
+                setDefaultAcademy(
+                    JSON.parse(localStorage.getItem('defaultAcademy')),
+                );
             }
             if (siteReducer.type === siteActionType.GET_FOOTER_CONFIG_SUCCESS) {
                 // console.log(siteReducer.data);
@@ -46,28 +46,9 @@ function Footer() {
         }
     }, [siteReducer, location]);
 
-    useEffect(() => {
-        let defaultLocation = JSON.parse(localStorage.getItem("defaultAcademy"));
-        if(defaultLocation){
-        setLocation(defaultLocation.ms_name);
-        }
-        else{
-        setLocation ("Select an academy")
-        }
-    }, []);
-
-    function onClickLocation(e,item) {
+    function onClickLocation(event) {
         setShowSelect(false);
-        setLocation(e.target.textContent);
-        localStorage.setItem(
-                'defaultAcademy',
-                JSON.stringify(
-                    item
-                ),
-            );
-            dispatch({
-                type: siteActionType.PICK_DEFAULT_ACADEMY,
-            });       
+        setLocation(event.target.textContent);
     }
 
     return (
@@ -148,13 +129,13 @@ function Footer() {
                                     className={`select-items ${
                                         !showSelect && 'select-hide'
                                     }`}>
-                                    {lstSite.map((item) => (
+                                    {/* {lstSite.map((item) => (
                                         <div
                                             key={item.ms_id}
-                                            onClick={(e) => {onClickLocation(e,item)}}>
+                                            onClick={() => onClickLocation}>
                                             {item.ms_name}
                                         </div>
-                                    ))}
+                                    ))} */}
                                 </div>
                             </div>
                         </li>
@@ -196,7 +177,7 @@ function Footer() {
                                 );
                         })}
                     <div className="menu-ft">
-                        <a href="/#">Privacy Policy</a>|
+                        <a href={PathRoute.Policy}>Privacy Policy</a>|
                         <a href={PathRoute.ListQNA}> FAQ</a>
                         <span>|</span>
                         <a href="/#"> Terms &amp; Conditions</a>|

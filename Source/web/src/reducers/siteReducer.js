@@ -36,11 +36,6 @@ const siteReducer = (state = initialState, action) => {
                 type: siteActionType.GET_DETAIL_SITE_FAILED,
                 message: action.message,
             };
-        case siteActionType.SELECT_ACADEMY:
-            return {
-                type: siteActionType.SELECT_ACADEMY,
-                data: action.data,
-            };
         case siteActionType.BOOK_TRAINING_SUCCESS:
             return {
                 type: siteActionType.BOOK_TRAINING_SUCCESS,
@@ -180,6 +175,16 @@ const siteReducer = (state = initialState, action) => {
         case siteActionType.GET_FOOTER_CONFIG_FAILED:
             return {
                 type: siteActionType.GET_FOOTER_CONFIG_FAILED,
+                message: action.message,
+            };
+        case siteActionType.GET_POLICY_SUCCESS:
+            return {
+                type: siteActionType.GET_POLICY_SUCCESS,
+                data: action.data,
+            };
+        case siteActionType.GET_POLICY_FAILED:
+            return {
+                type: siteActionType.GET_POLICY_FAILED,
                 message: action.message,
             };
         case siteActionType.REFRESH_DEFAULT_DATA_SUCCESS:
