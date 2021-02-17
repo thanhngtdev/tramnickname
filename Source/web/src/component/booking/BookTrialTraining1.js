@@ -149,7 +149,6 @@ function BookTrialTraining1(props) {
         return _validate;
     }
 
-
     return (
         <div className="tab-1">
             <h2>{message}</h2>

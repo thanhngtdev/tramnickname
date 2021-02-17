@@ -110,7 +110,18 @@ function ListNearbyAcademy() {
                             }}>
                             Set as default location
                         </a>
-                        <a href="/#">
+                        <a
+                            onClick={() => {
+                                dispatch({
+                                    type: headerActionType.CLOSE_LOCATION,
+                                });
+                                history.push(
+                                    '/franchise/' +
+                                        lstAcademy[highlightAcademy].ms_alias +
+                                        '-' +
+                                        lstAcademy[highlightAcademy].ms_id,
+                                );
+                            }}>
                             <FontAwesomeIcon icon={faEnvelope} />
                             Enquiry form
                         </a>
