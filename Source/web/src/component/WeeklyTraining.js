@@ -17,7 +17,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { siteActionType } from '../actions/actionTypes';
 import { useState } from 'react';
 import ModelManager from '../common/ModelManager';
-import useTrustpilot from '../hooks/useTrustpilot';
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;
@@ -38,8 +37,6 @@ function WeeklyTraining() {
     const [faq, setFaq] = useState([]);
     const [about, setAbout] = useState({});
 
-    useTrustpilot();
-    
     useEffect(() => {
         dispatch({
             type: 'GET_DETAIL_SITE',

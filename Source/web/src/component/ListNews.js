@@ -72,8 +72,8 @@ function ListNews() {
                         promoteArticle.atc_featureImg,
                         'c1',
                     )})`,
-                    backgroundRepeat:'no-repeat',
-                    backgroundSize:'cover',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
                 }}>
                 <h4>Feature Article</h4>
                 <h2>

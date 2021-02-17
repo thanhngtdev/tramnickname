@@ -17,11 +17,14 @@ let PathRoute = {
     BookTrialCamp: '/book-trial-camp',
     ThankYou: '/thank-you',
     AcademyNews: '/:alias/news',
-    WeFlarePolicy:'/child-welfare-policy/',
-    AntiBullying:'/anti-bullying-make-footballers/',
-    EqualityAndDiversity:'/equality-and-diversity/',
-    PrivacyPolicy:'/privacy-policy/',
-    Policies: '/policies',
+    Policy: '/policies',
+    Sub_policy: [
+        '/child-welfare-policy',
+        '/anti-bullying-make-footballers',
+        '/equality-and-diversity',
+        '/privacy-policy',
+    ],
     Error: '/error',
 };
+
 export default PathRoute;

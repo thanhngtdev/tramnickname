@@ -13,6 +13,7 @@ export default function SolidButton(props) {
                 if (props.onClick) props.onClick();
             }}
             style={{
+                ...props.style,
                 borderRadius: 6,
                 backgroundColor: '#FF7100',
                 textTransform: 'uppercase',

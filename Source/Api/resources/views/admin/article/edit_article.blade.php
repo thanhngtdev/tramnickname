@@ -19,6 +19,7 @@
             <form role="form" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="lbId" value="{!! $article->atc_id !!}">
+                @role('Super Admin|Master Admin|Sub Admin')
                 <div class="form-group">
                     <?php $dal_article = new \App\Http\DAL\DAL_Article(); ?>
                     <?php $lstCate = $dal_article->getListCateArticle([1]); ?>
@@ -33,6 +34,7 @@
                         @endforeach
                     </select>
                 </div>
+                @endrole
                 <div class="form-group">
                     <label>Title</label>
                     <input type="text" class="form-control input-lg"

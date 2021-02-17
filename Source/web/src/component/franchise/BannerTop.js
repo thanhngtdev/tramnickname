@@ -4,8 +4,6 @@ import { CommonStyle } from '../../common/Styles';
 import { useHistory, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import PathRoute from '../../common/PathRoute';
-import { siteActionType } from '../../actions/actionTypes';
-import { useDispatch } from 'react-redux';
 
 BannerTop.propTypes = {
     site: PropTypes.object,
@@ -13,7 +11,6 @@ BannerTop.propTypes = {
 
 function BannerTop(props) {
     const history = useHistory();
-    const dispatch = useDispatch();
     let options = [];
 
     let { alias } = useParams();
@@ -67,10 +64,6 @@ function BannerTop(props) {
                         onClick={(evt) => {
                             evt.preventDefault();
                             history.push(PathRoute.BookTrialTraining);
-                            dispatch({
-                                type: siteActionType.SELECT_ACADEMY,
-                                data:props.site
-                            });
                         }}>
                         {props.site && props.site.ms_trial === 1
                             ? 'Book a trial session'

@@ -11,7 +11,6 @@ import { Button } from 'react-bootstrap';
 import ModelManager from '../common/ModelManager';
 import { siteActionType } from '../actions/actionTypes';
 import { useSelector, useDispatch } from 'react-redux';
-import useTrustpilot from '../hooks/useTrustpilot';
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;
@@ -28,8 +27,6 @@ function OneTraining() {
     const [about, setAbout] = useState({});
     const [trainingIntro, setTrainingIntro] = useState([]);
 
-    useTrustpilot();
-    
     useEffect(() => {
         dispatch({
             type: 'GET_DETAIL_SITE',

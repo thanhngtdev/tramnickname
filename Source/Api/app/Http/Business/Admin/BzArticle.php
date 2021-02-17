@@ -99,7 +99,7 @@ class BzArticle extends BzAdmin
         try {
             $atcId = $request->lbId;
             $article = $this->dal_article->getDetailArticle($atcId);
-            $article->atc_cate = $request->sltCate;
+            if(isset($request->sltCate)) $article->atc_cate = $request->sltCate;
             $article->atc_title = $request->txtTitle;
             $article->atc_sapo = $request->txtSapo;
             $article->atc_content = $request->txtContent;
@@ -146,12 +146,13 @@ class BzArticle extends BzAdmin
                 'atc_title' => $request->txtTitle,
                 'atc_sapo' => $request->txtSapo,
                 'atc_content' => $request->txtContent,
-                'atc_cate' => $request->sltCate,
                 'atc_createdBy' => Auth::user()->user_id,
                 'atc_status' => DAL_Config::ARTICLE_STATUS_PENDING,
                 'atc_type' => $type,
                 'atc_publicDate' => $dt->toDateString(),
             ];
+            if(isset($request->sltCate)) $array['atc_cate'] = $request->sltCate;
+            else $array['atc_cate'] = 20;
             if (isset($request->siteId)) $array['atc_source'] = $request->siteId;
             if (isset($request->chbSchedule)) {
                 $publicTime = strtotime($request->dateSchedule);

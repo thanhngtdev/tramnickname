@@ -63,6 +63,10 @@ class BzApi
         ];
     }
 
+    public  function getPolicy(){
+        return DAL_Config::getConfig(132);
+    }
+
     public function getFooter(){
         return DAL_Config::getConfig(131);
     }

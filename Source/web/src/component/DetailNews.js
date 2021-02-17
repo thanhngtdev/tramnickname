@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import Utils from '../common/Utils';
 import { useHistory } from 'react-router-dom';
+import PathRoute from '../common/PathRoute';
 
 function DetailNews() {
     let { id } = useParams();
@@ -21,9 +22,6 @@ function DetailNews() {
     }, [dispatch]);
 
     const articleReducer = useSelector((state) => state.articleReducer);
-    // const articleImg = (article?.atc_featureImg);
-
-    // console.log(articleImg)
 
     useEffect(() => {
         if (articleReducer.type) {
@@ -37,7 +35,7 @@ function DetailNews() {
                 setRelated(articleReducer.data.related);
             } else if (articleReducer.failed) {
                 // console.log(articleReducer.failed, 'Fail');
-                history.push('/error');
+                history.replace(PathRoute.Error);
             }
         }
     }, [articleReducer]);

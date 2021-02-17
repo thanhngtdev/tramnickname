@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::group(['namespace' => 'Api'], function() {
     Route::get('home', 'ApiController@getHome');
     Route::get('about-us','ApiController@getAboutUs');
+    Route::get('policy','ApiController@getPolicy');
 
     Route::group(['prefix' => 'site'],function(){
         Route::get('list-site','SiteController@getListSite');

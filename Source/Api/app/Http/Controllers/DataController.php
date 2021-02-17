@@ -1246,6 +1246,51 @@ class DataController extends BaseController
                 ],
             ],
         ]);
+        Config::create([
+            'cfg_id' => 132,
+            'cfg_name' => 'Policy',
+            'cfg_title' => 'We Make Footballers Policies',
+            'cfg_des' => 'To be the UK’s most trusted junior football coaching, we ensure every academy follows our strict policies',
+            'cfg_content' => 'Every single one of our customers deserves a safe, fun and enjoyable experience at our training sessions. While we will always work on improving the social, environmental and quality of our training, we know that we must always adhere to our core policies which are detailed within each of the cards below.',
+            'cfg_alias' => null,
+            'cfg_order' => 0,
+            'cfg_value' => [
+                [
+                    'title' => 'Child Welfare',
+                    'des' => "We Make Footballers acknowledges its responsibility to safeguard the welfare of every child and young person who has been entrusted to its care and is committed to working to provide a safe environment for all members.",
+                    'content' => '<h2>Anti Bullying Policy</h2>
+<p><strong>STATEMENT OF INTENT</strong></p>
+<p>
+	We are committed to providing a caring, friendly and safe environment for all of our staff, players and their families so they can participate in football in a relaxed and secure atmosphere. Bullying of any kind is unacceptable. If bullying does occur, all staff, players and their families should be able to report and know that the incident\/s will be dealt with promptly and effectively.</p>
+<div style="background-color: #f2f2f2; padding: 16px;">
+	<p><strong>WHAT IS BULLYING?</strong></p>
+	<p>Bullying is the use of aggression with the intention of hurting another person. Bullying results in pain and distress to the victim. Bullying can be:</p></div>',
+                    'icon' => '/images/icon-shield.png',
+                    'image' => ''
+                ],
+                [
+                    'title' => 'Anti-bullying',
+                    'des' => "We are committed to providing a caring, friendly and safe environment for all of our staff, players and their families so they can participate in football in a relaxed and secure atmosphere. Bullying of any kind is unacceptable and our policy provides guideence on reporting and how we aim to stamp it out of all our training.",
+                    'content' => '',
+                    'icon' => '/images/icon-people.png',
+                    'image' => ''
+                ],
+                [
+                    'title' => 'Equality & Deversity',
+                    'des' => "We Make Footballers are committed to encouraging equality and diversity among our workforce, and eliminating unlawful discrimination. We Make Footballers are committed against unlawful discrimination of customers or the public.",
+                    'content' => '',
+                    'icon' => '/images/icon-heart.png',
+                    'image' => ''
+                ],
+                [
+                    'title' => 'Privacy',
+                    'des' => "We know that you care how information about you is stored, used and shared and we appreciate your trust in us to do that carefully and sensibly. This notice describes our means of storing your data, using your data, and protecting your data.",
+                    'content' => '',
+                    'icon' => '/images/icon-lock.png',
+                    'image' => ''
+                ],
+            ],
+        ]);
     }
 
 }
