@@ -35,9 +35,9 @@ function Footer() {
                 setDefaultAcademy(siteReducer.data);
             }
             if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
-                const localDefaultAcademy = JSON.parse(localStorage.getItem('defaultAcademy'));
-                setDefaultAcademy(localDefaultAcademy);
-                setLocation(localDefaultAcademy.ms_name);
+                setDefaultAcademy(
+                    JSON.parse(localStorage.getItem('defaultAcademy')),
+                );
             }
             if (siteReducer.type === siteActionType.GET_FOOTER_CONFIG_SUCCESS) {
                 // console.log(siteReducer.data);
