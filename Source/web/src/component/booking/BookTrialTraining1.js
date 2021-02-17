@@ -70,6 +70,7 @@ function BookTrialTraining1(props) {
     const siteReducer = useSelector((state) => state.siteReducer);
  
     useEffect(() => {
+        console.log(siteReducer.type )
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
                 setLstSite(siteReducer.data.lstSite);
