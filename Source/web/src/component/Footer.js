@@ -70,8 +70,6 @@ function Footer() {
             });       
     }
 
-    console.log(lstSite);
-
     return (
         <div className="footer">
             <div className="container">
@@ -198,7 +196,7 @@ function Footer() {
                                 );
                         })}
                     <div className="menu-ft">
-                        <a href="/#">Privacy Policy</a>|
+                        <a href={PathRoute.Policy}>Privacy Policy</a>|
                         <a href={PathRoute.ListQNA}> FAQ</a>
                         <span>|</span>
                         <a href="/#"> Terms &amp; Conditions</a>|

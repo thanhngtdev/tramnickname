@@ -2,7 +2,7 @@ const BASE_URL = 'https://staging-admin.wemakefootballers.com/';
 // const BASE_URL = 'http://local.wmf.com/';
 export const BASE_API = `${BASE_URL}api/`;
 // export const PARENT_API = 'https://parentarea.co/api/v2/';
-export const PARENT_API = 'http://parentarea.twentyci.asia/api/v2/';
+export const PARENT_API = 'https://parentarea.twentyci.asia/api/v2/';
 
 export const STORAGE_URL = `${BASE_URL}storage/`;
 
@@ -21,6 +21,7 @@ export const APIConfig = {
     FIND_NEARBY_ACADEMY: 'site/find-nearby',
     SEND_EMAIL: 'site/send-email',
     GET_FOOTER_CONFIG: 'static/footer',
+    GET_POLICY: 'policy',
 
     GET_LIST_COURSE: 'list-courses',
     COURSE_START_DATE: 'list-course-start-date',

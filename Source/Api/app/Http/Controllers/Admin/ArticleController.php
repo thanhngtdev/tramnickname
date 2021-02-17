@@ -35,9 +35,9 @@ class ArticleController extends Controller
     public function postEditArticle(Request $request){
         $errorCode = $this->bzArticle->postEditArticle($request);
         if($errorCode == _ApiCode::SUCCESS)
-            return redirect()->back()->with(['success_message' => 'Chỉnh sửa bài viết thành công']);
+            return redirect()->back()->with(['success_message' => 'Edit news successfully']);
         else
-            return redirect()->back()->with(['error_message' => 'Chỉnh sửa bài viết không thành công']);
+            return redirect()->back()->with(['error_message' => 'Edit news not successfully']);
     }
 
     public function getAddArticle($siteId=0){
@@ -47,17 +47,17 @@ class ArticleController extends Controller
     public function postAddArticle(Request $request){
         $errorCode = $this->bzArticle->postAddArticle($request);
         if($errorCode == _ApiCode::SUCCESS)
-            return redirect()->back()->with(['success_message' => 'Thêm mới bài viết thành công']);
+            return redirect()->back()->with(['success_message' => 'Add news successfully']);
         else
-            return redirect()->back()->with(['error_message' => 'Thêm mới bài viết không thành công']);
+            return redirect()->back()->with(['error_message' => 'Add news not successfully']);
     }
 
     public function getDeleteArticle($atcId){
         $errorCode = $this->bzArticle->getDeleteArticle($atcId);
         if($errorCode == _ApiCode::SUCCESS)
-            return redirect()->back()->with(['success_message' => 'Xóa bài viết thành công']);
+            return redirect()->back()->with(['success_message' => 'Delete news successfully']);
         else
-            return redirect()->back()->with(['error_message' => 'Xóa bài viết không thành công']);
+            return redirect()->back()->with(['error_message' => 'Delete news not successfully']);
     }
     #endregion
 

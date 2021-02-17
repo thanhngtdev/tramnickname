@@ -21,6 +21,7 @@
                 @if($siteId)
                 <input type="hidden" name="siteId" value="{!! $siteId !!}">
                 @endif
+                @role('Super Admin|Master Admin|Sub Admin')
                 <div class="form-group">
                     <?php $dal_article = new \App\Http\DAL\DAL_Article(); ?>
                     <?php $lstCate = $dal_article->getListCateArticle([1]); ?>
@@ -31,6 +32,7 @@
                         @endforeach
                     </select>
                 </div>
+                @endrole
 
                 <div class="form-group">
                     <label>Title</label>

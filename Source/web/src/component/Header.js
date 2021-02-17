@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { siteActionType } from '../actions/actionTypes';
 import PathRoute from '../common/PathRoute';
 
@@ -8,6 +8,7 @@ import logo from '../images/logo.svg';
 import NearbyAcademy from './include/NearbyAcademy';
 
 function Header() {
+    const history = useHistory();
     const [menuMobile, setMenuMobile] = useState(false);
     const [fixHeader, setFixHeader] = useState(true);
     const [defaultAcademy, setDefaultAcademy] = useState(
@@ -105,7 +106,19 @@ function Header() {
                                 <a
                                     className="btn-book-free-session"
                                     href={PathRoute.BookTrialTraining}
-                                    onClick={hideMenu}>
+                                    onClick={(evt) => {
+                                        evt.preventDefault();
+                                        setMenuMobile(false);
+                                        if (defaultAcademy)
+                                            global.bookTraining = {
+                                                siteId: defaultAcademy.ms_id,
+                                                siteName:
+                                                    defaultAcademy.ms_name,
+                                            };
+                                        history.push(
+                                            PathRoute.BookTrialTraining,
+                                        );
+                                    }}>
                                     Book a{' '}
                                     {defaultAcademy &&
                                     defaultAcademy.ms_trial === 1

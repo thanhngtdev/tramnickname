@@ -46,10 +46,8 @@ function* getDetailSite({ siteId, cate = '' }) {
         siteId,
         cate,
     });
-
     // console.log(response);
     if (response && response.status === 200) {
-
         yield put({
             type: siteActionType.GET_DETAIL_SITE_SUCCESS,
             data: response.data,
@@ -105,6 +103,25 @@ function* getFooterConfig() {
 
 export function* watchGetFooter() {
     yield takeEvery(siteActionType.GET_FOOTER_CONFIG, getFooterConfig);
+}
+
+function* getPolicy() {
+    const response = yield API.requestGetAPI(APIConfig.GET_POLICY);
+    if (response && response.status === 200) {
+        yield put({
+            type: siteActionType.GET_POLICY_SUCCESS,
+            data: response.data,
+        });
+    } else {
+        yield put({
+            type: siteActionType.GET_POLICY_FAILED,
+            message: response ? response.message : '',
+        });
+    }
+}
+
+export function* watchGetPolicy() {
+    yield takeEvery(siteActionType.GET_POLICY, getPolicy);
 }
 
 function* searchNearby({ search, lat, long }) {
@@ -189,6 +206,7 @@ function* getListCourse({ company_id, location_id, course_type }) {
         location_id,
         type: course_type,
     });
+    // console.log(response);
     if (response && response.status === 200) {
         yield put({
             type: siteActionType.GET_LIST_COURSE_SUCCESS,
@@ -211,7 +229,7 @@ function* getCourseStartDate({ course_id }) {
     const response = yield API.getParentAPI(APIConfig.COURSE_START_DATE, {
         course_id,
     });
-
+    // console.log(response);
     if (response && response.status === 200) {
         yield put({
             type: siteActionType.COURSE_START_DATE_SUCCESS,

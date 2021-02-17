@@ -380,6 +380,11 @@
                             <i class="fa fa-lock"></i> WMF Contact Info
                         </a>
                     </li>
+                    <li>
+                        <a href="{!! route('admin.config.getEdit',132) !!}">
+                            <i class="fa fa-lock"></i> WMF Policies
+                        </a>
+                    </li>
                 </ul>
             </li>
             @endrole
