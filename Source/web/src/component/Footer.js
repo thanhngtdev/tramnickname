@@ -51,8 +51,6 @@ function Footer() {
         setLocation(event.target.textContent);
     }
 
-    console.log(lstSite);
-
     return (
         <div className="footer">
             <div className="container">

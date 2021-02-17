@@ -29,7 +29,8 @@ export default function BirthdayParty() {
     const [birthdayPackage, setPackage] = useState({});
     const [imageGallery, setImageGallery] = useState({});
     const [partyInclude, setPartyInclude] = useState({});
-    const [partyOptional, setPartyOptional] = useState({});
+    const [partyOptional, setPartyOptional] = useState({}); 
+    useTrustpilot();
 
     useEffect(() => {
         dispatch({
