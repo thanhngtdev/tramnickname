@@ -31,6 +31,7 @@ export default function BirthdayParty() {
     const [partyInclude, setPartyInclude] = useState({});
     const [partyOptional, setPartyOptional] = useState({}); 
     useTrustpilot();
+
     useEffect(() => {
         dispatch({
             type: 'GET_DETAIL_SITE',
