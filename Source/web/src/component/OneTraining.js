@@ -11,6 +11,7 @@ import { Button } from 'react-bootstrap';
 import ModelManager from '../common/ModelManager';
 import { siteActionType } from '../actions/actionTypes';
 import { useSelector, useDispatch } from 'react-redux';
+import useTruspilot from '../hooks/useTruspilot';
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;
@@ -26,6 +27,8 @@ function OneTraining() {
     const [faq, setFaq] = useState([]);
     const [about, setAbout] = useState({});
     const [trainingIntro, setTrainingIntro] = useState([]);
+
+    useTruspilot();
 
     useEffect(() => {
         dispatch({

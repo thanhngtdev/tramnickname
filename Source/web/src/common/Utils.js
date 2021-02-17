@@ -1,5 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { STORAGE_URL } from '../requests/ApiConfig';
+import packageVersion from '../../package.json';
 
 const { hasOwnProperty } = Object.prototype;
 class Utils {
@@ -119,6 +120,10 @@ class Utils {
             } else distance = Math.round(distance);
         }
         return distance;
+    }
+
+    getVersion() {
+        return packageVersion.version;
     }
 }
 

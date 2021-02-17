@@ -16,6 +16,7 @@ import ModelManager from '../common/ModelManager';
 import { useDispatch, useSelector } from 'react-redux';
 import { siteActionType } from '../actions/actionTypes';
 import BookTrialHoliday from './camp/BookTrialHoliday';
+import useTruspilot from '../hooks/useTruspilot';
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;
@@ -34,6 +35,8 @@ function HolidayCamp() {
     const [faq, setFaq] = useState([]);
     const [about, setAbout] = useState({});
     const [dayCamp, setDayCamp] = useState({});
+
+    useTruspilot();
 
     useEffect(() => {
         dispatch({
@@ -64,6 +67,8 @@ function HolidayCamp() {
             }
         }
     }, [siteReducer]);
+
+    console.log(about)
 
     return (
         <Fragment>
