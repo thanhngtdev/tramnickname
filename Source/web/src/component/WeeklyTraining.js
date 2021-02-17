@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { siteActionType } from '../actions/actionTypes';
 import { useState } from 'react';
 import ModelManager from '../common/ModelManager';
+import useTruspilot from '../hooks/useTruspilot';
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;
@@ -36,6 +37,8 @@ function WeeklyTraining() {
     const [instaFeed, setInstaFeed] = useState({});
     const [faq, setFaq] = useState([]);
     const [about, setAbout] = useState({});
+
+    useTruspilot();
 
     useEffect(() => {
         dispatch({
@@ -66,6 +69,7 @@ function WeeklyTraining() {
             }
         }
     }, [siteReducer]);
+
     return (
         <Fragment>
             <AboutUs data={about} />

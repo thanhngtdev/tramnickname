@@ -12,6 +12,8 @@ import BirthdayExtra from './camp/BirthdayExtra';
 import { useDispatch, useSelector } from 'react-redux';
 import ModelManager from '../common/ModelManager';
 import { siteActionType } from '../actions/actionTypes';
+import useTruspilot from '../hooks/useTruspilot';
+
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;
@@ -30,7 +32,8 @@ export default function BirthdayParty() {
     const [imageGallery, setImageGallery] = useState({});
     const [partyInclude, setPartyInclude] = useState({});
     const [partyOptional, setPartyOptional] = useState({}); 
-    useTrustpilot();
+
+    useTruspilot();
 
     useEffect(() => {
         dispatch({
@@ -58,6 +61,7 @@ export default function BirthdayParty() {
             }
         }
     }, [siteReducer]);
+
 
     return (
         <Fragment>

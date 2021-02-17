@@ -46,6 +46,11 @@ const siteReducer = (state = initialState, action) => {
                 type: siteActionType.BOOK_TRAINING_FAILED,
                 message: action.message,
             };
+        case siteActionType.SELECT_ACADEMY:
+                return {
+                    type: siteActionType.SELECT_ACADEMY,
+                    data: action.data,
+            };
         case siteActionType.SEARCH_NEARBY_SUCCESS:
             return {
                 type: siteActionType.SEARCH_NEARBY_SUCCESS,

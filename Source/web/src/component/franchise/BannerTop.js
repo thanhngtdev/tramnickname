@@ -4,12 +4,15 @@ import { CommonStyle } from '../../common/Styles';
 import { useHistory, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import PathRoute from '../../common/PathRoute';
+import { useDispatch } from 'react-redux';
+import { siteActionType } from '../../actions/actionTypes';
 
 BannerTop.propTypes = {
     site: PropTypes.object,
 };
 
 function BannerTop(props) {
+    const dispatch = useDispatch();
     const history = useHistory();
     let options = [];
 
@@ -62,6 +65,10 @@ function BannerTop(props) {
                         href="/#"
                         className="btn-book"
                         onClick={(evt) => {
+                            dispatch({
+                                type: siteActionType.SELECT_ACADEMY,
+                                data:props.site,
+                            });
                             evt.preventDefault();
                             history.push(PathRoute.BookTrialTraining);
                         }}>
