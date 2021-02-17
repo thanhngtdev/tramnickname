@@ -20,11 +20,13 @@ const articleReducer = (state = initialState, action) => {
             return {
                 type: articleActionType.DETAIL_ARTICLE_SUCCESS,
                 data: action.data,
+                failed: false
             };
         case articleActionType.DETAIL_ARTICLE_FAILED:
             return {
                 type: articleActionType.DETAIL_ARTICLE_FAILED,
                 message: action.message,
+                failed: true
             };
         case articleActionType.GET_LIST_FAQ_SUCCESS:
             return {
