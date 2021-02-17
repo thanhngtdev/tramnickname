@@ -24,6 +24,7 @@ let PathRoute = {
         '/equality-and-diversity',
         '/privacy-policy',
     ],
+    Error: '/error',
 };
 
 export default PathRoute;
