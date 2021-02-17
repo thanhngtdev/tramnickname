@@ -70,6 +70,8 @@ function Footer() {
             });       
     }
 
+    console.log(lstSite);
+
     return (
         <div className="footer">
             <div className="container">
