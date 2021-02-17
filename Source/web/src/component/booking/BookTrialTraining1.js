@@ -9,7 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Radiobox from '../include/Radiobox/Radiobox';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import Utils from '../../common/Utils';
+import Utils from './../../common/Utils';
 
 BookTrialTraining1.propTypes = {
     onNext: PropTypes.func,
@@ -38,7 +38,6 @@ function BookTrialTraining1(props) {
     const [lastName, setLastName] = useState('');
     const [phone, setPhone] = useState('');
     const [lstCourse, setLstCourse] = useState([]);
-    const [courseSatisfied, setCourseSatisfied] = useState([]);
     const [courseSelected, setCourseSelected] = useState({});
     const [siteSelected, setSiteSelected] = useState({});
     const [siteError, setSiteError] = useState('');
@@ -48,27 +47,13 @@ function BookTrialTraining1(props) {
     const [trialDateError, setTrialDateError] = useState('');
     const [firstNameError, setFirstNameError] = useState('');
     const [lastNameError, setLastNameError] = useState('');
-    const [ageStudent,setAgeStudent] = useState(0);
 
     useEffect(() => {
         window.scrollTo(0, 0);
         dispatch({ type: siteActionType.GET_LIST_SITE });
     }, [dispatch]);
-    
-    useEffect(() => {
-        let defaultAcademy = JSON.parse(localStorage.getItem("defaultAcademy"));
-        if(defaultAcademy){
-        setSiteSelected(defaultAcademy);
-        }
-    }, []);
 
-    useEffect(() => {
-        const newLstCourse = lstCourse.filter(course => course.min_age<= ageStudent && ageStudent <= course.max_age)
-        setCourseSatisfied(newLstCourse);
-    },[ageStudent,siteSelected]);
-    
     const siteReducer = useSelector((state) => state.siteReducer);
- 
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
@@ -94,15 +79,8 @@ function BookTrialTraining1(props) {
                     }
                 }
             }
-            if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
-                setSiteSelected(
-                    JSON.parse(localStorage.getItem('defaultAcademy')),
-                );
-            }
-            if (siteReducer.type === siteActionType.SELECT_ACADEMY) {
-                setSiteSelected(siteReducer.data);
-            }
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
+                // console.log(siteReducer.data);
                 setLstCourse(siteReducer.data);
             }
             if (siteReducer.type === siteActionType.COURSE_START_DATE_SUCCESS) {
@@ -110,11 +88,6 @@ function BookTrialTraining1(props) {
             }
         }
     }, [siteReducer]);
-
-    function getClassTime(birth){
-        const age = ~~((Date.now() - birth) / (31557600000));
-        setAgeStudent(age);
-    }
 
     function validateData() {
         let _validate = true;
@@ -199,16 +172,7 @@ function BookTrialTraining1(props) {
                     className="input-text"
                     selected={date}
                     onChange={(date) => {
-                        getClassTime(new Date(date));
                         setDate(date);
-                        if(siteSelected){
-                            dispatch({
-                                type: siteActionType.GET_LIST_COURSE,
-                                company_id: siteSelected.pa_companyId,
-                                location_id: siteSelected.pa_locationId,
-                                course_type: 'course',
-                            })
-                        }
                     }}
                 />
                 <label className="input-error">{dateError}</label>
@@ -225,7 +189,7 @@ function BookTrialTraining1(props) {
                         </b>
                     </div>
                     <div>
-                        {courseSatisfied.map((item, index) => (
+                        {lstCourse.map((item, index) => (
                             <div
                                 key={index}
                                 className="classRow"

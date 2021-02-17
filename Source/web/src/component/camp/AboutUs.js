@@ -62,8 +62,7 @@ function PlayVideo(props) {
                 height="100%"
                 src={props.url + '?&autoplay=1'}
                 frameBorder="0"
-                allowFullScreen
-                allow="autoplay"></iframe>
+                allowFullScreen></iframe>
         </div>
     );
 }
