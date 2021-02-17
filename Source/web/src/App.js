@@ -13,9 +13,12 @@ import allReducers from './reducers';
 import rootSaga from './sagas/rootSaga';
 
 import RouteContent from './RouteContent';
+import Utils from './common/Utils';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(allReducers, applyMiddleware(sagaMiddleware));
+
+console.log(`%cVersion Web: ${Utils.getVersion()}`, 'color: green; font-weight: bold');
 
 function App() {
     return (

@@ -22,6 +22,10 @@ function Footer() {
         });
     }, [dispatch]);
 
+    useEffect(() => {
+        setLocation(defaultAcademy.ms_name);
+    }, [defaultAcademy]);
+
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
         if (siteReducer.type) {
@@ -46,9 +50,16 @@ function Footer() {
         }
     }, [siteReducer, location]);
 
-    function onClickLocation(event) {
-        setShowSelect(false);
+    function onClickLocation(event,item) {
+        setShowSelect(!showSelect);
         setLocation(event.target.textContent);
+        localStorage.setItem(
+            'defaultAcademy',
+            JSON.stringify(item),
+        );
+        dispatch({
+            type: siteActionType.PICK_DEFAULT_ACADEMY,
+        });
     }
 
     return (
@@ -129,13 +140,15 @@ function Footer() {
                                     className={`select-items ${
                                         !showSelect && 'select-hide'
                                     }`}>
-                                    {/* {lstSite.map((item) => (
+                                    {lstSite.map((item) => (
                                         <div
                                             key={item.ms_id}
-                                            onClick={() => onClickLocation}>
+                                            onClick={(e) => {
+                                                onClickLocation(e, item);
+                                            }}>
                                             {item.ms_name}
                                         </div>
-                                    ))} */}
+                                    ))}
                                 </div>
                             </div>
                         </li>
