@@ -68,8 +68,6 @@ function HolidayCamp() {
         }
     }, [siteReducer]);
 
-    console.log(about)
-
     return (
         <Fragment>
             <AboutUs data={about} />

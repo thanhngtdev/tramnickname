@@ -129,8 +129,13 @@ export default function AboutInfoCamp(props) {
                     <div style={{ textAlign: 'center' }}>
                         <SolidButton
                             title="Book now"
-                            onClick={() =>
-                                history.push(PathRoute.BookTrialCamp)
+                            onClick={() =>{
+                                history.push(PathRoute.BookTrialCamp);
+                                dispatch({ 
+                                    type: siteActionType.SELECT_ACADEMY, 
+                                    data:selectedAcademy, 
+                                });
+                                }
                             }
                         />
                     </div>
