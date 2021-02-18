@@ -17,13 +17,16 @@ function DetailNews() {
     const [article, setArticle] = useState({});
     const [related, setRelated] = useState([]);
     const history = useHistory();
+
     useEffect(() => {
+        // console.log(id, 'id');
         dispatch({ type: articleActionType.DETAIL_ARTICLE, atcId: id });
-    }, [dispatch]);
+    }, [id]);
 
     const articleReducer = useSelector((state) => state.articleReducer);
 
     useEffect(() => {
+        // console.log('a');
         if (articleReducer.type) {
             console.log(articleReducer.type, 'Detail Article');
 
