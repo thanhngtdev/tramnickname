@@ -65,9 +65,14 @@ function BannerTop(props) {
                         href="/#"
                         className="btn-book"
                         onClick={(evt) => {
+                            localStorage.setItem(
+                                'defaultAcademy',
+                                JSON.stringify(
+                                    props.site
+                                ),
+                            );
                             dispatch({
-                                type: siteActionType.SELECT_ACADEMY,
-                                data:props.site,
+                                type: siteActionType.PICK_DEFAULT_ACADEMY,
                             });
                             evt.preventDefault();
                             history.push(PathRoute.BookTrialTraining);
