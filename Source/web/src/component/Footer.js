@@ -50,18 +50,16 @@ function Footer() {
         }
     }, [siteReducer, location]);
 
-    function onClickLocation(event,item) {
+    function onClickLocation(event, item) {
         setShowSelect(!showSelect);
         setLocation(event.target.textContent);
-        localStorage.setItem(
-            'defaultAcademy',
-            JSON.stringify(item),
-        );
+        localStorage.setItem('defaultAcademy', JSON.stringify(item));
         dispatch({
             type: siteActionType.PICK_DEFAULT_ACADEMY,
         });
     }
 
+    console.log(defaultAcademy, 'default');
     return (
         <div className="footer">
             <div className="container">
@@ -134,7 +132,9 @@ function Footer() {
                                 <div
                                     className="select-selected"
                                     onClick={() => setShowSelect(!showSelect)}>
-                                    {location.substring(0, 12)}
+                                    {location
+                                        ? location.substring(0, 12)
+                                        : 'Select academy'}
                                 </div>
                                 <div
                                     className={`select-items ${
