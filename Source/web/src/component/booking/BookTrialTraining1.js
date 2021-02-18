@@ -70,7 +70,6 @@ function BookTrialTraining1(props) {
     const siteReducer = useSelector((state) => state.siteReducer);
  
     useEffect(() => {
-        console.log(siteReducer.type )
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
                 setLstSite(siteReducer.data.lstSite);
@@ -99,9 +98,6 @@ function BookTrialTraining1(props) {
                 setSiteSelected(
                     JSON.parse(localStorage.getItem('defaultAcademy')),
                 );
-            }
-            if (siteReducer.type === siteActionType.SELECT_ACADEMY) {
-                setSiteSelected(siteReducer.data);
             }
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
                 setLstCourse(siteReducer.data);
