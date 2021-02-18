@@ -54,6 +54,15 @@ function BookTrialCamp1(props) {
         dispatch({ type: siteActionType.GET_SITE_HAS_CAMP });
     }, [dispatch]);
 
+    useEffect(() => {
+        console.log(siteSelected.pa_companyId)
+        dispatch({
+            type: siteActionType.GET_LIST_COURSE,
+            company_id: siteSelected.pa_companyId,
+            course_type: 'event',
+        });
+    }, [siteSelected]);
+
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
         if (siteReducer.type) {
@@ -87,6 +96,9 @@ function BookTrialCamp1(props) {
                 setEventDate(siteReducer.data);
                 setDateSelect(siteReducer.data.map(() => false));
                 setDateCourseSelect(siteReducer.data.map(() => 0));
+            }
+            if (siteReducer.type === siteActionType.SELECT_ACADEMY) { 
+                setSiteSelected(siteReducer.data); 
             }
         }
     }, [siteReducer, dispatch]);
