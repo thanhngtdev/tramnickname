@@ -89,14 +89,14 @@ function AutocompleteInput(props) {
     }
 
     // Event fired when the user clicks on a suggestion
-    function onClick(e, data) {
-        // Update the user input and reset the rest of the state
-        props.selectAcademy(data);
-        setActiveSuggestion(0);
-        setFilteredSuggestions([]);
-        setShowSuggestions(false);
-        setUserInput(data.ms_name);
-    }
+    // function onClick(e, data) {
+    //     // Update the user input and reset the rest of the state
+    //     props.selectAcademy(data);
+    //     setActiveSuggestion(0);
+    //     setFilteredSuggestions([]);
+    //     setShowSuggestions(false);
+    //     setUserInput(data.ms_name);
+    // }
 
     // Event fired when the user presses a key down
     function onKeyDown(e) {
@@ -128,6 +128,18 @@ function AutocompleteInput(props) {
         }
     }
 
+    //handle Find button's event,
+    // function findHandle() {
+    //     setActiveSuggestion(0);
+    //     setShowSuggestions(false);
+    //     setUserInput(
+    //         filteredSuggestions.length > activeSuggestion
+    //             ? filteredSuggestions[activeSuggestion].ms_name
+    //             : '',
+    //     );
+    //     props.selectAcademy(filteredSuggestions[activeSuggestion]);
+    // }
+
     let suggestionsListComponent;
     if (showSuggestions && userInput) {
         if (filteredSuggestions.length || predict.length) {
@@ -144,30 +156,39 @@ function AutocompleteInput(props) {
                         return (
                             <li
                                 key={suggestion.ms_id}
-                                onClick={(e) => onClick(e, suggestion)}>
-                                <div className={className}>
-                                    <div className="suggest-title">
-                                        <label className="title-text">
-                                            {suggestion.ms_name}
-                                        </label>
-                                        <div>
-                                            <label className="distance-text">
-                                                {`${suggestion.distance} miles`}
+                                // onClick={(e) => onClick(e, suggestion)}
+                            >
+                                <a
+                                    href={
+                                        '/franchise/' +
+                                        suggestion.ms_alias +
+                                        '-' +
+                                        suggestion.ms_id
+                                    }>
+                                    <div className={className}>
+                                        <div className="suggest-title">
+                                            <label className="title-text">
+                                                {suggestion.ms_name}
                                             </label>
-                                            <FontAwesomeIcon
-                                                icon={faChevronRight}
-                                                style={{
-                                                    color: '#EE7925',
-                                                    margin: '0 0.8rem',
-                                                    fontSize: '0.8rem',
-                                                }}
-                                            />
+                                            <div>
+                                                <label className="distance-text">
+                                                    {`${suggestion.distance} miles`}
+                                                </label>
+                                                <FontAwesomeIcon
+                                                    icon={faChevronRight}
+                                                    style={{
+                                                        color: '#EE7925',
+                                                        margin: '0 0.8rem',
+                                                        fontSize: '0.8rem',
+                                                    }}
+                                                />
+                                            </div>
                                         </div>
+                                        <label className="sub-title">
+                                            {suggestion.ms_address || ''}
+                                        </label>
                                     </div>
-                                    <label className="sub-title">
-                                        {suggestion.ms_address || ''}
-                                    </label>
-                                </div>
+                                </a>
                             </li>
                         );
                     })}
@@ -294,7 +315,7 @@ function AutocompleteInput(props) {
                             </svg>
                         </div>
 
-                        <button onClick={() => {}}>FIND</button>
+                        <button>FIND</button>
                     </div>
                 </div>
 
