@@ -70,7 +70,7 @@ function BookTrialTraining3(props) {
             }
         }
     }, [siteReducer]);
-
+    
     function renderOption() {
         return (
             <div className="tab-3">

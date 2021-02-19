@@ -65,7 +65,7 @@ function BookTrialTraining1(props) {
     useEffect(() => {
         const newLstCourse = lstCourse.filter(course => course.min_age<= ageStudent && ageStudent <= course.max_age)
         setCourseSatisfied(newLstCourse);
-    },[ageStudent,siteSelected]);
+    },[ageStudent,lstCourse]);
     
     const siteReducer = useSelector((state) => state.siteReducer);
  
