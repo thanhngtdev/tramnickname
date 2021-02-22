@@ -68,7 +68,7 @@ function HolidayCamp() {
         }
     }, [siteReducer]);
 
-    console.log(about)
+    // console.log(about);
 
     return (
         <Fragment>

@@ -291,6 +291,10 @@ ul.camp-paid li::before {
 		top: 40rem;
 		left: 30px;
 	}
+	
+	.training-include .mobile {
+		top: 32rem;
+	}
 
 	.football-skill {
 		background: white;
