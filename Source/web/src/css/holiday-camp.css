@@ -265,9 +265,9 @@ ul.camp-paid li::before {
 }
 
 @media only screen and (max-width: 767px) and (min-width: 320px) {
-	.about-info {
+	/* .about-info {
 		margin-top: 50px;
-	}
+	} */
 
 	.about-secure {
 		margin-top: -100px;
@@ -288,7 +288,7 @@ ul.camp-paid li::before {
 	}
 
 	.training-include .slide-control {
-		top: 25rem;
+		top: 40rem;
 		left: 30px;
 	}
 
