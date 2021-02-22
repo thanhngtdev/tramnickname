@@ -8,6 +8,7 @@ import { siteActionType } from '../../actions/actionTypes';
 import Utils from '../../common/Utils';
 import PropTypes from 'prop-types';
 import PathRoute from '../../common/PathRoute';
+import useGetWidth from '../../hooks/useGetWidth';
 
 BookTrial.propTypes = {
     parentFb: PropTypes.object,
@@ -35,6 +36,7 @@ function BookTrial(props) {
     const [dateError, setDateError] = useState('');
     const { parentFb } = props;
     const siteReducer = useSelector((state) => state.siteReducer);
+    const width = useGetWidth();
 
     useEffect(() => {
         if (siteReducer.type) {
@@ -124,6 +126,7 @@ function BookTrial(props) {
                                         ? 'Select Academy'
                                         : location}
                                 </div>
+
                                 <div
                                     className={`select-items ${
                                         showSelect ? '' : 'select-hide'

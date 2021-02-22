@@ -16,6 +16,8 @@ function Location() {
             }
         }
     }, [siteReducer]);
+
+    // console.log(lstSite, 'list');
     return (
         <div>
             <div className="map-frame">
