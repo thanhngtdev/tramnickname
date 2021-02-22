@@ -102,7 +102,9 @@ function AutocompleteInput(props) {
     function onKeyDown(e) {
         // User pressed the enter key, update the input and close the
         // suggestions
-        if (e.keyCode === 13) {
+        // Update: click for find button
+
+        if (e.keyCode === 13 || e.type === 'click') {
             setActiveSuggestion(0);
             setShowSuggestions(false);
             setUserInput(
@@ -127,18 +129,6 @@ function AutocompleteInput(props) {
             setActiveSuggestion(activeSuggestion + 1);
         }
     }
-
-    //handle Find button's event,
-    // function findHandle() {
-    //     setActiveSuggestion(0);
-    //     setShowSuggestions(false);
-    //     setUserInput(
-    //         filteredSuggestions.length > activeSuggestion
-    //             ? filteredSuggestions[activeSuggestion].ms_name
-    //             : '',
-    //     );
-    //     props.selectAcademy(filteredSuggestions[activeSuggestion]);
-    // }
 
     let suggestionsListComponent;
     if (showSuggestions && userInput) {
@@ -315,7 +305,7 @@ function AutocompleteInput(props) {
                             </svg>
                         </div>
 
-                        <button>FIND</button>
+                        <button onClick={onKeyDown}>FIND</button>
                     </div>
                 </div>
 
