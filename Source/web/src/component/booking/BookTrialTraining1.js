@@ -174,6 +174,10 @@ function BookTrialTraining1(props) {
                             location_id: option.pa_locationId,
                             course_type: 'course',
                         });
+                        dispatch({ 
+                            type: siteActionType.SELECT_ACADEMY, 
+                            data: option, 
+                        });
                     }}
                 />
                 <label className="input-error">{siteError}</label>

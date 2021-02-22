@@ -53,6 +53,8 @@ function BookTrialTraining3(props) {
     );
     const [dataBooking, setDataBooking] = useState({});
 
+    const showOtherClass = props.bookingFull.other_class;
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -70,7 +72,7 @@ function BookTrialTraining3(props) {
             }
         }
     }, [siteReducer]);
-    
+
     function renderOption() {
         return (
             <div className="tab-3">
@@ -117,6 +119,19 @@ function BookTrialTraining3(props) {
                                                 props.bookingFull.other_class
                                                     .course_title
                                             }
+                                        </div>
+                                        <div
+                                            className="classRow"
+                                            style={{
+                                                marginTop: 25,
+                                                backgroundColor: '#F7F8F7',
+                                            }}>
+                                            <p>
+                                                {
+                                                    showOtherClass.start_date
+                                                        .date_show
+                                                }
+                                            </p>
                                         </div>
                                         <p
                                             style={{
