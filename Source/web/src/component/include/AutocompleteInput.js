@@ -148,37 +148,38 @@ function AutocompleteInput(props) {
                                 key={suggestion.ms_id}
                                 // onClick={(e) => onClick(e, suggestion)}
                             >
-                                <a
-                                    href={
-                                        '/franchise/' +
-                                        suggestion.ms_alias +
-                                        '-' +
-                                        suggestion.ms_id
-                                    }>
-                                    <div className={className}>
-                                        <div className="suggest-title">
-                                            <label className="title-text">
-                                                {suggestion.ms_name}
+                                <div className={className}>
+                                    <div className="suggest-title">
+                                        <label className="title-text">
+                                            {suggestion.ms_name}
+                                        </label>
+                                        <div>
+                                            <label className="distance-text">
+                                                {`${suggestion.distance} miles`}
                                             </label>
-                                            <div>
-                                                <label className="distance-text">
-                                                    {`${suggestion.distance} miles`}
-                                                </label>
+
+                                            <a
+                                                href={
+                                                    '/franchise/' +
+                                                    suggestion.ms_alias +
+                                                    '-' +
+                                                    suggestion.ms_id
+                                                }>
                                                 <FontAwesomeIcon
                                                     icon={faChevronRight}
                                                     style={{
                                                         color: '#EE7925',
                                                         margin: '0 0.8rem',
-                                                        fontSize: '0.8rem',
+                                                        fontSize: '25px',
                                                     }}
                                                 />
-                                            </div>
+                                            </a>
                                         </div>
-                                        <label className="sub-title">
-                                            {suggestion.ms_address || ''}
-                                        </label>
                                     </div>
-                                </a>
+                                    <label className="sub-title">
+                                        {suggestion.ms_address || ''}
+                                    </label>
+                                </div>
                             </li>
                         );
                     })}

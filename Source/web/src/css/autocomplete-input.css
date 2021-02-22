@@ -78,9 +78,9 @@
     flex-direction: row;
 }
 
-.suggestions li a {
+/* .suggestions li a {
     width: 100%;
-}
+} */
 
 .suggestions .suggest-item {
     border-left: 5px solid rgba(247, 112, 30, 0.3);
