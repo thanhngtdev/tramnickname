@@ -59,6 +59,10 @@ function BookTrialTraining1(props) {
         let defaultAcademy = JSON.parse(localStorage.getItem("defaultAcademy"));
         if(defaultAcademy){
         setSiteSelected(defaultAcademy);
+        dispatch({ 
+            type: siteActionType.SELECT_ACADEMY, 
+            data: defaultAcademy, 
+        });
         }
     }, []);
 
@@ -71,6 +75,7 @@ function BookTrialTraining1(props) {
  
     useEffect(() => {
         if (siteReducer.type) {
+            console.log(siteReducer)
             if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
                 setLstSite(siteReducer.data.lstSite);
                 if (global.bookTraining) {
