@@ -40,7 +40,7 @@ function BookingSuccessMap(props) {
                     </p>
                     <h4 style={{ marginBottom: 0 }}>Time:</h4>
                     <p style={{ marginTop: 0 }}>
-                        {props.data.courseSelected
+                        {props.data?.courseSelected?.course_day_time_start && props.data?.courseSelected?.course_day_time_end
                             ? moment(
                                   props.data.courseSelected
                                       .course_day_time_start,
@@ -55,7 +55,7 @@ function BookingSuccessMap(props) {
                     </p>
                     <h4 style={{ marginBottom: 0 }}>Address</h4>
                     <p style={{ marginTop: 0 }}>
-                        {props.data.siteSelected
+                        {props.data?.siteSelected?.ms_address
                             ? props.data.siteSelected.ms_address
                             : ''}
                     </p>

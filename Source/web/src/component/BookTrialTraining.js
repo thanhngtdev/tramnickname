@@ -36,8 +36,15 @@ function BookTrialTraining() {
     const [responseCourse, setResponseCourse] = useState({});
     const [bookingFull, setBookingFull] = useState({});
     const [token, setToken] = useState('');
+    const currentLat = localStorage.getItem('latitude');
+    const currentLng = localStorage.getItem('longitude');
 
     const siteReducer = useSelector((state) => state.siteReducer);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     useEffect(() => {
         if (siteReducer.type) {
             if (
@@ -103,6 +110,9 @@ function BookTrialTraining() {
                 siteReducer.data &&
                     siteReducer.data.Booking_Error &&
                     swal(siteReducer.data.Booking_Error);
+            }
+            if (siteReducer.type === siteActionType.SELECT_ACADEMY) { 
+                setSiteSelected(siteReducer.data); 
             }
         }
     }, [siteReducer]);
@@ -369,8 +379,8 @@ function BookTrialTraining() {
                                     dispatch({
                                         type:
                                             siteActionType.FIND_NEARBY_ACADEMY,
-                                        lat: 51,
-                                        lng: 0,
+                                        lat: currentLat,
+                                        long: currentLng,
                                     });
                                 }}
                                 bookOther={() => {
