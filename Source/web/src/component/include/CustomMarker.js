@@ -28,6 +28,7 @@ function CustomMarker(props) {
         <Marker
             // animation={window.google.maps.Animation.DROP}
             onClick={() => {
+                // console.log(item, 'selected');
                 props.selectAcademy(item);
                 dispatch({
                     type: siteActionType.SELECTED_MARKER,

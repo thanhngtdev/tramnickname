@@ -183,5 +183,18 @@
 	.booking-find .wSelect2 {
 		padding: 15px;
 		border-radius: 0px;
+		
+	}
+
+	.classRow {
+		display: flex;
+		flex-direction: column;
+		/* padding: 0; */
+	}
+
+	.classRow p {
+		font-size: 1rem;
+		color: #000;
+		margin: 5px;
 	}
 }
