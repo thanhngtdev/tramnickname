@@ -7,13 +7,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import parse from 'html-react-parser';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
+import Utils from '../common/Utils';
+import { useHistory } from 'react-router-dom';
+import PathRoute from '../common/PathRoute';
 
-function DetailNews(props) {
+function DetailNews() {
     let { id } = useParams();
-
     const dispatch = useDispatch();
     const [article, setArticle] = useState({});
     const [related, setRelated] = useState([]);
+    const history = useHistory();
     useEffect(() => {
         dispatch({ type: articleActionType.DETAIL_ARTICLE, atcId: id });
     }, [dispatch]);
@@ -22,12 +25,17 @@ function DetailNews(props) {
 
     useEffect(() => {
         if (articleReducer.type) {
+            console.log(articleReducer.type, 'Detail Article');
+
             if (
                 articleReducer.type === articleActionType.DETAIL_ARTICLE_SUCCESS
             ) {
                 // console.log(articleReducer.data);
                 setArticle(articleReducer.data.article);
                 setRelated(articleReducer.data.related);
+            } else if (articleReducer.failed) {
+                // console.log(articleReducer.failed, 'Fail');
+                history.replace(PathRoute.Error);
             }
         }
     }, [articleReducer]);
@@ -38,7 +46,12 @@ function DetailNews(props) {
             <div
                 className="article-feature"
                 style={{
-                    backgroundImage: `url(${require('../images/feature_1.jpg')})`,
+                    backgroundImage:
+                        'url(' +
+                        Utils.getThumb(article.atc_featureImg, 'c2') +
+                        ')',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
                 }}>
                 <h2>{article.atc_title}</h2>
                 <h4>

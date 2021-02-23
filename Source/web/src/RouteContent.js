@@ -155,7 +155,10 @@ function RouteContent(props) {
                 <Route exact path={PathRoute.Policy}>
                     <Policy />
                 </Route>
-                <Route path="/:otherAlias">
+                <Route exact path={PathRoute.Error}>
+                    <NotFound />
+                </Route>
+                <Route>
                     <NotFound />
                 </Route>
             </Switch>
