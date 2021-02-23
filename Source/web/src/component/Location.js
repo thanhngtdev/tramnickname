@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { siteActionType } from '../actions/actionTypes';
 import AcademyMap from './include/AcademyMap';
 
 function Location() {
     const [lstSite, setLstSite] = useState([]);
-
     const siteReducer = useSelector((state) => state.siteReducer);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch({ type: siteActionType.GET_LIST_SITE });
+    }, []);
 
     useEffect(() => {
         if (siteReducer.type) {
@@ -17,7 +21,6 @@ function Location() {
         }
     }, [siteReducer]);
 
-    // console.log(lstSite, 'list');
     return (
         <div>
             <div className="map-frame">
