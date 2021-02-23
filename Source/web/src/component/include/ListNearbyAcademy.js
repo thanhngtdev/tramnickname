@@ -57,7 +57,6 @@ function ListNearbyAcademy() {
     const [lstNearBy,setLstNearBy] = useState([]);
 
     const siteReducer = useSelector((state) => state.siteReducer);
-    console.log(siteReducer);
 
     useEffect(() => {
         if (siteReducer.type) {
@@ -113,6 +112,7 @@ function ListNearbyAcademy() {
             dispatch({
                 type: siteActionType.PICK_DEFAULT_ACADEMY,
             });
+            history.go(0);
         };
 
 

@@ -49,7 +49,7 @@ function BookTrialTraining3(props) {
           ).format('hh:mma');
 
     const [paidBooking, setPaidBooking] = useState(
-        props.data.siteSelected.ms_trial == 1 ? false : true,
+        props?.data?.siteSelected?.ms_trial == 1 ? false : true,
     );
     const [dataBooking, setDataBooking] = useState({});
 

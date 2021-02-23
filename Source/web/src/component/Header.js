@@ -29,6 +29,14 @@ function Header() {
         }
     }, [siteReducer]);
 
+    useEffect(() => {
+        if (defaultAcademy)
+            global.bookTraining = {
+                siteId: defaultAcademy.ms_id,
+                siteName: defaultAcademy.ms_name,
+            };
+    }, [defaultAcademy]);
+
     function hideMenu() {
         setMenuMobile(false);
     }
@@ -142,9 +150,7 @@ function Header() {
                             data-style-height="24px"
                             data-style-width="100%"
                             data-theme="light"
-                            style={{marginLeft:"-16px"}}
-                            >
-                            
+                            style={{ marginLeft: '-16px' }}>
                             <a
                                 href="https://uk.trustpilot.com/review/wemakefootballers.com"
                                 target="_blank"
