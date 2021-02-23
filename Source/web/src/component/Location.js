@@ -20,6 +20,7 @@ function Location() {
             }
         }
     }, [siteReducer]);
+
     return (
         <div>
             <div className="map-frame">

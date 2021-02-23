@@ -54,6 +54,7 @@ function ListNearbyAcademy() {
     const chooseAcademyModal = useRef(null);
     const [lstAcademy, setLstAcademy] = useState([]);
     const [highlightAcademy, setHighlightAcademy] = useState(0);
+    const [lstNearBy,setLstNearBy] = useState([]);
 
     const siteReducer = useSelector((state) => state.siteReducer);
 
@@ -63,7 +64,59 @@ function ListNearbyAcademy() {
                 setLstAcademy(siteReducer.data.data);
             }
         }
+        if (
+            siteReducer.type === siteActionType.FIND_NEARBY_ACADEMY_SUCCESS
+        ) {
+            setLstNearBy(siteReducer.data);
+        }
     }, [siteReducer]);
+
+    useEffect(() => {
+        let options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+          };
+        let geolocation = navigator.geolocation;
+    if (geolocation) {
+        geolocation.getCurrentPosition(onGeoSuccess, onGeoError, options);
+    }
+    }, []);
+
+    function onGeoSuccess(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        dispatch({
+            type:
+                siteActionType.FIND_NEARBY_ACADEMY,
+            lat: latitude,
+            long: longitude,
+        });
+      }
+
+      function onGeoError(error) {
+          console.log("Get location error")
+      }
+
+      useEffect(() => {
+        const defaultAcademy = JSON.parse(localStorage.getItem('defaultAcademy'));
+        const lstNearest = [...lstNearBy].sort((a,b) => a.distance-b.distance);
+
+        if(!defaultAcademy && !!lstNearest[0]){
+            localStorage.setItem(
+                'defaultAcademy',
+                JSON.stringify(
+                    lstNearest[0],
+                ),
+            );
+            dispatch({
+                type: siteActionType.PICK_DEFAULT_ACADEMY,
+            });
+            history.go(0);
+        };
+
+
+    }, [lstNearBy]);
 
     return (
         <div ref={chooseAcademyModal} style={{ paddingBottom: '5rem' }}>

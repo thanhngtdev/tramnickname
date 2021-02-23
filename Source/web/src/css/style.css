@@ -2627,6 +2627,7 @@ table {
 
 	.book_your_child_free_session .select-selected {
 		padding-right: 40px;
+		height: auto;
 	}
 
 	.book_your_child_free_session .select-selected:after {

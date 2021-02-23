@@ -69,7 +69,7 @@ function BookTrialTraining1(props) {
     useEffect(() => {
         const newLstCourse = lstCourse.filter(course => course.min_age<= ageStudent && ageStudent <= course.max_age)
         setCourseSatisfied(newLstCourse);
-    },[ageStudent,siteSelected]);
+    },[ageStudent,lstCourse]);
     
     const siteReducer = useSelector((state) => state.siteReducer);
  
@@ -177,6 +177,10 @@ function BookTrialTraining1(props) {
                             company_id: option.pa_companyId,
                             location_id: option.pa_locationId,
                             course_type: 'course',
+                        });
+                        dispatch({ 
+                            type: siteActionType.SELECT_ACADEMY, 
+                            data: option, 
                         });
                     }}
                 />
