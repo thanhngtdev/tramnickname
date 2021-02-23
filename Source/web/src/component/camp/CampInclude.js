@@ -8,7 +8,6 @@ import {
 import Dot from '../include/Dot';
 import Utils from '../../common/Utils';
 import PropTypes from 'prop-types';
-import useGetWidth from '../../hooks/useGetWidth';
 
 CampInclude.propTypes = {
     data: PropTypes.object,
@@ -17,9 +16,6 @@ CampInclude.propTypes = {
 export default function CampInclude(props) {
     const sliderRef = useRef(null);
     const [slideIndex, setSlideIndex] = useState(0);
-    const width = useGetWidth();
-
-    // console.log({ width });
 
     const settings = {
         lazyLoad: 'ondemand',
@@ -58,12 +54,7 @@ export default function CampInclude(props) {
                             </div>
                         ))}
                     </Slider>
-                    <div
-                        className={
-                            width > 767
-                                ? 'slide-control'
-                                : 'slide-control mobile'
-                        }>
+                    <div className="slide-control">
                         <button
                             onClick={() => {
                                 sliderRef.current.slickGoTo(slideIndex - 1);
@@ -74,60 +65,41 @@ export default function CampInclude(props) {
                                 className="icon"
                             />
                         </button>
-                        {width > 767 ? (
-                            <Fragment>
-                                <div
-                                    style={{
-                                        padding: '0 2rem',
-                                        display: 'initial',
-                                    }}>
-                                    {slideItem.map((item, index) => {
-                                        if (index === slideIndex)
-                                            return (
-                                                <Fragment key={index}>
-                                                    <div style={styles.paging}>
-                                                        <button
-                                                            style={
-                                                                styles.pagingActive
-                                                            }>
-                                                            {index + 1}
-                                                        </button>
-                                                    </div>
-                                                    {index <
-                                                        slideItem.length -
-                                                            1 && <Dot />}
-                                                </Fragment>
-                                            );
-                                        else
-                                            return (
-                                                <Fragment key={index}>
-                                                    <button
-                                                        style={
-                                                            styles.pagingButton
-                                                        }
-                                                        onClick={() => {
-                                                            sliderRef.current.slickGoTo(
-                                                                index,
-                                                            );
-                                                        }}>
-                                                        <span>{index + 1}</span>
-                                                    </button>
-                                                    {index <
-                                                        slideItem.length -
-                                                            1 && <Dot />}
-                                                </Fragment>
-                                            );
-                                    })}
-                                </div>
-                            </Fragment>
-                        ) : (
-                            <Fragment>
-                                <b style={{ margin: '0 2rem' }}>
-                                    {slideIndex + 1}/{slideItem.length}
-                                </b>
-                            </Fragment>
-                        )}
-
+                        <div style={{ padding: '0 2rem', display: 'initial' }}>
+                            {slideItem.map((item, index) => {
+                                if (index === slideIndex)
+                                    return (
+                                        <Fragment key={index}>
+                                            <div style={styles.paging}>
+                                                <button
+                                                    style={styles.pagingActive}>
+                                                    {index + 1}
+                                                </button>
+                                            </div>
+                                            {index < slideItem.length - 1 && (
+                                                <Dot />
+                                            )}
+                                        </Fragment>
+                                    );
+                                else
+                                    return (
+                                        <Fragment key={index}>
+                                            <button
+                                                style={styles.pagingButton}
+                                                onClick={() => {
+                                                    sliderRef.current.slickGoTo(
+                                                        index,
+                                                    );
+                                                }}>
+                                                <span>{index + 1}</span>
+                                            </button>
+                                            {index < slideItem.length - 1 && (
+                                                <Dot />
+                                            )}
+                                        </Fragment>
+                                    );
+                            })}
+                        </div>
                         <button
                             onClick={() => {
                                 sliderRef.current.slickGoTo(slideIndex + 1);

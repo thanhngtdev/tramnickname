@@ -59,7 +59,7 @@ function Footer() {
         });
     }
 
-    // console.log(defaultAcademy, 'default');
+    console.log(defaultAcademy, 'default');
     return (
         <div className="footer">
             <div className="container">

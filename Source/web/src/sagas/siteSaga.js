@@ -247,12 +247,11 @@ export function* watchGetStartDate() {
     yield takeEvery(siteActionType.COURSE_START_DATE, getCourseStartDate);
 }
 
-function* bookCourse({ course_id, start_date, child_id, token }) {
+function* bookCourse({ course_id, start_date, child_id }) {
     const response = yield API.postParentAPI(APIConfig.BOOK_COURSE, {
         course_id,
         start_date,
         child_id,
-        token,
     });
     // console.log(response);
     if (response && response.status === 200) {

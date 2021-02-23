@@ -89,22 +89,20 @@ function AutocompleteInput(props) {
     }
 
     // Event fired when the user clicks on a suggestion
-    // function onClick(e, data) {
-    //     // Update the user input and reset the rest of the state
-    //     props.selectAcademy(data);
-    //     setActiveSuggestion(0);
-    //     setFilteredSuggestions([]);
-    //     setShowSuggestions(false);
-    //     setUserInput(data.ms_name);
-    // }
+    function onClick(e, data) {
+        // Update the user input and reset the rest of the state
+        props.selectAcademy(data);
+        setActiveSuggestion(0);
+        setFilteredSuggestions([]);
+        setShowSuggestions(false);
+        setUserInput(data.ms_name);
+    }
 
     // Event fired when the user presses a key down
     function onKeyDown(e) {
         // User pressed the enter key, update the input and close the
         // suggestions
-        // Update: click for find button
-
-        if (e.keyCode === 13 || e.type === 'click') {
+        if (e.keyCode === 13) {
             setActiveSuggestion(0);
             setShowSuggestions(false);
             setUserInput(
@@ -146,8 +144,7 @@ function AutocompleteInput(props) {
                         return (
                             <li
                                 key={suggestion.ms_id}
-                                // onClick={(e) => onClick(e, suggestion)}
-                            >
+                                onClick={(e) => onClick(e, suggestion)}>
                                 <div className={className}>
                                     <div className="suggest-title">
                                         <label className="title-text">
@@ -157,23 +154,14 @@ function AutocompleteInput(props) {
                                             <label className="distance-text">
                                                 {`${suggestion.distance} miles`}
                                             </label>
-
-                                            <a
-                                                href={
-                                                    '/franchise/' +
-                                                    suggestion.ms_alias +
-                                                    '-' +
-                                                    suggestion.ms_id
-                                                }>
-                                                <FontAwesomeIcon
-                                                    icon={faChevronRight}
-                                                    style={{
-                                                        color: '#EE7925',
-                                                        margin: '0 0.8rem',
-                                                        fontSize: '25px',
-                                                    }}
-                                                />
-                                            </a>
+                                            <FontAwesomeIcon
+                                                icon={faChevronRight}
+                                                style={{
+                                                    color: '#EE7925',
+                                                    margin: '0 0.8rem',
+                                                    fontSize: '0.8rem',
+                                                }}
+                                            />
                                         </div>
                                     </div>
                                     <label className="sub-title">
@@ -306,7 +294,7 @@ function AutocompleteInput(props) {
                             </svg>
                         </div>
 
-                        <button onClick={onKeyDown}>FIND</button>
+                        <button onClick={() => {}}>FIND</button>
                     </div>
                 </div>
 

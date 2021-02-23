@@ -6,7 +6,6 @@ import moment from 'moment';
 
 import { siteActionType, homeActionType } from '../../actions/actionTypes';
 import Utils from '../../common/Utils';
-import useGetWidth from '../../hooks/useGetWidth';
 
 function BookTrial() {
     const dispatch = useDispatch();
