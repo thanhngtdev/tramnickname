@@ -59,6 +59,10 @@ function BookTrialTraining1(props) {
         let defaultAcademy = JSON.parse(localStorage.getItem("defaultAcademy"));
         if(defaultAcademy){
         setSiteSelected(defaultAcademy);
+        dispatch({ 
+            type: siteActionType.SELECT_ACADEMY, 
+            data: defaultAcademy, 
+        });
         }
     }, []);
 

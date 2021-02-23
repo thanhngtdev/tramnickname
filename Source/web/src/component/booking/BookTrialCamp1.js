@@ -49,19 +49,30 @@ function BookTrialCamp1(props) {
     const [lastNameError, setLastNameError] = useState('');
     const [dateError, setDateError] = useState('');
 
+    const [display,setDisplay] = useState("none");
+
     useEffect(() => {
         window.scrollTo(0, 0);
         dispatch({ type: siteActionType.GET_SITE_HAS_CAMP });
     }, [dispatch]);
 
     useEffect(() => {
-        console.log(siteSelected.pa_companyId)
-        dispatch({
+        if(siteSelected.pa_companyId){
+            dispatch({
             type: siteActionType.GET_LIST_COURSE,
             company_id: siteSelected.pa_companyId,
             course_type: 'event',
-        });
+        })};
     }, [siteSelected]);
+
+    useEffect(() => {
+        if (validateData()){
+            setDisplay("inline-block");
+        }
+        else{
+            setDisplay("none");
+        }
+    }, [siteSelected,courseSelected,email,phone,firstName,lastName,date]);
 
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
@@ -90,6 +101,10 @@ function BookTrialCamp1(props) {
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
                 // console.log(siteReducer.data);
                 setLstHoliday(siteReducer.data);
+            }
+            if (siteReducer.type === siteActionType.GET_LIST_COURSE_FAILED) {
+                // console.log(siteReducer.data);
+                setSiteError('The Holiday Camp you have selected is not available');
             }
             if (siteReducer.type === siteActionType.EVENT_DATE_SUCCESS) {
                 // console.log(siteReducer.data);
@@ -203,6 +218,7 @@ function BookTrialCamp1(props) {
                             company_id: option.pa_companyId,
                             course_type: 'event',
                         });
+                        setSiteError("");
                     }}
                 />
                 <label className="input-error">{siteError}</label>
@@ -395,10 +411,10 @@ function BookTrialCamp1(props) {
                     />
                     <label className="input-error">{phoneError}</label>
                 </div>
-                <BorderButton
+                <BorderButton 
+                    style = {{display:display}}
                     title="Next step of booking"
                     onClick={() => {
-                        if (validateData()) {
                             let _dates = [];
                             let _lstDate = [];
                             let _lstPrice = [];
@@ -447,7 +463,7 @@ function BookTrialCamp1(props) {
                             // console.log(dataObject);
                             props.onNext(dataObject);
                         }
-                    }}
+                    }
                 />
             </div>
             <div>
