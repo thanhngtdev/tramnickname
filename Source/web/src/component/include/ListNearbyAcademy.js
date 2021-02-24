@@ -58,8 +58,6 @@ function ListNearbyAcademy() {
 
     const siteReducer = useSelector((state) => state.siteReducer);
 
-    console.log(navigator.geolocation)
-
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.SEARCH_NEARBY_SUCCESS) {
@@ -72,34 +70,6 @@ function ListNearbyAcademy() {
             setLstNearBy(siteReducer.data);
         }
     }, [siteReducer]);
-
-    useEffect(() => {
-        let options = {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
-          };
-        let geolocation = navigator.geolocation;
-    if (geolocation) {
-        geolocation.getCurrentPosition(onGeoSuccess, onGeoError, options);
-    }
-    }, []);
-
-    function onGeoSuccess(position) {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        dispatch({
-            type:
-                siteActionType.FIND_NEARBY_ACADEMY,
-            lat: latitude,
-            long: longitude,
-        });
-        console.log("sucess")
-      }
-
-      function onGeoError(error) {
-          console.log("Get location error")
-      }
 
       useEffect(() => {
         const defaultAcademy = JSON.parse(localStorage.getItem('defaultAcademy'));

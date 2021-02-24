@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Switch, Route } from 'react-router-dom';
 import { geolocated } from 'react-geolocated';
@@ -28,12 +28,29 @@ import ScrollToTop from './component/include/ScrollToTop';
 import ThankYou from './component/ThankYou';
 import Policy from './component/Policy';
 import NotFound from './component/NotFound';
+import usePermissionLocation from './hooks/usePermissionLocation';
 
 const DEFAULT_LAT = 51.5285582;
 const DEFAULT_LOG = -0.2416794;
 
 function RouteContent(props) {
     const dispatch = useDispatch();
+    const locationStatus = usePermissionLocation();
+    
+    useEffect(() => {
+        if (locationStatus == 'granted') {
+            dispatch({
+                type: siteActionType.ALLOW_LOCATION,
+                data: true,
+            });
+        }
+        if (locationStatus == 'denied') {
+            dispatch({
+                type: siteActionType.ALLOW_LOCATION,
+                data: false,
+            });
+        }
+    }, [locationStatus]);
 
     useEffect(() => {
         const defaultAcademy = JSON.parse(
@@ -75,24 +92,30 @@ function RouteContent(props) {
             }
         }
     }, [siteReducer]);
-
-    if (!props.isGeolocationAvailable) {
-        // console.log('geo location not available');
-        localStorage.setItem('latitude', DEFAULT_LAT);
-        localStorage.setItem('longitude', DEFAULT_LOG);
-    }
-    if (!props.isGeolocationEnabled) {
-        // console.log('geo location not enable');
-        localStorage.setItem('latitude', DEFAULT_LAT);
-        localStorage.setItem('longitude', DEFAULT_LOG);
-    }
-    if (!props.coords) {
-        // console.log('getting location')
-    } else {
-        // console.log(props.coords);
-        localStorage.setItem('latitude', props.coords.latitude);
-        localStorage.setItem('longitude', props.coords.longitude);
-    }
+    useEffect(() => {
+        if (!props.isGeolocationAvailable) {
+            // console.log('geo location not available');
+            localStorage.setItem('latitude', DEFAULT_LAT);
+            localStorage.setItem('longitude', DEFAULT_LOG);
+        }
+        if (!props.isGeolocationEnabled) {
+            // console.log('geo location not enable');
+            localStorage.setItem('latitude', DEFAULT_LAT);
+            localStorage.setItem('longitude', DEFAULT_LOG);
+        }
+        if (!props.coords) {
+            // console.log('getting location')
+        } else {
+            // console.log(props.coords);
+            dispatch({
+                type: siteActionType.FIND_NEARBY_ACADEMY,
+                lat: props.coords.latitude,
+                long: props.coords.longitude,
+            });
+            localStorage.setItem('latitude', props.coords.latitude);
+            localStorage.setItem('longitude', props.coords.longitude);
+        }
+    }, [props]);
     return (
         <div className="wapper">
             <ScrollToTop />

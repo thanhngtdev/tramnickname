@@ -21,6 +21,8 @@ export const homeActionType = {
 };
 export const userActionType = {};
 export const siteActionType = {
+    ALLOW_LOCATION: 'ALLOW_LOCATION',
+
     GET_LIST_SITE: 'GET_LIST_SITE',
     GET_LIST_SITE_SUCCESS: 'GET_LIST_SITE_SUCCESS',
     GET_LIST_SITE_FAILED: 'GET_LIST_SITE_FAILED',
