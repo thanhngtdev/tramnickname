@@ -51,6 +51,15 @@ function BookTrialTraining() {
                 siteReducer.type === siteActionType.FIND_NEARBY_ACADEMY_SUCCESS
             ) {
                 setLstSite(siteReducer.data);
+                const lstSiteNearest = [...siteReducer.data].sort((a,b) => a.distance-b.distance);
+                setSiteSelected(lstSiteNearest[0]);
+                setLstSite(lstSiteNearest);
+                dispatch({
+                    type: siteActionType.GET_LIST_COURSE,
+                    company_id: lstSiteNearest[0].pa_companyId,
+                    location_id: lstSiteNearest[0].pa_locationId,
+                    course_type: 'course',
+                });
             }
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
                 setLstCourse(siteReducer.data);
@@ -110,9 +119,6 @@ function BookTrialTraining() {
                 siteReducer.data &&
                     siteReducer.data.Booking_Error &&
                     swal(siteReducer.data.Booking_Error);
-            }
-            if (siteReducer.type === siteActionType.SELECT_ACADEMY) { 
-                setSiteSelected(siteReducer.data); 
             }
         }
     }, [siteReducer]);
@@ -293,7 +299,7 @@ function BookTrialTraining() {
                                         _dataStep1.siteSelected = siteSelected;
                                         _dataStep1.courseSelected = courseSelected;
                                         _dataStep1.company_id =
-                                            courseSelected.pa_companyId;
+                                            siteSelected.pa_companyId;
                                         _dataStep1.course_id =
                                             courseSelected.course_id;
                                         _dataStep1.start_date = moment(
