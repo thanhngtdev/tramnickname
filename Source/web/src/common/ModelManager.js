@@ -22,9 +22,6 @@ const userInfoInitial = {
     searchHistory: [],
 };
 class ModelManager {
-    static token = '';
-    static userInfo = {};
-
     getLocation() {
         return JSON.parse(localStorage.getItem('defaultAcademy')) || {};
     }
