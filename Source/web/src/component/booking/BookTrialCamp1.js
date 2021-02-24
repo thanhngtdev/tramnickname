@@ -73,10 +73,10 @@ function BookTrialCamp1(props) {
         else{
             setDisplay("none");
         }
-        if (dateSelect[0]){
+        if (dateSelect.some(el => el)){
             setTimeError('');
         }
-    }, [siteSelected,courseSelected,email,phone,firstName,lastName,date,dateSelect[0]]);
+    }, [siteSelected,courseSelected,email,phone,firstName,lastName,date,dateSelect]);
 
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
@@ -153,7 +153,7 @@ function BookTrialCamp1(props) {
             _validate = false;
             setDateError('Please choose child&apos;s date of birth');
         } else setDateError('');
-        if (!dateSelect[0]){
+        if (!dateSelect.some(el => el)){
             _validate = false;
             setTimeError('Please select course')
         }

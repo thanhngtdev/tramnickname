@@ -6,6 +6,11 @@ const initialState = {
 
 const siteReducer = (state = initialState, action) => {
     switch (action.type) {
+        case siteActionType.ALLOW_LOCATION:
+            return {
+                type: siteActionType.ALLOW_LOCATION,
+                data: action.data,
+            };
         case siteActionType.GET_LIST_SITE_SUCCESS:
             return {
                 type: siteActionType.GET_LIST_SITE_SUCCESS,

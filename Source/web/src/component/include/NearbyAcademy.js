@@ -7,6 +7,7 @@ import { siteActionType, headerActionType } from '../../actions/actionTypes';
 function NearbyAcademy() {
     const dispatch = useDispatch();
     const wrapperRef = useRef(null);
+    const [allowLocation, setAllowLocation] = useState(false);
     const [nearbyAcademy, setNearbyAcademy] = useState(
         JSON.parse(localStorage.getItem('defaultAcademy')) || {},
     );
@@ -27,6 +28,9 @@ function NearbyAcademy() {
                 setNearbyAcademy(
                     JSON.parse(localStorage.getItem('defaultAcademy')),
                 );
+            }
+            if (siteReducer.type === siteActionType.ALLOW_LOCATION) {
+                setAllowLocation(siteReducer.data);
             }
         }
     }, [siteReducer]);
@@ -49,6 +53,19 @@ function NearbyAcademy() {
         setShowSelect(false);
     }
 
+    // Render
+    const renderNearbyAcademy = () => {
+        if (nearbyAcademy && nearbyAcademy.ms_id) {
+            return nearbyAcademy.ms_name;
+        }
+
+        if (allowLocation) {
+            return 'Loading ...';
+        }
+
+        return 'Find your closet academy';
+    };
+
     return (
         <div className="custom-select" ref={wrapperRef}>
             <div
@@ -63,9 +80,10 @@ function NearbyAcademy() {
                         });
                     }
                 }}>
-                {nearbyAcademy && nearbyAcademy.ms_id
+                {renderNearbyAcademy()}
+                {/* {nearbyAcademy && nearbyAcademy.ms_id
                     ? nearbyAcademy.ms_name
-                    : 'Find your closet academy'}
+                    : 'Find your closet academy'} */}
             </div>
             <div className={`tooltip ${showSelect ? '' : 'select-hide'}`}>
                 <div className="wrap">
