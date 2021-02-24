@@ -45,6 +45,7 @@ function BookTrialCamp1(props) {
     const [courseError, setCourseError] = useState('');
     const [emailError, setEmailError] = useState('');
     const [phoneError, setPhoneError] = useState('');
+    const [timeError, setTimeError] = useState('');
     const [firstNameError, setFirstNameError] = useState('');
     const [lastNameError, setLastNameError] = useState('');
     const [dateError, setDateError] = useState('');
@@ -72,7 +73,10 @@ function BookTrialCamp1(props) {
         else{
             setDisplay("none");
         }
-    }, [siteSelected,courseSelected,email,phone,firstName,lastName,date]);
+        if (dateSelect[0]){
+            setTimeError('');
+        }
+    }, [siteSelected,courseSelected,email,phone,firstName,lastName,date,dateSelect[0]]);
 
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
@@ -114,6 +118,7 @@ function BookTrialCamp1(props) {
             }
             if (siteReducer.type === siteActionType.SELECT_ACADEMY) { 
                 setSiteSelected(siteReducer.data); 
+                setCompanyId(siteReducer.data.pa_companyId);
             }
         }
     }, [siteReducer, dispatch]);
@@ -148,6 +153,10 @@ function BookTrialCamp1(props) {
             _validate = false;
             setDateError('Please choose child&apos;s date of birth');
         } else setDateError('');
+        if (!dateSelect[0]){
+            _validate = false;
+            setTimeError('Please select course')
+        }
         return _validate;
     }
 
@@ -345,6 +354,7 @@ function BookTrialCamp1(props) {
                                 </p>
                             </div>
                         ))}
+                        <label className="input-error">{timeError}</label>
                         <hr />
                         <p
                             style={{

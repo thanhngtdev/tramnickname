@@ -58,6 +58,8 @@ function ListNearbyAcademy() {
 
     const siteReducer = useSelector((state) => state.siteReducer);
 
+    console.log(navigator.geolocation)
+
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.SEARCH_NEARBY_SUCCESS) {
@@ -92,6 +94,7 @@ function ListNearbyAcademy() {
             lat: latitude,
             long: longitude,
         });
+        console.log("sucess")
       }
 
       function onGeoError(error) {
@@ -112,7 +115,6 @@ function ListNearbyAcademy() {
             dispatch({
                 type: siteActionType.PICK_DEFAULT_ACADEMY,
             });
-            history.go(0);
         };
 
 
