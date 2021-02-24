@@ -18,6 +18,12 @@ const Constants = {
     DEFAULT_LOCATION : {
         lat: 51.5,
         lng: -0.3,
+    },
+
+    STATUS_PERMISSION_LOCATION: {
+        PROMPT: "prompt",
+        GRANTED: "granted",
+        DENIED: "denied"
     }
 };
 
