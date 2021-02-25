@@ -9,6 +9,7 @@ import BorderButton from '../include/BorderButton';
 import Dot from '../include/Dot';
 import PathRoute from '../../common/PathRoute';
 import { useHistory } from 'react-router-dom';
+import Captcha from '../Captcha';
 
 BookTrialHoliday.propTypes = {
     parentFb: PropTypes.object,
@@ -82,9 +83,7 @@ function Step2(props) {
                 <label className="input-error">{medicalError}</label>
             </li>
             <li>
-                <div
-                    className="g-recaptcha"
-                    data-sitekey="6Le-VPwUAAAAAA8Ob_fIKNaXUCp1eR5_n58uY0DU"></div>
+                <Captcha id="step-2" />
             </li>
             <li style={{ textAlign: 'center' }}>
                 <Dot fill="none" stroke="rgb(255, 113, 0)" />
@@ -317,9 +316,7 @@ export default function BookTrialHoliday(props) {
                                     />
                                 </li>
                                 <li>
-                                    <div
-                                        className="g-recaptcha"
-                                        data-sitekey="6Le-VPwUAAAAAA8Ob_fIKNaXUCp1eR5_n58uY0DU"></div>
+                                    <Captcha id="step-1" />
                                 </li>
                                 <li>
                                     <BorderButton
@@ -340,7 +337,7 @@ export default function BookTrialHoliday(props) {
                         <p>
                             For more information about our privacy practices,
                             please read our{' '}
-                            <a className="link" href="#">
+                            <a className="link" href={PathRoute.Policy}>
                                 Privacy Policy
                             </a>
                             . By clicking above, you agree that we may process

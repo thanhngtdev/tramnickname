@@ -417,13 +417,10 @@ const BookTrialParty = React.forwardRef((props, ref) => {
                         <p>
                             For more information about our privacy practices,
                             please read our{' '}
-                            {/* <a className="link" href="#">
+                            <a className="link" href={PathRoute.Policy}>
                                 Privacy Policy
-                            </a> */}
-                            <Link className="link" to={PathRoute.Policy}>
-                                Privacy Policy
-                            </Link>
-                            . By clicking above, you agree that we may process
+                            </a>
+                            - . By clicking above, you agree that we may process
                             your information in accordance with these terms.
                         </p>
                     </ul>

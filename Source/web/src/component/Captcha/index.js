@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const Captcha = ({ id = 'captcha' }) => {
+const Captcha = ({ id = 'captcha', event }) => {
     useEffect(() => {
         window.grecaptcha && window.grecaptcha.render(id);
     }, []);
@@ -9,7 +9,11 @@ const Captcha = ({ id = 'captcha' }) => {
         <div
             id={id}
             className="g-recaptcha"
-            data-sitekey="6Le-VPwUAAAAAA8Ob_fIKNaXUCp1eR5_n58uY0DU"></div>
+            data-sitekey="6Le-VPwUAAAAAA8Ob_fIKNaXUCp1eR5_n58uY0DU"
+            // data-callback={() => {
+            //     console.log('call');
+            // }}
+        ></div>
     );
 };
 
