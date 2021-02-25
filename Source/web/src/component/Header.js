@@ -82,28 +82,28 @@ function Header() {
                             />
                         </Link>
                         <ul className="menu">
-                            <li>
+                            <li className="menu-link">
                                 <Link
                                     to={PathRoute.WeeklyTraining}
                                     onClick={hideMenu}>
                                     Weekly Training
                                 </Link>
                             </li>
-                            <li>
+                            <li className="menu-link">
                                 <Link
                                     to={PathRoute.HolidayCamp}
                                     onClick={hideMenu}>
                                     Holiday Camps
                                 </Link>
-                            </li>
-                            <li>
+                            </li >
+                            <li className="menu-link">
                                 <Link
                                     to={PathRoute.OneTraining}
                                     onClick={hideMenu}>
                                     1-on-1 Training
                                 </Link>
                             </li>
-                            <li>
+                            <li className="menu-link">
                                 <Link
                                     to={PathRoute.BirthdayParty}
                                     onClick={hideMenu}>
@@ -160,17 +160,17 @@ function Header() {
                         </div>
                     </div>
                     <ul className="menu-small">
-                        <li>
+                        <li className="menu-link">
                             <Link to={PathRoute.AboutUs} onClick={hideMenu}>
                                 About
                             </Link>
                         </li>
-                        <li>
+                        <li className="menu-link">
                             <a href={PathRoute.Contact} onClick={hideMenu}>
                                 Contact Us
                             </a>
                         </li>
-                        <li>
+                        <li className="menu-link">
                             <Link to={PathRoute.Location} onClick={hideMenu}>
                                 Locations
                             </Link>

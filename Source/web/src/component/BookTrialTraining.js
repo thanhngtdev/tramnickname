@@ -15,9 +15,12 @@ import Radiobox from './include/Radiobox/Radiobox';
 import moment from 'moment';
 import Utils from '../common/Utils';
 import swal from 'sweetalert';
+import { useHistory } from 'react-router-dom';
 
 function BookTrialTraining() {
     const dispatch = useDispatch();
+    const history = useHistory();
+
     const [findAcademy, setFindAcademy] = useState(false);
     const [activeTab, setActiveTab] = useState(1);
     const [dataStep1, setDataStep1] = useState({});
@@ -71,7 +74,6 @@ function BookTrialTraining() {
                 siteReducer.type === siteActionType.BOOK_COURSE_SIGNUP_SUCCESS
             ) {
                 let { data } = siteReducer;
-                // console.log(data);
                 if (data.status === 200) {
                     let _data = data.data;
                     if (_data.Payment_URL)
@@ -80,8 +82,13 @@ function BookTrialTraining() {
                             bookingId: _data.Booking_id,
                             token: _data.access_token,
                         });
-                    setBookSuccess(1);
-                    setActiveTab(3);
+                        if (dataStep1.siteSelected.ms_trial === 0){
+                            setBookSuccess(1);
+                            setActiveTab(3);
+                        }
+                        if (dataStep1.siteSelected.ms_trial === 1){
+                            window.location= `${data.data.payment_url}`;
+                        }
                 } else if (data.status === 709) {
                     //booking class full
                     setBookSuccess(3);

@@ -9,6 +9,7 @@ import BorderButton from '../include/BorderButton';
 import Dot from '../include/Dot';
 import PathRoute from '../../common/PathRoute';
 import { useHistory } from 'react-router-dom';
+import Captcha from '../Captcha';
 
 BookTrialHoliday.propTypes = {
     parentFb: PropTypes.object,
@@ -26,6 +27,7 @@ function Step2(props) {
     const [nameError, setNameError] = useState('');
     const [dateError, setDateError] = useState('');
     const [medicalError, setMedicalError] = useState('');
+    const [captcha, setCaptcha] = useState('');
 
     function validateInput() {
         let checkInput = true;
@@ -41,6 +43,13 @@ function Step2(props) {
             checkInput = false;
             setMedicalError('Field is required.');
         }
+
+        let response = window.grecaptcha.getResponse();
+        if (response.length === 0) {
+            checkInput = false;
+            setCaptcha('Check captcha.');
+        }
+
         return checkInput;
     }
 
@@ -50,7 +59,7 @@ function Step2(props) {
                 <label className="label">Child&apos;s name</label>
                 <input
                     type="text"
-                    placeholder="Abc"
+                    // placeholder="Abc"
                     className="input-text"
                     onChange={(event) => {
                         setName(event.target.value);
@@ -60,7 +69,7 @@ function Step2(props) {
                 <label className="input-error">{nameError}</label>
             </li>
             <li>
-                <label className="label">Child&apos;s date of birth *</label>
+                <label className="label">Child's date of birth *</label>
                 <DatePicker
                     className="input-text"
                     selected={date}
@@ -72,7 +81,7 @@ function Step2(props) {
                 <label className="label">Any medical Infomation that</label>
                 <input
                     type="text"
-                    placeholder="Abc"
+                    // placeholder="Abc"
                     className="input-text"
                     onChange={(event) => {
                         setMedical(event.target.value);
@@ -82,9 +91,8 @@ function Step2(props) {
                 <label className="input-error">{medicalError}</label>
             </li>
             <li>
-                <div
-                    className="g-recaptcha"
-                    data-sitekey="6Le-VPwUAAAAAA8Ob_fIKNaXUCp1eR5_n58uY0DU"></div>
+                <Captcha id="step-2" />
+                <label className="input-error">{captcha}</label>
             </li>
             <li style={{ textAlign: 'center' }}>
                 <Dot fill="none" stroke="rgb(255, 113, 0)" />
@@ -132,7 +140,10 @@ export default function BookTrialHoliday(props) {
     const [emailError, setEmailError] = useState('');
     const [stepActive, setStepActive] = useState(1);
     const { parentFb } = props;
+    const [captcha, setCaptcha] = useState('');
     const siteReducer = useSelector((state) => state.siteReducer);
+
+    console.log(lstSite);
 
     useEffect(() => {
         if (siteReducer.type) {
@@ -168,28 +179,35 @@ export default function BookTrialHoliday(props) {
     }
 
     function validateInput() {
-        let response = window.grecaptcha.getResponse();
-        if (response && response.length > 0) {
-            let checkInput = true;
-            if (location === '') {
-                checkInput = false;
-                setLocationError('Field is required.');
-            }
-            if (email === '') {
-                checkInput = false;
-                setEmailError('Field is required.');
-            }
-            if (phone === '') {
-                checkInput = false;
-                setPhoneError('Field is required.');
-            }
-            if (name === '') {
-                checkInput = false;
-                setNameError('Field is required.');
-            }
-            return checkInput;
+        // let response = window.grecaptcha.getResponse();
+        // if (response && response.length > 0) {
+        let checkInput = true;
+        if (location === '') {
+            checkInput = false;
+            setLocationError('Field is required.');
         }
-        return false;
+        if (email === '') {
+            checkInput = false;
+            setEmailError('Field is required.');
+        }
+        if (phone === '') {
+            checkInput = false;
+            setPhoneError('Field is required.');
+        }
+        if (name === '') {
+            checkInput = false;
+            setNameError('Field is required.');
+        }
+
+        let response = window.grecaptcha.getResponse();
+        if (response.length === 0) {
+            checkInput = false;
+            setCaptcha('Check captcha.');
+        }
+
+        return checkInput;
+        // }
+        // return false;
     }
 
     return (
@@ -317,14 +335,16 @@ export default function BookTrialHoliday(props) {
                                     />
                                 </li>
                                 <li>
-                                    <div
-                                        className="g-recaptcha"
-                                        data-sitekey="6Le-VPwUAAAAAA8Ob_fIKNaXUCp1eR5_n58uY0DU"></div>
+                                    <Captcha id="step-1" />
+                                    <label className="input-error">
+                                        {captcha}
+                                    </label>
                                 </li>
                                 <li>
                                     <BorderButton
                                         className="btn-button-s"
                                         onClick={() => {
+                                            console.log("2");
                                             if (validateInput()) {
                                                 setStepActive(2);
                                             }
@@ -340,7 +360,7 @@ export default function BookTrialHoliday(props) {
                         <p>
                             For more information about our privacy practices,
                             please read our{' '}
-                            <a className="link" href="#">
+                            <a className="link" href={PathRoute.Policy}>
                                 Privacy Policy
                             </a>
                             . By clicking above, you agree that we may process

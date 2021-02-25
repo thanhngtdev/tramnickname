@@ -228,6 +228,7 @@ a.link {
 .map-page .acade-left a {
 	flex: 0 0 25%;
 	line-height: 2.5rem;
+	color: #000000;
 }
 
 .map-page .acade-right {
@@ -238,6 +239,7 @@ a.link {
 .map-page .acade-right a {
 	display: block;
 	line-height: 2.5rem;
+	color: #000000;
 }
 
 .weekly .box-slide .slick-arrow {

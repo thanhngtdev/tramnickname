@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import { siteActionType } from '../actions/actionTypes';
 import Select from 'react-select';
 import { CommonStyle } from '../common/Styles';
+import Captcha from '../component/Captcha';
+import PathRoute from '../common/PathRoute';
 
 const OPTION = [
     { value: 'Weekly Training', label: 'Weekly Training' },
@@ -138,9 +140,7 @@ function Contact() {
                                 <label className="input-error"></label>
                             </li>
                             <li>
-                                <div
-                                    className="g-recaptcha"
-                                    data-sitekey="6Le-VPwUAAAAAA8Ob_fIKNaXUCp1eR5_n58uY0DU"></div>
+                                <Captcha />
                             </li>
                             <li>
                                 <button
@@ -187,7 +187,7 @@ function Contact() {
                                             color: '#FF7531',
                                             textDecoration: 'underline',
                                         }}
-                                        href="/#">
+                                        href={PathRoute.Policy}>
                                         {' '}
                                         Privacy Policy
                                     </a>

@@ -76,7 +76,7 @@ function BookTrialCamp() {
                         className={`wrap-tab ${
                             activeTab === 1 ? 'active' : ''
                         } ${activeTab > 1 ? 'filled' : ''}`}>
-                        <button onClick={() => setActiveTab(1)}>1</button>
+                        <button>1</button>
                     </div>
 
                     <HolidayCampTabSpace />
@@ -84,14 +84,14 @@ function BookTrialCamp() {
                         className={`wrap-tab ${
                             activeTab === 2 ? 'active' : ''
                         } ${activeTab > 2 ? 'filled' : ''}`}>
-                        <button onClick={() => setActiveTab(2)}>2</button>
+                        <button>2</button>
                     </div>
                     <HolidayCampTabSpace />
                     <div
                         className={`wrap-tab ${
                             activeTab === 3 ? 'active' : ''
                         }`}>
-                        <button onClick={() => setActiveTab(3)}>3</button>
+                        <button>3</button>
                     </div>
                 </div>
                 <div className="tab-content">

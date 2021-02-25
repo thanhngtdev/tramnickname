@@ -9,6 +9,7 @@ import DatePicker from 'react-datepicker';
 import Utils from '../../common/Utils';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import PathRoute from '../../common/PathRoute';
 
 BookTrialCamp1.propTypes = {
     onNext: PropTypes.func,
@@ -50,7 +51,7 @@ function BookTrialCamp1(props) {
     const [lastNameError, setLastNameError] = useState('');
     const [dateError, setDateError] = useState('');
 
-    const [display,setDisplay] = useState("none");
+    const [display, setDisplay] = useState('none');
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -58,25 +59,34 @@ function BookTrialCamp1(props) {
     }, [dispatch]);
 
     useEffect(() => {
-        if(siteSelected.pa_companyId){
+        if (siteSelected.pa_companyId) {
             dispatch({
-            type: siteActionType.GET_LIST_COURSE,
-            company_id: siteSelected.pa_companyId,
-            course_type: 'event',
-        })};
+                type: siteActionType.GET_LIST_COURSE,
+                company_id: siteSelected.pa_companyId,
+                course_type: 'event',
+            });
+        }
     }, [siteSelected]);
 
     useEffect(() => {
-        if (validateData()){
-            setDisplay("inline-block");
+        if (validateData()) {
+            setDisplay('inline-block');
+        } else {
+            setDisplay('none');
         }
-        else{
-            setDisplay("none");
-        }
-        if (dateSelect.some(el => el)){
+        if (dateSelect.some((el) => el)) {
             setTimeError('');
         }
-    }, [siteSelected,courseSelected,email,phone,firstName,lastName,date,dateSelect]);
+    }, [
+        siteSelected,
+        courseSelected,
+        email,
+        phone,
+        firstName,
+        lastName,
+        date,
+        dateSelect,
+    ]);
 
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
@@ -108,7 +118,9 @@ function BookTrialCamp1(props) {
             }
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_FAILED) {
                 // console.log(siteReducer.data);
-                setSiteError('The Holiday Camp you have selected is not available');
+                setSiteError(
+                    'The Holiday Camp you have selected is not available',
+                );
             }
             if (siteReducer.type === siteActionType.EVENT_DATE_SUCCESS) {
                 // console.log(siteReducer.data);
@@ -116,8 +128,8 @@ function BookTrialCamp1(props) {
                 setDateSelect(siteReducer.data.map(() => false));
                 setDateCourseSelect(siteReducer.data.map(() => 0));
             }
-            if (siteReducer.type === siteActionType.SELECT_ACADEMY) { 
-                setSiteSelected(siteReducer.data); 
+            if (siteReducer.type === siteActionType.SELECT_ACADEMY) {
+                setSiteSelected(siteReducer.data);
                 setCompanyId(siteReducer.data.pa_companyId);
             }
         }
@@ -153,9 +165,9 @@ function BookTrialCamp1(props) {
             _validate = false;
             setDateError('Please choose child&apos;s date of birth');
         } else setDateError('');
-        if (!dateSelect.some(el => el)){
+        if (!dateSelect.some((el) => el)) {
             _validate = false;
-            setTimeError('Please select course')
+            setTimeError('Please select course');
         }
         return _validate;
     }
@@ -227,7 +239,7 @@ function BookTrialCamp1(props) {
                             company_id: option.pa_companyId,
                             course_type: 'event',
                         });
-                        setSiteError("");
+                        setSiteError('');
                     }}
                 />
                 <label className="input-error">{siteError}</label>
@@ -400,7 +412,7 @@ function BookTrialCamp1(props) {
                 </div>
                 <div className="wSelect2">
                     <label className="label" style={{ display: 'block' }}>
-                        Child&apos;s date of birth *
+                        Child's date of birth *
                     </label>
                     <DatePicker
                         className="input-text"
@@ -421,65 +433,60 @@ function BookTrialCamp1(props) {
                     />
                     <label className="input-error">{phoneError}</label>
                 </div>
-                <BorderButton 
-                    style = {{display:display}}
+                <BorderButton
+                    style={{ display: display }}
                     title="Next step of booking"
                     onClick={() => {
-                            let _dates = [];
-                            let _lstDate = [];
-                            let _lstPrice = [];
-                            dateSelect.map((item, index) => {
-                                if (item) {
-                                    if (dateCourseSelect[index] === 0) {
-                                        _lstDate.push(
-                                            eventDate[index].date +
-                                                ' - Full day',
-                                        );
-                                        _lstPrice.push(
-                                            courseSelected.single_day_price,
-                                        );
-                                        eventDate[index].time.map((it, idx) =>
-                                            _dates.push(it.id),
-                                        );
-                                    } else {
-                                        _lstDate.push(
-                                            eventDate[index].date +
-                                                ' - Half day',
-                                        );
-                                        _lstPrice.push(
-                                            courseSelected.half_day_price,
-                                        );
-                                        _dates.push(dateCourseSelect[index]);
-                                    }
+                        let _dates = [];
+                        let _lstDate = [];
+                        let _lstPrice = [];
+                        dateSelect.map((item, index) => {
+                            if (item) {
+                                if (dateCourseSelect[index] === 0) {
+                                    _lstDate.push(
+                                        eventDate[index].date + ' - Full day',
+                                    );
+                                    _lstPrice.push(
+                                        courseSelected.single_day_price,
+                                    );
+                                    eventDate[index].time.map((it, idx) =>
+                                        _dates.push(it.id),
+                                    );
+                                } else {
+                                    _lstDate.push(
+                                        eventDate[index].date + ' - Half day',
+                                    );
+                                    _lstPrice.push(
+                                        courseSelected.half_day_price,
+                                    );
+                                    _dates.push(dateCourseSelect[index]);
                                 }
-                            });
-                            let dataObject = {
-                                siteSelected,
-                                courseSelected,
-                                parent_first_name: firstName,
-                                parent_last_name: lastName,
-                                email: email,
-                                phone_number: phone,
-                                course_id: courseSelected.course_id,
-                                dates: _dates,
-                                date_of_birth: moment(date).format(
-                                    'yyyy-MM-DD',
-                                ),
-                                company_id: companyId,
-                                lstDate: _lstDate,
-                                lstPrice: _lstPrice,
-                                totalPrice,
-                            };
-                            // console.log(dataObject);
-                            props.onNext(dataObject);
-                        }
-                    }
+                            }
+                        });
+                        let dataObject = {
+                            siteSelected,
+                            courseSelected,
+                            parent_first_name: firstName,
+                            parent_last_name: lastName,
+                            email: email,
+                            phone_number: phone,
+                            course_id: courseSelected.course_id,
+                            dates: _dates,
+                            date_of_birth: moment(date).format('yyyy-MM-DD'),
+                            company_id: companyId,
+                            lstDate: _lstDate,
+                            lstPrice: _lstPrice,
+                            totalPrice,
+                        };
+                        // console.log(dataObject);
+                        props.onNext(dataObject);
+                    }}
                 />
             </div>
             <div>
                 <p>
                     For more information about our privacy practices, please
-                    read our <a href="/#">Privacy Policy.</a>
+                    read our <a href={PathRoute.Policy}>Privacy Policy.</a>
                 </p>
                 <p>
                     By clicking above, you agree that we may process your

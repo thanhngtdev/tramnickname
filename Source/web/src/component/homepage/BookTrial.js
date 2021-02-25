@@ -160,7 +160,7 @@ function BookTrial(props) {
                         </li>
                         <li>
                             <label className="label">
-                                Child&apos;s date of birth *
+                                Child's date of birth *
                             </label>
                             <DatePicker
                                 className="input-text"

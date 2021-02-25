@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 import Constants from '../../common/Constants';
 import CustomMarker from './CustomMarker';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
+import { siteActionType } from '../../actions/actionTypes';
 
 function BookingSuccessMap(props) {
+    const timeStart = props?.courseSelected?.course_day_time_start;
+    const timeEnd = props?.courseSelected?.course_day_time_end;
+    const [bookingInfo, setBookingInfo] = useState({});
+
     const defaultCenter = {
         lat: Constants.DEFAULT_LOCATION.lat,
         lng: Constants.DEFAULT_LOCATION.lng,
@@ -14,6 +20,17 @@ function BookingSuccessMap(props) {
         ms_latitude: Constants.DEFAULT_LOCATION.lat,
         ms_longitude: Constants.DEFAULT_LOCATION.lng,
     };
+
+    const siteReducer = useSelector((state) => state.siteReducer);
+    useEffect(() => {
+        if (siteReducer.type) {
+            if (
+                siteReducer.type === siteActionType.BOOK_COURSE_SIGNUP_SUCCESS
+            ) {
+                setBookingInfo(siteReducer.data.data);
+            }
+        }
+    }, [siteReducer]);
 
     return (
         <GoogleMap defaultZoom={12} center={defaultCenter}>
@@ -28,35 +45,22 @@ function BookingSuccessMap(props) {
                     <h4 style={{ marginBottom: 0 }}>Payment made </h4>
                     <p style={{ marginTop: 0 }}>
                         £
-                        {props.courseSelected
-                            ? props.courseSelected.course_price
-                            : 0}
-                    </p>
-                    <h4 style={{ marginBottom: 0 }}>Reference number:</h4>
-                    <p style={{ marginTop: 0 }}>
-                        {props.responseCourse
-                            ? props.responseCourse.bookingId
+                        {bookingInfo?.total_price
+                            ? bookingInfo.total_price
                             : ''}
                     </p>
+                    <h4 style={{ marginBottom: 0 }}>Reference number:</h4>
+                    <p style={{ marginTop: 0 }}>{bookingInfo?.booking_id}</p>
                     <h4 style={{ marginBottom: 0 }}>Time:</h4>
                     <p style={{ marginTop: 0 }}>
-                        {props.data?.courseSelected?.course_day_time_start && props.data?.courseSelected?.course_day_time_end
-                            ? moment(
-                                  props.data.courseSelected
-                                      .course_day_time_start,
-                                  'hh:mm:ss',
-                              ).format('hh:mma') +
-                              '-' +
-                              moment(
-                                  props.data.courseSelected.course_day_time_end,
-                                  'hh:mm:ss',
-                              ).format('hh:mma')
+                        {timeStart && timeEnd
+                            ? timeStart.slice(0, 5) + '-' + timeEnd.slice(0, 5)
                             : ''}
                     </p>
                     <h4 style={{ marginBottom: 0 }}>Address</h4>
                     <p style={{ marginTop: 0 }}>
-                        {props.data?.siteSelected?.ms_address
-                            ? props.data.siteSelected.ms_address
+                        {props?.siteSelected?.ms_address
+                            ? props.siteSelected.ms_address
                             : ''}
                     </p>
                     <a href="#">Add to your calendar</a>
