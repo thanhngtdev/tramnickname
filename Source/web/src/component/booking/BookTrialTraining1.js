@@ -150,7 +150,6 @@ function BookTrialTraining1(props) {
         return _validate;
     }
 
-
     return (
         <div className="tab-1">
             <h2>{message}</h2>
@@ -199,7 +198,7 @@ function BookTrialTraining1(props) {
             </div>
             <div className="wSelect2">
                 <label className="label" style={{ display: 'block' }}>
-                    Child&apos;s date of birth *
+                    Child's date of birth *
                 </label>
                 <DatePicker
                     className="input-text"
@@ -207,14 +206,6 @@ function BookTrialTraining1(props) {
                     onChange={(date) => {
                         getClassTime(new Date(date));
                         setDate(date);
-                        if(siteSelected){
-                            dispatch({
-                                type: siteActionType.GET_LIST_COURSE,
-                                company_id: siteSelected.pa_companyId,
-                                location_id: siteSelected.pa_locationId,
-                                course_type: 'course',
-                            })
-                        }
                     }}
                 />
                 <label className="input-error">{dateError}</label>

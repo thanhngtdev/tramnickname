@@ -400,7 +400,7 @@ function BookTrialCamp1(props) {
                 </div>
                 <div className="wSelect2">
                     <label className="label" style={{ display: 'block' }}>
-                        Child&apos;s date of birth *
+                        Child's date of birth *
                     </label>
                     <DatePicker
                         className="input-text"
