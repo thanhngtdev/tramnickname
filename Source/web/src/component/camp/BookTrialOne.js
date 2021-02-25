@@ -61,10 +61,10 @@ function BookTrialOne(props) {
         // let response = window.grecaptcha.getResponse();
         // if (response && response.length > 0) {
         let checkInput = true;
-        // if (location === '') {
-        //     checkInput = false;
-        //     setLocationError('Field is required.');
-        // }
+        if (location === '') {
+            checkInput = false;
+            setLocationError('Field is required.');
+        }
         if (email === '') {
             checkInput = false;
             setEmailError('Field is required.');
