@@ -69,7 +69,7 @@ function Step2(props) {
                 <label className="input-error">{nameError}</label>
             </li>
             <li>
-                <label className="label">Child&apos;s date of birth *</label>
+                <label className="label">Child's date of birth *</label>
                 <DatePicker
                     className="input-text"
                     selected={date}
@@ -142,6 +142,8 @@ export default function BookTrialHoliday(props) {
     const { parentFb } = props;
     const [captcha, setCaptcha] = useState('');
     const siteReducer = useSelector((state) => state.siteReducer);
+
+    console.log(lstSite);
 
     useEffect(() => {
         if (siteReducer.type) {
@@ -342,6 +344,7 @@ export default function BookTrialHoliday(props) {
                                     <BorderButton
                                         className="btn-button-s"
                                         onClick={() => {
+                                            console.log("2");
                                             if (validateInput()) {
                                                 setStepActive(2);
                                             }

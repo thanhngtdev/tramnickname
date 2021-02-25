@@ -5,6 +5,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './css/font.css';
 import './css/style.css';
 import './css/custom.css';
+import './css/hover.css';
+
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
