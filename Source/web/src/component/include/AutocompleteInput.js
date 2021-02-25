@@ -252,8 +252,6 @@ function AutocompleteInput(props) {
         }
     }
 
-    console.log(props.suggestions, 'suggest');
-
     return (
         <Fragment>
             <div className="auto-complete">
