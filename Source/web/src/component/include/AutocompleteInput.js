@@ -118,6 +118,10 @@ function AutocompleteInput(props) {
                     : '',
             );
             props.selectAcademy(filteredSuggestions[activeSuggestion]);
+            dispatch({
+                type: siteActionType.SELECTED_MARKER,
+                data: filteredSuggestions[activeSuggestion],
+            });
         }
         // User pressed the up arrow, decrement the index
         else if (e.keyCode === 38) {
