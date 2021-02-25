@@ -3,9 +3,14 @@ import React from 'react';
 export default function BorderButton(props) {
     return (
         <button
-            onClick={() => {
-                if (props.onClick) props.onClick();
-            }}
+            onClick={
+                props.onClick
+                //     () => {
+                //     if (props.onClick) {
+                //         props.onClick();
+                //     }
+                // }
+            }
             style={{
                 ...props.style,
                 borderRadius: 6,
