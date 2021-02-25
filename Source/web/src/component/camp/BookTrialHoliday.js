@@ -27,6 +27,7 @@ function Step2(props) {
     const [nameError, setNameError] = useState('');
     const [dateError, setDateError] = useState('');
     const [medicalError, setMedicalError] = useState('');
+    const [captcha, setCaptcha] = useState('');
 
     function validateInput() {
         let checkInput = true;
@@ -42,6 +43,13 @@ function Step2(props) {
             checkInput = false;
             setMedicalError('Field is required.');
         }
+
+        let response = window.grecaptcha.getResponse();
+        if (response.length === 0) {
+            checkInput = false;
+            setCaptcha('Check captcha.');
+        }
+
         return checkInput;
     }
 
@@ -51,7 +59,7 @@ function Step2(props) {
                 <label className="label">Child&apos;s name</label>
                 <input
                     type="text"
-                    placeholder="Abc"
+                    // placeholder="Abc"
                     className="input-text"
                     onChange={(event) => {
                         setName(event.target.value);
@@ -73,7 +81,7 @@ function Step2(props) {
                 <label className="label">Any medical Infomation that</label>
                 <input
                     type="text"
-                    placeholder="Abc"
+                    // placeholder="Abc"
                     className="input-text"
                     onChange={(event) => {
                         setMedical(event.target.value);
@@ -84,6 +92,7 @@ function Step2(props) {
             </li>
             <li>
                 <Captcha id="step-2" />
+                <label className="input-error">{captcha}</label>
             </li>
             <li style={{ textAlign: 'center' }}>
                 <Dot fill="none" stroke="rgb(255, 113, 0)" />
@@ -131,6 +140,7 @@ export default function BookTrialHoliday(props) {
     const [emailError, setEmailError] = useState('');
     const [stepActive, setStepActive] = useState(1);
     const { parentFb } = props;
+    const [captcha, setCaptcha] = useState('');
     const siteReducer = useSelector((state) => state.siteReducer);
 
     useEffect(() => {
@@ -167,28 +177,35 @@ export default function BookTrialHoliday(props) {
     }
 
     function validateInput() {
-        let response = window.grecaptcha.getResponse();
-        if (response && response.length > 0) {
-            let checkInput = true;
-            if (location === '') {
-                checkInput = false;
-                setLocationError('Field is required.');
-            }
-            if (email === '') {
-                checkInput = false;
-                setEmailError('Field is required.');
-            }
-            if (phone === '') {
-                checkInput = false;
-                setPhoneError('Field is required.');
-            }
-            if (name === '') {
-                checkInput = false;
-                setNameError('Field is required.');
-            }
-            return checkInput;
+        // let response = window.grecaptcha.getResponse();
+        // if (response && response.length > 0) {
+        let checkInput = true;
+        if (location === '') {
+            checkInput = false;
+            setLocationError('Field is required.');
         }
-        return false;
+        if (email === '') {
+            checkInput = false;
+            setEmailError('Field is required.');
+        }
+        if (phone === '') {
+            checkInput = false;
+            setPhoneError('Field is required.');
+        }
+        if (name === '') {
+            checkInput = false;
+            setNameError('Field is required.');
+        }
+
+        let response = window.grecaptcha.getResponse();
+        if (response.length === 0) {
+            checkInput = false;
+            setCaptcha('Check captcha.');
+        }
+
+        return checkInput;
+        // }
+        // return false;
     }
 
     return (
@@ -317,6 +334,9 @@ export default function BookTrialHoliday(props) {
                                 </li>
                                 <li>
                                     <Captcha id="step-1" />
+                                    <label className="input-error">
+                                        {captcha}
+                                    </label>
                                 </li>
                                 <li>
                                     <BorderButton
