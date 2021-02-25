@@ -1,0 +1,22 @@
+a,div {
+  transition: 0.3s;
+}
+
+.menu-link a:hover, .list a:hover{
+  color:#EE7925 !important
+}
+
+.login a:hover{
+  color: white !important;
+  background-color: #EE7925 !important;
+}
+
+.menu-small .custom-select .select-selected:hover{
+  -webkit-box-shadow: -2px 2px 2px 0px rgba(204,204,204,1);
+  -moz-box-shadow: -2px 2px 2px 0px rgba(204,204,204,1);
+  box-shadow: -2px 2px 2px 0px rgba(204,204,204,1);
+}
+
+.list .custom-select .select-selected:hover{
+  border:1px solid #EE7925;
+}
