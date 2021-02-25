@@ -5,6 +5,7 @@ import BorderButton from '../include/BorderButton';
 export default function BirthdayPackage(props) {
     const birthdayPackage = props.data;
     const cfgValue = props.data.cfg_value || [];
+
     return (
         <div className="birthday-package">
             <div className="container">
@@ -24,7 +25,12 @@ export default function BirthdayPackage(props) {
                                 Cost {cfgValue[0].title} £{cfgValue[0].icon}
                             </p>
                             <p className="package-des">{cfgValue[0].content}</p>
-                            <BorderButton title={`Book ${cfgValue[0].title}`} />
+                            <BorderButton
+                                onClick={() => {
+                                    props.onClick(cfgValue[0].title);
+                                }}
+                                title={`Book ${cfgValue[0].title}`}
+                            />
                         </div>
                     </div>
                 )}
@@ -37,7 +43,12 @@ export default function BirthdayPackage(props) {
                                 Cost {cfgValue[1].title} £{cfgValue[1].icon}
                             </p>
                             <p className="package-des">{cfgValue[1].content}</p>
-                            <BorderButton title={`Book ${cfgValue[1].title}`} />
+                            <BorderButton
+                                onClick={() => {
+                                    props.onClick(cfgValue[1].title);
+                                }}
+                                title={`Book ${cfgValue[1].title}`}
+                            />
                         </div>
                         <div className="package-image">
                             <img
@@ -62,7 +73,12 @@ export default function BirthdayPackage(props) {
                                 Cost {cfgValue[2].title} £{cfgValue[2].icon}
                             </p>
                             <p className="package-des">{cfgValue[2].content}</p>
-                            <BorderButton title={`Book ${cfgValue[2].title}`} />
+                            <BorderButton
+                                onClick={() => {
+                                    props.onClick(cfgValue[2].title);
+                                }}
+                                title={`Book ${cfgValue[2].title}`}
+                            />
                         </div>
                     </div>
                 )}

@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import AboutUs from './camp/AboutUs';
 import Feedback from './camp/Feedback';
 import FootballSkill from './camp/FootballSkill';
@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import ModelManager from '../common/ModelManager';
 import { siteActionType } from '../actions/actionTypes';
 import useTruspilot from '../hooks/useTruspilot';
-
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;
@@ -31,7 +30,8 @@ export default function BirthdayParty() {
     const [birthdayPackage, setPackage] = useState({});
     const [imageGallery, setImageGallery] = useState({});
     const [partyInclude, setPartyInclude] = useState({});
-    const [partyOptional, setPartyOptional] = useState({}); 
+    const [partyOptional, setPartyOptional] = useState({});
+    const [preferedPackage, setPreferedPackage] = useState('');
 
     useTruspilot();
 
@@ -62,6 +62,24 @@ export default function BirthdayParty() {
         }
     }, [siteReducer]);
 
+    useEffect(() => {
+        console.log('prefered');
+    }, [preferedPackage]);
+
+    //scroll to enquire section when book button clicked
+    const ref = useRef();
+    function handleScroll() {
+        window.scrollTo({
+            top: ref.current.offsetTop,
+            behavior: 'smooth',
+        });
+    }
+
+    //set prefered package when book button clicked
+    function clickPreferedButton(packageTitle) {
+        // console.log(packageTitle, 'packageTitle');
+        setPreferedPackage(packageTitle);
+    }
 
     return (
         <Fragment>
@@ -88,14 +106,25 @@ export default function BirthdayParty() {
             <ClearBoth />
             <FootballSkill data={skillGain} />
             <ClearBoth />
-            <BirthdayPackage data={birthdayPackage} />
+            <BirthdayPackage
+                onClick={(preferedPackage) => {
+                    handleScroll();
+                    clickPreferedButton(preferedPackage);
+                }}
+                data={birthdayPackage}
+            />
             <ClearBoth />
             <BirthdayExtra
                 partyInclude={partyInclude}
                 partyOptional={partyOptional}
             />
             <ClearBoth />
-            <BookTrialParty parentFb={parentFb} />
+            <BookTrialParty
+                ref={ref}
+                parentFb={parentFb}
+                package={birthdayPackage}
+                preferedPackage={preferedPackage}
+            />
             <ClearBoth />
             <div className="birthday-gallery">
                 <div className="container">
