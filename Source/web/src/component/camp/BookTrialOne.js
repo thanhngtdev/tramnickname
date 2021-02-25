@@ -8,6 +8,7 @@ import { siteActionType } from '../../actions/actionTypes';
 import Utils from '../../common/Utils';
 import PropTypes from 'prop-types';
 import PathRoute from '../../common/PathRoute';
+import Captcha from '../Captcha';
 
 BookTrialOne.propTypes = {
     parentFb: PropTypes.object,
@@ -15,7 +16,7 @@ BookTrialOne.propTypes = {
 
 function BookTrialOne(props) {
     const history = useHistory();
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const defaultAcademy = JSON.parse(localStorage.getItem('defaultAcademy'));
     const [showSelect, setShowSelect] = useState(false);
     const [lstSite, setLstSite] = useState([]);
@@ -35,6 +36,7 @@ function BookTrialOne(props) {
     const [phoneError, setPhoneError] = useState('');
     const [nameError, setNameError] = useState('');
     const [medicalError, setMedicalError] = useState('');
+    const [captcha, setCaptcha] = useState('');
     const siteReducer = useSelector((state) => state.siteReducer);
 
     useEffect(() => {
@@ -56,28 +58,54 @@ function BookTrialOne(props) {
     }
 
     function validateInput() {
-        let response = window.grecaptcha.getResponse();
-        if (response && response.length > 0) {
-            let checkInput = true;
-            if (location === '') {
-                checkInput = false;
-                setLocationError('Field is required.');
-            }
-            if (email === '') {
-                checkInput = false;
-                setEmailError('Field is required.');
-            }
-            if (phone === '') {
-                checkInput = false;
-                setPhoneError('Field is required.');
-            }
-            if (name === '') {
-                checkInput = false;
-                setNameError('Field is required.');
-            }
-            return checkInput;
+        // let response = window.grecaptcha.getResponse();
+        // if (response && response.length > 0) {
+        let checkInput = true;
+        if (location === '') {
+            checkInput = false;
+            setLocationError('Field is required.');
         }
-        return false;
+        if (email === '') {
+            checkInput = false;
+            setEmailError('Field is required.');
+        }
+        if (phone === '') {
+            checkInput = false;
+            setPhoneError('Field is required.');
+        }
+        if (name === '') {
+            checkInput = false;
+            setNameError('Field is required.');
+        }
+
+        if (medical === '') {
+            checkInput = false;
+            setMedicalError('Field is required.');
+        }
+
+        let response = window.grecaptcha.getResponse();
+        if (response.length === 0) {
+            checkInput = false;
+            setCaptcha('Check captcha.');
+        }
+
+        return checkInput;
+        // }
+        // return false;
+    }
+
+    function onSendData() {
+        let _totalData = {
+            type: 'onetraining',
+            academyEmail: locationId,
+            name: name,
+            location: location,
+            phone: phone,
+            email: email,
+            comment: medical,
+        };
+        // console.log(_totalData);
+        dispatch({ type: siteActionType.SEND_EMAIL, params: _totalData });
     }
 
     return (
@@ -184,7 +212,7 @@ function BookTrialOne(props) {
                             <label className="label">Comments</label>
                             <input
                                 type="text"
-                                placeholder="Abc"
+                                // placeholder="Abc"
                                 className="input-text"
                                 onChange={(event) => {
                                     setMedical(event.target.value);
@@ -196,16 +224,15 @@ function BookTrialOne(props) {
                             </label>
                         </li>
                         <li>
-                            <div
-                                className="g-recaptcha"
-                                data-sitekey="6Le-VPwUAAAAAA8Ob_fIKNaXUCp1eR5_n58uY0DU"></div>
+                            <Captcha />
+                            <label className="input-error">{captcha}</label>
                         </li>
                         <li>
                             <button
                                 className="btn-button-s"
                                 onClick={() => {
                                     if (validateInput()) {
-                                        console.log('send email');
+                                        onSendData();
                                     }
                                 }}>
                                 Enquire Now

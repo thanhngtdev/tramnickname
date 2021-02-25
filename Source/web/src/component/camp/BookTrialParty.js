@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import BorderButton from '../include/BorderButton';
 import Dot from '../include/Dot';
 import PathRoute from '../../common/PathRoute';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import Captcha from '../Captcha';
 
 Step2.propTypes = {
@@ -417,10 +417,10 @@ const BookTrialParty = React.forwardRef((props, ref) => {
                         <p>
                             For more information about our privacy practices,
                             please read our{' '}
-                            <a className="link" href="#">
+                            <a className="link" href={PathRoute.Policy}>
                                 Privacy Policy
                             </a>
-                            . By clicking above, you agree that we may process
+                            - . By clicking above, you agree that we may process
                             your information in accordance with these terms.
                         </p>
                     </ul>

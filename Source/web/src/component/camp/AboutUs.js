@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ModelManager from '../../common/ModelManager';
 import Utils from '../../common/Utils';
 import PropTypes from 'prop-types';
@@ -71,6 +71,13 @@ function PlayVideo(props) {
 export default function AboutUs(props) {
     const currentAcademy = ModelManager.getLocation() || {};
     const [showVideo, setShowVIdeo] = useState(false);
+    const [title, setTitle] = useState('');
+
+    useEffect(() => {
+        if (props.data.cfg_title) {
+            setTitle(props.data.cfg_title + ' ' + currentAcademy.ms_name);
+        }
+    }, [props.data.cfg_title]);
 
     return (
         <div className="about-us">
@@ -110,7 +117,7 @@ export default function AboutUs(props) {
                     <h1
                         className="contact-header"
                         style={{ pointerEvents: 'none' }}>
-                        {props.data.cfg_title} {currentAcademy.ms_name}
+                        {title}
                     </h1>
                 </div>
                 <div className="container">
