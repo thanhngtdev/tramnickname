@@ -95,7 +95,7 @@ function Header() {
                                     onClick={hideMenu}>
                                     Holiday Camps
                                 </Link>
-                            </li >
+                            </li>
                             <li className="menu-link">
                                 <Link
                                     to={PathRoute.OneTraining}
@@ -112,7 +112,7 @@ function Header() {
                             </li>
                             <li>
                                 <a
-                                    className="btn-book-free-session"
+                                    className="btn-book-free-session white-hover"
                                     href={PathRoute.BookTrialTraining}
                                     onClick={(evt) => {
                                         evt.preventDefault();
