@@ -3,6 +3,7 @@ import React from 'react';
 export default function BorderButton(props) {
     return (
         <button
+            className = "border-btn"
             onClick={() => {
                 if (props.onClick) props.onClick();
             }}

@@ -16,6 +16,7 @@ import moment from 'moment';
 import Utils from '../common/Utils';
 import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
+import BookTrialTraining4 from './booking/BookTrialTraining4';
 
 function BookTrialTraining() {
     const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function BookTrialTraining() {
     const [token, setToken] = useState('');
     const currentLat = localStorage.getItem('latitude');
     const currentLng = localStorage.getItem('longitude');
+    const [paymentUrl,setPaymentUrl] = useState("");
 
     const siteReducer = useSelector((state) => state.siteReducer);
 
@@ -87,7 +89,8 @@ function BookTrialTraining() {
                             setActiveTab(3);
                         }
                         if (dataStep1.siteSelected.ms_trial === 1){
-                            window.location= `${data.data.payment_url}`;
+                            setPaymentUrl(data.data.payment_url);
+                            setActiveTab(4);
                         }
                 } else if (data.status === 709) {
                     //booking class full
@@ -408,6 +411,11 @@ function BookTrialTraining() {
                                         token: token,
                                     });
                                 }}
+                            />
+                        )}
+                        {activeTab === 4 &&(
+                            <BookTrialTraining4
+                            url={paymentUrl}
                             />
                         )}
                     </div>
