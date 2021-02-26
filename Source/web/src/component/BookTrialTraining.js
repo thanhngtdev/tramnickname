@@ -56,7 +56,9 @@ function BookTrialTraining() {
                 siteReducer.type === siteActionType.FIND_NEARBY_ACADEMY_SUCCESS
             ) {
                 setLstSite(siteReducer.data);
-                const lstSiteNearest = [...siteReducer.data].sort((a,b) => a.distance-b.distance);
+                const lstSiteNearest = [...siteReducer.data].sort(
+                    (a, b) => a.distance - b.distance,
+                );
                 setSiteSelected(lstSiteNearest[0]);
                 setLstSite(lstSiteNearest);
                 dispatch({

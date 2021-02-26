@@ -1,4 +1,4 @@
-a,div,img {
+a,div,img,button {
   transition: 0.3s;
 }
 
@@ -41,3 +41,26 @@ a,div,img {
   background-color: #EE7925 !important;
   color: white !important;
 }
+/* turn white button to orange */
+.more:hover,.btn-about:hover,.slick-prev:hover,.slick-next:hover {
+  color: white !important;
+  background-color: #EE7925 !important;
+}
+
+/* turn orange button to white */
+.btn-button-s:hover{
+  color: #EE7925 !important;
+  background-color: white !important;
+}
+
+/* button banner hover */
+/* .btn-book-free-session:hover{
+  color: #EE7925 !important;
+  background-color: white !important;
+  position: relative;
+  
+}
+ .box-button:hover{
+  color: #EE7925 !important;
+  background-color: white !important;
+} */

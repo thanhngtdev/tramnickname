@@ -89,14 +89,18 @@ function AutocompleteInput(props) {
     }
 
     // Event fired when the user clicks on a suggestion
-    // function onClick(e, data) {
-    //     // Update the user input and reset the rest of the state
-    //     props.selectAcademy(data);
-    //     setActiveSuggestion(0);
-    //     setFilteredSuggestions([]);
-    //     setShowSuggestions(false);
-    //     setUserInput(data.ms_name);
-    // }
+    function onClick(e, data) {
+        // Update the user input and reset the rest of the state
+        props.selectAcademy(data);
+        setActiveSuggestion(0);
+        setFilteredSuggestions([]);
+        setShowSuggestions(false);
+        setUserInput(data.ms_name);
+        dispatch({
+            type: siteActionType.SELECTED_MARKER,
+            data: data,
+        });
+    }
 
     // Event fired when the user presses a key down
     function onKeyDown(e) {
@@ -105,6 +109,7 @@ function AutocompleteInput(props) {
         // Update: click for find button
 
         if (e.keyCode === 13 || e.type === 'click') {
+            // console.log(activeSuggestion, 'index');
             setActiveSuggestion(0);
             setShowSuggestions(false);
             setUserInput(
@@ -113,6 +118,10 @@ function AutocompleteInput(props) {
                     : '',
             );
             props.selectAcademy(filteredSuggestions[activeSuggestion]);
+            dispatch({
+                type: siteActionType.SELECTED_MARKER,
+                data: filteredSuggestions[activeSuggestion],
+            });
         }
         // User pressed the up arrow, decrement the index
         else if (e.keyCode === 38) {
@@ -146,8 +155,7 @@ function AutocompleteInput(props) {
                         return (
                             <li
                                 key={suggestion.ms_id}
-                                // onClick={(e) => onClick(e, suggestion)}
-                            >
+                                onClick={(e) => onClick(e, suggestion)}>
                                 <div className={className}>
                                     <div className="suggest-title">
                                         <label className="title-text">

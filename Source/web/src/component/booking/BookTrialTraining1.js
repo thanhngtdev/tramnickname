@@ -10,6 +10,7 @@ import Radiobox from '../include/Radiobox/Radiobox';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import Utils from '../../common/Utils';
+import PathRoute from '../../common/PathRoute';
 
 BookTrialTraining1.propTypes = {
     onNext: PropTypes.func,
@@ -211,6 +212,14 @@ function BookTrialTraining1(props) {
                     onChange={(date) => {
                         getClassTime(new Date(date));
                         setDate(date);
+                        if (siteSelected) {
+                            dispatch({
+                                type: siteActionType.GET_LIST_COURSE,
+                                company_id: siteSelected.pa_companyId,
+                                location_id: siteSelected.pa_locationId,
+                                course_type: 'course',
+                            });
+                        }
                     }}
                 />
                 <label className="input-error">{dateError}</label>
@@ -360,7 +369,7 @@ function BookTrialTraining1(props) {
             <div>
                 <p>
                     For more information about our privacy practices, please
-                    read our <a href="/#">Privacy Policy.</a>
+                    read our <a href={PathRoute.Policy}>Privacy Policy.</a>
                 </p>
                 <p>
                     By clicking above, you agree that we may process your

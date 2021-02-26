@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment, useRef } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,11 +8,8 @@ import PropTypes from 'prop-types';
 import BorderButton from '../include/BorderButton';
 import Dot from '../include/Dot';
 import PathRoute from '../../common/PathRoute';
-import { useHistory } from 'react-router-dom';
-
-BookTrialParty.propTypes = {
-    parentFb: PropTypes.object,
-};
+import { useHistory, Link } from 'react-router-dom';
+import Captcha from '../Captcha';
 
 Step2.propTypes = {
     onSendData: PropTypes.func,
@@ -20,12 +17,26 @@ Step2.propTypes = {
 
 function Step2(props) {
     const [date, setDate] = useState(new Date());
-    const [name, setName] = useState('');
+    const [name, setName] = useState(
+        props.preferedPackage ? props.preferedPackage : '',
+    );
     const [medical, setMedical] = useState('');
+
+    const [showSelect, setShowSelect] = useState(false);
+    const [packageList, setPackageList] = useState(
+        props.package.cfg_value && props.package.cfg_value.length
+            ? props.package.cfg_value
+            : [],
+    );
 
     const [nameError, setNameError] = useState('');
     const [dateError, setDateError] = useState('');
     const [medicalError, setMedicalError] = useState('');
+    const [captcha, setCaptcha] = useState('');
+
+    useEffect(() => {
+        setName(props.preferedPackage);
+    }, [props.preferedPackage]);
 
     function validateInput() {
         let checkInput = true;
@@ -41,18 +52,49 @@ function Step2(props) {
             checkInput = false;
             setMedicalError('Field is required.');
         }
+
+        let response = window.grecaptcha.getResponse();
+        if (response.length === 0) {
+            checkInput = false;
+            setCaptcha('Check captcha.');
+        }
+
         return checkInput;
+    }
+
+    function onClickPackage(event) {
+        setShowSelect(false);
+        setName(event.target.textContent);
     }
 
     return (
         <Fragment>
             <li>
                 <label className="label">Prefered package</label>
-                <DatePicker
-                    className="input-text"
-                    selected={name}
-                    onChange={(date) => setName(date)}
-                />
+
+                <div className="custom-select">
+                    <div
+                        className="select-selected"
+                        onClick={() => {
+                            setShowSelect(!showSelect);
+                            return false;
+                        }}>
+                        {name}
+                    </div>
+                    <div
+                        className={`select-items ${
+                            showSelect ? '' : 'select-hide'
+                        }`}>
+                        {packageList.map((item, index) => (
+                            <div
+                                key={index}
+                                // data-target={item.ms_email}
+                                onClick={onClickPackage}>
+                                {item.title}
+                            </div>
+                        ))}
+                    </div>
+                </div>
 
                 <label className="input-error">{nameError}</label>
             </li>
@@ -69,7 +111,7 @@ function Step2(props) {
                 <label className="label">Comments</label>
                 <input
                     type="text"
-                    placeholder="Abc"
+                    // placeholder="Abc"
                     className="input-text"
                     onChange={(event) => {
                         setMedical(event.target.value);
@@ -87,15 +129,21 @@ function Step2(props) {
                 />
             </li>
             <li>
+                <Captcha id="step-2" />
+                <label className="input-error">{captcha}</label>
+            </li>
+
+            <li>
                 <button
                     className="btn-button-s"
                     onClick={() => {
-                        // console.log('call enquire');
                         let _data = {
                             package: name,
                             date: date,
                             comment: medical,
                         };
+
+                        // console.log(_data, 'call enquire');
                         if (validateInput() && props.onSendData)
                             props.onSendData(_data);
                     }}>
@@ -106,7 +154,7 @@ function Step2(props) {
     );
 }
 
-export default function BookTrialParty(props) {
+const BookTrialParty = React.forwardRef((props, ref) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const defaultAcademy = JSON.parse(localStorage.getItem('defaultAcademy'));
@@ -124,6 +172,7 @@ export default function BookTrialParty(props) {
     const [phoneError, setPhoneError] = useState('');
     const [nameError, setNameError] = useState('');
     const [emailError, setEmailError] = useState('');
+    const [captcha, setCaptcha] = useState('');
     const [stepActive, setStepActive] = useState(1);
     const { parentFb } = props;
     const siteReducer = useSelector((state) => state.siteReducer);
@@ -179,11 +228,43 @@ export default function BookTrialParty(props) {
             checkInput = false;
             setNameError('Field is required.');
         }
+
+        let response = window.grecaptcha.getResponse();
+        if (response.length === 0) {
+            checkInput = false;
+            setCaptcha('Check captcha.');
+        }
+
         return checkInput;
     }
 
+    //combine ref in inner component
+    function useCombinedRefs(...refs) {
+        const targetRef = useRef();
+
+        useEffect(() => {
+            refs.forEach((ref) => {
+                if (!ref) return;
+
+                if (typeof ref === 'function') {
+                    ref(targetRef.current);
+                } else {
+                    ref.current = targetRef.current;
+                }
+            });
+        }, [refs]);
+
+        return targetRef;
+    }
+
+    const innerRef = React.useRef(null);
+    const combinedRef = useCombinedRefs(ref, innerRef);
+
     return (
-        <div className="book_your_child_free_session" id="booking">
+        <div
+            ref={combinedRef}
+            className="book_your_child_free_session"
+            id="booking">
             <div className="container">
                 <h2 className="heading">
                     Enquire more about our holiday camps
@@ -224,9 +305,9 @@ export default function BookTrialParty(props) {
                                             onClick={() => {
                                                 setShowSelect(!showSelect);
                                                 setLocationError('');
-                                                return false;
+                                                // return false;
                                             }}>
-                                            {location === ''
+                                            {!location
                                                 ? 'Select Academy'
                                                 : location}
                                         </div>
@@ -306,9 +387,13 @@ export default function BookTrialParty(props) {
                                         stroke="rgb(255, 113, 0)"
                                     />
                                 </li>
-                                <div
-                                    className="g-recaptcha"
-                                    data-sitekey="6Le-VPwUAAAAAA8Ob_fIKNaXUCp1eR5_n58uY0DU"></div>
+                                <li>
+                                    <Captcha id="step-1" />
+                                    <label className="input-error">
+                                        {captcha}
+                                    </label>
+                                </li>
+
                                 <li>
                                     <BorderButton
                                         className="btn-button-s"
@@ -323,15 +408,19 @@ export default function BookTrialParty(props) {
                             </Fragment>
                         )}
                         {stepActive == 2 && (
-                            <Step2 onSendData={(data) => onSendData(data)} />
+                            <Step2
+                                package={props.package}
+                                onSendData={(data) => onSendData(data)}
+                                preferedPackage={props.preferedPackage}
+                            />
                         )}
                         <p>
                             For more information about our privacy practices,
                             please read our{' '}
-                            <a className="link" href="#">
+                            <a className="link" href={PathRoute.Policy}>
                                 Privacy Policy
                             </a>
-                            . By clicking above, you agree that we may process
+                            - . By clicking above, you agree that we may process
                             your information in accordance with these terms.
                         </p>
                     </ul>
@@ -365,4 +454,10 @@ export default function BookTrialParty(props) {
             </div>
         </div>
     );
-}
+});
+
+BookTrialParty.propTypes = {
+    parentFb: PropTypes.object,
+};
+
+export default BookTrialParty;

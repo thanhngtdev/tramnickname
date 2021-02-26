@@ -67,9 +67,7 @@ function BannerTop(props) {
                         onClick={(evt) => {
                             localStorage.setItem(
                                 'defaultAcademy',
-                                JSON.stringify(
-                                    props.site
-                                ),
+                                JSON.stringify(props.site),
                             );
                             dispatch({
                                 type: siteActionType.PICK_DEFAULT_ACADEMY,
@@ -116,17 +114,27 @@ function BannerTop(props) {
                     </div>
                     <div className="group-info">
                         <label className="group-name">Contact</label>
-                        <div>
-                            <p className="text-express">
-                                Make an enquiry Phone (9am - 5pm):
-                            </p>
+                        <div style={{ paddingTop: '6px' }}>
                             <a
-                                className="phone"
-                                href={`tel:${
-                                    props.site ? props.site.ms_phone : ''
-                                }`}>
-                                {props.site ? props.site.ms_phone : ''}
+                                className="text-express"
+                                href={PathRoute.Contact}>
+                                Make an enquiry
                             </a>
+                            <div>
+                                <p className="text-express">
+                                    Phone (9am - 5pm):{' '}
+                                    <a
+                                        className="phone"
+                                        href={`tel:${
+                                            props.site
+                                                ? props.site.ms_phone
+                                                : ''
+                                        }`}>
+                                        {props.site ? props.site.ms_phone : ''}
+                                    </a>
+                                </p>
+                            </div>
+
                             <div>
                                 <a
                                     href={fbLink}

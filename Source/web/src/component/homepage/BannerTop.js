@@ -32,8 +32,8 @@ function BannerTop() {
                             style={{
                                 textAlign: 'center',
                                 padding: '20px 0px',
-                                borderRadius:"10px",
-                                backgroundColor:"#EE7925",
+                                borderRadius: '10px',
+                                backgroundColor: '#EE7925',
                             }}>
                             {' '}
                             <a
