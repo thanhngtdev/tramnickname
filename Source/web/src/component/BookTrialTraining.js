@@ -54,7 +54,9 @@ function BookTrialTraining() {
                 siteReducer.type === siteActionType.FIND_NEARBY_ACADEMY_SUCCESS
             ) {
                 setLstSite(siteReducer.data);
-                const lstSiteNearest = [...siteReducer.data].sort((a,b) => a.distance-b.distance);
+                const lstSiteNearest = [...siteReducer.data].sort(
+                    (a, b) => a.distance - b.distance,
+                );
                 setSiteSelected(lstSiteNearest[0]);
                 setLstSite(lstSiteNearest);
                 dispatch({
@@ -82,13 +84,13 @@ function BookTrialTraining() {
                             bookingId: _data.Booking_id,
                             token: _data.access_token,
                         });
-                        if (dataStep1.siteSelected.ms_trial === 0){
-                            setBookSuccess(1);
-                            setActiveTab(3);
-                        }
-                        if (dataStep1.siteSelected.ms_trial === 1){
-                            window.location= `${data.data.payment_url}`;
-                        }
+                    if (dataStep1.siteSelected.ms_trial === 0) {
+                        setBookSuccess(1);
+                        setActiveTab(3);
+                    }
+                    if (dataStep1.siteSelected.ms_trial === 1) {
+                        window.location = `${data.data.payment_url}`;
+                    }
                 } else if (data.status === 709) {
                     //booking class full
                     setBookSuccess(3);
