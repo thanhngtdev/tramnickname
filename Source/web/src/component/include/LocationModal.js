@@ -43,6 +43,13 @@ function LocationModal() {
         'Enter Your Postcode, Address, Town or Current Location to Find Your Nearest Class';
     if (searched) headText = 'Select Your Local Class';
 
+    function setCurrentLocation(){
+        const defaultLocation = JSON.parse(localStorage.getItem('defaultAcademy'));
+        if(!!defaultLocation){
+            setQuery(defaultLocation.ms_name);
+        }
+    }
+
     return (
         <div
             className="location-modal"
@@ -73,7 +80,7 @@ function LocationModal() {
                         <div className="wrap-row">
                             <button
                                 className="current-location"
-                                onClick={() => {}}>
+                                onClick={() => {setCurrentLocation()}}>
                                 <FontAwesomeIcon
                                     icon={faMapMarkerAlt}
                                     style={{
