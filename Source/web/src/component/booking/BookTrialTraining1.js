@@ -156,7 +156,9 @@ function BookTrialTraining1(props) {
 
     return (
         <div className="tab-1">
-            <h2>{message}</h2>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <h2 style={{ maxWidth: '900px' }}>{message}</h2>
+            </div>
             <div className="wSelect2">
                 <label>Select academy</label>
                 <Select
