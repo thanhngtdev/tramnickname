@@ -141,7 +141,15 @@ function About() {
             {about5 && about5.cfg_value && (
                 <div className="about-type">
                     <div className="container">
-                        <h2 className="heading-w">{about5.cfg_title}</h2>
+                        <h2
+                            className="heading-w"
+                            style={{
+                                maxWidth: '800px',
+                                marginRight: 'auto',
+                                marginLeft: 'auto',
+                            }}>
+                            {about5.cfg_title}
+                        </h2>
                         <p className="text-1">{about5.cfg_des}</p>
                     </div>
                     <div className="type-anchor">
