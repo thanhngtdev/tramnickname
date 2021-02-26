@@ -1,4 +1,4 @@
- import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { CommonStyle } from '../../common/Styles';
 import BorderButton from '../include/BorderButton';
@@ -48,31 +48,34 @@ function BookTrialTraining1(props) {
     const [trialDateError, setTrialDateError] = useState('');
     const [firstNameError, setFirstNameError] = useState('');
     const [lastNameError, setLastNameError] = useState('');
-    const [ageStudent,setAgeStudent] = useState(0);
+    const [ageStudent, setAgeStudent] = useState(0);
 
     useEffect(() => {
         window.scrollTo(0, 0);
         dispatch({ type: siteActionType.GET_LIST_SITE });
     }, [dispatch]);
-    
+
     useEffect(() => {
-        let defaultAcademy = JSON.parse(localStorage.getItem("defaultAcademy"));
-        if(defaultAcademy){
-        setSiteSelected(defaultAcademy);
-        dispatch({ 
-            type: siteActionType.SELECT_ACADEMY, 
-            data: defaultAcademy, 
-        });
+        let defaultAcademy = JSON.parse(localStorage.getItem('defaultAcademy'));
+        if (defaultAcademy) {
+            setSiteSelected(defaultAcademy);
+            dispatch({
+                type: siteActionType.SELECT_ACADEMY,
+                data: defaultAcademy,
+            });
         }
     }, []);
 
     useEffect(() => {
-        const newLstCourse = lstCourse.filter(course => course.min_age<= ageStudent && ageStudent <= course.max_age)
+        const newLstCourse = lstCourse.filter(
+            (course) =>
+                course.min_age <= ageStudent && ageStudent <= course.max_age,
+        );
         setCourseSatisfied(newLstCourse);
-    },[ageStudent,lstCourse]);
-    
+    }, [ageStudent, lstCourse]);
+
     const siteReducer = useSelector((state) => state.siteReducer);
- 
+
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
@@ -112,8 +115,8 @@ function BookTrialTraining1(props) {
         }
     }, [siteReducer]);
 
-    function getClassTime(birth){
-        const age = ~~((Date.now() - birth) / (31557600000));
+    function getClassTime(birth) {
+        const age = ~~((Date.now() - birth) / 31557600000);
         setAgeStudent(age);
     }
 
@@ -152,7 +155,9 @@ function BookTrialTraining1(props) {
 
     return (
         <div className="tab-1">
-            <h2>{message}</h2>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <h2 style={{ maxWidth: '900px' }}>{message}</h2>
+            </div>
             <div className="wSelect2">
                 <label>Select academy</label>
                 <Select
@@ -177,9 +182,9 @@ function BookTrialTraining1(props) {
                             location_id: option.pa_locationId,
                             course_type: 'course',
                         });
-                        dispatch({ 
-                            type: siteActionType.SELECT_ACADEMY, 
-                            data: option, 
+                        dispatch({
+                            type: siteActionType.SELECT_ACADEMY,
+                            data: option,
                         });
                     }}
                 />
