@@ -41,21 +41,8 @@ function Header() {
         setMenuMobile(false);
     }
 
-    function handleScroll() {
-        const newPos = document.body.getBoundingClientRect().top;
-        if (newPos < -150 && fixHeader) setFixHeader(false);
-        if (newPos > -50 && fixHeader) setFixHeader(true);
-    }
-
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-
     return (
-        <div className={`header ${fixHeader ? '' : 'fixed-header'}`}>
+        <div className="header">
             <div className="head-top-mobile">
                 <div className="container">
                     <Link to="/">
@@ -71,7 +58,7 @@ function Header() {
                 </div>
             </div>
             <div className={`navi ${menuMobile ? 'show' : ''}`}>
-                <div className="menu-top">
+                <div className="menu-top" style={{position:"fixed", zIndex:"10", top:'0px'}}>
                     <div className="container">
                         <Link to={PathRoute.Home}>
                             <img
@@ -138,7 +125,8 @@ function Header() {
                         </ul>
                     </div>
                 </div>
-                <div className="container">
+                <div style={{position:"absolute",top:"59.878px",left:"0px",zIndex:"9",backgroundColor:"white",width:"100%"}}>
+                <div className="container" >
                     <div
                         className="menu-small"
                         style={{ float: 'left', paddingTop: 15 }}>
@@ -187,6 +175,8 @@ function Header() {
                             <NearbyAcademy onChangeLocation={hideMenu} />
                         </li>
                     </ul>
+                </div>
+
                 </div>
             </div>
         </div>
