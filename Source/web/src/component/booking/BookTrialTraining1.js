@@ -156,7 +156,9 @@ function BookTrialTraining1(props) {
 
     return (
         <div className="tab-1">
-            <h2>{message}</h2>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <h2 style={{ maxWidth: '900px' }}>{message}</h2>
+            </div>
             <div className="wSelect2">
                 <label>Select academy</label>
                 <Select
@@ -210,7 +212,6 @@ function BookTrialTraining1(props) {
                     onChange={(date) => {
                         getClassTime(new Date(date));
                         setDate(date);
-<<<<<<< HEAD
                         if (siteSelected) {
                             dispatch({
                                 type: siteActionType.GET_LIST_COURSE,
@@ -219,8 +220,6 @@ function BookTrialTraining1(props) {
                                 course_type: 'course',
                             });
                         }
-=======
->>>>>>> f8140c3d0e8150846493d6e56e9542c9a99144af
                     }}
                 />
                 <label className="input-error">{dateError}</label>

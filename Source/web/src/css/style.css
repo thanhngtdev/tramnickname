@@ -1720,13 +1720,9 @@ table {
 	border: 1px solid #FFFFFF;
 	border-radius: 6px;
 	background-color: transparent;
-	transition: 0.8s;
 	top: auto;
 }
 
-.box-insta .box-slide .slick-arrow:hover {
-	background-color: #EE7925;
-}
 
 .box-insta .box-slide .slick-prev {
 	width: 70px;
@@ -2829,6 +2825,7 @@ table {
 		height: 50px;
 		font-size: 18px;
 	}
+
 
 	/*end mobile*/
 }

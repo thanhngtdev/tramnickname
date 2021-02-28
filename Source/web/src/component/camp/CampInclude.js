@@ -68,7 +68,7 @@ export default function CampInclude(props) {
                             onClick={() => {
                                 sliderRef.current.slickGoTo(slideIndex - 1);
                             }}
-                            className="slide-button">
+                            className="slide-button ">
                             <FontAwesomeIcon
                                 icon={faChevronLeft}
                                 className="icon"

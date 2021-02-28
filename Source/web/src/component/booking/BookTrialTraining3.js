@@ -59,12 +59,6 @@ function BookTrialTraining3(props) {
         window.scrollTo(0, 0);
     }, []);
 
-    useEffect(() => {
-        if(props.success === 1){
-            console.log("deptrai");
-        }
-    }, [props.success]);
-
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
         if (siteReducer.type) {
