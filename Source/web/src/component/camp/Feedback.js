@@ -45,6 +45,8 @@ export default function Feedback(props) {
     //     settings.responsive[0].settings.slidesToShow = 1;
     //     settings.responsive[0].settings.slidesToScroll = 1;
     // }
+
+    // console.log(props, 'data');
     return (
         <div className="container">
             <div className="">
