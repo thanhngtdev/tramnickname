@@ -137,7 +137,7 @@ function Footer() {
                             </a>
                         </li>
                         <li>
-                            <a href="/#">Training Tips</a>
+                            <a href={PathRoute.HomeNews}>Training Tips</a>
                         </li>
                         <li>
                             <div ref={ref} className="custom-select">

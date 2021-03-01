@@ -55,7 +55,7 @@ function HolidayCamp() {
                 setLstSite(siteReducer.data.lstSite);
             }
             if (siteReducer.type === siteActionType.GET_DETAIL_SITE_SUCCESS) {
-                // console.log(siteReducer.data);
+                console.log(siteReducer.data);
                 setFeedback(siteReducer.data.testimonial || []);
                 setSkillGain(siteReducer.data.skillGain || {});
                 setWhyWMF(siteReducer.data.whyWMF || {});

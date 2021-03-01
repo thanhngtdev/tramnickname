@@ -57,7 +57,7 @@ function WeeklyTraining() {
                 setLstSite(siteReducer.data.lstSite);
             }
             if (siteReducer.type === siteActionType.GET_DETAIL_SITE_SUCCESS) {
-                // console.log(siteReducer.data);
+                console.log(siteReducer.data);
                 setAcademyIntro(siteReducer.data.academyIntro || {});
                 setEachWeek(siteReducer.data.eachWeek || {});
                 setFeedback(siteReducer.data.testimonial || []);
