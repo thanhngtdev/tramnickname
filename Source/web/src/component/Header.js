@@ -125,7 +125,7 @@ function Header() {
                         </ul>
                     </div>
                 </div>
-                <div style={{position:"absolute",top:"59.878px",left:"0px",zIndex:"9",backgroundColor:"white",width:"100%"}}>
+                <div style={{marginTop:"59.878px"}}>
                 <div className="container" >
                     <div
                         className="menu-small"
