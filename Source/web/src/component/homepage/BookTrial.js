@@ -27,7 +27,9 @@ function BookTrial(props) {
         defaultAcademy ? defaultAcademy.ms_id : 0,
     );
     const [trialText, setTrialText] = useState(
-        defaultAcademy && defaultAcademy.ms_trial === 1 ? 'trial' : 'free',
+        defaultAcademy && defaultAcademy.ms_trial === 1
+            ? 'trial'
+            : 'free trial',
     );
     const [date, setDate] = useState(new Date());
     const [email, setEmail] = useState('');
@@ -54,7 +56,7 @@ function BookTrial(props) {
         setTrialText(
             parseInt(event.target.getAttribute('data-trial')) === 1
                 ? 'trial'
-                : 'free',
+                : 'free trial',
         );
     }
 
@@ -82,7 +84,7 @@ function BookTrial(props) {
                     Book your child&apos;s free <br /> training session today
                 </h2>
                 <div className="text-sub">
-                    It only takes three minutes to get your free trial.
+                    It only takes three minutes to get your {trialText}.
                 </div>
                 <div className="full-width">
                     <ul className="list-form">
@@ -108,7 +110,7 @@ function BookTrial(props) {
                                             defaultAcademy &&
                                                 defaultAcademy.ms_trial === 1
                                                 ? 'trial'
-                                                : 'free',
+                                                : 'free trial',
                                         );
                                     }}>
                                     <span>Use </span>current location
