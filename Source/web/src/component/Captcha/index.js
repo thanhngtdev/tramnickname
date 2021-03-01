@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 
 const Captcha = ({ id = 'captcha', event }) => {
     useEffect(() => {
-        window.grecaptcha && window.grecaptcha.render(id);
+        window.grecaptcha &&
+            window.grecaptcha.render &&
+            window.grecaptcha.render(id);
     }, []);
 
     return (
