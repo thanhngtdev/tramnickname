@@ -18,6 +18,7 @@ import { siteActionType } from '../actions/actionTypes';
 import { useState } from 'react';
 import ModelManager from '../common/ModelManager';
 import useTruspilot from '../hooks/useTruspilot';
+import Testimonial from './homepage/Testimonial';
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;
@@ -56,7 +57,7 @@ function WeeklyTraining() {
                 setLstSite(siteReducer.data.lstSite);
             }
             if (siteReducer.type === siteActionType.GET_DETAIL_SITE_SUCCESS) {
-                // console.log(siteReducer.data);
+                console.log(siteReducer.data);
                 setAcademyIntro(siteReducer.data.academyIntro || {});
                 setEachWeek(siteReducer.data.eachWeek || {});
                 setFeedback(siteReducer.data.testimonial || []);
@@ -85,6 +86,7 @@ function WeeklyTraining() {
             <div className="box-slide-review">
                 <Feedback data={feedback} />
             </div>
+
             <ClearBoth />
             <FootballSkill data={skillGain} />
             <ClearBoth />

@@ -115,7 +115,7 @@
 .academy-info {
     display: flex;
     flex-direction: row;
-    margin-top: 250px;
+    margin-top: 200px;
 }
 .academy-info .group-info {
     display: flex;
