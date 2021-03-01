@@ -184,13 +184,16 @@ function LDHolidayCamp(props) {
                         style={{
                             borderBottom: '1px solid #F2F2F2',
                             fontWeight: 'normal',
+                            display: "flex",
+                            justifyContent: "space-between",
                         }}>
-                        <span>
+                        <p>
                             {item.date} | {item.time}
-                        </span>
-                        <span style={{ float: 'right' }}>
+                        </p>
+                        <p
+                            style={{ float: 'right' }}>
                             {item.course_title}
-                        </span>
+                        </p>
                     </div>
                     <div style={{ clear: 'both', marginBottom: 16 }} />
                 </Fragment>

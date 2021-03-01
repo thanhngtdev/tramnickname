@@ -1,8 +1,8 @@
-a,div,button{
+a,div,img,button {
   transition: 0.3s;
 }
 
-.menu-link a:hover, .list a:hover{
+.menu-link a:hover, .list a:hover, .menu-ft a:hover{
   color:#EE7925 !important
 }
 
@@ -21,6 +21,26 @@ a,div,button{
   border:1px solid #EE7925;
 }
 
+.footer .Social .icon-fb:hover {
+	background: url(../images/icon-fb-white.png) no-repeat left center transparent !important;
+}
+
+.footer .Social .icon-lin:hover {
+	background: url(../images/icon-lin-white.png) no-repeat left center transparent !important;
+}
+
+.footer .Social .icon-wt:hover {
+	background: url(../images/icon-wt-white.png) no-repeat left center transparent !important;
+}
+
+.academy-info .group-info img:hover{
+  transform: scale(1.2);
+}
+
+.more:hover, .btn-about:hover ,.border-btn:hover{
+  background-color: #EE7925 !important;
+  color: white !important;
+}
 /* turn white button to orange */
 .more:hover,.btn-about:hover,.slick-prev:hover,.slick-next:hover {
   color: white !important;
