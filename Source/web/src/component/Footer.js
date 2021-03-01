@@ -4,6 +4,7 @@ import logoWhite from '../images/logo-white.png';
 import { siteActionType } from '../actions/actionTypes';
 import { Link } from 'react-router-dom';
 import PathRoute from '../common/PathRoute';
+import useComponentVisible from '../hooks/useComponentVisible';
 
 function Footer() {
     const dispatch = useDispatch();
@@ -15,6 +16,11 @@ function Footer() {
         JSON.parse(localStorage.getItem('defaultAcademy')) || {},
     );
     const [footerConfig, setFooterConfig] = useState([]);
+    const {
+        ref,
+        isComponentVisible,
+        setIsComponentVisible,
+    } = useComponentVisible(true);
 
     useEffect(() => {
         dispatch({
@@ -25,6 +31,12 @@ function Footer() {
     useEffect(() => {
         setLocation(defaultAcademy.ms_name);
     }, [defaultAcademy]);
+
+    useEffect(() => {
+        if (!isComponentVisible && showSelect) {
+            setShowSelect(!showSelect);
+        }
+    }, [isComponentVisible]);
 
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
@@ -128,10 +140,13 @@ function Footer() {
                             <a href="/#">Training Tips</a>
                         </li>
                         <li>
-                            <div className="custom-select">
+                            <div ref={ref} className="custom-select">
                                 <div
                                     className="select-selected"
-                                    onClick={() => setShowSelect(!showSelect)}>
+                                    onClick={() => {
+                                        setIsComponentVisible(true);
+                                        setShowSelect(!showSelect);
+                                    }}>
                                     {location
                                         ? location.substring(0, 12)
                                         : 'Select academy'}
