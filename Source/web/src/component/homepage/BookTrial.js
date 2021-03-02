@@ -218,7 +218,7 @@ function BookTrial(props) {
                             </div>
                         )}
                         <div
-                            style={{ marginTop: 30, float: 'right', height: 0 }}
+                            style={{ marginTop: 30, height: 0 }}
                             className="trustpilot-widget"
                             data-locale="en-GB"
                             data-template-id="5418015fb0d04a0c9cf721f2"
