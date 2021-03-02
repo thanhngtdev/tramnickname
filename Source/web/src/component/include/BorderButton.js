@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function BorderButton(props) {
+    // useEffect((
+
+    // ),[props.disabled]);
+
     return (
         <button
-            className = "border-btn"
+            className={`border-btn ${props.disabled ? 'btn-disabled' : ''}`}
             onClick={() => {
                 if (props.onClick) props.onClick();
             }}
@@ -16,7 +20,9 @@ export default function BorderButton(props) {
                 padding: '1.5rem 3rem',
                 backgroundColor: 'white',
                 cursor: 'pointer',
-            }}>
+            }}
+            // disabled
+        >
             {props.title}
         </button>
     );
