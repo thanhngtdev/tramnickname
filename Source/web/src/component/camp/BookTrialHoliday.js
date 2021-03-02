@@ -146,11 +146,6 @@ export default function BookTrialHoliday(props) {
     const [captcha, setCaptcha] = useState('');
     const siteReducer = useSelector((state) => state.siteReducer);
 
-<<<<<<< HEAD
-    // console.log(lstSite);
-
-=======
->>>>>>> b79b03ceaa82f92c266d7d4fba96106397db4631
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
