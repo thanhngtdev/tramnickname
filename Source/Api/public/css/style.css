@@ -1554,18 +1554,11 @@ border-radius: 4px;
 	}	
 .banner-top .box-text p { margin-bottom:50px;}
 /*end  pin*/
-.fixed-header {
-    position: fixed;
-    z-index: 999;
-    top: 0;
-    left: 0;
-    right: 0;
-	
-}	
+
 .menu-top {
 	background-color:#fff;
 	}
-.fixed-header .menu-small { display:none;}
+.menu-small { display:none;}
 .menu-ft {
 	float:right;
 	font-family: "GothamProRRegular", Red Hat Text, Arial, Helvetica, sans-serif;
@@ -1830,19 +1823,11 @@ border-radius: 4px;
 	}
 
 @media only screen and (min-width: 320px) and (max-width: 767px){
-	
-	.fixed-header {
-    position: relative;
-    z-index: 1;
-    top:  auto;
-    left: auto;
-    right: auto;
-	
-}	
+		
 .menu-top {
 	background-color: transparent;
 	}
-.fixed-header .menu-small { display: block;}	
+.menu-small { display: block;}	
 	.header { float:left;}
 	.header .head-top-mobile .btn-button{ display:block;}
 	.header .head-top-mobile {

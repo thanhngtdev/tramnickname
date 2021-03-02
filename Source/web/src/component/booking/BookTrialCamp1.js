@@ -53,7 +53,7 @@ function BookTrialCamp1(props) {
     const [firstNameError, setFirstNameError] = useState('');
     const [lastNameError, setLastNameError] = useState('');
     const [dateError, setDateError] = useState('');
-    const [display, setDisplay] = useState('none');
+    const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -81,9 +81,9 @@ function BookTrialCamp1(props) {
             lastName &&
             date
         ) {
-            setDisplay('');
+            setDisabled(false);
         } else {
-            setDisplay('none');
+            setDisabled(true);
         }
     }, [siteSelected, courseSelected, email, phone, firstName, lastName, date]);
 
@@ -468,8 +468,9 @@ function BookTrialCamp1(props) {
                 </div>
                 <BorderButton
                     title="Next step of booking"
-                    style={{ display: display }}
+                    disabled={disabled}
                     onClick={() => {
+                        console.log('aa');
                         let _dates = [];
                         let _lstDate = [];
                         let _lstPrice = [];

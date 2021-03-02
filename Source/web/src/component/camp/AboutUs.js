@@ -124,7 +124,6 @@ export default function AboutUs(props) {
                     <div className="get-in-touch">
                         <div className="list-form about">
                             <p className="pro-sub-text">{props.data.cfg_des}</p>
-
                             <div
                                 style={{
                                     height: 30,

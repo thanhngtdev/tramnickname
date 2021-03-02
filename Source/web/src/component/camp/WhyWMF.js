@@ -6,6 +6,7 @@ WhyWMF.propTypes = {
 };
 
 export default function WhyWMF(props) {
+    console.log(props.data.cfg_value?.length);
     return (
         <div className="why-wmf">
             {props.data && (
