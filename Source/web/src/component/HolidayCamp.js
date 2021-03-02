@@ -25,8 +25,9 @@ const ClearBoth = function () {
 function HolidayCamp() {
     const dispatch = useDispatch();
 
+    const siteReducer = useSelector((state) => state.siteReducer);
+
     const currentAcademy = ModelManager.getLocation();
-    const [lstSite, setLstSite] = useState([]);
     const [feedback, setFeedback] = useState([]);
     const [skillGain, setSkillGain] = useState({});
     const [whyWMF, setWhyWMF] = useState({});
@@ -41,19 +42,13 @@ function HolidayCamp() {
     useEffect(() => {
         dispatch({
             type: 'GET_DETAIL_SITE',
-            siteId: currentAcademy.ms_id,
+            siteId: currentAcademy.ms_id || siteReducer.lstSiteCamp[0]?.ms_id,
             cate: 9,
         });
-        dispatch({ type: siteActionType.GET_SITE_HAS_CAMP });
     }, [dispatch]);
 
-    const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
         if (siteReducer.type) {
-            if (siteReducer.type === siteActionType.GET_SITE_HAS_CAMP_SUCCESS) {
-                // console.log(siteReducer.data);
-                setLstSite(siteReducer.data.lstSite);
-            }
             if (siteReducer.type === siteActionType.GET_DETAIL_SITE_SUCCESS) {
                 console.log(siteReducer.data);
                 setFeedback(siteReducer.data.testimonial || []);
@@ -73,7 +68,7 @@ function HolidayCamp() {
             <AboutUs data={about} />
             <ClearBoth />
             <div className="about-info">
-                <AboutInfoCamp lstAcademy={lstSite} />
+                <AboutInfoCamp lstAcademy={siteReducer.lstSiteCamp} />
             </div>
             <ClearBoth />
             <AboutSecure />

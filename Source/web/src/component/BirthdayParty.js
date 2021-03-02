@@ -21,6 +21,8 @@ const ClearBoth = function () {
 export default function BirthdayParty() {
     const dispatch = useDispatch();
 
+    const siteReducer = useSelector((state) => state.siteReducer);
+
     const currentAcademy = ModelManager.getLocation();
     const [about, setAbout] = useState({});
     const [about2, setAbout2] = useState({});
@@ -38,13 +40,11 @@ export default function BirthdayParty() {
     useEffect(() => {
         dispatch({
             type: 'GET_DETAIL_SITE',
-            siteId: currentAcademy.ms_id,
+            siteId: currentAcademy.ms_id || siteReducer.lstSite[0]?.ms_id,
             cate: 15,
         });
-        dispatch({ type: siteActionType.GET_LIST_SITE });
     }, [dispatch]);
 
-    const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_DETAIL_SITE_SUCCESS) {
