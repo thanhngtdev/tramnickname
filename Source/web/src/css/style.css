@@ -809,10 +809,6 @@ table {
 	background-color: #fff;
 }
 
-.box-bg-orange {
-	/*padding-bottom:500px;*/
-}
-
 .box-professional {
 	width: 100%;
 	display: inline-block;
@@ -1080,6 +1076,22 @@ table {
 	letter-spacing: 1.71429px;
 	text-transform: uppercase;
 	color: #000000;
+}
+
+/* phone */
+.PhoneInputInput {
+	background: #FFFFFF;
+    border: 1px solid #E7E7E7;
+    border-radius: 6px;
+    color: rgba(0, 0, 0, 0.3);
+    padding: 17px 30px;
+    cursor: pointer;
+    height: 70px;
+    line-height: 31px;
+    padding-right: 95px;
+    font-weight: normal;
+    font-size: 24px;
+    /* width: 100%; */
 }
 
 .book_your_child_free_session .custom-select {

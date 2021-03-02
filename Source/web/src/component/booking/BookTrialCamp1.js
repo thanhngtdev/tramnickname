@@ -10,6 +10,9 @@ import Utils from '../../common/Utils';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import PathRoute from '../../common/PathRoute';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
+import flags from 'react-phone-number-input/flags';
 
 BookTrialCamp1.propTypes = {
     onNext: PropTypes.func,
@@ -425,16 +428,27 @@ function BookTrialCamp1(props) {
                 </div>
                 <div className="wSelect2">
                     <label>Your phone number</label>
-                    <input
+                    {/* <input
                         type="text"
                         className="inputText"
                         placeholder="+44 UK"
                         onChange={(event) => setPhone(event.target.value)}
+                    /> */}
+                    <PhoneInput
+                        flag={flags}
+                        defaultCountry="US"
+                        international
+                        value={phone}
+                        onChange={(event) => {
+                            // console.log(event);
+                            setPhone(event);
+                            setPhoneError('');
+                        }}
                     />
+
                     <label className="input-error">{phoneError}</label>
                 </div>
                 <BorderButton
-                    style={{ display: display }}
                     title="Next step of booking"
                     onClick={() => {
                         let _dates = [];
