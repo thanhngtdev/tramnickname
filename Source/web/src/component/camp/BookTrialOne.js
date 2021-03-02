@@ -9,6 +9,9 @@ import Utils from '../../common/Utils';
 import PropTypes from 'prop-types';
 import PathRoute from '../../common/PathRoute';
 import Captcha from '../Captcha';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
+import flags from 'react-phone-number-input/flags';
 
 BookTrialOne.propTypes = {
     parentFb: PropTypes.object,
@@ -185,7 +188,7 @@ function BookTrialOne(props) {
                         </li>
                         <li>
                             <label className="label">Your phone number</label>
-                            <input
+                            {/* <input
                                 type="text"
                                 placeholder=""
                                 className="input-text"
@@ -193,7 +196,20 @@ function BookTrialOne(props) {
                                     setPhone(event.target.value);
                                     setPhoneError('');
                                 }}
+                            /> */}
+
+                            <PhoneInput
+                                flag={flags}
+                                defaultCountry="US"
+                                international
+                                value={phone}
+                                onChange={(event) => {
+                                    // console.log(event);
+                                    setPhone(event);
+                                    setPhoneError('');
+                                }}
                             />
+
                             <label className="input-error">{phoneError}</label>
                         </li>
                         <li>

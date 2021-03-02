@@ -10,6 +10,9 @@ import Dot from '../include/Dot';
 import PathRoute from '../../common/PathRoute';
 import { useHistory } from 'react-router-dom';
 import Captcha from '../Captcha';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
+import flags from 'react-phone-number-input/flags';
 
 BookTrialHoliday.propTypes = {
     parentFb: PropTypes.object,
@@ -143,6 +146,11 @@ export default function BookTrialHoliday(props) {
     const [captcha, setCaptcha] = useState('');
     const siteReducer = useSelector((state) => state.siteReducer);
 
+<<<<<<< HEAD
+    // console.log(lstSite);
+
+=======
+>>>>>>> b79b03ceaa82f92c266d7d4fba96106397db4631
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
@@ -188,7 +196,7 @@ export default function BookTrialHoliday(props) {
             checkInput = false;
             setEmailError('Field is required.');
         }
-        if (phone === '') {
+        if (!phone) {
             checkInput = false;
             setPhoneError('Field is required.');
         }
@@ -215,7 +223,8 @@ export default function BookTrialHoliday(props) {
                     Enquire more about our holiday camps
                 </h2>
                 <div className="text-sub">
-                    It only takes three minutes to get your free trial.
+                    Want to learn more about our Holiday camps? Get in touch via
+                    the form below and we will respond within 24 hours.
                 </div>
                 <div className="full-width">
                     <ul className="list-form">
@@ -293,15 +302,18 @@ export default function BookTrialHoliday(props) {
                                     <label className="label">
                                         Your phone number
                                     </label>
-                                    <input
-                                        type="text"
-                                        placeholder=""
-                                        className="input-text"
+                                    <PhoneInput
+                                        flag={flags}
+                                        defaultCountry="US"
+                                        international
+                                        value={phone}
                                         onChange={(event) => {
-                                            setPhone(event.target.value);
+                                            // console.log(event);
+                                            setPhone(event);
                                             setPhoneError('');
                                         }}
                                     />
+
                                     <label className="input-error">
                                         {phoneError}
                                     </label>
@@ -342,7 +354,7 @@ export default function BookTrialHoliday(props) {
                                     <BorderButton
                                         className="btn-button-s"
                                         onClick={() => {
-                                            console.log("2");
+                                            console.log(phone, 'phoneee');
                                             if (validateInput()) {
                                                 setStepActive(2);
                                             }
