@@ -41,6 +41,7 @@ a,div,img,button {
   background-color: #EE7925 !important;
   color: white !important;
 }
+
 /* turn white button to orange */
 .more:hover,.btn-about:hover,.slick-prev:hover,.slick-next:hover {
   color: white !important;

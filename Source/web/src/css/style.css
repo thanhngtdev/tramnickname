@@ -177,6 +177,24 @@ table {
 	margin-right: -15px;
 }
 
+.why-wmf .row .col-4:nth-child(-n+3) {
+	border-bottom: 1px solid #EFEFEF;
+  }
+  
+  .why-wmf .row .col-4:nth-child(3n+1) {
+	border-right: 1px solid #EFEFEF;
+  }
+  
+  .why-wmf .row .col-4:nth-child(3n) {
+	border-left: 1px solid #EFEFEF;
+  }
+  
+  .why-wmf .row .col-4:nth-child(n+7) {
+	border-top: 1px solid #EFEFEF;
+  }
+
+
+
 .col-3,
 .col-6,
 .col-12,
@@ -244,6 +262,7 @@ table {
 
 .header {
 	width: 100%;
+	height: 115px;
 	display: inline-block;
 }
 
@@ -790,10 +809,6 @@ table {
 	background-color: #fff;
 }
 
-.box-bg-orange {
-	/*padding-bottom:500px;*/
-}
-
 .box-professional {
 	width: 100%;
 	display: inline-block;
@@ -1061,6 +1076,22 @@ table {
 	letter-spacing: 1.71429px;
 	text-transform: uppercase;
 	color: #000000;
+}
+
+/* phone */
+.PhoneInputInput {
+	background: #FFFFFF;
+    border: 1px solid #E7E7E7;
+    border-radius: 6px;
+    /* color: rgba(0, 0, 0, 0.3); */
+    padding: 17px 30px;
+    cursor: pointer;
+    height: 70px;
+    line-height: 31px;
+    padding-right: 95px;
+    font-weight: normal;
+    font-size: 24px;
+    /* width: 100%; */
 }
 
 .book_your_child_free_session .custom-select {
@@ -2789,7 +2820,7 @@ table {
 
 	.box-slide-review .alink {
 		width: 100%;
-		text-align: center;
+		text-align: left;
 		margin-top: 60px;
 	}
 
