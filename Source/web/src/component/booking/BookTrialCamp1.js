@@ -53,7 +53,6 @@ function BookTrialCamp1(props) {
     const [firstNameError, setFirstNameError] = useState('');
     const [lastNameError, setLastNameError] = useState('');
     const [dateError, setDateError] = useState('');
-
     const [display, setDisplay] = useState('none');
 
     useEffect(() => {
@@ -72,24 +71,21 @@ function BookTrialCamp1(props) {
     }, [siteSelected]);
 
     useEffect(() => {
-        if (validateData()) {
-            setDisplay('inline-block');
+        //check if all fields filled
+        if (
+            !Utils.isEmpty(siteSelected) &&
+            courseSelected &&
+            email &&
+            phone &&
+            firstName &&
+            lastName &&
+            date
+        ) {
+            setDisplay('');
         } else {
             setDisplay('none');
         }
-        if (dateSelect.some((el) => el)) {
-            setTimeError('');
-        }
-    }, [
-        siteSelected,
-        courseSelected,
-        email,
-        phone,
-        firstName,
-        lastName,
-        date,
-        dateSelect,
-    ]);
+    }, [siteSelected, courseSelected, email, phone, firstName, lastName, date]);
 
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
@@ -140,38 +136,51 @@ function BookTrialCamp1(props) {
 
     function validateData() {
         let _validate = true;
-        if (Utils.isEmpty(siteSelected)) {
+
+        // if (Utils.isEmpty(siteSelected)) {
+        //     _validate = false;
+        //     setSiteError('Please select a academy');
+        // } else setSiteError('');
+
+        // if (!courseSelected) {
+        //     _validate = false;
+        //     setCourseError('Please select a holiday camp');
+        // } else setCourseError('');
+
+        if (!Utils.checkEmail(email)) {
             _validate = false;
-            setSiteError('Please select a academy');
-        } else setSiteError('');
-        if (!courseSelected) {
-            _validate = false;
-            setCourseError('Please select a holiday camp');
-        } else setCourseError('');
-        if (email === '' || !Utils.checkEmail(email)) {
-            _validate = false;
-            setEmailError('Please fill Email');
-        } else setEmailError('');
-        if (phone === '' || !Utils.checkPhone(phone)) {
+            setEmailError('Please fill correct format of mail');
+        }
+
+        if (!Utils.checkPhone(phone)) {
             _validate = false;
             setPhoneError('Please fill phone number');
-        } else setPhoneError('');
-        if (firstName === '' || firstName.length > 50 || firstName.length < 1) {
+        }
+
+        if (firstName.length > 50 || firstName.length < 1) {
             _validate = false;
             setFirstNameError('Please fill first name, 1-50 characters');
-        } else setFirstNameError('');
-        if (lastName === '' || lastName.length > 50 || lastName.length < 1) {
+        }
+
+        if (lastName.length > 50 || lastName.length < 1) {
             _validate = false;
             setLastNameError('Please fill last name, 1-50 characters');
-        } else setLastNameError('');
+        }
+        //  else setLastNameError('');
+
         if (date === '') {
             _validate = false;
             setDateError('Please choose child&apos;s date of birth');
-        } else setDateError('');
+        }
+        // else setDateError('');
+
         if (!dateSelect.some((el) => el)) {
             _validate = false;
             setTimeError('Please select course');
+        } else {
+            setTimeError('');
         }
+
         return _validate;
     }
 
@@ -248,7 +257,7 @@ function BookTrialCamp1(props) {
                 <label className="input-error">{siteError}</label>
             </div>
             <div className="wSelect2">
-                <label>Chosen holiday camp</label>
+                <label>Choose holiday camp</label>
                 <Select
                     value={courseSelected}
                     options={lstHoliday}
@@ -389,7 +398,10 @@ function BookTrialCamp1(props) {
                         type="text"
                         className="inputText"
                         placeholder="example@mail.com"
-                        onChange={(event) => setEmail(event.target.value)}
+                        onChange={(event) => {
+                            setEmail(event.target.value);
+                            setEmailError('');
+                        }}
                     />
                     <label className="input-error">{emailError}</label>
                 </div>
@@ -399,7 +411,10 @@ function BookTrialCamp1(props) {
                         type="text"
                         className="inputText"
                         placeholder="Example name"
-                        onChange={(event) => setFirstName(event.target.value)}
+                        onChange={(event) => {
+                            setFirstName(event.target.value);
+                            setFirstNameError('');
+                        }}
                     />
                     <label className="input-error">{firstNameError}</label>
                 </div>
@@ -409,7 +424,10 @@ function BookTrialCamp1(props) {
                         type="text"
                         className="inputText"
                         placeholder="Example name"
-                        onChange={(event) => setLastName(event.target.value)}
+                        onChange={(event) => {
+                            setLastName(event.target.value);
+                            setLastNameError('');
+                        }}
                     />
                     <label className="input-error">{lastNameError}</label>
                 </div>
@@ -450,6 +468,7 @@ function BookTrialCamp1(props) {
                 </div>
                 <BorderButton
                     title="Next step of booking"
+                    style={{ display: display }}
                     onClick={() => {
                         let _dates = [];
                         let _lstDate = [];
@@ -493,7 +512,10 @@ function BookTrialCamp1(props) {
                             totalPrice,
                         };
                         // console.log(dataObject);
-                        props.onNext(dataObject);
+                        console.log(validateData());
+                        if (validateData()) {
+                            props.onNext(dataObject);
+                        }
                     }}
                 />
             </div>
