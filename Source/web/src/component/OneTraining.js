@@ -20,6 +20,8 @@ const ClearBoth = function () {
 function OneTraining() {
     const dispatch = useDispatch();
 
+    const siteReducer = useSelector((state) => state.siteReducer);
+
     const currentAcademy = ModelManager.getLocation();
     const [skillGain, setSkillGain] = useState({});
     const [parentFb, setParentFb] = useState({});
@@ -33,13 +35,11 @@ function OneTraining() {
     useEffect(() => {
         dispatch({
             type: 'GET_DETAIL_SITE',
-            siteId: currentAcademy.ms_id,
+            siteId: currentAcademy.ms_id || siteReducer.lstSite[0]?.ms_id,
             cate: 14,
         });
-        dispatch({ type: siteActionType.GET_LIST_SITE });
     }, [dispatch]);
 
-    const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_DETAIL_SITE_SUCCESS) {
