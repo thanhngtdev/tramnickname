@@ -50,7 +50,6 @@ function WeeklyTraining() {
         });
     }, [dispatch]);
 
-    console.log('WeeklyTraining -> siteReducer', siteReducer);
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_DETAIL_SITE_SUCCESS) {
