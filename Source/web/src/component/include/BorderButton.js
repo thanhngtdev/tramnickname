@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react';
 
 export default function BorderButton(props) {
+    // useEffect(() => {
+    //     console.log(props.disabled, 'aa');
+    // }, [props.disabled]);
+
     return (
         <button
-            // disabled={true}
+            disabled={props.disabled}
             className={`border-btn ${props.disabled ? 'btn-disabled' : ''}`}
             onClick={() => {
                 if (props.onClick) props.onClick();
