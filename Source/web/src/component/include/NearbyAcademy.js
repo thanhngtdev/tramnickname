@@ -25,6 +25,7 @@ function NearbyAcademy() {
                 );
             }
             if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
+                console.log("aaaa");
                 setNearbyAcademy(
                     JSON.parse(localStorage.getItem('defaultAcademy')),
                 );

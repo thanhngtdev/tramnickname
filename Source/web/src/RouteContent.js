@@ -108,7 +108,7 @@ function RouteContent(props) {
         } else {
             // console.log(props.coords);
             dispatch({
-                type: siteActionType.FIND_NEARBY_ACADEMY,
+                type: siteActionType.FIND_NEARBY,
                 lat: props.coords.latitude,
                 long: props.coords.longitude,
             });

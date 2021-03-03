@@ -15,6 +15,7 @@ BookTrial.propTypes = {
 };
 
 function BookTrial(props) {
+    const dispatch = useDispatch();
     const history = useHistory();
     // const dispatch = useDispatch();
     const defaultAcademy = JSON.parse(localStorage.getItem('defaultAcademy'));
@@ -44,6 +45,19 @@ function BookTrial(props) {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
                 setLstSite(siteReducer.data.lstSite);
+            }
+            if (
+                siteReducer.type ===
+                    siteActionType.GET_CURRENT_ACADEMY_SUCCESS &&
+                siteReducer.number === 2
+            ) {
+                setLocation(siteReducer.data.ms_name);
+                setTrialText(
+                    siteReducer.data && siteReducer.data.ms_trial === 1
+                        ? 'trial'
+                        : 'free',
+                );
+                setLocationId(siteReducer.data ? siteReducer.data.ms_id : '');
             }
         }
     }, [siteReducer]);
@@ -96,22 +110,9 @@ function BookTrial(props) {
                                     className="location"
                                     onClick={(evt) => {
                                         evt.preventDefault();
-                                        setLocation(
-                                            defaultAcademy
-                                                ? defaultAcademy.ms_name
-                                                : '',
-                                        );
-                                        setLocationId(
-                                            defaultAcademy
-                                                ? defaultAcademy.ms_id
-                                                : '',
-                                        );
-                                        setTrialText(
-                                            defaultAcademy &&
-                                                defaultAcademy.ms_trial === 1
-                                                ? 'trial'
-                                                : 'free trial',
-                                        );
+                                        setShowSelect(false);
+                                        setLocation('Loading...');
+                                        Utils.getCurrentAcademy(dispatch, 2);
                                     }}>
                                     <span>Use </span>current location
                                 </a>

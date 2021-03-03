@@ -82,6 +82,17 @@ const siteReducer = (state = initialState, action) => {
                 type: siteActionType.SEARCH_NEARBY_FAILED,
                 message: action.message,
             };
+        case siteActionType.GET_CURRENT_ACADEMY_SUCCESS:
+            return {
+                type: siteActionType.GET_CURRENT_ACADEMY_SUCCESS,
+                data: action.data,
+                number: action.number,
+            };
+        case siteActionType.GET_CURRENT_ACADEMY_FAILED:
+            return {
+                type: siteActionType.GET_CURRENT_ACADEMY_FAILED,
+                message: action.message,
+            };
         case siteActionType.FIND_NEARBY_SUCESS:
             return {
                 ...state,
