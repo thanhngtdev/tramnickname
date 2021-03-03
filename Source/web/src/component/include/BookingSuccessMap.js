@@ -29,8 +29,15 @@ function BookingSuccessMap(props) {
             ) {
                 setBookingInfo(siteReducer.data.data);
             }
+            if (
+                siteReducer.type === siteActionType.BOOK_TRIAL_SIGNUP_SUCCESS
+            ) {
+                setBookingInfo(siteReducer.data.data);
+            }
         }
     }, [siteReducer]);
+
+    console.log(bookingInfo);
 
     return (
         <GoogleMap defaultZoom={12} center={defaultCenter}>
@@ -47,7 +54,7 @@ function BookingSuccessMap(props) {
                         £
                         {bookingInfo?.total_price
                             ? bookingInfo.total_price
-                            : ''}
+                            : '0'}
                     </p>
                     <h4 style={{ marginBottom: 0 }}>Reference number:</h4>
                     <p style={{ marginTop: 0 }}>{bookingInfo?.booking_id}</p>

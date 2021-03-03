@@ -14,8 +14,6 @@
 }
 
 .training-include .slide-text {
-	padding-top: 4rem;
-	padding-left: 5rem;
 	padding-bottom: 6rem;
 	flex: 2;
 }
@@ -23,7 +21,7 @@
 .training-include .slide-control {
 	position: absolute;
 	bottom: 15rem;
-    left: 42%;
+  left: 40%;
 }
 
 .training-include .slide-button {
@@ -46,7 +44,7 @@
 .camp-review {
 	background-color: #EF9042;
 	padding-top: 170px;
-	margin-top: -60px;
+	margin-top: -130px;
 }
 
 .about-info-birthday {
@@ -289,7 +287,7 @@ ul.camp-paid li::before {
 	}
 	
 	.training-include .mobile {
-		top: 32rem;
+		top: 27rem;
 	}
 
 	.football-skill {
