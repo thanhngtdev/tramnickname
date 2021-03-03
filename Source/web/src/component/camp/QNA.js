@@ -8,7 +8,13 @@ QNA.propTypes = {
 };
 
 export default function QNA(props) {
-    const [activeIndex, setActiveIndex] = useState(-1);
+    const [activeIndex, setActiveIndex] = useState(0);
+
+    const capitalize = (s) => {
+        if (typeof s !== 'string') return '';
+        return s.charAt(0).toUpperCase() + s.slice(1);
+    };
+
     return (
         <div className="qa qna-detail">
             <div className="container">
@@ -23,7 +29,9 @@ export default function QNA(props) {
                             onClick={() => setActiveIndex(index)}>
                             <label className="qId">{index + 1}</label>
                             <div className="qContent">
-                                <h4 className="question">{item.atc_sapo}</h4>
+                                <h4 className="question">
+                                    {capitalize(item.atc_sapo.toLowerCase())}
+                                </h4>
                                 <p
                                     className="answer"
                                     dangerouslySetInnerHTML={{

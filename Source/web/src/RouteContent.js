@@ -36,7 +36,7 @@ const DEFAULT_LOG = -0.2416794;
 function RouteContent(props) {
     const dispatch = useDispatch();
     const locationStatus = usePermissionLocation();
-    
+
     useEffect(() => {
         if (locationStatus == 'granted') {
             dispatch({
@@ -116,6 +116,12 @@ function RouteContent(props) {
             localStorage.setItem('longitude', props.coords.longitude);
         }
     }, [props]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch({ type: siteActionType.GET_SITE_HAS_CAMP });
+        }, 200);
+    }, []);
     return (
         <div className="wapper">
             <ScrollToTop />

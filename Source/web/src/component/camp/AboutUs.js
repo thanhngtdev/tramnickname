@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faTimes } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 AboutUs.propTypes = {
     data: PropTypes.object,
@@ -69,13 +70,19 @@ function PlayVideo(props) {
 }
 
 export default function AboutUs(props) {
+    const siteReducer = useSelector((state) => state.siteReducer);
+
     const currentAcademy = ModelManager.getLocation() || {};
     const [showVideo, setShowVIdeo] = useState(false);
     const [title, setTitle] = useState('');
 
     useEffect(() => {
         if (props.data.cfg_title) {
-            setTitle(props.data.cfg_title + ' ' + currentAcademy.ms_name);
+            setTitle(
+                props.data.cfg_title +
+                    ' ' +
+                    (currentAcademy.ms_name || siteReducer.lstSite[0]?.ms_name),
+            );
         }
     }, [props.data.cfg_title]);
 

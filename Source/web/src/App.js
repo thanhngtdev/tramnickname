@@ -6,6 +6,7 @@ import './css/font.css';
 import './css/style.css';
 import './css/custom.css';
 import './css/hover.css';
+import './css/button.css';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -20,7 +21,10 @@ import Utils from './common/Utils';
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(allReducers, applyMiddleware(sagaMiddleware));
 
-console.log(`%cVersion Web: ${Utils.getVersion()}`, 'color: green; font-weight: bold');
+console.log(
+    `%cVersion Web: ${Utils.getVersion()}`,
+    'color: green; font-weight: bold',
+);
 
 function App() {
     return (
@@ -28,8 +32,7 @@ function App() {
             <Router basename="/">
                 <Helmet
                     titleTemplate="%s | We Make Footballers"
-                    defaultTitle="Professional Football Coaching-Ages 4-12 | We Make Footballers"
-                >
+                    defaultTitle="Professional Football Coaching-Ages 4-12 | We Make Footballers">
                     <meta
                         name="description"
                         content="We Make Footballers is a UK wide football coaching company for kids aged 4 to 12 of all abilties.

@@ -10,7 +10,7 @@ export default function AboutSecure(props) {
     return (
         <div className="about-secure">
             <div className="container">
-                <div className="" style={{ position: 'relative', top: 130 }}>
+                <div className="box-list-item-card" style={{ top: 130 }}>
                     <div className="row">
                         {props.data &&
                             props.data.map((item, index) => (

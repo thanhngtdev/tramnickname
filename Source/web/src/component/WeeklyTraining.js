@@ -18,6 +18,7 @@ import { siteActionType } from '../actions/actionTypes';
 import { useState } from 'react';
 import ModelManager from '../common/ModelManager';
 import useTruspilot from '../hooks/useTruspilot';
+import Testimonial from './homepage/Testimonial';
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;
@@ -26,8 +27,9 @@ const ClearBoth = function () {
 function WeeklyTraining() {
     const dispatch = useDispatch();
 
+    const siteReducer = useSelector((state) => state.siteReducer);
+
     const currentAcademy = ModelManager.getLocation() || {};
-    const [lstSite, setLstSite] = useState([]);
     const [academyIntro, setAcademyIntro] = useState({});
     const [eachWeek, setEachWeek] = useState({});
     const [feedback, setFeedback] = useState([]);
@@ -43,20 +45,16 @@ function WeeklyTraining() {
     useEffect(() => {
         dispatch({
             type: 'GET_DETAIL_SITE',
-            siteId: currentAcademy.ms_id,
+            siteId: currentAcademy.ms_id || siteReducer.lstSite[0]?.ms_id,
             cate: 6,
         });
-        dispatch({ type: siteActionType.GET_LIST_SITE });
     }, [dispatch]);
 
-    const siteReducer = useSelector((state) => state.siteReducer);
+    console.log('WeeklyTraining -> siteReducer', siteReducer);
     useEffect(() => {
         if (siteReducer.type) {
-            if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
-                setLstSite(siteReducer.data.lstSite);
-            }
             if (siteReducer.type === siteActionType.GET_DETAIL_SITE_SUCCESS) {
-                // console.log(siteReducer.data);
+                console.log(siteReducer.data);
                 setAcademyIntro(siteReducer.data.academyIntro || {});
                 setEachWeek(siteReducer.data.eachWeek || {});
                 setFeedback(siteReducer.data.testimonial || []);
@@ -75,7 +73,7 @@ function WeeklyTraining() {
             <AboutUs data={about} />
             <ClearBoth />
             <div className="about-info">
-                <AboutInfo lstAcademy={lstSite} />
+                <AboutInfo lstAcademy={siteReducer.lstSite} />
             </div>
             <ClearBoth />
             <AboutSecure data={academyIntro.cfg_value} />
@@ -85,6 +83,7 @@ function WeeklyTraining() {
             <div className="box-slide-review">
                 <Feedback data={feedback} />
             </div>
+
             <ClearBoth />
             <FootballSkill data={skillGain} />
             <ClearBoth />
