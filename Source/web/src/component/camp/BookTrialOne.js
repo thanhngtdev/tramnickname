@@ -47,6 +47,14 @@ function BookTrialOne(props) {
             if (siteReducer.type === siteActionType.SEND_EMAIL_SUCCESS) {
                 history.push(PathRoute.ThankYou);
             }
+            if (
+                siteReducer.type ===
+                    siteActionType.GET_CURRENT_ACADEMY_SUCCESS &&
+                siteReducer.number === 4
+            ) {
+                setLocation(siteReducer.data.ms_name);
+                setLocationId(siteReducer.data ? siteReducer.data.ms_id : '');
+            }
         }
     }, [siteReducer]);
 
@@ -125,16 +133,9 @@ function BookTrialOne(props) {
                                     className="location"
                                     onClick={(evt) => {
                                         evt.preventDefault();
-                                        setLocation(
-                                            defaultAcademy
-                                                ? defaultAcademy.ms_name
-                                                : '',
-                                        );
-                                        setLocationId(
-                                            defaultAcademy
-                                                ? defaultAcademy.ms_id
-                                                : '',
-                                        );
+                                        setShowSelect(false);
+                                        setLocation('Loading...');
+                                        Utils.getCurrentAcademy(dispatch, 4);
                                     }}>
                                     <span>Use </span>current location
                                 </a>

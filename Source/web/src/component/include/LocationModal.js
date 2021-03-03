@@ -8,6 +8,7 @@ import { headerActionType, siteActionType } from '../../actions/actionTypes';
 import ListAcademy from './ListAcademy';
 import ListNearbyAcademy from './ListNearbyAcademy';
 import '../../css/modal.css';
+import Utils from '../../common/Utils';
 
 function LocationModal() {
     const [visible, setVisible] = useState(false);
@@ -39,15 +40,26 @@ function LocationModal() {
         }
     }, [headerReducer]);
 
+    const siteReducer = useSelector((state) => state.siteReducer);
+    useEffect(() => {
+        if (siteReducer.type) {
+            if (
+                siteReducer.type ===
+                    siteActionType.GET_CURRENT_ACADEMY_SUCCESS &&
+                siteReducer.number === 1
+            ) {
+                setQuery(siteReducer.data.ms_name);
+            }
+        }
+    }, [siteReducer]);
+
     let headText =
         'Enter Your Postcode, Address, Town or Current Location to Find Your Nearest Class';
     if (searched) headText = 'Select Your Local Class';
 
-    function setCurrentLocation(){
-        const defaultLocation = JSON.parse(localStorage.getItem('defaultAcademy'));
-        if(!!defaultLocation){
-            setQuery(defaultLocation.ms_name);
-        }
+    function setCurrentLocation() {
+        setQuery('Loading...');
+        Utils.getCurrentAcademy(dispatch, 1);
     }
 
     return (
@@ -80,7 +92,9 @@ function LocationModal() {
                         <div className="wrap-row">
                             <button
                                 className="current-location"
-                                onClick={() => {setCurrentLocation()}}>
+                                onClick={() => {
+                                    setCurrentLocation();
+                                }}>
                                 <FontAwesomeIcon
                                     icon={faMapMarkerAlt}
                                     style={{

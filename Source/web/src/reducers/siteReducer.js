@@ -52,9 +52,9 @@ const siteReducer = (state = initialState, action) => {
                 message: action.message,
             };
         case siteActionType.SELECT_ACADEMY:
-                return {
-                    type: siteActionType.SELECT_ACADEMY,
-                    data: action.data,
+            return {
+                type: siteActionType.SELECT_ACADEMY,
+                data: action.data,
             };
         case siteActionType.SEARCH_NEARBY_SUCCESS:
             return {
@@ -64,6 +64,17 @@ const siteReducer = (state = initialState, action) => {
         case siteActionType.SEARCH_NEARBY_FAILED:
             return {
                 type: siteActionType.SEARCH_NEARBY_FAILED,
+                message: action.message,
+            };
+        case siteActionType.GET_CURRENT_ACADEMY_SUCCESS:
+            return {
+                type: siteActionType.GET_CURRENT_ACADEMY_SUCCESS,
+                data: action.data,
+                number: action.number,
+            };
+        case siteActionType.GET_CURRENT_ACADEMY_FAILED:
+            return {
+                type: siteActionType.GET_CURRENT_ACADEMY_FAILED,
                 message: action.message,
             };
         case siteActionType.FIND_NEARBY_SUCESS:

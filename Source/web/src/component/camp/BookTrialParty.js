@@ -185,6 +185,14 @@ const BookTrialParty = React.forwardRef((props, ref) => {
             if (siteReducer.type === siteActionType.SEND_EMAIL_SUCCESS) {
                 history.push(PathRoute.ThankYou);
             }
+            if (
+                siteReducer.type ===
+                    siteActionType.GET_CURRENT_ACADEMY_SUCCESS &&
+                siteReducer.number === 5
+            ) {
+                setLocation(siteReducer.data.ms_name);
+                setLocationId(siteReducer.data ? siteReducer.data.ms_id : '');
+            }
         }
     }, [siteReducer]);
 
@@ -283,17 +291,12 @@ const BookTrialParty = React.forwardRef((props, ref) => {
                                             href="/#"
                                             onClick={(evt) => {
                                                 evt.preventDefault();
-                                                setLocation(
-                                                    defaultAcademy
-                                                        ? defaultAcademy.ms_name
-                                                        : '',
-                                                );
-                                                setLocationId(
-                                                    defaultAcademy
-                                                        ? defaultAcademy.ms_email
-                                                        : '',
-                                                );
                                                 setShowSelect(false);
+                                                setLocation('Loading...');
+                                                Utils.getCurrentAcademy(
+                                                    dispatch,
+                                                    5,
+                                                );
                                             }}
                                             className="location">
                                             <span>Use </span>current location
