@@ -16,6 +16,7 @@ export const APIConfig = {
     URL_BOOK_TRAINING: 'site/book-training',
     URL_SEARCH_NEARBY: 'site/search-nearby',
     URL_FIND_NEARBY: 'site/near-academy',
+    URL_GET_CURRENT_ACADEMY: 'site/near-academy',
     GET_LIST_NEWS: 'article/list-article',
     GET_LIST_FAQ: 'article/list-qna',
     DETAIL_ARTICLE: 'article/detail-article',

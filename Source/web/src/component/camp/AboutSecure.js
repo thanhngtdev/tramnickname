@@ -7,6 +7,7 @@ AboutSecure.propTypes = {
 };
 
 export default function AboutSecure(props) {
+    console.log(props);
     return (
         <div className="about-secure">
             <div className="container">

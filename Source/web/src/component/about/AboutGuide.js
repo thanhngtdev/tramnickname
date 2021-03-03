@@ -55,7 +55,6 @@ export default function AboutGuide(props) {
         });
     }, [defaultAcademy]);
 
-    console.log(defaultAcademy);
     return (
         <div className="about-guide">
             <div className="container">

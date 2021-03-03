@@ -86,11 +86,11 @@ function BookTrialTraining() {
                             bookingId: _data.Booking_id,
                             token: _data.access_token,
                         });
-                        if (dataStep1.siteSelected.ms_trial === 0){
+                        if (dataStep1?.siteSelected?.ms_trial === 0){
                             setBookSuccess(1);
                             setActiveTab(3);
                         }
-                        if (dataStep1.siteSelected.ms_trial === 1){
+                        if (dataStep1?.siteSelected?.ms_trial === 1){
                             setPaymentUrl(data.data.payment_url);
                             setActiveTab(4);
                         }
