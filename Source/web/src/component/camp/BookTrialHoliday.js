@@ -299,7 +299,7 @@ export default function BookTrialHoliday(props) {
                                     </label>
                                     <PhoneInput
                                         flag={flags}
-                                        defaultCountry="US"
+                                        defaultCountry="GB"
                                         international
                                         value={phone}
                                         onChange={(event) => {

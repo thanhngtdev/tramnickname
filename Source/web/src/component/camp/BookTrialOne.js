@@ -200,7 +200,7 @@ function BookTrialOne(props) {
 
                             <PhoneInput
                                 flag={flags}
-                                defaultCountry="US"
+                                defaultCountry="GB"
                                 international
                                 value={phone}
                                 onChange={(event) => {
