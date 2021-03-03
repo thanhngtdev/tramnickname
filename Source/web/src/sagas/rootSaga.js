@@ -20,6 +20,7 @@ import {
     watchGetListSiteHasCamp,
     refreshDefaultData,
     watchGetPolicy,
+    watchGetCurrentAcademy,
 } from './siteSaga';
 import {
     watchGetListArticle,
@@ -53,5 +54,6 @@ export default function* rootSaga() {
         watchGetListSiteHasCamp(),
         refreshDefaultData(),
         watchGetPolicy(),
+        watchGetCurrentAcademy(),
     ]);
 }

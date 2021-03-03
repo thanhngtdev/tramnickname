@@ -47,9 +47,6 @@ function Footer() {
                     setLocation(siteReducer.data.lstSite[0].ms_name);
                 }
             }
-            if (siteReducer.type === siteActionType.FIND_NEARBY_SUCESS) {
-                setDefaultAcademy(siteReducer.data);
-            }
             if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
                 setDefaultAcademy(
                     JSON.parse(localStorage.getItem('defaultAcademy')),

@@ -151,6 +151,33 @@ export function* watchSearchNearby() {
     yield takeEvery(siteActionType.SEARCH_NEARBY, searchNearby);
 }
 
+function* getCurrentAcademy({ lat, long, number }) {
+    let param = {
+        latitude: lat,
+        longitude: long,
+    };
+    const response = yield API.requestPostAPI(
+        APIConfig.URL_GET_CURRENT_ACADEMY,
+        param,
+    );
+    if (response && response.status === 200) {
+        yield put({
+            type: siteActionType.GET_CURRENT_ACADEMY_SUCCESS,
+            data: response.data,
+            number: number,
+        });
+    } else {
+        yield put({
+            type: siteActionType.GET_CURRENT_ACADEMY_FAILED,
+            message: response ? response.message : '',
+        });
+    }
+}
+
+export function* watchGetCurrentAcademy() {
+    yield takeEvery(siteActionType.GET_CURRENT_ACADEMY, getCurrentAcademy);
+}
+
 function* findNearby({ lat, long }) {
     let param = {
         latitude: lat,
