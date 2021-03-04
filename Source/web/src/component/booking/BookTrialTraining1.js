@@ -54,6 +54,9 @@ function BookTrialTraining1(props) {
     const [firstNameError, setFirstNameError] = useState('');
     const [lastNameError, setLastNameError] = useState('');
     const [ageStudent, setAgeStudent] = useState(0);
+    global.bookTraining= {
+        abc: "abc",
+    };
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -85,6 +88,7 @@ function BookTrialTraining1(props) {
     }, [ageStudent, lstCourse]);
 
     const siteReducer = useSelector((state) => state.siteReducer);
+    console.log(global,"global")
 
     useEffect(() => {
         if (siteReducer.type) {
@@ -247,7 +251,7 @@ function BookTrialTraining1(props) {
                             <b>
                                 Choose your class time{' '}
                                 <span style={{ color: '#FF7100' }}>
-                                    @{siteSelected.ms_name}
+                                    @{siteSelected?.ms_name}
                                 </span>{' '}
                                 Academy
                             </b>
