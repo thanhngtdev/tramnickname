@@ -36,8 +36,8 @@ function Footer() {
     }, [dispatch]);
 
     useEffect(() => {
-        setLocation(defaultAcademy.ms_name);
-        setSocialAcademy(defaultAcademy.social);
+        setLocation(defaultAcademy?.ms_name);
+        setSocialAcademy(defaultAcademy?.social);
     }, [defaultAcademy]);
 
     useEffect(() => {
@@ -53,7 +53,6 @@ function Footer() {
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
         if (siteReducer.type) {
-            console.log(siteReducer.type, 'sitee');
             if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
                 setLstSite(siteReducer.data.lstSite);
                 if (location === '' && siteReducer.data.lstSite.length > 0) {
