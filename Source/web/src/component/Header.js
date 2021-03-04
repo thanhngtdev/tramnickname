@@ -18,7 +18,7 @@ function Header() {
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
         if (siteReducer.type) {
-            if (siteReducer.type === siteActionType.FIND_NEARBY_SUCESS) {
+            if (siteReducer.type === siteActionType.FIND_NEARBY_SUCESS && !defaultAcademy?.ms_id) {
                 setDefaultAcademy(siteReducer.data);
             }
             if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
