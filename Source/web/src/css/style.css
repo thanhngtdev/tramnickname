@@ -663,7 +663,7 @@ table {
 	top: 0;
 	content: "";
 	background: #EF9042;
-	height: 1778px;
+	height: 1900px;
 }
 
 .list-item-card-2 {
@@ -894,7 +894,7 @@ table {
 	font-size: 16px;
 	display: inline-block;
 	position: absolute;
-	bottom: 0;
+	bottom: 5px;
 	left: 0;
 	z-index: 1;
 	background-color: #fff;
@@ -1887,6 +1887,24 @@ table {
 
 .banner-top .box-text p {
 	margin-bottom: 50px;
+}
+
+.banner-top .box-button .btn-book-free-session {
+	width: 219px;
+    height: 44px;
+    background: #EE7925;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 0;
+    line-height: 44px;
+    padding: 0;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    display: inline-block;
 }
 
 /*end  pin*/

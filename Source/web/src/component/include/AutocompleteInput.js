@@ -36,8 +36,10 @@ function AutocompleteInput(props) {
         // console.log(suggestions);
         const userInput = e.currentTarget.value;
 
+        // console.log(userInput);
+
         dispatch({ type: siteActionType.KEY_CODE });
-        // Filter our suggestions that don't contain the user's input
+        // Filter our suggestions that don't contain the user's input by name, address, postcode
         let filteredSuggestions = suggestions.filter(
             (suggestion) =>
                 suggestion.ms_name
@@ -45,6 +47,10 @@ function AutocompleteInput(props) {
                     .indexOf(userInput.toLowerCase()) > -1 ||
                 (suggestion.ms_address &&
                     suggestion.ms_address
+                        .toLowerCase()
+                        .indexOf(userInput.toLowerCase()) > -1) ||
+                (suggestion.ms_postal &&
+                    suggestion.ms_postal
                         .toLowerCase()
                         .indexOf(userInput.toLowerCase()) > -1),
         );
@@ -250,7 +256,20 @@ function AutocompleteInput(props) {
         } else {
             suggestionsListComponent = (
                 <div className="no-suggestions">
-                    <em>No suggestions, you're on your own!</em>
+                    {/* <em>
+                        No suggestions,<a style={{ color: 'red' }}>asfasf</a>{' '}
+                        you're on your own!
+                    </em> */}
+                    <em>
+                        There aren't any academies related to your search. Could
+                        you setup a{' '}
+                        <a
+                            style={{ color: 'red' }}
+                            href="https://franchisewmf.com/">
+                            WMF franchise
+                        </a>{' '}
+                        at this location?
+                    </em>
                 </div>
             );
         }

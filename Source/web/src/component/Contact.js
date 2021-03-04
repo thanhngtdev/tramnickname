@@ -8,6 +8,9 @@ import Select from 'react-select';
 import { CommonStyle } from '../common/Styles';
 import Captcha from '../component/Captcha';
 import PathRoute from '../common/PathRoute';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
+import flags from 'react-phone-number-input/flags';
 
 const OPTION = [
     { value: 'Weekly Training', label: 'Weekly Training' },
@@ -104,13 +107,24 @@ function Contact() {
                                 <label className="label">
                                     TELEPHONE NUMBER
                                 </label>
-                                <input
+                                {/* <input
                                     type="text"
                                     className="input-text"
                                     onChange={(event) =>
                                         setPhone(event.target.value)
                                     }
+                                /> */}
+                                <PhoneInput
+                                    flag={flags}
+                                    defaultCountry="GB"
+                                    international
+                                    value={phone}
+                                    onChange={(event) => {
+                                        // console.log(event);
+                                        setPhone(event);
+                                    }}
                                 />
+
                                 <label className="input-error"></label>
                             </li>
                             <li>
