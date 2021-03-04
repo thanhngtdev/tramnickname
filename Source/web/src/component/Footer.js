@@ -36,8 +36,8 @@ function Footer() {
     }, [dispatch]);
 
     useEffect(() => {
-        setLocation(defaultAcademy.ms_name);
-        setSocialAcademy(defaultAcademy.social);
+        setLocation(defaultAcademy?.ms_name);
+        setSocialAcademy(defaultAcademy?.social);
     }, [defaultAcademy]);
 
     useEffect(() => {

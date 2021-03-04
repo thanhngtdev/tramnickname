@@ -28,11 +28,11 @@ function BookTrialTraining3(props) {
     const message1 = Utils.isEmpty(props.data)
         ? ''
         : 'Woohoo! ' +
-          props.data.child_first_name +
+          props?.data?.child_first_name +
           ' ' +
-          props.data.child_last_name +
+          props?.data?.child_last_name +
           ' is booked in for their trial session at ' +
-          props.data.siteSelected.ms_name +
+          props?.data?.siteSelected?.ms_name +
           ' on';
     const message2 = Utils.isEmpty(props.data)
         ? ''
