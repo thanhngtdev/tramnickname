@@ -1,10 +1,11 @@
 import React from 'react';
-import { useState } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 import Constants from '../../common/Constants';
 import CustomMarker from './CustomMarker';
 
 function ContactMap(props) {
+    const { academy } = props;
+
     const defaultCenter = {
         lat: Constants.DEFAULT_LOCATION.lat,
         lng: Constants.DEFAULT_LOCATION.lng,
@@ -19,19 +20,19 @@ function ContactMap(props) {
         JSON.parse(localStorage.getItem('defaultAcademy')) || {};
     // console.log(defaultAcademy);
 
-    function renderAcademyContact() {
+    function renderAcademyContact(data) {
         return (
             <div className="text-content">
                 <h2>Contact details </h2>
                 <p style={{ marginBottom: 0 }}>Phone(9am-5pm):</p>
                 <strong style={{ fontSize: 24, color: '#5E5E5E' }}>
-                    <p>{defaultAcademy.ms_phone}</p>
+                    <p>{data.ms_phone}</p>
                 </strong>
                 <h2 style={{ marginTop: 50 }}>Address</h2>
-                <p>{defaultAcademy.ms_address}</p>
+                <p>{data.ms_address}</p>
                 <div style={{ marginTop: 40 }}>
-                    {defaultAcademy.social &&
-                        defaultAcademy.social.map((item) => {
+                    {data.social &&
+                        data.social.map((item) => {
                             if (item.name === 'Facebook')
                                 return (
                                     <a
@@ -148,8 +149,8 @@ function ContactMap(props) {
     return (
         <GoogleMap defaultZoom={12} center={defaultCenter}>
             <div className="contact-map">
-                {defaultAcademy && defaultAcademy.ms_id > 0
-                    ? renderAcademyContact()
+                {(defaultAcademy && defaultAcademy.ms_id > 0) || academy
+                    ? renderAcademyContact(academy || defaultAcademy)
                     : renderWMFContact()}
             </div>
             <CustomMarker item={defaultMarker} />
