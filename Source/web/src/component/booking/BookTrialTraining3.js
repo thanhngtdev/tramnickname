@@ -108,7 +108,7 @@ function BookTrialTraining3(props) {
                                             className="title"
                                             style={{ textAlign: 'center' }}>
                                             Could a different day at the{' '}
-                                            {props.data.siteSelected.ms_name}{' '}
+                                            {props?.data?.siteSelected?.ms_name}{' '}
                                             work?
                                         </h3>
                                         <div
