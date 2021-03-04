@@ -205,7 +205,7 @@ function ListNearbyAcademy() {
                             <p>Weekly traning schedule:</p>
                             {lstAcademy[
                                 highlightAcademy
-                            ].weeklyTraining.class.map((item, index) => (
+                            ].weeklyTraining?.class.map((item, index) => (
                                 <WeeklyTrainingItem
                                     data={item}
                                     key={index}
