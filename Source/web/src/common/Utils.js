@@ -148,6 +148,21 @@ class Utils {
         }
         navigator.geolocation.getCurrentPosition(success, error, options);
     }
+
+    getMyLocation() {
+        let options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+        };
+        return new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(
+                (response) => resolve(response),
+                (error) => reject(error),
+                options,
+            );
+        });
+    }
 }
 
 export default new Utils();
