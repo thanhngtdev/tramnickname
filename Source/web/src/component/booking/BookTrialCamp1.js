@@ -411,7 +411,7 @@ function BookTrialCamp1(props) {
                         </Fragment>
                     ) : (
                         <div>
-                            <p>
+                            <p style={{ color: 'red', fontSize: '30px' }}>
                                 There is no date available for this Holiday Camp
                             </p>
                         </div>
