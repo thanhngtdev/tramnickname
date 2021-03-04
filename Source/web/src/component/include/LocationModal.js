@@ -18,6 +18,7 @@ function LocationModal() {
 
     const dispatch = useDispatch();
     const headerReducer = useSelector((state) => state.headerReducer);
+    const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
         if (headerReducer.type) {
             if (headerReducer.type === headerActionType.CHANGE_LOCATION) {
@@ -40,7 +41,6 @@ function LocationModal() {
         }
     }, [headerReducer]);
 
-    const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
         if (siteReducer.type) {
             if (
@@ -49,6 +49,13 @@ function LocationModal() {
                 siteReducer.number === 1
             ) {
                 setQuery(siteReducer.data.ms_name);
+            };
+            if (
+                siteReducer.type ===
+                    siteActionType.GET_CURRENT_ACADEMY_FAILED &&
+                siteReducer.number === 1
+            ) {
+                setQuery("Get current location error");
             }
         }
     }, [siteReducer]);
@@ -61,6 +68,31 @@ function LocationModal() {
         setQuery('Loading...');
         Utils.getCurrentAcademy(dispatch, 1);
     }
+
+    const searchNearby = () => {
+        setShowListAcademy(false);
+        setSearched(true);
+        Utils.getMyLocation()
+            .then((res) => {
+                console.log('LocationModal -> res', res);
+                const { latitude, longitude } = res.coords;
+                const param = {
+                    type: siteActionType.SEARCH_NEARBY,
+                    search: query,
+                    lat: latitude,
+                    lng: longitude,
+                };
+                dispatch(param);
+            })
+            .catch((error) => {
+                console.log('searchNearby -> error', error);
+                const param = {
+                    type: siteActionType.SEARCH_NEARBY,
+                    search: query,
+                };
+                dispatch(param);
+            });
+    };
 
     return (
         <div
@@ -120,27 +152,13 @@ function LocationModal() {
                                 onChange={(e) => setQuery(e.target.value)}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter') {
-                                        setShowListAcademy(false);
-                                        setSearched(true);
-                                        dispatch({
-                                            type: siteActionType.SEARCH_NEARBY,
-                                            search: query,
-                                            lat: 51,
-                                            lng: 0,
-                                        });
+                                        searchNearby();
                                     }
                                 }}
                             />
                             <button
                                 onClick={() => {
-                                    setShowListAcademy(false);
-                                    setSearched(true);
-                                    dispatch({
-                                        type: siteActionType.SEARCH_NEARBY,
-                                        search: query,
-                                        lat: 51,
-                                        lng: 0,
-                                    });
+                                    searchNearby();
                                 }}>
                                 {searched ? 'FIND' : 'GO'}
                             </button>

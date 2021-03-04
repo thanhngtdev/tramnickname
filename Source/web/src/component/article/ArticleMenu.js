@@ -16,6 +16,7 @@ export default function ArticleMenu(props) {
     const currentAcademy = ModelManager.getLocation();
 
     const [lstCate, setLstCate] = useState([]);
+    const [displayForm, setDisplayForm] = useState(false);
     const articleReducer = useSelector((state) => state.articleReducer);
     useEffect(() => {
         if (articleReducer.type) {
@@ -81,7 +82,46 @@ export default function ArticleMenu(props) {
                     <FontAwesomeIcon
                         style={{ color: '#EF8336' }}
                         icon={faSearch}
+                        onClick = {() => {
+                            setDisplayForm(!displayForm);
+                        }}
                     />
+                </div>
+                <div
+                    className="form-input"
+                    style={{ display: displayForm ? 'block' : 'none' }}>
+                    <input
+                        type="text"
+                        placeholder="Search news"
+                        // defaultValue={query}
+                        // onChange={(e) => setQuery(e.target.value)}
+                        // onKeyDown={(e) => {
+                        //     if (e.key === 'Enter') {
+                        //         setShowListAcademy(false);
+                        //         setSearched(true);
+                        //         dispatch({
+                        //             type: siteActionType.SEARCH_NEARBY,
+                        //             search: query,
+                        //             lat: 51,
+                        //             lng: 0,
+                        //         });
+                        //     }
+                        // }}
+                    />
+                    {/* <button>
+                                // onClick={() => {
+                                //     setShowListAcademy(false);
+                                //     setSearched(true);
+                                //     dispatch({
+                                //         type: siteActionType.SEARCH_NEARBY,
+                                //         search: query,
+                                //         lat: 51,
+                                //         lng: 0,
+                                //     });
+                                // }}>
+                                {searched ? 'FIND' : 'GO'}
+                            </button> */}
+                    <button>Search</button>
                 </div>
             </div>
         </div>

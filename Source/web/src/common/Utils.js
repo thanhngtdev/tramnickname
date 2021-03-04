@@ -145,8 +145,28 @@ class Utils {
         };
         function error(err) {
             console.log("get location error");
+            dispatch(
+                {
+                    type: siteActionType.GET_CURRENT_ACADEMY_FAILED,
+                    number: number
+                });
         }
         navigator.geolocation.getCurrentPosition(success, error, options);
+    }
+
+    getMyLocation() {
+        let options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+        };
+        return new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(
+                (response) => resolve(response),
+                (error) => reject(error),
+                options,
+            );
+        });
     }
 }
 

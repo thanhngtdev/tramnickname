@@ -62,6 +62,7 @@ function ListNearbyAcademy() {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.SEARCH_NEARBY_SUCCESS) {
                 setLstAcademy(siteReducer.data.data);
+                console.log(siteReducer.data);
             }
         }
         if (
@@ -204,7 +205,7 @@ function ListNearbyAcademy() {
                             <p>Weekly traning schedule:</p>
                             {lstAcademy[
                                 highlightAcademy
-                            ].weeklyTraining.class.map((item, index) => (
+                            ].weeklyTraining?.class.map((item, index) => (
                                 <WeeklyTrainingItem
                                     data={item}
                                     key={index}
