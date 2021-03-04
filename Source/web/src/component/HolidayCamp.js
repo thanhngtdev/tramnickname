@@ -51,6 +51,7 @@ function HolidayCamp() {
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_DETAIL_SITE_SUCCESS) {
+                console.log(siteReducer.data);
                 setFeedback(siteReducer.data.testimonial || []);
                 setSkillGain(siteReducer.data.skillGain || {});
                 setWhyWMF(siteReducer.data.whyWMF || {});

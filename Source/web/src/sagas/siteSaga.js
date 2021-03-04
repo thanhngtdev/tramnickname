@@ -2,6 +2,7 @@ import { put, takeEvery } from 'redux-saga/effects';
 import { siteActionType } from '../actions/actionTypes';
 import API from '../requests/API';
 import { APIConfig } from '../requests/ApiConfig';
+import _ from 'lodash';
 
 function* getListSite() {
     const response = yield API.requestGetAPI(APIConfig.URL_GET_LIST_SITE);
@@ -130,10 +131,22 @@ function* searchNearby({ search, lat, long }) {
         lat: lat,
         long: long,
     };
-    const response = yield API.requestPostAPI(
-        APIConfig.URL_SEARCH_NEARBY,
-        param,
-    );
+    let response = yield API.requestPostAPI(APIConfig.URL_SEARCH_NEARBY, param);
+    if (
+        response &&
+        response.status === 200 &&
+        !lat &&
+        !long &&
+        !_.isEmpty(response.data.data)
+    ) {
+        const { ms_alias, ms_latitude, ms_longitude } = response.data.data[0];
+        param.search = ms_alias;
+        param.lat = Number(ms_latitude);
+        param.long = Number(ms_longitude);
+        console.log('function*searchNearby -> param', param);
+        response = yield API.requestPostAPI(APIConfig.URL_SEARCH_NEARBY, param);
+        console.log('function*searchNearby -> response', response);
+    }
     if (response && response.status === 200) {
         yield put({
             type: siteActionType.SEARCH_NEARBY_SUCCESS,
