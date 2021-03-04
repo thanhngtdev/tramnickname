@@ -8,6 +8,7 @@ import Select from 'react-select';
 import { CommonStyle } from '../common/Styles';
 import Captcha from '../component/Captcha';
 import PathRoute from '../common/PathRoute';
+import _ from 'lodash';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
@@ -33,13 +34,30 @@ function Contact() {
     const [defaultAcademy, setDefaultAcademy] = useState(
         JSON.parse(localStorage.getItem('defaultAcademy')) || {},
     );
+    const [academy, setAcademy] = useState(null);
 
     const siteReducer = useSelector((state) => state.siteReducer);
+    const headerReducer = useSelector((state) => state.headerReducer);
+
+    useEffect(() => {
+        if (!_.isEmpty(headerReducer.param)) {
+            dispatch({
+                type: siteActionType.GET_DETAIL_SITE,
+                siteId: headerReducer.param.ms_id,
+            });
+        }
+    }, [headerReducer.param]);
+
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_FOOTER_CONFIG_SUCCESS) {
                 // console.log(siteReducer.data);
                 setFooterConfig(siteReducer.data.cfg_value);
+                return;
+            }
+            if (siteReducer.type === siteActionType.GET_DETAIL_SITE_SUCCESS) {
+                setAcademy(siteReducer.data.site);
+                return;
             }
         }
     }, [siteReducer]);
@@ -62,6 +80,7 @@ function Contact() {
                                 <div style={{ height: `100%` }} />
                             }
                             mapElement={<div style={{ height: `100%` }} />}
+                            academy={academy}
                         />
                     </div>
                 </div>
@@ -75,7 +94,9 @@ function Contact() {
                 <div className="container">
                     <h1 className="contact-header">
                         Get in touch with the{' '}
-                        {defaultAcademy ? defaultAcademy.ms_name : 'WMF'}{' '}
+                        {academy || defaultAcademy
+                            ? (academy || defaultAcademy).ms_name
+                            : 'WMF'}{' '}
                         Academy
                     </h1>
                     <div className="get-in-touch" action="">
@@ -163,11 +184,13 @@ function Contact() {
                                         let response = window.grecaptcha.getResponse();
                                         if (response && response.length > 0) {
                                             const defaultAcademy =
+                                                academy ||
                                                 JSON.parse(
                                                     localStorage.getItem(
                                                         'defaultAcademy',
                                                     ),
-                                                ) || {};
+                                                ) ||
+                                                {};
                                             let _totalData = {
                                                 type: 'contact',
                                                 academyEmail:
