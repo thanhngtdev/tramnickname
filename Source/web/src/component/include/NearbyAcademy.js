@@ -103,7 +103,7 @@ function NearbyAcademy() {
                             Based on your location, your selected academy is
                             <span className="name">
                                 {' '}
-                                {nearbyAcademy.ms_name}
+                                {nearbyAcademy?.ms_name}
                             </span>
                         </h3>
                         <a
