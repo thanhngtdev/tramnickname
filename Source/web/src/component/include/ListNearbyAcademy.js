@@ -132,6 +132,7 @@ function ListNearbyAcademy() {
                                 dispatch({
                                     type: siteActionType.PICK_DEFAULT_ACADEMY,
                                 });
+                                window.location.reload();
                             }}>
                             Set as default location
                         </a>

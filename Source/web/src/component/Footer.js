@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import logoWhite from '../images/logo-white.png';
 import { siteActionType } from '../actions/actionTypes';
@@ -16,6 +16,7 @@ function Footer() {
         JSON.parse(localStorage.getItem('defaultAcademy')) || {},
     );
     const [footerConfig, setFooterConfig] = useState([]);
+    const [socialAcademy, setSocialAcademy] = useState([]);
     const {
         ref,
         isComponentVisible,
@@ -23,13 +24,20 @@ function Footer() {
     } = useComponentVisible(true);
 
     useEffect(() => {
+        setTimeout(() => {
+            dispatch({
+                type: 'GET_FOOTER_CONFIG',
+            });
+        }, 200);
+
         dispatch({
-            type: 'GET_FOOTER_CONFIG',
+            type: siteActionType.PICK_DEFAULT_ACADEMY,
         });
     }, [dispatch]);
 
     useEffect(() => {
-        setLocation(defaultAcademy.ms_name);
+        setLocation(defaultAcademy?.ms_name);
+        setSocialAcademy(defaultAcademy?.social);
     }, [defaultAcademy]);
 
     useEffect(() => {
@@ -68,7 +76,8 @@ function Footer() {
         });
     }
 
-    // console.log(defaultAcademy, 'default');
+    // console.log(socialAcademy, 'social ' + defaultAcademy.ms_name);
+    // console.log(defaultAcademy, 'defaul');
     return (
         <div className="footer">
             <div className="container">
@@ -167,40 +176,80 @@ function Footer() {
                     </ul>
                 </div>
                 <div className="Social">
-                    {footerConfig &&
-                        footerConfig.length > 0 &&
-                        footerConfig.map((item) => {
-                            if (item.title === 'Facebook')
-                                return (
-                                    <a
-                                        key={1}
-                                        href={item.des}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="icon-fb"
-                                    />
-                                );
-                            if (item.title === 'Insta')
-                                return (
-                                    <a
-                                        key={2}
-                                        href={item.des}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="icon-lin"
-                                    />
-                                );
-                            if (item.title === 'Twitter')
-                                return (
-                                    <a
-                                        key={3}
-                                        href={item.des}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="icon-wt"
-                                    />
-                                );
-                        })}
+                    {socialAcademy && socialAcademy.length > 0 ? (
+                        <Fragment>
+                            {socialAcademy.map((item) => {
+                                if (item.name === 'Facebook')
+                                    return (
+                                        <a
+                                            key={1}
+                                            href={item.link}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="icon-fb"
+                                        />
+                                    );
+                                if (item.name === 'Instagram')
+                                    return (
+                                        <a
+                                            key={2}
+                                            href={item.link}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="icon-lin"
+                                        />
+                                    );
+                                if (item.name === 'Twitter')
+                                    return (
+                                        <a
+                                            key={3}
+                                            href={item.link}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="icon-wt"
+                                        />
+                                    );
+                            })}
+                        </Fragment>
+                    ) : (
+                        <Fragment>
+                            {footerConfig &&
+                                footerConfig.length > 0 &&
+                                footerConfig.map((item) => {
+                                    if (item.title === 'Facebook')
+                                        return (
+                                            <a
+                                                key={1}
+                                                href={item.des}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="icon-fb"
+                                            />
+                                        );
+                                    if (item.title === 'Insta')
+                                        return (
+                                            <a
+                                                key={2}
+                                                href={item.des}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="icon-lin"
+                                            />
+                                        );
+                                    if (item.title === 'Twitter')
+                                        return (
+                                            <a
+                                                key={3}
+                                                href={item.des}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="icon-wt"
+                                            />
+                                        );
+                                })}
+                        </Fragment>
+                    )}
+
                     <div className="menu-ft">
                         <a href={PathRoute.Policy}>Privacy Policy</a>|
                         <a href={PathRoute.ListQNA}> FAQ</a>

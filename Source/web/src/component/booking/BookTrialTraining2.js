@@ -5,6 +5,9 @@ import BorderButton from '../include/BorderButton';
 import PropTypes from 'prop-types';
 import EyeIcon from './EyeIcon';
 import Utils from '../../common/Utils';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
+import flags from 'react-phone-number-input/flags';
 
 BookTrialTraining2.propTypes = {
     onNext: PropTypes.func,
@@ -131,11 +134,21 @@ function BookTrialTraining2(props) {
                 </div>
                 <div className="wSelect2">
                     <label>Emergancy contact telephone</label>
-                    <input
+                    {/* <input
                         type="text"
                         className="inputText"
                         placeholder="+44 U.K."
                         onChange={(event) => setPhone(event.target.value)}
+                    /> */}
+                    <PhoneInput
+                        flag={flags}
+                        defaultCountry="GB"
+                        international
+                        value={phone}
+                        onChange={(event) => {
+                            // console.log(event);
+                            setPhone(event);
+                        }}
                     />
                     <label className="input-error">{phoneError}</label>
                 </div>

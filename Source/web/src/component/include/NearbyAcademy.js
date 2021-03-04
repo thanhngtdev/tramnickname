@@ -11,22 +11,28 @@ function NearbyAcademy() {
     const [nearbyAcademy, setNearbyAcademy] = useState(
         JSON.parse(localStorage.getItem('defaultAcademy')) || {},
     );
+    const [defaultAcademy, setDefaultAcademy] = useState(
+        JSON.parse(localStorage.getItem('defaultAcademy')) || {},
+    );
     const [showSelect, setShowSelect] = useState(false);
 
     const siteReducer = useSelector((state) => state.siteReducer);
 
     useEffect(() => {
         if (siteReducer.type) {
-            if (siteReducer.type === siteActionType.FIND_NEARBY_SUCESS) {
+            if (siteReducer.type === siteActionType.FIND_NEARBY_SUCESS && !defaultAcademy?.ms_name) {
                 setNearbyAcademy(siteReducer.data);
                 localStorage.setItem(
                     'defaultAcademy',
                     JSON.stringify(siteReducer.data),
                 );
+                dispatch({
+                    type: siteActionType.PICK_DEFAULT_ACADEMY,
+                });
             }
             if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
-                console.log("aaaa");
-                setNearbyAcademy(
+                // console.log('aaaa');
+                setDefaultAcademy(
                     JSON.parse(localStorage.getItem('defaultAcademy')),
                 );
             }
@@ -56,6 +62,10 @@ function NearbyAcademy() {
 
     // Render
     const renderNearbyAcademy = () => {
+        if (defaultAcademy && defaultAcademy.ms_id) {
+            return defaultAcademy.ms_name;
+        }
+
         if (nearbyAcademy && nearbyAcademy.ms_id) {
             return nearbyAcademy.ms_name;
         }
@@ -64,7 +74,7 @@ function NearbyAcademy() {
             return 'Loading ...';
         }
 
-        return 'Find your closet academy';
+        return 'Find your closest academy';
     };
 
     return (
@@ -93,7 +103,7 @@ function NearbyAcademy() {
                             Based on your location, your selected academy is
                             <span className="name">
                                 {' '}
-                                {nearbyAcademy.ms_name}
+                                {nearbyAcademy?.ms_name}
                             </span>
                         </h3>
                         <a
