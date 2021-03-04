@@ -54,6 +54,11 @@ a,div,img,button {
   background-color: white !important;
 }
 
+.white-hover:hover {
+  color: #EE7925 !important;
+  background-color: rgba(153, 152, 152, 0.301) !important;
+}
+
 /* button banner hover */
 /* .btn-book-free-session:hover{
   color: #EE7925 !important;
@@ -65,3 +70,5 @@ a,div,img,button {
   color: #EE7925 !important;
   background-color: white !important;
 } */
+
+
