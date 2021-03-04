@@ -47,6 +47,8 @@ function LDWeeklyTraining(props) {
             }
         }
     }, [siteReducer]);
+
+    // console.log(global, 'global');
     return (
         <div>
             <div className="group-info" style={{ boxShadow: 'none' }}>
@@ -184,16 +186,13 @@ function LDHolidayCamp(props) {
                         style={{
                             borderBottom: '1px solid #F2F2F2',
                             fontWeight: 'normal',
-                            display: "flex",
-                            justifyContent: "space-between",
+                            display: 'flex',
+                            justifyContent: 'space-between',
                         }}>
                         <p>
                             {item.date} | {item.time}
                         </p>
-                        <p
-                            style={{ float: 'right' }}>
-                            {item.course_title}
-                        </p>
+                        <p style={{ float: 'right' }}>{item.course_title}</p>
                     </div>
                     <div style={{ clear: 'both', marginBottom: 16 }} />
                 </Fragment>
