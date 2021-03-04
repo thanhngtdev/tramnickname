@@ -13,6 +13,7 @@ import PathRoute from '../../common/PathRoute';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
+import { Fragment } from 'react';
 
 BookTrialCamp1.propTypes = {
     onNext: PropTypes.func,
@@ -267,6 +268,7 @@ function BookTrialCamp1(props) {
                     getOptionValue={(option) => option.course_id}
                     styles={CommonStyle.select2}
                     onChange={(option) => {
+                        // console.log(courseSelected, 'course selected');
                         setCourseSelected(option);
                         dispatch({
                             type: siteActionType.EVENT_DATE,
@@ -276,250 +278,289 @@ function BookTrialCamp1(props) {
                 />
                 <label className="input-error">{courseError}</label>
             </div>
-            <div style={{ backgroundColor: 'white', padding: '2rem' }}>
-                <div className="wSelect2">
-                    <label>LOCATION: </label>
-                    <br />
-                    <p>{siteSelected.ms_address}</p>
-                </div>
-                {courseSelected && (
-                    <div>
-                        {eventDate.length > 0 && (
-                            <div
-                                className="classRow"
-                                style={{
-                                    backgroundColor: '#F7F8F7',
-                                }}>
-                                <div className="classInfo">
-                                    <Checkbox
-                                        checked={fullCourseSelect}
-                                        onChange={() => {
-                                            if (fullCourseSelect) {
-                                                setTotalPrice(0);
-                                                setDateSelect(
-                                                    dateSelect.map(() => false),
-                                                );
-                                            } else {
-                                                setTotalPrice(
-                                                    parseFloat(
-                                                        courseSelected.course_price,
-                                                    ),
-                                                );
-                                                setDateSelect(
-                                                    dateSelect.map(() => true),
-                                                );
-                                            }
-                                            setFullCourseSelect(
-                                                !fullCourseSelect,
-                                            );
-                                        }}
-                                    />
-                                    <label>
-                                        Full Course (
-                                        {courseSelected.course_title})
-                                    </label>
-                                </div>
-                                <b>£{courseSelected.course_price}</b>
+
+            {courseSelected && (
+                <div style={{ backgroundColor: 'white', padding: '2rem' }}>
+                    {eventDate.length > 0 ? (
+                        <Fragment>
+                            <div className="wSelect2">
+                                <label>LOCATION: </label>
+                                <br />
+                                <p>{siteSelected.ms_address}</p>
                             </div>
-                        )}
-                        {eventDate.map((item, index) => (
-                            <div
-                                className="classRow"
-                                key={index}
-                                style={{
-                                    backgroundColor: `${
-                                        index % 2 === 1 ? '#F7F8F7' : 'white'
-                                    }`,
-                                }}>
-                                <div className="classInfo">
-                                    <Checkbox
-                                        checked={dateSelect[index]}
-                                        onChange={() => changeCourse(index)}
-                                    />
-                                    <p>{item.date}</p>
-                                    <div
-                                        style={{
-                                            flex: 1,
-                                            marginLeft: '2rem',
-                                            textAlign: 'left',
-                                        }}>
-                                        <Select
-                                            defaultValue={options}
-                                            options={[options, ...item.time]}
-                                            isSearchable={false}
-                                            isMulti={false}
-                                            styles={CommonStyle.select2}
-                                            getOptionLabel={(option) =>
-                                                option.show
-                                            }
-                                            getOptionValue={(option) =>
-                                                option.id
-                                            }
-                                            onChange={(option) => {
-                                                let _dateCourse = [
-                                                    ...dateCourseSelect,
-                                                ];
-                                                _dateCourse[index] = option.id;
-                                                setDateCourseSelect(
-                                                    _dateCourse,
+                            <Fragment>
+                                {/* {eventDate.length > 0 && ( */}
+                                <div
+                                    className="classRow"
+                                    style={{
+                                        backgroundColor: '#F7F8F7',
+                                    }}>
+                                    <div className="classInfo">
+                                        <Checkbox
+                                            checked={fullCourseSelect}
+                                            onChange={() => {
+                                                if (fullCourseSelect) {
+                                                    setTotalPrice(0);
+                                                    setDateSelect(
+                                                        dateSelect.map(
+                                                            () => false,
+                                                        ),
+                                                    );
+                                                } else {
+                                                    setTotalPrice(
+                                                        parseFloat(
+                                                            courseSelected.course_price,
+                                                        ),
+                                                    );
+                                                    setDateSelect(
+                                                        dateSelect.map(
+                                                            () => true,
+                                                        ),
+                                                    );
+                                                }
+                                                setFullCourseSelect(
+                                                    !fullCourseSelect,
                                                 );
                                             }}
                                         />
+                                        <label>
+                                            Full Course (
+                                            {courseSelected.course_title})
+                                        </label>
                                     </div>
+                                    <b>£{courseSelected.course_price}</b>
                                 </div>
-                                <p>
-                                    £
-                                    {dateCourseSelect[index] == 2 ||
-                                    dateCourseSelect[index] == 3
-                                        ? courseSelected.half_day_price +
-                                          ' per half day'
-                                        : courseSelected.single_day_price +
-                                          ' per full day'}
+                                {/* // )} */}
+                                {eventDate.map((item, index) => (
+                                    <div
+                                        className="classRow"
+                                        key={index}
+                                        style={{
+                                            backgroundColor: `${
+                                                index % 2 === 1
+                                                    ? '#F7F8F7'
+                                                    : 'white'
+                                            }`,
+                                        }}>
+                                        <div className="classInfo">
+                                            <Checkbox
+                                                checked={dateSelect[index]}
+                                                onChange={() =>
+                                                    changeCourse(index)
+                                                }
+                                            />
+                                            <p>{item.date}</p>
+                                            <div
+                                                style={{
+                                                    flex: 1,
+                                                    marginLeft: '2rem',
+                                                    textAlign: 'left',
+                                                }}>
+                                                <Select
+                                                    defaultValue={options}
+                                                    options={[
+                                                        options,
+                                                        ...item.time,
+                                                    ]}
+                                                    isSearchable={false}
+                                                    isMulti={false}
+                                                    styles={CommonStyle.select2}
+                                                    getOptionLabel={(option) =>
+                                                        option.show
+                                                    }
+                                                    getOptionValue={(option) =>
+                                                        option.id
+                                                    }
+                                                    onChange={(option) => {
+                                                        let _dateCourse = [
+                                                            ...dateCourseSelect,
+                                                        ];
+                                                        _dateCourse[index] =
+                                                            option.id;
+                                                        setDateCourseSelect(
+                                                            _dateCourse,
+                                                        );
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <p>
+                                            £
+                                            {dateCourseSelect[index] == 2 ||
+                                            dateCourseSelect[index] == 3
+                                                ? courseSelected.half_day_price +
+                                                  ' per half day'
+                                                : courseSelected.single_day_price +
+                                                  ' per full day'}
+                                        </p>
+                                    </div>
+                                ))}
+                                <label className="input-error">
+                                    {timeError}
+                                </label>
+                                <hr />
+                                <p
+                                    style={{
+                                        textAlign: 'right',
+                                        fontWeight: 'bold',
+                                        marginRight: '1rem',
+                                    }}>
+                                    Total: &nbsp; £{totalPrice}
                                 </p>
-                            </div>
-                        ))}
-                        <label className="input-error">{timeError}</label>
-                        <hr />
-                        <p
-                            style={{
-                                textAlign: 'right',
-                                fontWeight: 'bold',
-                                marginRight: '1rem',
-                            }}>
-                            Total: &nbsp; £{totalPrice}
-                        </p>
+                            </Fragment>
+                        </Fragment>
+                    ) : (
+                        <div>
+                            <p style={{ color: 'red', fontSize: '30px' }}>
+                                There is no date available for this Holiday Camp
+                            </p>
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {courseSelected && eventDate.length > 0 && (
+                <div
+                    style={{
+                        marginTop: '4rem',
+                        marginBottom: '4rem',
+                        // display: 'none',
+                    }}>
+                    <div className="wSelect2">
+                        <label>Your Email</label>
+                        <input
+                            // disabled={true}
+                            type="text"
+                            className="inputText"
+                            placeholder="example@mail.com"
+                            onChange={(event) => {
+                                setEmail(event.target.value);
+                                setEmailError('');
+                            }}
+                        />
+                        <label className="input-error">{emailError}</label>
                     </div>
-                )}
-            </div>
-            <div style={{ marginTop: '4rem', marginBottom: '4rem' }}>
-                <div className="wSelect2">
-                    <label>Your Email</label>
-                    <input
-                        type="text"
-                        className="inputText"
-                        placeholder="example@mail.com"
-                        onChange={(event) => {
-                            setEmail(event.target.value);
-                            setEmailError('');
-                        }}
-                    />
-                    <label className="input-error">{emailError}</label>
-                </div>
-                <div className="wSelect2">
-                    <label>Your first name</label>
-                    <input
-                        type="text"
-                        className="inputText"
-                        placeholder="Example name"
-                        onChange={(event) => {
-                            setFirstName(event.target.value);
-                            setFirstNameError('');
-                        }}
-                    />
-                    <label className="input-error">{firstNameError}</label>
-                </div>
-                <div className="wSelect2">
-                    <label>Your last name</label>
-                    <input
-                        type="text"
-                        className="inputText"
-                        placeholder="Example name"
-                        onChange={(event) => {
-                            setLastName(event.target.value);
-                            setLastNameError('');
-                        }}
-                    />
-                    <label className="input-error">{lastNameError}</label>
-                </div>
-                <div className="wSelect2">
-                    <label className="label" style={{ display: 'block' }}>
-                        Child's date of birth *
-                    </label>
-                    <DatePicker
-                        className="input-text"
-                        selected={date}
-                        onChange={(date) => {
-                            setDate(date);
-                        }}
-                    />
-                    <label className="input-error">{dateError}</label>
-                </div>
-                <div className="wSelect2">
-                    <label>Your phone number</label>
-                    {/* <input
+                    <div className="wSelect2">
+                        <label>Your first name</label>
+                        <input
+                            type="text"
+                            className="inputText"
+                            placeholder="Example name"
+                            onChange={(event) => {
+                                setFirstName(event.target.value);
+                                setFirstNameError('');
+                            }}
+                        />
+                        <label className="input-error">{firstNameError}</label>
+                    </div>
+                    <div className="wSelect2">
+                        <label>Your last name</label>
+                        <input
+                            type="text"
+                            className="inputText"
+                            placeholder="Example name"
+                            onChange={(event) => {
+                                setLastName(event.target.value);
+                                setLastNameError('');
+                            }}
+                        />
+                        <label className="input-error">{lastNameError}</label>
+                    </div>
+                    <div className="wSelect2">
+                        <label className="label" style={{ display: 'block' }}>
+                            Child's date of birth *
+                        </label>
+                        <DatePicker
+                            className="input-text"
+                            selected={date}
+                            onChange={(date) => {
+                                setDate(date);
+                            }}
+                        />
+                        <label className="input-error">{dateError}</label>
+                    </div>
+                    <div className="wSelect2">
+                        <label>Your phone number</label>
+                        {/* <input
                         type="text"
                         className="inputText"
                         placeholder="+44 UK"
                         onChange={(event) => setPhone(event.target.value)}
                     /> */}
-                    <PhoneInput
-                        flag={flags}
-                        defaultCountry="US"
-                        international
-                        value={phone}
-                        onChange={(event) => {
-                            // console.log(event);
-                            setPhone(event);
-                            setPhoneError('');
+                        <PhoneInput
+                            flag={flags}
+                            defaultCountry="GB"
+                            international
+                            value={phone}
+                            onChange={(event) => {
+                                // console.log(event);
+                                setPhone(event);
+                                setPhoneError('');
+                            }}
+                        />
+
+                        <label className="input-error">{phoneError}</label>
+                    </div>
+                    <BorderButton
+                        title="Next step of booking"
+                        disabled={disabled}
+                        onClick={() => {
+                            console.log('aa');
+                            let _dates = [];
+                            let _lstDate = [];
+                            let _lstPrice = [];
+                            dateSelect.map((item, index) => {
+                                if (item) {
+                                    if (dateCourseSelect[index] === 0) {
+                                        _lstDate.push(
+                                            eventDate[index].date +
+                                                ' - Full day',
+                                        );
+                                        _lstPrice.push(
+                                            courseSelected.single_day_price,
+                                        );
+                                        eventDate[index].time.map((it, idx) =>
+                                            _dates.push(it.id),
+                                        );
+                                    } else {
+                                        _lstDate.push(
+                                            eventDate[index].date +
+                                                ' - Half day',
+                                        );
+                                        _lstPrice.push(
+                                            courseSelected.half_day_price,
+                                        );
+                                        _dates.push(dateCourseSelect[index]);
+                                    }
+                                }
+                            });
+                            let dataObject = {
+                                siteSelected,
+                                courseSelected,
+                                parent_first_name: firstName,
+                                parent_last_name: lastName,
+                                email: email,
+                                phone_number: phone,
+                                course_id: courseSelected.course_id,
+                                dates: _dates,
+                                date_of_birth: moment(date).format(
+                                    'yyyy-MM-DD',
+                                ),
+                                company_id: companyId,
+                                lstDate: _lstDate,
+                                lstPrice: _lstPrice,
+                                totalPrice,
+                            };
+                            // console.log(dataObject);
+                            console.log(validateData());
+                            if (validateData()) {
+                                props.onNext(dataObject);
+                            }
                         }}
                     />
-
-                    <label className="input-error">{phoneError}</label>
                 </div>
-                <BorderButton
-                    title="Next step of booking"
-                    disabled={disabled}
-                    onClick={() => {
-                        console.log('aa');
-                        let _dates = [];
-                        let _lstDate = [];
-                        let _lstPrice = [];
-                        dateSelect.map((item, index) => {
-                            if (item) {
-                                if (dateCourseSelect[index] === 0) {
-                                    _lstDate.push(
-                                        eventDate[index].date + ' - Full day',
-                                    );
-                                    _lstPrice.push(
-                                        courseSelected.single_day_price,
-                                    );
-                                    eventDate[index].time.map((it, idx) =>
-                                        _dates.push(it.id),
-                                    );
-                                } else {
-                                    _lstDate.push(
-                                        eventDate[index].date + ' - Half day',
-                                    );
-                                    _lstPrice.push(
-                                        courseSelected.half_day_price,
-                                    );
-                                    _dates.push(dateCourseSelect[index]);
-                                }
-                            }
-                        });
-                        let dataObject = {
-                            siteSelected,
-                            courseSelected,
-                            parent_first_name: firstName,
-                            parent_last_name: lastName,
-                            email: email,
-                            phone_number: phone,
-                            course_id: courseSelected.course_id,
-                            dates: _dates,
-                            date_of_birth: moment(date).format('yyyy-MM-DD'),
-                            company_id: companyId,
-                            lstDate: _lstDate,
-                            lstPrice: _lstPrice,
-                            totalPrice,
-                        };
-                        // console.log(dataObject);
-                        console.log(validateData());
-                        if (validateData()) {
-                            props.onNext(dataObject);
-                        }
-                    }}
-                />
-            </div>
+            )}
+
             <div>
                 <p>
                     For more information about our privacy practices, please

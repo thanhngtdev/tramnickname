@@ -36,7 +36,6 @@ function AcademyMap() {
             });
         }
     }
-    // console.log(defaultCenter, 'center');
 
     return (
         <GoogleMap defaultZoom={12} center={defaultCenter}>

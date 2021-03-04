@@ -25,7 +25,7 @@ function NearbyAcademy() {
                 );
             }
             if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
-                console.log("aaaa");
+                // console.log('aaaa');
                 setNearbyAcademy(
                     JSON.parse(localStorage.getItem('defaultAcademy')),
                 );
@@ -64,7 +64,7 @@ function NearbyAcademy() {
             return 'Loading ...';
         }
 
-        return 'Find your closet academy';
+        return 'Find your closest academy';
     };
 
     return (

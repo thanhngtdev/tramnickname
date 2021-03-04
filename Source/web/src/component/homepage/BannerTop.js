@@ -29,14 +29,15 @@ function BannerTop() {
                     {defaultAcademy.ms_id ? (
                         <div
                             className="box-button"
-                            style={{
-                                textAlign: 'center',
-                                padding: '20px 0px',
-                                borderRadius: '10px',
-                                backgroundColor: '#EE7925',
-                            }}>
+                            // style={{
+                            //     textAlign: 'center',
+                            //     padding: '20px 0px',
+                            //     borderRadius: '10px',
+                            //     backgroundColor: '#EE7925',
+                            // }}
+                        >
                             {' '}
-                            <a
+                            {/* <a
                                 style={{ color: 'white' }}
                                 className="btn-book-free-session"
                                 href={PathRoute.BookTrialTraining}>
@@ -46,7 +47,15 @@ function BannerTop() {
                                     ? 'TRIAL'
                                     : 'FREE'}{' '}
                                 SESSION{' '}
-                            </a>{' '}
+                            </a>{' '} */}
+                            <a className="btn-book-free-session">
+                                {' '}
+                                BOOK A{' '}
+                                {defaultAcademy && defaultAcademy.ms_trial === 1
+                                    ? 'TRIAL'
+                                    : 'FREE'}{' '}
+                                SESSION{' '}
+                            </a>
                         </div>
                     ) : (
                         <div className="box-pin">
