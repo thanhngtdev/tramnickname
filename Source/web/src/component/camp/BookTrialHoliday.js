@@ -125,11 +125,12 @@ function Step2(props) {
 }
 
 export default function BookTrialHoliday(props) {
+    const siteReducer = useSelector((state) => state.siteReducer);
     const dispatch = useDispatch();
     const history = useHistory();
     const defaultAcademy = JSON.parse(localStorage.getItem('defaultAcademy'));
     const [showSelect, setShowSelect] = useState(false);
-    const [lstSite, setLstSite] = useState([]);
+    const [lstSite, setLstSite] = useState(siteReducer.lstSite);
     const [location, setLocation] = useState(
         defaultAcademy ? defaultAcademy.ms_name : '',
     );
@@ -144,13 +145,12 @@ export default function BookTrialHoliday(props) {
     const [stepActive, setStepActive] = useState(1);
     const { parentFb } = props;
     const [captcha, setCaptcha] = useState('');
-    const siteReducer = useSelector((state) => state.siteReducer);
 
     useEffect(() => {
         if (siteReducer.type) {
-            if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
-                setLstSite(siteReducer.data.lstSite);
-            }
+            // if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
+            //     setLstSite(siteReducer.data.lstSite);
+            // }
             if (siteReducer.type === siteActionType.SEND_EMAIL_SUCCESS) {
                 history.push(PathRoute.ThankYou);
             }

@@ -48,7 +48,7 @@ export default function BirthdayParty() {
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_DETAIL_SITE_SUCCESS) {
-                // console.log(siteReducer.data);
+                console.log(siteReducer.data);
                 setSkillGain(siteReducer.data.keyElement || {});
                 setParentFb(siteReducer.data.parentFb || {});
                 setFaq(siteReducer.data.faq || []);

@@ -73,20 +73,9 @@ export default function Feedback(props) {
                         ))}
                 </Slider>
 
-                <div
-                    style={{ marginTop: 30, float: 'right', height: 27 }}
-                    className="trustpilot-widget"
-                    data-locale="en-GB"
-                    data-template-id="5418015fb0d04a0c9cf721f2"
-                    data-businessunit-id="5630b23d0000ff000584db47"
-                    data-style-height="300px"
-                    data-style-width="100%"
-                    data-theme="light"
-                    data-stars="4,5"
-                    data-review-languages="en">
+                <div style={{ marginTop: -10, float: 'right', height: 20 }}>
                     <a
                         className="alink"
-                        style={{ color: props.color || 'white' }}
                         href="https://uk.trustpilot.com/review/wemakefootballers.com"
                         target="_blank"
                         rel="noopener">
