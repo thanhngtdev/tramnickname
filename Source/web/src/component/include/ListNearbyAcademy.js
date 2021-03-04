@@ -62,6 +62,7 @@ function ListNearbyAcademy() {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.SEARCH_NEARBY_SUCCESS) {
                 setLstAcademy(siteReducer.data.data);
+                console.log(siteReducer.data);
             }
         }
         if (

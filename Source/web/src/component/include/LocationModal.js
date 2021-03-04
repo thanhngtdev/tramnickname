@@ -49,6 +49,13 @@ function LocationModal() {
                 siteReducer.number === 1
             ) {
                 setQuery(siteReducer.data.ms_name);
+            };
+            if (
+                siteReducer.type ===
+                    siteActionType.GET_CURRENT_ACADEMY_FAILED &&
+                siteReducer.number === 1
+            ) {
+                setQuery("Get current location error");
             }
         }
     }, [siteReducer]);

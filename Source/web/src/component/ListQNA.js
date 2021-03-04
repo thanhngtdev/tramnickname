@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import '../css/qna.css';
 import { useDispatch, useSelector } from 'react-redux';
 import QNASearch from './article/QNASearch';
@@ -11,6 +11,7 @@ const ClearBoth = function () {
 
 function ListQNA() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [lstCate, setLstCate] = useState([]);
     useEffect(() => {
         dispatch({
@@ -75,7 +76,11 @@ function ListQNA() {
                             Contact us via the button below and one of our
                             experienced team members will get back to you.
                         </p>
-                        <button>GET IN TOUCH</button>
+                        <button
+                        onClick = {() => {
+                            history.push("contact-us");
+                        }}
+                        >GET IN TOUCH</button>
                     </div>
                 </div>
             </div>

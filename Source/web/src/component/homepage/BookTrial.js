@@ -15,12 +15,13 @@ BookTrial.propTypes = {
 };
 
 function BookTrial(props) {
+    const siteReducer = useSelector((state) => state.siteReducer);
     const dispatch = useDispatch();
     const history = useHistory();
     // const dispatch = useDispatch();
     const defaultAcademy = JSON.parse(localStorage.getItem('defaultAcademy'));
     const [showSelect, setShowSelect] = useState(false);
-    const [lstSite, setLstSite] = useState([]);
+    const [lstSite, setLstSite] = useState(siteReducer.lstSite);
     const [location, setLocation] = useState(
         defaultAcademy ? defaultAcademy.ms_name : '',
     );
@@ -38,14 +39,13 @@ function BookTrial(props) {
     const [emailError, setEmailError] = useState('');
     const [dateError, setDateError] = useState('');
     const { parentFb } = props;
-    const siteReducer = useSelector((state) => state.siteReducer);
     const width = useGetWidth();
 
     useEffect(() => {
         if (siteReducer.type) {
-            if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
-                setLstSite(siteReducer.data.lstSite);
-            }
+            // if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
+            //     setLstSite(siteReducer.data.lstSite);
+            // }
             if (
                 siteReducer.type ===
                     siteActionType.GET_CURRENT_ACADEMY_SUCCESS &&
