@@ -28,16 +28,19 @@ function BookingSuccessMap(props) {
                 siteReducer.type === siteActionType.BOOK_COURSE_SIGNUP_SUCCESS
             ) {
                 setBookingInfo(siteReducer.data.data);
-            }
+            };
+            if (
+                siteReducer.type === siteActionType.BOOK_COURSE_SUCCESS
+            ) {
+                setBookingInfo(siteReducer.data.data);
+            };
             if (
                 siteReducer.type === siteActionType.BOOK_TRIAL_SIGNUP_SUCCESS
             ) {
                 setBookingInfo(siteReducer.data.data);
-            }
+            };
         }
     }, [siteReducer]);
-
-    console.log(bookingInfo);
 
     return (
         <GoogleMap defaultZoom={12} center={defaultCenter}>

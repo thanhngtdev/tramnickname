@@ -124,8 +124,14 @@ function BookTrialTraining() {
                         bookingId: siteReducer.data.booking_id,
                         token: token,
                     });
-                setBookSuccess(1);
-                setActiveTab(3);
+                if (!JSON.parse(localStorage.getItem('login'))) {
+                    setBookSuccess(1);
+                    setActiveTab(3);
+                }
+                if (JSON.parse(localStorage.getItem('login'))) {
+                    setPaymentUrl(siteActionType.data.data.payment_url);
+                    setActiveTab(4);
+                }
             }
             if (siteReducer.type === siteActionType.BOOK_COURSE_FAILED) {
                 siteReducer.data &&
