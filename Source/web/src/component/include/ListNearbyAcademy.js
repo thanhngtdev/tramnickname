@@ -17,6 +17,7 @@ import {
 import { headerActionType, siteActionType } from '../../actions/actionTypes';
 import WeeklyTrainingItem from './WeeklyTrainingItem';
 import { useHistory } from 'react-router-dom';
+import PathRoute from '../../common/PathRoute';
 
 const MapWithAMarker = withScriptjs(
     withGoogleMap((props) => (
@@ -54,7 +55,7 @@ function ListNearbyAcademy() {
     const chooseAcademyModal = useRef(null);
     const [lstAcademy, setLstAcademy] = useState([]);
     const [highlightAcademy, setHighlightAcademy] = useState(0);
-    const [lstNearBy,setLstNearBy] = useState([]);
+    const [lstNearBy, setLstNearBy] = useState([]);
 
     const siteReducer = useSelector((state) => state.siteReducer);
 
@@ -65,30 +66,28 @@ function ListNearbyAcademy() {
                 console.log(siteReducer.data);
             }
         }
-        if (
-            siteReducer.type === siteActionType.FIND_NEARBY_ACADEMY_SUCCESS
-        ) {
+        if (siteReducer.type === siteActionType.FIND_NEARBY_ACADEMY_SUCCESS) {
             setLstNearBy(siteReducer.data);
         }
     }, [siteReducer]);
 
-      useEffect(() => {
-        const defaultAcademy = JSON.parse(localStorage.getItem('defaultAcademy'));
-        const lstNearest = [...lstNearBy].sort((a,b) => a.distance-b.distance);
+    useEffect(() => {
+        const defaultAcademy = JSON.parse(
+            localStorage.getItem('defaultAcademy'),
+        );
+        const lstNearest = [...lstNearBy].sort(
+            (a, b) => a.distance - b.distance,
+        );
 
-        if(!defaultAcademy && !!lstNearest[0]){
+        if (!defaultAcademy && !!lstNearest[0]) {
             localStorage.setItem(
                 'defaultAcademy',
-                JSON.stringify(
-                    lstNearest[0],
-                ),
+                JSON.stringify(lstNearest[0]),
             );
             dispatch({
                 type: siteActionType.PICK_DEFAULT_ACADEMY,
             });
-        };
-
-
+        }
     }, [lstNearBy]);
 
     return (
@@ -141,13 +140,9 @@ function ListNearbyAcademy() {
                             onClick={() => {
                                 dispatch({
                                     type: headerActionType.CLOSE_LOCATION,
+                                    param: lstAcademy[highlightAcademy],
                                 });
-                                history.push(
-                                    '/franchise/' +
-                                        lstAcademy[highlightAcademy].ms_alias +
-                                        '-' +
-                                        lstAcademy[highlightAcademy].ms_id,
-                                );
+                                history.push(PathRoute.Contact);
                             }}>
                             <FontAwesomeIcon icon={faEnvelope} />
                             Enquiry form
