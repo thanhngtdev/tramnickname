@@ -38,7 +38,6 @@ function AcademyMap() {
                 lat: parseFloat(headerReducer.param.ms_latitude),
                 lng: parseFloat(headerReducer.param.ms_longitude),
             });
-            // console.log(headerReducer, 'header');
             dispatch({
                 type: siteActionType.SELECTED_MARKER,
                 data: headerReducer.param,
@@ -55,7 +54,6 @@ function AcademyMap() {
         }
     }
 
-    // console.log(defaultCenter, 'default ');
     return (
         <GoogleMap defaultZoom={12} center={defaultCenter}>
             <div className="search-text">
