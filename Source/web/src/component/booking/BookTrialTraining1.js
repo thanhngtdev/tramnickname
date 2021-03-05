@@ -14,6 +14,7 @@ import PathRoute from '../../common/PathRoute';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
+import { useHistory } from 'react-router-dom';
 
 BookTrialTraining1.propTypes = {
     onNext: PropTypes.func,
@@ -24,6 +25,7 @@ const TRIAL_MESSAGE = 'Try a no obligation, one off trial session';
 
 function BookTrialTraining1(props) {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const [message, setMessage] = useState(FREE_MESSAGE);
     const [lstSite, setLstSite] = useState([]);
@@ -155,6 +157,10 @@ function BookTrialTraining1(props) {
             setDateError('Please choose child&apos;s date of birth');
         } else setDateError('');
         return _validate;
+    }
+    function linkToPrivate(index) {
+        Utils.linkToPolicy(dispatch, index);
+        history.push(PathRoute.Policy);
     }
 
     return (
@@ -384,7 +390,8 @@ function BookTrialTraining1(props) {
             <div>
                 <p>
                     For more information about our privacy practices, please
-                    read our <a href={PathRoute.Policy}>Privacy Policy.</a>
+                    read our{' '}
+                    <a onClick={() => linkToPrivate(3)}>Privacy Policy.</a>
                 </p>
                 <p>
                     By clicking above, you agree that we may process your

@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { siteActionType } from '../actions/actionTypes';
 import PathRoute from '../common/PathRoute';
 import Utils from '../common/Utils';
@@ -15,7 +15,7 @@ export default function Policy() {
         dispatch({
             type: siteActionType.GET_POLICY,
         });
-    }, [dispatch]);
+    }, []);
 
     const [showContent, setShowContent] = useState(false);
     const [detailPolicy, setDetailPolicy] = useState(0);
@@ -23,10 +23,14 @@ export default function Policy() {
 
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
+        console.log(siteReducer.type);
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_POLICY_SUCCESS) {
-                console.log(siteReducer.data);
                 setPolicy(siteReducer.data);
+            }
+            if (siteReducer.type === siteActionType.GET_POLICY_INDEX) {
+                setDetailPolicy(siteReducer.index);
+                setShowContent(true);
             }
         }
     }, [siteReducer]);
@@ -137,6 +141,8 @@ export default function Policy() {
     }
 
     function renderContent() {
+        console.log(policy, 'policy');
+        console.log(detailPolicy);
         return (
             <div
                 className="container"
@@ -149,9 +155,11 @@ export default function Policy() {
                     }}
                 />
                 <div
-                    dangerouslySetInnerHTML={{
-                        __html: policy.cfg_value[detailPolicy].content,
-                    }}
+                    dangerouslySetInnerHTML={
+                        policy.cfg_value && {
+                            __html: policy.cfg_value[detailPolicy].content,
+                        }
+                    }
                 />
             </div>
         );
