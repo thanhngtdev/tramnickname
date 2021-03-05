@@ -160,12 +160,16 @@ function ListNearbyAcademy() {
                 <div className="more-info">
                     <button
                         onClick={() => {
-                            dispatch({ type: headerActionType.CLOSE_LOCATION });
+                            dispatch({
+                                type: headerActionType.CLOSE_LOCATION,
+                                param: lstAcademy[highlightAcademy],
+                            });
                             history.push(
-                                '/franchise/' +
-                                    lstAcademy[highlightAcademy].ms_alias +
-                                    '-' +
-                                    lstAcademy[highlightAcademy].ms_id,
+                                PathRoute.Location,
+                                // '/franchise/' +
+                                //     lstAcademy[highlightAcademy].ms_alias +
+                                //     '-' +
+                                //     lstAcademy[highlightAcademy].ms_id,
                             );
                         }}>
                         More infomation

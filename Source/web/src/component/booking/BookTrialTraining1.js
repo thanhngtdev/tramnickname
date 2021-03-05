@@ -24,7 +24,7 @@ const TRIAL_MESSAGE = 'Try a no obligation, one off trial session';
 
 function BookTrialTraining1(props) {
     const dispatch = useDispatch();
-
+    // console.log(global.bookTraining, 'book traning');
     const [message, setMessage] = useState(FREE_MESSAGE);
     const [lstSite, setLstSite] = useState([]);
     const [date, setDate] = useState(
@@ -43,7 +43,11 @@ function BookTrialTraining1(props) {
     const [phone, setPhone] = useState('');
     const [lstCourse, setLstCourse] = useState([]);
     const [courseSatisfied, setCourseSatisfied] = useState([]);
-    const [courseSelected, setCourseSelected] = useState({});
+    const [courseSelected, setCourseSelected] = useState(
+        global.bookTraining && global.bookTraining.preDefined
+            ? global.bookTraining.preDefined.item
+            : {},
+    );
     const [siteSelected, setSiteSelected] = useState({});
     const [siteError, setSiteError] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -259,6 +263,7 @@ function BookTrialTraining1(props) {
                                                 course_id: item.course_id,
                                             });
                                             setCourseSelected(item);
+                                            // console.log(item, 'itemmm');
                                         }}
                                         checked={
                                             item.course_id ===
