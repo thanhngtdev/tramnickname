@@ -48,7 +48,7 @@ function LDWeeklyTraining(props) {
         }
     }, [siteReducer]);
 
-    // console.log(global, 'global');
+    console.log(props.site, 'site');
     return (
         <div>
             <div className="group-info" style={{ boxShadow: 'none' }}>
@@ -120,11 +120,13 @@ function LDWeeklyTraining(props) {
                         <p
                             style={{ color: '#FF7100' }}
                             onClick={() => {
+                                console.log(global.bookTraining, 'global1');
                                 global.bookTraining = {
                                     siteId: props.site.ms_id || 0,
                                     siteName: props.site.ms_name || '',
                                     address: '',
                                 };
+                                console.log(global.bookTraining, 'global2');
                                 history.push(PathRoute.BookTrialTraining);
                             }}>
                             Book
