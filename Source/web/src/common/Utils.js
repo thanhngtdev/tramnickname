@@ -168,6 +168,13 @@ class Utils {
             );
         });
     }
+
+    linkToPolicy(dispatch,index) {
+        dispatch({
+            type: siteActionType.GET_POLICY_INDEX,
+            index: index,
+        });
+    }
 }
 
 export default new Utils();

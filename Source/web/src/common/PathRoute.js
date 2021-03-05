@@ -8,7 +8,7 @@ let PathRoute = {
     Franchise: '/franchise/:alias-:id([0-9]+)',
     AboutUs: '/about-us',
     Location: '/location',
-    ListQNA: '/qna',
+    ListQNA: '/faqs',
     DetailQNA: '/qna/:cateAlias',
     HomeNews: '/news',
     ListNews: '/news/:cateAlias',
