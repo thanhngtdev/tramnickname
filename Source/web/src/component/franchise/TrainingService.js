@@ -47,6 +47,8 @@ function LDWeeklyTraining(props) {
             }
         }
     }, [siteReducer]);
+
+    console.log(props.site, 'site');
     return (
         <div>
             <div className="group-info" style={{ boxShadow: 'none' }}>
@@ -118,11 +120,13 @@ function LDWeeklyTraining(props) {
                         <p
                             style={{ color: '#FF7100' }}
                             onClick={() => {
+                                console.log(global.bookTraining, 'global1');
                                 global.bookTraining = {
                                     siteId: props.site.ms_id || 0,
                                     siteName: props.site.ms_name || '',
                                     address: '',
                                 };
+                                console.log(global.bookTraining, 'global2');
                                 history.push(PathRoute.BookTrialTraining);
                             }}>
                             Book
@@ -184,16 +188,13 @@ function LDHolidayCamp(props) {
                         style={{
                             borderBottom: '1px solid #F2F2F2',
                             fontWeight: 'normal',
-                            display: "flex",
-                            justifyContent: "space-between",
+                            display: 'flex',
+                            justifyContent: 'space-between',
                         }}>
                         <p>
                             {item.date} | {item.time}
                         </p>
-                        <p
-                            style={{ float: 'right' }}>
-                            {item.course_title}
-                        </p>
+                        <p style={{ float: 'right' }}>{item.course_title}</p>
                     </div>
                     <div style={{ clear: 'both', marginBottom: 16 }} />
                 </Fragment>

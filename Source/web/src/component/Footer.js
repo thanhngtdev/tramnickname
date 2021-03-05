@@ -46,6 +46,10 @@ function Footer() {
         }
     }, [isComponentVisible]);
 
+    // useEffect(() => {
+    //     window.scrollTo(0, 0);
+    // }, [location]);
+
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
         if (siteReducer.type) {
@@ -71,13 +75,8 @@ function Footer() {
         setShowSelect(!showSelect);
         setLocation(event.target.textContent);
         localStorage.setItem('defaultAcademy', JSON.stringify(item));
-        dispatch({
-            type: siteActionType.PICK_DEFAULT_ACADEMY,
-        });
+        window.location.reload();
     }
-
-    // console.log(socialAcademy, 'social ' + defaultAcademy.ms_name);
-    // console.log(defaultAcademy, 'defaul');
     return (
         <div className="footer">
             <div className="container">
