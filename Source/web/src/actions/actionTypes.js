@@ -107,6 +107,7 @@ export const siteActionType = {
     GET_POLICY: 'GET_POLICY',
     GET_POLICY_SUCCESS: 'GET_POLICY_SUCCESS',
     GET_POLICY_FAILED: 'GET_POLICY_FAILED',
+    GET_POLICY_INDEX: 'GET_POLICY_INDEX',
 };
 export const articleActionType = {
     GET_LIST_NEWS: 'GET_LIST_NEWS',
