@@ -47,7 +47,7 @@ function Header() {
     return (
         <div
             className="header"
-            style={{ position: 'fixed', zIndex: '10', top: '0px' }}>
+            style={{ position: 'fixed', zIndex: '1000', top: '0px' }}>
             <div className="head-top-mobile">
                 <div className="container">
                     <Link to="/">
@@ -137,8 +137,7 @@ function Header() {
                         left: '0px',
                         backgroundColor: 'white',
                         width: '100%',
-                    }}
-                    >
+                    }}>
                     <div className="container">
                         <div
                             className="menu-small"

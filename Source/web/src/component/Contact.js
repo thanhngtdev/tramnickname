@@ -63,7 +63,7 @@ function Contact() {
     }, [siteReducer]);
     return (
         <div className="" style={{ position: 'relative' }}>
-            <div className="">
+            <div className="" style={{ marginTop: '115px' }}>
                 <div
                     className="col-6"
                     style={{
