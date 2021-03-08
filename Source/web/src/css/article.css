@@ -17,8 +17,18 @@
     list-style: none;
     padding-right: 35px;
 }
+
+.article-menu li a {
+    color: #2E2D2D;
+}
+
 .article-menu li.active {
     font-weight: bold;
+    color: #EE7925;
+}
+
+.article-menu li.active a{
+    color: #EE7925;
 }
 
 .article-menu .search {
