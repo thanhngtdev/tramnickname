@@ -335,6 +335,7 @@ const listMenu = [
 
 function TrainingService(props) {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [hoverIndex, setHoverIndex] = useState(0);
     const [innerWidth, setInnerWith] = useState(window.innerWidth);
 
     useEffect(() => {
@@ -424,14 +425,19 @@ function TrainingService(props) {
                                 <li
                                     key={index}
                                     className={
-                                        activeIndex === index ? 'active' : ''
+                                        activeIndex === index ||
+                                        hoverIndex === index
+                                            ? 'active'
+                                            : ''
                                     }
                                     style={{
                                         borderBottomColor:
-                                            activeIndex - 1 === index
+                                            activeIndex - 1 === index ||
+                                            hoverIndex - 1 === index
                                                 ? '#ef9042'
                                                 : '',
                                     }}
+                                    onMouseEnter={() => setHoverIndex(index)}
                                     onClick={() => setActiveIndex(index)}>
                                     <a data-toggle="tab">
                                         <img
