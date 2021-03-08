@@ -29,17 +29,18 @@ export default function ArticleMenu(props) {
             }
         }
     }, [articleReducer]);
+    // console.log(!props.currentCate.cate_id, 'current');
 
     return (
         <div className="article-menu">
             <div className="container">
                 <ul>
-                    <li className={props.currentCate === 0 ? 'active' : ''}>
+                    <li className={!props.currentCate.cate_id ? 'active' : ''}>
                         <Link
                             onClick={() => {
                                 if (props.setCate) props.setCate({});
                             }}
-                            style={{ color: 'black' }}
+                            // style={{ color: 'black' }}
                             to="/news">
                             Latest Articles
                         </Link>
@@ -47,7 +48,7 @@ export default function ArticleMenu(props) {
                     {lstCate.map((item) => (
                         <li
                             className={
-                                props.currentCate === item.cate_id
+                                props.currentCate.cate_id === item.cate_id
                                     ? 'active'
                                     : ''
                             }
@@ -56,7 +57,7 @@ export default function ArticleMenu(props) {
                                 onClick={() => {
                                     if (props.setCate) props.setCate(item);
                                 }}
-                                style={{ color: 'black' }}
+                                // style={{ color: 'black' }}
                                 to={'/news/' + item.cate_alias}>
                                 {item.cate_value}
                             </Link>
@@ -82,7 +83,7 @@ export default function ArticleMenu(props) {
                     <FontAwesomeIcon
                         style={{ color: '#EF8336' }}
                         icon={faSearch}
-                        onClick = {() => {
+                        onClick={() => {
                             setDisplayForm(!displayForm);
                         }}
                     />

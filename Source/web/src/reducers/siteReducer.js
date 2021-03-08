@@ -4,6 +4,7 @@ const initialState = {
     message: '',
     lstSite: [],
     lstSiteCamp: [],
+    marker: {},
 };
 
 const siteReducer = (state = initialState, action) => {
@@ -278,6 +279,7 @@ const siteReducer = (state = initialState, action) => {
                 ...state,
                 type: siteActionType.SELECTED_MARKER,
                 data: action.data,
+                marker: action.data,
             };
         case siteActionType.KEY_CODE:
             return { ...state, type: siteActionType.KEY_CODE };

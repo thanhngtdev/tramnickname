@@ -9,6 +9,7 @@ SolidButton.propTypes = {
 export default function SolidButton(props) {
     return (
         <button
+            className="white-hover"
             onClick={() => {
                 if (props.onClick) props.onClick();
             }}
