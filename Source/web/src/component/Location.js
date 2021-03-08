@@ -7,6 +7,7 @@ import AcademyMap from './include/AcademyMap';
 function Location() {
     const [lstSite, setLstSite] = useState([]);
     const siteReducer = useSelector((state) => state.siteReducer);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,7 +22,6 @@ function Location() {
         }
     }, [siteReducer]);
 
-    // console.log(lstSite, 'list');
     return (
         <div>
             <div className="map-frame">

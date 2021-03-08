@@ -42,6 +42,10 @@ function BookTrial(props) {
     const width = useGetWidth();
 
     useEffect(() => {
+        setLstSite(siteReducer.lstSite);
+    },[siteReducer])
+
+    useEffect(() => {
         if (siteReducer.type) {
             // if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
             //     setLstSite(siteReducer.data.lstSite);

@@ -42,7 +42,7 @@ function BookTrialTraining() {
     const [token, setToken] = useState('');
     const currentLat = localStorage.getItem('latitude');
     const currentLng = localStorage.getItem('longitude');
-    const [paymentUrl,setPaymentUrl] = useState("");
+    const [paymentUrl, setPaymentUrl] = useState('');
 
     const siteReducer = useSelector((state) => state.siteReducer);
 
@@ -86,14 +86,14 @@ function BookTrialTraining() {
                             bookingId: _data.Booking_id,
                             token: _data.access_token,
                         });
-                        if (dataStep1?.siteSelected?.ms_trial === 0){
-                            setBookSuccess(1);
-                            setActiveTab(3);
-                        }
-                        if (dataStep1?.siteSelected?.ms_trial === 1){
-                            setPaymentUrl(data.data.payment_url);
-                            setActiveTab(4);
-                        }
+                    if (dataStep1?.siteSelected?.ms_trial === 0) {
+                        setBookSuccess(1);
+                        setActiveTab(3);
+                    }
+                    if (dataStep1?.siteSelected?.ms_trial === 1) {
+                        setPaymentUrl(data.data.payment_url);
+                        setActiveTab(4);
+                    }
                 } else if (data.status === 709) {
                     //booking class full
                     setBookSuccess(3);
@@ -124,8 +124,14 @@ function BookTrialTraining() {
                         bookingId: siteReducer.data.booking_id,
                         token: token,
                     });
-                setBookSuccess(1);
-                setActiveTab(3);
+                if (!JSON.parse(localStorage.getItem('login'))) {
+                    setBookSuccess(1);
+                    setActiveTab(3);
+                }
+                if (JSON.parse(localStorage.getItem('login'))) {
+                    setPaymentUrl(siteActionType.data.data.payment_url);
+                    setActiveTab(4);
+                }
             }
             if (siteReducer.type === siteActionType.BOOK_COURSE_FAILED) {
                 siteReducer.data &&
@@ -415,10 +421,8 @@ function BookTrialTraining() {
                                 }}
                             />
                         )}
-                        {activeTab === 4 &&(
-                            <BookTrialTraining4
-                            url={paymentUrl}
-                            />
+                        {activeTab === 4 && (
+                            <BookTrialTraining4 url={paymentUrl} />
                         )}
                     </div>
                 </div>

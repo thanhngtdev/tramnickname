@@ -18,7 +18,10 @@ function Header() {
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
         if (siteReducer.type) {
-            if (siteReducer.type === siteActionType.FIND_NEARBY_SUCESS && !defaultAcademy?.ms_id) {
+            if (
+                siteReducer.type === siteActionType.FIND_NEARBY_SUCESS &&
+                !defaultAcademy?.ms_id
+            ) {
                 setDefaultAcademy(siteReducer.data);
             }
             if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
@@ -42,7 +45,9 @@ function Header() {
     }
 
     return (
-        <div className="header">
+        <div
+            className="header"
+            style={{ position: 'fixed', zIndex: '10', top: '0px' }}>
             <div className="head-top-mobile">
                 <div className="container">
                     <Link to="/">
@@ -58,7 +63,7 @@ function Header() {
                 </div>
             </div>
             <div className={`navi ${menuMobile ? 'show' : ''}`}>
-                <div className="menu-top" style={{position:"fixed", zIndex:"10", top:'0px'}}>
+                <div className="menu-top">
                     <div className="container">
                         <Link to={PathRoute.Home}>
                             <img
@@ -125,58 +130,67 @@ function Header() {
                         </ul>
                     </div>
                 </div>
-                <div style={{marginTop:"59.878px"}}>
-                <div className="container" >
-                    <div
-                        className="menu-small"
-                        style={{ float: 'left', paddingTop: 15 }}>
+                <div
+                    style={{
+                        position: 'absolute',
+                        top: '59.878px',
+                        left: '0px',
+                        backgroundColor: 'white',
+                        width: '100%',
+                    }}
+                    >
+                    <div className="container">
                         <div
-                            className="trustpilot-widget"
-                            data-locale="en-GB"
-                            data-template-id="5419b732fbfb950b10de65e5"
-                            data-businessunit-id="5630b23d0000ff000584db47"
-                            data-style-height="24px"
-                            data-style-width="100%"
-                            data-theme="light"
-                            style={{ marginLeft: '-16px' }}>
-                            <a
-                                href="https://uk.trustpilot.com/review/wemakefootballers.com"
-                                target="_blank"
-                                rel="noopener">
-                                Trustpilot
-                            </a>
+                            className="menu-small"
+                            style={{ float: 'left', paddingTop: 15 }}>
+                            <div
+                                className="trustpilot-widget"
+                                data-locale="en-GB"
+                                data-template-id="5419b732fbfb950b10de65e5"
+                                data-businessunit-id="5630b23d0000ff000584db47"
+                                data-style-height="24px"
+                                data-style-width="100%"
+                                data-theme="light"
+                                style={{ marginLeft: '-16px' }}>
+                                <a
+                                    href="https://uk.trustpilot.com/review/wemakefootballers.com"
+                                    target="_blank"
+                                    rel="noopener">
+                                    Trustpilot
+                                </a>
+                            </div>
                         </div>
+                        <ul className="menu-small">
+                            <li className="menu-link">
+                                <Link to={PathRoute.AboutUs} onClick={hideMenu}>
+                                    About
+                                </Link>
+                            </li>
+                            <li className="menu-link">
+                                <a href={PathRoute.Contact} onClick={hideMenu}>
+                                    Contact Us
+                                </a>
+                            </li>
+                            <li className="menu-link">
+                                <Link
+                                    to={PathRoute.Location}
+                                    onClick={hideMenu}>
+                                    Locations
+                                </Link>
+                            </li>
+                            <li className="login">
+                                <a
+                                    href="https://www.parentarea.co/parent/login"
+                                    target="_blank"
+                                    rel="noreferrer">
+                                    Login
+                                </a>
+                            </li>
+                            <li>
+                                <NearbyAcademy onChangeLocation={hideMenu} />
+                            </li>
+                        </ul>
                     </div>
-                    <ul className="menu-small">
-                        <li className="menu-link">
-                            <Link to={PathRoute.AboutUs} onClick={hideMenu}>
-                                About
-                            </Link>
-                        </li>
-                        <li className="menu-link">
-                            <a href={PathRoute.Contact} onClick={hideMenu}>
-                                Contact Us
-                            </a>
-                        </li>
-                        <li className="menu-link">
-                            <Link to={PathRoute.Location} onClick={hideMenu}>
-                                Locations
-                            </Link>
-                        </li>
-                        <li className="login">
-                            <a
-                                href="https://www.parentarea.co/parent/login"
-                                target="_blank"
-                                rel="noreferrer">
-                                Login
-                            </a>
-                        </li>
-                        <li>
-                            <NearbyAcademy onChangeLocation={hideMenu} />
-                        </li>
-                    </ul>
-                </div>
-
                 </div>
             </div>
         </div>

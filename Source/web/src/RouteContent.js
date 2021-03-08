@@ -38,6 +38,10 @@ function RouteContent(props) {
     const locationStatus = usePermissionLocation();
 
     useEffect(() => {
+        dispatch({ type: siteActionType.GET_LIST_SITE });
+    }, []);
+
+    useEffect(() => {
         if (locationStatus == 'granted') {
             dispatch({
                 type: siteActionType.ALLOW_LOCATION,
@@ -180,6 +184,9 @@ function RouteContent(props) {
                 </Route>
                 <Route exact path={PathRoute.ThankYou}>
                     <ThankYou />
+                </Route>
+                <Route exact path={PathRoute.PolicyWithParam}>
+                    <Policy />
                 </Route>
                 <Route exact path={PathRoute.Policy}>
                     <Policy />

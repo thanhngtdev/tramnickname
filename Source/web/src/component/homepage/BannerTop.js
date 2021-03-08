@@ -48,7 +48,7 @@ function BannerTop() {
                                     : 'FREE'}{' '}
                                 SESSION{' '}
                             </a>{' '} */}
-                            <a className="btn-book-free-session">
+                            <a className="btn-book-free-session white-hover">
                                 {' '}
                                 BOOK A{' '}
                                 {defaultAcademy && defaultAcademy.ms_trial === 1

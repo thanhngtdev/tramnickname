@@ -31,7 +31,7 @@ function ListQNA() {
             }
         }
     }, [articleReducer]);
-
+    console.log(lstCate, 'aaa');
     return (
         <Fragment>
             <QNASearch />
@@ -77,10 +77,11 @@ function ListQNA() {
                             experienced team members will get back to you.
                         </p>
                         <button
-                        onClick = {() => {
-                            history.push("contact-us");
-                        }}
-                        >GET IN TOUCH</button>
+                            onClick={() => {
+                                history.push('contact-us');
+                            }}>
+                            GET IN TOUCH
+                        </button>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@ let PathRoute = {
     Franchise: '/franchise/:alias-:id([0-9]+)',
     AboutUs: '/about-us',
     Location: '/location',
-    ListQNA: '/qna',
+    ListQNA: '/faqs',
     DetailQNA: '/qna/:cateAlias',
     HomeNews: '/news',
     ListNews: '/news/:cateAlias',
@@ -18,6 +18,7 @@ let PathRoute = {
     ThankYou: '/thank-you',
     AcademyNews: '/:alias/news',
     Policy: '/policies',
+    PolicyWithParam: '/policies/:title',
     Sub_policy: [
         '/child-welfare-policy',
         '/anti-bullying-make-footballers',

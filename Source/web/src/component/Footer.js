@@ -2,12 +2,14 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import logoWhite from '../images/logo-white.png';
 import { siteActionType } from '../actions/actionTypes';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import PathRoute from '../common/PathRoute';
 import useComponentVisible from '../hooks/useComponentVisible';
+import Utils from '../common/Utils';
 
 function Footer() {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const [showSelect, setShowSelect] = useState(false);
     const [location, setLocation] = useState('');
@@ -46,8 +48,13 @@ function Footer() {
         }
     }, [isComponentVisible]);
 
+    // useEffect(() => {
+    //     window.scrollTo(0, 0);
+    // }, [location]);
+
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
+        console.log(siteReducer.type);
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_LIST_SITE_SUCCESS) {
                 setLstSite(siteReducer.data.lstSite);
@@ -71,9 +78,12 @@ function Footer() {
         setShowSelect(!showSelect);
         setLocation(event.target.textContent);
         localStorage.setItem('defaultAcademy', JSON.stringify(item));
-        dispatch({
-            type: siteActionType.PICK_DEFAULT_ACADEMY,
-        });
+        window.location.reload();
+    }
+
+    function linkToPrivate(index) {
+        Utils.linkToPolicy(dispatch, index);
+        history.push(PathRoute.Policy);
     }
 
     // console.log(socialAcademy, 'social ' + defaultAcademy.ms_name);
@@ -251,7 +261,7 @@ function Footer() {
                     )}
 
                     <div className="menu-ft">
-                        <a href={PathRoute.Policy}>Privacy Policy</a>|
+                        <a onClick={() => linkToPrivate(3)}>Privacy Policy</a>|
                         <a href={PathRoute.ListQNA}> FAQ</a>
                         <span>|</span>
                         <a href="/#"> Terms &amp; Conditions</a>|

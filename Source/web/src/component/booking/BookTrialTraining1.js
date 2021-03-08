@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import Select from 'react-select';
 import { CommonStyle } from '../../common/Styles';
 import BorderButton from '../include/BorderButton';
@@ -14,6 +14,7 @@ import PathRoute from '../../common/PathRoute';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
+import { useHistory } from 'react-router-dom';
 
 BookTrialTraining1.propTypes = {
     onNext: PropTypes.func,
@@ -24,6 +25,7 @@ const TRIAL_MESSAGE = 'Try a no obligation, one off trial session';
 
 function BookTrialTraining1(props) {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const [message, setMessage] = useState(FREE_MESSAGE);
     const [lstSite, setLstSite] = useState([]);
@@ -43,7 +45,11 @@ function BookTrialTraining1(props) {
     const [phone, setPhone] = useState('');
     const [lstCourse, setLstCourse] = useState([]);
     const [courseSatisfied, setCourseSatisfied] = useState([]);
-    const [courseSelected, setCourseSelected] = useState({});
+    const [courseSelected, setCourseSelected] = useState(
+        global.bookTraining && global.bookTraining.preDefined
+            ? global.bookTraining.preDefined.item
+            : {},
+    );
     const [siteSelected, setSiteSelected] = useState({});
     const [siteError, setSiteError] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -156,6 +162,10 @@ function BookTrialTraining1(props) {
         } else setDateError('');
         return _validate;
     }
+    function linkToPrivate(index) {
+        Utils.linkToPolicy(dispatch, index);
+        history.push(PathRoute.Policy);
+    }
 
     return (
         <div className="tab-1">
@@ -227,164 +237,189 @@ function BookTrialTraining1(props) {
                 />
                 <label className="input-error">{dateError}</label>
             </div>
-            {siteSelected && (
-                <div style={{ backgroundColor: 'white', padding: '2rem' }}>
-                    <div className="wSelect2">
-                        <b>
-                            Choose your class time{' '}
-                            <span style={{ color: '#FF7100' }}>
-                                @{siteSelected.ms_name}
-                            </span>{' '}
-                            Academy
-                        </b>
-                    </div>
-                    <div>
-                        {courseSatisfied.map((item, index) => (
-                            <div
-                                key={index}
-                                className="classRow"
-                                style={{
-                                    backgroundColor: `${
-                                        index % 2 === 0 ? '#F7F8F7' : 'white'
-                                    }`,
-                                }}>
-                                <Radiobox
-                                    onChange={() => {
-                                        dispatch({
-                                            type:
-                                                siteActionType.COURSE_START_DATE,
-                                            course_id: item.course_id,
-                                        });
-                                        setCourseSelected(item);
-                                    }}
-                                    checked={
-                                        item.course_id ===
-                                        courseSelected.course_id
-                                    }>
-                                    {item.day_of_week}
-                                </Radiobox>
-                                <label>
-                                    {moment(
-                                        item.course_day_time_start,
-                                        'hh:mm:ss',
-                                    ).format('hh:mma')}
-                                    -
-                                    {moment(
-                                        item.course_day_time_end,
-                                        'hh:mm:ss',
-                                    ).format('hh:mma')}
-                                </label>
-                                <span>
-                                    {item.min_age}-{item.max_age} year olds
-                                </span>
-                            </div>
-                        ))}
-                        {siteSelected.ms_trial === 1 && (
-                            <>
-                                <hr />
-                                <p
+            {courseSatisfied.length > 0 && siteSelected ? (
+                <Fragment>
+                    <div style={{ backgroundColor: 'white', padding: '2rem' }}>
+                        <div className="wSelect2">
+                            <b>
+                                Choose your class time{' '}
+                                <span style={{ color: '#FF7100' }}>
+                                    @{siteSelected.ms_name}
+                                </span>{' '}
+                                Academy
+                            </b>
+                        </div>
+                        <div>
+                            {courseSatisfied.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className="classRow"
                                     style={{
-                                        textAlign: 'right',
-                                        fontWeight: 'bold',
-                                        marginRight: '1rem',
+                                        backgroundColor: `${
+                                            index % 2 === 0
+                                                ? '#F7F8F7'
+                                                : 'white'
+                                        }`,
                                     }}>
-                                    Total: &nbsp; £{courseSelected.course_price}
-                                </p>
-                            </>
-                        )}
+                                    <Radiobox
+                                        onChange={() => {
+                                            dispatch({
+                                                type:
+                                                    siteActionType.COURSE_START_DATE,
+                                                course_id: item.course_id,
+                                            });
+                                            setCourseSelected(item);
+                                            // console.log(item, 'itemmm');
+                                        }}
+                                        checked={
+                                            item.course_id ===
+                                            courseSelected.course_id
+                                        }>
+                                        {item.day_of_week}
+                                    </Radiobox>
+                                    <label>
+                                        {moment(
+                                            item.course_day_time_start,
+                                            'hh:mm:ss',
+                                        ).format('hh:mma')}
+                                        -
+                                        {moment(
+                                            item.course_day_time_end,
+                                            'hh:mm:ss',
+                                        ).format('hh:mma')}
+                                    </label>
+                                    <span>
+                                        {item.min_age}-{item.max_age} year olds
+                                    </span>
+                                </div>
+                            ))}
+                            {siteSelected.ms_trial === 1 && (
+                                <>
+                                    <hr />
+                                    <p
+                                        style={{
+                                            textAlign: 'right',
+                                            fontWeight: 'bold',
+                                            marginRight: '1rem',
+                                        }}>
+                                        Total: &nbsp; £
+                                        {courseSelected.course_price}
+                                    </p>
+                                </>
+                            )}
+                        </div>
                     </div>
-                </div>
-            )}
-            <div style={{ marginTop: '4rem', marginBottom: '4rem' }}>
-                <div className="wSelect2">
-                    <label>Trial Date</label>
-                    <Select
-                        defaultValue={0}
-                        options={lstStartDate}
-                        isSearchable={false}
-                        isMulti={false}
-                        getOptionLabel={(option) =>
-                            option.date_show + ' ' + new Date().getFullYear()
-                        }
-                        getOptionValue={(option) => option.date}
-                        styles={CommonStyle.select2}
-                        onChange={(option) => {
-                            setStartDate(option.date);
-                        }}
-                    />
-                    <label className="input-error">{trialDateError}</label>
-                </div>
-                <div className="wSelect2">
-                    <label>Your first name</label>
-                    <input
-                        type="text"
-                        className="inputText"
-                        placeholder="Example name"
-                        onChange={(event) => setFirstName(event.target.value)}
-                    />
-                    <label className="input-error">{firstNameError}</label>
-                </div>
-                <div className="wSelect2">
-                    <label>Your last name</label>
-                    <input
-                        type="text"
-                        className="inputText"
-                        placeholder="Example name"
-                        onChange={(event) => setLastName(event.target.value)}
-                    />
-                    <label className="input-error">{lastNameError}</label>
-                </div>
-                <div className="wSelect2">
-                    <label>Your phone number</label>
-                    {/* <input
+                    <div style={{ marginTop: '4rem', marginBottom: '4rem' }}>
+                        <div className="wSelect2">
+                            <label>Trial Date</label>
+                            <Select
+                                defaultValue={0}
+                                options={lstStartDate}
+                                isSearchable={false}
+                                isMulti={false}
+                                getOptionLabel={(option) =>
+                                    option.date_show +
+                                    ' ' +
+                                    new Date().getFullYear()
+                                }
+                                getOptionValue={(option) => option.date}
+                                styles={CommonStyle.select2}
+                                onChange={(option) => {
+                                    setStartDate(option.date);
+                                }}
+                            />
+                            <label className="input-error">
+                                {trialDateError}
+                            </label>
+                        </div>
+                        <div className="wSelect2">
+                            <label>Your first name</label>
+                            <input
+                                type="text"
+                                className="inputText"
+                                placeholder="Example name"
+                                onChange={(event) =>
+                                    setFirstName(event.target.value)
+                                }
+                            />
+                            <label className="input-error">
+                                {firstNameError}
+                            </label>
+                        </div>
+                        <div className="wSelect2">
+                            <label>Your last name</label>
+                            <input
+                                type="text"
+                                className="inputText"
+                                placeholder="Example name"
+                                onChange={(event) =>
+                                    setLastName(event.target.value)
+                                }
+                            />
+                            <label className="input-error">
+                                {lastNameError}
+                            </label>
+                        </div>
+                        <div className="wSelect2">
+                            <label>Your phone number</label>
+                            {/* <input
                         type="text"
                         className="inputText"
                         placeholder="+44 UK"
                         onChange={(event) => setPhone(event.target.value)}
                     /> */}
-                    <PhoneInput
-                        flag={flags}
-                        defaultCountry="US"
-                        international
-                        value={phone}
-                        onChange={(event) => {
-                            // console.log(event);
-                            setPhone(event);
-                            setPhoneError('');
-                        }}
-                    />
+                            <PhoneInput
+                                flag={flags}
+                                defaultCountry="GB"
+                                international
+                                value={phone}
+                                onChange={(event) => {
+                                    // console.log(event);
+                                    setPhone(event);
+                                    setPhoneError('');
+                                }}
+                            />
 
-                    <label className="input-error">{phoneError}</label>
+                            <label className="input-error">{phoneError}</label>
+                        </div>
+                        <BorderButton
+                            title="Next step of booking"
+                            onClick={() => {
+                                if (validateData()) {
+                                    let dataObject = {
+                                        siteSelected,
+                                        courseSelected,
+                                        parent_first_name: firstName,
+                                        parent_last_name: lastName,
+                                        date_of_birth: moment(date).format(
+                                            'yyyy-MM-DD',
+                                        ),
+                                        email: email,
+                                        phone_number: phone,
+                                        company_id: companyId,
+                                        course_id: courseSelected.course_id,
+                                        start_date: moment(startDate).format(
+                                            'yyyy-MM-DD',
+                                        ),
+                                    };
+                                    props.onNext(dataObject);
+                                }
+                            }}
+                        />
+                    </div>
+                </Fragment>
+            ) : (
+                <div>
+                    <p style={{ color: 'red', fontSize: '30px' }}>
+                        There is no class available
+                    </p>
                 </div>
-                <BorderButton
-                    title="Next step of booking"
-                    onClick={() => {
-                        if (validateData()) {
-                            let dataObject = {
-                                siteSelected,
-                                courseSelected,
-                                parent_first_name: firstName,
-                                parent_last_name: lastName,
-                                date_of_birth: moment(date).format(
-                                    'yyyy-MM-DD',
-                                ),
-                                email: email,
-                                phone_number: phone,
-                                company_id: companyId,
-                                course_id: courseSelected.course_id,
-                                start_date: moment(startDate).format(
-                                    'yyyy-MM-DD',
-                                ),
-                            };
-                            props.onNext(dataObject);
-                        }
-                    }}
-                />
-            </div>
+            )}
             <div>
                 <p>
                     For more information about our privacy practices, please
-                    read our <a href={PathRoute.Policy}>Privacy Policy.</a>
+                    read our{' '}
+                    <a onClick={() => linkToPrivate(3)}>Privacy Policy.</a>
                 </p>
                 <p>
                     By clicking above, you agree that we may process your

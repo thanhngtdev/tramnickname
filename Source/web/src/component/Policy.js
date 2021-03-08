@@ -1,37 +1,58 @@
-import React from 'react';
+import { isString, snakeCase } from 'lodash-es';
+import React, { useRef } from 'react';
 import { useEffect, useState } from 'react';
 import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import {
+    Link,
+    Route,
+    Switch,
+    useLocation,
+    useParams,
+    Redirect,
+} from 'react-router-dom';
 import { siteActionType } from '../actions/actionTypes';
 import PathRoute from '../common/PathRoute';
 import Utils from '../common/Utils';
+import useEqualElement from '../hooks/useEqualElement';
 import BorderButton from './include/BorderButton';
 import SolidButton from './include/SolidButton';
 
 export default function Policy() {
+    const params = useParams();
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch({
-            type: siteActionType.GET_POLICY,
-        });
-    }, [dispatch]);
-
+    const refListItem = useRef(null);
     const [showContent, setShowContent] = useState(false);
     const [detailPolicy, setDetailPolicy] = useState(0);
     const [policy, setPolicy] = useState({});
 
+    const { title } = params;
+
+    const isSubPage = !!title;
+
+    useEffect(() => {
+        dispatch({
+            type: siteActionType.GET_POLICY,
+        });
+    }, []);
+
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
+        console.log(siteReducer.type);
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_POLICY_SUCCESS) {
-                console.log(siteReducer.data);
                 setPolicy(siteReducer.data);
+            }
+            if (siteReducer.type === siteActionType.GET_POLICY_INDEX) {
+                setDetailPolicy(siteReducer.index);
+                setShowContent(true);
             }
         }
     }, [siteReducer]);
 
-    return showContent ? renderContent() : renderPolicyPage();
+    useEqualElement(refListItem);
+
+    return isSubPage ? renderContent() : renderPolicyPage();
 
     function renderPolicyPage() {
         return (
@@ -89,7 +110,7 @@ export default function Policy() {
                         <div
                             className="list-item-card-2"
                             style={{ marginTop: 0 }}>
-                            <div className="row">
+                            <div className="row items" ref={refListItem}>
                                 {policy.cfg_value &&
                                     policy.cfg_value.map((item, index) => (
                                         <div
@@ -111,17 +132,10 @@ export default function Policy() {
                                                     {item.des}
                                                 </p>
                                                 <Link
-                                                    to={
-                                                        PathRoute.Sub_policy[
-                                                            index
-                                                        ]
-                                                    }
-                                                    className="more"
-                                                    onClick={(evt) => {
-                                                        evt.preventDefault();
-                                                        setDetailPolicy(index);
-                                                        setShowContent(true);
-                                                    }}>
+                                                    to={`${
+                                                        PathRoute.Policy
+                                                    }/${snakeCase(item.title)}`}
+                                                    className="more">
                                                     MORE INFORMATION
                                                 </Link>
                                             </div>
@@ -137,23 +151,29 @@ export default function Policy() {
     }
 
     function renderContent() {
-        return (
-            <div
-                className="container"
-                style={{ marginTop: 20, marginBottom: 40 }}>
-                <BorderButton
-                    title="View all policies"
-                    onClick={() => {
-                        setShowContent(false);
-                        setDetailPolicy(0);
-                    }}
-                />
-                <div
-                    dangerouslySetInnerHTML={{
-                        __html: policy.cfg_value[detailPolicy].content,
-                    }}
-                />
-            </div>
+        const elementFounded = (policy?.cfg_value || []).find(
+            (el) => snakeCase(el.title) === snakeCase(title),
         );
+
+        if (elementFounded) {
+            return (
+                <div
+                    className="container"
+                    style={{ marginTop: 20, marginBottom: 40 }}>
+                    <Link to={PathRoute.Policy}>
+                        <BorderButton title="View all policies" />
+                    </Link>
+                    <div
+                        dangerouslySetInnerHTML={
+                            elementFounded && {
+                                __html: elementFounded.content,
+                            }
+                        }
+                    />
+                </div>
+            );
+        }
+
+        return null;
     }
 }

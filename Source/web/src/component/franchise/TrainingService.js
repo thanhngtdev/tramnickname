@@ -47,6 +47,8 @@ function LDWeeklyTraining(props) {
             }
         }
     }, [siteReducer]);
+
+    // console.log(props.site, 'site');
     return (
         <div>
             <div className="group-info" style={{ boxShadow: 'none' }}>
@@ -94,7 +96,9 @@ function LDWeeklyTraining(props) {
                 <div
                     key={index}
                     className="classRow"
-                    onClick={() => setCourseSelected(item)}
+                    onClick={() => {
+                        setCourseSelected(item);
+                    }}
                     style={{
                         backgroundColor: `${
                             index % 2 === 0 ? '#F7F8F7' : 'white'
@@ -118,11 +122,15 @@ function LDWeeklyTraining(props) {
                         <p
                             style={{ color: '#FF7100' }}
                             onClick={() => {
+                                // setCourseSelected(item);
                                 global.bookTraining = {
                                     siteId: props.site.ms_id || 0,
                                     siteName: props.site.ms_name || '',
                                     address: '',
+                                    preDefined: { item },
                                 };
+
+                                // console.log(global.bookTraining, 'global2');
                                 history.push(PathRoute.BookTrialTraining);
                             }}>
                             Book
@@ -184,16 +192,13 @@ function LDHolidayCamp(props) {
                         style={{
                             borderBottom: '1px solid #F2F2F2',
                             fontWeight: 'normal',
-                            display: "flex",
-                            justifyContent: "space-between",
+                            display: 'flex',
+                            justifyContent: 'space-between',
                         }}>
                         <p>
                             {item.date} | {item.time}
                         </p>
-                        <p
-                            style={{ float: 'right' }}>
-                            {item.course_title}
-                        </p>
+                        <p style={{ float: 'right' }}>{item.course_title}</p>
                     </div>
                     <div style={{ clear: 'both', marginBottom: 16 }} />
                 </Fragment>
@@ -330,6 +335,7 @@ const listMenu = [
 
 function TrainingService(props) {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [hoverIndex, setHoverIndex] = useState(0);
     const [innerWidth, setInnerWith] = useState(window.innerWidth);
 
     useEffect(() => {
@@ -419,14 +425,19 @@ function TrainingService(props) {
                                 <li
                                     key={index}
                                     className={
-                                        activeIndex === index ? 'active' : ''
+                                        activeIndex === index ||
+                                        hoverIndex === index
+                                            ? 'active'
+                                            : ''
                                     }
                                     style={{
                                         borderBottomColor:
-                                            activeIndex - 1 === index
+                                            activeIndex - 1 === index ||
+                                            hoverIndex - 1 === index
                                                 ? '#ef9042'
                                                 : '',
                                     }}
+                                    onMouseEnter={() => setHoverIndex(index)}
                                     onClick={() => setActiveIndex(index)}>
                                     <a data-toggle="tab">
                                         <img

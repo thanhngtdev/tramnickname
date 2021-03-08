@@ -9,7 +9,7 @@ import { Link, useParams } from 'react-router-dom';
 
 function ListNews() {
     let { cateAlias, alias } = useParams();
-
+    // console.log(cateAlias, 'cate');
     const dispatch = useDispatch();
     const [lstNews, setLstNews] = useState([]);
     const [page, setPage] = useState(1);
@@ -32,7 +32,7 @@ function ListNews() {
             if (
                 articleReducer.type === articleActionType.GET_LIST_NEWS_SUCCESS
             ) {
-                console.log(articleReducer.data.lstArticle);
+                console.log(articleReducer.data, 'data');
                 articleReducer.data.lstCate.map((_cateItem) => {
                     if (_cateItem.cate_alias === cateAlias) {
                         setCate(_cateItem);
