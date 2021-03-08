@@ -18,6 +18,7 @@ let PathRoute = {
     ThankYou: '/thank-you',
     AcademyNews: '/:alias/news',
     Policy: '/policies',
+    PolicyWithParam: '/policies/:title',
     Sub_policy: [
         '/child-welfare-policy',
         '/anti-bullying-make-footballers',

@@ -185,6 +185,9 @@ function RouteContent(props) {
                 <Route exact path={PathRoute.ThankYou}>
                     <ThankYou />
                 </Route>
+                <Route exact path={PathRoute.PolicyWithParam}>
+                    <Policy />
+                </Route>
                 <Route exact path={PathRoute.Policy}>
                     <Policy />
                 </Route>
