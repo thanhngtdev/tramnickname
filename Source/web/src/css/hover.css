@@ -48,6 +48,11 @@ a,div,img,button {
   background-color: #EE7925 !important;
 }
 
+.qna-contact button:hover{
+  color: white !important;
+  background-color: #EE7925 !important;
+}
+
 /* turn orange button to white */
 .btn-button-s:hover{
   color: #EE7925 !important;
@@ -56,7 +61,7 @@ a,div,img,button {
 
 .white-hover:hover {
   color: #EE7925 !important;
-  background-color: rgba(153, 152, 152, 0.301) !important;
+  background-color: #F2F2F2 !important;
 }
 
 /* button banner hover */
