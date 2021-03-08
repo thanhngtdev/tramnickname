@@ -45,7 +45,9 @@ function Header() {
     }
 
     return (
-        <div className="header">
+        <div
+            className="header"
+            style={{ position: 'fixed', zIndex: '10', top: '0px' }}>
             <div className="head-top-mobile">
                 <div className="container">
                     <Link to="/">
@@ -61,9 +63,7 @@ function Header() {
                 </div>
             </div>
             <div className={`navi ${menuMobile ? 'show' : ''}`}>
-                <div
-                    className="menu-top"
-                    style={{ position: 'fixed', zIndex: '1000', top: '0px' }}>
+                <div className="menu-top">
                     <div className="container">
                         <Link to={PathRoute.Home}>
                             <img
@@ -130,7 +130,15 @@ function Header() {
                         </ul>
                     </div>
                 </div>
-                <div style={{ marginTop: '59.878px' }}>
+                <div
+                    style={{
+                        position: 'absolute',
+                        top: '59.878px',
+                        left: '0px',
+                        backgroundColor: 'white',
+                        width: '100%',
+                    }}
+                    >
                     <div className="container">
                         <div
                             className="menu-small"
