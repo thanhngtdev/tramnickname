@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { entries, isArray, lowerFirst } from 'lodash';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { homeActionType } from '../../actions/actionTypes';
 import Utils from '../../common/Utils';
@@ -7,6 +8,30 @@ function Reason() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [reason, setReason] = useState([]);
     const homeReducer = useSelector((state) => state.homeReducer);
+
+    // useEffect(() => {
+    //     if (isArray(reason) && reason.length > 0) {
+    //         const boxReasonDOM = document.querySelector('.box-reasons');
+    //         const listContent =
+    //             boxReasonDOM.children[0].children[1].children[0];
+    //         const intersectionObserver = new IntersectionObserver((entries) => {
+    //             entries.forEach((entry) => {
+    //                 if (entry.intersectionRatio > 0) {
+    //                     setTimeout(() => {
+    //                         entry.target.classList.add('active');
+    //                     }, 1000);
+    //                 } else {
+    //                     entry.target.classList.remove('active');
+    //                 }
+    //             });
+    //         });
+    //         for (let i = 0; i < listContent.children.length; i++) {
+    //             const eachContent = listContent.children[i];
+    //             console.log({ eachContent });
+    //             intersectionObserver.observe(eachContent);
+    //         }
+    //     }
+    // }, []);
 
     useEffect(() => {
         if (homeReducer.type) {
@@ -27,12 +52,17 @@ function Reason() {
                     <ul className="nav-tabs">
                         {reason.map((item, index) => (
                             <li
+                                // ref={inputRef}
                                 key={index}
                                 className={
                                     activeIndex === index ? 'active' : ''
                                 }
-                                onMouseEnter={() => setActiveIndex(index)}
-                                onWheel={() => setActiveIndex(index)}>
+                                onMouseEnter={() => {
+                                    setActiveIndex(index);
+                                }}
+                                onWheel={() => {
+                                    setActiveIndex(index);
+                                }}>
                                 <a data-toggle="tab">
                                     <span className="number">0{index + 1}</span>
                                     {item.des}

@@ -28,6 +28,7 @@ function OneTraining() {
     const [instaFeed, setInstaFeed] = useState({});
     const [faq, setFaq] = useState([]);
     const [about, setAbout] = useState({});
+    const [whyWMF, setWhyWMF] = useState({});
     const [trainingIntro, setTrainingIntro] = useState([]);
 
     useTruspilot();
@@ -43,12 +44,13 @@ function OneTraining() {
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_DETAIL_SITE_SUCCESS) {
-                // console.log(siteReducer.data);
+                // console.log(siteReducer.data, 'siteeee');
                 setSkillGain(siteReducer.data.skillGain || {});
                 setParentFb(siteReducer.data.parentFb || {});
                 setInstaFeed(siteReducer.data.instaFeed || {});
                 setFaq(siteReducer.data.faq || []);
                 setAbout(siteReducer.data.about || {});
+                setWhyWMF(siteReducer.data.whyWMF || {});
                 setTrainingIntro(
                     siteReducer.data.trainingIntro
                         ? siteReducer.data.trainingIntro.cfg_value
@@ -59,7 +61,6 @@ function OneTraining() {
     }, [siteReducer]);
 
     const enquireBox = useRef(null);
-
     return (
         <Fragment>
             <AboutUs data={about} />
@@ -161,7 +162,7 @@ function OneTraining() {
                 </div>
             </div>
             <ClearBoth />
-            <WhyWMF />
+            <WhyWMF data={whyWMF} />
             <ClearBoth />
             <BookTrialOne _ref={enquireBox} parentFb={parentFb} />
             <ClearBoth />

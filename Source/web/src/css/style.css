@@ -1309,7 +1309,7 @@ table {
 	margin: auto;
 	position: relative;
 	padding-bottom: 25px;
-	max-width: 750px;
+	/* max-width: 750px; */
 	width: 100%;
 }
 
