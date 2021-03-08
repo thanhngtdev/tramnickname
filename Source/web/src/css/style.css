@@ -765,6 +765,7 @@ table {
 	float: left;
 	border-radius: 50%;
 	border: 2px solid #fff;
+	object-fit: cover;
 }
 
 .box-slide-review .slide .box-acc-review .info {

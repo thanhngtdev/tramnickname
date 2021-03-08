@@ -64,7 +64,8 @@ function DetailQNA() {
                                                 setActiveIndex(index)
                                             }>
                                             <label className="qId">
-                                                0{index + 1}
+                                                {index < 9 && '0'}
+                                                {index + 1}
                                             </label>
                                             <div className="qContent">
                                                 <h4 className="question">
