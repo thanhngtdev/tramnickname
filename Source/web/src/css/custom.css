@@ -306,4 +306,17 @@ a.link {
 	.box-professional .list-item .col-6 {
 		width: 50%;
 	}
+
+	.tooltip .wrap {
+		bottom: 300px;
+	}
+
+	.tooltip::before {
+		top: -86px;
+	}
+
+	.tooltip::after {
+		top: -86px;
+	}
+
 }
