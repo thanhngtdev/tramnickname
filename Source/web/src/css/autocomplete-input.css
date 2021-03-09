@@ -129,7 +129,7 @@
 @media only screen and (max-width: 767px) and (min-width: 320px) {
     
     .search-text {
-        bottom: -50px;
+        bottom: -100px;
         top: auto;
         left: 0;
         right: 0;

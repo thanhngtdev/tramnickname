@@ -35,7 +35,7 @@ export default function ArticleMenu(props) {
         <div className="article-menu">
             <div className="container">
                 <ul>
-                    <li className={!props.currentCate.cate_id ? 'active' : ''}>
+                    <li className={!props.currentCate?.cate_id ? 'active' : ''}>
                         <Link
                             onClick={() => {
                                 if (props.setCate) props.setCate({});
@@ -48,7 +48,7 @@ export default function ArticleMenu(props) {
                     {lstCate.map((item) => (
                         <li
                             className={
-                                props.currentCate.cate_id === item.cate_id
+                                props.currentCate?.cate_id === item.cate_id
                                     ? 'active'
                                     : ''
                             }

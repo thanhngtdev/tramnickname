@@ -28,7 +28,7 @@ function DetailNews() {
     useEffect(() => {
         // console.log('a');
         if (articleReducer.type) {
-            console.log(articleReducer.type, 'Detail Article');
+            // console.log(articleReducer.type, 'Detail Article');
 
             if (
                 articleReducer.type === articleActionType.DETAIL_ARTICLE_SUCCESS
