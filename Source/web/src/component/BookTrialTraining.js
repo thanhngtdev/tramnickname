@@ -43,6 +43,7 @@ function BookTrialTraining() {
     const currentLat = localStorage.getItem('latitude');
     const currentLng = localStorage.getItem('longitude');
     const [paymentUrl, setPaymentUrl] = useState('');
+    const [showBookOther, setShowBookOther] = useState(false);
 
     const siteReducer = useSelector((state) => state.siteReducer);
 
@@ -96,6 +97,12 @@ function BookTrialTraining() {
                     }
                 } else if (data.status === 709) {
                     //booking class full
+                    if (data.data.other_class.course_id) {
+                        setShowBookOther(true);
+                    }
+                    if (!data.data.other_class.course_id) {
+                        setShowBookOther(false);
+                    }
                     setBookSuccess(3);
                     setActiveTab(3);
                     setBookingFull(data.data);
@@ -118,20 +125,15 @@ function BookTrialTraining() {
                 }
             }
             if (siteReducer.type === siteActionType.BOOK_COURSE_SUCCESS) {
-                if (siteReducer.data.payment_url)
+                console.log(siteReducer);
+                if (siteReducer?.data?.data?.payment_url)
                     setResponseCourse({
-                        paymentUrl: siteReducer.data.payment_url,
-                        bookingId: siteReducer.data.booking_id,
+                        paymentUrl: siteReducer.data.data.payment_url,
+                        bookingId: siteReducer.data.data.booking_id,
                         token: token,
                     });
-                if (!JSON.parse(localStorage.getItem('login'))) {
-                    setBookSuccess(1);
-                    setActiveTab(3);
-                }
-                if (JSON.parse(localStorage.getItem('login'))) {
-                    setPaymentUrl(siteActionType.data.data.payment_url);
-                    setActiveTab(4);
-                }
+                setPaymentUrl(siteReducer.data.data.payment_url);
+                setActiveTab(4);
             }
             if (siteReducer.type === siteActionType.BOOK_COURSE_FAILED) {
                 siteReducer.data &&
@@ -392,6 +394,7 @@ function BookTrialTraining() {
                         )}
                         {activeTab === 3 && (
                             <BookTrialTraining3
+                                showBookOther={showBookOther}
                                 success={bookSuccess}
                                 message={bookMessage}
                                 data={{ ...dataStep1, ...dataStep2 }}
