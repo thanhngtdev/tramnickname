@@ -2,6 +2,7 @@
 	background-color: #F2F2F2;
 	text-align: center;
 	padding-bottom: 4rem;
+	margin-top: 115px;
 }
 
 .holiday-camp h2 {
@@ -172,6 +173,14 @@
 }
 
 @media only screen and (max-width: 767px) and (min-width: 320px) {
+	.holiday-camp{
+		margin-top: 0;
+	}
+
+	.holiday-camp h2 {
+		padding: 0;
+	}
+
 	.success-booking {
 		flex-direction: column;
 	}
