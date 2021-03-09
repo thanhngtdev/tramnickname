@@ -23,7 +23,10 @@ function Location() {
     }, [siteReducer]);
 
     return (
-        <div style={{ marginTop: '115px' }}>
+        <div
+            className="map"
+            // style={{ marginTop: '115px' }}
+        >
             <div className="map-frame">
                 <AcademyMap
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyClAeE9K0S0LZQ3DiTg0-j_w8HvVuMYgoc&v=3.exp&libraries=geometry,drawing,places"

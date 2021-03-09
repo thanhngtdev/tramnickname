@@ -190,6 +190,10 @@ a.link {
 	width: 100%;
 }
 
+.map {
+	margin-top: 115px;
+}
+
 .map-frame {
 	height: 700px;
 	width: 100%;
@@ -317,6 +321,10 @@ a.link {
 
 	.tooltip::after {
 		top: -86px;
+	}
+
+	.map {
+		margin-top: 0;
 	}
 
 }
