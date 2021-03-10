@@ -26,6 +26,7 @@ let PathRoute = {
         '/privacy-policy',
     ],
     Error: '/error',
+    JoinUs: '/join-us',
 };
 
 export default PathRoute;
