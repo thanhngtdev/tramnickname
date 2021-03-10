@@ -60,7 +60,9 @@ function About() {
                             width: '100%',
                         }}>
                         <div className="container">
-                            <h1 className="contact-header" style={{maxWidth: "14ch"}}>
+                            <h1
+                                className="contact-header"
+                                style={{ maxWidth: '14ch' }}>
                                 {about.cfg_title}
                             </h1>
                         </div>

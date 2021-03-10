@@ -3,6 +3,7 @@
 	overflow: hidden;
 	background-color: #f2f2f2;
 	min-height: 600px;
+	margin-top: 100px;
 }
 
 .about-info {
@@ -118,6 +119,7 @@
 @media only screen and (max-width: 767px) and (min-width: 320px) {
 	.about-us {
 		overflow: visible;
+		margin-top: -18px;
 	}
 
 	.about-us .get-in-touch {
@@ -205,3 +207,8 @@
 		margin-top: 70px;
 	}
 }
+@media only screen and (max-width: 576px) and (min-width: 320px) {
+	.about-info .col-6{
+		margin-top: 200px;
+	}
+};

@@ -1,6 +1,7 @@
 .article-menu {
     background-color: #F2F2F2;
     overflow: hidden;
+    margin-top: 115px;
 }
 
 .article-menu ul {
@@ -33,7 +34,7 @@
 
 .article-menu .search {
     float: right;
-    padding: 20px;
+    padding: 25px 15px;
 }
 
 .article-feature {

@@ -98,7 +98,13 @@ function BookTrialTraining3(props) {
                         className="box-list-item-card"
                         style={{ top: 0, marginBottom: '2rem' }}>
                         <div className="row">
-                            <div className="col-4">
+                            <div
+                                className="col-4"
+                                style={{
+                                    display: props.showBookOther
+                                        ? 'block'
+                                        : 'none',
+                                }}>
                                 {props.bookingFull && (
                                     <div
                                         className="item"

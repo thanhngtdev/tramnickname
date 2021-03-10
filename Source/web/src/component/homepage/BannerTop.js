@@ -48,7 +48,9 @@ function BannerTop() {
                                     : 'FREE'}{' '}
                                 SESSION{' '}
                             </a>{' '} */}
-                            <a className="btn-book-free-session white-hover">
+                            <a
+                                className="btn-book-free-session white-hover"
+                                href={PathRoute.BookTrialTraining}>
                                 {' '}
                                 BOOK A{' '}
                                 {defaultAcademy && defaultAcademy.ms_trial === 1

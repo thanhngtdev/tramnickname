@@ -45,9 +45,7 @@ function Header() {
     }
 
     return (
-        <div
-            className="header"
-            style={{ position: 'fixed', zIndex: '10', top: '0px' }}>
+        <div className="header" style={{}}>
             <div className="head-top-mobile">
                 <div className="container">
                     <Link to="/">
@@ -130,19 +128,9 @@ function Header() {
                         </ul>
                     </div>
                 </div>
-                <div
-                    style={{
-                        position: 'absolute',
-                        top: '59.878px',
-                        left: '0px',
-                        backgroundColor: 'white',
-                        width: '100%',
-                    }}
-                    >
+                <div className="menu-down">
                     <div className="container">
-                        <div
-                            className="menu-small"
-                            style={{ float: 'left', paddingTop: 15 }}>
+                        <div className="menu-small widget-header">
                             <div
                                 className="trustpilot-widget"
                                 data-locale="en-GB"
