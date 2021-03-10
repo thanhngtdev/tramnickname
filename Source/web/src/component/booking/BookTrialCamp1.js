@@ -552,7 +552,7 @@ function BookTrialCamp1(props) {
                                 totalPrice,
                             };
                             // console.log(dataObject);
-                            console.log(validateData());
+                            // console.log(validateData());
                             if (validateData()) {
                                 props.onNext(dataObject);
                             }
