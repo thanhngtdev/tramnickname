@@ -22,7 +22,7 @@ function RelateAreas(props) {
                             props.site.sub_page.map((item, index) => (
                                 <a
                                     key={index}
-                                    href={`/franchise/${item.sub_alias}-${item.sub_site}`}
+                                    href={`/franchise/${item.sub_alias}`}
                                     className="cover-tag">
                                     {item.sub_name}
                                 </a>
