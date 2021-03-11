@@ -94,7 +94,7 @@ function CoachingCopy() {
                                 paddingBottom: 30,
                             }}>
                             <h2 style={{ fontWeight: '300' }}>
-                                Are you ready to lead, inspire and coach?
+                                Help build the community one welcome at a time
                             </h2>
                             <h3 style={{ fontWeight: '100' }}>
                                 Please fill out the application form below if
