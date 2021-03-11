@@ -11,10 +11,10 @@ import {
     useParams,
     Redirect,
 } from 'react-router-dom';
-import { siteActionType } from '../actions/actionTypes';
-import PathRoute from '../common/PathRoute';
-import Utils from '../common/Utils';
-import useEqualElement from '../hooks/useEqualElement';
+import { siteActionType } from 'redux/actions/actionTypes';
+import PathRoute from 'common/PathRoute';
+import Utils from 'common/Utils';
+import useEqualElement from 'hooks/useEqualElement';
 import BorderButton from './include/BorderButton';
 import SolidButton from './include/SolidButton';
 
@@ -65,7 +65,7 @@ export default function Policy() {
                         <div className="col-6" style={{ paddingLeft: 0 }}>
                             <img
                                 alt=""
-                                src={require('../images/image_about.png')}
+                                src={require('images/image_about.png')}
                             />
                         </div>
                     </div>

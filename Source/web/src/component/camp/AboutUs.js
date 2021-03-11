@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import ModelManager from '../../common/ModelManager';
-import Utils from '../../common/Utils';
+import ModelManager from 'common/ModelManager';
+import Utils from 'common/Utils';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -103,7 +103,7 @@ export default function AboutUs(props) {
                 <div className="col-6" style={{ paddingLeft: 0 }}>
                     <img
                         alt=""
-                        src={require('../../images/weekly-training-video.png')}
+                        src={require('images/weekly-training-video.png')}
                     />
                     <Play onClick={() => setShowVIdeo(true)}>
                         <FontAwesomeIcon

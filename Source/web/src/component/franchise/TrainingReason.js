@@ -1,5 +1,5 @@
 import React from 'react';
-import Utils from '../../common/Utils';
+import Utils from 'common/Utils';
 
 function TrainingReason(props) {
     return (

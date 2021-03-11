@@ -1,11 +1,11 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import logoWhite from '../images/logo-white.png';
-import { siteActionType } from '../actions/actionTypes';
+import logoWhite from 'images/logo-white.png';
+import { siteActionType } from 'redux/actions/actionTypes';
 import { Link, useHistory } from 'react-router-dom';
-import PathRoute from '../common/PathRoute';
-import useComponentVisible from '../hooks/useComponentVisible';
-import Utils from '../common/Utils';
+import PathRoute from 'common/PathRoute';
+import useComponentVisible from 'hooks/useComponentVisible';
+import Utils from 'common/Utils';
 
 function Footer() {
     const dispatch = useDispatch();

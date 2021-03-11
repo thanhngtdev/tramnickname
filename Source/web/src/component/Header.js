@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import { siteActionType } from '../actions/actionTypes';
-import PathRoute from '../common/PathRoute';
+import { siteActionType } from 'redux/actions/actionTypes';
+import PathRoute from 'common/PathRoute';
 
-import logo from '../images/logo.svg';
+import logo from 'images/logo.svg';
 import NearbyAcademy from './include/NearbyAcademy';
 
 function Header() {

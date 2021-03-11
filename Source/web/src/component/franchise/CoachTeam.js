@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Utils from '../../common/Utils';
+import Utils from 'common/Utils';
 
 CoachTeam.propTypes = {
     staff: PropTypes.array,

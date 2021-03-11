@@ -1,9 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import '../css/qna.css';
+import 'css/qna.css';
 import { useDispatch, useSelector } from 'react-redux';
 import QNASearch from './article/QNASearch';
-import { articleActionType } from '../actions/actionTypes';
+import { articleActionType } from 'redux/actions/actionTypes';
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;

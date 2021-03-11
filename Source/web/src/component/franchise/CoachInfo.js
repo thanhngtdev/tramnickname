@@ -1,5 +1,5 @@
 import React from 'react';
-import Utils from '../../common/Utils';
+import Utils from 'common/Utils';
 import PropTypes from 'prop-types';
 
 CoachInfo.propTypes = {
@@ -25,7 +25,7 @@ function CoachInfo(props) {
                                     props.coach.avatar &&
                                     props.coach.avatar !== ''
                                         ? Utils.getThumb(props.coach.avatar)
-                                        : require('../../images/coach.png')
+                                        : require('images/coach.png')
                                 }
                                 alt=""
                             />

@@ -1,16 +1,16 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import Checkbox from '../include/Checkbox/Checkbox';
-import SolidButton from '../include/SolidButton';
+import Checkbox from 'component/include/Checkbox/Checkbox';
+import SolidButton from 'component/include/SolidButton';
 import TrainingIcon1 from './TrainingIcon1';
 import TrainingIcon2 from './TrainingIcon2';
 import TrainingIcon3 from './TrainingIcon3';
 import PropTypes from 'prop-types';
-import { siteActionType } from '../../actions/actionTypes';
+import { siteActionType } from 'redux/actions/actionTypes';
 import { useDispatch, useSelector } from 'react-redux';
-import BorderButton from '../include/BorderButton';
+import BorderButton from 'component/include/BorderButton';
 import EmailIcon from './EmailIcon';
-import Utils from '../../common/Utils';
+import Utils from 'common/Utils';
 
 BookTrialCamp3.propTypes = {
     success: PropTypes.number,
@@ -277,7 +277,7 @@ function BookTrialCamp3(props) {
                                 <a href="/#">Terms and Conditions</a>
                             </p>
                         </div>
-                        <img src={require('../../images/paypal.png')} />
+                        <img src={require('images/paypal.png')} />
                     </>
                 )}
                 <div style={{ marginTop: '3rem' }}>

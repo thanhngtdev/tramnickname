@@ -11,15 +11,19 @@ import './css/button.css';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import logger from 'redux-logger';
 
-import allReducers from './reducers';
-import rootSaga from './sagas/rootSaga';
+import allReducers from './redux/reducers';
+import rootSaga from './redux/sagas/rootSaga';
 
 import RouteContent from './RouteContent';
 import Utils from './common/Utils';
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(allReducers, applyMiddleware(sagaMiddleware));
+const store = createStore(
+    allReducers,
+    applyMiddleware(...[sagaMiddleware, logger]),
+);
 
 console.log(
     `%cVersion Web: ${Utils.getVersion()}`,

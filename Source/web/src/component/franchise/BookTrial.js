@@ -4,9 +4,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
-import { siteActionType, homeActionType } from '../../actions/actionTypes';
-import Utils from '../../common/Utils';
-import useGetWidth from '../../hooks/useGetWidth';
+import type, { siteActionType } from 'redux/actions/actionTypes';
+import Utils from 'common/Utils';
+import useGetWidth from 'hooks/useGetWidth';
 
 function BookTrial() {
     const dispatch = useDispatch();
@@ -33,7 +33,7 @@ function BookTrial() {
 
     useEffect(() => {
         if (homeReducer.type) {
-            if (homeReducer.type === homeActionType.GET_HOME_SUCCESS) {
+            if (homeReducer.type === type.GET_HOME_SUCCESS) {
                 setParentFb(homeReducer.data.parentFb);
             }
         }

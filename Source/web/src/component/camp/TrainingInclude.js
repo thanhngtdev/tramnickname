@@ -5,7 +5,7 @@ import {
     faChevronLeft,
     faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import Utils from '../../common/Utils';
+import Utils from 'common/Utils';
 import PropTypes from 'prop-types';
 
 TrainingInclude.propTypes = {
