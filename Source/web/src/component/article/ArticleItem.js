@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Utils from '../../common/Utils';
+import Utils from 'common/Utils';
 
 export default function ArticleItem(props) {
     const { item } = props;

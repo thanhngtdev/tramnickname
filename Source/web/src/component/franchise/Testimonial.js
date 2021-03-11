@@ -3,11 +3,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect } from 'react';
 import 'slick-carousel/slick/slick.css';
-import '../../css/slick-theme.css';
+import 'css/slick-theme.css';
 import Slider from 'react-slick';
-import { useSelector } from 'react-redux';
-import { homeActionType } from '../../actions/actionTypes';
-import Utils from '../../common/Utils';
+import Utils from 'common/Utils';
 
 const settings = {
     dots: true,

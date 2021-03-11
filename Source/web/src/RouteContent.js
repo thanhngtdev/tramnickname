@@ -3,26 +3,31 @@ import React, { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { geolocated } from 'react-geolocated';
 import { useDispatch, useSelector } from 'react-redux';
+
+//! Views
+import HomePage from './views/Homepage';
+import ListNews from './views/News';
+import Franchise from './views/Franchise';
+import WeeklyTraining from './views/WeeklyTraining';
+import HolidayCamp from './views/HolidayCamp';
+import OneTraining from './views/OneTraining';
+import BirthdayParty from './views/BirthdayParty';
+import About from './views/About';
 import Footer from './component/Footer';
 import Header from './component/Header';
-import HomePage from './component/HomePage';
-import About from './component/About';
+
 import Contact from './component/Contact';
 import BookTrialCamp from './component/BookTrialCamp';
 import BookTrialTraining from './component/BookTrialTraining';
-import BirthdayParty from './component/BirthdayParty';
-import OneTraining from './component/OneTraining';
-import WeeklyTraining from './component/WeeklyTraining';
-import ListNews from './component/ListNews';
+
 import DetailNews from './component/DetailNews';
 import LocationModal from './component/include/LocationModal';
 import Location from './component/Location';
 
-import { siteActionType } from './actions/actionTypes';
-import Franchise from './component/Franchise';
+import { siteActionType } from './redux/actions/actionTypes';
+
 import ListQNA from './component/ListQNA';
 import DetailQNA from './component/DetailQNA';
-import HolidayCamp from './component/HolidayCamp';
 import PathRoute from './common/PathRoute';
 import ScrollToTop from './component/include/ScrollToTop';
 import ThankYou from './component/ThankYou';
@@ -38,9 +43,9 @@ function RouteContent(props) {
     const dispatch = useDispatch();
     const locationStatus = usePermissionLocation();
 
-    useEffect(() => {
-        dispatch({ type: siteActionType.GET_LIST_SITE });
-    }, []);
+    // useEffect(() => {
+    //     dispatch({ type: siteActionType.GET_LIST_SITE });
+    // }, []);
 
     useEffect(() => {
         if (locationStatus == 'granted') {
@@ -97,6 +102,7 @@ function RouteContent(props) {
             }
         }
     }, [siteReducer]);
+
     useEffect(() => {
         if (!props.isGeolocationAvailable) {
             // console.log('geo location not available');
@@ -127,44 +133,51 @@ function RouteContent(props) {
             dispatch({ type: siteActionType.GET_SITE_HAS_CAMP });
         }, 200);
     }, []);
+
     return (
         <div className="wapper">
             <ScrollToTop />
             <Header />
             <Switch>
-                <Route exact path="/">
-                    <HomePage />
-                </Route>
-                <Route exact path="/about-us">
-                    <About />
-                </Route>
-                <Route exact path={PathRoute.Contact}>
-                    <Contact />
-                </Route>
-                <Route exact path={PathRoute.HolidayCamp}>
-                    <HolidayCamp />
-                </Route>
+                <Route exact path={PathRoute.Home} component={HomePage} />
+                <Route exact path={PathRoute.AboutUs} component={About} />
+                <Route exact path={PathRoute.Contact} component={Contact} />
+                <Route
+                    exact
+                    path={PathRoute.WeeklyTraining}
+                    component={WeeklyTraining}
+                />
+                <Route
+                    exact
+                    path={PathRoute.HolidayCamp}
+                    component={HolidayCamp}
+                />
+                <Route
+                    exact
+                    path={PathRoute.OneTraining}
+                    component={OneTraining}
+                />
+                <Route
+                    exact
+                    path={PathRoute.BirthdayParty}
+                    component={BirthdayParty}
+                />
+
                 <Route exact path={PathRoute.BookTrialCamp}>
                     <BookTrialCamp />
                 </Route>
                 <Route exact path={PathRoute.BookTrialTraining}>
                     <BookTrialTraining />
                 </Route>
-                <Route exact path={PathRoute.OneTraining}>
-                    <OneTraining />
-                </Route>
-                <Route exact path={PathRoute.BirthdayParty}>
-                    <BirthdayParty />
-                </Route>
-                <Route exact path={PathRoute.WeeklyTraining}>
-                    <WeeklyTraining />
-                </Route>
+
                 <Route exact path={PathRoute.DetailNews}>
                     <DetailNews />
                 </Route>
-                <Route exact path={PathRoute.AcademyNews}>
-                    <ListNews />
-                </Route>
+                <Route
+                    exact
+                    path={PathRoute.AcademyNews}
+                    component={ListNews}
+                />
                 <Route exact path={PathRoute.ListNews}>
                     <ListNews />
                 </Route>
@@ -180,9 +193,7 @@ function RouteContent(props) {
                 <Route exact path={PathRoute.Location}>
                     <Location />
                 </Route>
-                <Route exact path={PathRoute.Franchise}>
-                    <Franchise />
-                </Route>
+                <Route exact path={PathRoute.Franchise} component={Franchise} />
                 <Route exact path={PathRoute.ThankYou}>
                     <ThankYou />
                 </Route>

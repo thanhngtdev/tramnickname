@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
-import Constants from '../../common/Constants';
+import Constants from 'common/Constants';
 import CustomMarker from './CustomMarker';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
-import { siteActionType } from '../../actions/actionTypes';
+import { siteActionType } from 'redux/actions/actionTypes';
 
 function BookingSuccessMap(props) {
     const timeStart = props?.courseSelected?.course_day_time_start;
@@ -28,17 +28,13 @@ function BookingSuccessMap(props) {
                 siteReducer.type === siteActionType.BOOK_COURSE_SIGNUP_SUCCESS
             ) {
                 setBookingInfo(siteReducer.data.data);
-            };
-            if (
-                siteReducer.type === siteActionType.BOOK_COURSE_SUCCESS
-            ) {
+            }
+            if (siteReducer.type === siteActionType.BOOK_COURSE_SUCCESS) {
                 setBookingInfo(siteReducer.data.data);
-            };
-            if (
-                siteReducer.type === siteActionType.BOOK_TRIAL_SIGNUP_SUCCESS
-            ) {
+            }
+            if (siteReducer.type === siteActionType.BOOK_TRIAL_SIGNUP_SUCCESS) {
                 setBookingInfo(siteReducer.data.data);
-            };
+            }
         }
     }, [siteReducer]);
 

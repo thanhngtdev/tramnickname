@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ListIcon = () => <img src={require('../../images/list.png')} alt="" />;
+const ListIcon = () => <img src={require('images/list.png')} alt="" />;
 
 export default function BirthdayExtra(props) {
     const { partyInclude, partyOptional } = props;
