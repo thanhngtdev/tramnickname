@@ -17,14 +17,16 @@ function BannerTop(props) {
     let options = [];
 
     let { alias } = useParams();
+    // console.log(alias, 'aaaa');
     let siteName = '';
-    if (props.site && alias === props.site.ms_alias)
-        siteName = props.site.ms_name;
+
+    if (props.site.ms_alias) siteName = props.site.ms_name;
     else if (props.site && props.site.sub_page) {
         props.site.sub_page.map((item) => {
             if (item.sub_alias === alias) siteName = item.sub_name;
         });
     }
+
     let fbLink = '',
         twLink = '',
         igLink = '';
@@ -93,10 +95,7 @@ function BannerTop(props) {
                                     styles={CommonStyle.select2}
                                     onChange={(option) => {
                                         history.push(
-                                            '/franchise/' +
-                                                option.alias +
-                                                '-' +
-                                                option.value,
+                                            '/franchise/' + option.alias,
                                         );
                                     }}
                                 />
