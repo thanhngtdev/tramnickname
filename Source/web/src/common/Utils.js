@@ -172,6 +172,17 @@ class Utils {
             index: index,
         });
     }
+
+    getLinkYoutube(string) {
+        const regex = /<p>.*<\/p>/g;
+        const filterPTags = string.match(regex);
+        if (typeof filterPTags === "object" && filterPTags.length > 0) {
+          const link = filterPTags[0].replace(/<p>/, "").replace(/<\/p>/, "");
+          return link;
+        }
+      
+        return "";
+      };
 }
 
 export default new Utils();
