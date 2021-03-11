@@ -1,3 +1,4 @@
+import PathRoute from 'common/PathRoute';
 import React from 'react';
 import { Fragment } from 'react';
 
@@ -40,7 +41,7 @@ export default function JoinUsBanner(props) {
                             <div className="box-button">
                                 <a
                                     className="btn-book-free-session white-hover"
-                                    // href={PathRoute.BookTrialTraining}
+                                    href={PathRoute.Coaching}
                                     style={{
                                         background: '#FF7531',
                                         borderRadius: '6px',

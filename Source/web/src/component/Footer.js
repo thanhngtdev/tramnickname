@@ -86,8 +86,6 @@ function Footer() {
         history.push(PathRoute.Policy);
     }
 
-    // console.log(socialAcademy, 'social ' + defaultAcademy.ms_name);
-    // console.log(defaultAcademy, 'defaul');
     return (
         <div className="footer">
             <div className="container">
@@ -123,7 +121,7 @@ function Footer() {
                             <Link to={PathRoute.AboutUs}>About Us</Link>
                         </li>
                         <li>
-                            <a href="/#">Join Us</a>
+                            <Link to={PathRoute.JoinUs}>Join Us</Link>
                         </li>
                         <li>
                             <a href="/#">School Partnerships</a>
