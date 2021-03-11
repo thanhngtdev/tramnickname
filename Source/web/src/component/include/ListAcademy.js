@@ -28,9 +28,7 @@ function ListAcademy() {
                 {lstSite.map((item) => {
                     return (
                         <a
-                            href={
-                                '/franchise/' + item.ms_alias + '-' + item.ms_id
-                            }
+                            href={'/franchise/' + item.ms_alias}
                             key={item.ms_id}>
                             {item.ms_name}
                         </a>
