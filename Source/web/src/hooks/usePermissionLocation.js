@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Constants from '../common/Constants';
+import Constants from 'common/Constants';
 
 export default () => {
     const [statusPermission, setStatusPermission] = useState(

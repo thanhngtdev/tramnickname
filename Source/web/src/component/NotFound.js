@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import PathRoute from '../common/PathRoute';
-import Background from './../images/bg_404.png';
+import PathRoute from 'common/PathRoute';
+import Background from 'images/bg_404.png';
 import SolidButton from './include/SolidButton';
 
 export default function NotFound() {

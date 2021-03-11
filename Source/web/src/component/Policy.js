@@ -68,7 +68,7 @@ export default function Policy() {
                         <div className="col-6" style={{ paddingLeft: 0 }}>
                             <img
                                 alt=""
-                                src={require('../images/image_about.png')}
+                                src={require('images/image_about.png')}
                             />
                         </div>
                     </div>

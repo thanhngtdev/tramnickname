@@ -5,7 +5,8 @@ let PathRoute = {
     OneTraining: '/1-on-1-training',
     BirthdayParty: '/birthday-parties',
     WeeklyTraining: '/weekly-training',
-    Franchise: '/franchise/:alias-:id([0-9]+)',
+    // Franchise: '/franchise/:alias-:id([0-9]+)',
+    Franchise: '/franchise/:title',
     AboutUs: '/about-us',
     Location: '/location',
     ListQNA: '/faqs',
@@ -27,6 +28,7 @@ let PathRoute = {
     ],
     SchoolTraining: '/school-training',
     Error: '/error',
+    JoinUs: '/join-us',
 };
 
 export default PathRoute;

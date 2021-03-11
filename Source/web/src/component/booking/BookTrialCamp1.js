@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
-import { CommonStyle } from '../../common/Styles';
-import Checkbox from '../include/Checkbox/Checkbox';
-import BorderButton from '../include/BorderButton';
+import { CommonStyle } from 'common/Styles';
+import Checkbox from 'component/include/Checkbox/Checkbox';
+import BorderButton from 'component/include/BorderButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { siteActionType } from '../../actions/actionTypes';
+import { siteActionType } from 'redux/actions/actionTypes';
 import DatePicker from 'react-datepicker';
-import Utils from '../../common/Utils';
+import Utils from 'common/Utils';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import PathRoute from '../../common/PathRoute';
+import PathRoute from 'common/PathRoute';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
@@ -552,7 +552,7 @@ function BookTrialCamp1(props) {
                                 totalPrice,
                             };
                             // console.log(dataObject);
-                            console.log(validateData());
+                            // console.log(validateData());
                             if (validateData()) {
                                 props.onNext(dataObject);
                             }

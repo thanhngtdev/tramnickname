@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Constants from '../common/Constants';
+import Constants from 'common/Constants';
 import usePermissionLocation from './usePermissionLocation';
 
 export default () => {
@@ -23,13 +23,13 @@ export default () => {
         const defaultAcademy = JSON.parse(
             localStorage.getItem('defaultAcademy'),
         );
-            if (props.isGeolocationAvailable || props.isGeolocationEnabled) {
-            } else
-                dispatch({
-                    type: siteActionType.FIND_NEARBY,
-                    lat: props.coords.latitude,
-                    lng: props.coords.longitude,
-                });
+        if (props.isGeolocationAvailable || props.isGeolocationEnabled) {
+        } else
+            dispatch({
+                type: siteActionType.FIND_NEARBY,
+                lat: props.coords.latitude,
+                lng: props.coords.longitude,
+            });
     }, [dispatch]);
     return getLocation;
 };

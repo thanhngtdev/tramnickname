@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import { siteActionType } from '../actions/actionTypes';
-import PathRoute from '../common/PathRoute';
+import { siteActionType } from 'redux/actions/actionTypes';
+import PathRoute from 'common/PathRoute';
 
-import logo from '../images/logo.svg';
+import logo from 'images/logo.svg';
 import NearbyAcademy from './include/NearbyAcademy';
 
 function Header() {
@@ -45,9 +45,7 @@ function Header() {
     }
 
     return (
-        <div
-            className="header"
-            style={{ position: 'fixed', zIndex: '1000', top: '0px' }}>
+        <div className="header" style={{}}>
             <div className="head-top-mobile">
                 <div className="container">
                     <Link to="/">
@@ -130,19 +128,9 @@ function Header() {
                         </ul>
                     </div>
                 </div>
-                <div
-                    style={{
-                        position: 'absolute',
-                        top: '59.878px',
-                        left: '0px',
-                        backgroundColor: 'white',
-                        width: '100%',
-                        zIndex: '-1',
-                    }}>
+                <div className="menu-down">
                     <div className="container">
-                        <div
-                            className="menu-small"
-                            style={{ float: 'left', paddingTop: 15 }}>
+                        <div className="menu-small widget-header">
                             <div
                                 className="trustpilot-widget"
                                 data-locale="en-GB"

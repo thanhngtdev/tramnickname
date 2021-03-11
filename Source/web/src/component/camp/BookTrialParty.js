@@ -2,12 +2,12 @@ import React, { useState, useEffect, Fragment, useRef } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { siteActionType } from '../../actions/actionTypes';
-import Utils from '../../common/Utils';
+import { siteActionType } from 'redux/actions/actionTypes';
+import Utils from 'common/Utils';
 import PropTypes from 'prop-types';
-import BorderButton from '../include/BorderButton';
-import Dot from '../include/Dot';
-import PathRoute from '../../common/PathRoute';
+import BorderButton from 'component/include/BorderButton';
+import Dot from 'component/include/Dot';
+import PathRoute from 'common/PathRoute';
 import { useHistory, Link } from 'react-router-dom';
 import Captcha from '../Captcha';
 
@@ -176,7 +176,6 @@ const BookTrialParty = React.forwardRef((props, ref) => {
     const [captcha, setCaptcha] = useState('');
     const [stepActive, setStepActive] = useState(1);
     const { parentFb } = props;
-    
 
     useEffect(() => {
         if (siteReducer.type) {

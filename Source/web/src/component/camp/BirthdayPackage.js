@@ -1,6 +1,6 @@
 import React from 'react';
-import Utils from '../../common/Utils';
-import BorderButton from '../include/BorderButton';
+import Utils from 'common/Utils';
+import BorderButton from 'component/include/BorderButton';
 
 export default function BirthdayPackage(props) {
     const birthdayPackage = props.data;

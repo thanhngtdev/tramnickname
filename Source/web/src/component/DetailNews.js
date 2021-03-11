@@ -1,15 +1,15 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import ArticleMenu from './article/ArticleMenu';
 import ArticleItem from './article/ArticleItem';
-import '../css/article.css';
-import { articleActionType } from '../actions/actionTypes';
+import 'css/article.css';
+import { articleActionType } from 'redux/actions/actionTypes';
 import { useSelector, useDispatch } from 'react-redux';
 import parse from 'html-react-parser';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
-import Utils from '../common/Utils';
+import Utils from 'common/Utils';
 import { useHistory } from 'react-router-dom';
-import PathRoute from '../common/PathRoute';
+import PathRoute from 'common/PathRoute';
 
 function DetailNews() {
     let { id } = useParams();
@@ -17,6 +17,9 @@ function DetailNews() {
     const [article, setArticle] = useState({});
     const [related, setRelated] = useState([]);
     const history = useHistory();
+
+    console.log(useParams());
+    console.log({ id });
 
     useEffect(() => {
         // console.log(id, 'id');
@@ -28,7 +31,7 @@ function DetailNews() {
     useEffect(() => {
         // console.log('a');
         if (articleReducer.type) {
-            console.log(articleReducer.type, 'Detail Article');
+            // console.log(articleReducer.type, 'Detail Article');
 
             if (
                 articleReducer.type === articleActionType.DETAIL_ARTICLE_SUCCESS
@@ -68,19 +71,19 @@ function DetailNews() {
                     <div className="article-sharing">
                         <a href="/#">
                             <img
-                                src={require('../images/icon_fb_dark.png')}
+                                src={require('images/icon_fb_dark.png')}
                                 alt=""
                             />
                         </a>
                         <a href="/#">
                             <img
-                                src={require('../images/icon_tw_dark.png')}
+                                src={require('images/icon_tw_dark.png')}
                                 alt=""
                             />
                         </a>
                         <a href="/#">
                             <img
-                                src={require('../images/icon_insta_dark.png')}
+                                src={require('images/icon_insta_dark.png')}
                                 alt=""
                             />
                         </a>

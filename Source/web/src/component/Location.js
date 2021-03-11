@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { siteActionType } from '../actions/actionTypes';
+import { siteActionType } from 'redux/actions/actionTypes';
 import AcademyMap from './include/AcademyMap';
 
 function Location() {
@@ -23,7 +23,10 @@ function Location() {
     }, [siteReducer]);
 
     return (
-        <div style={{ marginTop: '115px' }}>
+        <div
+            className="map"
+            // style={{ marginTop: '115px' }}
+        >
             <div className="map-frame">
                 <AcademyMap
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyClAeE9K0S0LZQ3DiTg0-j_w8HvVuMYgoc&v=3.exp&libraries=geometry,drawing,places"

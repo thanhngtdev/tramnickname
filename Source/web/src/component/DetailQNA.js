@@ -1,11 +1,11 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import QNASearch from './article/QNASearch';
-import '../css/qna.css';
+import 'css/qna.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { articleActionType } from '../actions/actionTypes';
+import { articleActionType } from 'redux/actions/actionTypes';
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;

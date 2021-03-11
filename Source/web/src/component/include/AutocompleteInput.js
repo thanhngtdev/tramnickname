@@ -1,10 +1,11 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import Utils from '../../common/Utils';
+import Utils from 'common/Utils';
 import { useDispatch, useSelector } from 'react-redux';
-import { siteActionType } from '../../actions/actionTypes';
-import '../../css/autocomplete-input.css';
+import { siteActionType } from 'redux/actions/actionTypes';
+import 'css/autocomplete-input.css';
+import { Link } from 'react-router-dom';
 
 function AutocompleteInput(props) {
     const [showSuggestions, setShowSuggestions] = useState(false);
@@ -172,12 +173,10 @@ function AutocompleteInput(props) {
                                                 {`${suggestion.distance} miles`}
                                             </label>
 
-                                            <a
-                                                href={
+                                            <Link
+                                                to={
                                                     '/franchise/' +
-                                                    suggestion.ms_alias +
-                                                    '-' +
-                                                    suggestion.ms_id
+                                                    suggestion.ms_alias
                                                 }>
                                                 <FontAwesomeIcon
                                                     icon={faChevronRight}
@@ -187,7 +186,7 @@ function AutocompleteInput(props) {
                                                         fontSize: '25px',
                                                     }}
                                                 />
-                                            </a>
+                                            </Link>
                                         </div>
                                     </div>
                                     <label className="sub-title">

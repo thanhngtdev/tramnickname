@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 import AutocompleteInput from './AutocompleteInput';
-import { siteActionType } from '../../actions/actionTypes';
+import { siteActionType } from 'redux/actions/actionTypes';
 import { useDispatch, useSelector } from 'react-redux';
-import Constants from '../../common/Constants';
+import Constants from 'common/Constants';
 import CustomMarker from './CustomMarker';
 import _ from 'lodash';
 
