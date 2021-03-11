@@ -28,6 +28,7 @@ let PathRoute = {
     ],
     Error: '/error',
     JoinUs: '/join-us',
+    Coaching: '/coaching',
 };
 
 export default PathRoute;

@@ -12,6 +12,7 @@ import Captcha from '../Captcha';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import AttachFileButton from './components/AttachFileButton';
+import 'css/join-us.css';
 
 Coaching.propTypes = {
     data: PropTypes.object,
@@ -141,234 +142,291 @@ function Coaching() {
                 } = values;
 
                 return (
-                    <div className="tab-1">
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                flexDirection: 'column',
-                                paddingBottom: 30,
-                            }}>
-                            <h2 style={{ fontWeight: '300' }}>
-                                Are you ready to lead, inspire and coach?
-                            </h2>
-                            <h3 style={{ fontWeight: '100' }}>
-                                Please fill out the application form below if
-                                you’re ready to join the team
-                            </h3>
-                        </div>
-                        <div className="wSelect2">
-                            <label>Chosen Academy (first choice)</label>
-                            <Select
-                                value={first_academy}
-                                options={lstSite}
-                                isSearchable={false}
-                                isMulti={false}
-                                getOptionLabel={(option) => option.ms_name}
-                                getOptionValue={(option) => option.ms_id}
-                                styles={CommonStyle.select2}
-                                onChange={(option) =>
-                                    setFieldValue('first_academy', option)
-                                }
-                            />
-                            <label className="input-error"></label>
-                        </div>
-                        <div className="wSelect2">
-                            <label>Chosen Academy (second choice)</label>
-                            <Select
-                                value={second_academy}
-                                options={lstSite}
-                                isSearchable={false}
-                                isMulti={false}
-                                getOptionLabel={(option) => option.ms_name}
-                                getOptionValue={(option) => option.ms_id}
-                                styles={CommonStyle.select2}
-                                onChange={(option) =>
-                                    setFieldValue('second_academy', option)
-                                }
-                            />
-                            <label className="input-error"></label>
-                        </div>
-                        <div className="wSelect2">
-                            <label>Chosen Academy (third choice)</label>
-                            <Select
-                                value={third_academy}
-                                options={lstSite}
-                                isSearchable={false}
-                                isMulti={false}
-                                getOptionLabel={(option) => option.ms_name}
-                                getOptionValue={(option) => option.ms_id}
-                                styles={CommonStyle.select2}
-                                onChange={(option) =>
-                                    setFieldValue('third_academy', option)
-                                }
-                            />
-                            <label className="input-error"></label>
-                        </div>
+                    <div className="holiday-camp">
+                        <div className="container" style={{ marginTop: 115 }}>
+                            <div className="tab-1">
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        flexDirection: 'column',
+                                        paddingBottom: 30,
+                                    }}>
+                                    <h2 style={{ fontWeight: '300' }}>
+                                        Are you ready to lead, inspire and
+                                        coach?
+                                    </h2>
+                                    <h3 style={{ fontWeight: '100' }}>
+                                        Please fill out the application form
+                                        below if you’re ready to join the team
+                                    </h3>
+                                </div>
+                                <div className="wSelect2">
+                                    <label>Chosen Academy (first choice)</label>
+                                    <Select
+                                        value={first_academy}
+                                        options={lstSite}
+                                        isSearchable={false}
+                                        isMulti={false}
+                                        getOptionLabel={(option) =>
+                                            option.ms_name
+                                        }
+                                        getOptionValue={(option) =>
+                                            option.ms_id
+                                        }
+                                        styles={CommonStyle.select2}
+                                        onChange={(option) =>
+                                            setFieldValue(
+                                                'first_academy',
+                                                option,
+                                            )
+                                        }
+                                    />
+                                    <label className="input-error"></label>
+                                </div>
+                                <div className="wSelect2">
+                                    <label>
+                                        Chosen Academy (second choice)
+                                    </label>
+                                    <Select
+                                        value={second_academy}
+                                        options={lstSite}
+                                        isSearchable={false}
+                                        isMulti={false}
+                                        getOptionLabel={(option) =>
+                                            option.ms_name
+                                        }
+                                        getOptionValue={(option) =>
+                                            option.ms_id
+                                        }
+                                        styles={CommonStyle.select2}
+                                        onChange={(option) =>
+                                            setFieldValue(
+                                                'second_academy',
+                                                option,
+                                            )
+                                        }
+                                    />
+                                    <label className="input-error"></label>
+                                </div>
+                                <div className="wSelect2">
+                                    <label>Chosen Academy (third choice)</label>
+                                    <Select
+                                        value={third_academy}
+                                        options={lstSite}
+                                        isSearchable={false}
+                                        isMulti={false}
+                                        getOptionLabel={(option) =>
+                                            option.ms_name
+                                        }
+                                        getOptionValue={(option) =>
+                                            option.ms_id
+                                        }
+                                        styles={CommonStyle.select2}
+                                        onChange={(option) =>
+                                            setFieldValue(
+                                                'third_academy',
+                                                option,
+                                            )
+                                        }
+                                    />
+                                    <label className="input-error"></label>
+                                </div>
 
-                        <h3 style={{ fontWeight: '100' }}>Personal Info</h3>
+                                <h3 style={{ fontWeight: '100' }}>
+                                    Personal Info
+                                </h3>
 
-                        <div className="wSelect2">
-                            <label>Your Name</label>
-                            <input
-                                // disabled={true}
-                                type="text"
-                                className="inputText"
-                                placeholder="Example name"
-                                onChange={handleChange('name')}
-                            />
-                            <label className="input-error">{errors.name}</label>
-                        </div>
-                        <div className="wSelect2">
-                            <label>Email</label>
-                            <input
-                                type="text"
-                                className="inputText"
-                                placeholder="example@mail.com"
-                                onChange={handleChange('email')}
-                            />
-                            <label className="input-error">
-                                {errors.email}
-                            </label>
-                        </div>
-                        <div className="wSelect2">
-                            <label>Telephone</label>
-                            <PhoneInput
-                                flag={flags}
-                                defaultCountry="GB"
-                                international
-                                value={telephone}
-                                onChange={(event) => {
-                                    setFieldValue('telephone', event);
-                                }}
-                            />
-                            <label className="input-error">
-                                {errors.telephone}
-                            </label>
-                        </div>
-
-                        <h2 style={{ fontWeight: '300' }}>Coaching Info</h2>
-
-                        <div className="wSelect2">
-                            <label>Do you have a valid DBS?</label>
-                            <Select
-                                value={dbs}
-                                options={[]}
-                                isSearchable={false}
-                                isMulti={false}
-                                getOptionLabel={(option) => option.ms_name}
-                                getOptionValue={(option) => option.ms_id}
-                                styles={CommonStyle.select2}
-                                onChange={(option) => {
-                                    setFieldValue('dbs', option);
-                                }}
-                            />
-                            <label className="input-error"></label>
-                            <h3 style={{ fontWeight: '100' }}>
-                                Coaching qualification level (tick boxes that
-                                apply)
-                            </h3>
-                            {ARRAY.map((item) => {
-                                const isChecked = qualifications.some(
-                                    (el) => el === item.id,
-                                );
-                                return (
-                                    <div
-                                        key={item.id.toString()}
-                                        style={{
-                                            display: 'flex',
-                                            paddingTop: '1rem',
-                                            alignItems: 'center',
+                                <div className="wSelect2">
+                                    <label>Your Name</label>
+                                    <input
+                                        // disabled={true}
+                                        type="text"
+                                        className="inputText"
+                                        placeholder="Example name"
+                                        onChange={handleChange('name')}
+                                    />
+                                    <label className="input-error">
+                                        {errors.name}
+                                    </label>
+                                </div>
+                                <div className="wSelect2">
+                                    <label>Email</label>
+                                    <input
+                                        type="text"
+                                        className="inputText"
+                                        placeholder="example@mail.com"
+                                        onChange={handleChange('email')}
+                                    />
+                                    <label className="input-error">
+                                        {errors.email}
+                                    </label>
+                                </div>
+                                <div className="wSelect2">
+                                    <label>Telephone</label>
+                                    <PhoneInput
+                                        flag={flags}
+                                        defaultCountry="GB"
+                                        international
+                                        value={telephone}
+                                        onChange={(event) => {
+                                            setFieldValue('telephone', event);
                                         }}
-                                        onClick={() => {
-                                            if (isChecked) {
-                                                const arr = qualifications.filter(
-                                                    (el) => el !== item.id,
-                                                );
-                                                setFieldValue(
-                                                    'qualifications',
-                                                    arr,
-                                                );
-                                            } else {
-                                                const arr = [
-                                                    ...qualifications,
-                                                    item.id,
-                                                ];
-                                                setFieldValue(
-                                                    'qualifications',
-                                                    arr,
-                                                );
-                                            }
-                                        }}>
-                                        {isChecked ? (
-                                            <IconVerify />
-                                        ) : (
-                                            <IconUnVerify />
-                                        )}
-                                        &nbsp;&nbsp;
-                                        {item.label}
-                                    </div>
-                                );
-                            })}
-                        </div>
-                        <div className="wSelect2">
-                            <label>Other Qualifications?</label>
-                            <textarea
-                                className="textArea"
-                                onChange={handleChange('other_qualification')}
-                            />
-                        </div>
+                                    />
+                                    <label className="input-error">
+                                        {errors.telephone}
+                                    </label>
+                                </div>
 
-                        <h2 style={{ fontWeight: '300' }}>Additional Info</h2>
-                        <div className="wSelect2">
-                            <label>Why do you want to work for us?</label>
-                            <textarea
-                                className="textArea"
-                                onChange={handleChange('additional_info')}
-                            />
-                        </div>
-                        <div className="wSelect2">
-                            <label>
-                                What level of football have you played?
-                            </label>
-                            <h6 style={{ fontWeight: '100', margin: '0' }}>
-                                (Although we may need your skills for the annual
-                                coach tournament, we don't hire based on
-                                footballing ability so please be honest)*
-                            </h6>
-                            <input
-                                type="text"
-                                className="inputText"
-                                // placeholder="Example name"
-                                onChange={handleChange('level')}
-                            />
-                            <label className="input-error">
-                                {/* {firstNameError} */}
-                            </label>
-                        </div>
-                        <AttachFileButton
-                            className="wSelect2"
-                            label="Attach CV (optional):"
-                            onChange={handleChange('file')}
-                            file={file || 'Eg: .pdf, .doc, .rtf'}
-                        />
-                        <div className="wSelect2">
-                            <Captcha />
-                            <label className="input-error">{''}</label>
-                        </div>
-                        <button className="btn-button-s" onClick={handleSubmit}>
-                            Submit application
-                        </button>
-                        <div>
-                            <p>
-                                For more information about our privacy
-                                practices, please read our{' '}
-                                <a href={'policies/privacy'}>Privacy Policy.</a>
-                            </p>
-                            <p>
-                                By clicking above, you agree that we may process
-                                your information in accordance with these terms.
-                            </p>
+                                <h2 style={{ fontWeight: '300' }}>
+                                    Coaching Info
+                                </h2>
+
+                                <div className="wSelect2">
+                                    <label>Do you have a valid DBS?</label>
+                                    <Select
+                                        value={dbs}
+                                        options={[]}
+                                        isSearchable={false}
+                                        isMulti={false}
+                                        getOptionLabel={(option) =>
+                                            option.ms_name
+                                        }
+                                        getOptionValue={(option) =>
+                                            option.ms_id
+                                        }
+                                        styles={CommonStyle.select2}
+                                        onChange={(option) => {
+                                            setFieldValue('dbs', option);
+                                        }}
+                                    />
+                                    <label className="input-error"></label>
+                                    <h3 style={{ fontWeight: '100' }}>
+                                        Coaching qualification level (tick boxes
+                                        that apply)
+                                    </h3>
+                                    {ARRAY.map((item) => {
+                                        const isChecked = qualifications.some(
+                                            (el) => el === item.id,
+                                        );
+                                        return (
+                                            <div
+                                                key={item.id.toString()}
+                                                style={{
+                                                    display: 'flex',
+                                                    paddingTop: '1rem',
+                                                    alignItems: 'center',
+                                                }}
+                                                onClick={() => {
+                                                    if (isChecked) {
+                                                        const arr = qualifications.filter(
+                                                            (el) =>
+                                                                el !== item.id,
+                                                        );
+                                                        setFieldValue(
+                                                            'qualifications',
+                                                            arr,
+                                                        );
+                                                    } else {
+                                                        const arr = [
+                                                            ...qualifications,
+                                                            item.id,
+                                                        ];
+                                                        setFieldValue(
+                                                            'qualifications',
+                                                            arr,
+                                                        );
+                                                    }
+                                                }}>
+                                                {isChecked ? (
+                                                    <IconVerify />
+                                                ) : (
+                                                    <IconUnVerify />
+                                                )}
+                                                &nbsp;&nbsp;
+                                                {item.label}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                                <div className="wSelect2">
+                                    <label>Other Qualifications?</label>
+                                    <textarea
+                                        className="textArea"
+                                        onChange={handleChange(
+                                            'other_qualification',
+                                        )}
+                                    />
+                                </div>
+
+                                <h2 style={{ fontWeight: '300' }}>
+                                    Additional Info
+                                </h2>
+                                <div className="wSelect2">
+                                    <label>
+                                        Why do you want to work for us?
+                                    </label>
+                                    <textarea
+                                        className="textArea"
+                                        onChange={handleChange(
+                                            'additional_info',
+                                        )}
+                                    />
+                                </div>
+                                <div className="wSelect2">
+                                    <label>
+                                        What level of football have you played?
+                                    </label>
+                                    <h6
+                                        style={{
+                                            fontWeight: '100',
+                                            margin: '0',
+                                        }}>
+                                        (Although we may need your skills for
+                                        the annual coach tournament, we don't
+                                        hire based on footballing ability so
+                                        please be honest)*
+                                    </h6>
+                                    <input
+                                        type="text"
+                                        className="inputText"
+                                        // placeholder="Example name"
+                                        onChange={handleChange('level')}
+                                    />
+                                    <label className="input-error">
+                                        {/* {firstNameError} */}
+                                    </label>
+                                </div>
+                                <AttachFileButton
+                                    className="wSelect2"
+                                    label="Attach CV (optional):"
+                                    onChange={handleChange('file')}
+                                    file={file || 'Eg: .pdf, .doc, .rtf'}
+                                />
+                                <div className="wSelect2">
+                                    <Captcha />
+                                    <label className="input-error">{''}</label>
+                                </div>
+                                <button
+                                    className="btn-button-s"
+                                    onClick={handleSubmit}>
+                                    Submit application
+                                </button>
+                                <div>
+                                    <p>
+                                        For more information about our privacy
+                                        practices, please read our{' '}
+                                        <a href={'policies/privacy'}>
+                                            Privacy Policy.
+                                        </a>
+                                    </p>
+                                    <p>
+                                        By clicking above, you agree that we may
+                                        process your information in accordance
+                                        with these terms.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 );

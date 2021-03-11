@@ -17,6 +17,8 @@ import JoinUs from './views/JoinUs';
 import Footer from './component/Footer';
 import Header from './component/Header';
 
+import Coaching from './component/Coaching/Coaching';
+
 import Contact from './component/Contact';
 import BookTrialCamp from './component/BookTrialCamp';
 import BookTrialTraining from './component/BookTrialTraining';
@@ -165,6 +167,7 @@ function RouteContent(props) {
                 />
 
                 <Route exact path={PathRoute.JoinUs} component={JoinUs} />
+                <Route exact path={PathRoute.Coaching} component={Coaching} />
 
                 <Route exact path={PathRoute.BookTrialCamp}>
                     <BookTrialCamp />
