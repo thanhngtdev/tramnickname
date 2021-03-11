@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import Select from 'react-select';
-import { CommonStyle } from '../../common/Styles';
+import { CommonStyle } from 'common/Styles';
 import { useSelector } from 'react-redux';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
-import IconVerify from '../include/Checkbox/IconVerify';
-import IconUnVerify from '../include/Checkbox/IconUnVerify';
+import IconVerify from 'component/include/Checkbox/IconVerify';
+import IconUnVerify from 'component/include/Checkbox/IconUnVerify';
 import Captcha from '../Captcha';
-import BorderButton from '../include/BorderButton';
-import PathRoute from '../../common/PathRoute';
+import BorderButton from 'component/include/BorderButton';
+import PathRoute from 'common/PathRoute';
 
 Coaching.propTypes = {
     data: propTypes.object,

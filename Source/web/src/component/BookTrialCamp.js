@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import '../css/book-trial.css';
+import 'css/book-trial.css';
 import HolidayCampTabSpace from './include/HolidayCampTabSpace';
 import BookTrialCamp1 from './booking/BookTrialCamp1';
 import BookTrialCamp2 from './booking/BookTrialCamp2';
 import BookTrialCamp3 from './booking/BookTrialCamp3';
 import { useDispatch, useSelector } from 'react-redux';
-import { siteActionType } from '../actions/actionTypes';
+import { siteActionType } from 'redux/actions/actionTypes';
 
 const DEFAULT_MESSAGE = `User registered but the booking is not completed, please Log in <a
 href="https://www.parentarea.co/parent/login"

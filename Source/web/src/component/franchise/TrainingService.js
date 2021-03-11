@@ -1,16 +1,16 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { siteActionType } from '../../actions/actionTypes';
+import { siteActionType } from 'redux/actions/actionTypes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import { CommonStyle } from '../../common/Styles';
+import { CommonStyle } from 'common/Styles';
 import moment from 'moment';
-import SolidButton from '../include/SolidButton';
+import SolidButton from 'component/include/SolidButton';
 import { Link, useHistory } from 'react-router-dom';
-import PathRoute from '../../common/PathRoute';
-import Utils from '../../common/Utils';
+import PathRoute from 'common/PathRoute';
+import Utils from 'common/Utils';
 
 LDWeeklyTraining.propTypes = {
     site: PropTypes.object,
@@ -323,8 +323,8 @@ TrainingService.propTypes = {
     service: PropTypes.object,
 };
 
-const imageService = require('../../images/service.png');
-const imageServiceActive = require('../../images/service-active.png');
+const imageService = require('images/service.png');
+const imageServiceActive = require('images/service-active.png');
 const listMenu = [
     'Weekly Training',
     '1-Week Holiday camps',

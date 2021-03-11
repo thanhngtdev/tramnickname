@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
-import { CommonStyle } from '../../common/Styles';
-import SolidButton from '../include/SolidButton';
+import { CommonStyle } from 'common/Styles';
+import SolidButton from 'component/include/SolidButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { siteActionType } from '../../actions/actionTypes';
+import { siteActionType } from 'redux/actions/actionTypes';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import PathRoute from '../../common/PathRoute';
+import PathRoute from 'common/PathRoute';
 
 AboutInfo.propTypes = {
     lstAcademy: PropTypes.array,

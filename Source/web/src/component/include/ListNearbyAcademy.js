@@ -6,18 +6,18 @@ import {
     GoogleMap,
     Marker,
 } from 'react-google-maps';
-import Utils from '../../common/Utils';
-import avatar from '../../images/gallery4.jpg';
+import Utils from 'common/Utils';
+import avatar from 'images/gallery4.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faEnvelope,
     faPhoneAlt,
     faChevronDown,
 } from '@fortawesome/free-solid-svg-icons';
-import { headerActionType, siteActionType } from '../../actions/actionTypes';
+import { headerActionType, siteActionType } from 'redux/actions/actionTypes';
 import WeeklyTrainingItem from './WeeklyTrainingItem';
 import { useHistory } from 'react-router-dom';
-import PathRoute from '../../common/PathRoute';
+import PathRoute from 'common/PathRoute';
 
 const MapWithAMarker = withScriptjs(
     withGoogleMap((props) => (
@@ -37,7 +37,7 @@ const MapWithAMarker = withScriptjs(
                 return (
                     <Marker
                         key={index}
-                        icon={require('../../images/marker.png')}
+                        icon={require('images/marker.png')}
                         position={{
                             lat: parseFloat(item.ms_latitude) || 51,
                             lng: parseFloat(item.ms_longitude) || 0,

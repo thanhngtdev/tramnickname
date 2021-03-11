@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import { STORAGE_URL } from '../requests/ApiConfig';
 import packageVersion from '../../package.json';
-import { siteActionType } from '../actions/actionTypes';
+import { siteActionType } from 'redux/actions/actionTypes';
 
 const { hasOwnProperty } = Object.prototype;
 class Utils {
@@ -126,7 +126,7 @@ class Utils {
     getVersion() {
         return packageVersion.version;
     }
-    getCurrentAcademy(dispatch,number){
+    getCurrentAcademy(dispatch, number) {
         let options = {
             enableHighAccuracy: true,
             timeout: 5000,
@@ -134,22 +134,19 @@ class Utils {
         };
         const success = (pos) => {
             let crd = pos.coords;
-            dispatch(
-                {
-                    type: siteActionType.GET_CURRENT_ACADEMY,
-                    lat: crd.latitude,
-                    long: crd.longitude,
-                    number: number,
-                }
-            );
+            dispatch({
+                type: siteActionType.GET_CURRENT_ACADEMY,
+                lat: crd.latitude,
+                long: crd.longitude,
+                number: number,
+            });
         };
         function error(err) {
-            console.log("get location error");
-            dispatch(
-                {
-                    type: siteActionType.GET_CURRENT_ACADEMY_FAILED,
-                    number: number
-                });
+            console.log('get location error');
+            dispatch({
+                type: siteActionType.GET_CURRENT_ACADEMY_FAILED,
+                number: number,
+            });
         }
         navigator.geolocation.getCurrentPosition(success, error, options);
     }
@@ -169,7 +166,7 @@ class Utils {
         });
     }
 
-    linkToPolicy(dispatch,index) {
+    linkToPolicy(dispatch, index) {
         dispatch({
             type: siteActionType.GET_POLICY_INDEX,
             index: index,
