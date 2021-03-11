@@ -29,6 +29,7 @@ let PathRoute = {
     SchoolTraining: '/school-training',
     Error: '/error',
     JoinUs: '/join-us',
+    Coaching: '/coaching',
 };
 
 export default PathRoute;

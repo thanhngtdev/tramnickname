@@ -13,8 +13,11 @@ import HolidayCamp from './views/HolidayCamp';
 import OneTraining from './views/OneTraining';
 import BirthdayParty from './views/BirthdayParty';
 import About from './views/About';
+import JoinUs from './views/JoinUs';
 import Footer from './component/Footer';
 import Header from './component/Header';
+
+import Coaching from './component/Coaching/Coaching';
 
 import Contact from './component/Contact';
 import BookTrialCamp from './component/BookTrialCamp';
@@ -36,6 +39,7 @@ import usePermissionLocation from './hooks/usePermissionLocation';
 import SchoolTraining from './component/SchoolTraining';
 import JoinUs from './component/JoinUs';
 import BookTrialTraining from 'views/BookTrialTraning.js';
+// import JoinUs from './component/JoinUs';
 
 const DEFAULT_LAT = 51.5285582;
 const DEFAULT_LOG = -0.2416794;
@@ -164,6 +168,9 @@ function RouteContent(props) {
                     component={BirthdayParty}
                 />
 
+                <Route exact path={PathRoute.JoinUs} component={JoinUs} />
+                <Route exact path={PathRoute.Coaching} component={Coaching} />
+
                 <Route exact path={PathRoute.BookTrialCamp}>
                     <BookTrialCamp />
                 </Route>
@@ -206,9 +213,9 @@ function RouteContent(props) {
                 <Route exact path={PathRoute.Policy}>
                     <Policy />
                 </Route>
-                <Route exact path={PathRoute.JoinUs}>
+                {/* <Route exact path={PathRoute.JoinUs}>
                     <JoinUs />
-                </Route>
+                </Route> */}
                 <Route exact path={PathRoute.Error}>
                     <NotFound />
                 </Route>
