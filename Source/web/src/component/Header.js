@@ -137,6 +137,7 @@ function Header() {
                         left: '0px',
                         backgroundColor: 'white',
                         width: '100%',
+                        zIndex: '-1',
                     }}>
                     <div className="container">
                         <div

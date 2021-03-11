@@ -29,6 +29,7 @@ import ThankYou from './component/ThankYou';
 import Policy from './component/Policy';
 import NotFound from './component/NotFound';
 import usePermissionLocation from './hooks/usePermissionLocation';
+import SchoolTraining from './component/SchoolTraining';
 
 const DEFAULT_LAT = 51.5285582;
 const DEFAULT_LOG = -0.2416794;
@@ -193,6 +194,9 @@ function RouteContent(props) {
                 </Route>
                 <Route exact path={PathRoute.Error}>
                     <NotFound />
+                </Route>
+                <Route exact path={PathRoute.SchoolTraining}>
+                    <SchoolTraining />
                 </Route>
                 <Route>
                     <NotFound />

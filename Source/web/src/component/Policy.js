@@ -11,6 +11,9 @@ import {
     useParams,
     Redirect,
 } from 'react-router-dom';
+
+import '../css/policies.css';
+
 import { siteActionType } from '../actions/actionTypes';
 import PathRoute from '../common/PathRoute';
 import Utils from '../common/Utils';
@@ -98,8 +101,7 @@ export default function Policy() {
                     </div>
                     <div style={{ clear: 'both' }} />
                     <div
-                        className="container"
-                        style={{ marginTop: 120, marginBottom: 120 }}>
+                        className="container our-policies" >
                         <h2 className="heading-w">Our Policies</h2>
                         <p className="text-1">
                             Select a card to view our company policies

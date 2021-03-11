@@ -25,6 +25,7 @@ let PathRoute = {
         '/equality-and-diversity',
         '/privacy-policy',
     ],
+    SchoolTraining: '/school-training',
     Error: '/error',
 };
 

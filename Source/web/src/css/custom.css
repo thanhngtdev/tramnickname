@@ -274,6 +274,7 @@ a.link {
 	.banner-top {
 		padding-top: 0;
 		background-size: cover;
+		margin-top: 115px;
 	}
 
 	.banner-top h1 {
