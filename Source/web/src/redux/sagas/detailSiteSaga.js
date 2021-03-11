@@ -13,19 +13,19 @@ function* weeklyTraining(data) {
         const siteId = currentAcademyId || lstSite[0].ms_id;
 
         if (siteId) {
-            const response = yield API.requestGetAPI(
-                APIConfig.GET_DETAIL_SITE,
-                {
-                    siteId,
-                    cate,
-                },
-            );
-            // const response = yield siteService.getWeekly({ siteId, cate });
-            console.log(response.data, 'daaaaaaaa');
+            // const response = yield API.requestGetAPI(
+            //     APIConfig.GET_DETAIL_SITE,
+            //     {
+            //         siteId,
+            //         cate,
+            //     },
+            // );
+            const response = yield siteService.getDetailSite({ siteId, cate });
+            // console.log(response.data, 'daaaaaaaa');
             if (response && response.status === 200) {
                 yield put({
                     type: actionTypes.GET_DETAIL_SITE_SUCCESS,
-                    data: response.data,
+                    data: response.data?.data,
                     lstSite: lstSite,
                 });
             } else {
