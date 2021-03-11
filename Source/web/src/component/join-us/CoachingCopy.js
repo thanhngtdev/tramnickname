@@ -6,79 +6,25 @@ import { useSelector } from 'react-redux';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
-import IconVerify from 'component/include/Checkbox/IconVerify';
-import IconUnVerify from 'component/include/Checkbox/IconUnVerify';
 import Captcha from '../Captcha';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import AttachFileButton from './components/AttachFileButton';
 
-Coaching.propTypes = {
+CoachingCopy.propTypes = {
     data: PropTypes.object,
 };
 
-const ARRAY = [
-    {
-        id: 1,
-        label: 'FA level 1',
-    },
-    {
-        id: 2,
-        label: 'FA level 2',
-    },
-    {
-        id: 3,
-        label: 'FA level 3',
-    },
-    {
-        id: 4,
-        label: 'FA level 4',
-    },
-    {
-        id: 5,
-        label: 'Youth Module 1',
-    },
-    {
-        id: 6,
-        label: 'Youth Module 2',
-    },
-    {
-        id: 7,
-        label: 'Youth Module 3',
-    },
-    {
-        id: 8,
-        label: 'Youth Module 4',
-    },
-    {
-        id: 9,
-        label: 'FA Futsal 1',
-    },
-    {
-        id: 10,
-        label: 'FA Futsal 2',
-    },
-    {
-        id: 12,
-        label: 'Other',
-    },
-];
-
-function Coaching() {
+function CoachingCopy() {
     const { lstSite } = useSelector((state) => state.siteReducer);
 
     const initialValues = {
         first_academy: lstSite[0],
         second_academy: lstSite[0],
-        third_academy: lstSite[0],
         name: '',
         email: '',
         telephone: '',
-        dbs: undefined,
-        qualifications: [],
-        other_qualification: '',
-        additional_info: '',
-        level: '',
+        yourFeel: '',
         file: '',
     };
 
@@ -132,8 +78,6 @@ function Coaching() {
                     // name,
                     // email,
                     telephone,
-                    dbs,
-                    qualifications,
                     // other_qualification,
                     // additional_info,
                     // level,
@@ -247,104 +191,16 @@ function Coaching() {
                             </label>
                         </div>
 
-                        <h2 style={{ fontWeight: '300' }}>Coaching Info</h2>
-
-                        <div className="wSelect2">
-                            <label>Do you have a valid DBS?</label>
-                            <Select
-                                value={dbs}
-                                options={[]}
-                                isSearchable={false}
-                                isMulti={false}
-                                getOptionLabel={(option) => option.ms_name}
-                                getOptionValue={(option) => option.ms_id}
-                                styles={CommonStyle.select2}
-                                onChange={(option) => {
-                                    setFieldValue('dbs', option);
-                                }}
-                            />
-                            <label className="input-error"></label>
-                            <h3 style={{ fontWeight: '100' }}>
-                                Coaching qualification level (tick boxes that
-                                apply)
-                            </h3>
-                            {ARRAY.map((item) => {
-                                const isChecked = qualifications.some(
-                                    (el) => el === item.id,
-                                );
-                                return (
-                                    <div
-                                        key={item.id.toString()}
-                                        style={{
-                                            display: 'flex',
-                                            paddingTop: '1rem',
-                                            alignItems: 'center',
-                                        }}
-                                        onClick={() => {
-                                            if (isChecked) {
-                                                const arr = qualifications.filter(
-                                                    (el) => el !== item.id,
-                                                );
-                                                setFieldValue(
-                                                    'qualifications',
-                                                    arr,
-                                                );
-                                            } else {
-                                                const arr = [
-                                                    ...qualifications,
-                                                    item.id,
-                                                ];
-                                                setFieldValue(
-                                                    'qualifications',
-                                                    arr,
-                                                );
-                                            }
-                                        }}>
-                                        {isChecked ? (
-                                            <IconVerify />
-                                        ) : (
-                                            <IconUnVerify />
-                                        )}
-                                        &nbsp;&nbsp;
-                                        {item.label}
-                                    </div>
-                                );
-                            })}
-                        </div>
-                        <div className="wSelect2">
-                            <label>Other Qualifications?</label>
-                            <textarea
-                                className="textArea"
-                                onChange={handleChange('other_qualification')}
-                            />
-                        </div>
-
-                        <h2 style={{ fontWeight: '300' }}>Additional Info</h2>
-                        <div className="wSelect2">
-                            <label>Why do you want to work for us?</label>
-                            <textarea
-                                className="textArea"
-                                onChange={handleChange('additional_info')}
-                            />
-                        </div>
+                        <h2 style={{ fontWeight: '300' }}>Tell us about you</h2>
                         <div className="wSelect2">
                             <label>
-                                What level of football have you played?
+                                Why do you feel you would be a great parent host
+                                with WMF?
                             </label>
-                            <h6 style={{ fontWeight: '100', margin: '0' }}>
-                                (Although we may need your skills for the annual
-                                coach tournament, we don't hire based on
-                                footballing ability so please be honest)*
-                            </h6>
-                            <input
-                                type="text"
-                                className="inputText"
-                                // placeholder="Example name"
-                                onChange={handleChange('level')}
+                            <textarea
+                                className="textArea"
+                                onChange={handleChange('yourFeel')}
                             />
-                            <label className="input-error">
-                                {/* {firstNameError} */}
-                            </label>
                         </div>
                         <AttachFileButton
                             className="wSelect2"
@@ -377,4 +233,4 @@ function Coaching() {
     );
 }
 
-export default Coaching;
+export default CoachingCopy;

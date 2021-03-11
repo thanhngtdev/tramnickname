@@ -1,6 +1,7 @@
 import React from 'react';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import Coaching from './join-us/Coaching';
+import CoachingCopy from './join-us/CoachingCopy';
 import 'css/join-us.css';
 
 JoinUs.propTypes = {
