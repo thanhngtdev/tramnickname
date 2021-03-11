@@ -21,7 +21,6 @@ import Coaching from './component/Coaching/Coaching';
 
 import Contact from './component/Contact';
 import BookTrialCamp from './component/BookTrialCamp';
-import BookTrialTraining from './component/BookTrialTraining';
 
 import DetailNews from './component/DetailNews';
 import LocationModal from './component/include/LocationModal';
@@ -37,6 +36,9 @@ import ThankYou from './component/ThankYou';
 import Policy from './component/Policy';
 import NotFound from './component/NotFound';
 import usePermissionLocation from './hooks/usePermissionLocation';
+import SchoolTraining from './component/SchoolTraining';
+import JoinUs from './component/JoinUs';
+import BookTrialTraining from 'views/BookTrialTraning.js';
 // import JoinUs from './component/JoinUs';
 
 const DEFAULT_LAT = 51.5285582;
@@ -172,9 +174,11 @@ function RouteContent(props) {
                 <Route exact path={PathRoute.BookTrialCamp}>
                     <BookTrialCamp />
                 </Route>
-                <Route exact path={PathRoute.BookTrialTraining}>
-                    <BookTrialTraining />
-                </Route>
+                <Route
+                    exact
+                    path={PathRoute.BookTrialTraining}
+                    component={BookTrialTraining}
+                />
 
                 <Route exact path={PathRoute.DetailNews}>
                     <DetailNews />
@@ -214,6 +218,9 @@ function RouteContent(props) {
                 </Route> */}
                 <Route exact path={PathRoute.Error}>
                     <NotFound />
+                </Route>
+                <Route exact path={PathRoute.SchoolTraining}>
+                    <SchoolTraining />
                 </Route>
                 <Route>
                     <NotFound />

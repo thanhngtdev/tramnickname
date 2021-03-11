@@ -186,7 +186,7 @@ function* findNearbyAcademy({ lat, long }) {
     }
 }
 
-function* getListCourse({ company_id, location_id, course_type }) {
+function* getListCourse({ company_id, location_id, course_type}) {
     const response = yield API.getParentAPI(APIConfig.GET_LIST_COURSE, {
         company_id,
         location_id,
@@ -416,6 +416,7 @@ export default function* watcherSiteSaga() {
     yield takeLatest(siteActionType.ADD_WAITING, addWaiting);
     yield takeLatest(siteActionType.BOOK_EVENT_SIGNUP, bookEventSignup);
     yield takeLatest(siteActionType.BOOK_COURSE_SIGNUP, bookCourseSignup);
+    yield takeLatest(siteActionType.BOOK_COURSE, bookCourse);
     yield takeLatest(siteActionType.COURSE_START_DATE, getCourseStartDate);
     yield takeLatest(siteActionType.GET_LIST_COURSE, getListCourse);
     yield takeLatest(siteActionType.FIND_NEARBY_ACADEMY, findNearbyAcademy);
