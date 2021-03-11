@@ -15,6 +15,8 @@ import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
 import { useHistory } from 'react-router-dom';
+import { courseStartDate, getListCourse } from 'redux/actions/siteAction';
+import _ from 'lodash';
 
 BookTrialTraining1.propTypes = {
     onNext: PropTypes.func,
@@ -102,12 +104,13 @@ function BookTrialTraining1(props) {
                     if (_currentSite.length > 0) {
                         setSiteSelected(_currentSite[0]);
                         setCompanyId(_currentSite[0].pa_companyId);
-                        dispatch({
-                            type: siteActionType.GET_LIST_COURSE,
-                            company_id: _currentSite[0].pa_companyId,
-                            location_id: _currentSite[0].pa_locationId,
-                            course_type: 'course',
-                        });
+                        dispatch(
+                            getListCourse({
+                                company_id: _currentSite[0].pa_companyId,
+                                location_id: _currentSite[0].pa_locationId,
+                                course_type: 'course',
+                            }),
+                        );
                     }
                 }
             }
@@ -190,12 +193,13 @@ function BookTrialTraining1(props) {
                         );
                         setSiteSelected(option);
                         setCompanyId(option.pa_companyId);
-                        dispatch({
-                            type: siteActionType.GET_LIST_COURSE,
-                            company_id: option.pa_companyId,
-                            location_id: option.pa_locationId,
-                            course_type: 'course',
-                        });
+                        dispatch(
+                            getListCourse({
+                                company_id: option.pa_companyId,
+                                location_id: option.pa_locationId,
+                                course_type: 'course',
+                            }),
+                        );
                         dispatch({
                             type: siteActionType.SELECT_ACADEMY,
                             data: option,
@@ -225,13 +229,14 @@ function BookTrialTraining1(props) {
                     onChange={(date) => {
                         getClassTime(new Date(date));
                         setDate(date);
-                        if (siteSelected) {
-                            dispatch({
-                                type: siteActionType.GET_LIST_COURSE,
-                                company_id: siteSelected.pa_companyId,
-                                location_id: siteSelected.pa_locationId,
-                                course_type: 'course',
-                            });
+                        if (!_.isEmpty(siteSelected)) {
+                            dispatch(
+                                getListCourse({
+                                    company_id: siteSelected.pa_companyId,
+                                    location_id: siteSelected.pa_locationId,
+                                    course_type: 'course',
+                                }),
+                            );
                         }
                     }}
                 />
@@ -263,11 +268,9 @@ function BookTrialTraining1(props) {
                                     }}>
                                     <Radiobox
                                         onChange={() => {
-                                            dispatch({
-                                                type:
-                                                    siteActionType.COURSE_START_DATE,
-                                                course_id: item.course_id,
-                                            });
+                                            dispatch(
+                                                courseStartDate(item.course_id)
+                                            );
                                             setCourseSelected(item);
                                             // console.log(item, 'itemmm');
                                         }}

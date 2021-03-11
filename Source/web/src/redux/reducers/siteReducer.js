@@ -5,6 +5,7 @@ const initialState = {
     lstSite: [],
     lstSiteCamp: [],
     marker: {},
+    test:'',
 };
 
 const siteReducer = (state = initialState, action) => {
