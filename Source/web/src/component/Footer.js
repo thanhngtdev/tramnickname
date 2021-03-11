@@ -259,7 +259,7 @@ function Footer() {
                     )}
 
                     <div className="menu-ft">
-                        <a onClick={() => linkToPrivate(3)}>Privacy Policy</a>|
+                        <a onClick={() => history.push("/policies/privacy")}>Privacy Policy</a>|
                         <a href={PathRoute.ListQNA}> FAQ</a>
                         <span>|</span>
                         <a href="/#"> Terms &amp; Conditions</a>|

@@ -22,15 +22,6 @@ const ClearBoth = function () {
 function SchoolTraining() {
     const dispatch = useDispatch();
     const detailSiteReducer = useSelector((state) => state.detailSiteReducer);
-
-    const currentAcademy = ModelManager.getLocation();
-    const [skillGain, setSkillGain] = useState({});
-    const [parentFb, setParentFb] = useState({});
-    const [instaFeed, setInstaFeed] = useState({});
-    const [faq, setFaq] = useState([]);
-    const [about, setAbout] = useState({});
-    const [whyWMF, setWhyWMF] = useState({});
-    const [trainingIntro, setTrainingIntro] = useState([]);
     const currentAcademyId = ModelManager.getLocation()?.ms_id;
     const { data } = detailSiteReducer;
 
