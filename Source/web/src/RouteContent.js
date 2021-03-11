@@ -37,7 +37,6 @@ import Policy from './component/Policy';
 import NotFound from './component/NotFound';
 import usePermissionLocation from './hooks/usePermissionLocation';
 import SchoolTraining from './component/SchoolTraining';
-import JoinUs from './component/JoinUs';
 import BookTrialTraining from 'views/BookTrialTraning.js';
 // import JoinUs from './component/JoinUs';
 
