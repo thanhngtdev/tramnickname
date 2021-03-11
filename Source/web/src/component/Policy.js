@@ -13,13 +13,12 @@ import {
 } from 'react-router-dom';
 
 import '../css/policies.css';
-
-import { siteActionType } from '../actions/actionTypes';
 import PathRoute from '../common/PathRoute';
 import Utils from '../common/Utils';
 import useEqualElement from '../hooks/useEqualElement';
 import BorderButton from './include/BorderButton';
 import SolidButton from './include/SolidButton';
+import { siteActionType } from 'redux/actions/actionTypes';
 
 export default function Policy() {
     const params = useParams();

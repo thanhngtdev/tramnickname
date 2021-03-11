@@ -1,17 +1,17 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
-import AboutUs from './camp/AboutUs';
-import Feedback from './camp/Feedback';
-import FootballSkill from './camp/FootballSkill';
-import WhyWMF from './camp/WhyWMF';
-import BookTrialOne from './camp/BookTrialOne';
-import InstaBox from './camp/InstaBox';
-import QNA from './camp/QNA';
-import Intro from './homepage/Intro';
 import { Button } from 'react-bootstrap';
 import ModelManager from '../common/ModelManager';
-import { siteActionType } from '../actions/actionTypes';
 import { useSelector, useDispatch } from 'react-redux';
 import useTruspilot from '../hooks/useTruspilot';
+import { siteActionType } from 'redux/actions/actionTypes';
+import FootballSkill from './camp/FootballSkill';
+import Feedback from './camp/Feedback';
+import WhyWMF from './camp/WhyWMF';
+import BookTrialOne from './camp/BookTrialOne';
+import InstaBox from 'views/Homepage/components/InstaBox';
+import QNA from './camp/QNA';
+import AboutUs from './camp/AboutUs';
+import Intro from 'views/Homepage/components/Intro';
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;
