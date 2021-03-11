@@ -12,6 +12,8 @@ import InstaBox from 'views/Homepage/components/InstaBox';
 import QNA from './camp/QNA';
 import AboutUs from './camp/AboutUs';
 import Intro from 'views/Homepage/components/Intro';
+import detailSiteReducer from 'redux/reducers/detailSiteReducer';
+import { getDetailSite } from 'redux/actions/detailSiteAction';
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;
@@ -19,8 +21,7 @@ const ClearBoth = function () {
 
 function SchoolTraining() {
     const dispatch = useDispatch();
-
-    const siteReducer = useSelector((state) => state.siteReducer);
+    const detailSiteReducer = useSelector((state) => state.detailSiteReducer);
 
     const currentAcademy = ModelManager.getLocation();
     const [skillGain, setSkillGain] = useState({});
@@ -30,44 +31,23 @@ function SchoolTraining() {
     const [about, setAbout] = useState({});
     const [whyWMF, setWhyWMF] = useState({});
     const [trainingIntro, setTrainingIntro] = useState([]);
+    const currentAcademyId = ModelManager.getLocation()?.ms_id;
+    const { data } = detailSiteReducer;
 
     useTruspilot();
 
     useEffect(() => {
-        dispatch({
-            type: 'GET_DETAIL_SITE',
-            siteId: currentAcademy.ms_id || siteReducer.lstSite[0]?.ms_id,
-            cate: 9,
-        });
-    }, [dispatch]);
-
-    useEffect(() => {
-        if (siteReducer.type) {
-            if (siteReducer.type === siteActionType.GET_DETAIL_SITE_SUCCESS) {
-                // console.log(siteReducer.data, 'siteeee');
-                setSkillGain(siteReducer.data.skillGain || {});
-                setParentFb(siteReducer.data.parentFb || {});
-                setInstaFeed(siteReducer.data.instaFeed || {});
-                setFaq(siteReducer.data.faq || []);
-                setAbout(siteReducer.data.about || {});
-                setWhyWMF(siteReducer.data.whyWMF || {});
-                setTrainingIntro(
-                    siteReducer.data.trainingIntro
-                        ? siteReducer.data.trainingIntro.cfg_value
-                        : [],
-                );
-            }
-        }
-    }, [siteReducer]);
+        dispatch(getDetailSite({ currentAcademyId, cate: 9 }));
+    }, []);
 
     const enquireBox = useRef(null);
     return (
         <Fragment>
-            <AboutUs data={about} />
+            <AboutUs data={data?.about || {}}  />
             <ClearBoth />
-            <Intro intro={trainingIntro} />
+            <Intro intro={data?.trainingIntro?.cfg_value || []}  />
             <ClearBoth />
-            <FootballSkill data={skillGain} />
+            <FootballSkill data={data?.skillGain || {}} />
             <ClearBoth />
             <div className="box-slide-review one-training">
                 <Feedback />
@@ -132,13 +112,13 @@ function SchoolTraining() {
                 </div>
             </div>
             <ClearBoth />
-            <WhyWMF data={whyWMF} />
+            <WhyWMF data={data?.whyWMF || {}}  />
             <ClearBoth />
-            <BookTrialOne _ref={enquireBox} parentFb={parentFb} />
+            <BookTrialOne _ref={enquireBox} parentFb={data?.parentFb || {}} />
             <ClearBoth />
-            <InstaBox instaFeed={instaFeed} />
+            <InstaBox instaFeed={data?.instaFeed || {}} />
             <ClearBoth />
-            <QNA data={faq} />
+            <QNA data={data?.faq || []}/>
         </Fragment>
     );
 }
