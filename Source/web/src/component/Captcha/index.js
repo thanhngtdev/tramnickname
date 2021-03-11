@@ -2,9 +2,13 @@ import React, { useEffect } from 'react';
 
 const Captcha = ({ id = 'captcha', event }) => {
     useEffect(() => {
-        window.grecaptcha &&
-            window.grecaptcha.render &&
-            window.grecaptcha.render(id);
+        if (window.grecaptcha && window.grecaptcha.render) {
+            try {
+                window.grecaptcha.render(id);
+            } catch (error) {
+                console.log('Captcha -> error', error);
+            }
+        }
     }, []);
 
     return (
