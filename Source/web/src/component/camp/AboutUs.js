@@ -70,6 +70,7 @@ function PlayVideo(props) {
 }
 
 export default function AboutUs(props) {
+    console.log(props.data.cfg_content);
     const siteReducer = useSelector((state) => state.siteReducer);
 
     const currentAcademy = ModelManager.getLocation() || {};
@@ -92,7 +93,7 @@ export default function AboutUs(props) {
                 props.data.cfg_content &&
                 props.data.cfg_content.includes('youtube') && (
                     <PlayVideo
-                        url={props.data.cfg_content}
+                        url={Utils.getLinkYoutube(props?.data?.cfg_content || "")}
                         onClose={() => setShowVIdeo(false)}
                     />
                 )}
