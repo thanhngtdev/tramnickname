@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import ContactMap from './include/ContactMap';
-import '../css/contact.css';
+import 'css/contact.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { siteActionType } from '../actions/actionTypes';
+import { siteActionType } from 'redux/actions/actionTypes';
 import Select from 'react-select';
-import { CommonStyle } from '../common/Styles';
+import { CommonStyle } from 'common/Styles';
 import Captcha from '../component/Captcha';
-import PathRoute from '../common/PathRoute';
+import PathRoute from 'common/PathRoute';
 import _ from 'lodash';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';

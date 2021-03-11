@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { siteActionType, headerActionType } from '../../actions/actionTypes';
+import { siteActionType, headerActionType } from 'redux/actions/actionTypes';
 
 function NearbyAcademy() {
     const dispatch = useDispatch();
@@ -20,7 +20,10 @@ function NearbyAcademy() {
 
     useEffect(() => {
         if (siteReducer.type) {
-            if (siteReducer.type === siteActionType.FIND_NEARBY_SUCESS && !defaultAcademy?.ms_name) {
+            if (
+                siteReducer.type === siteActionType.FIND_NEARBY_SUCESS &&
+                !defaultAcademy?.ms_name
+            ) {
                 setNearbyAcademy(siteReducer.data);
                 localStorage.setItem(
                     'defaultAcademy',

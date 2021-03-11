@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { articleActionType } from '../../actions/actionTypes';
+import { articleActionType } from 'redux/actions/actionTypes';
 import PropTypes from 'prop-types';
-import ModelManager from '../../common/ModelManager';
+import ModelManager from 'common/ModelManager';
 
 ArticleMenu.propTypes = {
     currentCate: PropTypes.number,

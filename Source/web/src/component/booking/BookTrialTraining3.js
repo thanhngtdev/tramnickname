@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import BookingSuccessMap from '../include/BookingSuccessMap';
+import BookingSuccessMap from 'component/include/BookingSuccessMap';
 import EmailIcon from './EmailIcon';
 import TrainingIcon1 from './TrainingIcon1';
 import TrainingIcon2 from './TrainingIcon2';
@@ -8,9 +8,9 @@ import TrainingIcon3 from './TrainingIcon3';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { siteActionType } from '../../actions/actionTypes';
-import Utils from '../../common/Utils';
-import BorderButton from '../include/BorderButton';
+import { siteActionType } from 'redux/actions/actionTypes';
+import Utils from 'common/Utils';
+import BorderButton from 'component/include/BorderButton';
 
 BookTrialTraining3.propTypes = {
     success: PropTypes.number,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
-import Constants from '../../common/Constants';
+import Constants from 'common/Constants';
 import CustomMarker from './CustomMarker';
 
 function ContactMap(props) {
@@ -43,7 +43,7 @@ function ContactMap(props) {
                                         <img
                                             alt=""
                                             style={{ marginRight: 30 }}
-                                            src={require('../../images/icon-fb-small.png')}
+                                            src={require('images/icon-fb-small.png')}
                                         />
                                     </a>
                                 );
@@ -56,7 +56,7 @@ function ContactMap(props) {
                                         rel="noreferrer">
                                         <img
                                             alt=""
-                                            src={require('../../images/icon-twitter-small.png')}
+                                            src={require('images/icon-twitter-small.png')}
                                         />
                                     </a>
                                 );
@@ -70,7 +70,7 @@ function ContactMap(props) {
                                         <img
                                             alt=""
                                             style={{ marginRight: 30 }}
-                                            src={require('../../images/icon-insta-small.png')}
+                                            src={require('images/icon-insta-small.png')}
                                         />
                                     </a>
                                 );
@@ -109,7 +109,7 @@ function ContactMap(props) {
                                     <img
                                         alt=""
                                         style={{ marginRight: 30 }}
-                                        src={require('../../images/icon-fb-small.png')}
+                                        src={require('images/icon-fb-small.png')}
                                     />
                                 </a>
                             );
@@ -123,7 +123,7 @@ function ContactMap(props) {
                                     <img
                                         alt=""
                                         style={{ marginRight: 30 }}
-                                        src={require('../../images/icon-twitter-small.png')}
+                                        src={require('images/icon-twitter-small.png')}
                                     />
                                 </a>
                             );
@@ -136,7 +136,7 @@ function ContactMap(props) {
                                     rel="noreferrer">
                                     <img
                                         alt=""
-                                        src={require('../../images/icon-insta-small.png')}
+                                        src={require('images/icon-insta-small.png')}
                                     />
                                 </a>
                             );

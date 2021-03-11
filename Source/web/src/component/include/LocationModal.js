@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-import { headerActionType, siteActionType } from '../../actions/actionTypes';
+import { headerActionType, siteActionType } from 'redux/actions/actionTypes';
 import ListAcademy from './ListAcademy';
 import ListNearbyAcademy from './ListNearbyAcademy';
-import '../../css/modal.css';
-import Utils from '../../common/Utils';
+import 'css/modal.css';
+import Utils from 'common/Utils';
 
 function LocationModal() {
     const [visible, setVisible] = useState(false);
@@ -49,13 +49,13 @@ function LocationModal() {
                 siteReducer.number === 1
             ) {
                 setQuery(siteReducer.data.ms_name);
-            };
+            }
             if (
                 siteReducer.type ===
                     siteActionType.GET_CURRENT_ACADEMY_FAILED &&
                 siteReducer.number === 1
             ) {
-                setQuery("Get current location error");
+                setQuery('Get current location error');
             }
         }
     }, [siteReducer]);

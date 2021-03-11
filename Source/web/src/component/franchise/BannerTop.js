@@ -1,11 +1,11 @@
 import React from 'react';
 import Select from 'react-select';
-import { CommonStyle } from '../../common/Styles';
+import { CommonStyle } from 'common/Styles';
 import { useHistory, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import PathRoute from '../../common/PathRoute';
+import PathRoute from 'common/PathRoute';
 import { useDispatch } from 'react-redux';
-import { siteActionType } from '../../actions/actionTypes';
+import { siteActionType } from 'redux/actions/actionTypes';
 
 BannerTop.propTypes = {
     site: PropTypes.object,
@@ -142,7 +142,7 @@ function BannerTop(props) {
                                     rel="noreferrer">
                                     <img
                                         alt=""
-                                        src={require('../../images/icon-fb-small.png')}
+                                        src={require('images/icon-fb-small.png')}
                                     />
                                 </a>
                                 <a
@@ -151,7 +151,7 @@ function BannerTop(props) {
                                     rel="noreferrer">
                                     <img
                                         alt=""
-                                        src={require('../../images/icon-twitter-small.png')}
+                                        src={require('images/icon-twitter-small.png')}
                                     />
                                 </a>
                                 <a
@@ -160,7 +160,7 @@ function BannerTop(props) {
                                     rel="noreferrer">
                                     <img
                                         alt=""
-                                        src={require('../../images/icon-insta-small.png')}
+                                        src={require('images/icon-insta-small.png')}
                                     />
                                 </a>
                             </div>

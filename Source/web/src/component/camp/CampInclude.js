@@ -5,10 +5,10 @@ import {
     faChevronLeft,
     faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import Dot from '../include/Dot';
-import Utils from '../../common/Utils';
+import Dot from 'component/include/Dot';
+import Utils from 'common/Utils';
 import PropTypes from 'prop-types';
-import useGetWidth from '../../hooks/useGetWidth';
+import useGetWidth from 'hooks/useGetWidth';
 
 CampInclude.propTypes = {
     data: PropTypes.object,

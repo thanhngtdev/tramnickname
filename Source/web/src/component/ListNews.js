@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import ArticleMenu from './article/ArticleMenu';
 import ArticleItem from './article/ArticleItem';
-import '../css/article.css';
-import { articleActionType } from '../actions/actionTypes';
+import 'css/article.css';
+import { articleActionType } from 'redux/actions/actionTypes';
 import { useDispatch, useSelector } from 'react-redux';
-import Utils from '../common/Utils';
+import Utils from 'common/Utils';
 import { Link, useParams } from 'react-router-dom';
 
 function ListNews() {
