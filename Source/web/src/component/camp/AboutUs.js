@@ -133,7 +133,7 @@ export default function AboutUs(props) {
                 <div className="container">
                     <div className="get-in-touch">
                         <div className="list-form about">
-                            <p className="pro-sub-text" style={{color: "#5A5A5A"}}>{props.data.cfg_des}</p>
+                            <p className="pro-sub-text" style={{color: "#5A5A5A", margin: "0px"}}>{props.data.cfg_des}</p>
                             <div
                                 class="trustpilot-widget truspilot-big"
                                 data-locale="en-GB"
@@ -142,7 +142,7 @@ export default function AboutUs(props) {
                                 data-style-height="150px"
                                 data-style-width="50%"
                                 data-theme="light"
-                                style={{marginTop: "50px", width: "70%"}}>
+                                style={{marginTop: "60px", width: "70%"}}>
                                 <a
                                     href="https://uk.trustpilot.com/review/wemakefootballers.com"
                                     target="_blank"
