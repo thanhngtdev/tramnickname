@@ -111,8 +111,9 @@ function JoinUs() {
                                             </p>
                                             <a
                                                 // href={route[index]}
-                                                className="more">
-                                                MORE INFORMATION
+                                                className="more"
+                                                style={{ width: '100%' }}>
+                                                Complete an application here
                                             </a>
                                         </div>
                                     </div>
@@ -125,7 +126,9 @@ function JoinUs() {
 
             <ClearBoth />
 
-            <div className="box-slide-review " style={{ top: '-55px' }}>
+            <div
+                className="box-slide-review "
+                style={{ top: '-55px', marginBottom: '100px' }}>
                 <Slider className="slide responsive" {...settings}>
                     {lstFb &&
                         lstFb.map((item, index) => (
@@ -170,23 +173,27 @@ function JoinUs() {
             <div className="about-coach">
                 <div className="container">
                     <h2>Franchise opportunities</h2>
-                    <p
-                    // dangerouslySetInnerHTML={{
-                    //     __html: data.about3?.cfg_content,
-                    // }}
-                    >
-                        Create a successful franchise business with We Make
-                        Footballers. We are the UK’s number 1 football coaching
-                        business for 4-12 year olds. If you want to spend every
-                        day doing something you are passionate about, you can
-                        join the We Make Footballers family on a Part-Time or
-                        Full-Time basis by launching your own WMF franchise. We
-                        are a nationwide football coaching franchise, where many
-                        of our coaches have developed and become franchise
-                        owners. Our franchising model offers coaches the
-                        opportunity to become business owners and create a
-                        viable career within the football industry.
-                    </p>
+                    <div className="right">
+                        <p
+                        // dangerouslySetInnerHTML={{
+                        //     __html: data.about3?.cfg_content,
+                        // }}
+                        >
+                            Create a successful franchise business with We Make
+                            Footballers. We are the UK’s number 1 football
+                            coaching business for 4-12 year olds. If you want to
+                            spend every day doing something you are passionate
+                            about, you can join the We Make Footballers family
+                            on a Part-Time or Full-Time basis by launching your
+                            own WMF franchise. We are a nationwide football
+                            coaching franchise, where many of our coaches have
+                            developed and become franchise owners. Our
+                            franchising model offers coaches the opportunity to
+                            become business owners and create a viable career
+                            within the football industry.
+                        </p>
+                        <a className="btn-right">find out more</a>
+                    </div>
                 </div>
             </div>
             <ClearBoth />

@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import PathRoute from 'common/PathRoute';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import type from 'redux/actions/actionTypes';
-import PathRoute from 'common/Utils';
 
 function FootballFun() {
     const [footballFun, setFootballFun] = useState({});
