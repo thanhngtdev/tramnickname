@@ -57,11 +57,13 @@ a,div,img,button {
 .btn-button-s:hover{
   color: #EE7925 !important;
   background-color: white !important;
+  border: 1px solid #EE7925 !important;
 }
 
 .white-hover:hover {
   color: #EE7925 !important;
-  background-color: #F2F2F2 !important;
+  background-color: white !important;
+  border: 1px solid #EE7925 !important;
 }
 
 /* button banner hover */

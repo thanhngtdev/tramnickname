@@ -15,8 +15,9 @@ import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
 import { useHistory } from 'react-router-dom';
-import { courseStartDate, getListCourse } from 'redux/actions/siteAction';
+import { getListCourse } from 'redux/actions/siteAction';
 import _ from 'lodash';
+import { courseStartDate } from 'redux/actions/bookTrialTrainingAction';
 
 BookTrialTraining1.propTypes = {
     onNext: PropTypes.func,
@@ -269,7 +270,7 @@ function BookTrialTraining1(props) {
                                     <Radiobox
                                         onChange={() => {
                                             dispatch(
-                                                courseStartDate(item.course_id)
+                                                courseStartDate({course_id: item.course_id})
                                             );
                                             setCourseSelected(item);
                                             // console.log(item, 'itemmm');
