@@ -21,6 +21,16 @@ class SiteService {
             `${APIConfig.GET_DETAIL_SITE}?siteId=${id}&cate=`,
         );
     }
+
+    getListNews({ cate, page, alias }) {
+        return httpMethod.get(
+            `${APIConfig.GET_LIST_NEWS}?cate=${cate}&page=${page}&alias=${alias}`,
+        );
+    }
+
+    getDetailNews({ id }) {
+        return httpMethod.get(`${APIConfig.DETAIL_ARTICLE}?atcId=${id}`);
+    }
 }
 
 export default new SiteService();
