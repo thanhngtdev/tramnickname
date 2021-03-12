@@ -50,7 +50,7 @@ function WeeklyTraining() {
             <TrainingInclude data={data?.eachWeek || {}} />
             <ClearBoth />
             <div className="box-slide-review">
-                <Feedback data={data?.testimonial || []} />
+                <Testimonial style={"change-color"}/>
             </div>
 
             <ClearBoth />

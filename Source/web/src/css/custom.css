@@ -329,3 +329,22 @@ a.link {
 	}
 
 }
+
+/* Fix bug  */
+@media (max-width: 464px) {
+	.banner-top .box-text {
+		margin-top: -125px !important;
+
+	}
+}
+
+/* Change color slick  */
+.change-color .slick-dots li button{
+	border: 2px solid orange !important;
+}
+.change-color .slick-dots .slick-active button{
+	background-color: orange !important; 
+}
+.change-color .description{
+	color:#5A5A5A !important;
+}
