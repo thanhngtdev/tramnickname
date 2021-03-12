@@ -31,7 +31,7 @@ export default function JoinUsBanner(props) {
                 <div className="container">
                     <div className="get-in-touch">
                         <div className="list-form about">
-                            <p className="pro-text" style={{ margin: '0' }}>
+                            <p className="pro-text" style={{ marginTop: '0' }}>
                                 {/* {data.about?.cfg_des ||
                                     } */}
                                 We are looking for talented, enthusiastic people
@@ -47,7 +47,6 @@ export default function JoinUsBanner(props) {
                                         borderRadius: '6px',
                                         width: '250px',
                                         display: 'inline-block',
-                                        height: '70px',
                                         border: '0',
                                         cursor: 'pointer',
                                         fontWeight: '500',
@@ -55,6 +54,7 @@ export default function JoinUsBanner(props) {
                                         textAlign: 'center',
                                         color: 'white',
                                         textTransform: 'uppercase',
+                                        padding: '20px 10px',
                                     }}>
                                     Join Us
                                 </a>

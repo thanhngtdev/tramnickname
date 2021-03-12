@@ -316,6 +316,7 @@ function Coaching() {
                                                     display: 'flex',
                                                     paddingTop: '1rem',
                                                     alignItems: 'center',
+                                                    cursor: 'pointer',
                                                 }}
                                                 onClick={() => {
                                                     if (isChecked) {
@@ -408,7 +409,7 @@ function Coaching() {
                                     <label className="input-error">{''}</label>
                                 </div>
                                 <button
-                                    className="btn-button-s"
+                                    className="btn-button-s btn-submit"
                                     onClick={handleSubmit}>
                                     Submit application
                                 </button>
