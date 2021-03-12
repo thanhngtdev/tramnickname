@@ -5,6 +5,7 @@ import watcherArticleSaga from './articleSaga';
 import watcherFranchiseSaga from './franchiseSaga';
 import watcherDetailSite from './detailSiteSaga';
 import watcherAbout from './aboutSaga';
+import watcherBookTrialTraining from './bookTrialTrainingSaga';
 
 export default function* rootSaga() {
     yield all([
@@ -14,5 +15,6 @@ export default function* rootSaga() {
         watcherHomeSage(),
         watcherDetailSite(),
         watcherAbout(),
+        watcherBookTrialTraining(),
     ]);
 }

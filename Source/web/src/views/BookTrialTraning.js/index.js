@@ -24,12 +24,16 @@ import BorderButton from 'component/include/BorderButton';
 import HolidayCampTabSpace from 'component/include/HolidayCampTabSpace';
 import Radiobox from 'component/include/Radiobox/Radiobox';
 import {
-    courseStartDate,
     findNearByAcademy,
     getListCourse,
-    bookCourseSignUp,
-    bookCourse,
 } from 'redux/actions/siteAction';
+import { bookCourse, bookCourseSignUp, courseStartDate } from 'redux/actions/bookTrialTrainingAction';
+
+// import {
+//     courseStartDate,
+//     bookCourseSignUp,
+//     bookCourse,
+// } from 'redux/actions/bookTrialTrainingAction';
 
 function BookTrialTraining() {
     const dispatch = useDispatch();
