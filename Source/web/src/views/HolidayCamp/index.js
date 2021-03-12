@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import BookTrialHoliday from 'component/camp/BookTrialHoliday';
 import useTruspilot from 'hooks/useTruspilot';
 import { getDetailSite } from 'redux/actions/detailSiteAction';
+import Testimonial from 'views/Homepage/components/Testimonial';
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;
@@ -49,7 +50,7 @@ function HolidayCamp() {
             <CampInclude data={data?.dayCamp || {}} />
             <ClearBoth />
             <div className="box-slide-review camp-review">
-                <Feedback data={data?.testimonial || []} color="#EF9042" />
+                <Testimonial/>
             </div>
             <ClearBoth />
             <FootballSkill data={data?.skillGain || {}} />
