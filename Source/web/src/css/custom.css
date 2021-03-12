@@ -337,6 +337,12 @@ a.link {
 
 	}
 }
+@media (max-width: 330px) {
+	.banner-top .box-text {
+		margin-top: -300px !important;
+		display:  block;
+	}
+}
 
 /* Change color slick  */
 .change-color .slick-dots li button{
