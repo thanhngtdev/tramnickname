@@ -174,10 +174,7 @@ function AutocompleteInput(props) {
                                             </label>
 
                                             <Link
-                                                to={
-                                                    '/franchise/' +
-                                                    suggestion.ms_alias
-                                                }>
+                                                to={'/' + suggestion.ms_alias}>
                                                 <FontAwesomeIcon
                                                     icon={faChevronRight}
                                                     style={{
