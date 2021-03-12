@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { articleActionType } from 'redux/actions/actionTypes';
+import type, { articleActionType } from 'redux/actions/actionTypes';
 import PropTypes from 'prop-types';
 import ModelManager from 'common/ModelManager';
 
@@ -18,12 +18,12 @@ export default function ArticleMenu(props) {
     const [lstCate, setLstCate] = useState([]);
     const [displayForm, setDisplayForm] = useState(false);
     const articleReducer = useSelector((state) => state.articleReducer);
+
     useEffect(() => {
         if (articleReducer.type) {
             if (
-                articleReducer.type ===
-                    articleActionType.GET_LIST_NEWS_SUCCESS ||
-                articleReducer.type === articleActionType.DETAIL_ARTICLE_SUCCESS
+                articleReducer.type === type.GET_LIST_NEWS_SUCCESS ||
+                articleReducer.type === type.DETAIL_ARTICLE_SUCCESS
             ) {
                 setLstCate(articleReducer.data.lstCate);
             }
