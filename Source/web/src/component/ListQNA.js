@@ -51,11 +51,11 @@ function ListQNA() {
                                                     marginBottom: '1rem',
                                                 }}
                                                 key={index}
-                                                to={`/qna/${item.cate_alias}`}>
+                                                to={`/faqs/${item.cate_alias}`}>
                                                 {it.atc_sapo}
                                             </Link>
                                         ))}
-                                        <Link to={`/qna/${item.cate_alias}`}>
+                                        <Link to={`/faqs/${item.cate_alias}`}>
                                             View all questions
                                         </Link>
                                     </div>
