@@ -45,7 +45,7 @@ function Location() {
                             if (item.ms_region === 'London')
                                 return (
                                     <a
-                                        href={'/franchise/' + item.ms_alias}
+                                        href={'/' + item.ms_alias}
                                         key={item.ms_id}>
                                         {item.ms_name}
                                     </a>

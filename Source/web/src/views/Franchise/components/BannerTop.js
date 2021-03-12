@@ -94,9 +94,7 @@ function BannerTop(props) {
                                     isMulti={false}
                                     styles={CommonStyle.select2}
                                     onChange={(option) => {
-                                        history.push(
-                                            '/franchise/' + option.alias,
-                                        );
+                                        history.push('/' + option.alias);
                                     }}
                                 />
                                 <p className="appendix">
