@@ -24,19 +24,19 @@ export const courseStartDate = (course_id) => {
     };
 };
 
-export const bookCourseSignUp = ({totalData}) => {
+export const bookCourseSignUp = ({ totalData }) => {
     return {
         type: actionTypes.BOOK_COURSE_SIGNUP,
         totalData,
     };
 };
 
-export const bookCourse = ({course_id, start_date, child_id, token}) => {
+export const bookCourse = ({ course_id, start_date, child_id, token }) => {
     return {
-      type: actionTypes.BOOK_COURSE,
-      course_id,
-      start_date,
-      child_id,
-      token,
+        type: actionTypes.BOOK_COURSE,
+        course_id,
+        start_date,
+        child_id,
+        token,
     };
 };

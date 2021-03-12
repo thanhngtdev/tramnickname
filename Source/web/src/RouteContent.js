@@ -14,6 +14,7 @@ import OneTraining from './views/OneTraining';
 import BirthdayParty from './views/BirthdayParty';
 import About from './views/About';
 import JoinUs from './views/JoinUs';
+import DetailNews from './views/DetailNews';
 import Footer from './component/Footer';
 import Header from './component/Header';
 
@@ -22,7 +23,6 @@ import Coaching from './component/Coaching/Coaching';
 import Contact from './component/Contact';
 import BookTrialCamp from './component/BookTrialCamp';
 
-import DetailNews from './component/DetailNews';
 import LocationModal from './component/include/LocationModal';
 import Location from './component/Location';
 
@@ -165,9 +165,9 @@ function RouteContent(props) {
                     path={PathRoute.BirthdayParty}
                     component={BirthdayParty}
                 />
-
                 <Route exact path={PathRoute.JoinUs} component={JoinUs} />
                 <Route exact path={PathRoute.Coaching} component={Coaching} />
+                <Route exact path={PathRoute.HomeNews} component={ListNews} />
 
                 <Route exact path={PathRoute.BookTrialCamp}>
                     <BookTrialCamp />
@@ -189,9 +189,7 @@ function RouteContent(props) {
                 <Route exact path={PathRoute.ListNews}>
                     <ListNews />
                 </Route>
-                <Route exact path={PathRoute.HomeNews}>
-                    <ListNews />
-                </Route>
+
                 <Route exact path={PathRoute.DetailQNA}>
                     <DetailQNA />
                 </Route>

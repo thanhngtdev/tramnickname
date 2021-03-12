@@ -1,4 +1,4 @@
-import { articleActionType } from '../actions/actionTypes';
+import type, { articleActionType } from '../actions/actionTypes';
 
 const initialState = {
     message: '',
@@ -6,25 +6,25 @@ const initialState = {
 
 const articleReducer = (state = initialState, action) => {
     switch (action.type) {
-        case articleActionType.GET_LIST_NEWS_SUCCESS:
+        case type.GET_LIST_NEWS_SUCCESS:
             return {
-                type: articleActionType.GET_LIST_NEWS_SUCCESS,
+                type: type.GET_LIST_NEWS_SUCCESS,
                 data: action.data,
             };
-        case articleActionType.GET_LIST_NEWS_FAILED:
+        case type.GET_LIST_NEWS_FAILED:
             return {
-                type: articleActionType.GET_LIST_NEWS_FAILED,
+                type: type.GET_LIST_NEWS_FAILED,
                 message: action.message,
             };
-        case articleActionType.DETAIL_ARTICLE_SUCCESS:
+        case type.DETAIL_ARTICLE_SUCCESS:
             return {
-                type: articleActionType.DETAIL_ARTICLE_SUCCESS,
+                type: type.DETAIL_ARTICLE_SUCCESS,
                 data: action.data,
                 failed: false,
             };
-        case articleActionType.DETAIL_ARTICLE_FAILED:
+        case type.DETAIL_ARTICLE_FAILED:
             return {
-                type: articleActionType.DETAIL_ARTICLE_FAILED,
+                type: type.DETAIL_ARTICLE_FAILED,
                 message: action.message,
                 failed: true,
             };

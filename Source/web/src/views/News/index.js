@@ -1,37 +1,34 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import ArticleMenu from './components/ArticleMenu';
-import ArticleItem from './components/ArticleItem';
+import ArticleMenu from 'component/article/ArticleMenu';
+import ArticleItem from 'component/article/ArticleItem';
 import 'css/article.css';
-import { articleActionType } from 'redux/actions/actionTypes';
+import type, { articleActionType } from 'redux/actions/actionTypes';
 import { useDispatch, useSelector } from 'react-redux';
 import Utils from 'common/Utils';
 import { Link, useParams } from 'react-router-dom';
+import { getListNews } from 'redux/actions/articleAction';
 
 function ListNews() {
     let { cateAlias, alias } = useParams();
-    console.log(useParams(), 'param');
+    const articleReducer = useSelector((state) => state.articleReducer);
     const dispatch = useDispatch();
+    // const { data, message } = articleReducer;
+
     const [lstNews, setLstNews] = useState([]);
     const [page, setPage] = useState(1);
+    const [lastPage, setLastPage] = useState(1);
     const [promoteArticle, setPromoteArticle] = useState({});
     const [cate, setCate] = useState({});
-    const [lastPage, setLastPage] = useState(1);
-    useEffect(() => {
-        dispatch({
-            type: articleActionType.GET_LIST_NEWS,
-            cate: cateAlias || '',
-            alias: alias || '',
-            page,
-        });
-    }, [dispatch]);
 
-    const articleReducer = useSelector((state) => state.articleReducer);
+    useEffect(() => {
+        dispatch(
+            getListNews({ cate: cateAlias || '', alias: alias || '', page }),
+        );
+    }, []);
 
     useEffect(() => {
         if (articleReducer.type) {
-            if (
-                articleReducer.type === articleActionType.GET_LIST_NEWS_SUCCESS
-            ) {
+            if (articleReducer.type === type.GET_LIST_NEWS_SUCCESS) {
                 articleReducer.data.lstCate.map((_cateItem) => {
                     if (_cateItem.cate_alias === cateAlias) {
                         setCate(_cateItem);
@@ -55,7 +52,7 @@ function ListNews() {
                 currentCate={cate}
                 setCate={(_cate) => {
                     dispatch({
-                        type: articleActionType.GET_LIST_NEWS,
+                        type: type.GET_LIST_NEWS,
                         cate: _cate.cate_alias || '',
                         alias: _cate.alias || '',
                         page: 1,
@@ -104,7 +101,7 @@ function ListNews() {
                             style={{ cursor: 'pointer' }}
                             onClick={() => {
                                 dispatch({
-                                    type: articleActionType.GET_LIST_NEWS,
+                                    type: type.GET_LIST_NEWS,
                                     cate: cate.cate_alias || '',
                                     page: page + 1,
                                 });
