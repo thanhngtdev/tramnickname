@@ -207,78 +207,6 @@ function* getListCourse({ company_id, location_id, course_type}) {
     }
 }
 
-function* getCourseStartDate({ course_id }) {
-    const response = yield API.getParentAPI(APIConfig.COURSE_START_DATE, {
-        course_id,
-    });
-    // console.log(response);
-    if (response && response.status === 200) {
-        yield put({
-            type: siteActionType.COURSE_START_DATE_SUCCESS,
-            data: response.data,
-        });
-    } else {
-        yield put({
-            type: siteActionType.COURSE_START_DATE_FAILED,
-            message: response ? response.message : '',
-        });
-    }
-}
-
-function* bookCourse({ course_id, start_date, child_id, token }) {
-    const response = yield API.postParentAPI(APIConfig.BOOK_COURSE, {
-        course_id,
-        start_date,
-        child_id,
-        token,
-    });
-    // console.log(response);
-    if (response && response.status === 200) {
-        yield put({
-            type: siteActionType.BOOK_COURSE_SUCCESS,
-            data: response,
-        });
-    } else {
-        yield put({
-            type: siteActionType.BOOK_COURSE_FAILED,
-            message: response ? response.message : '',
-        });
-    }
-}
-
-function* bookCourseSignup({ totalData }) {
-    let apiUrl =
-        totalData.siteSelected.ms_trial === 1
-            ? APIConfig.BOOK_COURSE_SIGNUP
-            : APIConfig.BOOK_TRIAL_SIGNUP;
-    const response = yield API.postParentAPI(apiUrl, totalData);
-    // const response = {
-    //     access_token: 'niAlTPReWBrpFe2rl9PUO35i4UtEjA7YsNPs90UO',
-    //     booking_id: 43727,
-    //     child_id: 34876,
-    //     expires_in: 604800,
-    //     message: 'Success',
-    //     status: 200,
-    //     token_type: 'Bearer',
-    // };
-
-    // console.log(response);
-    if (response) {
-        yield put({
-            type: siteActionType.BOOK_COURSE_SIGNUP_SUCCESS,
-            data: response,
-        });
-    } else {
-        yield put({
-            type: siteActionType.BOOK_COURSE_SIGNUP_FAILED,
-            message: response ? response.message : '',
-        });
-    }
-}
-
-export function* watchBookCourseSignup() {
-    yield takeEvery(siteActionType.BOOK_COURSE_SIGNUP, bookCourseSignup);
-}
 
 function* bookEventSignup({ totalData }) {
     const response = yield API.postParentAPI(
@@ -415,9 +343,6 @@ export default function* watcherSiteSaga() {
     yield takeLatest(siteActionType.GET_BOOKING, getBooking);
     yield takeLatest(siteActionType.ADD_WAITING, addWaiting);
     yield takeLatest(siteActionType.BOOK_EVENT_SIGNUP, bookEventSignup);
-    yield takeLatest(siteActionType.BOOK_COURSE_SIGNUP, bookCourseSignup);
-    yield takeLatest(siteActionType.BOOK_COURSE, bookCourse);
-    yield takeLatest(siteActionType.COURSE_START_DATE, getCourseStartDate);
     yield takeLatest(siteActionType.GET_LIST_COURSE, getListCourse);
     yield takeLatest(siteActionType.FIND_NEARBY_ACADEMY, findNearbyAcademy);
     yield takeLatest(siteActionType.FIND_NEARBY, findNearby);
