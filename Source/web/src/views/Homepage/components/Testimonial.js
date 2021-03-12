@@ -5,9 +5,10 @@ import React, { useState, useEffect } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'css/slick-theme.css';
 import Slider from 'react-slick';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import type from 'redux/actions/actionTypes';
 import Utils from 'common/Utils';
+import { getHome } from 'redux/actions/homeAction';
 
 const settings = {
     dots: true,
@@ -42,6 +43,13 @@ const settings = {
 function Testimonial() {
     const [lstFb, setLstFb] = useState([]);
     const homeReducer = useSelector((state) => state.homeReducer);
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        if(!lstFb[0]){
+            dispatch(getHome());
+        }
+    },[lstFb]);
 
     useEffect(() => {
         if (homeReducer.type) {

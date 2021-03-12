@@ -14,6 +14,7 @@ import ModelManager from 'common/ModelManager';
 import { siteActionType } from 'redux/actions/actionTypes';
 import useTruspilot from 'hooks/useTruspilot';
 import { getDetailSite } from 'redux/actions/detailSiteAction';
+import Testimonial from 'views/Homepage/components/Testimonial';
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;
@@ -108,7 +109,7 @@ export default function BirthdayParty() {
             </div>
             <ClearBoth />
             <div className="box-slide-review birthday-review">
-                <Feedback />
+                <Testimonial />
             </div>
             <ClearBoth />
             <FootballSkill data={data?.skillGain || {}} />
