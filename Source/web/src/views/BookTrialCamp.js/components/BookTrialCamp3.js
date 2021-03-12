@@ -2,15 +2,15 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Checkbox from 'component/include/Checkbox/Checkbox';
 import SolidButton from 'component/include/SolidButton';
-import TrainingIcon1 from './TrainingIcon1';
-import TrainingIcon2 from './TrainingIcon2';
-import TrainingIcon3 from './TrainingIcon3';
 import PropTypes from 'prop-types';
 import { siteActionType } from 'redux/actions/actionTypes';
 import { useDispatch, useSelector } from 'react-redux';
 import BorderButton from 'component/include/BorderButton';
-import EmailIcon from './EmailIcon';
 import Utils from 'common/Utils';
+import EmailIcon from 'component/booking/EmailIcon';
+import TrainingIcon1 from 'component/booking/TrainingIcon1';
+import TrainingIcon2 from 'component/booking/TrainingIcon2';
+import TrainingIcon3 from 'component/booking/TrainingIcon3';
 
 BookTrialCamp3.propTypes = {
     success: PropTypes.number,

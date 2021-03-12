@@ -21,7 +21,7 @@ import Header from './component/Header';
 import Coaching from './component/Coaching/Coaching';
 
 import Contact from './component/Contact';
-import BookTrialCamp from './component/BookTrialCamp';
+// import BookTrialCamp from './component/BookTrialCamp';
 
 import LocationModal from './component/include/LocationModal';
 import Location from './component/Location';
@@ -38,6 +38,7 @@ import NotFound from './component/NotFound';
 import usePermissionLocation from './hooks/usePermissionLocation';
 import SchoolTraining from './component/SchoolTraining';
 import BookTrialTraining from 'views/BookTrialTraning.js';
+import BookTrialCamp from 'views/BookTrialCamp.js';
 
 const DEFAULT_LAT = 51.5285582;
 const DEFAULT_LOG = -0.2416794;
@@ -152,6 +153,11 @@ function RouteContent(props) {
                 />
                 <Route
                     exact
+                    path={PathRoute.SchoolTraining}
+                    component={SchoolTraining}
+                />
+                <Route
+                    exact
                     path={PathRoute.HolidayCamp}
                     component={HolidayCamp}
                 />
@@ -169,9 +175,12 @@ function RouteContent(props) {
                 <Route exact path={PathRoute.Coaching} component={Coaching} />
                 <Route exact path={PathRoute.HomeNews} component={ListNews} />
 
-                <Route exact path={PathRoute.BookTrialCamp}>
-                    <BookTrialCamp />
-                </Route>
+                <Route
+                    exact
+                    path={PathRoute.BookTrialCamp}
+                    component={BookTrialCamp}
+                />
+
                 <Route
                     exact
                     path={PathRoute.BookTrialTraining}
@@ -215,9 +224,7 @@ function RouteContent(props) {
                 <Route exact path={PathRoute.Error}>
                     <NotFound />
                 </Route>
-                <Route exact path={PathRoute.SchoolTraining}>
-                    <SchoolTraining />
-                </Route>
+                <Route exact path={PathRoute.Franchise} component={Franchise} />
                 <Route>
                     <NotFound />
                 </Route>

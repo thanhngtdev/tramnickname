@@ -124,7 +124,7 @@ function Footer() {
                             <Link to={PathRoute.JoinUs}>Join Us</Link>
                         </li>
                         <li>
-                            <a href="/#">School Partnerships</a>
+                            <a href="/school-training">School Partnerships</a>
                         </li>
                         <li>
                             <a

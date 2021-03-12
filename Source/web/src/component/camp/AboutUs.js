@@ -93,7 +93,9 @@ export default function AboutUs(props) {
                 props.data.cfg_content &&
                 props.data.cfg_content.includes('youtube') && (
                     <PlayVideo
-                        url={Utils.getLinkYoutube(props?.data?.cfg_content || "")}
+                        url={Utils.getLinkYoutube(
+                            props?.data?.cfg_content || '',
+                        )}
                         onClose={() => setShowVIdeo(false)}
                     />
                 )}
@@ -131,26 +133,21 @@ export default function AboutUs(props) {
                 <div className="container">
                     <div className="get-in-touch">
                         <div className="list-form about">
-                            <p className="pro-sub-text">{props.data.cfg_des}</p>
+                            <p className="pro-sub-text" style={{color: "#5A5A5A", margin: "0px"}}>{props.data.cfg_des}</p>
                             <div
-                                style={{
-                                    height: 30,
-                                }}
-                                className="trustpilot-widget"
+                                class="trustpilot-widget truspilot-big"
                                 data-locale="en-GB"
-                                data-template-id="5418015fb0d04a0c9cf721f2"
+                                data-template-id="53aa8807dec7e10d38f59f32"
                                 data-businessunit-id="5630b23d0000ff000584db47"
-                                data-style-height="300px"
-                                data-style-width="100%"
+                                data-style-height="150px"
+                                data-style-width="50%"
                                 data-theme="light"
-                                data-stars="4,5"
-                                data-review-languages="en">
+                                style={{marginTop: "60px", width: "70%"}}>
                                 <a
-                                    className="alink"
                                     href="https://uk.trustpilot.com/review/wemakefootballers.com"
                                     target="_blank"
                                     rel="noopener">
-                                    See more Reviews
+                                    Trustpilot
                                 </a>
                             </div>
                         </div>
