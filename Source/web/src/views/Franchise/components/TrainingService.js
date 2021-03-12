@@ -325,18 +325,12 @@ TrainingService.propTypes = {
 
 const imageService = require('images/service.png');
 const imageServiceActive = require('images/service-active.png');
-const listMenu = [
-    'Weekly Training',
-    '1-Week Holiday camps',
-    '1-on-1 Training',
-    'Birthday Parties',
-    'School Training',
-];
 
 function TrainingService(props) {
     const [activeIndex, setActiveIndex] = useState(0);
     const [hoverIndex, setHoverIndex] = useState(0);
     const [innerWidth, setInnerWith] = useState(window.innerWidth);
+    const list = props.service.cfg_value;
 
     useEffect(() => {
         window.addEventListener('resize', handleWindowSizeChange);
@@ -368,48 +362,70 @@ function TrainingService(props) {
     const isMobile = innerWidth <= 1000;
     if (isMobile) {
         return (
-            <div className="service-mobile">
-                <h2>
-                    {props.site ? props.site.ms_name : ''} junior football
-                    training services:
-                </h2>
-                <div>
-                    <div className="service-group">
-                        <img alt="" src={imageService} />
-                        <span>{listMenu[0]}</span>
-                        <div style={{ height: '2rem' }} />
-                        <LDWeeklyTraining
-                            site={props.site}
-                            options={options}
-                            isMobile={true}
-                        />
-                    </div>
-                    <div className="service-group">
-                        <img alt="" src={imageService} />
-                        <span>{listMenu[1]}</span>
-                        <div style={{ height: '2rem' }} />
-                        <LDHolidayCamp site={props.site} isMobile={true} />
-                    </div>
-                    <div className="service-group">
-                        <img alt="" src={imageService} />
-                        <span>{listMenu[2]}</span>
-                        <div style={{ height: '2rem' }} />
-                        <LDOneTraining />
-                    </div>
-                    <div className="service-group">
-                        <img alt="" src={imageService} />
-                        <span>{listMenu[3]}</span>
-                        <div style={{ height: '2rem' }} />
-                        <LDBirthdayParty />
-                    </div>
-                    <div className="service-group">
-                        <img alt="" src={imageService} />
-                        <span>{listMenu[4]}</span>
-                        <div style={{ height: '2rem' }} />
-                        <LDSchoolTraining />
+            list && (
+                <div className="service-mobile">
+                    <h2>
+                        {props.site ? props.site.ms_name : ''} junior football
+                        training services:
+                    </h2>
+                    <div>
+                        <div className="service-group">
+                            <img
+                                alt=""
+                                src={Utils.getThumb(list[0].icon)}
+                                style={{ width: '37px' }}
+                            />
+                            <span>{list[0].title}</span>
+                            <div style={{ height: '2rem' }} />
+                            <LDWeeklyTraining
+                                site={props.site}
+                                options={options}
+                                isMobile={true}
+                            />
+                        </div>
+                        <div className="service-group">
+                            <img
+                                alt=""
+                                src={Utils.getThumb(list[1].icon)}
+                                style={{ width: '37px' }}
+                            />
+                            <span>{list[1].title}</span>
+                            <div style={{ height: '2rem' }} />
+                            <LDHolidayCamp site={props.site} isMobile={true} />
+                        </div>
+                        <div className="service-group">
+                            <img
+                                alt=""
+                                src={Utils.getThumb(list[2].icon)}
+                                style={{ width: '37px' }}
+                            />
+                            <span>{list[2].title}</span>
+                            <div style={{ height: '2rem' }} />
+                            <LDOneTraining />
+                        </div>
+                        <div className="service-group">
+                            <img
+                                alt=""
+                                src={Utils.getThumb(list[3].icon)}
+                                style={{ width: '37px' }}
+                            />
+                            <span>{list[3].title}</span>
+                            <div style={{ height: '2rem' }} />
+                            <LDBirthdayParty />
+                        </div>
+                        <div className="service-group">
+                            <img
+                                alt=""
+                                src={Utils.getThumb(list[4].icon)}
+                                style={{ width: '37px' }}
+                            />
+                            <span>{list[4].title}</span>
+                            <div style={{ height: '2rem' }} />
+                            <LDSchoolTraining />
+                        </div>
                     </div>
                 </div>
-            </div>
+            )
         );
     } else {
         return (
@@ -421,48 +437,49 @@ function TrainingService(props) {
                     </h2>
                     <div className="content-small">
                         <ul className="nav-tabs">
-                            {listMenu.map((item, index) => (
-                                <li
-                                    key={index}
-                                    className={
-                                        activeIndex === index ||
-                                        hoverIndex === index
-                                            ? 'active'
-                                            : ''
-                                    }
-                                    style={{
-                                        borderBottomColor:
-                                            activeIndex - 1 === index ||
-                                            hoverIndex - 1 === index
-                                                ? '#ef9042'
-                                                : '',
-                                    }}
-                                    onMouseEnter={() => setHoverIndex(index)}
-                                    onClick={() => setActiveIndex(index)}>
-                                    <a data-toggle="tab">
-                                        <img
-                                            alt=""
-                                            src={
-                                                activeIndex === index
-                                                    ? imageServiceActive
-                                                    : imageService
-                                            }
-                                        />
-                                        {item}
-                                    </a>
-                                    {activeIndex === index && (
-                                        <div className="right-arrow">
-                                            <FontAwesomeIcon
-                                                icon={faArrowRight}
-                                                style={{
-                                                    color: '#EE7925',
-                                                    fontSize: '0.5rem',
-                                                }}
+                            {list &&
+                                list.map((item, index) => (
+                                    <li
+                                        key={index}
+                                        className={
+                                            activeIndex === index ||
+                                            hoverIndex === index
+                                                ? 'active'
+                                                : ''
+                                        }
+                                        style={{
+                                            borderBottomColor:
+                                                activeIndex - 1 === index ||
+                                                hoverIndex - 1 === index
+                                                    ? '#ef9042'
+                                                    : '',
+                                        }}
+                                        onMouseEnter={() =>
+                                            setHoverIndex(index)
+                                        }
+                                        onMouseLeave={() => setHoverIndex(-1)}
+                                        onClick={() => setActiveIndex(index)}>
+                                        <a data-toggle="tab">
+                                            <img
+                                                alt=""
+                                                src={Utils.getThumb(item.icon)}
+                                                style={{ width: '37px' }}
                                             />
-                                        </div>
-                                    )}
-                                </li>
-                            ))}
+                                            {item.title}
+                                        </a>
+                                        {activeIndex === index && (
+                                            <div className="right-arrow">
+                                                <FontAwesomeIcon
+                                                    icon={faArrowRight}
+                                                    style={{
+                                                        color: '#EE7925',
+                                                        fontSize: '0.5rem',
+                                                    }}
+                                                />
+                                            </div>
+                                        )}
+                                    </li>
+                                ))}
                         </ul>
                         <div
                             className="tab-content"
