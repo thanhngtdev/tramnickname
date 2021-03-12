@@ -9,7 +9,6 @@ function* getHome() {
     try {
         const response = yield siteService.getHome();
         // console.log(response, 'saga');
-
         if (response && response.status === 200) {
             yield put({
                 type: type.GET_HOME_SUCCESS,

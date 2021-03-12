@@ -23,11 +23,12 @@ import BookTrialTraining4 from './components/BookTrialTraining4';
 import BorderButton from 'component/include/BorderButton';
 import HolidayCampTabSpace from 'component/include/HolidayCampTabSpace';
 import Radiobox from 'component/include/Radiobox/Radiobox';
+import { findNearByAcademy, getListCourse } from 'redux/actions/siteAction';
 import {
-    findNearByAcademy,
-    getListCourse,
-} from 'redux/actions/siteAction';
-import { bookCourse, bookCourseSignUp, courseStartDate } from 'redux/actions/bookTrialTrainingAction';
+    bookCourse,
+    bookCourseSignUp,
+    courseStartDate,
+} from 'redux/actions/bookTrialTrainingAction';
 
 // import {
 //     courseStartDate,
@@ -423,7 +424,7 @@ function BookTrialTraining() {
                                     );
                                 }}
                                 bookOther={() => {
-                                    console.log("bookOther");
+                                    console.log('bookOther');
                                     dispatch(
                                         // type: siteActionType.BOOK_COURSE,
                                         // course_id:
@@ -434,8 +435,12 @@ function BookTrialTraining() {
                                         // child_id: bookingFull.child_id,
                                         // token: token,
                                         bookCourse({
-                                            course_id: bookingFull.other_class.course_id,
-                                            start_date: bookingFull.other_class.start_date.date,
+                                            course_id:
+                                                bookingFull.other_class
+                                                    .course_id,
+                                            start_date:
+                                                bookingFull.other_class
+                                                    .start_date.date,
                                             child_id: bookingFull.child_id,
                                             token,
                                         }),
@@ -444,7 +449,10 @@ function BookTrialTraining() {
                             />
                         )}
                         {activeTab === 4 && (
-                            <BookTrialTraining4 url={paymentUrl} />
+                            <BookTrialTraining4
+                                responseCourse={responseCourse}
+                                url={paymentUrl}
+                            />
                         )}
                     </div>
                 </div>
