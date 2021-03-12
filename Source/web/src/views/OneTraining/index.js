@@ -13,6 +13,7 @@ import { siteActionType } from 'redux/actions/actionTypes';
 import { useSelector, useDispatch } from 'react-redux';
 import useTruspilot from 'hooks/useTruspilot';
 import { getDetailSite } from 'redux/actions/detailSiteAction';
+import Testimonial from 'views/Homepage/components/Testimonial';
 
 const ClearBoth = function () {
     return <div style={{ clear: 'both' }} />;
@@ -42,7 +43,7 @@ function OneTraining() {
             <FootballSkill data={data?.skillGain || {}} />
             <ClearBoth />
             <div className="box-slide-review one-training">
-                <Feedback />
+                <Testimonial style={"change-color"}/>
             </div>
             <ClearBoth />
             <div className="provides">

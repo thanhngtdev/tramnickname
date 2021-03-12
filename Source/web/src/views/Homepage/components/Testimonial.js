@@ -40,7 +40,7 @@ const settings = {
     ],
 };
 
-function Testimonial() {
+function Testimonial(props) {
     const [lstFb, setLstFb] = useState([]);
     const homeReducer = useSelector((state) => state.homeReducer);
     const dispatch = useDispatch();
@@ -60,7 +60,7 @@ function Testimonial() {
     }, [homeReducer]);
 
     return (
-        <div className="box-slide-review ">
+        <div className={`box-slide-review ${props.style}`}>
             <Slider className="slide responsive" {...settings}>
                 {lstFb &&
                     lstFb.map((item, index) => (
