@@ -334,13 +334,18 @@ a.link {
 @media (max-width: 464px) {
 	.banner-top .box-text {
 		margin-top: -125px !important;
-
+	}
+	.banner-top h1 {
+		font-size: 2.5rem !important;
 	}
 }
 @media (max-width: 330px) {
 	.banner-top .box-text {
-		margin-top: -300px !important;
+		margin-top: -150px !important;
 		display:  block;
+	}
+	.banner-top h1 {
+		font-size: 2.4rem !important;
 	}
 }
 
