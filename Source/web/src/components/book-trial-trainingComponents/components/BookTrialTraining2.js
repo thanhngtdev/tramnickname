@@ -1,5 +1,5 @@
 import Utils from 'src/common/Utils';
-import EyeIcon from 'src/components/booking/EyeIcon';
+import EyeIcon from 'src/components/Booking/EyeIcon';
 import BorderButton from 'src/components/include/BorderButton';
 import IconUnVerify from 'src/components/include/Checkbox/IconUnVerify';
 import IconVerify from 'src/components/include/Checkbox/IconVerify';
