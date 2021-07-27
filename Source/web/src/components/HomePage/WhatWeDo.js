@@ -1,16 +1,11 @@
-import useEqualElement from 'src/hooks/useEqualElement';
 import Link from 'next/link';
-import PropTypes from 'prop-types';
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
+import Gallery from 'src/components/Homepage/ImageGallery.js';
 import Testimonial from 'src/components/Testimonial';
 import TrustPilot from 'src/components/TrustPilot';
-import Gallery from 'src/components/Homepage/ImageGallery';
-
-WhatWeDo.propTypes = {
-    gallery: PropTypes.object,
-};
+import useEqualElement from 'src/hooks/useEqualElement';
 
 const ROUTE = [PathRoute.WeeklyTraining, PathRoute.HolidayCamp];
 

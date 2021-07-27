@@ -4,7 +4,7 @@ import BirthdayExtra from 'src/components/Camp/BirthdayExtra';
 import BirthdayPackage from 'src/components/Camp/BirthdayPackage';
 import FootballSkill from 'src/components/Camp/FootballSkill';
 import QNA from 'src/components/Camp/QNA';
-import ImageGallery from 'src/components/Homepage/ImageGallery';
+import Gallery from 'src/components/Homepage/ImageGallery.js';
 import Testimonial from 'src/components/Testimonial';
 import DefaultLayout from 'src/layout/DefaultLayout';
 import BookTrialParty from 'src/pages/birthday-parties/components/BookTrialParty';
@@ -84,7 +84,7 @@ function BirthdayParty({ data, listSite }) {
             />
 
             <div className="birthday-gallery">
-                <ImageGallery
+                <Gallery
                     title={
                         'Check out some snaps from our previous Football Birthday Parties'
                     }

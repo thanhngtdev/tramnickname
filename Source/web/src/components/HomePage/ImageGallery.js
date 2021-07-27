@@ -1,10 +1,9 @@
-/* eslint-disable class-methods-use-this */
-import React, { useRef, useState } from 'react';
-import Utils from 'src/common/Utils';
-import PropTypes from 'prop-types';
-import 'react-image-gallery/styles/css/image-gallery.css';
-import ImageGallery from 'react-image-gallery';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
+import React, { useRef, useState } from 'react';
+import ImageGallery from 'react-image-gallery';
+import 'react-image-gallery/styles/css/image-gallery.css';
+import Utils from 'src/common/Utils';
 
 Gallery.propTypes = {
     gallery: PropTypes.object,

@@ -1,7 +1,6 @@
 import React from 'react';
 import BookTrial from 'src/components/Booking/BookTrial';
 import BannerTop from 'src/components/HomePage/BannerTop';
-// import FootballBegining from 'components/HomePage/FootballBegining';
 import FootballBegining from 'src/components/HomePage/FootballBegining';
 import FootballFun from 'src/components/HomePage/FootballFun';
 import InstaBox from 'src/components/HomePage/InstaBox';
