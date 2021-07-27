@@ -5,7 +5,7 @@ import BirthdayExtra from 'src/components/Camp/BirthdayExtra';
 import BirthdayPackage from 'src/components/Camp/BirthdayPackage';
 import FootballSkill from 'src/components/Camp/FootballSkill';
 import QNA from 'src/components/Camp/QNA';
-import Gallery from 'src/components/Homepage/ImageGallery.js';
+import Gallery from 'src/components/HomePage/Gallery';
 import Quote from 'src/components/Quote';
 import Testimonial from 'src/components/Testimonial';
 import saveList from 'src/hooks/useSaveList';

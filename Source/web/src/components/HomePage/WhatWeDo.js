@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
-import Gallery from 'src/components/Homepage/ImageGallery.js';
+import Gallery from 'src/components/HomePage/Gallery';
 import Testimonial from 'src/components/Testimonial';
 import TrustPilot from 'src/components/TrustPilot';
 import useEqualElement from 'src/hooks/useEqualElement';
