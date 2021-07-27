@@ -3,8 +3,8 @@ import { Marker } from 'react-google-maps';
 import { useDispatch, useSelector } from 'react-redux';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 
-const DEFAULT_ICON = 'static/images/marker.png';
-const SELECTED_ICON = 'static/images/marker-selected.png';
+const DEFAULT_ICON = 'static-file/images/marker.png';
+const SELECTED_ICON = 'static-file/images/marker-selected.png';
 function CustomMarker(props) {
     const dispatch = useDispatch();
     const { item } = props;

@@ -62,7 +62,7 @@ function ContactMap(props) {
                                             alt=""
                                             style={{ marginRight: 30 }}
                                             src={
-                                                'static/images/icon-fb-small.png'
+                                                'static-file/images/icon-fb-small.png'
                                             }
                                         />
                                     </a>
@@ -77,7 +77,7 @@ function ContactMap(props) {
                                         <img
                                             alt=""
                                             src={
-                                                'static/images/icon-twitter-small.png'
+                                                'static-file/images/icon-twitter-small.png'
                                             }
                                         />
                                     </a>
@@ -93,7 +93,7 @@ function ContactMap(props) {
                                             alt=""
                                             style={{ marginRight: 30 }}
                                             src={
-                                                'static/images/icon-insta-small.png'
+                                                'static-file/images/icon-insta-small.png'
                                             }
                                         />
                                     </a>
@@ -135,7 +135,9 @@ function ContactMap(props) {
                                     <img
                                         alt=""
                                         style={{ marginRight: 30 }}
-                                        src={'static/images/icon-fb-small.png'}
+                                        src={
+                                            'static-file/images/icon-fb-small.png'
+                                        }
                                     />
                                 </a>
                             );
@@ -150,7 +152,7 @@ function ContactMap(props) {
                                         alt=""
                                         style={{ marginRight: 30 }}
                                         src={
-                                            'static/images/icon-twitter-small.png'
+                                            'static-file/images/icon-twitter-small.png'
                                         }
                                     />
                                 </a>
@@ -165,7 +167,7 @@ function ContactMap(props) {
                                     <img
                                         alt=""
                                         src={
-                                            'static/images/icon-insta-small.png'
+                                            'static-file/images/icon-insta-small.png'
                                         }
                                     />
                                 </a>

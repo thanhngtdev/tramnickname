@@ -167,7 +167,9 @@ function BannerTop(props) {
                                     rel="noreferrer">
                                     <img
                                         alt=""
-                                        src={'static/images/icon-fb-small.png'}
+                                        src={
+                                            'static-file/images/icon-fb-small.png'
+                                        }
                                     />
                                 </a>
                                 <a
@@ -177,7 +179,7 @@ function BannerTop(props) {
                                     <img
                                         alt=""
                                         src={
-                                            'static/images/icon-twitter-small.png'
+                                            'static-file/images/icon-twitter-small.png'
                                         }
                                     />
                                 </a>
@@ -188,7 +190,7 @@ function BannerTop(props) {
                                     <img
                                         alt=""
                                         src={
-                                            'static/images/icon-insta-small.png'
+                                            'static-file/images/icon-insta-small.png'
                                         }
                                     />
                                 </a>

@@ -125,7 +125,7 @@ export default function AboutUs(props) {
                     }}>
                     <img
                         alt=""
-                        src={'/static/images/weekly-training-video.png'}
+                        src={'/static-file/images/weekly-training-video.png'}
                     />
                     {props.data.cfg_content &&
                         props.data.cfg_content.includes('youtube.com') && (

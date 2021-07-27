@@ -8,7 +8,7 @@ export default function JoinUsBanner(props) {
                     <p></p>
                 </div>
                 <div className="col-6" style={{ paddingLeft: 0 }}>
-                    <img alt="" src={'static/images/joinUs.png'} />
+                    <img alt="" src={'static-file/images/joinUs.png'} />
                 </div>
             </div>
             <div className="about-us-content">

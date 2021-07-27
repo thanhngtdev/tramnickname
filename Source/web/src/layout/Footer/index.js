@@ -52,7 +52,7 @@ function Footer() {
         <div className="footer">
             <div className="container">
                 <div className="box-contact">
-                    <img src={'/static/images/logo-white.png'} alt="" />
+                    <img src={'/static-file/images/logo-white.png'} alt="" />
                     <ul className="list">
                         <li className="mail">
                             <a

@@ -296,14 +296,14 @@ table {
 	height: 60px;
 	border: 0;
 	padding: 0;
-	background: url(/static/images/menu_btn.svg) no-repeat right center;
+	background: url(/static-file/images/menu_btn.svg) no-repeat right center;
 	background-color: transparent;
 	display: none;
 	text-indent: -9999px;
 }
 
 .header .head-top-mobile .btn-button.show {
-	background: url(/static/images/x_btn.svg) no-repeat right center;
+	background: url(/static-file/images/x_btn.svg) no-repeat right center;
 }
 
 .header .navi {
@@ -524,7 +524,7 @@ table {
 	width: 36px;
 	height: 0;
 	height: 35px;
-	background: url(/static/images/map-marker.svg) no-repeat center center;
+	background: url(/static-file/images/map-marker.svg) no-repeat center center;
 }
 
 .menu-small .select-selected.select-arrow-active:after {
@@ -1213,7 +1213,7 @@ background-color: #fff;
 	right: 0px;
 	width: 45px;
 	height: 70px;
-	background: url(/static/images/chevron-down.svg) no-repeat left center;
+	background: url(/static-file/images/chevron-down.svg) no-repeat left center;
 }
 
 .book_your_child_free_session .active:after {
@@ -1223,7 +1223,7 @@ background-color: #fff;
 	right: 0px;
 	width: 45px;
 	height: 70px;
-	background: url(/static/images/chevron-up.svg) no-repeat left center;
+	background: url(/static-file/images/chevron-up.svg) no-repeat left center;
 }
 
 
@@ -1314,7 +1314,7 @@ background-color: #fff;
 	line-height: 30px;
 	color: #EE7925;
 	text-decoration: underline;
-	background: url(/static/images/map-marker.png) no-repeat 0 center;
+	background: url(/static-file/images/map-marker.png) no-repeat 0 center;
 	padding-left: 28px;
 	float: right;
 	letter-spacing: 0px;
@@ -1516,7 +1516,7 @@ background-color: #fff;
 .box-10-years {
 	width: 100%;
 	display: inline-block;
-	background: url(/static/images/photos10years.jpg) no-repeat center top;
+	background: url(/static-file/images/photos10years.jpg) no-repeat center top;
 	background-size: cover;
 	padding-top: 195px;
 	padding-bottom: 300px;
@@ -1635,7 +1635,7 @@ background-color: #fff;
 }
 
 .footer .box-contact .list li.mail {
-	background: url(/static/images/mail.svg) no-repeat left center;
+	background: url(/static-file/images/mail.svg) no-repeat left center;
 	color: #FF7531;
 }
 
@@ -1644,11 +1644,11 @@ background-color: #fff;
 }
 
 .footer .box-contact .list li.call {
-	background: url(/static/images/phone.svg) no-repeat left center;
+	background: url(/static-file/images/phone.svg) no-repeat left center;
 }
 
 .footer .box-contact .list li.calender {
-	background: url(/static/images/calendar.svg) no-repeat left center;
+	background: url(/static-file/images/calendar.svg) no-repeat left center;
 }
 
 .footer .Social .icon-fb,
@@ -1662,15 +1662,15 @@ background-color: #fff;
 }
 
 .footer .Social .icon-fb {
-	background: url(/static/images/icon-fb.svg) no-repeat left center transparent;
+	background: url(/static-file/images/icon-fb.svg) no-repeat left center transparent;
 }
 
 .footer .Social .icon-lin {
-	background: url(/static/images/icon-insta.svg) no-repeat left center transparent;
+	background: url(/static-file/images/icon-insta.svg) no-repeat left center transparent;
 }
 
 .footer .Social .icon-wt {
-	background: url(/static/images/icon-wt.svg) no-repeat left center transparent;
+	background: url(/static-file/images/icon-wt.svg) no-repeat left center transparent;
 }
 
 .footer .box-right {
@@ -1726,7 +1726,7 @@ background-color: #fff;
 	right: 0px;
 	width: 25px;
 	height: 35px;
-	background: url(/static/images/chevron-down-white.svg) no-repeat left center;
+	background: url(/static-file/images/chevron-down-white.svg) no-repeat left center;
 }
 
 .footer .box-right .list .active::after {
@@ -1736,7 +1736,7 @@ background-color: #fff;
 	right: 0px;
 	width: 25px;
 	height: 35px;
-	background: url(/static/images/chevron-up-white.svg) no-repeat left center;
+	background: url(/static-file/images/chevron-up-white.svg) no-repeat left center;
 }
 
 
@@ -1748,7 +1748,7 @@ background-color: #fff;
 	width: 36px;
 	height: 0;
 	height: 35px;
-	background: url(/static/images/map-marker-white.svg) no-repeat center center ;
+	background: url(/static-file/images/map-marker-white.svg) no-repeat center center ;
 }
 
 .footer .box-right .list .select-selected.select-arrow-active:after {
@@ -1897,7 +1897,7 @@ background-color: #fff;
 	width: 70px;
 	right: 420px;
 	left: auto;
-	background: url(/static/images/icon-prev.png) no-repeat center center;
+	background: url(/static-file/images/icon-prev.png) no-repeat center center;
 }
 
 .box-insta .box-slide .slick-next {
@@ -1909,7 +1909,7 @@ background-color: #fff;
 	text-transform: uppercase;
 	font-weight: 500;
 	font-size: 16px;
-	background: url(/static/images/icon-next.png) no-repeat 110px center;
+	background: url(/static-file/images/icon-next.png) no-repeat 110px center;
 	padding-right: 20px;
 }
 

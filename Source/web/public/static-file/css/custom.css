@@ -252,12 +252,12 @@ a.link {
 }
 
 .weekly .box-slide .slick-prev {
-	background: url(/static/images/icon-prev-grey.png) no-repeat center center;
+	background: url(/static-file/images/icon-prev-grey.png) no-repeat center center;
 	color: #5a5a5a;
 }
 
 .weekly .box-slide .slick-next {
-	background: url(/static/images/icon-next-grey.png) no-repeat 110px center;
+	background: url(/static-file/images/icon-next-grey.png) no-repeat 110px center;
 	color: #5a5a5a;
 }
 

@@ -9,34 +9,34 @@ import NProgress from 'nprogress';
 
 import store from 'src/redux/store';
 
-import '../../public/static/css/style.css';
-import '../../public/static/css/about.css';
-import '../../public/static/css/holiday-camp.css';
-import '../../public/static/css/contact.css';
-import '../../public/static/css/custom.css';
-import '../../public/static/css/article.css';
-import '../../public/static/css/hover.css';
-import '../../public/static/css/button.css';
-import '../../public/static/css/slick-theme.css';
-import '../../public/static/css/spinner.css';
-import '../../public/static/css/qna.css';
-import '../../public/static/css/franchise.css';
-import '../../public/static/css/book-trial.css';
-import '../../public/static/css/autocomplete-input.css';
-import '../../public/static/css/join-us.css';
-import '../../public/static/css/policies.css';
-import '../../public/static/css/homepage.css';
-import '../../public/static/css/weekly-training.css';
-import '../../public/static/css/holidaypage.css';
-import '../../public/static/css/onetraining.css';
-import '../../public/static/css/birthday.css';
-import '../../public/static/css/aboutus.css';
-import '../../public/static/css/contact.css';
+import '../../public/static-file/css/style.css';
+import '../../public/static-file/css/about.css';
+import '../../public/static-file/css/holiday-camp.css';
+import '../../public/static-file/css/contact.css';
+import '../../public/static-file/css/custom.css';
+import '../../public/static-file/css/article.css';
+import '../../public/static-file/css/hover.css';
+import '../../public/static-file/css/button.css';
+import '../../public/static-file/css/slick-theme.css';
+import '../../public/static-file/css/spinner.css';
+import '../../public/static-file/css/qna.css';
+import '../../public/static-file/css/franchise.css';
+import '../../public/static-file/css/book-trial.css';
+import '../../public/static-file/css/autocomplete-input.css';
+import '../../public/static-file/css/join-us.css';
+import '../../public/static-file/css/policies.css';
+import '../../public/static-file/css/homepage.css';
+import '../../public/static-file/css/weekly-training.css';
+import '../../public/static-file/css/holidaypage.css';
+import '../../public/static-file/css/onetraining.css';
+import '../../public/static-file/css/birthday.css';
+import '../../public/static-file/css/aboutus.css';
+import '../../public/static-file/css/contact.css';
 import 'react-phone-number-input/style.css';
 import 'slick-carousel/slick/slick.css';
-import '../../public/static/css/school-training.css';
+import '../../public/static-file/css/school-training.css';
 import 'flatpickr/dist/themes/airbnb.css';
-import '../../public/static/css/modal.css';
+import '../../public/static-file/css/modal.css';
 
 Router.events.on('routeChangeStart', (url) => {
     console.log(`Loading: ${url}`);
@@ -58,8 +58,11 @@ export default function MyApp({ Component, pageProps }) {
                         name="viewport"
                         content="width=device-width, initial-scale=1"
                     />
-                    <link rel="stylesheet" href="/static/css/font.css" />
-                    <link rel="stylesheet" href="/static/css/spinner.css" />
+                    <link rel="stylesheet" href="/static-file/css/font.css" />
+                    <link
+                        rel="stylesheet"
+                        href="/static-file/css/spinner.css"
+                    />
                 </Head>
                 <Component {...pageProps} />
             </Provider>

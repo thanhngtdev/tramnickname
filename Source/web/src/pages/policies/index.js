@@ -17,7 +17,10 @@ function Policy({ data }) {
                         <p></p>
                     </div>
                     <div className="col-6" style={{ paddingLeft: 0 }}>
-                        <img alt="" src={'static/images/image_about.png'} />
+                        <img
+                            alt=""
+                            src={'static-file/images/image_about.png'}
+                        />
                     </div>
                 </div>
                 <div

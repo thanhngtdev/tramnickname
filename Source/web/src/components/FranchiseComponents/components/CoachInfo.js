@@ -25,7 +25,7 @@ function CoachInfo(props) {
                                     props.coach.avatar &&
                                     props.coach.avatar !== ''
                                         ? Utils.getThumb(props.coach.avatar)
-                                        : 'static/images/coach.png'
+                                        : 'static-file/images/coach.png'
                                 }
                                 alt=""
                             />

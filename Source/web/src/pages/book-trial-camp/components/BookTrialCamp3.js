@@ -274,7 +274,7 @@ function BookTrialCamp3(props) {
                                 <a href="/#">Terms and Conditions</a>
                             </p>
                         </div>
-                        <img src={'static/images/paypal.png'} />
+                        <img src={'static-file/images/paypal.png'} />
                     </>
                 )}
                 <div style={{ marginTop: '3rem' }}>

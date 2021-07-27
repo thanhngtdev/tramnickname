@@ -5,7 +5,7 @@ import React from 'react';
 
 const propTypes = {};
 
-const BACKGROUND = '/static/images/bg_404.png';
+const BACKGROUND = '/static-file/images/bg_404.png';
 const ErrorPage = (props) => {
     //! State
     const history = useRouter(useRouter);
@@ -18,7 +18,7 @@ const ErrorPage = (props) => {
             style={{
                 background:
                     'url(' +
-                    `${'/static/images/bg_404.png'}` +
+                    `${'/static-file/images/bg_404.png'}` +
                     ') no-repeat center center',
                 height: 960,
                 paddingTop: 120,

@@ -58,7 +58,7 @@ function Header() {
                 <div className="container">
                     <Link href={PathRoute.Home}>
                         <img
-                            src="/static/images/logo.svg"
+                            src="/static-file/images/logo.svg"
                             className="logo"
                             alt=""
                         />
@@ -78,7 +78,7 @@ function Header() {
                         <Link href={PathRoute.Home}>
                             <img
                                 alt=""
-                                src="/static/images/logo.svg"
+                                src="/static-file/images/logo.svg"
                                 className="logo"
                                 onClick={hideMenu}
                             />

@@ -42,7 +42,7 @@ const MapWithAMarker = withScriptjs(
                 return (
                     <Marker
                         key={index}
-                        icon={'/static/images/marker.png'}
+                        icon={'/static-file/images/marker.png'}
                         position={{
                             lat: parseFloat(item.ms_latitude) || 51,
                             lng: parseFloat(item.ms_longitude) || 0,
@@ -111,7 +111,7 @@ function ListNearbyAcademy(props) {
                                               .ms_avatar,
                                           'c1',
                                       )
-                                    : '/static/images/gallery4.jpg'
+                                    : '/static-file/images/gallery4.jpg'
                             }
                         />
                     </div>
