@@ -1,7 +1,7 @@
 import AboutUs from 'src/components/Camp/AboutUs';
 import FootballSkill from 'src/components/Camp/FootballSkill';
 import InstaBox from 'src/components/Camp/InstaBox';
-import QNA from 'src/components/camp/QNA';
+import QNA from 'src/components/Camp/QNA';
 import WhyWMF from 'src/components/Camp/WhyWMF';
 import Intro from 'src/components/HomePage/Intro';
 // import Spinner from "component/Spinner";
