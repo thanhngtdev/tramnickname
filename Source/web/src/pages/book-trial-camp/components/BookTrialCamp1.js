@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
-import { CommonStyle } from 'common/Styles';
-import Checkbox from 'components/include/Checkbox/Checkbox';
-import BorderButton from 'components/include/BorderButton';
+import { CommonStyle } from 'src/common/Styles';
+import Checkbox from 'src/components/include/Checkbox/Checkbox';
+import BorderButton from 'src/components/include/BorderButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { siteActionType } from '../redux/actions/actionTypes';
+import { siteActionType } from 'src/redux/actions/actionTypes';
 import DatePicker from 'react-datepicker';
-import Utils from '../../common/Utils';
+import Utils from 'src/common/Utils';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import PathRoute from '../../common/PathRoute';
+import PathRoute from 'src/common/PathRoute';
 // import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
 import { Fragment } from 'react';
-import { getListCourse } from '../redux/actions/siteAction';
+import { getListCourse } from 'src/redux/actions/siteAction';
 import _ from 'lodash';
 
 BookTrialCamp1.propTypes = {

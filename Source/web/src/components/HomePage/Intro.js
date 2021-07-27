@@ -1,9 +1,9 @@
-// import Utils from "../../common/Utils";
+// import Utils from "src/common/Utils";
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Utils from '../../common/Utils';
-import getLocalStorage from '../../hooks/useGetLocalStorage';
+import Utils from 'src/common/Utils';
+import getLocalStorage from 'src/hooks/useGetLocalStorage';
 
 Intro.propTypes = {
     intro: PropTypes.array,

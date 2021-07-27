@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { put, takeLatest } from 'redux-saga/effects';
-import siteService from '../../services/siteService';
+import siteService from 'src/services/siteService';
 import type from '../actions/actionTypes';
 
 function* getHome({ callbacks }) {

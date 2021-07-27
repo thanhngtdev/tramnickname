@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import NearbyAcademy from '../../components/include/NearbyAcademy';
-import ModelManager from '../../common/ModelManager';
+import NearbyAcademy from 'src/components/include/NearbyAcademy';
+import ModelManager from 'src/common/ModelManager';
 import { isEmpty } from 'lodash';
-import PathRoute from '../../common/PathRoute';
+import PathRoute from 'src/common/PathRoute';
 
 // import NearbyAcademy from "./include/NearbyAcademy";
 

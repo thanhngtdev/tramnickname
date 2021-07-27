@@ -1,7 +1,6 @@
 /* eslint-disable class-methods-use-this */
-import { siteActionType } from '../redux/actions/actionTypes';
-import packageVersion from '../../package.json';
-import { STORAGE_URL } from '../requests/ApiConfig';
+import { siteActionType } from 'src/redux/actions/actionTypes';
+import { STORAGE_URL } from 'src/requests/ApiConfig';
 
 const { hasOwnProperty } = Object.prototype;
 class Utils {
@@ -124,9 +123,9 @@ class Utils {
         return distance;
     }
 
-    getVersion() {
-        return packageVersion.version;
-    }
+    // getVersion() {
+    //     return packageVersion.version;
+    // }
     getCurrentAcademy(dispatch, number) {
         let options = {
             enableHighAccuracy: true,

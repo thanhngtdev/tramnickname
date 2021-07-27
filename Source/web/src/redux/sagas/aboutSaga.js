@@ -1,6 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects';
-import { APIConfig } from '../../requests/ApiConfig';
-import API from '../../requests/API';
+import { APIConfig } from 'src/requests/ApiConfig';
+import API from 'src/requests/API';
 import actionTypes from '../actions/actionTypes';
 
 function* getAbout() {

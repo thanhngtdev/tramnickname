@@ -1,10 +1,10 @@
-import PathRoute from '../../common/PathRoute';
-import Utils from '../../common/Utils';
-import DefaultLayout from 'layout/DefaultLayout';
+import PathRoute from 'src/common/PathRoute';
+import Utils from 'src/common/Utils';
+import DefaultLayout from 'src/layout/DefaultLayout';
 import { snakeCase } from 'lodash';
 import Link from 'next/link';
 import React, { useRef } from 'react';
-import siteService from 'services/siteService';
+import siteService from 'src/services/siteService';
 
 function Policy({ data }) {
     const refListItem = useRef(null);

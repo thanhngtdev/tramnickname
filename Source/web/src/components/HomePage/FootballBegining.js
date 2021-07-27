@@ -1,4 +1,4 @@
-import Utils from '../../common/Utils';
+import Utils from 'src/common/Utils';
 import React from 'react';
 
 function FootballBegining(props) {

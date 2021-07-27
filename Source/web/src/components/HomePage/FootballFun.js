@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import PathRoute from '../../common/PathRoute';
+import PathRoute from 'src/common/PathRoute';
 import Link from 'next/link';
 import React from 'react';
 // import type from "redux/actions/actionTypes";

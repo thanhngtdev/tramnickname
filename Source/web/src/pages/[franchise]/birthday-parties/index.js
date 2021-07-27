@@ -7,7 +7,7 @@ import QNA from 'src/components/Camp/QNA';
 import ImageGallery from 'src/components/Homepage/ImageGallery';
 import Testimonial from 'src/components/Testimonial';
 import DefaultLayout from 'src/layout/DefaultLayout';
-import BookTrialParty from 'pages/birthday-parties/components/BookTrialParty';
+import BookTrialParty from 'src/pages/birthday-parties/components/BookTrialParty';
 import React, { useRef, useState } from 'react';
 import siteService from 'src/services/siteService';
 import Quote from 'src/components/Quote';
@@ -104,20 +104,26 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-    const res = await siteService.getListSite();
-    const listSite = res.data.data.lstSite;
-    const item = listSite.find(
-        (item) => context.params.franchise === item.ms_alias,
-    );
+    try {
+        const res = await siteService.getListSite();
+        const listSite = res.data.data.lstSite;
+        const item = listSite.find(
+            (item) => context.params.franchise === item.ms_alias,
+        );
 
-    const siteDetail = await siteService.getDetailSite({
-        id: item.ms_id,
-        cate: 15,
-    });
+        const siteDetail = await siteService.getDetailSite({
+            id: item.ms_id,
+            cate: 15,
+        });
 
-    const data = siteDetail.data.data;
+        const data = siteDetail.data.data;
 
-    return { props: { data, listSite } };
+        return { props: { data, listSite } };
+    } catch (error) {
+        console.log(error);
+    }
+
+    return { props: { data: {}, listSite: [] } };
 }
 
 export default BirthdayParty;

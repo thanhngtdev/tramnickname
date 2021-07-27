@@ -6,11 +6,11 @@ import React, { useEffect, useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import Flatpickr from 'react-flatpickr';
 import { useDispatch, useSelector } from 'react-redux';
-import PathRoute from '../../common/PathRoute';
-import Utils from '../../common/Utils';
-import TrustPilotText from '../../components/TrustPilotText';
-import useComponentVisible from '../../hooks/useComponentVisible';
-import { siteActionType } from '../../redux/actions/actionTypes';
+import PathRoute from 'src/common/PathRoute';
+import Utils from 'src/common/Utils';
+import TrustPilotText from 'src/components/TrustPilotText';
+import useComponentVisible from 'src/hooks/useComponentVisible';
+import { siteActionType } from 'src/redux/actions/actionTypes';
 
 BookTrial.propTypes = {
     parentFb: PropTypes.object,

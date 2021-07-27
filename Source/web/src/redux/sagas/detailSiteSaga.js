@@ -1,5 +1,5 @@
 import actionTypes from '../actions/actionTypes';
-import siteService from '../../services/siteService';
+import siteService from 'src/services/siteService';
 import { put, takeLatest } from 'redux-saga/effects';
 
 function* detailSite(data) {

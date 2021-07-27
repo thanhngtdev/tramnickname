@@ -1,6 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import type from '../actions/actionTypes';
-import siteService from '../../services/siteService';
+import siteService from 'src/services/siteService';
 
 function* getListArticle({ cate = '', page, alias = '' }) {
     try {

@@ -1,9 +1,4 @@
-import PathRoute from '../../common/PathRoute';
-import Utils from '../../common/Utils';
-import Captcha from 'components/Captcha';
-import BorderButton from 'components/include/BorderButton';
-import Dot from 'components/include/Dot';
-import useComponentVisible from 'hooks/useComponentVisible';
+import { isEmpty } from 'lodash';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { Fragment, useEffect, useState } from 'react';
@@ -12,13 +7,17 @@ import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
 // import "react-phone-number-input/style.css";
 import { useDispatch, useSelector } from 'react-redux';
-import actionTypes, { siteActionType } from '../redux/actions/actionTypes';
-import { showTruspilot } from '../redux/actions/trustpilotAction';
-import getLocalStorage from 'hooks/useGetLocalStorage';
-import { isEmpty } from 'lodash';
-import TrustPilotText from 'components/TrustPilotText';
-import siteService from 'services/siteService';
 import { toast } from 'react-toastify';
+import PathRoute from 'src/common/PathRoute';
+import Utils from 'src/common/Utils';
+import Captcha from 'src/components/Captcha';
+import BorderButton from 'src/components/include/BorderButton';
+import Dot from 'src/components/include/Dot';
+import TrustPilotText from 'src/components/TrustPilotText';
+import useComponentVisible from 'src/hooks/useComponentVisible';
+import getLocalStorage from 'src/hooks/useGetLocalStorage';
+import { siteActionType } from 'src/redux/actions/actionTypes';
+import siteService from 'src/services/siteService';
 
 BookTrialHoliday.propTypes = {
     parentFb: PropTypes.object,

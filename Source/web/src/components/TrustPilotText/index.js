@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { showTruspilot } from '../../redux/actions/trustpilotAction';
+import { showTruspilot } from 'src/redux/actions/trustpilotAction';
 
 const TrustPilotText = (props) => {
     //! State

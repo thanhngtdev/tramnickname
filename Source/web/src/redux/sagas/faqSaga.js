@@ -1,8 +1,8 @@
 import { put, takeLatest } from 'redux-saga/effects';
-import API from '../../requests/API';
-import { APIConfig } from '../../requests/ApiConfig';
+import API from 'src/requests/API';
+import { APIConfig } from 'src/requests/ApiConfig';
 import type from '../actions/actionTypes';
-import service from '../../services/httpMethod';
+import service from 'src/services/httpMethod';
 
 function* searchFAQ({ param }) {
     try {

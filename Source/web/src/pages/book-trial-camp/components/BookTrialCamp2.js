@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import IconVerify from 'components/include/Checkbox/IconVerify';
-import IconUnVerify from 'components/include/Checkbox/IconUnVerify';
-import BorderButton from 'components/include/BorderButton';
-import Utils from '../../common/Utils';
+import IconVerify from 'src/components/include/Checkbox/IconVerify';
+import IconUnVerify from 'src/components/include/Checkbox/IconUnVerify';
+import BorderButton from 'src/components/include/BorderButton';
+import Utils from 'src/common/Utils';
 import PropTypes from 'prop-types';
 // import "react-phone-number-input/style.css";
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
-import EyeIcon from 'components/booking/EyeIcon';
+import EyeIcon from 'src/components/booking/EyeIcon';
 
 const GENDER = ['Male', 'Female', 'Unspecified'];
 

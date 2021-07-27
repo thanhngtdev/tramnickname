@@ -1,18 +1,18 @@
+import React, { useRef } from 'react';
+import { Button } from 'react-bootstrap';
 import AboutUs from 'src/components/Camp/AboutUs';
 import FootballSkill from 'src/components/Camp/FootballSkill';
 import InstaBox from 'src/components/Camp/InstaBox';
 import QNA from 'src/components/camp/QNA';
 import WhyWMF from 'src/components/Camp/WhyWMF';
 import Intro from 'src/components/HomePage/Intro';
+import Provide from 'src/components/Provide';
 // import Spinner from "component/Spinner";
 import Testimonial from 'src/components/Testimonial';
 import saveList from 'src/hooks/useSaveList';
 import DefaultLayout from 'src/layout/DefaultLayout';
-import BookTrialOne from 'pages/1-on-1-training/components/BookTrialOne';
-import React, { useRef } from 'react';
-import { Button } from 'react-bootstrap';
+import BookTrialOne from 'src/pages/1-on-1-training/components/BookTrialOne';
 import siteService from 'src/services/siteService';
-import Provide from 'src/components/Provide';
 
 function OneTraining({ data, listSite }) {
     saveList(listSite);
@@ -103,19 +103,25 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-    const res = await siteService.getListSite();
-    const listSite = res.data.data.lstSite;
-    const item = listSite.find(
-        (item) => context.params.franchise === item.ms_alias,
-    );
+    try {
+        const res = await siteService.getListSite();
+        const listSite = res.data.data.lstSite;
+        const item = listSite.find(
+            (item) => context.params.franchise === item.ms_alias,
+        );
 
-    const siteDetail = await siteService.getDetailSite({
-        id: item.ms_id,
-        cate: 14,
-    });
+        const siteDetail = await siteService.getDetailSite({
+            id: item.ms_id,
+            cate: 14,
+        });
 
-    const data = siteDetail.data.data;
-    return { props: { data, listSite } };
+        const data = siteDetail.data.data;
+        return { props: { data, listSite } };
+    } catch (error) {
+        console.log(error);
+    }
+
+    return { props: { data: {}, listSite: [] } };
 }
 
 export default OneTraining;

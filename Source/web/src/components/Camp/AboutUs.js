@@ -1,6 +1,6 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Utils from '../../common/Utils';
+import Utils from 'src/common/Utils';
 import { isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';

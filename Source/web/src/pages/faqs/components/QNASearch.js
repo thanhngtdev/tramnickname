@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
-import { searchFAQ } from '../redux/actions/faqAction';
+import { searchFAQ } from 'src/redux/actions/faqAction';
 
 export default function QNASearch() {
     const dispatch = useDispatch();

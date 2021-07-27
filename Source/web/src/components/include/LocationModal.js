@@ -1,17 +1,17 @@
 /* eslint-disable react/button-has-type */
 import { faMapMarkerAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Utils from '../../common/Utils';
+import Utils from 'src/common/Utils';
 import React, { useEffect, useState } from 'react';
 // import SearchBox from 'react-google-maps/lib/components/places/SearchBox';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     headerActionType,
     siteActionType,
-} from '../../redux/actions/actionTypes';
+} from 'src/redux/actions/actionTypes';
 import ListAcademy from './ListAcademy';
 import ListNearbyAcademy from './ListNearbyAcademy';
-import SearchBox from '../../components/SearchBox';
+import SearchBox from 'src/components/SearchBox';
 
 function LocationModal() {
     const dispatch = useDispatch();

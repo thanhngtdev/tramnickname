@@ -1,6 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import type from '../actions/actionTypes';
-import service from '../../services/siteService';
+import service from 'src/services/siteService';
 
 function* sendForm({ param }) {
     try {

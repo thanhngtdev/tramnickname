@@ -1,7 +1,3 @@
-import PathRoute from '../../common/PathRoute';
-import Utils from '../../common/Utils';
-import Captcha from 'components/Captcha';
-import TrustPilotText from 'components/TrustPilotText';
 import { isEmpty } from 'lodash';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
@@ -11,7 +7,11 @@ import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
 // import "react-phone-number-input/style.css";
 import { useDispatch, useSelector } from 'react-redux';
-import actionTypes, { siteActionType } from '../redux/actions/actionTypes';
+import PathRoute from 'src/common/PathRoute';
+import Utils from 'src/common/Utils';
+import Captcha from 'src/components/Captcha';
+import TrustPilotText from 'src/components/TrustPilotText';
+import { siteActionType } from 'src/redux/actions/actionTypes';
 
 // BookTrialSchool.propTypes = {
 //   parentFb: propTypes.object,

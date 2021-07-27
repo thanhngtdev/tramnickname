@@ -1,11 +1,11 @@
-import useEqualElement from '../../hooks/useEqualElement';
+import useEqualElement from 'src/hooks/useEqualElement';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React, { Fragment, useEffect, useRef, useState } from 'react';
-import PathRoute from '../../common/PathRoute';
-import Utils from '../../common/Utils';
-import Testimonial from '../../components/Testimonial';
-import TrustPilot from '../../components/TrustPilot';
+import PathRoute from 'src/common/PathRoute';
+import Utils from 'src/common/Utils';
+import Testimonial from 'src/components/Testimonial';
+import TrustPilot from 'src/components/TrustPilot';
 import Gallery from './ImageGallery';
 
 WhatWeDo.propTypes = {

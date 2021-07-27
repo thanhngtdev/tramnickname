@@ -12,6 +12,7 @@ import Link from 'next/link';
 import React, { useRef, useState } from 'react';
 import siteService from 'src/services/siteService';
 import JoinUsBanner from 'src/components/JoinUsBanner';
+import saveList from 'src/hooks/useSaveList';
 
 const ROUTE = [PathRoute.Coaching, PathRoute.ParentHost];
 
@@ -194,20 +195,26 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-    const res = await siteService.getListSite();
-    const listSite = res.data.data.lstSite;
-    const item = listSite.find(
-        (item) => context.params.franchise === item.ms_alias,
-    );
+    try {
+        const res = await siteService.getListSite();
+        const listSite = res.data.data.lstSite;
+        const item = listSite.find(
+            (item) => context.params.franchise === item.ms_alias,
+        );
 
-    const siteDetail = await siteService.getDetailSite({
-        id: item.ms_id,
-        cate: 22,
-    });
+        const siteDetail = await siteService.getDetailSite({
+            id: item.ms_id,
+            cate: 22,
+        });
 
-    const data = siteDetail.data.data;
+        const data = siteDetail.data.data;
 
-    return { props: { data, listSite } };
+        return { props: { data, listSite } };
+    } catch (error) {
+        console.log(error);
+    }
+
+    return { props: { data: {}, listSite: [] } };
 }
 
 export default JoinUs;

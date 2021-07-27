@@ -1,13 +1,13 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable global-require */
 /* eslint-disable react/no-unescaped-entities */
-import Utils from '../../common/Utils';
+import Utils from 'src/common/Utils';
 // import 'css/slick-theme.css';
 import _ from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
-import { getHome } from '../../redux/actions/homeAction';
+import { getHome } from 'src/redux/actions/homeAction';
 // import { showTruspilot } from "redux/actions/trustpilotAction";
 import 'slick-carousel/slick/slick.css';
 const settings = {

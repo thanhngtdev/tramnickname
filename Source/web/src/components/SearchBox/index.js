@@ -1,5 +1,5 @@
 import React from 'react';
-import Utils from '../../common/Utils';
+import Utils from 'src/common/Utils';
 import { Fragment } from 'react';
 const { compose, withProps, lifecycle } = require('recompose');
 const { withScriptjs } = require('react-google-maps');

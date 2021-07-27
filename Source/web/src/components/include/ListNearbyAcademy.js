@@ -4,9 +4,9 @@ import {
     faPhoneAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PathRoute from '../../common/PathRoute';
-import Utils from '../../common/Utils';
-import Spinner from '../../components/Spinner';
+import PathRoute from 'src/common/PathRoute';
+import Utils from 'src/common/Utils';
+import Spinner from 'src/components/Spinner';
 // import avatar from "images/gallery4.jpg";
 import _ from 'lodash';
 import { useRouter } from 'next/router';
@@ -21,7 +21,7 @@ import { useDispatch } from 'react-redux';
 import {
     headerActionType,
     siteActionType,
-} from '../../redux/actions/actionTypes';
+} from 'src/redux/actions/actionTypes';
 import WeeklyTrainingItem from './WeeklyTrainingItem';
 
 const MapWithAMarker = withScriptjs(

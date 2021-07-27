@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import React, { useRef, useState } from 'react';
-import Utils from '../../common/Utils';
+import Utils from 'src/common/Utils';
 import PropTypes from 'prop-types';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import ImageGallery from 'react-image-gallery';

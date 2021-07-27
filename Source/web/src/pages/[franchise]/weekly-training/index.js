@@ -75,19 +75,25 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-    const res = await siteService.getListSite();
-    const listSite = res.data.data.lstSite;
-    const item = listSite.find(
-        (item) => context.params.franchise === item.ms_alias,
-    );
+    try {
+        const res = await siteService.getListSite();
+        const listSite = res.data.data.lstSite;
+        const item = listSite.find(
+            (item) => context.params.franchise === item.ms_alias,
+        );
 
-    const siteDetail = await siteService.getDetailSite({
-        id: item.ms_id,
-        cate: 6,
-    });
+        const siteDetail = await siteService.getDetailSite({
+            id: item.ms_id,
+            cate: 6,
+        });
 
-    const data = siteDetail.data.data;
-    return { props: { data, listSite } };
+        const data = siteDetail.data.data;
+        return { props: { data, listSite } };
+    } catch (error) {
+        console.log(error);
+    }
+
+    return { props: { data: {}, listSite: [] } };
 }
 
 export default SiteNews;

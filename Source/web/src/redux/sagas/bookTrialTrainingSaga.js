@@ -1,7 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import actionTypes from '../actions/actionTypes';
-import API from '../../requests/API';
-import { APIConfig } from '../../requests/ApiConfig';
+import API from 'src/requests/API';
+import { APIConfig } from 'src/requests/ApiConfig';
 
 function* getCourseStartDate({ course_id }) {
     const response = yield API.getParentAPI(APIConfig.COURSE_START_DATE, {

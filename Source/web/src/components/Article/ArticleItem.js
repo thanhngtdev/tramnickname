@@ -1,5 +1,5 @@
 import React from 'react';
-import Utils from '../../common/Utils';
+import Utils from 'src/common/Utils';
 import Link from 'next/link';
 
 export default function ArticleItem(props) {

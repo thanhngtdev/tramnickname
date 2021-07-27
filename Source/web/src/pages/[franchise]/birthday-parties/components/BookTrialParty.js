@@ -1,11 +1,11 @@
-import PathRoute from '../../common/PathRoute';
-import Utils from '../../common/Utils';
-import Captcha from 'components/Captcha';
-import BorderButton from 'components/include/BorderButton';
-import Dot from 'components/include/Dot';
-import TrustPilotText from 'components/TrustPilotText';
-import useComponentVisible from 'hooks/useComponentVisible';
-import useGetLocalStorage from 'hooks/useGetLocalStorage';
+import PathRoute from 'src/common/PathRoute';
+import Utils from 'src/common/Utils';
+import Captcha from 'src/components/Captcha';
+import BorderButton from 'src/components/include/BorderButton';
+import Dot from 'src/components/include/Dot';
+import TrustPilotText from 'src/components/TrustPilotText';
+import useComponentVisible from 'src/hooks/useComponentVisible';
+import useGetLocalStorage from 'src/hooks/useGetLocalStorage';
 import { isEmpty } from 'lodash';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
@@ -15,8 +15,8 @@ import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import actionTypes, { siteActionType } from '../redux/actions/actionTypes';
-import siteService from 'services/siteService';
+import actionTypes, { siteActionType } from 'src/redux/actions/actionTypes';
+import siteService from 'src/services/siteService';
 
 Step2.propTypes = {
     onSendData: PropTypes.func,

@@ -1,23 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { useDispatch, useSelector } from 'react-redux';
-// import { useHistory } from "react-router-dom";
-import moment from 'moment';
-import actionTypes, { siteActionType } from '../redux/actions/actionTypes';
-import Utils from '../../common/Utils';
+import { isEmpty } from 'lodash';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import PathRoute from '../../common/PathRoute';
-import Captcha from 'components/Captcha';
+import React, { useEffect, useRef, useState } from 'react';
+import 'react-datepicker/dist/react-datepicker.css';
 // import "react-phone-number-input/style.css";
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
-import useComponentVisible from 'hooks/useComponentVisible';
-import { useRouter } from 'next/router';
-import TrustPilotText from 'components/TrustPilotText';
-import siteService from 'services/siteService';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { isEmpty } from 'lodash';
+import PathRoute from 'src/common/PathRoute';
+import Utils from 'src/common/Utils';
+import Captcha from 'src/components/Captcha';
+import TrustPilotText from 'src/components/TrustPilotText';
+import useComponentVisible from 'src/hooks/useComponentVisible';
+import actionTypes, { siteActionType } from 'src/redux/actions/actionTypes';
+import siteService from 'src/services/siteService';
 
 BookTrialOne.propTypes = {
     parentFb: PropTypes.object,

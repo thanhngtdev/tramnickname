@@ -1,3 +1,4 @@
+import React from 'react';
 import BookTrial from '../components/Booking/BookTrial';
 import BannerTop from '../components/HomePage/BannerTop';
 // import FootballBegining from 'components/HomePage/FootballBegining';
@@ -9,7 +10,6 @@ import Reason from '../components/HomePage/Reason';
 import WhatWeDo from '../components/HomePage/WhatWeDo';
 import saveList from '../hooks/useSaveList';
 import DefaultLayout from '../layout/DefaultLayout';
-import React from 'react';
 import siteService from '../services/siteService';
 
 function HomePage({ data, listSite }) {

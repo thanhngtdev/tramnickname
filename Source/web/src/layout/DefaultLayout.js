@@ -1,6 +1,6 @@
-import LocationModal from '../components/include/LocationModal';
-import usePermissionLocation from '../hooks/usePermissionLocation';
-import useTruspilot from '../hooks/useTruspilot';
+import LocationModal from 'src/components/include/LocationModal';
+import usePermissionLocation from 'src/hooks/usePermissionLocation';
+import useTruspilot from 'src/hooks/useTruspilot';
 import React, { Fragment } from 'react';
 import { useDispatch } from 'react-redux';
 import Footer from './Footer';

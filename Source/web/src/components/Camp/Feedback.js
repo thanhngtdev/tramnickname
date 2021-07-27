@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-import Utils from '../../common/Utils';
+import Utils from 'src/common/Utils';
 import PropTypes from 'prop-types';
 
 Feedback.propTypes = {

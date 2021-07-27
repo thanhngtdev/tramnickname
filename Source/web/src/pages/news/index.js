@@ -1,13 +1,13 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import ArticleMenu from 'components/Article/ArticleMenu';
-import ArticleItem from 'components/Article/ArticleItem';
+import ArticleMenu from 'src/components/Article/ArticleMenu';
+import ArticleItem from 'src/components/Article/ArticleItem';
 // import "css/article.css";
-import type from '../redux/actions/actionTypes';
+import type from 'src/redux/actions/actionTypes';
 import { useDispatch, useSelector } from 'react-redux';
-import Utils from '../../common/Utils';
-import { getListNews } from '../redux/actions/articleAction';
+import Utils from 'src/common/Utils';
+import { getListNews } from 'src/redux/actions/articleAction';
 import Link from 'next/link';
-import DefaultLayout from 'layout/DefaultLayout';
+import DefaultLayout from 'src/layout/DefaultLayout';
 
 function News() {
     const articleReducer = useSelector((state) => state.articleReducer);

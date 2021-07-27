@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import 'slick-carousel/slick/slick.css';
 import Slider from 'react-slick';
-import Utils from '../../common/Utils';
+import Utils from 'src/common/Utils';
 
 const settings = {
     lazyLoad: 'ondemand',

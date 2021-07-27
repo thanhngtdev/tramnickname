@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import Utils from '../../common/Utils';
+import Utils from 'src/common/Utils';
 
 const propTypes = {};
 

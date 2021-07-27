@@ -11,7 +11,7 @@ import React, { useEffect, useState } from 'react';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
 // import EyeIcon from './EyeIcon';
-// import Utils from "../../common/Utils";
+// import Utils from "src/common/Utils";
 import 'react-phone-number-input/style.css';
 
 BookTrialTraining2.propTypes = {

@@ -1,4 +1,4 @@
-import Utils from '../../common/Utils';
+import Utils from 'src/common/Utils';
 import React, { useEffect, useRef, useState } from 'react';
 
 function Reason(props) {

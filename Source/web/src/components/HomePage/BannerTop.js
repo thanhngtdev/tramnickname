@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import PathRoute from '../../common/PathRoute';
-import Utils from '../../common/Utils';
-import getLocalStorage from '../../hooks/useGetLocalStorage';
+import PathRoute from 'src/common/PathRoute';
+import Utils from 'src/common/Utils';
+import getLocalStorage from 'src/hooks/useGetLocalStorage';
 
 function BannerTop(props) {
     const dispatch = useDispatch();

@@ -1,5 +1,5 @@
-import PathRoute from '../../common/PathRoute';
-import SolidButton from '../../components/include/SolidButton';
+import PathRoute from 'src/common/PathRoute';
+import SolidButton from 'src/components/include/SolidButton';
 import { useRouter } from 'next/router';
 import React from 'react';
 

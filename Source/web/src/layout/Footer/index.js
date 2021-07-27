@@ -1,12 +1,11 @@
-// import ModelManager from "common/ModelManager";
-import ModelManager from '../../common/ModelManager';
-import PathRoute from '../../common/PathRoute';
-import useComponentVisible from '../../hooks/useComponentVisible';
+import ModelManager from 'src/common/ModelManager';
+import PathRoute from 'src/common/PathRoute';
+import useComponentVisible from 'src/hooks/useComponentVisible';
 import { isEmpty } from 'lodash';
 import Link from 'next/link';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import siteService from '../../services/siteService';
+import siteService from 'src/services/siteService';
 
 function Footer() {
     //! state

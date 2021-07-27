@@ -4,7 +4,7 @@ import TrainingIcon1 from 'src/components/booking/TrainingIcon1';
 import TrainingIcon2 from 'src/components/booking/TrainingIcon2';
 import TrainingIcon3 from 'src/components/booking/TrainingIcon3';
 import BookingSuccessMap from 'src/components/include/BookingSuccessMap';
-// import Utils from "../../common/Utils";
+// import Utils from "src/common/Utils";
 import BorderButton from 'src/components/include/BorderButton';
 import moment from 'moment';
 // import BookingSuccessMap from 'component/include/BookingSuccessMap';

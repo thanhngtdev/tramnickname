@@ -7,10 +7,9 @@ import i18n from 'i18n';
 // import store from 'redux/store';
 import NProgress from 'nprogress';
 
-import store from '../redux/store';
+import store from 'src/redux/store';
 
 import '../../public/static/css/style.css';
-
 import '../../public/static/css/about.css';
 import '../../public/static/css/holiday-camp.css';
 import '../../public/static/css/contact.css';

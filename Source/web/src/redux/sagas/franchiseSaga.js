@@ -1,6 +1,6 @@
 import actionTypes from '../actions/actionTypes';
 import { put, takeLatest } from 'redux-saga/effects';
-import siteService from '../../services/siteService';
+import siteService from 'src/services/siteService';
 
 function* getFranchiseDetail(data) {
     const { lstSite, title } = data;

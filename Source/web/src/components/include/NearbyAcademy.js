@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { isEmpty } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { headerActionType } from '../../redux/actions/actionTypes';
+import { headerActionType } from 'src/redux/actions/actionTypes';
 
 function NearbyAcademy() {
     const dispatch = useDispatch();

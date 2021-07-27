@@ -1,5 +1,5 @@
 import React from 'react';
-import useTruspilot from '../../hooks/useTruspilot';
+import useTruspilot from 'src/hooks/useTruspilot';
 
 const TrustPilot = () => {
     //! useEffect
