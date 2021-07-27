@@ -1,11 +1,11 @@
 import DefaultLayout from 'src/layout/DefaultLayout';
 import { useRouter } from 'next/router';
-import QNASearch from 'src/pages/faqs/components/QNASearch';
+import QNASearch from 'src/components/FaqComponents/components/QNASearch';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getListFaq } from 'src/redux/actions/faqAction';
-import ListFAQ from './components/ListFAQ';
-import ResultFaqs from './components/ResultFaqs';
+import ListFAQ from '../../components/FaqComponents/components/ListFAQ';
+import ResultFaqs from '../../components/FaqComponents/components/ResultFaqs';
 
 const propTypes = {};
 

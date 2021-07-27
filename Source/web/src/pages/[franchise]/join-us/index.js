@@ -9,10 +9,11 @@ import useGetWidth from 'src/hooks/useGetWidth';
 import parse from 'html-react-parser';
 import DefaultLayout from 'src/layout/DefaultLayout';
 import Link from 'next/link';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import siteService from 'src/services/siteService';
 import JoinUsBanner from 'src/components/JoinUsBanner';
 import saveList from 'src/hooks/useSaveList';
+import { isEmpty } from 'lodash';
 
 const ROUTE = [PathRoute.Coaching, PathRoute.ParentHost];
 
@@ -25,8 +26,15 @@ function JoinUs({ data, listSite }) {
     //! useEffect
     saveList(listSite);
     useEqualElement(refListItem);
+    useEffect(() => {
+        if (isEmpty(data)) {
+            window.location.href = '/404';
+        }
+    }, []);
 
     //! render
+    if (isEmpty(data)) return <> </>;
+
     return (
         <DefaultLayout>
             <div className="bannerBox-joinus">
@@ -182,39 +190,60 @@ function JoinUs({ data, listSite }) {
     );
 }
 
-export async function getStaticPaths() {
-    const res = await siteService.getListSite();
-    const list = res.data.data.lstSite;
+// export async function getStaticPaths() {
+//     const res = await siteService.getListSite();
+//     const list = res.data.data.lstSite;
 
-    // Get the paths we want to pre-render based on posts
-    const paths = list.map((item) => ({
-        params: { franchise: item.ms_alias },
-    }));
+//     // Get the paths we want to pre-render based on posts
+//     const paths = list.map((item) => ({
+//         params: { franchise: item.ms_alias },
+//     }));
 
-    return { paths, fallback: false };
-}
+//     return { paths, fallback: false };
+// }
 
-export async function getStaticProps(context) {
-    try {
-        const res = await siteService.getListSite();
-        const listSite = res.data.data.lstSite;
-        const item = listSite.find(
-            (item) => context.params.franchise === item.ms_alias,
-        );
+// export async function getStaticProps(context) {
+//     try {
+//         const res = await siteService.getListSite();
+//         const listSite = res.data.data.lstSite;
+//         const item = listSite.find(
+//             (item) => context.params.franchise === item.ms_alias,
+//         );
 
-        const siteDetail = await siteService.getDetailSite({
-            id: item.ms_id,
-            cate: 22,
-        });
+//         const siteDetail = await siteService.getDetailSite({
+//             id: item.ms_id,
+//             cate: 22,
+//         });
 
-        const data = siteDetail.data.data;
+//         const data = siteDetail.data.data;
 
-        return { props: { data, listSite } };
-    } catch (error) {
-        console.log(error);
+//         return { props: { data, listSite } };
+//     } catch (error) {
+//         console.log(error);
+//     }
+
+//     return { props: { data: {}, listSite: [] } };
+// }
+export async function getServerSideProps(context) {
+    const listRes = await siteService.getListSite();
+    const listSite = listRes.data.data.lstSite;
+
+    const item = listSite.find(
+        (item) => context.params.franchise === item.ms_alias,
+    );
+
+    if (isEmpty(item)) {
+        return { props: { data: [], listSite } };
     }
 
-    return { props: { data: {}, listSite: [] } };
+    const siteDetail = await siteService.getDetailSite({
+        id: item.ms_id,
+        cate: 22,
+    });
+
+    const data = siteDetail.data.data;
+
+    return { props: { data, listSite } };
 }
 
 export default JoinUs;

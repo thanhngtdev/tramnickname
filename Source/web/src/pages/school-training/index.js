@@ -7,10 +7,10 @@ import Testimonial from 'src/components/Testimonial';
 import React, { useRef } from 'react';
 import DefaultLayout from 'src/layout/DefaultLayout';
 import siteService from 'src/services/siteService';
-import BookTrialSchool from './components/BookTrialSchool';
-import Enquire from './components/Enquire';
-import FootballSkill from './components/FootballSkill';
-import TrustUs from './components/TrustUs';
+import BookTrialSchool from '../../components/SchoolTrainingComponents/components/BookTrialSchool';
+import Enquire from '../../components/SchoolTrainingComponents/components/Enquire';
+import FootballSkill from '../../components/SchoolTrainingComponents/components/FootballSkill';
+import TrustUs from '../../components/SchoolTrainingComponents/components/TrustUs';
 
 function SchoolTraining({ data, listSite }) {
     const enquireBox = useRef(null);

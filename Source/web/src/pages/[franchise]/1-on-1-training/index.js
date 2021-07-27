@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import { isEmpty } from 'lodash';
+import React, { useEffect, useRef } from 'react';
 import { Button } from 'react-bootstrap';
 import AboutUs from 'src/components/Camp/AboutUs';
 import FootballSkill from 'src/components/Camp/FootballSkill';
@@ -14,9 +15,16 @@ import DefaultLayout from 'src/layout/DefaultLayout';
 import BookTrialOne from 'src/pages/1-on-1-training/components/BookTrialOne';
 import siteService from 'src/services/siteService';
 
-function OneTraining({ data, listSite }) {
+export default function OneTraining({ data, listSite }) {
     saveList(listSite);
     const enquireBox = useRef(null);
+    useEffect(() => {
+        if (isEmpty(data)) {
+            window.location.href = '/404';
+        }
+    }, []);
+
+    if (isEmpty(data)) return <> </>;
 
     return (
         <DefaultLayout seo={data.seoMeta}>
@@ -90,38 +98,58 @@ function OneTraining({ data, listSite }) {
     );
 }
 
-export async function getStaticPaths() {
-    const res = await siteService.getListSite();
-    const list = res.data.data.lstSite;
+// export async function getStaticPaths() {
+//     const res = await siteService.getListSite();
+//     const list = res.data.data.lstSite;
 
-    // Get the paths we want to pre-render based on posts
-    const paths = list.map((item) => ({
-        params: { franchise: item.ms_alias },
-    }));
+//     // Get the paths we want to pre-render based on posts
+//     const paths = list.map((item) => ({
+//         params: { franchise: item.ms_alias },
+//     }));
 
-    return { paths, fallback: false };
-}
+//     return { paths, fallback: false };
+// }
 
-export async function getStaticProps(context) {
-    try {
-        const res = await siteService.getListSite();
-        const listSite = res.data.data.lstSite;
-        const item = listSite.find(
-            (item) => context.params.franchise === item.ms_alias,
-        );
+// export async function getStaticProps(context) {
+//     try {
+//         const res = await siteService.getListSite();
+//         const listSite = res.data.data.lstSite;
+//         const item = listSite.find(
+//             (item) => context.params.franchise === item.ms_alias,
+//         );
 
-        const siteDetail = await siteService.getDetailSite({
-            id: item.ms_id,
-            cate: 14,
-        });
+//         const siteDetail = await siteService.getDetailSite({
+//             id: item.ms_id,
+//             cate: 14,
+//         });
 
-        const data = siteDetail.data.data;
-        return { props: { data, listSite } };
-    } catch (error) {
-        console.log(error);
+//         const data = siteDetail.data.data;
+//         return { props: { data, listSite } };
+//     } catch (error) {
+//         console.log(error);
+//     }
+
+//     return { props: { data: {}, listSite: [] } };
+// }
+
+export async function getServerSideProps(context) {
+    const listRes = await siteService.getListSite();
+    const listSite = listRes.data.data.lstSite;
+
+    const item = listSite.find(
+        (item) => context.params.franchise === item.ms_alias,
+    );
+
+    if (isEmpty(item)) {
+        return { props: { data: [], listSite } };
     }
 
-    return { props: { data: {}, listSite: [] } };
-}
+    const siteDetail = await siteService.getDetailSite({
+        id: item.ms_id,
+        cate: 14,
+    });
 
-export default OneTraining;
+    const data = siteDetail.data.data;
+
+    return { props: { data, listSite } };
+}

@@ -2,9 +2,9 @@ import AboutSecure from 'src/components/Camp/AboutSecure';
 import DefaultLayout from 'src/layout/DefaultLayout';
 import React from 'react';
 import siteService from 'src/services/siteService';
-import AboutGuide from './components/AboutGuide';
-import AboutType from './components/AboutType';
-import AboutUsNoVideo from './components/AboutUsNoVideo';
+import AboutGuide from '../../components/AboutComponents/components/AboutGuide';
+import AboutType from '../../components/AboutComponents/components/AboutType';
+import AboutUsNoVideo from '../../components/AboutComponents/components/AboutUsNoVideo';
 
 function About({ data }) {
     return (

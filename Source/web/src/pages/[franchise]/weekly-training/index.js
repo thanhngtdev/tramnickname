@@ -10,15 +10,24 @@ import WhyWMF from 'src/components/Camp/WhyWMF';
 import Testimonial from 'src/components/Testimonial';
 import saveList from 'src/hooks/useSaveList';
 import DefaultLayout from 'src/layout/DefaultLayout';
-import React from 'react';
+import React, { useEffect } from 'react';
 import siteService from 'src/services/siteService';
+import { isEmpty } from 'lodash';
 
 const SiteNews = ({ data, listSite }) => {
     //! State
     saveList(listSite);
+
+    useEffect(() => {
+        if (isEmpty(data)) {
+            window.location.href = '/404';
+        }
+    }, []);
     //! Function
 
     //! Render
+    if (isEmpty(data)) return <> </>;
+
     return (
         <DefaultLayout>
             <AboutUs data={data?.about || {}} site={data.site} />
@@ -62,38 +71,60 @@ const SiteNews = ({ data, listSite }) => {
     );
 };
 
-export async function getStaticPaths() {
-    const res = await siteService.getListSite();
-    const list = res.data.data.lstSite;
+// export async function getStaticPaths() {
+//     const res = await siteService.getListSite();
+//     const list = res.data.data.lstSite;
 
-    // Get the paths we want to pre-render based on posts
-    const paths = list.map((item) => ({
-        params: { franchise: item.ms_alias },
-    }));
+//     // Get the paths we want to pre-render based on posts
+//     const paths = list.map((item) => ({
+//         params: { franchise: item.ms_alias },
+//     }));
 
-    return { paths, fallback: false };
-}
+//     return { paths, fallback: false };
+// }
 
-export async function getStaticProps(context) {
-    try {
-        const res = await siteService.getListSite();
-        const listSite = res.data.data.lstSite;
-        const item = listSite.find(
-            (item) => context.params.franchise === item.ms_alias,
-        );
+// export async function getStaticProps(context) {
+//     try {
+//         const res = await siteService.getListSite();
+//         const listSite = res.data.data.lstSite;
+//         const item = listSite.find(
+//             (item) => context.params.franchise === item.ms_alias,
+//         );
 
-        const siteDetail = await siteService.getDetailSite({
-            id: item.ms_id,
-            cate: 6,
-        });
+//         const siteDetail = await siteService.getDetailSite({
+//             id: item.ms_id,
+//             cate: 6,
+//         });
 
-        const data = siteDetail.data.data;
-        return { props: { data, listSite } };
-    } catch (error) {
-        console.log(error);
+//         const data = siteDetail.data.data;
+//         return { props: { data, listSite } };
+//     } catch (error) {
+//         console.log(error);
+//     }
+
+//     return { props: { data: {}, listSite: [] } };
+// }
+
+export async function getServerSideProps(context) {
+    const listRes = await siteService.getListSite();
+    const listSite = listRes.data.data.lstSite;
+
+    const item = listSite.find(
+        (item) => context.params.franchise === item.ms_alias,
+    );
+
+    if (isEmpty(item)) {
+        return { props: { data: [], listSite } };
     }
 
-    return { props: { data: {}, listSite: [] } };
+    const siteDetail = await siteService.getDetailSite({
+        id: item.ms_id,
+        cate: 6,
+    });
+
+    const data = siteDetail.data.data;
+
+    return { props: { data, listSite } };
 }
 
 export default SiteNews;

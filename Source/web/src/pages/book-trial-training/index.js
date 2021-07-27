@@ -20,10 +20,10 @@ import {
 } from 'src/redux/actions/bookTrialTrainingAction';
 import { findNearByAcademy, getListCourse } from 'src/redux/actions/siteAction';
 import swal from 'sweetalert';
-import BookTrialTraining1 from './components/BookTrialTraining1';
-import BookTrialTraining2 from './components/BookTrialTraining2';
-import BookTrialTraining3 from './components/BookTrialTraining3';
-import BookTrialTraining4 from './components/BookTrialTraining4';
+import BookTrialTraining1 from 'src/components/book-trial-trainingComponents/components/BookTrialTraining1';
+import BookTrialTraining2 from 'src/components/book-trial-trainingComponents/components/BookTrialTraining2';
+import BookTrialTraining3 from 'src/components/book-trial-trainingComponents/components/BookTrialTraining3';
+import BookTrialTraining4 from 'src/components/book-trial-trainingComponents/components/BookTrialTraining4';
 
 function BookTrialTraining() {
     const siteReducer = useSelector((state) => state.siteReducer);

@@ -8,10 +8,11 @@ import ImageGallery from 'src/components/Homepage/ImageGallery';
 import Testimonial from 'src/components/Testimonial';
 import DefaultLayout from 'src/layout/DefaultLayout';
 import BookTrialParty from 'src/pages/birthday-parties/components/BookTrialParty';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import siteService from 'src/services/siteService';
 import Quote from 'src/components/Quote';
 import saveList from 'src/hooks/useSaveList';
+import { isEmpty } from 'lodash';
 // import Spinner from "component/Spinner";
 
 function BirthdayParty({ data, listSite }) {
@@ -21,6 +22,11 @@ function BirthdayParty({ data, listSite }) {
 
     //! useEffect
     saveList(listSite);
+    useEffect(() => {
+        if (isEmpty(data)) {
+            window.location.href = '/404';
+        }
+    }, []);
     //! function
     //scroll to enquire section when book button clicked
     function handleScroll() {
@@ -35,6 +41,8 @@ function BirthdayParty({ data, listSite }) {
         // console.log(packageTitle, 'packageTitle');
         setPreferedPackage(packageTitle);
     }
+
+    if (isEmpty(data)) return <> </>;
 
     return (
         <DefaultLayout>
@@ -91,39 +99,61 @@ function BirthdayParty({ data, listSite }) {
     );
 }
 
-export async function getStaticPaths() {
-    const res = await siteService.getListSite();
-    const list = res.data.data.lstSite;
+// export async function getStaticPaths() {
+//     const res = await siteService.getListSite();
+//     const list = res.data.data.lstSite;
 
-    // Get the paths we want to pre-render based on posts
-    const paths = list.map((item) => ({
-        params: { franchise: item.ms_alias },
-    }));
+//     // Get the paths we want to pre-render based on posts
+//     const paths = list.map((item) => ({
+//         params: { franchise: item.ms_alias },
+//     }));
 
-    return { paths, fallback: false };
-}
+//     return { paths, fallback: false };
+// }
 
-export async function getStaticProps(context) {
-    try {
-        const res = await siteService.getListSite();
-        const listSite = res.data.data.lstSite;
-        const item = listSite.find(
-            (item) => context.params.franchise === item.ms_alias,
-        );
+// export async function getStaticProps(context) {
+//     try {
+//         const res = await siteService.getListSite();
+//         const listSite = res.data.data.lstSite;
+//         const item = listSite.find(
+//             (item) => context.params.franchise === item.ms_alias,
+//         );
 
-        const siteDetail = await siteService.getDetailSite({
-            id: item.ms_id,
-            cate: 15,
-        });
+//         const siteDetail = await siteService.getDetailSite({
+//             id: item.ms_id,
+//             cate: 15,
+//         });
 
-        const data = siteDetail.data.data;
+//         const data = siteDetail.data.data;
 
-        return { props: { data, listSite } };
-    } catch (error) {
-        console.log(error);
+//         return { props: { data, listSite } };
+//     } catch (error) {
+//         console.log(error);
+//     }
+
+//     return { props: { data: {}, listSite: [] } };
+// }
+
+export async function getServerSideProps(context) {
+    const listRes = await siteService.getListSite();
+    const listSite = listRes.data.data.lstSite;
+
+    const item = listSite.find(
+        (item) => context.params.franchise === item.ms_alias,
+    );
+
+    if (isEmpty(item)) {
+        return { props: { data: [], listSite } };
     }
 
-    return { props: { data: {}, listSite: [] } };
+    const siteDetail = await siteService.getDetailSite({
+        id: item.ms_id,
+        cate: 15,
+    });
+
+    const data = siteDetail.data.data;
+
+    return { props: { data, listSite } };
 }
 
 export default BirthdayParty;

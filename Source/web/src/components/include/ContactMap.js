@@ -32,7 +32,7 @@ function ContactMap(props) {
                 ms_longitude: parseFloat(academy.ms_longitude),
             });
 
-            console.log({ defaultCenter });
+            // console.log({ defaultCenter });
         }
     }, [academy]);
 

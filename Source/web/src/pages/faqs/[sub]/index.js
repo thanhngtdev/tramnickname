@@ -1,6 +1,6 @@
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import QNASearch from 'src/pages/faqs/components/QNASearch';
+import QNASearch from 'src/components/FaqComponents/components/QNASearch';
 // import "css/qna.css";
 import DefaultLayout from 'src/layout/DefaultLayout';
 import { useRouter } from 'next/router';
