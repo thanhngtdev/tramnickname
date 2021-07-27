@@ -1,10 +1,11 @@
+import { isEmpty } from 'lodash';
+import React, { useEffect } from 'react';
 import BookTrial from 'src/components/Booking/BookTrial';
 import QNA from 'src/components/Camp/QNA';
-import Intro from 'src/components/Homepage/Intro';
+import Intro from 'src/components/HomePage/Intro.js';
 import Testimonial from 'src/components/Testimonial';
 import saveList from 'src/hooks/useSaveList';
 import DefaultLayout from 'src/layout/DefaultLayout';
-import React, { useEffect } from 'react';
 import siteService from 'src/services/siteService';
 import BannerTop from '../../components/FranchiseComponents/components/BannerTop';
 import CoachInfo from '../../components/FranchiseComponents/components/CoachInfo';
@@ -12,7 +13,6 @@ import CoachTeam from '../../components/FranchiseComponents/components/CoachTeam
 import RelateAreas from '../../components/FranchiseComponents/components/RelateAreas';
 import TrainingReason from '../../components/FranchiseComponents/components/TrainingReason';
 import TrainingService from '../../components/FranchiseComponents/components/TrainingService';
-import { isEmpty } from 'lodash';
 
 function Franchise({ data, listSite }) {
     saveList(listSite);

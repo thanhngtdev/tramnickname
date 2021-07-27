@@ -1,7 +1,7 @@
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 import AboutSecure from 'src/components/Camp/AboutSecure';
-import Intro from 'src/components/Homepage/Intro';
+import Intro from 'src/components/HomePage/Intro.js';
 // import "css/slick-theme.css";
 import Testimonial from 'src/components/Testimonial';
 import useEqualElement from 'src/hooks/useEqualElement';

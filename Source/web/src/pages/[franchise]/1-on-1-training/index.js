@@ -6,7 +6,7 @@ import FootballSkill from 'src/components/Camp/FootballSkill';
 import InstaBox from 'src/components/Camp/InstaBox';
 import QNA from 'src/components/Camp/QNA';
 import WhyWMF from 'src/components/Camp/WhyWMF';
-import Intro from 'src/components/HomePage/Intro';
+import Intro from 'src/components/HomePage/Intro.js';
 import Provide from 'src/components/Provide';
 // import Spinner from "component/Spinner";
 import Testimonial from 'src/components/Testimonial';

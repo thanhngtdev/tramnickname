@@ -2,7 +2,7 @@ import AboutUs from 'src/components/Camp/AboutUs';
 import InstaBox from 'src/components/Camp/InstaBox';
 import QNA from 'src/components/Camp/QNA';
 import WhyWMF from 'src/components/Camp/WhyWMF';
-import Intro from 'src/components/Homepage/Intro';
+import Intro from 'src/components/HomePage/Intro.js';
 import Testimonial from 'src/components/Testimonial';
 import React, { useRef } from 'react';
 import DefaultLayout from 'src/layout/DefaultLayout';

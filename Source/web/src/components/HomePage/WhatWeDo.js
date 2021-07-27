@@ -6,7 +6,7 @@ import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 import Testimonial from 'src/components/Testimonial';
 import TrustPilot from 'src/components/TrustPilot';
-import Gallery from './ImageGallery';
+import Gallery from 'src/components/Homepage/ImageGallery';
 
 WhatWeDo.propTypes = {
     gallery: PropTypes.object,
