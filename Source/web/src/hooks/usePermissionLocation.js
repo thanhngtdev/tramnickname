@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import Constants from 'common/Constants';
+import Constants from '../common/Constants';
 
-export default () => {
+const usePermissionLocation = () => {
     const [statusPermission, setStatusPermission] = useState(
         Constants.STATUS_PERMISSION_LOCATION.PROMPT,
     );
@@ -21,3 +21,5 @@ export default () => {
 
     return statusPermission;
 };
+
+export default usePermissionLocation;

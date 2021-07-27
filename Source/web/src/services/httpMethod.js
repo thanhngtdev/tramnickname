@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { cloneDeep } from 'lodash-es';
-import { BASE_API } from 'requests/ApiConfig';
+import { cloneDeep } from 'lodash';
+import { BASE_API } from '../requests/ApiConfig';
 
 class HttpMethod {
     constructor() {

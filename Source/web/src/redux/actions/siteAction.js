@@ -40,3 +40,11 @@ export const bookCourse = ({ course_id, start_date, child_id, token }) => {
         token,
     };
 };
+
+export const checkEmail = (data) => {
+    // console.log(data, 'data');
+    return {
+        type: actionTypes.CHECK_MAIL,
+        data,
+    };
+};

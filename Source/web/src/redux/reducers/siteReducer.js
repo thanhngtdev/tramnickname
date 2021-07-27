@@ -1,11 +1,13 @@
-import { siteActionType } from '../actions/actionTypes';
+import type, { siteActionType } from '../actions/actionTypes';
 
 const initialState = {
     message: '',
-    lstSite: [],
     lstSiteCamp: [],
     marker: {},
-    test:'',
+    footerConfig: {},
+    emailData: {},
+    // dataCourse: [],
+    // dataEvent: [],
 };
 
 const siteReducer = (state = initialState, action) => {
@@ -15,19 +17,6 @@ const siteReducer = (state = initialState, action) => {
                 ...state,
                 type: siteActionType.ALLOW_LOCATION,
                 data: action.data,
-            };
-        case siteActionType.GET_LIST_SITE_SUCCESS:
-            return {
-                ...state,
-                type: siteActionType.GET_LIST_SITE_SUCCESS,
-                data: action.data,
-                lstSite: action.data.lstSite,
-            };
-        case siteActionType.GET_LIST_SITE_FAILED:
-            return {
-                ...state,
-                type: siteActionType.GET_LIST_SITE_FAILED,
-                message: action.message,
             };
         case siteActionType.GET_SITE_HAS_CAMP_SUCCESS:
             return {
@@ -42,18 +31,6 @@ const siteReducer = (state = initialState, action) => {
                 type: siteActionType.GET_SITE_HAS_CAMP_FAILED,
                 message: action.message,
             };
-        // case siteActionType.GET_DETAIL_SITE_SUCCESS:
-        //     return {
-        //         ...state,
-        //         type: siteActionType.GET_DETAIL_SITE_SUCCESS,
-        //         data: action.data,
-        //     };
-        // case siteActionType.GET_DETAIL_SITE_FAILED:
-        //     return {
-        //         ...state,
-        //         type: siteActionType.GET_DETAIL_SITE_FAILED,
-        //         message: action.message,
-        //     };
         case siteActionType.BOOK_TRAINING_SUCCESS:
             return {
                 ...state,
@@ -126,6 +103,8 @@ const siteReducer = (state = initialState, action) => {
                 ...state,
                 type: siteActionType.GET_LIST_COURSE_SUCCESS,
                 data: action.data,
+                dataCourse: action.dataCourse,
+                dataEvent: action.dataEvent,
                 courseType: action.courseType,
             };
         case siteActionType.GET_LIST_COURSE_FAILED:
@@ -230,28 +209,23 @@ const siteReducer = (state = initialState, action) => {
                 type: siteActionType.SEND_EMAIL_FAILED,
                 message: action.message,
             };
+
+        case type.CLEAR_SEND_EMAIL:
+            return {
+                ...state,
+                type: type.CLEAR_SEND_EMAIL,
+            };
+
         case siteActionType.GET_FOOTER_CONFIG_SUCCESS:
             return {
                 ...state,
                 type: siteActionType.GET_FOOTER_CONFIG_SUCCESS,
-                data: action.data,
+                footerConfig: action.data,
             };
         case siteActionType.GET_FOOTER_CONFIG_FAILED:
             return {
                 ...state,
                 type: siteActionType.GET_FOOTER_CONFIG_FAILED,
-                message: action.message,
-            };
-        case siteActionType.GET_POLICY_SUCCESS:
-            return {
-                ...state,
-                type: siteActionType.GET_POLICY_SUCCESS,
-                data: action.data,
-            };
-        case siteActionType.GET_POLICY_FAILED:
-            return {
-                ...state,
-                type: siteActionType.GET_POLICY_FAILED,
                 message: action.message,
             };
         case siteActionType.GET_POLICY_INDEX:
@@ -275,6 +249,7 @@ const siteReducer = (state = initialState, action) => {
 
         case siteActionType.PICK_DEFAULT_ACADEMY:
             return { ...state, type: siteActionType.PICK_DEFAULT_ACADEMY };
+
         case siteActionType.SELECTED_MARKER:
             return {
                 ...state,
@@ -282,8 +257,19 @@ const siteReducer = (state = initialState, action) => {
                 data: action.data,
                 marker: action.data,
             };
-        case siteActionType.KEY_CODE:
-            return { ...state, type: siteActionType.KEY_CODE };
+
+        case type.CHECK_MAIL_SUCCESS:
+            return {
+                ...state,
+                emailData: action.data,
+            };
+
+        case type.CHECK_MAIL_FAILED:
+            return {
+                ...state,
+                message: action.message,
+            };
+
         default:
             return state;
     }

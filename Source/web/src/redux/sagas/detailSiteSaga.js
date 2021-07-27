@@ -1,32 +1,20 @@
-import actionTypes from 'redux/actions/actionTypes';
-import siteService from 'services/siteService';
+import actionTypes from '../actions/actionTypes';
+import siteService from '../../services/siteService';
 import { put, takeLatest } from 'redux-saga/effects';
-import { APIConfig } from 'requests/ApiConfig';
-import API from 'requests/API';
 
-function* weeklyTraining(data) {
-    const { currentAcademyId, cate } = data;
+function* detailSite(data) {
+    const { lstSite, currentAcademyId, cate } = data;
 
     try {
-        const resOfListSite = yield siteService.getListSite();
-        const lstSite = resOfListSite?.data?.data?.lstSite || [];
-        const siteId = currentAcademyId || lstSite[0].ms_id;
-
-        if (siteId) {
-            // const response = yield API.requestGetAPI(
-            //     APIConfig.GET_DETAIL_SITE,
-            //     {
-            //         siteId,
-            //         cate,
-            //     },
-            // );
-            const response = yield siteService.getDetailSite({ siteId, cate });
-            // console.log(response.data, 'daaaaaaaa');
+        // const id = currentAcademyId || lstSite[0].ms_id;
+        const id = lstSite[0].ms_id;
+        // alert(id);
+        if (id) {
+            const response = yield siteService.getDetailSite({ id, cate });
             if (response && response.status === 200) {
                 yield put({
                     type: actionTypes.GET_DETAIL_SITE_SUCCESS,
                     data: response.data?.data,
-                    lstSite: lstSite,
                 });
             } else {
                 yield put({
@@ -44,5 +32,5 @@ function* weeklyTraining(data) {
 }
 
 export default function* watcherDetailSite() {
-    yield takeLatest(actionTypes.GET_DETAIL_SITE, weeklyTraining);
+    yield takeLatest(actionTypes.GET_DETAIL_SITE, detailSite);
 }

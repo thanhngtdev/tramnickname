@@ -1,0 +1,235 @@
+.holiday-camp {
+	background-color: #F2F2F2;
+	text-align: center;
+	padding-bottom: 4rem;
+	margin-top: 110px;
+}
+
+.holiday-camp h2 {
+	font-size: 45px;
+	padding: 0px 110px;
+}
+
+.holiday-camp a {
+	color: #FF7100
+}
+
+
+.tab-view {
+	padding: 3rem 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.tab-view .wrap-tab {
+	background-color: white;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	display: flex;
+	padding: 6px;
+}
+
+.tab-view .active,
+.tab-view .filled {
+	background-color: #FF7100;
+}
+
+.tab-view button {
+	border: 2px solid #FF7100;
+	border-radius: 50%;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	color: #FF7100;
+}
+
+.tab-view .active button {
+	border-color: white;
+	background-color: #FF7100;
+	color: white;
+}
+
+.wSelect2 {
+	max-width: 600px;
+	margin: 0 auto;
+	text-align: left;
+	padding-bottom: 3rem;
+}
+
+.wSelect2 label {
+	display: inline-block;
+	text-transform: uppercase;
+	color: #000;
+	font-size: 16px;
+	margin-bottom: 12px;
+}
+
+
+.wSelect2 .input-text {
+	background: #FFFFFF;
+	border: 1px solid #E7E7E7;
+	border-radius: 6px;
+	/* color: rgba(0, 0, 0, 0.3); */
+	padding: 17px 30px;
+	cursor: pointer;
+	height: 70px;
+	line-height: 31px;
+	padding-right: 95px;
+	font-weight: normal;
+	font-size: 24px;
+	width: 100%;
+	display: inline-block;
+}
+
+.wSelect2 .input-text::placeholder {
+	opacity: 0.3;
+}
+
+.wSelect2 .input-error {
+	color: red;
+}
+
+.wSelect2 .react-datepicker-wrapper {
+	display: block;
+}
+
+.wSelect2 .training-gender {
+	display: flex;
+	flex-direction: row;
+}
+
+.wSelect2 .training-gender div {
+	cursor: pointer;
+	flex: 1;
+	color: #FF7100;
+	background-color: white;
+	margin-right: 1rem;
+	border-radius: 6px;
+	text-align: center;
+	padding: 1rem 0;
+	text-transform: uppercase;
+}
+
+.classRow {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem;
+	cursor: pointer;
+}
+
+.classRow .classInfo {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	flex: 3;
+	padding-right: 2rem;
+}
+
+.inputText {
+	background: #FFFFFF;
+	border: 1px solid #E7E7E7;
+	border-radius: 6px;
+	color: rgba(0, 0, 0, 1);
+	padding: 17px 30px;
+	cursor: pointer;
+	height: 70px;
+	line-height: 31px;
+	padding-right: 95px;
+	font-weight: normal;
+	font-size: 24px;
+	width: 100%;
+	display: inline-block;
+}
+
+.outputText {
+    overflow: hidden;
+    resize: none;
+    background: #FFFFFF;
+    border: 1px solid #E7E7E7;
+    border-radius: 6px;
+    color: rgba(26,25,25,0.7);
+    padding: 9px 15px 9px 20px;
+    /* cursor: pointer; */
+    /* height: 85px; */
+    /* line-height: 31px; */
+    /* padding-right: 95px; */
+    font-weight: normal;
+    font-size: 17px;
+    width: 100%;
+    display: inline-block
+}
+
+.inputText::placeholder {
+	color: rgba(0, 0, 0, 0.3)
+}
+
+.success-booking {
+	margin-bottom: 2rem;
+	background-color: white;
+	border-radius: 6px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.booking-find {
+	padding-top: 50px;
+}
+
+.booking-find .back {
+	margin-bottom: -30px;
+	text-align: left;
+	cursor: pointer;
+}
+
+.booking-find .wSelect2 {
+	background-color: white;
+	padding: 50px;
+	border-radius: 6px;
+}
+
+@media only screen and (max-width: 767px) and (min-width: 320px) {
+	.holiday-camp{
+		margin-top: 0;
+	}
+
+	.holiday-camp h2 {
+		padding: 0;
+	}
+
+	.success-booking {
+		flex-direction: column;
+	}
+
+	.booking-find .back {
+		margin-bottom: 15px;
+		text-align: center;
+	}
+
+	.booking-find .wSelect2 {
+		padding: 15px;
+		border-radius: 0px;
+		
+	}
+
+	.classRow {
+		display: flex;
+		flex-direction: column;
+		/* padding: 0; */
+	}
+
+	.classRow p {
+		font-size: 1rem;
+		color: #000;
+		margin: 5px;
+	}
+
+	.wSelect2 .input-text {
+		padding-right:0 ;
+	}
+}

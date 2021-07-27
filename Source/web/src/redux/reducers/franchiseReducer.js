@@ -1,9 +1,9 @@
-import types from 'redux/actions/actionTypes';
+import types from '../actions/actionTypes';
 
 const initialState = {
-    isFetching: false,
     data: {},
     error: null,
+    isFetching: true,
 };
 
 export default (state = initialState, action) => {
@@ -11,14 +11,14 @@ export default (state = initialState, action) => {
         case types.GET_FRANCHISE_DETAIL_REQUEST:
             return {
                 ...state,
-                isFetching: true,
+                error: null,
             };
 
         case types.GET_FRANCHISE_DETAIL_SUCCESS:
             return {
                 ...state,
-                isFetching: false,
                 data: action.data,
+                isFetching: false,
                 error: null,
             };
 
@@ -28,6 +28,9 @@ export default (state = initialState, action) => {
                 isFetching: false,
                 error: action.error,
             };
+
+        case types.CLEAR_FRANCHISE_DETAIL:
+            return initialState;
 
         default:
             return state;

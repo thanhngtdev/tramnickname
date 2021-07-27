@@ -1,4 +1,4 @@
-import types from 'redux/actions/actionTypes';
+import types from '../actions/actionTypes';
 
 const initialState = {
     message: '',

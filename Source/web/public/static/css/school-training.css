@@ -1,0 +1,17 @@
+@media only screen and (max-width: 767px) and (min-width: 319px) {
+    .intro-school .intro-joinus {
+        top: 60px
+    }
+
+    .football-school {
+        margin-top: 65px;
+    }
+
+    .trust-us .trust-us-list-image .trust-us-image {
+        width: 40px;
+    }
+
+    .enquire-school .enquire {
+        padding-top: 65px;
+    }
+ }

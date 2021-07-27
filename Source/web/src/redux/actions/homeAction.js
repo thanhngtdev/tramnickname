@@ -1,8 +1,8 @@
 import actionTypes from './actionTypes';
 
-export const getHome = () => {
-    // console.log(actionTypes.GET_HOME, 'aaaaa');
+export const getHome = (data) => {
     return {
+        ...data,
         type: actionTypes.GET_HOME,
     };
 };

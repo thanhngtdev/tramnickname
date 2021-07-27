@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Group_1" data-name="Group 1" transform="translate(-833 -912)">
+    <g id="facebook-square" transform="translate(833 912)">
+      <path id="Shape" d="M4,24a4,4,0,0,1-4-4V4A4,4,0,0,1,4,0H20a4,4,0,0,1,4,4V20a4,4,0,0,1-4,4Z" fill="#ff7531"/>
+    </g>
+    <g id="Facebook" transform="translate(840.425 915.686)">
+      <path id="Path" d="M6.058,16h-3.3V8.7H0V5.857H2.759v-2.1C2.759,1.326,4.429,0,6.868,0,8.037,0,9.041.077,9.333.112V2.656H7.642c-1.326,0-1.584.561-1.584,1.385V5.857H9.222L8.81,8.7H6.058Z" transform="translate(0 0)" fill="#fff" stroke="#fff" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

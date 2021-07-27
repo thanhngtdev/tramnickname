@@ -1,4 +1,4 @@
-import type, { articleActionType } from '../actions/actionTypes';
+import type from '../actions/actionTypes';
 
 const initialState = {
     message: '',
@@ -27,16 +27,6 @@ const articleReducer = (state = initialState, action) => {
                 type: type.DETAIL_ARTICLE_FAILED,
                 message: action.message,
                 failed: true,
-            };
-        case articleActionType.GET_LIST_FAQ_SUCCESS:
-            return {
-                type: articleActionType.GET_LIST_FAQ_SUCCESS,
-                data: action.data,
-            };
-        case articleActionType.GET_LIST_FAQ_FAILED:
-            return {
-                type: articleActionType.GET_LIST_FAQ_FAILED,
-                message: action.message,
             };
         default:
             return state;

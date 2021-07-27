@@ -1,8 +1,9 @@
-import types from 'redux/actions/actionTypes';
+// import types from '../redux/actions/actionTypes';
+import types from '../actions/actionTypes';
 
 const initialState = {
     message: '',
-    lstSite: [],
+    data: {},
 };
 
 export default (state = initialState, action) => {
@@ -18,7 +19,6 @@ export default (state = initialState, action) => {
                 ...state,
                 type: types.GET_DETAIL_SITE_SUCCESS,
                 data: action.data,
-                lstSite: action.lstSite,
             };
 
         case types.GET_DETAIL_SITE_FAILED:
@@ -27,6 +27,9 @@ export default (state = initialState, action) => {
                 type: types.GET_DETAIL_SITE_FAILED,
                 message: action.message,
             };
+
+        case types.CLEAR_DETAIL_SITE:
+            return initialState;
 
         default:
             return state;

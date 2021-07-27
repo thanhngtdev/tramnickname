@@ -1,0 +1,71 @@
+
+
+.about-us-info {
+	margin-top: -65px;
+}
+
+.about-us-info .about-info .wrap-info {
+	overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 20px 60px rgb(2 2 30 / 9%)
+}
+
+.about-guide-aboutpage .about-guide .col-right div {
+    max-width: 65%;
+}
+
+.about-guide-aboutpage2 .about-guide .col-right div {
+    max-width: 65%;
+}
+
+
+
+@media only screen and (max-width: 767px) and (min-width: 320px) { 
+    .about-us-aboutpage .get-in-touch .pro-text{
+        text-align: center;
+    }
+    
+    .about-us-aboutpage .get-in-touch .pro-sub-text{
+        text-align: left !important;
+    }
+    
+    .about-us-aboutpage .about-us .about-us-content .get-in-touch .list-form {
+        padding-bottom: 25px;
+    }
+
+    .about-us-info .about-info {
+        margin-top: 550px;
+    }
+
+    .about-us-info .about-info .wrap-info {
+        box-shadow: initial;
+    }
+
+    .about-us-info .about-info .col-6 {
+        margin-top: 0;
+    }
+
+    .about-guide-aboutpage .about-guide .col-right div {
+        max-width: 100%;
+    }
+
+    .about-coach-aboutpage .about-coach {
+        padding-top: 105px;
+    }
+
+    .about-secure-aboutpage {
+        margin-top: 150px;
+    }
+
+    .about-guide-aboutpage2 {
+        margin-top: -100px;
+    }
+
+    .about-guide-aboutpage2 .about-guide .col-right div {
+        max-width: 100%;
+    }
+
+    .about-type-aboutpage .about-type .type-anchor {
+        padding-bottom: 50px;
+    }
+}

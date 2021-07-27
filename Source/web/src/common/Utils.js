@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
-import { STORAGE_URL } from '../requests/ApiConfig';
+import { siteActionType } from '../redux/actions/actionTypes';
 import packageVersion from '../../package.json';
-import { siteActionType } from 'redux/actions/actionTypes';
+import { STORAGE_URL } from '../requests/ApiConfig';
 
 const { hasOwnProperty } = Object.prototype;
 class Utils {
@@ -29,7 +29,8 @@ class Utils {
     }
 
     checkEmail(email) {
-        const emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const emailCheck =
+            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return emailCheck.test(String(email).toLowerCase());
     }
 
@@ -166,23 +167,48 @@ class Utils {
         });
     }
 
-    linkToPolicy(dispatch, index) {
-        dispatch({
-            type: siteActionType.GET_POLICY_INDEX,
-            index: index,
-        });
-    }
-
     getLinkYoutube(string) {
         const regex = /<p>.*<\/p>/g;
         const filterPTags = string.match(regex);
-        if (typeof filterPTags === "object" && filterPTags.length > 0) {
-          const link = filterPTags[0].replace(/<p>/, "").replace(/<\/p>/, "");
-          return link;
+        if (typeof filterPTags === 'object' && filterPTags.length > 0) {
+            const link = filterPTags[0].replace(/<p>/, '').replace(/<\/p>/, '');
+            return link;
         }
-      
-        return "";
-      };
+
+        return '';
+    }
+
+    convertPrice(data) {
+        const { content, weeklyCost, minWeeklyCost, locations } = data;
+
+        let replaceContent = weeklyCost?.one
+            ? 'of £' + weeklyCost.one
+            : 'from £' + minWeeklyCost.one;
+
+        const venues = locations + ' venues';
+        const poundType = content.includes('of &pound;XXX')
+            ? 'of &pound;XXX'
+            : 'of £XXX';
+
+        return content
+            .replace(poundType, replaceContent)
+            .replace('16 venues', venues);
+    }
+
+    convertToQuery(param) {
+        return (
+            '?' +
+            Object.keys(param)
+                .map(function (key) {
+                    return (
+                        encodeURIComponent(key) +
+                        '=' +
+                        encodeURIComponent(param[key])
+                    );
+                })
+                .join('&')
+        );
+    }
 }
 
 export default new Utils();

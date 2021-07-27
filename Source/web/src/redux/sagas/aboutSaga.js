@@ -1,8 +1,7 @@
-import actionTypes from 'redux/actions/actionTypes';
 import { put, takeLatest } from 'redux-saga/effects';
-import siteService from 'services/siteService';
-import { APIConfig } from 'requests/ApiConfig';
-import API from 'requests/API';
+import { APIConfig } from '../../requests/ApiConfig';
+import API from '../../requests/API';
+import actionTypes from '../actions/actionTypes';
 
 function* getAbout() {
     const response = yield API.requestGetAPI(APIConfig.GET_ABOUT);

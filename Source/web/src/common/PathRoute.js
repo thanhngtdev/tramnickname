@@ -20,16 +20,11 @@ let PathRoute = {
     AcademyNews: '/:alias/news',
     Policy: '/policies',
     PolicyWithParam: '/policies/:title',
-    Sub_policy: [
-        '/child-welfare-policy',
-        '/anti-bullying-make-footballers',
-        '/equality-and-diversity',
-        '/privacy-policy',
-    ],
     SchoolTraining: '/school-training',
     Error: '/error',
     JoinUs: '/join-us',
     Coaching: '/coaching',
+    ParentHost: '/parent-host',
 };
 
 export default PathRoute;
