@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 // import "react-phone-number-input/style.css";
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
-import EyeIcon from 'src/components/booking/EyeIcon';
+import EyeIcon from 'src/components/Booking/EyeIcon';
 
 const GENDER = ['Male', 'Female', 'Unspecified'];
 

@@ -1,8 +1,8 @@
 import Utils from 'src/common/Utils';
-import EmailIcon from 'src/components/booking/EmailIcon';
-import TrainingIcon1 from 'src/components/booking/TrainingIcon1';
-import TrainingIcon2 from 'src/components/booking/TrainingIcon2';
-import TrainingIcon3 from 'src/components/booking/TrainingIcon3';
+import EmailIcon from 'src/components/Booking/EmailIcon';
+import TrainingIcon1 from 'src/components/Booking/TrainingIcon1';
+import TrainingIcon2 from 'src/components/Booking/TrainingIcon2';
+import TrainingIcon3 from 'src/components/Booking/TrainingIcon3';
 import BookingSuccessMap from 'src/components/include/BookingSuccessMap';
 // import Utils from "src/common/Utils";
 import BorderButton from 'src/components/include/BorderButton';

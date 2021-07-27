@@ -9,6 +9,9 @@
     "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "eslintConfig": {
+    "extends": "react-app"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -21,6 +24,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "eslint": "^7.31.0",
+    "eslint-plugin-import": "^2.23.4",
     "flat": "^5.0.2",
     "formik": "^2.2.6",
     "html-react-parser": "^1.2.7",
