@@ -58,6 +58,7 @@ export default function MyApp({ Component, pageProps }) {
                         name="viewport"
                         content="width=device-width, initial-scale=1"
                     />
+                    <link rel="stylesheet" href="/static-file/css/font.css" />
                 </Head>
                 <Component {...pageProps} />
             </Provider>

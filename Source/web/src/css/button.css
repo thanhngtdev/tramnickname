@@ -1,9 +1,0 @@
-button.btn-disabled {
-    opacity: 0.3;
-}
-
-button.btn-disabled:hover {
-    background: initial !important;
-    color: rgb(255, 113, 0) !important;
-    cursor: unset !important;
-}
