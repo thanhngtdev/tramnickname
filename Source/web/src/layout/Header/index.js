@@ -5,7 +5,7 @@ import NearbyAcademy from 'src/components/include/NearbyAcademy';
 import ModelManager from 'src/common/ModelManager';
 import { isEmpty } from 'lodash';
 import PathRoute from 'src/common/PathRoute';
-
+import Image from 'next/image';
 // import NearbyAcademy from "./include/NearbyAcademy";
 
 function Header() {
@@ -57,10 +57,11 @@ function Header() {
             <div className="head-top-mobile">
                 <div className="container">
                     <Link href={PathRoute.Home}>
-                        <img
+                        <Image
                             src="/static-file/images/logo.svg"
                             className="logo"
-                            alt=""
+                            alt="Logo"
+                            layout="fill"
                         />
                     </Link>
                     <button

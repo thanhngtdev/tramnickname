@@ -10,6 +10,7 @@ import Slider from 'react-slick';
 import { getHome } from 'src/redux/actions/homeAction';
 // import { showTruspilot } from "redux/actions/trustpilotAction";
 import 'slick-carousel/slick/slick.css';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 const settings = {
     dots: true,
     infinite: false,
@@ -77,7 +78,7 @@ function Testimonial(props) {
                         lstFb.map((item, index) => (
                             <div key={index} className="col-6">
                                 <div className="box-acc-review">
-                                    <img
+                                    <LazyLoadImage
                                         alt=""
                                         src={Utils.getThumb(item.fb_image)}
                                         className="avatar"

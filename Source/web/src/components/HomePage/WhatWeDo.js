@@ -6,10 +6,13 @@ import Gallery from 'src/components/HomePage/Gallery';
 import Testimonial from 'src/components/Testimonial';
 import TrustPilot from 'src/components/TrustPilot';
 import useEqualElement from 'src/hooks/useEqualElement';
+import Image from 'next/image';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const ROUTE = [PathRoute.WeeklyTraining, PathRoute.HolidayCamp];
 
 function WhatWeDo(props) {
+    console.log(props, 'what');
     const { whatWeDo, testimonial, gallery, gallery2 } = props;
     const refListItem = useRef(null);
     const [showTrustBox, setShowTrustBox] = useState(false);
@@ -62,8 +65,8 @@ function WhatWeDo(props) {
                                 whatWeDo.cfg_value.map((item, index) => (
                                     <div className="col-6" key={index}>
                                         <div className="item">
-                                            <img
-                                                alt=""
+                                            <LazyLoadImage
+                                                alt={item.title}
                                                 src={Utils.getThumb(item.icon)}
                                                 className="img"
                                             />

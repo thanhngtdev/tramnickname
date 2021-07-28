@@ -1,9 +1,11 @@
 // import Utils from "src/common/Utils";
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Utils from 'src/common/Utils';
 import getLocalStorage from 'src/hooks/useGetLocalStorage';
+import Image from 'next/image';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 Intro.propTypes = {
     intro: PropTypes.array,
@@ -67,6 +69,12 @@ function Intro(props) {
     //   });
     // }, [lstSite, data]);
 
+    useEffect(() => {
+        props.intro.map((item, index) => {
+            console.log(Utils.getThumb(item.image));
+        });
+    }, []);
+
     return (
         <div className="container">
             <div className="box-list-item-card intro-joinus">
@@ -84,9 +92,11 @@ function Intro(props) {
                         return (
                             <div key={index} className="list-intro-item">
                                 <div className="list-intro-item-img">
-                                    <img
+                                    <LazyLoadImage
                                         src={Utils.getThumb(temp.image)}
-                                        alt=""
+                                        alt={temp?.des}
+                                        // layout="fill"
+                                        effect="blur"
                                     />
                                 </div>
 
