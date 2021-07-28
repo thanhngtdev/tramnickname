@@ -18,6 +18,12 @@ export default class MyDocument extends Document {
                         href="/static-file/assets/favicon.ico"
                     />
 
+                    <link
+                        rel="stylesheet"
+                        href="/static-file/css/font.css"
+                        as="style"
+                    />
+
                     <script
                         type="text/javascript"
                         src="https://www.google.com/recaptcha/api.js"

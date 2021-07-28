@@ -61,6 +61,8 @@ function Header() {
                             src="/static-file/images/logo.svg"
                             className="logo"
                             alt="Logo"
+                            height={'100%'}
+                            width={'100%'}
                         />
                     </Link>
                     <button

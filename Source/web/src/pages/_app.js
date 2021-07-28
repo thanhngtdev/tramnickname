@@ -6,6 +6,7 @@ import Head from 'next/head';
 import i18n from 'i18n';
 // import store from 'redux/store';
 import NProgress from 'nprogress';
+import '../../public/static-file/scss/nprogress.scss';
 
 import store from 'src/redux/store';
 
@@ -39,7 +40,7 @@ import 'flatpickr/dist/themes/airbnb.css';
 import '../../public/static-file/css/modal.css';
 
 Router.events.on('routeChangeStart', (url) => {
-    console.log(`Loading: ${url}`);
+    // console.log(`Loading: ${url}`);
     NProgress.start();
 });
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -58,7 +59,6 @@ export default function MyApp({ Component, pageProps }) {
                         name="viewport"
                         content="width=device-width, initial-scale=1"
                     />
-                    <link rel="stylesheet" href="/static-file/css/font.css" />
                 </Head>
                 <Component {...pageProps} />
             </Provider>

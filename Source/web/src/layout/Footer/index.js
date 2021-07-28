@@ -6,6 +6,7 @@ import Link from 'next/link';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import siteService from 'src/services/siteService';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 function Footer() {
     //! state
@@ -52,7 +53,12 @@ function Footer() {
         <div className="footer">
             <div className="container">
                 <div className="box-contact">
-                    <img src={'/static-file/images/logo-white.png'} alt="" />
+                    <LazyLoadImage
+                        src={'/static-file/images/logo-white.png'}
+                        alt=""
+                        height={'100%'}
+                        width={'100%'}
+                    />
                     <ul className="list">
                         <li className="mail">
                             <a

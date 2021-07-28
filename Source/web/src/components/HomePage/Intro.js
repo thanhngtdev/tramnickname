@@ -95,6 +95,8 @@ function Intro(props) {
                                         src={Utils.getThumb(temp.image)}
                                         alt={temp?.des}
                                         // layout="fill"
+                                        width="600"
+                                        width="600"
                                         effect="blur"
                                     />
                                 </div>

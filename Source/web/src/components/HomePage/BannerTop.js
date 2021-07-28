@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
@@ -8,16 +8,26 @@ import getLocalStorage from 'src/hooks/useGetLocalStorage';
 function BannerTop(props) {
     const dispatch = useDispatch();
     const [textSearch, setTextSearch] = useState('');
+    const [src, setSrc] = useState('');
 
     const defaultAcademy = getLocalStorage();
+
+    useEffect(() => {
+        const imageLoader = new Image();
+        imageLoader.src = `${Utils.getThumb(
+            props.bannerTop.cfg_value[0].image,
+        )}`;
+
+        imageLoader.onload = (event) => {
+            setSrc(`${Utils.getThumb(props.bannerTop.cfg_value[0].image)}`);
+        };
+    }, []);
 
     return (
         <div
             className="banner-top"
             style={{
-                background: `url(${Utils.getThumb(
-                    props.bannerTop.cfg_value[0].image,
-                )}) no-repeat center center #fff`,
+                background: `url(${src}) no-repeat center center #fff`,
             }}>
             <div className="container">
                 <h1>{props.bannerTop.cfg_title}</h1>
