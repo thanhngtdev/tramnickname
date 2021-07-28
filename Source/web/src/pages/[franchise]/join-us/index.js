@@ -14,6 +14,7 @@ import siteService from 'src/services/siteService';
 import JoinUsBanner from 'src/components/JoinUsBanner';
 import saveList from 'src/hooks/useSaveList';
 import { isEmpty } from 'lodash';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const ROUTE = [PathRoute.Coaching, PathRoute.ParentHost];
 
@@ -78,7 +79,7 @@ function JoinUs({ data, listSite }) {
                                                         key={index}
                                                         className="col-6">
                                                         <div className="item">
-                                                            <img
+                                                            <LazyLoadImage
                                                                 alt=""
                                                                 src={Utils.getThumb(
                                                                     item.icon,

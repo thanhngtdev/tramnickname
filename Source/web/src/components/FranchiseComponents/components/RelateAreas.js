@@ -64,7 +64,7 @@ function RelateAreas(props) {
                             <div className="rList-news">
                                 {props.article && (
                                     <div className="rNews">
-                                        <img
+                                        <LazyLoadImage
                                             alt=""
                                             src={Utils.getThumb(
                                                 props.article.atc_featureImg,

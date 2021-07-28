@@ -59,10 +59,6 @@ export default function MyApp({ Component, pageProps }) {
                         content="width=device-width, initial-scale=1"
                     />
                     <link rel="stylesheet" href="/static-file/css/font.css" />
-                    <link
-                        rel="stylesheet"
-                        href="/static-file/css/spinner.css"
-                    />
                 </Head>
                 <Component {...pageProps} />
             </Provider>

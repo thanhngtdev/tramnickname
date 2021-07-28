@@ -5,6 +5,7 @@ import { snakeCase } from 'lodash';
 import Link from 'next/link';
 import React, { useRef } from 'react';
 import siteService from 'src/services/siteService';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 function Policy({ data }) {
     const refListItem = useRef(null);
@@ -68,7 +69,7 @@ function Policy({ data }) {
                                         className="col-6"
                                         style={{ marginBottom: 60 }}>
                                         <div className="item">
-                                            <img
+                                            <LazyLoadImage
                                                 alt=""
                                                 src={Utils.getThumb(item.icon)}
                                                 className="img"

@@ -94,7 +94,7 @@ function ContactMap(props) {
                                             alt=""
                                             style={{ marginRight: 30 }}
                                             src={
-                                                'static-file/images/icon-insta-small.png'
+                                                'static-file/images/icon-insta-small.svg'
                                             }
                                         />
                                     </a>
@@ -133,11 +133,11 @@ function ContactMap(props) {
                                     href={item.des}
                                     target="_blank"
                                     rel="noreferrer">
-                                    <img
+                                    <LazyLoadImage
                                         alt=""
                                         style={{ marginRight: 30 }}
                                         src={
-                                            'static-file/images/icon-fb-small.png'
+                                            'static-file/images/icon-fb-small.svg'
                                         }
                                     />
                                 </a>
@@ -149,7 +149,7 @@ function ContactMap(props) {
                                     href={item.des}
                                     target="_blank"
                                     rel="noreferrer">
-                                    <img
+                                    <LazyLoadImage
                                         alt=""
                                         style={{ marginRight: 30 }}
                                         src={
@@ -165,7 +165,7 @@ function ContactMap(props) {
                                     href={item.des}
                                     target="_blank"
                                     rel="noreferrer">
-                                    <img
+                                    <LazyLoadImage
                                         alt=""
                                         src={
                                             'static-file/images/icon-insta-small.png'
