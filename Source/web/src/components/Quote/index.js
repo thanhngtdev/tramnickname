@@ -1,4 +1,5 @@
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const propTypes = {};
 
@@ -12,7 +13,7 @@ const Qoute = (props) => {
         <div className="about-info about-info-birthday">
             <div className="container">
                 <div className="birthday-qoute">
-                    <img src={'/static-file/images/left-quote.png'} />
+                    <LazyLoadImage src={'/static-file/images/left-quote.png'} />
                     <span className="slide-text">{props.data?.cfg_des}</span>
                 </div>
             </div>

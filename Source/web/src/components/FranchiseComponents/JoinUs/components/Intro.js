@@ -1,6 +1,7 @@
 import React from 'react';
 import Utils from 'src/common/Utils';
 import PropTypes from 'prop-types';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 Intro.propTypes = {
     intro: PropTypes.array,
@@ -15,7 +16,7 @@ function Intro(props) {
                         return (
                             <div key={index} className="col-4">
                                 <div className="item">
-                                    <img
+                                    <LazyLoadImage
                                         src={Utils.getThumb(item.image)}
                                         alt=""
                                     />

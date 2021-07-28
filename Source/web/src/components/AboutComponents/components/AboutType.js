@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 
@@ -32,7 +33,7 @@ const AboutType = ({ data }) => {
                             {data.about5.cfg_value.map((item, index) => (
                                 <div key={index} className="col-6">
                                     <div className="item">
-                                        <img
+                                        <LazyLoadImage
                                             alt=""
                                             src={Utils.getThumb(item.icon)}
                                             className="img"

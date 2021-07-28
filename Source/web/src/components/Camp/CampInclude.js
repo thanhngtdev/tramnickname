@@ -9,6 +9,7 @@ import Dot from 'src/components/include/Dot';
 import Utils from 'src/common/Utils';
 import PropTypes from 'prop-types';
 import useGetWidth from 'src/hooks/useGetWidth';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 CampInclude.propTypes = {
     data: PropTypes.object,
@@ -44,7 +45,7 @@ export default function CampInclude(props) {
                             <div key={index}>
                                 <div className="slide-item">
                                     <div className="slide-image">
-                                        <img
+                                        <LazyLoadImage
                                             alt=""
                                             src={Utils.getThumb(element.image)}
                                         />

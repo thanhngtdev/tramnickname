@@ -5,6 +5,7 @@ import { isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 AboutUs.propTypes = {
     data: PropTypes.object,
@@ -123,7 +124,7 @@ export default function AboutUs(props) {
                     style={{
                         paddingLeft: 0,
                     }}>
-                    <img
+                    <LazyLoadImage
                         alt=""
                         src={'/static-file/images/weekly-training-video.png'}
                     />

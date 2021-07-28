@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Utils from 'src/common/Utils';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const propTypes = {};
 
@@ -19,7 +20,10 @@ const TrustUs = ({ data }) => {
                     data.cfg_value.map((item, index) => {
                         return (
                             <div key={index} className="trust-us-image">
-                                <img src={Utils.getThumb(item.image)} alt="" />
+                                <LazyLoadImage
+                                    src={Utils.getThumb(item.image)}
+                                    alt=""
+                                />
                             </div>
                         );
                     })}

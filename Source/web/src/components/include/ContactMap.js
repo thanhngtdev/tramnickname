@@ -3,6 +3,7 @@ import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 import Constants from 'src/common/Constants';
 import CustomMarker from 'src/components/include/CustomMarker';
 import _ from 'lodash';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 function ContactMap(props) {
     const { academy } = props;
@@ -58,7 +59,7 @@ function ContactMap(props) {
                                         href={item.link}
                                         target="_blank"
                                         rel="noreferrer">
-                                        <img
+                                        <LazyLoadImage
                                             alt=""
                                             style={{ marginRight: 30 }}
                                             src={
@@ -74,7 +75,7 @@ function ContactMap(props) {
                                         href={item.link}
                                         target="_blank"
                                         rel="noreferrer">
-                                        <img
+                                        <LazyLoadImage
                                             alt=""
                                             src={
                                                 'static-file/images/icon-twitter-small.png'
@@ -89,7 +90,7 @@ function ContactMap(props) {
                                         href={item.link}
                                         target="_blank"
                                         rel="noreferrer">
-                                        <img
+                                        <LazyLoadImage
                                             alt=""
                                             style={{ marginRight: 30 }}
                                             src={

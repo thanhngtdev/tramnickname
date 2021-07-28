@@ -23,6 +23,7 @@ import {
     siteActionType,
 } from 'src/redux/actions/actionTypes';
 import WeeklyTrainingItem from './WeeklyTrainingItem';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const MapWithAMarker = withScriptjs(
     withGoogleMap((props) => (
@@ -101,7 +102,7 @@ function ListNearbyAcademy(props) {
                         <p>{lstAcademy[highlightAcademy].ms_address}</p>
                     </div>
                     <div className="wrap-info">
-                        <img
+                        <LazyLoadImage
                             alt=""
                             src={
                                 lstAcademy[highlightAcademy].ms_avatar &&

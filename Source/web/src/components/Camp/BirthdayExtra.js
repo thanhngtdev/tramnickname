@@ -1,7 +1,10 @@
 import React from 'react';
 import parse from 'html-react-parser';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-const ListIcon = () => <img src={'/static-file/images/list.png'} alt="" />;
+const ListIcon = () => (
+    <LazyLoadImage src={'/static-file/images/list.png'} alt="" />
+);
 
 export default function BirthdayExtra(props) {
     const { partyInclude, partyOptional } = props;

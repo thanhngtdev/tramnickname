@@ -7,6 +7,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 BannerTop.propTypes = {
     site: PropTypes.object,
@@ -165,7 +166,7 @@ function BannerTop(props) {
                                     href={fbLink}
                                     target="_blank"
                                     rel="noreferrer">
-                                    <img
+                                    <LazyLoadImage
                                         alt=""
                                         src={
                                             'static-file/images/icon-fb-small.png'
@@ -176,7 +177,7 @@ function BannerTop(props) {
                                     href={twLink}
                                     target="_blank"
                                     rel="noreferrer">
-                                    <img
+                                    <LazyLoadImage
                                         alt=""
                                         src={
                                             'static-file/images/icon-twitter-small.png'
@@ -187,7 +188,7 @@ function BannerTop(props) {
                                     href={igLink}
                                     target="_blank"
                                     rel="noreferrer">
-                                    <img
+                                    <LazyLoadImage
                                         alt=""
                                         src={
                                             'static-file/images/icon-insta-small.png'

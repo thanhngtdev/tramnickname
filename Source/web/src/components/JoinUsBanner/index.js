@@ -1,4 +1,5 @@
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function JoinUsBanner(props) {
     return (
@@ -8,7 +9,10 @@ export default function JoinUsBanner(props) {
                     <p></p>
                 </div>
                 <div className="col-6" style={{ paddingLeft: 0 }}>
-                    <img alt="" src={'static-file/images/joinUs.png'} />
+                    <LazyLoadImage
+                        alt=""
+                        src={'static-file/images/joinUs.png'}
+                    />
                 </div>
             </div>
             <div className="about-us-content">

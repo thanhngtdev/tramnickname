@@ -13,6 +13,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 LDWeeklyTraining.propTypes = {
     site: PropTypes.object,
@@ -389,7 +390,7 @@ function TrainingService(props) {
                     </h2>
                     <div>
                         <div className="service-group">
-                            <img
+                            <LazyLoadImage
                                 alt=""
                                 src={Utils.getThumb(list[0].icon)}
                                 style={{ width: '37px' }}
@@ -403,7 +404,7 @@ function TrainingService(props) {
                             />
                         </div>
                         <div className="service-group">
-                            <img
+                            <LazyLoadImage
                                 alt=""
                                 src={Utils.getThumb(list[1].icon)}
                                 style={{ width: '37px' }}
@@ -421,7 +422,7 @@ function TrainingService(props) {
                             />
                         </div>
                         <div className="service-group">
-                            <img
+                            <LazyLoadImage
                                 alt=""
                                 src={Utils.getThumb(list[2].icon)}
                                 style={{ width: '37px' }}
@@ -437,7 +438,7 @@ function TrainingService(props) {
                             />
                         </div>
                         <div className="service-group">
-                            <img
+                            <LazyLoadImage
                                 alt=""
                                 src={Utils.getThumb(list[3].icon)}
                                 style={{ width: '37px' }}
@@ -453,7 +454,7 @@ function TrainingService(props) {
                             />
                         </div>
                         <div className="service-group">
-                            <img
+                            <LazyLoadImage
                                 alt=""
                                 src={Utils.getThumb(list[4].icon)}
                                 style={{ width: '37px' }}
@@ -505,7 +506,7 @@ function TrainingService(props) {
                                         onMouseLeave={() => setHoverIndex(-1)}
                                         onClick={() => setActiveIndex(index)}>
                                         <a data-toggle="tab">
-                                            <img
+                                            <LazyLoadImage
                                                 alt=""
                                                 src={Utils.getThumb(item.icon)}
                                                 style={{ width: '37px' }}

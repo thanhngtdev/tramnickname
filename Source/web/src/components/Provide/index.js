@@ -1,5 +1,6 @@
 import { isEmpty } from 'lodash';
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const propTypes = {};
 
@@ -18,7 +19,7 @@ const Provide = (props) => {
             </div>
             <div className="provides-row">
                 <div className="provides-image">
-                    <img
+                    <LazyLoadImage
                         style={{ float: 'right' }}
                         src={'/static-file/images/hs_photo_pc.jpg'}
                         alt=""

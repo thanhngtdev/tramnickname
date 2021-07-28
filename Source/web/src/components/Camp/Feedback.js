@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import Utils from 'src/common/Utils';
 import PropTypes from 'prop-types';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 Feedback.propTypes = {
     data: PropTypes.array,
@@ -55,7 +56,7 @@ export default function Feedback(props) {
                         props.data.map((item, index) => (
                             <div key={index} className="col-6">
                                 <div className="box-acc-review">
-                                    <img
+                                    <LazyLoadImage
                                         alt=""
                                         src={Utils.getThumb(item.fb_image)}
                                         className="avatar"

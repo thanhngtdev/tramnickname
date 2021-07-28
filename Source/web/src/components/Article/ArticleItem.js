@@ -1,12 +1,13 @@
-import React from 'react';
-import Utils from 'src/common/Utils';
 import Link from 'next/link';
+import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Utils from 'src/common/Utils';
 
 export default function ArticleItem(props) {
     const { item } = props;
     return (
         <div className="article-item">
-            <img
+            <LazyLoadImage
                 src={Utils.getThumb(item.atc_featureImg, 'c2')}
                 alt={item.atc_title}
             />

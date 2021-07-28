@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useDispatch } from 'react-redux';
 
 const propTypes = {};
 
@@ -18,7 +18,10 @@ const AboutUsNoVideo = ({ data }) => {
                     <p></p>
                 </div>
                 <div className="col-6" style={{ paddingLeft: 0 }}>
-                    <img alt="" src={'static-file/images/image_about.png'} />
+                    <LazyLoadImage
+                        alt=""
+                        src={'static-file/images/image_about.png'}
+                    />
                 </div>
             </div>
             <div className="about-us-content">

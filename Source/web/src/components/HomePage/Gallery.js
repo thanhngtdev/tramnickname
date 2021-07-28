@@ -140,6 +140,7 @@ export default function Gallery(props) {
                 </div>
                 <div style={{ display: fullScreen ? 'block' : 'none' }}>
                     <ImageGallery
+                        lazyLoad={true}
                         ref={galleryRef}
                         items={images}
                         showThumbnails={false}

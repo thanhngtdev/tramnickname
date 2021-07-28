@@ -2,6 +2,7 @@ import React from 'react';
 import Utils from 'src/common/Utils';
 import PropTypes from 'prop-types';
 import PathRoute from 'src/common/PathRoute';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 RelateAreas.propTypes = {
     site: PropTypes.object,
@@ -41,7 +42,7 @@ function RelateAreas(props) {
                                 props.site.associalted &&
                                 props.site.associalted.map((item, index) => (
                                     <div key={index} className="rAcademy">
-                                        <img
+                                        <LazyLoadImage
                                             alt=""
                                             src={Utils.getThumb(
                                                 item.ms_avatar,

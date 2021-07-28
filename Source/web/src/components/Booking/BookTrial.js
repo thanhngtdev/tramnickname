@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import Flatpickr from 'react-flatpickr';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useDispatch, useSelector } from 'react-redux';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
@@ -221,7 +222,7 @@ function BookTrial(props) {
                     <div className="col-right">
                         {parentFb && (
                             <div className="box-acc-review">
-                                <img
+                                <LazyLoadImage
                                     src={Utils.getThumb(
                                         parentFb.fb_image,
                                         'c1',

@@ -1,6 +1,7 @@
-import React from 'react';
-import Utils from 'src/common/Utils';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Utils from 'src/common/Utils';
 
 AboutSecure.propTypes = {
     data: PropTypes.array,
@@ -17,7 +18,7 @@ export default function AboutSecure(props) {
                                 <div key={index} className="list-intro-item">
                                     <div className="list-intro-item-img">
                                         {' '}
-                                        <img
+                                        <LazyLoadImage
                                             src={Utils.getThumb(item.image)}
                                             alt=""
                                         />

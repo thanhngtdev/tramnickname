@@ -7,6 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Utils from 'src/common/Utils';
 import PropTypes from 'prop-types';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 TrainingInclude.propTypes = {
     data: PropTypes.object,
@@ -39,7 +40,7 @@ export default function TrainingInclude(props) {
                             <div key={index}>
                                 <div className="slide-item">
                                     <div className="slide-image">
-                                        <img
+                                        <LazyLoadImage
                                             alt=""
                                             src={Utils.getThumb(element.image)}
                                         />
