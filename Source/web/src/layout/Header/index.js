@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { isEmpty } from 'lodash';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import NearbyAcademy from 'src/components/include/NearbyAcademy';
+import React, { useEffect, useState } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ModelManager from 'src/common/ModelManager';
-import { isEmpty } from 'lodash';
 import PathRoute from 'src/common/PathRoute';
-import Image from 'next/image';
+import NearbyAcademy from 'src/components/include/NearbyAcademy';
 // import NearbyAcademy from "./include/NearbyAcademy";
 
 function Header() {
@@ -57,11 +57,10 @@ function Header() {
             <div className="head-top-mobile">
                 <div className="container">
                     <Link href={PathRoute.Home}>
-                        <Image
+                        <LazyLoadImage
                             src="/static-file/images/logo.svg"
                             className="logo"
                             alt="Logo"
-                            layout="fill"
                         />
                     </Link>
                     <button
@@ -77,7 +76,7 @@ function Header() {
                 <div className="menu-top">
                     <div className="container">
                         <Link href={PathRoute.Home}>
-                            <img
+                            <LazyLoadImage
                                 alt=""
                                 src="/static-file/images/logo.svg"
                                 className="logo"

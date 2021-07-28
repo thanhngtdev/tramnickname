@@ -1,11 +1,10 @@
 // import Utils from "src/common/Utils";
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useDispatch, useSelector } from 'react-redux';
 import Utils from 'src/common/Utils';
 import getLocalStorage from 'src/hooks/useGetLocalStorage';
-import Image from 'next/image';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 Intro.propTypes = {
     intro: PropTypes.array,

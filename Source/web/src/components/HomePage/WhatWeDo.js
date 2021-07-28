@@ -1,13 +1,12 @@
 import Link from 'next/link';
 import React, { Fragment, useEffect, useRef, useState } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 import Gallery from 'src/components/HomePage/Gallery';
 import Testimonial from 'src/components/Testimonial';
 import TrustPilot from 'src/components/TrustPilot';
 import useEqualElement from 'src/hooks/useEqualElement';
-import Image from 'next/image';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const ROUTE = [PathRoute.WeeklyTraining, PathRoute.HolidayCamp];
 
