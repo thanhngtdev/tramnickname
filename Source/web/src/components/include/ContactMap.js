@@ -108,7 +108,7 @@ function ContactMap(props) {
     function renderWMFContact() {
         return (
             <div className="text-content">
-                <h2>Contact detailssss </h2>
+                <h2>Contact details </h2>
                 <h2 style={{ marginBottom: 0, fontSize: '22px' }}>
                     Phone(9am-5pm):
                 </h2>

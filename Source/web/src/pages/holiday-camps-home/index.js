@@ -12,6 +12,7 @@ import DefaultLayout from 'src/layout/DefaultLayout';
 import BookTrialHoliday from '../../components/holiday-camps-homeComponents/components/BookTrialHoliday';
 import React from 'react';
 import siteService from 'src/services/siteService';
+import Constants from 'src/common/Constants';
 
 function HolidayCamp({ data, listSite }) {
     saveList(listSite);
@@ -69,7 +70,7 @@ export async function getServerSideProps() {
 
     const data = siteDetail.data.data;
 
-    return { props: { data, listSite } };
+    return { props: { data, listSite }, revalidate: Constants.REVALIDATE };
 }
 
 export default HolidayCamp;

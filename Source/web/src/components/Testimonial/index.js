@@ -11,6 +11,8 @@ import { getHome } from 'src/redux/actions/homeAction';
 // import { showTruspilot } from "redux/actions/trustpilotAction";
 import 'slick-carousel/slick/slick.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import TrustPilotText from '../TrustPilotText';
+import { showTruspilot } from 'src/redux/actions/trustpilotAction';
 const settings = {
     dots: true,
     infinite: false,
@@ -97,15 +99,16 @@ function Testimonial(props) {
                 </Slider>
                 <div
                     style={{
+                        cursor: 'pointer',
                         color: `${props.textColor}`,
                     }}
                     className="trustpilot"
                     onClick={() => {
-                        // dispatch(
-                        //   showTruspilot({
-                        //     show: true,
-                        //   })
-                        // );
+                        dispatch(
+                            showTruspilot({
+                                show: true,
+                            }),
+                        );
                     }}>
                     <p>See more Reviews</p>
                 </div>

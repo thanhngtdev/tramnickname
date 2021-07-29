@@ -13,6 +13,8 @@ import Select from 'react-select';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import saveList from 'src/hooks/useSaveList';
+import siteService from 'src/services/siteService';
 
 const OPTION = [
     { value: 'Weekly Training', label: 'Weekly Training' },
@@ -24,7 +26,7 @@ const OPTION = [
     { value: 'Media and PR requests', label: 'Media and PR requests' },
     { value: 'Other', label: 'Other' },
 ];
-function Contact() {
+function Contact({ listSite }) {
     const { footerConfig } = useSelector((state) => state.siteReducer);
     const headerReducer = useSelector((state) => state.headerReducer);
     const dispatch = useDispatch();
@@ -42,10 +44,10 @@ function Contact() {
     const [phoneError, setPhoneError] = useState('');
     const [natureError, setNatureError] = useState('');
     const [messageError, setMessageError] = useState('');
-
     const academy = useGetLocalStorage();
 
     //! useEffect
+    saveList(listSite);
 
     // useEffect(() => {
     //   if (!_.isEmpty(headerReducer.param)) {
@@ -286,6 +288,13 @@ function Contact() {
             </div>
         </DefaultLayout>
     );
+}
+
+export async function getStaticProps() {
+    const listRes = await siteService.getListSite();
+    const listSite = listRes.data.data.lstSite;
+
+    return { props: { listSite } };
 }
 
 export default Contact;

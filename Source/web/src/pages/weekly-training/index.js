@@ -12,6 +12,7 @@ import saveList from 'src/hooks/useSaveList';
 import DefaultLayout from 'src/layout/DefaultLayout';
 import React from 'react';
 import siteService from 'src/services/siteService';
+import Constants from 'src/common/Constants';
 
 function WeeklyTraining({ data, listSite }) {
     saveList(listSite);
@@ -70,7 +71,7 @@ export async function getStaticProps() {
 
     const data = siteDetail.data.data;
 
-    return { props: { data, listSite } };
+    return { props: { data, listSite }, revalidate: Constants.REVALIDATE };
 }
 
 export default WeeklyTraining;

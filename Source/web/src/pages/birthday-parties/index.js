@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useRef, useState } from 'react';
+import Constants from 'src/common/Constants';
 import AboutUs from 'src/components/Camp/AboutUs';
 import BirthdayExtra from 'src/components/Camp/BirthdayExtra';
 import BirthdayPackage from 'src/components/Camp/BirthdayPackage';
@@ -90,7 +91,7 @@ function BirthdayParty({ data, listSite }) {
     );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
 
@@ -101,7 +102,7 @@ export async function getServerSideProps() {
 
     const data = siteDetail.data.data;
 
-    return { props: { data, listSite } };
+    return { props: { data, listSite }, revalidate: Constants.REVALIDATE };
 }
 
 export default BirthdayParty;

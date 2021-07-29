@@ -5,6 +5,7 @@ import React, { Fragment } from 'react';
 import { useDispatch } from 'react-redux';
 import Footer from './Footer';
 import Header from './Header';
+import TrustPilot from 'src/components/TrustPilot';
 
 const DefaultLayout = (props) => {
     //! State
@@ -38,6 +39,7 @@ const DefaultLayout = (props) => {
             {children}
             <Footer />
             <LocationModal />
+            <TrustPilot />
         </Fragment>
     );
 };

@@ -6,7 +6,7 @@ const initialState = {
 
 const trustpilotReducer = (state = initialState, action) => {
     switch (action.type) {
-        case type.SHOW_TRUSPILOT:
+        case 'SHOW_TRUSPILOT':
             return {
                 show: action.show,
             };

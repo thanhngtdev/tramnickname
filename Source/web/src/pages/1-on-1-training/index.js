@@ -13,6 +13,7 @@ import React, { useRef } from 'react';
 import { Button } from 'react-bootstrap';
 import siteService from 'src/services/siteService';
 import Provide from 'src/components/Provide';
+import Constants from 'src/common/Constants';
 
 function OneTraining({ data, listSite }) {
     saveList(listSite);
@@ -90,7 +91,7 @@ function OneTraining({ data, listSite }) {
     );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
 
@@ -101,7 +102,7 @@ export async function getServerSideProps() {
 
     const data = siteDetail.data.data;
 
-    return { props: { data, listSite } };
+    return { props: { data, listSite }, revalidate: Constants.REVALIDATE };
 }
 
 export default OneTraining;

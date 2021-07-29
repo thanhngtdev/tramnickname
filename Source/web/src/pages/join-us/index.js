@@ -15,6 +15,7 @@ import siteService from 'src/services/siteService';
 import 'slick-carousel/slick/slick.css';
 import JoinUsBanner from 'src/components/JoinUsBanner';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Constants from 'src/common/Constants';
 
 const ROUTE = [PathRoute.Coaching, PathRoute.ParentHost];
 
@@ -195,7 +196,7 @@ export async function getServerSideProps() {
 
     const data = siteDetail.data.data;
 
-    return { props: { data, listSite } };
+    return { props: { data, listSite }, revalidate: Constants.REVALIDATE };
 }
 
 export default JoinUs;

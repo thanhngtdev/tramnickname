@@ -10,21 +10,19 @@ const TrustPilotText = (props) => {
 
     //! Render
     return (
-        <>
-            <a
-                href="#"
-                className="alink"
-                onClick={(e) => {
-                    e.preventDefault();
-                    dispatch(
-                        showTruspilot({
-                            show: true,
-                        }),
-                    );
-                }}>
-                <p>See more Reviews</p>
-            </a>
-        </>
+        <a
+            href="#"
+            className="alink"
+            onClick={(e) => {
+                e.preventDefault();
+                dispatch(
+                    showTruspilot({
+                        show: true,
+                    }),
+                );
+            }}>
+            <p>See more Reviews</p>
+        </a>
     );
 };
 

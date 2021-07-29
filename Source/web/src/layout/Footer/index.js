@@ -33,7 +33,7 @@ function Footer() {
     function onClickLocation(event, item) {
         setShowSelect(!showSelect);
         localStorage.setItem('defaultAcademy', JSON.stringify(item));
-        window.location.reload();
+        window.location.href = `${item.ms_alias}`;
     }
 
     const callFooterApi = async () => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import Constants from 'src/common/Constants';
 import BookTrial from 'src/components/Booking/BookTrial';
 import BannerTop from 'src/components/HomePage/BannerTop';
 import FootballBegining from 'src/components/HomePage/FootballBegining';
@@ -51,7 +52,7 @@ export async function getStaticProps() {
                 data: values[0].data.data,
                 listSite: values[1].data.data.lstSite,
             },
-            revalidate: 86400,
+            revalidate: Constants.REVALIDATE,
         };
     });
 }

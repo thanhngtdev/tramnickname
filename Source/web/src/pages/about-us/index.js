@@ -5,8 +5,11 @@ import siteService from 'src/services/siteService';
 import AboutGuide from '../../components/AboutComponents/components/AboutGuide';
 import AboutType from '../../components/AboutComponents/components/AboutType';
 import AboutUsNoVideo from '../../components/AboutComponents/components/AboutUsNoVideo';
+import saveList from 'src/hooks/useSaveList';
+import Constants from 'src/common/Constants';
 
-function About({ data }) {
+function About({ data, listSite }) {
+    saveList(listSite);
     return (
         <DefaultLayout seo={data.seoMeta}>
             <div className="about-us-aboutpage">
@@ -71,11 +74,19 @@ function About({ data }) {
     );
 }
 
-export async function getServerSideProps() {
-    const aboutRes = await siteService.getAbout();
-    const data = aboutRes.data.data;
-
-    return { props: { data } };
+export async function getStaticProps() {
+    return await Promise.all([
+        siteService.getAbout(),
+        siteService.getListSite(),
+    ]).then((values) => {
+        return {
+            props: {
+                data: values[0].data.data,
+                listSite: values[1].data.data.lstSite,
+            },
+            revalidate: Constants.REVALIDATE,
+        };
+    });
 }
 
 export default About;

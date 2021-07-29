@@ -15,16 +15,17 @@ const Constants = {
     TEXT_COLOR: ColorCode.White,
     SPINNER_COLOR: ColorCode.White,
 
-    DEFAULT_LOCATION : {
+    DEFAULT_LOCATION: {
         lat: 51.5,
         lng: -0.3,
     },
 
     STATUS_PERMISSION_LOCATION: {
-        PROMPT: "prompt",
-        GRANTED: "granted",
-        DENIED: "denied"
-    }
+        PROMPT: 'prompt',
+        GRANTED: 'granted',
+        DENIED: 'denied',
+    },
+    REVALIDATE: 86400,
 };
 
 export default Constants;
