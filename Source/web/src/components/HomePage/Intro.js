@@ -68,12 +68,6 @@ function Intro(props) {
     //   });
     // }, [lstSite, data]);
 
-    useEffect(() => {
-        props.intro.map((item, index) => {
-            console.log(Utils.getThumb(item.image));
-        });
-    }, []);
-
     return (
         <div className="container">
             <div className="box-list-item-card intro-joinus">

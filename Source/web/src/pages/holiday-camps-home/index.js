@@ -9,7 +9,7 @@ import WhyWMF from 'src/components/Camp/WhyWMF';
 import Testimonial from 'src/components/Testimonial';
 import saveList from 'src/hooks/useSaveList';
 import DefaultLayout from 'src/layout/DefaultLayout';
-import BookTrialHoliday from './components/BookTrialHoliday';
+import BookTrialHoliday from '../../components/holiday-camps-homeComponents/components/BookTrialHoliday';
 import React from 'react';
 import siteService from 'src/services/siteService';
 

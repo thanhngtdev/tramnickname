@@ -7,7 +7,7 @@ import QNA from 'src/components/Camp/QNA';
 import Gallery from 'src/components/HomePage/Gallery';
 import Testimonial from 'src/components/Testimonial';
 import DefaultLayout from 'src/layout/DefaultLayout';
-import BookTrialParty from 'src/pages/birthday-parties/components/BookTrialParty';
+import BookTrialParty from 'src/components/birthday-partiesComponents/components/BookTrialParty';
 import React, { useEffect, useRef, useState } from 'react';
 import siteService from 'src/services/siteService';
 import Quote from 'src/components/Quote';

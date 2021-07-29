@@ -58,7 +58,8 @@ function Header() {
                 <div className="container">
                     <Link href={PathRoute.Home}>
                         <LazyLoadImage
-                            src="/static-file/images/logo.svg"
+                            // src="/static-file/images/logo.svg"
+                            src="/logo.svg"
                             className="logo"
                             alt="Logo"
                             height={'100%'}

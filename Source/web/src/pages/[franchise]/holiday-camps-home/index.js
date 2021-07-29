@@ -9,7 +9,7 @@ import WhyWMF from 'src/components/Camp/WhyWMF';
 import Testimonial from 'src/components/Testimonial';
 import saveList from 'src/hooks/useSaveList';
 import DefaultLayout from 'src/layout/DefaultLayout';
-import BookTrialHoliday from 'src/pages/holiday-camps-home/components/BookTrialHoliday';
+import BookTrialHoliday from 'src/components/holiday-camps-homeComponents/components/BookTrialHoliday';
 import React, { useEffect } from 'react';
 import siteService from 'src/services/siteService';
 import { isEmpty } from 'lodash';

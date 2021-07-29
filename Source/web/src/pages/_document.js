@@ -13,11 +13,7 @@ export default class MyDocument extends Document {
                         We offer professional and fun training to help children develop their football skills."
                     />
 
-                    <link
-                        rel="shortcut icon"
-                        href="/static-file/assets/favicon.ico"
-                    />
-
+                    <link rel="icon" href="/static-file/images/favicon.ico" />
                     <link
                         rel="stylesheet"
                         href="/static-file/css/font.css"

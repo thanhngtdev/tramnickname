@@ -3,9 +3,9 @@ import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Utils from 'src/common/Utils';
 
-AboutSecure.propTypes = {
-    data: PropTypes.array,
-};
+// AboutSecure.propTypes = {
+//     data: PropTypes.array,
+// };
 
 export default function AboutSecure(props) {
     return (

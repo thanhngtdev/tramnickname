@@ -8,7 +8,7 @@ import Intro from 'src/components/HomePage/Intro.js';
 import Testimonial from 'src/components/Testimonial';
 import saveList from 'src/hooks/useSaveList';
 import DefaultLayout from 'src/layout/DefaultLayout';
-import BookTrialOne from './components/BookTrialOne';
+import BookTrialOne from '../../components/1-on-1-trainingComponents/components/BookTrialOne';
 import React, { useRef } from 'react';
 import { Button } from 'react-bootstrap';
 import siteService from 'src/services/siteService';

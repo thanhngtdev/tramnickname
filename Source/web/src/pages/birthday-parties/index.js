@@ -11,7 +11,7 @@ import Testimonial from 'src/components/Testimonial';
 import saveList from 'src/hooks/useSaveList';
 import DefaultLayout from 'src/layout/DefaultLayout';
 import siteService from 'src/services/siteService';
-import BookTrialParty from './components/BookTrialParty';
+import BookTrialParty from '../../components/birthday-partiesComponents/components/BookTrialParty';
 // import Spinner from "component/Spinner";
 
 function BirthdayParty({ data, listSite }) {

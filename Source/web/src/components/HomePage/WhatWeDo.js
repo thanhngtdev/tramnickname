@@ -11,19 +11,9 @@ import useEqualElement from 'src/hooks/useEqualElement';
 const ROUTE = [PathRoute.WeeklyTraining, PathRoute.HolidayCamp];
 
 function WhatWeDo(props) {
-    console.log(props, 'what');
     const { whatWeDo, testimonial, gallery, gallery2 } = props;
     const refListItem = useRef(null);
     const [showTrustBox, setShowTrustBox] = useState(false);
-
-    useEffect(() => {
-        // console.log(props, "aaa");
-        // if (homeReducer.type) {
-        //   if (homeReducer.type === type.GET_HOME_SUCCESS) {
-        //     setWhatWeDo(homeReducer.data.whatWeDo);
-        //   }
-        // }
-    }, []);
 
     useEqualElement(refListItem);
 
@@ -32,7 +22,7 @@ function WhatWeDo(props) {
     }
 
     return (
-        <Fragment>
+        <div className="whatwedo">
             <div
                 style={{
                     display: showTrustBox ? 'flex' : 'none',
@@ -97,7 +87,7 @@ function WhatWeDo(props) {
                     <Gallery gallery={gallery} gallery2={gallery2} />
                 </div>
             </div>
-        </Fragment>
+        </div>
     );
 }
 

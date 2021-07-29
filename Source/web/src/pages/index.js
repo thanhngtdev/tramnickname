@@ -20,14 +20,14 @@ function HomePage({ data, listSite }) {
             <div className="intro-homepage">
                 <Intro intro={data?.homeIntro?.cfg_value || []} />
             </div>
-            <div className="whatwedo">
-                <WhatWeDo
-                    whatWeDo={data?.whatWeDo || {}}
-                    testimonial={data?.testimonial || {}}
-                    gallery={data?.gallery || {}}
-                    gallery2={data?.gallery2 || {}}
-                />
-            </div>
+
+            <WhatWeDo
+                whatWeDo={data?.whatWeDo || {}}
+                testimonial={data?.testimonial || {}}
+                gallery={data?.gallery || {}}
+                gallery2={data?.gallery2 || {}}
+            />
+
             <Reason reason={data?.reason?.cfg_value || []} />
             <BookTrial parentFb={data?.parentFb || {}} />
             <div className="fb-begin-homepage">
@@ -51,6 +51,7 @@ export async function getStaticProps() {
                 data: values[0].data.data,
                 listSite: values[1].data.data.lstSite,
             },
+            revalidate: 86400,
         };
     });
 }

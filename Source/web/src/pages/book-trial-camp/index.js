@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 // import "css/book-trial.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { siteActionType } from 'src/redux/actions/actionTypes';
-import BookTrialCamp1 from './components/BookTrialCamp1';
-import BookTrialCamp2 from './components/BookTrialCamp2';
-import BookTrialCamp3 from './components/BookTrialCamp3';
+import BookTrialCamp1 from '../../components/book-trial-campComponents/components/BookTrialCamp1';
+import BookTrialCamp2 from '../../components/book-trial-campComponents/components/BookTrialCamp2';
+import BookTrialCamp3 from '../../components/book-trial-campComponents/components/BookTrialCamp3';
 import HolidayCampTabSpace from 'src/components/include/HolidayCampTabSpace';
 import DefaultLayout from 'src/layout/DefaultLayout';
 

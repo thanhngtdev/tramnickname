@@ -12,7 +12,7 @@ import Provide from 'src/components/Provide';
 import Testimonial from 'src/components/Testimonial';
 import saveList from 'src/hooks/useSaveList';
 import DefaultLayout from 'src/layout/DefaultLayout';
-import BookTrialOne from 'src/pages/1-on-1-training/components/BookTrialOne';
+import BookTrialOne from 'src/components/1-on-1-trainingComponents/components/BookTrialOne';
 import siteService from 'src/services/siteService';
 
 export default function OneTraining({ data, listSite }) {
