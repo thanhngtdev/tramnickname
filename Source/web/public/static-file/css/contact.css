@@ -213,8 +213,8 @@
 }
 
 .contact-header {
-    padding-right: 300px;
-    font-weight: bold;
+    padding-right: 370px;
+    /* font-weight: bold; */
     font-size: 70px;
 }
 
@@ -257,6 +257,7 @@
         padding: 0;
         font-size: 38px;
         text-align: center;
+        margin-top: 40px;
     }
 
     .contact {

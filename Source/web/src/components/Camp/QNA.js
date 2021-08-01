@@ -31,7 +31,9 @@ export default function QNA(props) {
                                     activeIndex === index ? -1 : index,
                                 )
                             }>
-                            <label className="qId">{index + 1}</label>
+                            <label className="qId">{`${
+                                '0' + (index + 1)
+                            }`}</label>
                             <div className="qContent">
                                 <h4 className="question">
                                     {capitalize(item.atc_sapo.toLowerCase())}

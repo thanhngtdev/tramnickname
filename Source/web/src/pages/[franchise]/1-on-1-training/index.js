@@ -1,6 +1,7 @@
 import { isEmpty } from 'lodash';
 import React, { useEffect, useRef } from 'react';
 import { Button } from 'react-bootstrap';
+import BookTrialOne from 'src/components/1-on-1-trainingComponents/components/BookTrialOne';
 import AboutUs from 'src/components/Camp/AboutUs';
 import FootballSkill from 'src/components/Camp/FootballSkill';
 import InstaBox from 'src/components/Camp/InstaBox';
@@ -12,7 +13,6 @@ import Provide from 'src/components/Provide';
 import Testimonial from 'src/components/Testimonial';
 import saveList from 'src/hooks/useSaveList';
 import DefaultLayout from 'src/layout/DefaultLayout';
-import BookTrialOne from 'src/components/1-on-1-trainingComponents/components/BookTrialOne';
 import siteService from 'src/services/siteService';
 
 export default function OneTraining({ data, listSite }) {
@@ -35,10 +35,7 @@ export default function OneTraining({ data, listSite }) {
                 <Intro intro={data?.trainingIntro?.cfg_value || []} />
             </div>
             <div className="football-121">
-                <FootballSkill
-                    data={data?.skillGain || {}}
-                    oneTraining={true}
-                />
+                <FootballSkill data={data?.skillGain || {}} noTitle />
             </div>
             <div className="one-training">
                 <Testimonial

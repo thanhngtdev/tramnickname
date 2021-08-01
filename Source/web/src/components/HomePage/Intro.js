@@ -88,14 +88,17 @@ function Intro(props) {
                                     <LazyLoadImage
                                         src={Utils.getThumb(temp.image)}
                                         alt={temp?.des}
+                                        height="100%"
+                                        // width="100%"
                                         // layout="fill"
-                                        width="600"
-                                        width="600"
-                                        effect="blur"
+                                        // width="600"
+                                        // width="600"
+                                        // effect="blur"
                                     />
                                 </div>
-
-                                <h3 className="title">{temp.title}</h3>
+                                <div className="title">
+                                    <h3>{temp.title}</h3>
+                                </div>
                                 <div
                                     className="description"
                                     dangerouslySetInnerHTML={{

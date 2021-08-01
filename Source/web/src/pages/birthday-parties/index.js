@@ -67,13 +67,15 @@ function BirthdayParty({ data, listSite }) {
                 partyOptional={data?.partyOptional || {}}
             />
 
-            <BookTrialParty
-                ref={ref}
-                parentFb={data?.parentFb || {}}
-                package={data?.package || {}}
-                preferedPackage={preferedPackage}
-                listSite={listSite || []}
-            />
+            <div className="birthday-booking">
+                <BookTrialParty
+                    ref={ref}
+                    parentFb={data?.parentFb || {}}
+                    package={data?.package || {}}
+                    preferedPackage={preferedPackage}
+                    listSite={listSite || []}
+                />
+            </div>
 
             <div className="birthday-gallery">
                 <Gallery

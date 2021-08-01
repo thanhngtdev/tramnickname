@@ -59,7 +59,7 @@ function Header() {
                     <Link href={PathRoute.Home}>
                         <LazyLoadImage
                             // src="/static-file/images/logo.svg"
-                            src="/logo.svg"
+                            src="/static-file/images/logo.svg"
                             className="logo"
                             alt="Logo"
                             height={'100%'}
@@ -78,7 +78,7 @@ function Header() {
             <div className={`navi ${menuMobile ? 'show' : ''}`}>
                 <div className="menu-top">
                     <div className="container">
-                        <Link href={PathRoute.Home}>
+                        <Link href={PathRoute.Home} scroll>
                             <LazyLoadImage
                                 alt=""
                                 src="/static-file/images/logo.svg"
@@ -97,7 +97,8 @@ function Header() {
                                               PathRoute.WeeklyTraining
                                             : PathRoute.WeeklyTraining
                                     }`}
-                                    onClick={hideMenu}>
+                                    onClick={hideMenu}
+                                    scroll>
                                     Weekly Training
                                 </Link>
                             </li>
@@ -110,7 +111,8 @@ function Header() {
                                               PathRoute.HolidayCamp
                                             : PathRoute.HolidayCamp
                                     }`}
-                                    onClick={hideMenu}>
+                                    onClick={hideMenu}
+                                    scroll>
                                     Holiday Camps
                                 </Link>
                             </li>
@@ -123,7 +125,8 @@ function Header() {
                                               PathRoute.OneTraining
                                             : PathRoute.OneTraining
                                     }`}
-                                    onClick={hideMenu}>
+                                    onClick={hideMenu}
+                                    scroll>
                                     1-on-1 Training
                                 </Link>
                             </li>
@@ -136,7 +139,8 @@ function Header() {
                                               PathRoute.BirthdayParty
                                             : PathRoute.BirthdayParty
                                     }`}
-                                    onClick={hideMenu}>
+                                    onClick={hideMenu}
+                                    scroll>
                                     Birthday Parties
                                 </Link>
                             </li>

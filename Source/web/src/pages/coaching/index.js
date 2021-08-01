@@ -112,13 +112,12 @@ function Coaching({ listSite }) {
         //     then: Yup.array().required('sss'),
         // }),
     };
-
     const validationSchema = Yup.object().shape(validation);
 
     async function sendForm(param) {
         try {
             const res = await siteService.sendForm(param);
-            console.log(res.data, 'aaa');
+            // console.log(res.data, 'aaa');
             if (res.data.status === 200) {
                 history.push(PathRoute.ThankYou);
             }

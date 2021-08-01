@@ -137,7 +137,7 @@
 	top: 15px;
 	left: 15px;
 	font-size: 155px;
-	font-weight: bold;
+	/* font-weight: bold; */
 	color: #FF7100;
 	opacity: 0.1;
 }
@@ -147,7 +147,7 @@
 }
 
 .birthday-package .heading {
-	font-weight: bold;
+	/* font-weight: bold; */
 	font-size: 75px;
 	line-height: 99px;
 	text-align: center;
@@ -188,7 +188,7 @@
 
 .birthday-package .package-item .package-include {
 	opacity: 1;
-	font-weight: 500;
+	/* font-weight: 500; */
 	margin-top: 5px;
 }
 
@@ -219,7 +219,7 @@
 
 .birthday-extra .extra-column h3.heading {
 	font-size: 45px;
-	font-weight: bold;
+	/* font-weight: bold; */
 }
 
 .birthday-extra .extra-column .extra-item {
@@ -243,7 +243,7 @@
 }
 
 .provides .heading {
-	font-weight: bold;
+	/* font-weight: bold; */
 	font-size: 75px;
 	line-height: 99px;
 	margin: auto;
@@ -336,16 +336,16 @@ ul.camp-paid li::before {
 	}
 
 	.training-include .slide-control {
-		top: 38rem;
-    	left: 15px;
+		top: -53rem;
+    	left: 0px;
 	}
 
 	.training-include .slide-control .slide-number {
-		margin: 0 53px;
+		margin: 0 48px;
 	}
 	
 	.training-include .mobile {
-		top: 33rem;
+		/* top: 33rem; */
 	}
 
 	.football-skill {

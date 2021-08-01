@@ -7,8 +7,15 @@
 .about-us-info .about-info .wrap-info {
 	overflow: hidden;
     border-radius: 6px;
-    box-shadow: 0 20px 60px rgb(2 2 30 / 9%)
+    box-shadow: 0 20px 60px rgb(2 2 30 / 9%);
+   
 }
+
+.about-us-info .about-info .wrap-info p { 
+    text-align: left;
+}
+
+
 
 .about-guide-aboutpage .about-guide .col-right div {
     max-width: 65%;

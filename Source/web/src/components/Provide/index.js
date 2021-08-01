@@ -41,14 +41,17 @@ const Provide = (props) => {
                                 padding: '1rem',
                                 backgroundColor: '#F2F2F2',
                             }}>
-                            At the{' '}
-                            <b>
-                                {props.franchisePage
-                                    ? props.site.ms_name
-                                    : 'We Make Footballers'}
-                            </b>
-                            our 1-to-1 coaching is undertaken by{' '}
-                            <b>the academy head coach</b>
+                            At the {/* <b> */}
+                            {props.franchisePage
+                                ? props.site.ms_name + ' '
+                                : 'We Make Footballers '}
+                            {/* </b> */}
+                            our 1-to-1 coaching is undertaken by the academy
+                            head coach
+                            {/* <b>
+                                
+
+                            </b> */}
                         </p>
                         <p>
                             Esmond currently has a number of 1-on-1 clients who
@@ -58,7 +61,7 @@ const Provide = (props) => {
                             lot of fun whilst still getting top quality
                             sessions.
                         </p>
-                        <b>How much do sessions cost?</b>
+                        <h3>How much do sessions cost?</h3>
                         <p
                             className="text-cost"
                             style={{

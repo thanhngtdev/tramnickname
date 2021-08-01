@@ -233,8 +233,9 @@
 }
 .qa h2 {
     font-size: 4.5rem;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: #1a1919;
+    text-align: left;
 }
 .qItem {
     border: 1px solid #5a5a5a;
@@ -246,7 +247,7 @@
 }
 .qItem .qId {
     padding: 1.5rem 3rem;
-    font-weight: bold;
+    /* font-weight: bold; */
     font-size: 1.5rem;
 }
 .qItem .qContent {
@@ -486,7 +487,7 @@
         width: 100%;
         position: absolute;
         left: 0;
-        top: 940px;
+        top: 1160px;
         content: "";
         background: #EF9042;
         height: 1555px;

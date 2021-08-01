@@ -65,6 +65,19 @@
     margin-top: 110px;
 }
 
+
+.about-coach-joinus .about-coach {
+    padding-bottom: 200px;
+}
+
+.about-secure-joinus {  
+    height: 400px;
+}
+
+.about-secure-joinus .box-list-item-card {
+    top: -225px;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 767px) {
     .coaching {
         margin-top: 0;
@@ -93,6 +106,7 @@
 
     .enquire-joinus {
         margin-bottom:0;
+        margin-top: 1060px;
     }
 
     .intro-joinus {
@@ -109,8 +123,9 @@
     }
 
     .about-secure-joinus {
-        margin-top: 215px;
+        margin-top: 200px;
     }
+
 
     .about-coach-joinus .about-coach .btn-right {
 		padding: 15px 104px !important;

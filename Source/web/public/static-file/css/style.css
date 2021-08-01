@@ -15,6 +15,7 @@ input,
 button,
 select,
 textarea {
+	
 	font-family: 'Red Hat Text', Arial, Helvetica, sans-serif;
 }
 
@@ -24,6 +25,7 @@ h3,
 h4,
 h5,
 h6 {
+	font-weight: normal;
 	font-family: 'Red Hat Text', Arial, Helvetica, sans-serif;
 }
 
@@ -135,6 +137,10 @@ textarea:focus {
 table {
 	border-collapse: collapse;
 	border-spacing: 0px;	
+}
+
+h1{
+	
 }
 
 .input-text::placeholder {
@@ -464,7 +470,7 @@ table {
 
 .banner-top .box-text p {
 	margin-top: 0;
-	margin-bottom: 70px;
+	margin-bottom: 50px;
 }
 
 .banner-top .box-text .btn-book {
@@ -614,13 +620,22 @@ table {
     background-color: #fff;
     box-shadow: 0px 20px 60px rgb(2 2 30 / 9%);
     border-radius: 6px;
-    padding: 45px 30px 45px 40px;
+    padding: 45px 25px 45px 25px;
 	line-height: 28px;
+	display: flex;
+	flex-direction: column;
+	/* align-content: center; */
 }
 
 .list-intro .list-intro-item .list-intro-item-img {
 	text-align: center;
 }
+
+.list-intro .list-intro-item .title {
+	height: 70px;
+	margin-bottom: 10px;
+}
+
 
 .box-list-item-card .item {
 	width: 100%;
@@ -662,7 +677,7 @@ background-color: #fff;
 
 .heading-w {
 	/* margin: 0;text-1 */
-	font-weight: bold;
+	/* font-weight: bold; */
 	font-size: 75px;
 	line-height: 110px;
 	text-align: center;
@@ -779,7 +794,7 @@ background-color: #fff;
 	letter-spacing: 1.71429px;
 	text-transform: uppercase;
 	color: #EE7925;
-	font-weight: 500;
+	/* font-weight: 500; */
 	font-size: 16px;
 	display: inline-block;
 }
@@ -838,7 +853,7 @@ background-color: #fff;
 }
 
 .box-slide-review .slide .box-acc-review .name {
-	font-weight: 500;
+	/* font-weight: 500; */
 	font-size: 24px;
 	line-height: 55px;
 	margin-top: 25px;
@@ -888,7 +903,7 @@ background-color: #fff;
 }
 
 .box-professional .box-head .heading {
-	font-weight: bold;
+	/* font-weight: bold; */
 	font-size: 75px;
 	line-height: 99px;
 	color: #FFFFFF;
@@ -955,7 +970,7 @@ background-color: #fff;
 	letter-spacing: 1.71429px;
 	text-transform: uppercase;
 	color: #EE7925;
-	font-weight: 500;
+	/* font-weight: 500; */
 	font-size: 16px;
 	display: inline-block;
 	position: absolute;
@@ -973,7 +988,7 @@ background-color: #fff;
 
 .box-reasons .heading {
 	margin: 0;
-	font-weight: bold;
+	/* font-weight: bold; */
 	font-size: 75px;
 	line-height: 99px;
 	color: #000000;
@@ -1106,7 +1121,7 @@ background-color: #fff;
 .book_your_child_free_session .heading {
 	width: 100%;
 	display: inline-block;
-	font-weight: bold;
+	/* font-weight: bold; */
 	font-size: 75px;
 	line-height: 99px;
 	color: #000000;
@@ -1163,7 +1178,7 @@ background-color: #fff;
 }
 
 .book_your_child_free_session .list-form li .label {
-	font-weight: 500;
+	/* font-weight: 500; */
 	font-size: 16px;
 	line-height: 33px;
 	display: block;
@@ -1331,7 +1346,7 @@ background-color: #fff;
 	line-height: 70px;
 	border: 0;
 	cursor: pointer;
-	font-weight: 500;
+	/* font-weight: 500; */
 	font-size: 16px;
 	text-align: center;
 	letter-spacing: 1.71429px;
@@ -1381,7 +1396,7 @@ background-color: #fff;
 }
 
 .book_your_child_free_session .box-acc-review .name {
-	font-weight: 500;
+	/* font-weight: 500; */
 	font-size: 24px;
 	line-height: 55px;
 	margin-top: 25px;
@@ -1407,7 +1422,7 @@ background-color: #fff;
 }
 
 .box-football-beginning .heading {
-	font-weight: bold;
+	/* font-weight: bold; */
 	font-size: 75px;
 	line-height: 99px;
 	text-align: center;
@@ -1457,8 +1472,8 @@ background-color: #fff;
 .box-football-beginning .box-beginning-list .list {
 	width: 100%;
 	display: inline-block;
-	padding: 90px 47px 0 47px;
-	height: 655px;
+	padding: 90px 47px 50px 47px;
+	/* height: 655px; */
 	background: #FFFFFF;
 	border-radius: 6px;
 }
@@ -1476,7 +1491,7 @@ background-color: #fff;
 
 .box-football-beginning .box-beginning-list .list .item .title {
 
-	font-weight: bold;
+	/* font-weight: bold; */
 	font-size: 24px;
 	line-height: 32px;
 	color: #1A1919;
@@ -1536,7 +1551,7 @@ background-color: #fff;
 
 .box-10-years .box-year .title {
 	margin: 0;
-	font-weight: bold;
+	/* font-weight: bold; */
 	font-size: 45px;
 	line-height: 60px;
 	text-align: center;
@@ -1833,7 +1848,7 @@ background-color: #fff;
 }
 
 .box-insta .heading {
-	font-weight: bold;
+	/* font-weight: bold; */
 	font-size: 75px;
 	line-height: 99px;
 	text-align: center;
@@ -1908,7 +1923,7 @@ background-color: #fff;
 	text-align: center;
 	letter-spacing: 1.71429px;
 	text-transform: uppercase;
-	font-weight: 500;
+	/* font-weight: 500; */
 	font-size: 16px;
 	background: url(/static-file/images/icon-next.png) no-repeat 110px center;
 	padding-right: 20px;
@@ -1948,7 +1963,7 @@ background-color: #fff;
 
 .box-insta .box-slide .item .photo .title {
 	margin-top: 20px;
-	font-weight: bold;
+	/* font-weight: bold; */
 	font-size: 24px;
 	line-height: 32px;
 	color: #000;
@@ -2025,9 +2040,7 @@ background-color: #fff;
 	font-weight: 500;
 }
 
-.banner-top .box-text p {
-	margin-bottom: 50px;
-}
+
 
 .banner-top .box-button .btn-book-free-session {
 	width: 250px;
@@ -2677,7 +2690,7 @@ background-color: #fff;
 		width: 100%;
 		height: 50px;
 		line-height: 50px;
-		font-weight: 500;
+		/* font-weight: 500; */
 		font-size: 16px;
 	}
 
@@ -2709,7 +2722,7 @@ background-color: #fff;
 	}
 
 	.box-professional .box-head .heading {
-		font-weight: bold;
+		/* font-weight: bold; */
 		font-size: 38px;
 		line-height: 36px;
 		text-align: center;
@@ -2816,7 +2829,7 @@ background-color: #fff;
 	}
 
 	.book_your_child_free_session .heading {
-		font-weight: bold;
+		/* font-weight: bold; */
 		font-size: 38px;
 		line-height: 50px;
 		text-align: center;
@@ -2884,7 +2897,7 @@ background-color: #fff;
 	}
 
 	.box-10-years .box-year .title {
-		font-weight: bold;
+		/* font-weight: bold; */
 		font-size: 24px;
 		line-height: 32px;
 	}

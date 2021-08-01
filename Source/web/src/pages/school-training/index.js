@@ -9,7 +9,8 @@ import DefaultLayout from 'src/layout/DefaultLayout';
 import siteService from 'src/services/siteService';
 import BookTrialSchool from '../../components/SchoolTrainingComponents/components/BookTrialSchool';
 import Enquire from '../../components/SchoolTrainingComponents/components/Enquire';
-import FootballSkill from '../../components/SchoolTrainingComponents/components/FootballSkill';
+// import FootballSkill from '../../components/SchoolTrainingComponents/components/FootballSkill';
+import FootballSkill from 'src/components/Camp/FootballSkill';
 import TrustUs from '../../components/SchoolTrainingComponents/components/TrustUs';
 
 function SchoolTraining({ data, listSite }) {
@@ -30,6 +31,7 @@ function SchoolTraining({ data, listSite }) {
                 <Testimonial
                     data={data?.testimonial || {}}
                     style={'change-color'}
+                    textColor={'orange'}
                 />
             </div>
 

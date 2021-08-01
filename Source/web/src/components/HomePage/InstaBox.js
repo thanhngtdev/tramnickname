@@ -80,7 +80,10 @@ function InstaBox(props) {
                                                     />
                                                     <div className="bg">
                                                         <h3 className="title">
-                                                            {item.title}
+                                                            {/* {item.title} */}
+                                                            {`${
+                                                                '@' + item.title
+                                                            }`}
                                                         </h3>
                                                     </div>
                                                 </div>

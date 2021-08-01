@@ -145,13 +145,9 @@ export default function AboutUs(props) {
                             ? `${
                                   props.data.cfg_title +
                                   ' ' +
-                                  'At We Make Footballers'
+                                  'We Make Footballers'
                               }`
-                            : `${
-                                  props.data.cfg_title +
-                                  ' At ' +
-                                  props.site.ms_name
-                              }`}
+                            : `${props.data.cfg_title + props.site.ms_name}`}
                     </h1>
                 </div>
                 <div className="container">

@@ -131,7 +131,9 @@ function JoinUs({ data, listSite }) {
                         <div className="container">
                             <h2>{data?.boxesFranchise?.cfg_title}</h2>
                             <div className="right">
-                                {parse(data.boxesFranchise.cfg_content)}
+                                <div>
+                                    {parse(data.boxesFranchise.cfg_content)}
+                                </div>
                                 <a
                                     href="https://franchisewmf.com/"
                                     target="_blank"
@@ -151,8 +153,8 @@ function JoinUs({ data, listSite }) {
                 <AboutSecure data={data?.boxesFranchise || {}} />
             </div>
 
-            {data?.blockEnquireAbout && (
-                <div className="container enquire-joinus">
+            <div className="enquire-joinus">
+                <div className="container ">
                     <div className="enquire">
                         <h4
                             style={{
@@ -167,6 +169,7 @@ function JoinUs({ data, listSite }) {
                         </div>
                         <a
                             href="https://franchisewmf.com/"
+                            target="_blank"
                             style={{
                                 backgroundColor: 'white',
                                 color: '#FF7531',
@@ -180,12 +183,12 @@ function JoinUs({ data, listSite }) {
                         </a>
                     </div>
                 </div>
-            )}
+            </div>
         </DefaultLayout>
     );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
 

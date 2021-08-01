@@ -99,12 +99,13 @@ function Footer() {
                                           defaultAcademy.ms_alias +
                                           PathRoute.JoinUs
                                         : PathRoute.JoinUs
-                                }`}>
+                                }`}
+                                scroll>
                                 Join Us
                             </Link>
                         </li>
                         <li>
-                            <Link href={PathRoute.SchoolTraining}>
+                            <Link href={PathRoute.SchoolTraining} scroll>
                                 School Partnerships
                             </Link>
                         </li>

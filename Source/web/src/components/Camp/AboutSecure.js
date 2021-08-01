@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Utils from 'src/common/Utils';
@@ -6,6 +5,30 @@ import Utils from 'src/common/Utils';
 // AboutSecure.propTypes = {
 //     data: PropTypes.array,
 // };
+
+const Item = (props) => {
+    const { index, item } = props;
+    return (
+        <div key={index} className="list-intro-item">
+            <div className="list-intro-item-img">
+                <LazyLoadImage
+                    src={Utils.getThumb(item.image)}
+                    alt=""
+                    // width="500"
+                />
+            </div>
+            <div className="title">
+                <h3>{item.title}</h3>
+            </div>
+            <div
+                className="description"
+                dangerouslySetInnerHTML={{
+                    __html: item.des || item.content,
+                }}
+            />
+        </div>
+    );
+};
 
 export default function AboutSecure(props) {
     return (
@@ -15,23 +38,7 @@ export default function AboutSecure(props) {
                     <div className="list-intro">
                         {props.data.cfg_value &&
                             props.data.cfg_value.map((item, index) => (
-                                <div key={index} className="list-intro-item">
-                                    <div className="list-intro-item-img">
-                                        {' '}
-                                        <LazyLoadImage
-                                            src={Utils.getThumb(item.image)}
-                                            alt=""
-                                        />
-                                    </div>
-
-                                    <h3 className="title">{item.title}</h3>
-                                    <div
-                                        className="description"
-                                        dangerouslySetInnerHTML={{
-                                            __html: item.des || item.content,
-                                        }}
-                                    />
-                                </div>
+                                <Item index={index} item={item} />
                             ))}
                     </div>
                 </div>

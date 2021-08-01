@@ -61,7 +61,7 @@
     }
 
     .about-secure-holiday {
-        margin-top: 370px;
+        margin-top: 300px;
     }
 
     .about-secure-holiday .list-intro-item {
@@ -88,6 +88,10 @@
         content: '';
         background: #ef9042;
         height: 1018px;
+    }
+
+    .camp-review .training-include {
+        margin-top: -140px;
     }
 
     .football-holiday {
