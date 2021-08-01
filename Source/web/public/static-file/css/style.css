@@ -448,8 +448,7 @@ h1{
 .banner-top {
 	width: 100%;
 	display: inline-block;
-	height: 100vh;
-	/* background: url(../images/hs_photo_pc.jpg) no-repeat center center #fff; */
+	min-height: 947px;
 	padding-top: 455px;
 	
 }
@@ -649,7 +648,7 @@ background-color: #fff;
 }
 
 .box-list-item-card .item .title {
-	font-weight: bold;
+	/* font-weight: bold; */
 	font-size: 24px;
 	line-height: 32px;
 	color: #1A1919;

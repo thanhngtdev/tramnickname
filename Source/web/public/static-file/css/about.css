@@ -7,7 +7,7 @@
 }
 
 .about-us .row .col-6 img {
-	height: 89vh;
+	height: 837px;
     width: 100%;
     object-fit: cover;
 }
@@ -213,7 +213,7 @@
 	}
 
 	.about-us .row .col-6 img {
-		height: 72vh;
+		height: 600px;
 	}
 
 	.get-in-touch .about {

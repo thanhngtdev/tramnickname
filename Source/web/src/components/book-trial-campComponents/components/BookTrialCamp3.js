@@ -393,6 +393,7 @@ const styles = {
         textTransform: 'uppercase',
         padding: '1.5rem 0rem',
         backgroundColor: 'white',
+        cursor: 'pointer',
     },
 };
 

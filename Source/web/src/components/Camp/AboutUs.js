@@ -127,6 +127,7 @@ export default function AboutUs(props) {
                     <LazyLoadImage
                         alt=""
                         src={'/static-file/images/weekly-training-video.png'}
+                        // height="1000px"
                     />
                     {props.data.cfg_content &&
                         props.data.cfg_content.includes('youtube.com') && (
@@ -147,7 +148,11 @@ export default function AboutUs(props) {
                                   ' ' +
                                   'We Make Footballers'
                               }`
-                            : `${props.data.cfg_title + props.site.ms_name}`}
+                            : `${
+                                  props.data.cfg_title +
+                                  ' ' +
+                                  props.site.ms_name
+                              }`}
                     </h1>
                 </div>
                 <div className="container">

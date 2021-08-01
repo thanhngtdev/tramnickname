@@ -148,9 +148,9 @@ function BookTrialTraining3(props) {
                                         </div>
                                         <p
                                             style={{
-                                                marginTop: 25,
+                                                marginTop: 55,
                                                 marginBottom: 25,
-                                                fontWeight: 'bold',
+                                                // fontWeight: 'bold',
                                             }}>
                                             {
                                                 props.bookingFull.other_class
@@ -378,6 +378,7 @@ const styles = {
         textTransform: 'uppercase',
         padding: '1.5rem 0rem',
         backgroundColor: 'white',
+        cursor: 'pointer',
     },
 };
 

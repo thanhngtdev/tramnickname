@@ -33,7 +33,7 @@ function Footer() {
     function onClickLocation(event, item) {
         setShowSelect(!showSelect);
         localStorage.setItem('defaultAcademy', JSON.stringify(item));
-        window.location.href = `${item.ms_alias}`;
+        window.location.href = `${'/' + item.ms_alias}`;
     }
 
     const callFooterApi = async () => {
@@ -251,7 +251,7 @@ function Footer() {
                         <Link href={PathRoute.ListQNA}> FAQ</Link>
                         <span>|</span>
                         <Link href="/policies">Terms &amp; Conditions</Link>|
-                        <a href="/#">Sitemap</a>
+                        <Link href="/sitemap.xml">Sitemap</Link>
                     </div>
                 </div>
             </div>
