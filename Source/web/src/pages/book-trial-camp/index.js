@@ -7,6 +7,8 @@ import BookTrialCamp2 from '../../components/book-trial-campComponents/component
 import BookTrialCamp3 from '../../components/book-trial-campComponents/components/BookTrialCamp3';
 import HolidayCampTabSpace from 'src/components/include/HolidayCampTabSpace';
 import DefaultLayout from 'src/layout/DefaultLayout';
+import saveList from 'src/hooks/useSaveList';
+import siteService from 'src/services/siteService';
 
 const DEFAULT_MESSAGE = `User registered but the booking is not completed, please Log in <a
 href="https://www.parentarea.co/parent/login"
@@ -16,7 +18,8 @@ className="alink">
 here
 </a> to continue booking on the Parent Area system`;
 
-function BookTrialCamp() {
+function BookTrialCamp({ listSite }) {
+    saveList(listSite);
     const dispatch = useDispatch();
     const [activeTab, setActiveTab] = useState(1);
     const [dataStep1, setDataStep1] = useState({});
@@ -136,6 +139,13 @@ function BookTrialCamp() {
             </div>
         </DefaultLayout>
     );
+}
+
+export async function getServerSideProps(context) {
+    const listRes = await siteService.getListSite();
+    const listSite = listRes.data.data.lstSite;
+
+    return { props: { listSite } };
 }
 
 export default BookTrialCamp;

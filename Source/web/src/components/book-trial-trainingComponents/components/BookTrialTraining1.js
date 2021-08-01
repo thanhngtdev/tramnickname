@@ -29,7 +29,7 @@ let timer = new Timer();
 function BookTrialTraining1(props) {
     const siteReducer = useSelector((state) => state.siteReducer);
     const { emailData } = siteReducer;
-    const { lstSite } = useSelector((state) => state.listSiteReducer);
+    const { listSite } = useSelector((state) => state.listSiteReducer);
     const dispatch = useDispatch();
     const history = useRouter();
     const [message, setMessage] = useState(FREE_MESSAGE);
@@ -225,7 +225,7 @@ function BookTrialTraining1(props) {
                 <label>Select academy</label>
                 <Select
                     value={siteSelected}
-                    options={lstSite}
+                    options={listSite}
                     isSearchable={false}
                     isMulti={false}
                     getOptionLabel={(option) => option.ms_name}

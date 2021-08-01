@@ -24,8 +24,12 @@ import BookTrialTraining1 from 'src/components/book-trial-trainingComponents/com
 import BookTrialTraining2 from 'src/components/book-trial-trainingComponents/components/BookTrialTraining2';
 import BookTrialTraining3 from 'src/components/book-trial-trainingComponents/components/BookTrialTraining3';
 import BookTrialTraining4 from 'src/components/book-trial-trainingComponents/components/BookTrialTraining4';
+import siteService from 'src/services/siteService';
+import saveList from 'src/hooks/useSaveList';
 
-function BookTrialTraining() {
+function BookTrialTraining({ listSite }) {
+    // console.log(listSite, 'list');
+    saveList(listSite);
     const siteReducer = useSelector((state) => state.siteReducer);
     const dispatch = useDispatch();
 
@@ -36,7 +40,7 @@ function BookTrialTraining() {
     const [showLogin, setShowLogin] = useState(false);
     const [bookSuccess, setBookSuccess] = useState(0);
     const [bookMessage, setBookMessage] = useState('');
-    const [lstSite, setLstSite] = useState([]);
+    const [lstSite, setLstSite] = useState(listSite);
     const [siteSelected, setSiteSelected] = useState({});
     const [siteError, setSiteError] = useState('');
     const [lstCourse, setLstCourse] = useState([]);
@@ -56,11 +60,10 @@ function BookTrialTraining() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-
         setCurrentLat(localStorage.getItem('latitude'));
         setCurrentLng(localStorage.getItem('longitude'));
 
-        dispatch({ type: type.GET_LIST_SITE });
+        // dispatch({ type: type.GET_LIST_SITE });
     }, []);
 
     useEffect(() => {
@@ -213,322 +216,117 @@ function BookTrialTraining() {
     return (
         <DefaultLayout>
             <div className="holiday-camp">
-                {findAcademy ? (
-                    <div className="booking-find">
-                        <div className="container">
-                            <div
-                                className="back"
-                                onClick={() => {
-                                    setFindAcademy(false);
-                                }}>
-                                <FontAwesomeIcon
-                                    icon={faChevronLeft}
-                                    style={{
-                                        margin: '0 0.8rem',
-                                        fontSize: '0.8rem',
-                                    }}
-                                />
-                                back
-                            </div>
-                            <BorderButton
-                                title="Find a different academy"
-                                style={{ marginBottom: 40 }}
-                            />
-                        </div>
-                        <div className="wSelect2">
-                            <div className="">
-                                <label>Nearest academy</label>
-                                <Select
-                                    value={siteSelected}
-                                    options={lstSite}
-                                    isSearchable={false}
-                                    isMulti={false}
-                                    getOptionLabel={(option) =>
-                                        option.ms_name
-                                            ? option.ms_name +
-                                              ' ' +
-                                              Math.ceil(option.distance) +
-                                              ' km'
-                                            : ''
-                                    }
-                                    getOptionValue={(option) => option.ms_id}
-                                    styles={CommonStyle.select2}
-                                    onChange={(option) => {
-                                        setSiteSelected(option);
-                                        dispatch(
-                                            getListCourse({
-                                                company_id: option.pa_companyId,
-                                                location_id:
-                                                    option.pa_locationId,
-                                                course_type: 'course',
-                                            }),
-                                        );
-                                    }}
-                                />
-                                <label className="input-error">
-                                    {siteError}
-                                </label>
-                            </div>
-                            {siteSelected && (
-                                <div
-                                    style={{
-                                        backgroundColor: 'white',
-                                        padding: '2rem 0',
-                                    }}>
-                                    <div className="">
-                                        <b>
-                                            Choose your class time{' '}
-                                            <span style={{ color: '#FF7100' }}>
-                                                @{siteSelected.ms_name}
-                                            </span>{' '}
-                                            Academy
-                                        </b>
-                                    </div>
-                                    {lstCourse[0] ? (
-                                        <div>
-                                            {lstCourse.map((item, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="classRow"
-                                                    style={{
-                                                        backgroundColor: `${
-                                                            index % 2 === 0
-                                                                ? '#F7F8F7'
-                                                                : 'white'
-                                                        }`,
-                                                    }}>
-                                                    <Radiobox
-                                                        onChange={() => {
-                                                            dispatch(
-                                                                courseStartDate(
-                                                                    item.course_id,
-                                                                ),
-                                                            );
-                                                            setCourseSelected(
-                                                                item,
-                                                            );
-                                                        }}
-                                                        checked={
-                                                            item.course_id ===
-                                                            courseSelected.course_id
-                                                        }>
-                                                        {item.day_of_week}
-                                                    </Radiobox>
-                                                    <label>
-                                                        {moment(
-                                                            item.course_day_time_start,
-                                                            'hh:mm:ss',
-                                                        ).format('hh:mma')}
-                                                        -
-                                                        {moment(
-                                                            item.course_day_time_end,
-                                                            'hh:mm:ss',
-                                                        ).format('hh:mma')}
-                                                    </label>
-                                                    <span>
-                                                        {item.min_age}-
-                                                        {item.max_age} year olds
-                                                    </span>
-                                                </div>
-                                            ))}
-                                            {siteSelected.ms_trial === 1 && (
-                                                <>
-                                                    <hr />
-                                                    <p
-                                                        style={{
-                                                            textAlign: 'right',
-                                                            fontWeight: 'bold',
-                                                            marginRight: '1rem',
-                                                        }}>
-                                                        Total: &nbsp; £
-                                                        {
-                                                            courseSelected.course_price
-                                                        }
-                                                    </p>
-                                                </>
-                                            )}
-                                        </div>
-                                    ) : (
-                                        <p>No course found!</p>
-                                    )}
-                                </div>
-                            )}
-                            {lstCourse[0] ? (
-                                <div
-                                    style={{
-                                        marginTop: '4rem',
-                                        marginBottom: '4rem',
-                                    }}>
-                                    <div className="">
-                                        <label>Trial Date</label>
-                                        <Select
-                                            defaultValue={0}
-                                            options={lstStartDate}
-                                            isSearchable={false}
-                                            isMulti={false}
-                                            getOptionLabel={(option) =>
-                                                option.date_show
-                                            }
-                                            getOptionValue={(option) =>
-                                                option.date
-                                            }
-                                            styles={CommonStyle.select2}
-                                            onChange={(option) => {
-                                                setStartDate(option.date);
-                                            }}
-                                        />
-                                        <label className="input-error">
-                                            {trialDateError}
-                                        </label>
-                                    </div>
-                                </div>
-                            ) : (
-                                <div></div>
-                            )}
+                <div className="container">
+                    <div className="tab-view">
+                        <EachTab
+                            active={activeTab === 1}
+                            filled={activeTab > 1}
+                            labelBtn="1"
+                            onClick={onClickTab(1)}
+                        />
 
-                            <div style={{ textAlign: 'center' }}>
-                                <BorderButton
-                                    title="Book a free session"
-                                    onClick={() => {
-                                        if (validateData()) {
-                                            let _dataStep1 = { ...dataStep1 };
-                                            _dataStep1.siteSelected =
-                                                siteSelected;
-                                            _dataStep1.courseSelected =
-                                                courseSelected;
-                                            _dataStep1.company_id =
-                                                siteSelected.pa_companyId;
-                                            _dataStep1.course_id =
-                                                courseSelected.course_id;
-                                            _dataStep1.start_date =
-                                                moment(startDate).format(
-                                                    'yyyy-MM-DD',
-                                                );
-                                            setDataStep1(_dataStep1);
+                        <HolidayCampTabSpace />
+                        <EachTab
+                            active={activeTab === 2}
+                            filled={activeTab > 2}
+                            labelBtn="2"
+                            onClick={onClickTab(2)}
+                        />
 
-                                            let totalData = {
-                                                ..._dataStep1,
-                                                ...dataStep2,
-                                            };
-
-                                            dispatch(
-                                                bookCourseSignUp({ totalData }),
-                                            );
-                                            setFindAcademy(false);
-                                        }
-                                    }}
-                                />
-                            </div>
-                        </div>
+                        <HolidayCampTabSpace />
+                        <EachTab
+                            active={activeTab === 3}
+                            filled={false}
+                            labelBtn="3"
+                            onClick={onClickTab(3)}
+                        />
                     </div>
-                ) : (
-                    <div className="container">
-                        <div className="tab-view">
-                            <EachTab
-                                active={activeTab === 1}
-                                filled={activeTab > 1}
-                                labelBtn="1"
-                                onClick={onClickTab(1)}
+                    <div className="tab-content">
+                        {activeTab === 1 && (
+                            <BookTrialTraining1
+                                data={dataStep1}
+                                onNext={(data) => {
+                                    global.bookTraining = {
+                                        ...global.bookTraining,
+                                        ...data,
+                                    };
+                                    setDataStep1(data);
+                                    setActiveTab(2);
+                                }}
                             />
-
-                            <HolidayCampTabSpace />
-                            <EachTab
-                                active={activeTab === 2}
-                                filled={activeTab > 2}
-                                labelBtn="2"
-                                onClick={onClickTab(2)}
+                        )}
+                        {activeTab === 2 && (
+                            <BookTrialTraining2
+                                data={dataStep2}
+                                showLogin={showLogin}
+                                dataStep1={dataStep1}
+                                onNext={(data) => {
+                                    setDataStep2(data);
+                                    let totalData = {
+                                        ...dataStep1,
+                                        ...data,
+                                    };
+                                    global.bookTraining = {
+                                        ...global.bookTraining,
+                                        ...data,
+                                    };
+                                    dispatch(bookCourseSignUp({ totalData }));
+                                }}
                             />
-
-                            <HolidayCampTabSpace />
-                            <EachTab
-                                active={activeTab === 3}
-                                filled={false}
-                                labelBtn="3"
-                                onClick={onClickTab(3)}
+                        )}
+                        {activeTab === 3 && (
+                            <BookTrialTraining3
+                                showBookOther={showBookOther}
+                                success={bookSuccess}
+                                message={bookMessage}
+                                data={{ ...dataStep1, ...dataStep2 }}
+                                goBack={() => setActiveTab(1)}
+                                responseCourse={responseCourse}
+                                bookingFull={bookingFull}
+                                findAcademy={() => {
+                                    setFindAcademy(true);
+                                    setLstCourse([]);
+                                    dispatch(
+                                        findNearByAcademy(
+                                            currentLat,
+                                            currentLng,
+                                        ),
+                                    );
+                                }}
+                                bookOther={() => {
+                                    dispatch(
+                                        bookCourse({
+                                            course_id:
+                                                bookingFull.other_class
+                                                    .course_id,
+                                            start_date:
+                                                bookingFull.other_class
+                                                    .start_date.date,
+                                            child_id: bookingFull.child_id,
+                                            token,
+                                        }),
+                                    );
+                                }}
                             />
-                        </div>
-                        <div className="tab-content">
-                            {activeTab === 1 && (
-                                <BookTrialTraining1
-                                    data={dataStep1}
-                                    onNext={(data) => {
-                                        global.bookTraining = {
-                                            ...global.bookTraining,
-                                            ...data,
-                                        };
-                                        setDataStep1(data);
-                                        setActiveTab(2);
-                                    }}
-                                />
-                            )}
-                            {activeTab === 2 && (
-                                <BookTrialTraining2
-                                    data={dataStep2}
-                                    showLogin={showLogin}
-                                    dataStep1={dataStep1}
-                                    onNext={(data) => {
-                                        setDataStep2(data);
-                                        let totalData = {
-                                            ...dataStep1,
-                                            ...data,
-                                        };
-                                        global.bookTraining = {
-                                            ...global.bookTraining,
-                                            ...data,
-                                        };
-                                        dispatch(
-                                            bookCourseSignUp({ totalData }),
-                                        );
-                                    }}
-                                />
-                            )}
-                            {activeTab === 3 && (
-                                <BookTrialTraining3
-                                    showBookOther={showBookOther}
-                                    success={bookSuccess}
-                                    message={bookMessage}
-                                    data={{ ...dataStep1, ...dataStep2 }}
-                                    goBack={() => setActiveTab(1)}
-                                    responseCourse={responseCourse}
-                                    bookingFull={bookingFull}
-                                    findAcademy={() => {
-                                        setFindAcademy(true);
-                                        setLstCourse([]);
-                                        dispatch(
-                                            findNearByAcademy(
-                                                currentLat,
-                                                currentLng,
-                                            ),
-                                        );
-                                    }}
-                                    bookOther={() => {
-                                        dispatch(
-                                            bookCourse({
-                                                course_id:
-                                                    bookingFull.other_class
-                                                        .course_id,
-                                                start_date:
-                                                    bookingFull.other_class
-                                                        .start_date.date,
-                                                child_id: bookingFull.child_id,
-                                                token,
-                                            }),
-                                        );
-                                    }}
-                                />
-                            )}
-                            {activeTab === 4 && (
-                                <BookTrialTraining4
-                                    responseCourse={responseCourse}
-                                    url={paymentUrl}
-                                />
-                            )}
-                        </div>
+                        )}
+                        {activeTab === 4 && (
+                            <BookTrialTraining4
+                                responseCourse={responseCourse}
+                                url={paymentUrl}
+                            />
+                        )}
                     </div>
-                )}
+                </div>
             </div>
         </DefaultLayout>
     );
+}
+
+export async function getServerSideProps(context) {
+    const listRes = await siteService.getListSite();
+    const listSite = listRes.data.data.lstSite;
+
+    return { props: { listSite } };
 }
 
 export default BookTrialTraining;
