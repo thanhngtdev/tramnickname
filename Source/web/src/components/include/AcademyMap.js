@@ -10,7 +10,7 @@ import _ from 'lodash';
 function AcademyMap() {
     const dispatch = useDispatch();
     const headerReducer = useSelector((state) => state.headerReducer);
-    const { lstSite } = useSelector((state) => state.listSiteReducer);
+    const { listSite } = useSelector((state) => state.listSiteReducer);
     const [defaultCenter, setDefaultCenter] = useState({
         lat:
             parseFloat(localStorage.getItem('latitude')) ||
@@ -47,11 +47,11 @@ function AcademyMap() {
             <div className="search-text">
                 <AutocompleteInput
                     selectAcademy={setFocusMarker}
-                    suggestions={lstSite || []}
+                    suggestions={listSite || []}
                 />
             </div>
-            {lstSite &&
-                lstSite.map((item, index) => {
+            {listSite &&
+                listSite.map((item, index) => {
                     if (item.ms_latitude && item.ms_longitude)
                         return (
                             <CustomMarker

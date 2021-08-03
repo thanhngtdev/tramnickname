@@ -88,7 +88,7 @@ function Intro(props) {
                                     <LazyLoadImage
                                         src={Utils.getThumb(temp.image)}
                                         alt={temp?.des}
-                                        height="100%"
+                                        // height="100%"
                                         // width="100%"
                                         // layout="fill"
                                         // width="600"

@@ -25,6 +25,22 @@
     max-width: 65%;
 }
 
+.about-type-aboutpage .about-type hr {
+    height: 2px;
+    width: 95px;
+    background-color: #ef9042;
+    float: left;
+    border: 0;
+}
+
+.about-type-aboutpage .about-type .heading-w {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin: 0 auto;
+     */
+}
+
 
 
 @media only screen and (max-width: 767px) and (min-width: 320px) { 
@@ -75,4 +91,6 @@
     .about-type-aboutpage .about-type .type-anchor {
         padding-bottom: 50px;
     }
+
+ 
 }

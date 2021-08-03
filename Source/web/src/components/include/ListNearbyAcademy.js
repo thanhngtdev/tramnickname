@@ -92,7 +92,9 @@ function ListNearbyAcademy(props) {
             {lstAcademy.length > highlightAcademy && (
                 <div className="main-info wrap-row">
                     <div className="wrap-address">
-                        <b>{lstAcademy[highlightAcademy].ms_name}</b>
+                        <h3 style={{ marginTop: 0 }}>
+                            {lstAcademy[highlightAcademy].ms_name}
+                        </h3>
                         <label>
                             {'~'}
                             {Utils.showDistance(
@@ -194,7 +196,7 @@ function ListNearbyAcademy(props) {
                 {lstAcademy.length > 0 && (
                     <div className="service">
                         <div className="weekly-training">
-                            <p>Weekly traning schedule:</p>
+                            <h3>Weekly traning schedule:</h3>
                             {lstAcademy[highlightAcademy].weeklyTraining?.class
                                 .length > 0 &&
                                 lstAcademy[
@@ -208,7 +210,7 @@ function ListNearbyAcademy(props) {
                                 ))}
                         </div>
                         <div className="service-offered">
-                            <p>Services offered:</p>
+                            <h3>Services offered:</h3>
                             <ul>
                                 <li>Weekly training</li>
                                 <li>Holiday Camps</li>
@@ -244,7 +246,7 @@ function ListNearbyAcademy(props) {
                                     <hr />
                                     <div className="wrap-row other-location">
                                         <div>
-                                            <b>{item.ms_name}</b>
+                                            <h3>{item.ms_name}</h3>
                                             <label>
                                                 {'~'}{' '}
                                                 {Utils.showDistance(

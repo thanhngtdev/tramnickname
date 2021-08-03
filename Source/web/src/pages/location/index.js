@@ -83,7 +83,7 @@ export async function getStaticProps() {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
 
-    return { props: { listSite } };
+    return { props: { listSite, revalidate: Constants.REVALIDATE } };
 }
 
 export default Location;

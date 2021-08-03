@@ -450,6 +450,11 @@ h1{
 	display: inline-block;
 	min-height: 947px;
 	padding-top: 455px;
+
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-origin: content-box;
 	
 }
 
@@ -690,7 +695,7 @@ background-color: #fff;
 	width: 170px;
 	background: #EE7925;
 	content: "";
-	bottom: 0;
+	bottom: -10px;
 	left: 50%;
 	margin-left: -85px;
 	position: absolute;
@@ -1574,7 +1579,7 @@ background-color: #fff;
 	height: 50px;
 	text-align: center;
 	line-height: 48px;
-	font-weight: 500;
+	/* font-weight: 500; */
 	font-size: 16px;
 	letter-spacing: 1.71429px;
 	text-transform: uppercase;
@@ -2462,6 +2467,18 @@ background-color: #fff;
 
 @media only screen and (min-width: 320px) and (max-width: 767px) {
 
+ 	.why-wmf .row .col-4:nth-child(3n+1) {
+		border-right: initial
+	}
+
+	.why-wmf .row .col-4:nth-child(-n+3) {
+		border-bottom: initial
+	}
+
+	.box-insta .box-slide .item .photo .title{
+		font-size: 18px;
+	}
+
 	.fixed-header {
 		position: relative;
 		z-index: 1;
@@ -2603,10 +2620,11 @@ background-color: #fff;
 
 	.banner-top {
 		height: 484px;
-		/* background: url(../images/hs_photo_mobile.jpg) no-repeat center top; */
 		padding-top: 0;
 		padding-top: 378px;
 		text-align: center;
+		min-height: 540px;
+		background-position-x: 70%;
 	}
 
 	.banner-top .box-text {

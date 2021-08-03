@@ -15,15 +15,8 @@ const AboutType = ({ data }) => {
     return (
         <div className="about-type">
             <div className="container">
-                <h2
-                    className="heading-w"
-                    style={{
-                        maxWidth: '800px',
-                        marginRight: 'auto',
-                        marginLeft: 'auto',
-                    }}>
-                    {data.about5.cfg_title}
-                </h2>
+                <h2 className="heading-w">{data.about5.cfg_title}</h2>
+                {/* <hr /> */}
                 <p className="text-1">{data.about5.cfg_des}</p>
             </div>
             <div className="type-anchor">

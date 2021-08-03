@@ -26,6 +26,7 @@ import BookTrialTraining3 from 'src/components/book-trial-trainingComponents/com
 import BookTrialTraining4 from 'src/components/book-trial-trainingComponents/components/BookTrialTraining4';
 import siteService from 'src/services/siteService';
 import saveList from 'src/hooks/useSaveList';
+import Constants from 'src/common/Constants';
 
 function BookTrialTraining({ listSite }) {
     // console.log(listSite, 'list');
@@ -322,11 +323,11 @@ function BookTrialTraining({ listSite }) {
     );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
 
-    return { props: { listSite } };
+    return { props: { listSite, revalidate: Constants.REVALIDATE } };
 }
 
 export default BookTrialTraining;

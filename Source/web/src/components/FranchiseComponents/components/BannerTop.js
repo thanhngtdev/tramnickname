@@ -60,9 +60,9 @@ function BannerTop(props) {
         <div
             className="banner-top"
             style={{
-                background: `url(${Utils.getThumb(
+                backgroundImage: `url(${Utils.getThumb(
                     data?.bannerTop?.cfg_value[0]?.image,
-                )}) no-repeat center center #fff`,
+                )})`,
             }}>
             <div className="container">
                 <h1>{siteName} Academy</h1>

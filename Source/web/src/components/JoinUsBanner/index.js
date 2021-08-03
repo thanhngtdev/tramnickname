@@ -11,7 +11,7 @@ export default function JoinUsBanner(props) {
                 <div className="col-6" style={{ paddingLeft: 0 }}>
                     <LazyLoadImage
                         alt=""
-                        src={'static-file/images/joinUs.png'}
+                        src={'/static-file/images/joinUs.png'}
                     />
                 </div>
             </div>

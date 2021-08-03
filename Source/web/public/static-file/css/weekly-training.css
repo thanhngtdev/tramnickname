@@ -14,6 +14,8 @@
     padding: 50px;
 }
 
+
+
 .about-secure-weekly {
     margin-top: 250px;
 }
@@ -106,5 +108,9 @@
 .faq-weekly .qa {
     margin-bottom: 70px;
 } 
+
+.about-info-weekly .wrap-info button {
+    padding: 1rem 2rem !important;
+}
 
 }

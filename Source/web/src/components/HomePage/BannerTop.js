@@ -18,7 +18,7 @@ function BannerTop(props) {
             props.bannerTop.cfg_value[0].image,
         )}`;
 
-        imageLoader.onload = (event) => {
+        imageLoader.onload = () => {
             setSrc(`${Utils.getThumb(props.bannerTop.cfg_value[0].image)}`);
         };
     }, []);
@@ -27,7 +27,12 @@ function BannerTop(props) {
         <div
             className="banner-top"
             style={{
-                background: `url(${src}) no-repeat center center #fff`,
+                // background: `url(${src}) no-repeat center center #fff`,
+                backgroundImage: `url(${src}) `,
+                // backgroundSize: 'cover',
+                // backgroundRepeat: 'no-repeat',
+                // backgroundPositionX: '70%',
+                // backgroundOrigin: 'content-box',
             }}>
             <div className="container">
                 <h1>{props.bannerTop.cfg_title}</h1>

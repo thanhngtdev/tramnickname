@@ -38,14 +38,6 @@ export default function AboutInfo(props) {
             : 'Book a free session',
     );
 
-    // global.bookTraining = defaultAcademy
-    //   ? {
-    //       siteId: defaultAcademy.ms_id,
-    //       siteName: defaultAcademy.ms_name,
-    //       address: "",
-    //     }
-    //   : {};
-
     //! UseEffect
     useEffect(() => {
         if (!isEmpty(selectedAcademy?.pa_companyId))

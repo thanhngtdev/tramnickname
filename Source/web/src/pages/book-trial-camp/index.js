@@ -9,6 +9,7 @@ import HolidayCampTabSpace from 'src/components/include/HolidayCampTabSpace';
 import DefaultLayout from 'src/layout/DefaultLayout';
 import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
+import Constants from 'src/common/Constants';
 
 const DEFAULT_MESSAGE = `User registered but the booking is not completed, please Log in <a
 href="https://www.parentarea.co/parent/login"
@@ -141,11 +142,11 @@ function BookTrialCamp({ listSite }) {
     );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
 
-    return { props: { listSite } };
+    return { props: { listSite, revalidate: Constants.REVALIDATE } };
 }
 
 export default BookTrialCamp;
