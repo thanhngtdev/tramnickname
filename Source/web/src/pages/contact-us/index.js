@@ -15,6 +15,7 @@ import Utils from 'src/common/Utils';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
+import Constants from 'src/common/Constants';
 
 const OPTION = [
     { value: 'Weekly Training', label: 'Weekly Training' },
@@ -107,7 +108,7 @@ function Contact({ listSite }) {
                         <div className="mobilemap" style={{ height: 1700 }}>
                             <ContactMap
                                 footerConfig={footerConfig.cfg_value || []}
-                                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyClAeE9K0S0LZQ3DiTg0-j_w8HvVuMYgoc&v=3.exp&libraries=geometry,drawing,places"
+                                googleMapURL={Constants.GOOGLE_MAP_URL}
                                 loadingElement={
                                     <div style={{ height: `100%` }} />
                                 }

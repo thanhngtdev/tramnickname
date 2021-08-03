@@ -1,6 +1,8 @@
 import React from 'react';
 import Utils from 'src/common/Utils';
 import { Fragment } from 'react';
+import Constants from 'src/common/Constants';
+
 const { compose, withProps, lifecycle } = require('recompose');
 const { withScriptjs } = require('react-google-maps');
 const {
@@ -9,8 +11,10 @@ const {
 
 const PlacesWithStandaloneSearchBox = compose(
     withProps({
-        googleMapURL:
-            'https://maps.googleapis.com/maps/api/js?key=AIzaSyClAeE9K0S0LZQ3DiTg0-j_w8HvVuMYgoc&v=3.exp&libraries=geometry,drawing,places',
+        // googleMapURL:
+        //     'https://maps.googleapis.com/maps/api/js?key=AIzaSyCkHEoNpHbkdGlYwWFA8JaIOF_o-Y9B4d4&v=3.exp&libraries=geometry,drawing,places',
+        googleMapURL: Constants.GOOGLE_MAP_URL,
+
         loadingElement: <div style={{ height: `100%` }} />,
         containerElement: <div style={{ height: `400px` }} />,
     }),

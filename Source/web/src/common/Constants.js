@@ -26,6 +26,8 @@ const Constants = {
         DENIED: 'denied',
     },
     REVALIDATE: 86400,
+    GOOGLE_MAP_URL:
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyCkHEoNpHbkdGlYwWFA8JaIOF_o-Y9B4d4&v=3.exp&libraries=geometry,drawing,places',
 };
 
 export default Constants;

@@ -17,6 +17,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import Constants from 'src/common/Constants';
 // import BorderButton from 'component/include/BorderButton';
 
 BookTrialTraining3.propTypes = {
@@ -311,7 +312,7 @@ function BookTrialTraining3(props) {
                                 siteSelected={props.data.siteSelected}
                                 courseSelected={props.data.courseSelected}
                                 responseCourse={props.responseCourse}
-                                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyClAeE9K0S0LZQ3DiTg0-j_w8HvVuMYgoc&v=3.exp&libraries=geometry,drawing,places"
+                                googleMapURL={Constants.GOOGLE_MAP_URL}
                                 loadingElement={
                                     <div style={{ height: `100%` }} />
                                 }

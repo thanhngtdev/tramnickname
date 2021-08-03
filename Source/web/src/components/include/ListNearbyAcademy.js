@@ -24,6 +24,7 @@ import {
 } from 'src/redux/actions/actionTypes';
 import WeeklyTrainingItem from './WeeklyTrainingItem';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Constants from 'src/common/Constants';
 
 const MapWithAMarker = withScriptjs(
     withGoogleMap((props) => (
@@ -171,7 +172,7 @@ function ListNearbyAcademy(props) {
                 {lstAcademy.length > 0 && (
                     <div className="map">
                         <MapWithAMarker
-                            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyClAeE9K0S0LZQ3DiTg0-j_w8HvVuMYgoc&v=3.exp&libraries=geometry,drawing,places"
+                            googleMapURL={Constants.GOOGLE_MAP_URL}
                             loadingElement={<div style={{ height: `100%` }} />}
                             containerElement={
                                 <div style={{ height: `100%` }} />

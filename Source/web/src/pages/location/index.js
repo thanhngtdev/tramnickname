@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
+import Constants from 'src/common/Constants';
 import AcademyMap from 'src/components/include/AcademyMap';
 import saveList from 'src/hooks/useSaveList';
 import DefaultLayout from 'src/layout/DefaultLayout';
@@ -12,7 +13,7 @@ function Location({ listSite }) {
             <div className="map">
                 <div className="map-frame">
                     <AcademyMap
-                        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyClAeE9K0S0LZQ3DiTg0-j_w8HvVuMYgoc&v=3.exp&libraries=geometry,drawing,places"
+                        googleMapURL={Constants.GOOGLE_MAP_URL}
                         loadingElement={<div style={{ height: `100%` }} />}
                         containerElement={<div style={{ height: `100%` }} />}
                         mapElement={<div style={{ height: `100%` }} />}
