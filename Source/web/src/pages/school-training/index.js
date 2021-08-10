@@ -15,6 +15,7 @@ import TrustUs from '../../components/SchoolTrainingComponents/components/TrustU
 
 function SchoolTraining({ data, listSite }) {
     const enquireBox = useRef(null);
+    //sd
 
     return (
         <DefaultLayout seo={data.seoMeta}>
