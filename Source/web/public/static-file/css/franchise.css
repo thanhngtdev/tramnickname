@@ -100,6 +100,8 @@
 .coach-head h2 {
     text-align: center;
     font-size: 5rem;
+    margin-right: 30px;
+    margin-left: 30px;
 }
 .coach-list {
     background-color: #ef9042;
@@ -203,14 +205,14 @@
 }
 .service-mobile h2 {
     font-size: 2.5rem;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: #1a1919;
     text-align: center;
 }
 .service-mobile .service-group {
 	padding-top: 2rem;
     font-size: 1.5rem;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: #1a1919;
     padding-bottom: 2rem;
 }
@@ -415,10 +417,11 @@
     }
 
     .coach-head h2 {
-        font-size: 3rem;
+        font-size: 38px;
     }
     .qa h2 {
         font-size: 2.375rem;
+        text-align: center;
     }
     .qItem .qId {
         display: none;
@@ -503,6 +506,11 @@
 
     .franchise-reason .training {
         padding: 0;
+    }
+
+    .franchise-reason .box-football-beginning .heading {
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 
     .franchise-reason .box-football-beginning .box-beginning-list .list {

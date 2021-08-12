@@ -8,6 +8,17 @@ import PathRoute from 'src/common/PathRoute';
 import NearbyAcademy from 'src/components/include/NearbyAcademy';
 // import NearbyAcademy from "./include/NearbyAcademy";
 
+const LinkItem = (props) => {
+    const { title, href, hideMenu } = props;
+    return (
+        <li onClick={hideMenu} className="menu-link" style={props?.style || {}}>
+            <Link href={href} scroll>
+                {title}
+            </Link>
+        </li>
+    );
+};
+
 function Header() {
     const router = useRouter();
     const [menuMobile, setMenuMobile] = useState(false);
@@ -87,63 +98,54 @@ function Header() {
                             />
                         </Link>
                         <ul className="menu">
-                            <li className="menu-link">
-                                <Link
-                                    replace={true}
-                                    href={`${
-                                        !isEmpty(defaultAcademy)
-                                            ? '/' +
-                                              defaultAcademy.ms_alias +
-                                              PathRoute.WeeklyTraining
-                                            : PathRoute.WeeklyTraining
-                                    }`}
-                                    onClick={hideMenu}
-                                    scroll>
-                                    Weekly Training
-                                </Link>
-                            </li>
-                            <li className="menu-link">
-                                <Link
-                                    href={`${
-                                        !isEmpty(defaultAcademy)
-                                            ? '/' +
-                                              defaultAcademy.ms_alias +
-                                              PathRoute.HolidayCamp
-                                            : PathRoute.HolidayCamp
-                                    }`}
-                                    onClick={hideMenu}
-                                    scroll>
-                                    Holiday Camps
-                                </Link>
-                            </li>
-                            <li className="menu-link">
-                                <Link
-                                    href={`${
-                                        !isEmpty(defaultAcademy)
-                                            ? '/' +
-                                              defaultAcademy.ms_alias +
-                                              PathRoute.OneTraining
-                                            : PathRoute.OneTraining
-                                    }`}
-                                    onClick={hideMenu}
-                                    scroll>
-                                    1-on-1 Training
-                                </Link>
-                            </li>
-                            <li className="menu-link">
-                                <Link
-                                    href={`${
-                                        !isEmpty(defaultAcademy)
-                                            ? '/' +
-                                              defaultAcademy.ms_alias +
-                                              PathRoute.BirthdayParty
-                                            : PathRoute.BirthdayParty
-                                    }`}
-                                    onClick={hideMenu}
-                                    scroll>
-                                    Birthday Parties
-                                </Link>
-                            </li>
+                            <LinkItem
+                                title={'Weekly Training'}
+                                hideMenu={hideMenu}
+                                href={`${
+                                    !isEmpty(defaultAcademy)
+                                        ? '/' +
+                                          defaultAcademy.ms_alias +
+                                          PathRoute.WeeklyTraining
+                                        : PathRoute.WeeklyTraining
+                                }`}
+                            />
+
+                            <LinkItem
+                                title={'Holiday Camps'}
+                                hideMenu={hideMenu}
+                                href={`${
+                                    !isEmpty(defaultAcademy)
+                                        ? '/' +
+                                          defaultAcademy.ms_alias +
+                                          PathRoute.HolidayCamp
+                                        : PathRoute.HolidayCamp
+                                }`}
+                            />
+
+                            <LinkItem
+                                title={'1-on-1 Training'}
+                                hideMenu={hideMenu}
+                                href={`${
+                                    !isEmpty(defaultAcademy)
+                                        ? '/' +
+                                          defaultAcademy.ms_alias +
+                                          PathRoute.OneTraining
+                                        : PathRoute.OneTraining
+                                }`}
+                            />
+
+                            <LinkItem
+                                title={'Birthday Parties'}
+                                hideMenu={hideMenu}
+                                href={`${
+                                    !isEmpty(defaultAcademy)
+                                        ? '/' +
+                                          defaultAcademy.ms_alias +
+                                          PathRoute.BirthdayParty
+                                        : PathRoute.BirthdayParty
+                                }`}
+                            />
+
                             <li>
                                 <a
                                     className="btn-book-free-session white-hover"
@@ -195,39 +197,31 @@ function Header() {
                             </div>
                         </div>
                         <ul className="menu-small">
-                            {defaultAcademy && (
-                                <li
-                                    className="menu-link"
-                                    style={{ marginLeft: 0 }}>
-                                    <Link
-                                        href={`/${defaultAcademy.ms_alias}`}
-                                        onClick={hideMenu}
-                                        passHref>
-                                        <a>{defaultAcademy.ms_name}</a>
-                                    </Link>
-                                </li>
+                            {!isEmpty(defaultAcademy) && (
+                                <LinkItem
+                                    style={{ marginLeft: 0 }}
+                                    title={defaultAcademy.ms_name + ''}
+                                    hideMenu={hideMenu}
+                                    href={`/${defaultAcademy.ms_alias}`}
+                                />
                             )}
-                            <li className="menu-link">
-                                <Link
-                                    href={PathRoute.AboutUs}
-                                    onClick={hideMenu}>
-                                    About
-                                </Link>
-                            </li>
-                            <li className="menu-link">
-                                <Link
-                                    href={PathRoute.Contact}
-                                    onClick={hideMenu}>
-                                    Contact Us
-                                </Link>
-                            </li>
-                            <li className="menu-link">
-                                <Link
-                                    href={PathRoute.Location}
-                                    onClick={hideMenu}>
-                                    Locations
-                                </Link>
-                            </li>
+
+                            <LinkItem
+                                title={'About'}
+                                hideMenu={hideMenu}
+                                href={PathRoute.AboutUs}
+                            />
+                            <LinkItem
+                                title={'Contact Us'}
+                                hideMenu={hideMenu}
+                                href={PathRoute.Contact}
+                            />
+                            <LinkItem
+                                title={'Locations'}
+                                hideMenu={hideMenu}
+                                href={PathRoute.Location}
+                            />
+
                             <li className="login">
                                 <a
                                     href="https://www.parentarea.co/parent/login"

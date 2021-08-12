@@ -1,4 +1,5 @@
 import { isEmpty } from 'lodash';
+import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import BookTrial from 'src/components/Booking/BookTrial';
 import QNA from 'src/components/Camp/QNA';
@@ -16,13 +17,14 @@ import TrainingService from '../../components/FranchiseComponents/components/Tra
 
 function Franchise({ data, listSite }) {
     saveList(listSite);
+
     useEffect(() => {
         if (isEmpty(data)) {
             window.location.href = '/404';
         }
     }, []);
 
-    if (isEmpty(data)) return <> </>;
+    if (isEmpty(data)) return <></>;
     return (
         <DefaultLayout seo={data.seoMeta}>
             <div className="banner-franchise">
@@ -79,21 +81,24 @@ function Franchise({ data, listSite }) {
 
 //     // Get the paths we want to pre-render based on posts
 //     const paths = list.map((item) => ({
-//         params: { franchise: item.ms_alias },
+//         params: { franchise: item.ms_alias, item: item },
 //     }));
 
 //     return { paths, fallback: false };
 // }
 
-// export async function getStaticProps({ params }) {
+// export async function getStaticProps(ctx) {
+//     console.log(ctx);
+//     const { params } = ctx;
 //     const res = await siteService.getListSite();
-//     const listSite = res.data.data.lstSite;
+//     let listSite = res.data.data.lstSite;
+
 //     const item = listSite.find((item) => params.franchise === item.ms_alias);
 
 //     const dataRes = await siteService.getFranchiseDetail({ id: item.ms_id });
 
 //     return {
-//         props: { data: dataRes.data.data, listSite }, // will be passed to the page component as props
+//         props: { data: dataRes.data.data, listSite },
 //     };
 // }
 

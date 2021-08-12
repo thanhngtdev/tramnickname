@@ -45,7 +45,7 @@ export default function CampInclude(props) {
                             <div key={index}>
                                 <div className="slide-item">
                                     <div className="slide-image">
-                                        <LazyLoadImage
+                                        <img
                                             alt=""
                                             src={Utils.getThumb(element.image)}
                                         />

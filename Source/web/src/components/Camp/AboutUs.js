@@ -131,9 +131,25 @@ export default function AboutUs(props) {
                     />
                     {props.data.cfg_content &&
                         props.data.cfg_content.includes('youtube.com') && (
-                            <Play onClick={() => setShowVIdeo(true)}>
+                            <div
+                                style={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: '50%',
+                                    backgroundColor: '#ffffff',
+                                    borderRadius: '50%',
+                                    width: '100px',
+                                    height: '100px',
+                                    alignItems: 'center',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    cursor: 'pointer',
+                                    transform: 'translate(-50%, -50%)',
+                                    zIndex: 1,
+                                }}
+                                onClick={() => setShowVIdeo(true)}>
                                 <PlayButton />
-                            </Play>
+                            </div>
                         )}
                 </div>
             </div>

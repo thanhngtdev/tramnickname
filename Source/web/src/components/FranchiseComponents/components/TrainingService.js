@@ -96,7 +96,7 @@ function LDWeeklyTraining(props) {
                 {courseSelected.course_length || 0} sessions
             </p>
 
-            <h5>Football training times:</h5>
+            <h4>Football training times:</h4>
             {lstCourse &&
                 lstCourse.map((item, index) => (
                     <div
@@ -380,6 +380,8 @@ function TrainingService(props) {
     }
 
     const isMobile = innerWidth <= 1000;
+
+    // console.log(props.site);
     if (isMobile) {
         return (
             !_.isEmpty(list) && (
