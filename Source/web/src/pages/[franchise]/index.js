@@ -21,6 +21,7 @@ function Franchise({ data, listSite }) {
     useEffect(() => {
         if (isEmpty(data)) {
             window.location.href = '/404';
+            //
         }
     }, []);
 
