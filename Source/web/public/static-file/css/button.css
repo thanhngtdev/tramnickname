@@ -7,3 +7,30 @@ button.btn-disabled:hover {
     color: rgb(255, 113, 0) !important;
     cursor: unset !important;
 }
+
+.btn-book-free-session {
+	/* width: 219px;
+	height: 44px; */
+	background: #FF7531;
+	border-radius: 6px;
+	cursor: pointer;
+	border: 1px solid #FF7531;
+	line-height: 44px;
+	padding: 10px 10px;
+	font-weight: 500;
+	font-size: 16px;
+	text-align: center;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	display: inline-block;
+
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+	.btn-book-free-session {
+        width: 100% !important;
+		font-size: 11px !important;
+	}
+
+}

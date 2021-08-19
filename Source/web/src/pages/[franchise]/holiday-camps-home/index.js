@@ -26,19 +26,19 @@ function HolidayCamp({ data, listSite }) {
     if (isEmpty(data)) return <> </>;
     return (
         <DefaultLayout>
-            <AboutUs data={data?.about || {}} site={data.site} />
+            <AboutUs data={data?.masterData?.about || {}} site={data.site} />
 
             <div className="about-info-holiday">
                 <AboutInfoCamp site={data.site} />
             </div>
 
             <div className="about-secure-holiday">
-                <AboutSecure data={data?.threeBoxes || {}} />
+                <AboutSecure data={data?.masterData?.threeBoxes || {}} />
             </div>
 
             <div className="camp-review">
                 <div className="about-camp-holiday">
-                    <CampInclude data={data?.dayCamp || {}} />
+                    <CampInclude data={data?.masterData?.dayCamp || {}} />
                 </div>
                 <Testimonial
                     data={data?.testimonial || {}}
@@ -47,10 +47,10 @@ function HolidayCamp({ data, listSite }) {
             </div>
 
             <div className="football-holiday">
-                <FootballSkill data={data?.skillGain || {}} />
+                <FootballSkill data={data?.masterData?.skillGain || {}} />
             </div>
 
-            <WhyWMF data={data?.whyWMF || {}} site={data.site} />
+            <WhyWMF data={data?.masterData?.whyWMF || {}} site={data.site} />
 
             <div className="booking-weekly">
                 <BookTrialHoliday
@@ -60,7 +60,7 @@ function HolidayCamp({ data, listSite }) {
             </div>
 
             <div className="insta-weekly">
-                <InstaBox instaFeed={data?.instaFeed || {}} />
+                <InstaBox instaFeed={data?.masterData?.instaFeed || {}} />
             </div>
 
             <div className="faq-weekly">
@@ -121,6 +121,8 @@ export async function getServerSideProps(context) {
     const siteDetail = await siteService.getDetailSite({
         id: item.ms_id,
         cate: 9,
+        location: item.ms_id,
+        slug: 'holiday-camps-home',
     });
 
     const data = siteDetail.data.data;

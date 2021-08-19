@@ -9,6 +9,7 @@ import Select from 'react-select';
 import PathRoute from 'src/common/PathRoute';
 import SolidButton from 'src/components/include/SolidButton';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import Button from '../Button';
 
 AboutInfo.propTypes = {
     lstAcademy: PropTypes.array,
@@ -167,7 +168,18 @@ export default function AboutInfo(props) {
                 )}
 
                 <div style={{ textAlign: 'center' }}>
-                    <SolidButton
+                    {/* <SolidButton
+                        title={titleButton}
+                        onClick={() => {
+                            dispatch({
+                                type: siteActionType.SELECT_ACADEMY,
+                                data: selectedAcademy,
+                            });
+                            history.push(PathRoute.BookTrialTraining);
+                        }}
+                    /> */}
+
+                    <Button
                         title={titleButton}
                         onClick={() => {
                             dispatch({

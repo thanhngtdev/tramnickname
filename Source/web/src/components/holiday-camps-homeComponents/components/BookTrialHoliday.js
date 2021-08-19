@@ -18,6 +18,7 @@ import siteService from 'src/services/siteService';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import Button from 'src/components/Button';
 
 BookTrialHoliday.propTypes = {
     parentFb: PropTypes.object,
@@ -122,8 +123,8 @@ function Step2(props) {
                 />
             </li>
             <li>
-                <button
-                    className="btn-button-s"
+                <Button
+                    style={{ width: '215px' }}
                     onClick={() => {
                         let _data = {
                             childName: name,
@@ -132,9 +133,9 @@ function Step2(props) {
                         };
                         if (validateInput() && props.onSendData)
                             props.onSendData(_data);
-                    }}>
-                    Enquire Now
-                </button>
+                    }}
+                    title={`Enquire Now`}
+                />
             </li>
         </Fragment>
     );

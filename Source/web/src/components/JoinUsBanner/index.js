@@ -1,5 +1,6 @@
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Button from '../Button';
 
 export default function JoinUsBanner(props) {
     return (
@@ -34,7 +35,14 @@ export default function JoinUsBanner(props) {
                             <div
                                 style={{ marginTop: 50 }}
                                 className="box-button">
-                                <a
+                                <Button
+                                    style={{ width: 200 }}
+                                    title={`Join Us`}
+                                    onClick={() => {
+                                        props.click();
+                                    }}
+                                />
+                                {/* <a
                                     onClick={() => {
                                         props.click();
                                     }}
@@ -55,7 +63,7 @@ export default function JoinUsBanner(props) {
                                         padding: '20px 10px 30px',
                                     }}>
                                     Join Us
-                                </a>
+                                </a> */}
                             </div>
                         </div>
                     </div>

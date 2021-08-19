@@ -11,11 +11,13 @@ class SiteService {
         return httpMethod.get(APIConfig.GET_POLICY);
     }
 
-    getDetailSite({ id, cate }) {
+    getDetailSite({ id, cate, location = '', slug = '' }) {
         return httpMethod.get(
             `${APIConfig.GET_DETAIL_SITE}${Utils.convertToQuery({
                 siteId: id,
                 cate: cate,
+                location: location,
+                slug: slug,
             })}`,
         );
     }

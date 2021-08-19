@@ -45,11 +45,13 @@ function JoinUs({ data, listSite }) {
                             behavior: 'smooth',
                         });
                     }}
-                    data={data?.about || {}}
+                    data={data?.masterData?.about || {}}
                 />
             </div>
             <div className="intro-joinus">
-                <Intro intro={data?.trainingIntro?.cfg_value || []} />
+                <Intro
+                    intro={data?.masterData?.trainingIntro?.cfg_value || []}
+                />
             </div>
 
             <div className="about-type-joinus">
@@ -63,17 +65,20 @@ function JoinUs({ data, listSite }) {
                                     marginRight: 'auto',
                                     marginLeft: 'auto',
                                 }}>
-                                {data.skillGain?.cfg_title}
+                                {data?.masterData?.skillGain?.cfg_title}
                             </h2>
-                            <p className="text-1">{data.skillGain?.cfg_des}</p>
+                            <p className="text-1">
+                                {data?.masterData?.skillGain?.cfg_des}
+                            </p>
                         </div>
 
                         <div className="type-anchor">
                             <div className="container">
                                 <div className="list-item-card-2">
                                     <div className="row" ref={refListItem}>
-                                        {data?.skillGain?.cfg_value &&
-                                            data.skillGain?.cfg_value.map(
+                                        {data?.masterData?.skillGain
+                                            ?.cfg_value &&
+                                            data?.masterData?.skillGain?.cfg_value.map(
                                                 (item, index) => (
                                                     <div
                                                         key={index}
@@ -132,7 +137,7 @@ function JoinUs({ data, listSite }) {
             />
 
             <div className="about-coach-joinus">
-                {data?.boxesFranchise && (
+                {data?.masterData?.boxesFranchise && (
                     <div className="about-coach">
                         <div className="container">
                             <h2>{data?.boxesFranchise?.cfg_title}</h2>
@@ -154,7 +159,7 @@ function JoinUs({ data, listSite }) {
             </div>
 
             <div className="about-secure-joinus">
-                <AboutSecure data={data?.boxesFranchise || {}} />
+                <AboutSecure data={data?.masterData?.boxesFranchise || {}} />
             </div>
 
             {data?.blockEnquireAbout && (
@@ -166,10 +171,13 @@ function JoinUs({ data, listSite }) {
                                 margin: '0 auto',
                                 maxWidth: 700,
                             }}>
-                            {data?.blockEnquireAbout?.cfg_title}
+                            {data?.masterData?.blockEnquireAbout?.cfg_title}
                         </h4>
                         <div style={{ marginBottom: '3rem' }}>
-                            {parse(data?.blockEnquireAbout?.cfg_content)}
+                            {parse(
+                                data?.masterData?.blockEnquireAbout
+                                    ?.cfg_content,
+                            )}
                         </div>
                         <a
                             href="https://franchisewmf.com/"
@@ -182,7 +190,10 @@ function JoinUs({ data, listSite }) {
                                 padding: '1.5rem 3rem',
                                 textTransform: 'uppercase',
                             }}>
-                            {data?.blockEnquireAbout?.cfg_buttons[0]?.title}
+                            {
+                                data?.masterData?.blockEnquireAbout
+                                    ?.cfg_buttons[0]?.title
+                            }
                         </a>
                     </div>
                 </div>
@@ -240,6 +251,8 @@ export async function getServerSideProps(context) {
     const siteDetail = await siteService.getDetailSite({
         id: item.ms_id,
         cate: 22,
+        location: item.ms_id,
+        slug: 'join-us',
     });
 
     const data = siteDetail.data.data;

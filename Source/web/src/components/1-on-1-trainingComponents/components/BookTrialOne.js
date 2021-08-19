@@ -15,6 +15,7 @@ import siteService from 'src/services/siteService';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import Button from 'src/components/Button';
 
 BookTrialOne.propTypes = {
     parentFb: PropTypes.object,
@@ -255,15 +256,15 @@ function BookTrialOne(props) {
                             <label className="input-error">{captcha}</label>
                         </li>
                         <li>
-                            <button
-                                className="btn-button-s"
+                            <Button
+                                style={{ width: 400 }}
                                 onClick={() => {
                                     if (validateInput()) {
                                         onSendData();
                                     }
-                                }}>
-                                Enquire Now
-                            </button>
+                                }}
+                                title={`Enquire Now`}
+                            />
                         </li>
                     </ul>
                     <div className="col-right">

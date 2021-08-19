@@ -235,7 +235,7 @@
 }
 .qa h2 {
     font-size: 4.5rem;
-    /* font-weight: bold; */
+    font-weight: bold;
     color: #1a1919;
     text-align: left;
 }
@@ -249,7 +249,7 @@
 }
 .qItem .qId {
     padding: 1.5rem 3rem;
-    /* font-weight: bold; */
+    font-weight: bold;
     font-size: 1.5rem;
 }
 .qItem .qContent {

@@ -3,8 +3,8 @@ import Captcha from 'src/components/Captcha';
 import ContactMap from 'src/components/include/ContactMap';
 import useGetLocalStorage from 'src/hooks/useGetLocalStorage';
 import DefaultLayout from 'src/layout/DefaultLayout';
-import _ from 'lodash';
-import React, { useState } from 'react';
+import _, { isEmpty } from 'lodash';
+import React, { useEffect, useState } from 'react';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
 // import "react-phone-number-input/style.css";
@@ -16,6 +16,8 @@ import { siteActionType } from 'src/redux/actions/actionTypes';
 import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
 import Constants from 'src/common/Constants';
+import Button from 'src/components/Button';
+import ModelManager from 'src/common/ModelManager';
 
 const OPTION = [
     { value: 'Weekly Training', label: 'Weekly Training' },
@@ -27,8 +29,7 @@ const OPTION = [
     { value: 'Media and PR requests', label: 'Media and PR requests' },
     { value: 'Other', label: 'Other' },
 ];
-function Contact({ listSite }) {
-    const { footerConfig } = useSelector((state) => state.siteReducer);
+function Contact({ listSite, config }) {
     const headerReducer = useSelector((state) => state.headerReducer);
     const dispatch = useDispatch();
     const [nature, setNature] = useState('');
@@ -36,26 +37,37 @@ function Contact({ listSite }) {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [message, setMessage] = useState('');
-    // const [academy, setAcademy] = useState(
-    //   JSON.parse(localStorage.getItem("defaultAcademy")) || {}
-    // );
 
-    const [nameError, setNameError] = useState('');
+    const [defaultAcademy, setDefaultAcademy] = useState({});
+    const [footerConfig, setFooterConfig] = useState(config);
+
     const [emailError, setEmailError] = useState('');
     const [phoneError, setPhoneError] = useState('');
     const [natureError, setNatureError] = useState('');
     const [messageError, setMessageError] = useState('');
-    const academy = useGetLocalStorage();
+
+    const [nameError, setNameError] = useState('');
 
     //! useEffect
     saveList(listSite);
 
-    // useEffect(() => {
-    //   if (!_.isEmpty(headerReducer.param)) {
-    //     setAcademy(headerReducer.param);
-    //     dispatch({ type: headerActionType.CLOSE_LOCATION });
-    //   }
-    // }, [headerReducer]);
+    useEffect(() => {
+        setDefaultAcademy(ModelManager.getLocation() || {});
+    }, []);
+
+    useEffect(() => {
+        if (!isEmpty(defaultAcademy)) {
+            const config = [
+                { title: 'Address', des: defaultAcademy?.ms_address },
+                { title: 'Phone', des: defaultAcademy?.ms_phone },
+            ];
+
+            defaultAcademy?.social.map((item) => {
+                config.push({ title: item?.name || '', des: item?.link || '' });
+            }),
+                setFooterConfig(config);
+        }
+    }, [defaultAcademy]);
 
     //! function
     function validation() {
@@ -90,9 +102,6 @@ function Contact({ listSite }) {
     }
 
     //! return
-    // if (_.isEmpty(footerConfig) && _.isEmpty(academy)) {
-    //   return <Spinner />;
-    // }
 
     return (
         <DefaultLayout>
@@ -107,7 +116,7 @@ function Contact({ listSite }) {
                     <div className="col-6" style={{ paddingLeft: 0 }}>
                         <div className="mobilemap" style={{ height: 1700 }}>
                             <ContactMap
-                                footerConfig={footerConfig.cfg_value || []}
+                                footerConfig={footerConfig || []}
                                 googleMapURL={Constants.GOOGLE_MAP_URL}
                                 loadingElement={
                                     <div style={{ height: `100%` }} />
@@ -116,7 +125,7 @@ function Contact({ listSite }) {
                                     <div style={{ height: `100%` }} />
                                 }
                                 mapElement={<div style={{ height: `100%` }} />}
-                                academy={academy}
+                                // academy={academy}
                             />
                         </div>
                     </div>
@@ -129,10 +138,10 @@ function Contact({ listSite }) {
                     }}>
                     <div className="container">
                         <h1 className="contact-header">
-                            Get in touch with the{' '}
-                            {!_.isEmpty(academy)
-                                ? academy?.ms_name + ' '
-                                : ' WMF'}{' '}
+                            Get in touch with{' '}
+                            {!_.isEmpty(defaultAcademy)
+                                ? defaultAcademy?.ms_name + ' '
+                                : 'the WMF'}{' '}
                             Academy
                         </h1>
                         <div className="get-in-touch" action="">
@@ -226,8 +235,9 @@ function Contact({ listSite }) {
                                     <Captcha />
                                 </li>
                                 <li>
-                                    <button
-                                        className="btn-button-s"
+                                    <Button
+                                        style={{ width: 390 }}
+                                        title={`SEND ENQUIRY`}
                                         onClick={() => {
                                             let response =
                                                 window.grecaptcha.getResponse();
@@ -259,9 +269,8 @@ function Contact({ listSite }) {
                                                     params: _totalData,
                                                 });
                                             }
-                                        }}>
-                                        SEND ENQUIRY
-                                    </button>
+                                        }}
+                                    />
                                 </li>
                                 <p
                                     className="text-policy"
@@ -292,6 +301,19 @@ function Contact({ listSite }) {
 }
 
 export async function getStaticProps() {
+    return await Promise.all([
+        siteService.getListSite(),
+        siteService.getFooterConfig(),
+    ]).then((values) => {
+        return {
+            props: {
+                listSite: values[0].data.data.lstSite,
+                config: values[1].data.data.cfg_value,
+            },
+            revalidate: Constants.REVALIDATE,
+        };
+    });
+
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
 

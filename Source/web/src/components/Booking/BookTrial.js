@@ -12,6 +12,7 @@ import Utils from 'src/common/Utils';
 import TrustPilotText from 'src/components/TrustPilotText';
 import useComponentVisible from 'src/hooks/useComponentVisible';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import Button from '../Button';
 
 BookTrial.propTypes = {
     parentFb: PropTypes.object,
@@ -196,8 +197,7 @@ function BookTrial(props) {
                             <label className="input-error">{dateError}</label>
                         </li>
                         <li>
-                            <button
-                                className="btn-button-s"
+                            <Button
                                 onClick={() => {
                                     if (validateInput()) {
                                         global.bookTraining = {
@@ -214,9 +214,9 @@ function BookTrial(props) {
                                         //     param,
                                         // });
                                     }
-                                }}>
-                                Book a {trialText} training session
-                            </button>
+                                }}
+                                title={`Book a ${trialText} training session`}
+                            />
                         </li>
                     </ul>
                     <div className="col-right">

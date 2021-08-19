@@ -46,9 +46,9 @@ function BirthdayParty({ data, listSite }) {
 
     return (
         <DefaultLayout>
-            <AboutUs data={data?.about || {}} site={data.site} />
+            <AboutUs data={data?.masterData?.about || {}} site={data.site} />
             <div className="qoute-birthday">
-                <Quote data={data?.about2 || {}} />
+                <Quote data={data?.masterData?.about2 || {}} />
             </div>
 
             <div className="birthday-review">
@@ -58,7 +58,10 @@ function BirthdayParty({ data, listSite }) {
                 />
             </div>
             <div className="football-birthday">
-                <FootballSkill data={data?.skillGain || {}} />
+                <FootballSkill
+                    noTitle
+                    data={data?.masterData?.keyElement || {}}
+                />
             </div>
 
             <BirthdayPackage
@@ -66,19 +69,19 @@ function BirthdayParty({ data, listSite }) {
                     handleScroll();
                     clickPreferedButton(preferedPackage);
                 }}
-                data={data?.package || {}}
+                data={data?.masterData?.package || {}}
             />
 
             <BirthdayExtra
-                partyInclude={data?.partyInclude || {}}
-                partyOptional={data?.partyOptional || {}}
+                partyInclude={data?.masterData?.partyInclude || {}}
+                partyOptional={data?.masterData?.partyOptional || {}}
             />
 
             <BookTrialParty
                 site={data.site}
                 ref={ref}
                 parentFb={data?.parentFb || {}}
-                package={data?.package || {}}
+                package={data?.masterData?.package || {}}
                 preferedPackage={preferedPackage}
                 listSite={listSite || []}
             />
@@ -88,8 +91,8 @@ function BirthdayParty({ data, listSite }) {
                     title={
                         'Check out some snaps from our previous Football Birthday Parties'
                     }
-                    gallery={data?.gallery || {}}
-                    gallery2={data?.gallery2 || {}}
+                    gallery={data?.masterData?.gallery || {}}
+                    gallery2={data?.masterData?.gallery2 || {}}
                 />
             </div>
             <div className="faq-birthday">
@@ -149,6 +152,8 @@ export async function getServerSideProps(context) {
     const siteDetail = await siteService.getDetailSite({
         id: item.ms_id,
         cate: 15,
+        location: item.ms_id,
+        slug: 'birthday-parties',
     });
 
     const data = siteDetail.data.data;

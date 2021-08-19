@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ModelManager from 'src/common/ModelManager';
 import PathRoute from 'src/common/PathRoute';
+import Button from 'src/components/Button';
 import NearbyAcademy from 'src/components/include/NearbyAcademy';
 // import NearbyAcademy from "./include/NearbyAcademy";
 
@@ -147,11 +148,10 @@ function Header() {
                             />
 
                             <li>
-                                <a
-                                    className="btn-book-free-session white-hover"
-                                    href={PathRoute.BookTrialTraining}
+                                <Button
+                                    style={{ fontSize: 11, marginLeft: 48 }}
                                     onClick={(evt) => {
-                                        evt.preventDefault();
+                                        // evt.preventDefault();
                                         setMenuMobile(false);
 
                                         if (defaultAcademy)
@@ -164,14 +164,14 @@ function Header() {
                                         router.push(
                                             PathRoute.BookTrialTraining,
                                         );
-                                    }}>
-                                    Book a{' '}
-                                    {defaultAcademy &&
-                                    defaultAcademy.ms_trial === 1
-                                        ? 'trial'
-                                        : 'free'}{' '}
-                                    session
-                                </a>
+                                    }}
+                                    title={`Book a ${
+                                        defaultAcademy &&
+                                        defaultAcademy.ms_trial === 1
+                                            ? 'trial'
+                                            : 'free'
+                                    } session`}
+                                />
                             </li>
                         </ul>
                     </div>

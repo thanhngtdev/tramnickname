@@ -352,7 +352,7 @@ export default function* watcherSiteSaga() {
     yield takeLatest(siteActionType.GET_CURRENT_ACADEMY, getCurrentAcademy);
     yield takeLatest(siteActionType.SEARCH_NEARBY, searchNearby);
     // yield takeLatest(siteActionType.GET_POLICY, getPolicy);
-    yield takeLatest(siteActionType.GET_FOOTER_CONFIG, getFooterConfig);
+    // yield takeLatest(siteActionType.GET_FOOTER_CONFIG, getFooterConfig);
     yield takeLatest(type.GET_LIST_SITE, getListSite);
     yield takeLatest(siteActionType.GET_SITE_HAS_CAMP, getListSiteHasCamp);
     yield takeLatest(siteActionType.BOOK_TRAINING, bookTraining);

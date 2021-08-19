@@ -51,7 +51,7 @@ function BirthdayParty({ data, listSite }) {
                 />
             </div>
             <div className="football-birthday">
-                <FootballSkill data={data?.skillGain || {}} />
+                <FootballSkill noTitle data={data?.keyElement || {}} />
             </div>
 
             <BirthdayPackage
@@ -100,6 +100,8 @@ export async function getStaticProps() {
     const siteDetail = await siteService.getDetailSite({
         id: listSite[0].ms_id,
         cate: 15,
+        location: '',
+        slug: 'birthday-parties',
     });
 
     const data = siteDetail.data.data;

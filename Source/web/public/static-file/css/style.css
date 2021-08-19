@@ -25,7 +25,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-weight: normal;
+	/* font-weight: normal; */
 	font-family: 'Red Hat Text', Arial, Helvetica, sans-serif;
 }
 
@@ -361,14 +361,12 @@ h1{
 .menu-top .menu .btn-book-free-session {
 	width: 219px;
 	height: 44px;
-	background: #EE7925;
+	/* background: #EE7925; */
 	border-radius: 6px;
 	cursor: pointer;
 	border: 0;
 	line-height: 44px;
 	padding: 0;
-	font-weight: 500;
-	font-size: 14px;
 	text-align: center;
 	letter-spacing: 1.5px;
 	text-transform: uppercase;
@@ -484,7 +482,7 @@ h1{
 	display: inline-block;
 	height: 70px;
 	line-height: 70px;
-	/* font-weight: 500; */
+	font-weight: 500;
 	font-size: 16px;
 	text-align: center;
 	letter-spacing: 1.71429px;
@@ -653,7 +651,7 @@ background-color: #fff;
 }
 
 .box-list-item-card .item .title {
-	/* font-weight: bold; */
+	font-weight: bold;
 	font-size: 24px;
 	line-height: 32px;
 	color: #1A1919;
@@ -681,7 +679,7 @@ background-color: #fff;
 
 .heading-w {
 	/* margin: 0;text-1 */
-	/* font-weight: bold; */
+	font-weight: bold;
 	font-size: 75px;
 	line-height: 110px;
 	text-align: center;
@@ -764,7 +762,7 @@ background-color: #fff;
 }
 
 .list-item-card-2 .item .title {
-	/* font-weight: bold; */
+	font-weight: bold;
 	font-size: 45px;
 	line-height: 55px;
 	color: #1A1919;
@@ -798,7 +796,7 @@ background-color: #fff;
 	letter-spacing: 1.71429px;
 	text-transform: uppercase;
 	color: #EE7925;
-	/* font-weight: 500; */
+	font-weight: 500;
 	font-size: 16px;
 	display: inline-block;
 }
@@ -857,7 +855,7 @@ background-color: #fff;
 }
 
 .box-slide-review .slide .box-acc-review .name {
-	/* font-weight: 500; */
+	font-weight: 500;
 	font-size: 24px;
 	line-height: 55px;
 	margin-top: 25px;
@@ -907,7 +905,7 @@ background-color: #fff;
 }
 
 .box-professional .box-head .heading {
-	/* font-weight: bold; */
+	font-weight: bold;
 	font-size: 75px;
 	line-height: 99px;
 	color: #FFFFFF;
@@ -960,6 +958,7 @@ background-color: #fff;
 	margin-top: 30px !important;
 }
 
+
 .box-professional .list-item .mt-285 {
 	margin-top: 285px !important;
 }
@@ -974,7 +973,7 @@ background-color: #fff;
 	letter-spacing: 1.71429px;
 	text-transform: uppercase;
 	color: #EE7925;
-	/* font-weight: 500; */
+	font-weight: 500;
 	font-size: 16px;
 	display: inline-block;
 	position: absolute;
@@ -993,7 +992,7 @@ background-color: #fff;
 .box-reasons .heading {
 	text-align: center;
 	margin: 0;
-	/* font-weight: bold; */
+	font-weight: bold;
 	font-size: 75px;
 	line-height: 99px;
 	color: #000000;
@@ -1126,7 +1125,7 @@ background-color: #fff;
 .book_your_child_free_session .heading {
 	width: 100%;
 	display: inline-block;
-	/* font-weight: bold; */
+	font-weight: bold;
 	font-size: 75px;
 	line-height: 99px;
 	color: #000000;
@@ -1183,7 +1182,7 @@ background-color: #fff;
 }
 
 .book_your_child_free_session .list-form li .label {
-	/* font-weight: 500; */
+	font-weight: 500;
 	font-size: 16px;
 	line-height: 33px;
 	display: block;
@@ -1351,7 +1350,7 @@ background-color: #fff;
 	line-height: 70px;
 	border: 0;
 	cursor: pointer;
-	/* font-weight: 500; */
+	font-weight: 500;
 	font-size: 16px;
 	text-align: center;
 	letter-spacing: 1.71429px;
@@ -1401,7 +1400,7 @@ background-color: #fff;
 }
 
 .book_your_child_free_session .box-acc-review .name {
-	/* font-weight: 500; */
+	font-weight: 500;
 	font-size: 24px;
 	line-height: 55px;
 	margin-top: 25px;
@@ -1580,7 +1579,7 @@ background-color: #fff;
 	height: 50px;
 	text-align: center;
 	line-height: 48px;
-	/* font-weight: 500; */
+	font-weight: 500;
 	font-size: 16px;
 	letter-spacing: 1.71429px;
 	text-transform: uppercase;
@@ -1928,7 +1927,7 @@ background-color: #fff;
 	text-align: center;
 	letter-spacing: 1.71429px;
 	text-transform: uppercase;
-	/* font-weight: 500; */
+	font-weight: 500;
 	font-size: 16px;
 	background: url(/static-file/images/icon-next.png) no-repeat 110px center;
 	padding-right: 20px;
@@ -2051,7 +2050,7 @@ background-color: #fff;
 	width: 250px;
     /* height: 44px; */
 	padding: 10px 10px;
-    background: #EE7925;
+    /* background: #EE7925; */
     border-radius: 6px;
     cursor: pointer;
     border: 1px solid transparent;
@@ -2468,6 +2467,10 @@ background-color: #fff;
 
 @media only screen and (min-width: 320px) and (max-width: 767px) {
 
+	.btn-book-free-session {
+		font-size: 11px !important;
+	}
+
  	.why-wmf .row .col-4:nth-child(3n+1) {
 		border-right: initial
 	}
@@ -2636,7 +2639,7 @@ background-color: #fff;
 		background-color: #fff;
 		border-radius: 6px;
 		padding: 30px 25px;
-		/* font-weight: 500; */
+		font-weight: 500;
 		font-size: 18px;
 		line-height: 27px;
 		text-align: center;
@@ -2708,7 +2711,7 @@ background-color: #fff;
 		width: 100%;
 		height: 50px;
 		line-height: 50px;
-		/* font-weight: 500; */
+		font-weight: 500;
 		font-size: 16px;
 	}
 

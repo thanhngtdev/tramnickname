@@ -9,6 +9,7 @@ import PathRoute from 'src/common/PathRoute';
 import { CommonStyle } from 'src/common/Styles';
 import SolidButton from 'src/components/include/SolidButton';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import Button from '../Button';
 
 AboutInfoCamp.propTypes = {
     lstAcademy: PropTypes.array,
@@ -131,7 +132,20 @@ export default function AboutInfoCamp(props) {
                 )}
 
                 <div style={{ textAlign: 'center' }}>
-                    <SolidButton
+                    {/* <SolidButton
+                        title="Book now"
+                        onClick={() => {
+                            if (selectedAcademy) {
+                                history.push(PathRoute.BookTrialCamp);
+                                dispatch({
+                                    type: siteActionType.SELECT_ACADEMY,
+                                    data: selectedAcademy,
+                                });
+                            }
+                        }}
+                    /> */}
+
+                    <Button
                         title="Book now"
                         onClick={() => {
                             if (selectedAcademy) {

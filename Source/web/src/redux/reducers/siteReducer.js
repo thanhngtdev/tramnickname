@@ -4,7 +4,7 @@ const initialState = {
     message: '',
     lstSiteCamp: [],
     marker: {},
-    footerConfig: {},
+    footerConfig: [],
     emailData: {},
     // dataCourse: [],
     // dataEvent: [],
@@ -216,10 +216,9 @@ const siteReducer = (state = initialState, action) => {
                 type: type.CLEAR_SEND_EMAIL,
             };
 
-        case siteActionType.GET_FOOTER_CONFIG_SUCCESS:
+        case siteActionType.GET_FOOTER_CONFIG:
             return {
                 ...state,
-                type: siteActionType.GET_FOOTER_CONFIG_SUCCESS,
                 footerConfig: action.data,
             };
         case siteActionType.GET_FOOTER_CONFIG_FAILED:

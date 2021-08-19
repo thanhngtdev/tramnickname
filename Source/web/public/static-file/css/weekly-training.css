@@ -14,6 +14,10 @@
     padding: 50px;
 }
 
+.about-info-weekly .about-info .wrap-info .btn-book-free-session {
+    width: 300px;
+}
+
 
 
 .about-secure-weekly {
@@ -31,6 +35,10 @@
 
 .about-info-weekly .about-info-title {
     text-align: left;
+}
+
+.about-info-weekly .about-info .wrap-info .btn-book-free-session {
+    width: 100%;
 }
 
 

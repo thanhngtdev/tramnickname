@@ -46,6 +46,10 @@
 	text-align: center;
 }
 
+.about-info-holiday .about-info .wrap-info .btn-book-free-session {
+	width: 205px;
+}
+
 .about-camp-holiday .training-include .slide-control {
     bottom: 22rem;
 }
@@ -72,6 +76,10 @@
     .about-info-holiday .about-info .wrap-info .about-info-title {
 		text-align: left;
 	}
+
+    .about-info-holiday .about-info .wrap-info .btn-book-free-session {
+        width: 100%;
+    }
 
     .camp-review {
         width: 100%;

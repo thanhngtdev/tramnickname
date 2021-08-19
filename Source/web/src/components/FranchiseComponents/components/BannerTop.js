@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Button from 'src/components/Button';
 
 BannerTop.propTypes = {
     site: PropTypes.object,
@@ -71,7 +72,7 @@ function BannerTop(props) {
                         Learn football the right way with the UK’s #1 weekly
                         training programs & holiday camps
                     </p>
-                    <a
+                    {/* <a
                         href="/#"
                         className="btn-book"
                         onClick={(evt) => {
@@ -88,7 +89,27 @@ function BannerTop(props) {
                         {props.site && props.site.ms_trial === 1
                             ? 'Book a trial session'
                             : 'Try a free session'}
-                    </a>
+                    </a> */}
+
+                    <Button
+                        style={{ width: 350 }}
+                        title={`${
+                            props.site && props.site.ms_trial === 1
+                                ? 'Book a trial session'
+                                : 'Try a free session'
+                        }`}
+                        onClick={(evt) => {
+                            localStorage.setItem(
+                                'defaultAcademy',
+                                JSON.stringify(props.site),
+                            );
+                            dispatch({
+                                type: siteActionType.PICK_DEFAULT_ACADEMY,
+                            });
+                            evt.preventDefault();
+                            history.push(PathRoute.BookTrialTraining);
+                        }}
+                    />
                 </div>
                 <div className="academy-info">
                     <div className="group-info">

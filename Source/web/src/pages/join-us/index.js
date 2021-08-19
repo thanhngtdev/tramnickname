@@ -195,6 +195,8 @@ export async function getStaticProps() {
     const siteDetail = await siteService.getDetailSite({
         id: listSite[0].ms_id,
         cate: 22,
+        location: '',
+        slug: 'join-us',
     });
 
     const data = siteDetail.data.data;

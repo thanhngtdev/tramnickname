@@ -29,13 +29,21 @@ export default function OneTraining({ data, listSite }) {
     return (
         <DefaultLayout seo={data.seoMeta}>
             <div className="about-121">
-                <AboutUs data={data?.about || {}} site={data.site} />
+                <AboutUs
+                    data={data?.masterData?.about || {}}
+                    site={data.site}
+                />
             </div>
             <div className="intro-121">
-                <Intro intro={data?.trainingIntro?.cfg_value || []} />
+                <Intro
+                    intro={data?.masterData?.trainingIntro?.cfg_value || []}
+                />
             </div>
             <div className="football-121">
-                <FootballSkill data={data?.skillGain || {}} noTitle />
+                <FootballSkill
+                    data={data?.masterData?.skillGain || {}}
+                    noTitle
+                />
             </div>
             <div className="one-training">
                 <Testimonial
@@ -76,7 +84,10 @@ export default function OneTraining({ data, listSite }) {
                 </div>
             </div>
             <div className="whywmf-121">
-                <WhyWMF data={data?.whyWMF || {}} site={data.site} />
+                <WhyWMF
+                    data={data?.masterData?.whyWMF || {}}
+                    site={data.site}
+                />
             </div>
             <div className="booking-weekly">
                 <BookTrialOne
@@ -86,7 +97,7 @@ export default function OneTraining({ data, listSite }) {
                 />
             </div>
             <div className="insta-weekly">
-                <InstaBox instaFeed={data?.instaFeed || {}} />
+                <InstaBox instaFeed={data?.masterData?.instaFeed || {}} />
             </div>
             <div className="faq-weekly">
                 <QNA data={data?.faq || []} />
@@ -144,6 +155,8 @@ export async function getServerSideProps(context) {
     const siteDetail = await siteService.getDetailSite({
         id: item.ms_id,
         cate: 14,
+        location: item.ms_id,
+        slug: '1-on-1-training',
     });
 
     const data = siteDetail.data.data;

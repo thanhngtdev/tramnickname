@@ -67,7 +67,7 @@
 
 
 .about-coach-joinus .about-coach {
-    padding-bottom: 200px;
+    padding-bottom: 300px;
 }
 
 .about-secure-joinus {  
@@ -124,6 +124,10 @@
 
     .about-secure-joinus {
         margin-top: 200px;
+    }
+
+    .about-coach-joinus .about-coach{
+        padding-bottom: 185px;
     }
 
 

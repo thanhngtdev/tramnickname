@@ -30,18 +30,18 @@ const SiteNews = ({ data, listSite }) => {
 
     return (
         <DefaultLayout>
-            <AboutUs data={data?.about || {}} site={data.site} />
+            <AboutUs data={data?.masterData?.about || {}} site={data.site} />
 
             <div className="about-info-weekly">
                 <AboutInfo lstAcademy={listSite || []} site={data.site} />
             </div>
 
             <div className="about-secure-weekly">
-                <AboutSecure data={data?.academyIntro || []} />
+                <AboutSecure data={data?.masterData?.academyIntro || []} />
             </div>
 
             <div className="background-weekly">
-                <TrainingInclude data={data?.eachWeek || {}} />
+                <TrainingInclude data={data?.masterData?.eachWeek || {}} />
 
                 <Testimonial
                     data={data?.testimonial || {}}
@@ -51,17 +51,17 @@ const SiteNews = ({ data, listSite }) => {
             </div>
 
             <div className="football-weekly">
-                <FootballSkill data={data?.skillGain || {}} />
+                <FootballSkill data={data?.masterData?.skillGain || {}} />
             </div>
 
-            <WhyWMF data={data?.whyWMF || {}} site={data.site} />
+            <WhyWMF data={data?.masterData?.whyWMF || {}} site={data.site} />
 
             <div className="booking-weekly">
                 <BookTrial parentFb={data?.parentFb || {}} site={data.site} />
             </div>
 
             <div className="insta-weekly">
-                <InstaBox instaFeed={data?.instaFeed || {}} />
+                <InstaBox instaFeed={data?.masterData?.instaFeed || {}} />
             </div>
 
             <div className="faq-weekly">
@@ -120,6 +120,8 @@ export async function getServerSideProps(context) {
     const siteDetail = await siteService.getDetailSite({
         id: item.ms_id,
         cate: 6,
+        location: item.ms_id,
+        slug: 'weekly-training',
     });
 
     const data = siteDetail.data.data;
