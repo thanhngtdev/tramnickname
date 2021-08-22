@@ -446,13 +446,14 @@ h1{
 .banner-top {
 	width: 100%;
 	display: inline-block;
-	min-height: 947px;
+	/* min-height: 947px; */
+	height: 100vh;
 	padding-top: 455px;
 
-	background-size: cover;
+	/* background-size: cover; */
 	background-repeat: no-repeat;
 	background-position: center center;
-	background-origin: content-box;
+	/* background-origin: content-box; */
 	
 }
 

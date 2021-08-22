@@ -149,7 +149,12 @@ function Header() {
 
                             <li>
                                 <Button
-                                    style={{ fontSize: 11, marginLeft: 48 }}
+                                    style={{
+                                        fontSize: 14,
+                                        marginLeft: 40,
+                                        fontWeight: 100,
+                                        letterSpacing: 2.3,
+                                    }}
                                     onClick={(evt) => {
                                         // evt.preventDefault();
                                         setMenuMobile(false);

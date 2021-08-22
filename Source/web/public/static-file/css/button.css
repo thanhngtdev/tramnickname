@@ -11,10 +11,10 @@ button.btn-disabled:hover {
 .btn-book-free-session {
 	/* width: 219px;
 	height: 44px; */
-	background: #FF7531;
+	background: #ee7925;
 	border-radius: 6px;
 	cursor: pointer;
-	border: 1px solid #FF7531;
+	border: 1px solid #ee7925;
 	line-height: 44px;
 	padding: 10px 10px;
 	font-weight: 500;
