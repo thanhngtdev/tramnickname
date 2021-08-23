@@ -2621,6 +2621,9 @@ background-color: #fff;
 	.menu-top .menu .btn-book-free-session {
 		background-color: #fff;
 		color: #FF7531;
+		width: initial !important;
+		margin-left: initial !important;
+		padding: 0 15px;
 	}
 
 	.banner-top {

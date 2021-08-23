@@ -60,7 +60,7 @@ const TrustPilot = () => {
                     backgroundColor: '#8685854f',
                 }}
                 onClick={(event) => {
-                    console.log(event, 'event');
+                    // console.log(event, 'event');
                     dispatch(
                         showTruspilot({
                             show: false,
