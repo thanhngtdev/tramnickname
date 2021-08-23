@@ -7,6 +7,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import siteService from 'src/services/siteService';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Utils from 'src/common/Utils';
 
 function Footer() {
     //! state
@@ -30,11 +31,31 @@ function Footer() {
     }, [isComponentVisible]);
 
     //! function
-    function onClickLocation(event, item) {
+    // function onClickLocation(event, item) {
+    //     setShowSelect(!showSelect);
+    //     // localStorage.setItem('defaultAcademy', JSON.stringify(item));
+    //     // console.log(item);
+    //     // return;
+
+    //     Utils.setDefaultAcademy(item.ms_id);
+
+    //     window.location.href = `${'/' + item.ms_alias}`;
+    // }
+
+    const onClickLocation = async (item) => {
         setShowSelect(!showSelect);
-        localStorage.setItem('defaultAcademy', JSON.stringify(item));
-        window.location.href = `${'/' + item.ms_alias}`;
-    }
+
+        try {
+            const res = await siteService.getDetailSite({ id: item.ms_id });
+            if (res.data.status == 200) {
+                const item = res.data?.data?.site || {};
+                localStorage.setItem('defaultAcademy', JSON.stringify(item));
+                window.location.href = `${'/' + item.ms_alias}`;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const callFooterApi = async () => {
         try {
@@ -161,7 +182,7 @@ function Footer() {
                                         <div
                                             key={item.ms_id}
                                             onClick={(e) => {
-                                                onClickLocation(e, item);
+                                                onClickLocation(item);
                                             }}>
                                             {item.ms_name}
                                         </div>

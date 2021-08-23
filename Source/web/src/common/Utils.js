@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import { STORAGE_URL } from 'src/requests/ApiConfig';
+import siteService from 'src/services/siteService';
 
 const { hasOwnProperty } = Object.prototype;
 class Utils {
@@ -177,12 +178,20 @@ class Utils {
         return '';
     }
 
-    convertPrice(data) {
-        const { content, weeklyCost, minWeeklyCost, locations } = data;
+    // convertPrice(data) {
+    //     const { content, weeklyCost, minWeeklyCost, locations } = data;
 
+    //     const venues = locations + ' venues';
+    //     const poundType = content.includes('of &pound;XXX')
+    //         ? 'of &pound;XXX'
+    //         : 'of £XXX';
+
+    // }
+
+    convertCost(weeklyCost = '', locations, content, minCost = '') {
         let replaceContent = weeklyCost?.one
             ? 'of £' + weeklyCost.one
-            : 'from £' + minWeeklyCost.one;
+            : 'from £' + minCost?.one;
 
         const venues = locations + ' venues';
         const poundType = content.includes('of &pound;XXX')

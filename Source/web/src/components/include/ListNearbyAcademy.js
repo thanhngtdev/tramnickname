@@ -25,6 +25,7 @@ import {
 import WeeklyTrainingItem from './WeeklyTrainingItem';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Constants from 'src/common/Constants';
+import siteService from 'src/services/siteService';
 
 const MapWithAMarker = withScriptjs(
     withGoogleMap((props) => (
@@ -69,6 +70,20 @@ function ListNearbyAcademy(props) {
         setLstAcademy(props.listAcademy);
         setNoReSult(_.isEmpty(props.listAcademy));
     }, [props.listAcademy]);
+
+    //! Functions
+    const onClickLocation = async (item) => {
+        try {
+            const res = await siteService.getDetailSite({ id: item.ms_id });
+            if (res.data.status == 200) {
+                const item = res.data?.data?.site || {};
+                localStorage.setItem('defaultAcademy', JSON.stringify(item));
+                window.location.reload();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     //! render
     if (_.isEmpty(lstAcademy) && !noResult) {
@@ -122,17 +137,9 @@ function ListNearbyAcademy(props) {
                     <div className="wrap-contact">
                         <a
                             href="/#"
-                            onClick={() => {
-                                localStorage.setItem(
-                                    'defaultAcademy',
-                                    JSON.stringify(
-                                        lstAcademy[highlightAcademy],
-                                    ),
-                                );
-                                dispatch({
-                                    type: siteActionType.PICK_DEFAULT_ACADEMY,
-                                });
-                                window.location.reload();
+                            onClick={(e) => {
+                                e.preventDefault();
+                                onClickLocation(lstAcademy[highlightAcademy]);
                             }}>
                             Set as default location
                         </a>
