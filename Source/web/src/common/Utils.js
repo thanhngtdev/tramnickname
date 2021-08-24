@@ -190,7 +190,7 @@ class Utils {
 
     convertCost(weeklyCost = '', locations, content, minCost = '') {
         let replaceContent = weeklyCost?.one
-            ? 'of £' + weeklyCost.one
+            ? 'of £' + weeklyCost?.one
             : 'from £' + minCost?.one;
 
         const venues = locations + ' venues';
