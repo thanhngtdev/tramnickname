@@ -128,7 +128,12 @@ export default function AboutInfo(props) {
                 {selectedAcademy && selectedAcademy.ms_trial === 1 && (
                     <div className="wSelect2">
                         <label>Cost</label>
-                        <p style={{ color: '#FF7100' }}>
+                        <p
+                            style={{
+                                color: '#FF7100',
+                                marginBottom: 0,
+                                textAlign: 'left',
+                            }}>
                             £{courseSelected?.course_price || 0} per{' '}
                             {courseSelected?.course_length || 0} sessions
                         </p>

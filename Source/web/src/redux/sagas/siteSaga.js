@@ -326,7 +326,7 @@ function* refreshAcademyData({ siteId, cate = '' }) {
     });
     // console.log(response);
     if (response && response.status === 200) {
-        console.log(response.data, 'response');
+        // console.log(response.data, 'response');
         yield put({
             type: siteActionType.REFRESH_DEFAULT_DATA_SUCCESS,
             data: response.data,

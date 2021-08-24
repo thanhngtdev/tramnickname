@@ -4,7 +4,7 @@ import ContactMap from 'src/components/include/ContactMap';
 import useGetLocalStorage from 'src/hooks/useGetLocalStorage';
 import DefaultLayout from 'src/layout/DefaultLayout';
 import _, { isEmpty } from 'lodash';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
 // import "react-phone-number-input/style.css";
@@ -31,6 +31,7 @@ const OPTION = [
 ];
 function Contact({ listSite, config }) {
     const headerReducer = useSelector((state) => state.headerReducer);
+    const isFirstRun = useRef(true);
     const dispatch = useDispatch();
     const [nature, setNature] = useState('');
     const [name, setName] = useState('');
@@ -56,13 +57,18 @@ function Contact({ listSite, config }) {
     }, []);
 
     useEffect(() => {
+        if (isFirstRun.current) {
+            isFirstRun.current = false;
+            return;
+        }
+
         if (!isEmpty(defaultAcademy)) {
             const config = [
                 { title: 'Address', des: defaultAcademy?.ms_address },
                 { title: 'Phone', des: defaultAcademy?.ms_phone },
             ];
 
-            defaultAcademy?.social.map((item) => {
+            defaultAcademy?.socialLink.map((item) => {
                 config.push({ title: item?.name || '', des: item?.link || '' });
             }),
                 setFooterConfig(config);

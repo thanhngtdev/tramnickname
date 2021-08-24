@@ -18,7 +18,7 @@ export default function WhyWMF(props) {
     const [cost, setCost] = useState({});
 
     useEffect(() => {
-        console.log(checkPound(props.data.cfg_value), 'check');
+        // console.log(checkPound(props.data.cfg_value), 'check');
         if (checkPound(props.data.cfg_value)) {
             setDefaultAcademy(ModelManager.getLocation());
         } else {
@@ -82,7 +82,7 @@ export default function WhyWMF(props) {
     };
 
     const checkPound = (intro) => {
-        console.log(intro.length, 'intro');
+        // console.log(intro.length, 'intro');
         for (let i = 0; i < intro.length; i++) {
             if (
                 intro[i].des.includes('of &pound;XXX') ||
