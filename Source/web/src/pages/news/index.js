@@ -8,8 +8,11 @@ import Utils from 'src/common/Utils';
 import { getListNews } from 'src/redux/actions/articleAction';
 import Link from 'next/link';
 import DefaultLayout from 'src/layout/DefaultLayout';
+import siteService from 'src/services/siteService';
+import saveList from 'src/hooks/useSaveList';
+import Constants from 'src/common/Constants';
 
-function News() {
+function News({ listSite }) {
     const articleReducer = useSelector((state) => state.articleReducer);
     const dispatch = useDispatch();
     const [lstNews, setLstNews] = useState([]);
@@ -17,6 +20,8 @@ function News() {
     const [lastPage, setLastPage] = useState(1);
     const [promoteArticle, setPromoteArticle] = useState({});
     const [cate, setCate] = useState({});
+
+    saveList(listSite);
 
     useEffect(() => {
         dispatch(getListNews({ page }));
@@ -109,4 +114,12 @@ function News() {
         </DefaultLayout>
     );
 }
+
+export async function getStaticProps() {
+    const listRes = await siteService.getListSite();
+    const listSite = listRes.data.data.lstSite;
+
+    return { props: { listSite }, revalidate: Constants.REVALIDATE };
+}
+
 export default News;

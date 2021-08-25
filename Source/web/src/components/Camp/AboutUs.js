@@ -162,7 +162,7 @@ export default function AboutUs(props) {
                             ? `${
                                   props.data.cfg_title +
                                   ' ' +
-                                  'We Make Footballers'
+                                  ' We Make Footballers'
                               }`
                             : `${
                                   props.data.cfg_title +

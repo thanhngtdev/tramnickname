@@ -21,7 +21,9 @@ export default function AboutInfoCamp(props) {
     const history = useRouter();
     const dispatch = useDispatch();
     // const defaultAcademy = useGetLocalStorage();
-    const [selectedAcademy, setSelectedAcademy] = useState(props.site || {});
+    const [selectedAcademy, setSelectedAcademy] = useState(
+        props.site || listSite?.[0] || {},
+    );
     const [lstCourse, setLstCourse] = useState([]);
     const [courseSelected, setCourseSelected] = useState({});
     const [lstCamp, setLstCamp] = useState(siteReducer.lstSiteCamp);

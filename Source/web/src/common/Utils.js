@@ -98,6 +98,7 @@ class Utils {
         let distance = 0;
         let currentLat = localStorage.getItem('latitude');
         let currentLng = localStorage.getItem('longitude');
+
         if (defaultLocation.lat && defaultLocation.lng) {
             currentLat = defaultLocation.lat;
             currentLng = defaultLocation.lng;

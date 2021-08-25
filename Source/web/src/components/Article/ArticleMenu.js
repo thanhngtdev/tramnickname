@@ -6,6 +6,7 @@ import type from 'src/redux/actions/actionTypes';
 import PropTypes from 'prop-types';
 import ModelManager from 'src/common/ModelManager';
 import Link from 'next/link';
+import { isEmpty } from 'lodash';
 
 ArticleMenu.propTypes = {
     currentCate: PropTypes.number,
@@ -68,7 +69,7 @@ export default function ArticleMenu(props) {
                             </Link>
                         </li>
                     ))}
-                    {currentAcademy && (
+                    {!isEmpty(currentAcademy) && (
                         <li>
                             <Link
                                 onClick={() => {

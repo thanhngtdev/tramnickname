@@ -109,7 +109,9 @@ export default function WhyWMF(props) {
                                             <div className="list-number">
                                                 {index + 1}
                                             </div>
-                                            <h3>{item.title}</h3>
+                                            <h3 style={{ fontWeight: 500 }}>
+                                                {item.title}
+                                            </h3>
                                             <p>{item.des}</p>
                                         </div>
                                     </div>

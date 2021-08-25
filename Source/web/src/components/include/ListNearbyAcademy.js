@@ -28,33 +28,25 @@ import Constants from 'src/common/Constants';
 import siteService from 'src/services/siteService';
 
 const MapWithAMarker = withScriptjs(
-    withGoogleMap((props) => (
-        <GoogleMap
-            defaultZoom={12}
-            center={{
-                lat:
-                    props.marker.length > 0
-                        ? parseFloat(props.marker[props.highlight].ms_latitude)
-                        : 51,
-                lng:
-                    props.marker.length > 0
-                        ? parseFloat(props.marker[props.highlight].ms_longitude)
-                        : 0,
-            }}>
-            {props.marker.map((item, index) => {
-                return (
-                    <Marker
-                        key={index}
-                        icon={'/static-file/images/marker.png'}
-                        position={{
-                            lat: parseFloat(item.ms_latitude) || 51,
-                            lng: parseFloat(item.ms_longitude) || 0,
-                        }}
-                    />
-                );
-            })}
-        </GoogleMap>
-    )),
+    withGoogleMap((props) => {
+        return (
+            <GoogleMap
+                defaultZoom={12}
+                center={{
+                    lat: parseFloat(props?.highlight?.ms_latitude) || 51,
+                    lng: parseFloat(props?.highlight?.ms_longitude) || 51,
+                }}>
+                <Marker
+                    // key={index}
+                    icon={'/static-file/images/marker.png'}
+                    position={{
+                        lat: parseFloat(props?.highlight?.ms_latitude) || 51,
+                        lng: parseFloat(props?.highlight?.ms_longitude) || 0,
+                    }}
+                />
+            </GoogleMap>
+        );
+    }),
 );
 
 function ListNearbyAcademy(props) {
@@ -72,18 +64,6 @@ function ListNearbyAcademy(props) {
     }, [props.listAcademy]);
 
     //! Functions
-    const onClickLocation = async (item) => {
-        try {
-            const res = await siteService.getDetailSite({ id: item.ms_id });
-            if (res.data.status == 200) {
-                const item = res.data?.data?.site || {};
-                localStorage.setItem('defaultAcademy', JSON.stringify(item));
-                window.location.reload();
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
     //! render
     if (_.isEmpty(lstAcademy) && !noResult) {
@@ -136,10 +116,12 @@ function ListNearbyAcademy(props) {
                     </div>
                     <div className="wrap-contact">
                         <a
-                            href="/#"
+                            // href="/#"
                             onClick={(e) => {
                                 e.preventDefault();
-                                onClickLocation(lstAcademy[highlightAcademy]);
+                                props.onClickLocation(
+                                    lstAcademy[highlightAcademy],
+                                );
                             }}>
                             Set as default location
                         </a>
@@ -166,19 +148,23 @@ function ListNearbyAcademy(props) {
             {lstAcademy.length > highlightAcademy && (
                 <div className="more-info">
                     <a
-                        onClick={() => {
-                            dispatch({
-                                type: headerActionType.CLOSE_LOCATION,
-                                param: lstAcademy[highlightAcademy],
-                            });
+                        onClick={(e) => {
+                            e.preventDefault();
+                            // console.log(lstAcademy[highlightAcademy]);
+                            props.onClickLocation(lstAcademy[highlightAcademy]);
+                            // dispatch({
+                            //     type: headerActionType.CLOSE_LOCATION,
+                            //     param: lstAcademy[highlightAcademy],
+                            // });
                         }}
-                        href={'/' + lstAcademy[highlightAcademy].ms_alias}>
+                        // href={'/' + lstAcademy[highlightAcademy].ms_alias}
+                    >
                         More infomation
                     </a>
                 </div>
             )}
-            <div className="map-view">
-                {lstAcademy.length > 0 && (
+            {lstAcademy.length > 0 && (
+                <div className="map-view">
                     <div className="map">
                         <MapWithAMarker
                             googleMapURL={Constants.GOOGLE_MAP_URL}
@@ -194,16 +180,13 @@ function ListNearbyAcademy(props) {
                                     }}
                                 />
                             }
-                            marker={lstAcademy}
-                            highlight={highlightAcademy}
+                            // marker={lstAcademy.slice(0, 1)}
+                            highlight={lstAcademy[highlightAcademy]}
                         />
                     </div>
-                )}
-
-                {lstAcademy.length > 0 && (
                     <div className="service">
                         <div className="weekly-training">
-                            <h3>Weekly traning schedule:</h3>
+                            <h3>Weekly training schedule:</h3>
                             {lstAcademy[highlightAcademy].weeklyTraining?.class
                                 .length > 0 &&
                                 lstAcademy[
@@ -227,8 +210,8 @@ function ListNearbyAcademy(props) {
                             </ul>
                         </div>
                     </div>
-                )}
-            </div>
+                </div>
+            )}
             {lstAcademy.length > 0 && (
                 <div className="list-academy">
                     <h2>

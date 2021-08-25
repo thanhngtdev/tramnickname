@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Constants from 'src/common/Constants';
+import ModelManager from 'src/common/ModelManager';
 import BookTrial from 'src/components/Booking/BookTrial';
 import BannerTop from 'src/components/HomePage/BannerTop';
 import FootballBegining from 'src/components/HomePage/FootballBegining';
@@ -13,7 +14,13 @@ import DefaultLayout from 'src/layout/DefaultLayout';
 import siteService from 'src/services/siteService';
 
 function HomePage({ data, listSite }) {
+    // console.log(listSite);
     saveList(listSite);
+    const [defaultAcademy, setDefaultAcademy] = useState({});
+
+    useEffect(() => {
+        setDefaultAcademy(ModelManager.getLocation());
+    }, []);
 
     return (
         <DefaultLayout seo={data.seoMeta}>
@@ -30,7 +37,7 @@ function HomePage({ data, listSite }) {
             />
 
             <Reason reason={data?.reason?.cfg_value || []} />
-            <BookTrial parentFb={data?.parentFb || {}} />
+            <BookTrial parentFb={data?.parentFb || {}} site={defaultAcademy} />
             <div className="fb-begin-homepage">
                 <FootballBegining
                     footballBegining={data?.footballBegining || {}}

@@ -1,4 +1,3 @@
-import { CommonStyle } from 'src/common/Styles';
 import { isEmpty } from 'lodash';
 import moment from 'moment';
 import { useRouter } from 'next/router';
@@ -7,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import PathRoute from 'src/common/PathRoute';
-import SolidButton from 'src/components/include/SolidButton';
+import { CommonStyle } from 'src/common/Styles';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import Button from '../Button';
 
@@ -20,7 +19,9 @@ export default function AboutInfo(props) {
     const siteReducer = useSelector((state) => state.siteReducer);
     const history = useRouter();
     const dispatch = useDispatch();
-    const [selectedAcademy, setSelectedAcademy] = useState(props.site || {});
+    const [selectedAcademy, setSelectedAcademy] = useState(
+        props.site || props.lstAcademy?.[0] || {},
+    );
     const [lstAddress, setLstAddress] = useState(
         props.site
             ? [
@@ -29,7 +30,12 @@ export default function AboutInfo(props) {
                       value: props.site.ms_id,
                   },
               ]
-            : [],
+            : [
+                  {
+                      label: props.lstAcademy?.[0]?.ms_address || '',
+                      value: props.lstAcademy?.[0]?.ms_id || '',
+                  },
+              ],
     );
     const [lstCourse, setLstCourse] = useState([]);
     const [courseSelected, setCourseSelected] = useState({});

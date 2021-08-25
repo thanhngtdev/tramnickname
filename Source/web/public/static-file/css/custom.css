@@ -191,11 +191,9 @@ a.link {
 	width: 100%;
 }
 
-.map {
-	margin-top: 110px;
-}
 
 .map-frame {
+	margin-top: 110px;
 	height: 700px;
 	width: 100%;
 	background-color: grey;

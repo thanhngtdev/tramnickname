@@ -18,6 +18,8 @@ import TrainingService from '../../components/FranchiseComponents/components/Tra
 function Franchise({ data, listSite }) {
     saveList(listSite);
 
+    console.log(data);
+
     useEffect(() => {
         if (isEmpty(data)) {
             window.location.href = '/404';
@@ -64,7 +66,7 @@ function Franchise({ data, listSite }) {
                 staff={data?.coach?.staff || []}
                 site={data?.site || {}}
             />
-            <BookTrial parentFb={data?.parentFb} />
+            <BookTrial parentFb={data?.parentFb} site={data?.site} />
             <div className="faq-weekly">
                 <QNA data={data?.faq || []} />
             </div>

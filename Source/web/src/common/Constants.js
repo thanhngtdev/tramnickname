@@ -16,8 +16,8 @@ const Constants = {
     SPINNER_COLOR: ColorCode.White,
 
     DEFAULT_LOCATION: {
-        lat: 51.5,
-        lng: -0.3,
+        lat: 52.2,
+        lng: -1.8,
     },
 
     STATUS_PERMISSION_LOCATION: {

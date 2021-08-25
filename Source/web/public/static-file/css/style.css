@@ -446,7 +446,7 @@ h1{
 .banner-top {
 	width: 100%;
 	display: inline-block;
-	/* min-height: 947px; */
+	min-height: 947px;
 	height: 100vh;
 	padding-top: 455px;
 
@@ -1601,6 +1601,7 @@ background-color: #fff;
 
 .trust-us .heading{
 	font-size: 75px;
+	text-align: center;
 }
 
 .trust-us .trust-us-list-image {
@@ -1778,14 +1779,13 @@ background-color: #fff;
 }
 
 .footer .box-right .list .select-selected {
-
 	color: #D8D8D8;
 	padding: 8px 16px;
 	border: 1px solid #EDEDED;
 	border-radius: 4px;
 	cursor: pointer;
 	user-select: none;
-	font-size: 10px;
+	/* font-size: 10px; */
 	height: 36px;
 	line-height: 20px;
 	padding-left: 36px;

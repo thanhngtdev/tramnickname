@@ -43,7 +43,7 @@ function AcademyMap() {
     }
 
     return (
-        <GoogleMap defaultZoom={12} center={defaultCenter}>
+        <GoogleMap defaultZoom={8} center={defaultCenter}>
             <div className="search-text">
                 <AutocompleteInput
                     selectAcademy={setFocusMarker}

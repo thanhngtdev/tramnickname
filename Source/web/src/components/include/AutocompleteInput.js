@@ -1,14 +1,14 @@
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Utils from 'src/common/Utils';
-// import 'css/autocomplete-input.css';
-import _ from 'lodash';
+import _, { isEmpty } from 'lodash';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { Link, useHistory } from "react-router-dom";
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import ModelManager from 'src/common/ModelManager';
 
 // const newTimer = new Timer();
 
@@ -23,6 +23,10 @@ function AutocompleteInput(props) {
     const dispatch = useDispatch();
 
     const siteReducer = useSelector((state) => state.siteReducer);
+
+    useEffect(() => {
+        setDefaultLocation(ModelManager.getLocation());
+    }, []);
 
     useEffect(() => {
         if (siteReducer.type) {
@@ -40,7 +44,7 @@ function AutocompleteInput(props) {
     // Event fired when the input value is changed
     function onChange(e) {
         const { suggestions } = props;
-        console.log(suggestions);
+        // console.log(suggestions);
         const userInput = e.currentTarget.value;
 
         // console.log(userInput);
@@ -83,41 +87,12 @@ function AutocompleteInput(props) {
         setFilteredSuggestions(filteredSuggestions);
         setShowSuggestions(true);
         setUserInput(e.currentTarget.value);
-        setDefaultLocation({});
-
-        // let ggAutoCompleteLink =
-        //     'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=' +
-        //     userInput +
-        //     '&types=geocode&sensor=false&key=AIzaSyClAeE9K0S0LZQ3DiTg0-j_w8HvVuMYgoc';
-        // const proxyurl = 'https://cors-anywhere.herokuapp.com/';
-
-        // newTimer.debounce(() => {
-        //     fetch(proxyurl + ggAutoCompleteLink)
-        //         .then((response) => response.json())
-        //         .then((data) => {
-        //             setPredict(data.predictions);
-        //         })
-        //         .catch((error) => {
-        //             console.log(error);
-        //         });
-        // }, 2000);
+        // setDefaultLocation({});
     }
 
     // Event fired when the user clicks on a suggestion
     function onClick(e, data) {
-        // Update the user input and reset the rest of the state
-        // props.selectAcademy(data);
-        // setActiveSuggestion(0);
-        // setFilteredSuggestions([]);
-        // setShowSuggestions(false);
-        // setUserInput(data.ms_name);
-        // dispatch({
-        //     type: siteActionType.SELECTED_MARKER,
-        //     data: data,
-        // });
         const name = data.ms_alias;
-
-        // console.log(data, 'aaaa');
         history.push('/' + name);
     }
 
@@ -184,7 +159,13 @@ function AutocompleteInput(props) {
                                         </label>
                                         <div>
                                             <label className="distance-text">
-                                                {`${suggestion.distance} miles`}
+                                                {`${
+                                                    suggestion?.distance
+                                                        ? Math.round(
+                                                              suggestion?.distance,
+                                                          ) + ' miles'
+                                                        : ''
+                                                } `}
                                             </label>
 
                                             <Link

@@ -4,22 +4,7 @@ import { useSelector } from 'react-redux';
 import siteService from 'src/services/siteService';
 
 function ListAcademy(props) {
-    const { listSite } = props;
-
-    const onClickLocation = async (e, item) => {
-        e.preventDefault();
-
-        try {
-            const res = await siteService.getDetailSite({ id: item.ms_id });
-            if (res.data.status == 200) {
-                const item = res.data?.data?.site || {};
-                localStorage.setItem('defaultAcademy', JSON.stringify(item));
-                window.location.href = `${'/' + item.ms_alias}`;
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    const { listSite, onClickLocation } = props;
 
     return (
         <div className="wrap-row">
@@ -30,7 +15,10 @@ function ListAcademy(props) {
                     listSite.map((item) => {
                         return (
                             <a
-                                onClick={(e) => onClickLocation(e, item)}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    onClickLocation(item);
+                                }}
                                 key={item.ms_id}>
                                 {item.ms_name}
                             </a>

@@ -6,7 +6,10 @@ import { useDispatch } from 'react-redux';
 import Footer from './Footer';
 import Header from './Header';
 import TrustPilot from 'src/components/TrustPilot';
-import { siteActionType } from 'src/redux/actions/actionTypes';
+import { geolocated } from 'react-geolocated';
+
+const DEFAULT_LAT = 51.5285582;
+const DEFAULT_LOG = -0.2416794;
 
 const DefaultLayout = (props) => {
     //! State
@@ -16,20 +19,33 @@ const DefaultLayout = (props) => {
     //! useEffect
     useTruspilot();
 
+    // useEffect(() => {
+    //     if (locationStatus == 'granted') {
+    //         dispatch({
+    //             type: siteActionType.ALLOW_LOCATION,
+    //             data: true,
+    //         });
+    //     }
+    //     if (locationStatus == 'denied') {
+    //         dispatch({
+    //             type: siteActionType.ALLOW_LOCATION,
+    //             data: false,
+    //         });
+    //     }
+    // }, [locationStatus]);
+
     useEffect(() => {
-        if (locationStatus == 'granted') {
-            dispatch({
-                type: siteActionType.ALLOW_LOCATION,
-                data: true,
-            });
+        if (!props.isGeolocationAvailable || !props.isGeolocationEnabled) {
+            // console.log('geo location not available');
+            localStorage.setItem('latitude', DEFAULT_LAT);
+            localStorage.setItem('longitude', DEFAULT_LOG);
         }
-        if (locationStatus == 'denied') {
-            dispatch({
-                type: siteActionType.ALLOW_LOCATION,
-                data: false,
-            });
+
+        if (props.coords) {
+            localStorage.setItem('latitude', props.coords.latitude);
+            localStorage.setItem('longitude', props.coords.longitude);
         }
-    }, [locationStatus]);
+    }, [props]);
 
     //! Function
 
@@ -45,4 +61,9 @@ const DefaultLayout = (props) => {
     );
 };
 
-export default DefaultLayout;
+export default geolocated({
+    mpositionOptions: {
+        enableHighAccuracy: false,
+    },
+    userDecisionTimeout: 5000,
+})(DefaultLayout);

@@ -70,6 +70,10 @@
     padding-bottom: 300px;
 }
 
+.about-coach-joinus .about-coach p:last-child{
+    margin-bottom: 70px;
+}
+
 .about-secure-joinus {  
     height: 400px;
 }

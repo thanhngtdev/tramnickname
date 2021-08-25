@@ -12,6 +12,7 @@ import {
 import ListAcademy from './ListAcademy';
 import ListNearbyAcademy from './ListNearbyAcademy';
 import SearchBox from 'src/components/SearchBox';
+import siteService from 'src/services/siteService';
 
 function LocationModal() {
     const dispatch = useDispatch();
@@ -66,6 +67,20 @@ function LocationModal() {
             }
         }
     }, [siteReducer]);
+
+    const onClickLocation = async (item) => {
+        // e.preventDefault();
+        try {
+            const res = await siteService.getDetailSite({ id: item.ms_id });
+            if (res.data.status == 200) {
+                const item = res.data?.data?.site || {};
+                localStorage.setItem('defaultAcademy', JSON.stringify(item));
+                window.location.href = `${'/' + item.ms_alias}`;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     let headText =
         'Enter Your Postcode, Address, Town or Current Location to Find Your Nearest Class';
@@ -144,9 +159,13 @@ function LocationModal() {
                     <ListNearbyAcademy
                         listAcademy={listAcademy}
                         textResult={textResult}
+                        onClickLocation={onClickLocation}
                     />
                 ) : (
-                    <ListAcademy listSite={listSite} />
+                    <ListAcademy
+                        listSite={listSite}
+                        onClickLocation={onClickLocation}
+                    />
                 )}
             </div>
         </div>

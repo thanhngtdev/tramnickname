@@ -81,7 +81,7 @@ function Footer() {
                         width={'100%'}
                     />
                     <ul className="list">
-                        <li className="mail">
+                        {/* <li className="mail">
                             <a
                                 // href={`mailto:${defaultAcademy ? defaultAcademy.ms_email : ""}`}
                                 href={`mailto:${
@@ -89,7 +89,13 @@ function Footer() {
                                 }`}>
                                 Make an enquiry
                             </a>
+                        </li> */}
+                        <li className="mail">
+                            <Link href={PathRoute.Contact} scroll>
+                                Make an enquiry
+                            </Link>
                         </li>
+
                         <li className="call">
                             <a
                                 href={`tel:${
@@ -170,9 +176,9 @@ function Footer() {
                                     {defaultAcademy?.ms_name
                                         ? defaultAcademy?.ms_name.substring(
                                               0,
-                                              17,
+                                              15,
                                           )
-                                        : 'Select an academy'}
+                                        : 'Select an acade'}
                                 </div>
                                 <div
                                     className={`select-items ${

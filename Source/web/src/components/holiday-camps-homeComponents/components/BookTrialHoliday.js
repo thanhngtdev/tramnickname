@@ -253,9 +253,7 @@ export default function BookTrialHoliday(props) {
     return (
         <div className="book_your_child_free_session" id="booking">
             <div className="container">
-                <h2 className="heading">
-                    Enquire more about our holiday camps
-                </h2>
+                <h2 className="heading">Enquire about our holiday camps</h2>
                 <div className="text-sub">
                     Want to learn more about our Holiday camps? Get in touch via
                     the form below and we will respond within 24 hours.

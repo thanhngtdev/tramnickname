@@ -19,11 +19,12 @@ BookTrial.propTypes = {
 };
 
 function BookTrial(props) {
+    const { parentFb } = props;
     const siteReducer = useSelector((state) => state.siteReducer);
     const { listSite } = useSelector((state) => state.listSiteReducer);
     const dispatch = useDispatch();
     const history = useRouter();
-    // const defaultAcademy = useGetLocalStorage();
+
     const [showSelect, setShowSelect] = useState(false);
     const [location, setLocation] = useState(props.site?.ms_name || '');
     const [locationId, setLocationId] = useState(props.site?.ms_id || 0);
@@ -32,12 +33,19 @@ function BookTrial(props) {
     );
     const [date, setDate] = useState({});
     const [email, setEmail] = useState('');
+
     const [locationError, setLocationError] = useState('');
     const [emailError, setEmailError] = useState('');
     const [dateError, setDateError] = useState('');
-    const { parentFb } = props;
     const { ref, isComponentVisible, setIsComponentVisible } =
         useComponentVisible(true);
+
+    useEffect(() => {
+        if (isEmpty(props.site)) {
+            setLocation(props.site?.ms_name || '');
+            setLocationId(props.site?.ms_id || 0);
+        }
+    }, [props.site]);
 
     useEffect(() => {
         if (siteReducer.type) {

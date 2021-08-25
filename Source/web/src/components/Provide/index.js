@@ -41,17 +41,11 @@ const Provide = (props) => {
                                 padding: '1rem',
                                 backgroundColor: '#F2F2F2',
                             }}>
-                            At the {/* <b> */}
                             {props.franchisePage
-                                ? props.site.ms_name + ' '
-                                : 'We Make Footballers '}
-                            {/* </b> */}
+                                ? 'At WMF: ' + props.site.ms_name + ', '
+                                : 'At We Make Footballers, '}
                             our 1-to-1 coaching is undertaken by the academy
                             head coach
-                            {/* <b>
-                                
-
-                            </b> */}
                         </p>
                         <p>
                             Esmond currently has a number of 1-on-1 clients who

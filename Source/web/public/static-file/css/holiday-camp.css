@@ -137,9 +137,13 @@
 	top: 15px;
 	left: 15px;
 	font-size: 155px;
-	font-weight: bold;
+	/* font-weight: bold; */
 	color: #FF7100;
 	opacity: 0.1;
+}
+
+.why-wmf p{
+	color: #1A1919;
 }
 
 .birthday-package {
