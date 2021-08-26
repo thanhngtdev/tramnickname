@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Utils from 'src/common/Utils';
 import { isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
@@ -100,6 +100,37 @@ function PlayVideo(props) {
 
 export default function AboutUs(props) {
     const [showVideo, setShowVIdeo] = useState(false);
+    const [title, setTitle] = useState('');
+
+    useEffect(() => {
+        if (isEmpty(props.site)) {
+            if (props?.holidayCamp) {
+                setTitle(
+                    `${
+                        props.data.cfg_title.replace('In', '') +
+                        ' ' +
+                        ' With We Make Footballers'
+                    }`,
+                );
+            } else {
+                setTitle(
+                    `${
+                        props.data.cfg_title.replace('In', '') +
+                        ' ' +
+                        ' At We Make Footballers'
+                    }`,
+                );
+            }
+        } else {
+            setTitle(
+                `${
+                    props.data.cfg_title.replace('In', '') +
+                    ' ' +
+                    `${'In ' + props.site.ms_name}`
+                }`,
+            );
+        }
+    }, []);
 
     return (
         <div className="about-us">
@@ -158,17 +189,18 @@ export default function AboutUs(props) {
                     <h1
                         className="contact-header"
                         style={{ pointerEvents: 'none' }}>
-                        {isEmpty(props.site)
+                        {/* {isEmpty(props.site)
                             ? `${
-                                  props.data.cfg_title +
+                                  props.data.cfg_title.replace(/in/i, '') +
                                   ' ' +
-                                  ' We Make Footballers'
+                                  ' At We Make Footballers'
                               }`
                             : `${
-                                  props.data.cfg_title +
+                                  props.data.cfg_title.replace(/in/i, '') +
                                   ' ' +
-                                  props.site.ms_name
-                              }`}
+                                  `${'In ' + props.site.ms_name}`
+                              }`} */}
+                        {title}
                     </h1>
                 </div>
                 <div className="container">

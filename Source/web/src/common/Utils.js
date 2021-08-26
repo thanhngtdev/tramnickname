@@ -192,7 +192,7 @@ class Utils {
     convertCost(weeklyCost = '', locations, content, minCost = '') {
         let replaceContent = weeklyCost?.one
             ? 'of £' + weeklyCost?.one
-            : 'from £5';
+            : 'from £' + minCost?.one || '';
 
         const venues = locations + ' venues';
         const poundType = content.includes('of &pound;XXX')
