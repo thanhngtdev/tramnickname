@@ -35,50 +35,46 @@ function BannerTop(props) {
                 <h1>{props.bannerTop.cfg_title}</h1>
                 <div className="box-text">
                     <p>{props.bannerTop.cfg_des}</p>
-                    {
-                        defaultAcademy.ms_id && (
-                            <div className="box-button">
-                                <Button
-                                    title={`BOOK A ${
-                                        defaultAcademy &&
-                                        defaultAcademy.ms_trial === 1
-                                            ? 'TRIAL '
-                                            : 'FREE '
-                                    } SESSION`}
-                                    href={PathRoute.BookTrialTraining}
+                    {defaultAcademy.ms_id ? (
+                        <div className="box-button">
+                            <Button
+                                title={`BOOK A ${
+                                    defaultAcademy &&
+                                    defaultAcademy.ms_trial === 1
+                                        ? 'TRIAL '
+                                        : 'FREE '
+                                } SESSION`}
+                                href={PathRoute.BookTrialTraining}
+                            />
+                        </div>
+                    ) : (
+                        <div className="box-pin">
+                            <span className="text-form ">
+                                Find your nearest academy:
+                            </span>
+                            <div className="box">
+                                <input
+                                    type="text"
+                                    className="input-text"
+                                    placeholder="Enter Postcode, Address,..."
+                                    onChange={(evt) =>
+                                        setTextSearch(evt.target.value)
+                                    }
                                 />
+                                <button
+                                    className="btn-pin"
+                                    // onClick={() =>
+                                    //     dispatch({
+                                    //         type: headerActionType.CHANGE_LOCATION,
+                                    //         data: textSearch,
+                                    //     })
+                                    // }
+                                >
+                                    {defaultAcademy ? 'Book' : 'Find'}
+                                </button>
                             </div>
-                        )
-                        // :
-                        //  (
-                        //     <div className="box-pin">
-                        //         <span className="text-form ">
-                        //             Find your nearest academy:
-                        //         </span>
-                        //         <div className="box">
-                        //             <input
-                        //                 type="text"
-                        //                 className="input-text"
-                        //                 // placeholder="Enter Your Postcode, Address,..."
-                        //                 onChange={(evt) =>
-                        //                     setTextSearch(evt.target.value)
-                        //                 }
-                        //             />
-                        //             <button
-                        //                 className="btn-pin"
-                        //                 // onClick={() =>
-                        //                 //     dispatch({
-                        //                 //         type: headerActionType.CHANGE_LOCATION,
-                        //                 //         data: textSearch,
-                        //                 //     })
-                        //                 // }
-                        //             >
-                        //                 {defaultAcademy ? 'Book' : 'Find'}
-                        //             </button>
-                        //         </div>
-                        //     </div>
-                        // )
-                    }
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
