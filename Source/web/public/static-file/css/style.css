@@ -1427,7 +1427,7 @@ background-color: #fff;
 }
 
 .box-football-beginning .heading {
-	/* font-weight: bold; */
+	font-weight: bold;
 	font-size: 75px;
 	line-height: 99px;
 	text-align: center;
@@ -1496,7 +1496,7 @@ background-color: #fff;
 
 .box-football-beginning .box-beginning-list .list .item .title {
 
-	/* font-weight: bold; */
+	font-weight: bold;
 	font-size: 24px;
 	line-height: 32px;
 	color: #1A1919;
@@ -1556,7 +1556,7 @@ background-color: #fff;
 
 .box-10-years .box-year .title {
 	margin: 0;
-	/* font-weight: bold; */
+	font-weight: bold;
 	font-size: 45px;
 	line-height: 60px;
 	text-align: center;
@@ -1853,7 +1853,7 @@ background-color: #fff;
 }
 
 .box-insta .heading {
-	/* font-weight: bold; */
+	font-weight: bold;
 	font-size: 75px;
 	line-height: 99px;
 	text-align: center;
@@ -1968,7 +1968,7 @@ background-color: #fff;
 
 .box-insta .box-slide .item .photo .title {
 	margin-top: 20px;
-	/* font-weight: bold; */
+	font-weight: bold;
 	font-size: 24px;
 	line-height: 32px;
 	color: #000;
@@ -2747,7 +2747,7 @@ background-color: #fff;
 	}
 
 	.box-professional .box-head .heading {
-		/* font-weight: bold; */
+		font-weight: bold;
 		font-size: 38px;
 		line-height: 36px;
 		text-align: center;
@@ -2854,7 +2854,7 @@ background-color: #fff;
 	}
 
 	.book_your_child_free_session .heading {
-		/* font-weight: bold; */
+		font-weight: bold;
 		font-size: 38px;
 		line-height: 50px;
 		text-align: center;
@@ -2922,7 +2922,7 @@ background-color: #fff;
 	}
 
 	.box-10-years .box-year .title {
-		/* font-weight: bold; */
+		font-weight: bold;
 		font-size: 24px;
 		line-height: 32px;
 	}

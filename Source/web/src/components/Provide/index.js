@@ -1,81 +1,43 @@
 import { isEmpty } from 'lodash';
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Utils from 'src/common/Utils';
 
 const propTypes = {};
 
 const Provide = (props) => {
     //! State
-    // console.log(isEmpty(props.franchisePage));
+    const { provide } = props;
     //! Function
 
     //! Render
     return (
         <div className="provides">
-            <div className="container">
-                <h3 className="heading">
-                    Who provides the 1-to-1 top coaching
-                </h3>
-            </div>
-            <div className="provides-row">
-                <div className="provides-image">
-                    <LazyLoadImage
-                        style={{ float: 'right' }}
-                        src={'/static-file/images/hs_photo_pc.jpg'}
-                        alt=""
-                    />
-                </div>
-                <div className="provides-text">
-                    <div className="provides-wrap-text">
-                        <p style={{ marginTop: 0 }}>
-                            We Make Footballers only allow Senior Coaches who
-                            have been awarded the WMF 1-on-1 Coaching Badge to
-                            provide these sessions. All of our Coaches work from
-                            the We Make Footballers syllabus and Methodology,
-                            however, each coach has their unique style and
-                            personality.
-                        </p>
-                        <p
-                            className="text-leading"
-                            style={{
-                                padding: '1rem',
-                                backgroundColor: '#F2F2F2',
-                            }}>
-                            {props.franchisePage
-                                ? 'At WMF: ' + props.site.ms_name + ', '
-                                : 'At We Make Footballers, '}
-                            our 1-to-1 coaching is undertaken by the academy
-                            head coach
-                        </p>
-                        <p>
-                            Esmond currently has a number of 1-on-1 clients who
-                            he is helping to improve their individual skills
-                            whilst developing at their weekly training and local
-                            teams. His high energy means your child will have a
-                            lot of fun whilst still getting top quality
-                            sessions.
-                        </p>
-                        <h3>How much do sessions cost?</h3>
-                        <p
-                            className="text-cost"
-                            style={{
-                                padding: '1rem',
-                                backgroundColor: '#F2F2F2',
-                                color: '#FF7100',
-                            }}>
-                            One Off -{' '}
-                            {props?.franchisePage
-                                ? props.site?.weeklyCost?.one || ''
-                                : props.site?.minWeeklyCost?.one || ''}
-                            {' | '}
-                            Block Of 4 -{' '}
-                            {props?.franchisePage
-                                ? props.site?.weeklyCost?.block || ''
-                                : props.site?.minWeeklyCost?.block || ''}
-                        </p>
+            {!isEmpty(provide) && (
+                <>
+                    <div className="container">
+                        <h3 className="heading">{provide?.cfg_title || ''}</h3>
                     </div>
-                </div>
-            </div>
+                    <div className="provides-row">
+                        <div className="provides-image">
+                            <LazyLoadImage
+                                style={{ float: 'right' }}
+                                src={Utils.getThumb(
+                                    provide?.cfg_value?.[0]?.image,
+                                )}
+                                alt={provide?.cfg_value?.[0]?.des || ''}
+                            />
+                        </div>
+                        <div className="provides-text">
+                            <div
+                                className="provides-wrap-text"
+                                dangerouslySetInnerHTML={{
+                                    __html: provide?.cfg_value?.[0]?.content,
+                                }}></div>
+                        </div>
+                    </div>
+                </>
+            )}
         </div>
     );
 };

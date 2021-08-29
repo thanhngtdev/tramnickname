@@ -40,9 +40,9 @@ a, .number, .menu-small .custom-select .select-selected,.wrap-contact a, .list .
 .footer .Social .icon-wt:hover {
 	background: url(/static-file/images/icon-wt-white.svg) no-repeat left center transparent !important;
 }
-.academy-info .group-info img:hover{
+/* .academy-info .group-info img:hover{
   transform: scale(1.2);
-}
+} */
 
 .more:hover, .btn-about:hover ,.border-btn:hover{
   background-color: #EE7925 !important;

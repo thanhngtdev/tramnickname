@@ -1,20 +1,19 @@
+import parse from 'html-react-parser';
+import { isEmpty } from 'lodash';
+import Link from 'next/link';
+import React, { useEffect, useRef, useState } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 import AboutSecure from 'src/components/Camp/AboutSecure';
 import Intro from 'src/components/HomePage/Intro.js';
+import JoinUsBanner from 'src/components/JoinUsBanner';
 // import "css/slick-theme.css";
 import Testimonial from 'src/components/Testimonial';
 import useEqualElement from 'src/hooks/useEqualElement';
 import useGetWidth from 'src/hooks/useGetWidth';
-import parse from 'html-react-parser';
-import DefaultLayout from 'src/layout/DefaultLayout';
-import Link from 'next/link';
-import React, { useEffect, useRef, useState } from 'react';
-import siteService from 'src/services/siteService';
-import JoinUsBanner from 'src/components/JoinUsBanner';
 import saveList from 'src/hooks/useSaveList';
-import { isEmpty } from 'lodash';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import DefaultLayout from 'src/layout/DefaultLayout';
 
 const ROUTE = [PathRoute.Coaching, PathRoute.ParentHost];
 
@@ -45,13 +44,11 @@ function JoinUs({ data, listSite }) {
                             behavior: 'smooth',
                         });
                     }}
-                    data={data?.masterData?.about || {}}
+                    data={data?.about || {}}
                 />
             </div>
             <div className="intro-joinus">
-                <Intro
-                    intro={data?.masterData?.trainingIntro?.cfg_value || []}
-                />
+                <Intro intro={data?.trainingIntro?.cfg_value || []} />
             </div>
 
             <div className="about-type-joinus">
@@ -65,20 +62,17 @@ function JoinUs({ data, listSite }) {
                                     marginRight: 'auto',
                                     marginLeft: 'auto',
                                 }}>
-                                {data?.masterData?.skillGain?.cfg_title}
+                                {data?.skillGain?.cfg_title}
                             </h2>
-                            <p className="text-1">
-                                {data?.masterData?.skillGain?.cfg_des}
-                            </p>
+                            <p className="text-1">{data?.skillGain?.cfg_des}</p>
                         </div>
 
                         <div className="type-anchor">
                             <div className="container">
                                 <div className="list-item-card-2">
                                     <div className="row" ref={refListItem}>
-                                        {data?.masterData?.skillGain
-                                            ?.cfg_value &&
-                                            data?.masterData?.skillGain?.cfg_value.map(
+                                        {data?.skillGain?.cfg_value &&
+                                            data?.skillGain?.cfg_value.map(
                                                 (item, index) => (
                                                     <div
                                                         key={index}
@@ -137,7 +131,7 @@ function JoinUs({ data, listSite }) {
             />
 
             <div className="about-coach-joinus">
-                {data?.masterData?.boxesFranchise && (
+                {data?.boxesFranchise && (
                     <div className="about-coach">
                         <div className="container">
                             <h2>{data?.boxesFranchise?.cfg_title}</h2>
@@ -159,7 +153,7 @@ function JoinUs({ data, listSite }) {
             </div>
 
             <div className="about-secure-joinus">
-                <AboutSecure data={data?.masterData?.boxesFranchise || {}} />
+                <AboutSecure data={data?.boxesFranchise || {}} />
             </div>
 
             {data?.blockEnquireAbout && (
@@ -171,13 +165,10 @@ function JoinUs({ data, listSite }) {
                                 margin: '0 auto',
                                 maxWidth: 700,
                             }}>
-                            {data?.masterData?.blockEnquireAbout?.cfg_title}
+                            {data?.blockEnquireAbout?.cfg_title}
                         </h4>
                         <div style={{ marginBottom: '3rem' }}>
-                            {parse(
-                                data?.masterData?.blockEnquireAbout
-                                    ?.cfg_content,
-                            )}
+                            {parse(data?.blockEnquireAbout?.cfg_content)}
                         </div>
                         <a
                             href="https://franchisewmf.com/"
@@ -190,10 +181,7 @@ function JoinUs({ data, listSite }) {
                                 padding: '1.5rem 3rem',
                                 textTransform: 'uppercase',
                             }}>
-                            {
-                                data?.masterData?.blockEnquireAbout
-                                    ?.cfg_buttons[0]?.title
-                            }
+                            {data?.blockEnquireAbout?.cfg_buttons[0]?.title}
                         </a>
                     </div>
                 </div>
@@ -202,62 +190,13 @@ function JoinUs({ data, listSite }) {
     );
 }
 
-// export async function getStaticPaths() {
-//     const res = await siteService.getListSite();
-//     const list = res.data.data.lstSite;
-
-//     // Get the paths we want to pre-render based on posts
-//     const paths = list.map((item) => ({
-//         params: { franchise: item.ms_alias },
-//     }));
-
-//     return { paths, fallback: false };
-// }
-
-// export async function getStaticProps(context) {
-//     try {
-//         const res = await siteService.getListSite();
-//         const listSite = res.data.data.lstSite;
-//         const item = listSite.find(
-//             (item) => context.params.franchise === item.ms_alias,
-//         );
-
-//         const siteDetail = await siteService.getDetailSite({
-//             id: item.ms_id,
-//             cate: 22,
-//         });
-
-//         const data = siteDetail.data.data;
-
-//         return { props: { data, listSite } };
-//     } catch (error) {
-//         console.log(error);
-//     }
-
-//     return { props: { data: {}, listSite: [] } };
-// }
 export async function getServerSideProps(context) {
-    const listRes = await siteService.getListSite();
-    const listSite = listRes.data.data.lstSite;
-
-    const item = listSite.find(
-        (item) => context.params.franchise === item.ms_alias,
+    const props = await Utils.getDetailMicrosite(
+        context.params.franchise,
+        22,
+        'join-us',
     );
-
-    if (isEmpty(item)) {
-        return { props: { data: [], listSite } };
-    }
-
-    const siteDetail = await siteService.getDetailSite({
-        id: item.ms_id,
-        cate: 22,
-        location: item.ms_id,
-        slug: 'join-us',
-    });
-
-    const data = siteDetail.data.data;
-
-    return { props: { data, listSite } };
+    return { props };
 }
 
 export default JoinUs;

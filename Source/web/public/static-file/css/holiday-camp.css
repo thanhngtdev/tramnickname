@@ -137,7 +137,7 @@
 	top: 15px;
 	left: 15px;
 	font-size: 155px;
-	/* font-weight: bold; */
+	font-weight: bold;
 	color: #FF7100;
 	opacity: 0.1;
 }
@@ -273,6 +273,21 @@
 	max-width: 650px;
 	margin-left: 4rem;
 	padding-right: 15px,
+}
+
+.provides .provides-wrap-text p:first-child{
+	margin-top: 0;
+}
+
+.provides .provides-wrap-text p:nth-child(2){
+	padding: 1rem;
+	background-color: #F2F2F2;
+}
+
+.provides .provides-wrap-text p:last-child{
+	padding: 1rem;
+	background-color: #F2F2F2;
+	color: #FF7100;
 }
 
 .enquire {

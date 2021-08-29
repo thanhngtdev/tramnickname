@@ -41,7 +41,7 @@ function BookTrial(props) {
         useComponentVisible(true);
 
     useEffect(() => {
-        if (isEmpty(props.site)) {
+        if (!isEmpty(props.site)) {
             setLocation(props.site?.ms_name || '');
             setLocationId(props.site?.ms_id || 0);
         }

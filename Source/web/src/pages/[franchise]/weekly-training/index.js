@@ -13,10 +13,12 @@ import DefaultLayout from 'src/layout/DefaultLayout';
 import React, { useEffect } from 'react';
 import siteService from 'src/services/siteService';
 import { isEmpty } from 'lodash';
+import Utils from 'src/common/Utils';
 
 const SiteNews = ({ data, listSite }) => {
     //! State
     saveList(listSite);
+    console.log(data, 'data');
 
     useEffect(() => {
         if (isEmpty(data)) {
@@ -30,18 +32,18 @@ const SiteNews = ({ data, listSite }) => {
 
     return (
         <DefaultLayout>
-            <AboutUs data={data?.masterData?.about || {}} site={data.site} />
+            <AboutUs data={data?.about || {}} site={data.site} />
 
             <div className="about-info-weekly">
                 <AboutInfo lstAcademy={listSite || []} site={data.site} />
             </div>
 
             <div className="about-secure-weekly">
-                <AboutSecure data={data?.masterData?.academyIntro || []} />
+                <AboutSecure data={data?.academyIntro || []} />
             </div>
 
             <div className="background-weekly">
-                <TrainingInclude data={data?.masterData?.eachWeek || {}} />
+                <TrainingInclude data={data?.eachWeek || {}} />
 
                 <Testimonial
                     data={data?.testimonial || {}}
@@ -51,17 +53,17 @@ const SiteNews = ({ data, listSite }) => {
             </div>
 
             <div className="football-weekly">
-                <FootballSkill data={data?.masterData?.skillGain || {}} />
+                <FootballSkill data={data?.skillGain || {}} />
             </div>
 
-            <WhyWMF data={data?.masterData?.whyWMF || {}} site={data.site} />
+            <WhyWMF data={data?.whyWMF || {}} site={data.site} />
 
             <div className="booking-weekly">
                 <BookTrial parentFb={data?.parentFb || {}} site={data.site} />
             </div>
 
             <div className="insta-weekly">
-                <InstaBox instaFeed={data?.masterData?.instaFeed || {}} />
+                <InstaBox instaFeed={data?.instaFeed || {}} />
             </div>
 
             <div className="faq-weekly">
@@ -71,62 +73,13 @@ const SiteNews = ({ data, listSite }) => {
     );
 };
 
-// export async function getStaticPaths() {
-//     const res = await siteService.getListSite();
-//     const list = res.data.data.lstSite;
-
-//     // Get the paths we want to pre-render based on posts
-//     const paths = list.map((item) => ({
-//         params: { franchise: item.ms_alias },
-//     }));
-
-//     return { paths, fallback: false };
-// }
-
-// export async function getStaticProps(context) {
-//     try {
-//         const res = await siteService.getListSite();
-//         const listSite = res.data.data.lstSite;
-//         const item = listSite.find(
-//             (item) => context.params.franchise === item.ms_alias,
-//         );
-
-//         const siteDetail = await siteService.getDetailSite({
-//             id: item.ms_id,
-//             cate: 6,
-//         });
-
-//         const data = siteDetail.data.data;
-//         return { props: { data, listSite } };
-//     } catch (error) {
-//         console.log(error);
-//     }
-
-//     return { props: { data: {}, listSite: [] } };
-// }
-
 export async function getServerSideProps(context) {
-    const listRes = await siteService.getListSite();
-    const listSite = listRes.data.data.lstSite;
-
-    const item = listSite.find(
-        (item) => context.params.franchise === item.ms_alias,
+    const props = await Utils.getDetailMicrosite(
+        context.params.franchise,
+        6,
+        'weekly-training',
     );
-
-    if (isEmpty(item)) {
-        return { props: { data: [], listSite } };
-    }
-
-    const siteDetail = await siteService.getDetailSite({
-        id: item.ms_id,
-        cate: 6,
-        location: item.ms_id,
-        slug: 'weekly-training',
-    });
-
-    const data = siteDetail.data.data;
-
-    return { props: { data, listSite } };
+    return { props };
 }
 
 export default SiteNews;

@@ -16,6 +16,7 @@ import Provide from 'src/components/Provide';
 import Constants from 'src/common/Constants';
 
 function OneTraining({ data, listSite }) {
+    console.log(data, 'data');
     saveList(listSite);
     const enquireBox = useRef(null);
 
@@ -38,7 +39,7 @@ function OneTraining({ data, listSite }) {
                 />
             </div>
 
-            <Provide site={data.site || {}} />
+            <Provide site={data.site || {}} provide={data?.whoProvider} />
 
             <div className="container">
                 <div style={{ marginBottom: '120px' }} className="enquire">

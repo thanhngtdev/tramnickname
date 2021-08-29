@@ -1,18 +1,18 @@
 /* eslint-disable no-undef */
+import { isEmpty } from 'lodash';
+import React, { useEffect, useRef, useState } from 'react';
+import Utils from 'src/common/Utils';
+import BookTrialParty from 'src/components/birthday-partiesComponents/components/BookTrialParty';
 import AboutUs from 'src/components/Camp/AboutUs';
 import BirthdayExtra from 'src/components/Camp/BirthdayExtra';
 import BirthdayPackage from 'src/components/Camp/BirthdayPackage';
 import FootballSkill from 'src/components/Camp/FootballSkill';
 import QNA from 'src/components/Camp/QNA';
 import Gallery from 'src/components/HomePage/Gallery';
-import Testimonial from 'src/components/Testimonial';
-import DefaultLayout from 'src/layout/DefaultLayout';
-import BookTrialParty from 'src/components/birthday-partiesComponents/components/BookTrialParty';
-import React, { useEffect, useRef, useState } from 'react';
-import siteService from 'src/services/siteService';
 import Quote from 'src/components/Quote';
+import Testimonial from 'src/components/Testimonial';
 import saveList from 'src/hooks/useSaveList';
-import { isEmpty } from 'lodash';
+import DefaultLayout from 'src/layout/DefaultLayout';
 // import Spinner from "component/Spinner";
 
 function BirthdayParty({ data, listSite }) {
@@ -46,9 +46,9 @@ function BirthdayParty({ data, listSite }) {
 
     return (
         <DefaultLayout>
-            <AboutUs data={data?.masterData?.about || {}} site={data.site} />
+            <AboutUs data={data?.about || {}} site={data.site} />
             <div className="qoute-birthday">
-                <Quote data={data?.masterData?.about2 || {}} />
+                <Quote data={data?.about2 || {}} />
             </div>
 
             <div className="birthday-review">
@@ -58,10 +58,7 @@ function BirthdayParty({ data, listSite }) {
                 />
             </div>
             <div className="football-birthday">
-                <FootballSkill
-                    noTitle
-                    data={data?.masterData?.keyElement || {}}
-                />
+                <FootballSkill noTitle data={data?.keyElement || {}} />
             </div>
 
             <BirthdayPackage
@@ -69,19 +66,19 @@ function BirthdayParty({ data, listSite }) {
                     handleScroll();
                     clickPreferedButton(preferedPackage);
                 }}
-                data={data?.masterData?.package || {}}
+                data={data?.package || {}}
             />
 
             <BirthdayExtra
-                partyInclude={data?.masterData?.partyInclude || {}}
-                partyOptional={data?.masterData?.partyOptional || {}}
+                partyInclude={data?.partyInclude || {}}
+                partyOptional={data?.partyOptional || {}}
             />
 
             <BookTrialParty
                 site={data.site}
                 ref={ref}
                 parentFb={data?.parentFb || {}}
-                package={data?.masterData?.package || {}}
+                package={data?.package || {}}
                 preferedPackage={preferedPackage}
                 listSite={listSite || []}
             />
@@ -91,8 +88,8 @@ function BirthdayParty({ data, listSite }) {
                     title={
                         'Check out some snaps from our previous Football Birthday Parties'
                     }
-                    gallery={data?.masterData?.gallery || {}}
-                    gallery2={data?.masterData?.gallery2 || {}}
+                    gallery={data?.gallery || {}}
+                    gallery2={data?.gallery2 || {}}
                 />
             </div>
             <div className="faq-birthday">
@@ -102,63 +99,13 @@ function BirthdayParty({ data, listSite }) {
     );
 }
 
-// export async function getStaticPaths() {
-//     const res = await siteService.getListSite();
-//     const list = res.data.data.lstSite;
-
-//     // Get the paths we want to pre-render based on posts
-//     const paths = list.map((item) => ({
-//         params: { franchise: item.ms_alias },
-//     }));
-
-//     return { paths, fallback: false };
-// }
-
-// export async function getStaticProps(context) {
-//     try {
-//         const res = await siteService.getListSite();
-//         const listSite = res.data.data.lstSite;
-//         const item = listSite.find(
-//             (item) => context.params.franchise === item.ms_alias,
-//         );
-
-//         const siteDetail = await siteService.getDetailSite({
-//             id: item.ms_id,
-//             cate: 15,
-//         });
-
-//         const data = siteDetail.data.data;
-
-//         return { props: { data, listSite } };
-//     } catch (error) {
-//         console.log(error);
-//     }
-
-//     return { props: { data: {}, listSite: [] } };
-// }
-
 export async function getServerSideProps(context) {
-    const listRes = await siteService.getListSite();
-    const listSite = listRes.data.data.lstSite;
-
-    const item = listSite.find(
-        (item) => context.params.franchise === item.ms_alias,
+    const props = await Utils.getDetailMicrosite(
+        context.params.franchise,
+        15,
+        'birthday-parties',
     );
-
-    if (isEmpty(item)) {
-        return { props: { data: [], listSite } };
-    }
-
-    const siteDetail = await siteService.getDetailSite({
-        id: item.ms_id,
-        cate: 15,
-        location: item.ms_id,
-        slug: 'birthday-parties',
-    });
-
-    const data = siteDetail.data.data;
-
-    return { props: { data, listSite } };
+    return { props };
 }
 
 export default BirthdayParty;

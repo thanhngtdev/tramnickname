@@ -27,7 +27,8 @@ class SiteService {
     }
 
     getListSite() {
-        return httpMethod.get(APIConfig.URL_GET_LIST_SITE);
+        // return httpMethod.get(APIConfig.URL_GET_LIST_SITE);
+        return httpMethod.get(`${APIConfig.URL_GET_LIST_SITE}?schedule=1`);
     }
 
     getFranchiseDetail({ id }) {

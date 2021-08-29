@@ -17,9 +17,6 @@ import TrainingService from '../../components/FranchiseComponents/components/Tra
 
 function Franchise({ data, listSite }) {
     saveList(listSite);
-
-    console.log(data);
-
     useEffect(() => {
         if (isEmpty(data)) {
             window.location.href = '/404';
@@ -32,7 +29,7 @@ function Franchise({ data, listSite }) {
         <DefaultLayout seo={data.seoMeta}>
             <div className="banner-franchise">
                 <BannerTop
-                    social={data?.social || []}
+                    social={data?.site?.socialLink || []}
                     site={data?.site || {}}
                 />
             </div>

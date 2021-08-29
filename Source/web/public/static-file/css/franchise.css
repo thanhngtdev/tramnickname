@@ -52,7 +52,7 @@
 }
 
 .training-service .nav-tabs .active a {
-    /* font-weight: bold; */
+    font-weight: bold;
     transform: scale(1.1);
     transition: transform 700ms ease-in-out;
     color: #ef9042;
@@ -168,7 +168,7 @@
     margin-left: 1rem;
 }
 .group-info .group-name {
-    /* font-weight: bold; */
+    font-weight: bold;
     font-size: 1.5rem;
     margin-right: 1rem;
     color: #1a1919;
@@ -205,14 +205,14 @@
 }
 .service-mobile h2 {
     font-size: 2.5rem;
-    /* font-weight: bold; */
+    font-weight: bold;
     color: #1a1919;
     text-align: center;
 }
 .service-mobile .service-group {
 	padding-top: 2rem;
     font-size: 1.5rem;
-    /* font-weight: bold; */
+    font-weight: bold;
     color: #1a1919;
     padding-bottom: 2rem;
 }

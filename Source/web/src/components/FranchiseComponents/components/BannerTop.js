@@ -72,24 +72,6 @@ function BannerTop(props) {
                         Learn football the right way with the UK’s #1 weekly
                         training programs & holiday camps
                     </p>
-                    {/* <a
-                        href="/#"
-                        className="btn-book"
-                        onClick={(evt) => {
-                            localStorage.setItem(
-                                'defaultAcademy',
-                                JSON.stringify(props.site),
-                            );
-                            dispatch({
-                                type: siteActionType.PICK_DEFAULT_ACADEMY,
-                            });
-                            evt.preventDefault();
-                            history.push(PathRoute.BookTrialTraining);
-                        }}>
-                        {props.site && props.site.ms_trial === 1
-                            ? 'Book a trial session'
-                            : 'Try a free session'}
-                    </a> */}
 
                     <Button
                         style={{ width: 350 }}
@@ -190,7 +172,7 @@ function BannerTop(props) {
                                     <LazyLoadImage
                                         alt=""
                                         src={
-                                            'static-file/images/icon-fb-small.png'
+                                            'static-file/images/icon-fb-small.svg'
                                         }
                                     />
                                 </a>
@@ -201,7 +183,7 @@ function BannerTop(props) {
                                     <LazyLoadImage
                                         alt=""
                                         src={
-                                            'static-file/images/icon-twitter-small.png'
+                                            'static-file/images/icon-twitter-small.svg'
                                         }
                                     />
                                 </a>
@@ -212,7 +194,7 @@ function BannerTop(props) {
                                     <LazyLoadImage
                                         alt=""
                                         src={
-                                            'static-file/images/icon-insta-small.png'
+                                            'static-file/images/icon-insta-small.svg'
                                         }
                                     />
                                 </a>

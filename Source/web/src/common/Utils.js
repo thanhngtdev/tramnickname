@@ -1,4 +1,5 @@
 /* eslint-disable class-methods-use-this */
+import { isEmpty } from 'lodash';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import { STORAGE_URL } from 'src/requests/ApiConfig';
 import siteService from 'src/services/siteService';
@@ -232,6 +233,39 @@ class Utils {
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         var d = R * c; // Distance in km
         return d;
+    }
+
+    async getDetailMicrosite(nameFranchise, cate, slug) {
+        try {
+            const listRes = await siteService.getListSite();
+            const listSite = listRes?.data?.data?.lstSite;
+
+            const item = listSite.find(
+                (item) => nameFranchise === item.ms_alias,
+            );
+
+            if (isEmpty(item)) {
+                return { data: [], listSite };
+            }
+
+            const siteDetail = await siteService.getDetailSite({
+                id: item.ms_id,
+                cate: cate,
+                location: item.ms_id,
+                slug: slug,
+            });
+
+            let data = siteDetail?.data?.data;
+            if (isEmpty(data)) return { data: [], listSite };
+
+            if (!isEmpty(data.masterData)) {
+                data = Object.assign(data, data.masterData);
+            }
+
+            return { data, listSite };
+        } catch (error) {
+            return { data: [], listSite: [] };
+        }
     }
 }
 
