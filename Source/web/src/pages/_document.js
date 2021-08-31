@@ -7,11 +7,6 @@ export default class MyDocument extends Document {
             <Html lang="en">
                 <Head>
                     <meta charSet="utf-8" />
-                    <meta
-                        name="description"
-                        content="We Make Footballers is a UK wide football coaching company for kids aged 4 to 12 of all abilties.
-                        We offer professional and fun training to help children develop their football skills."
-                    />
 
                     <link rel="icon" href="/static-file/images/favicon.ico" />
                     <link

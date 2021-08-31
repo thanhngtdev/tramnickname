@@ -2633,6 +2633,7 @@ background-color: #fff;
 		text-align: center;
 		min-height: 540px;
 		background-position-x: 70%;
+		background-size: cover;
 	}
 
 	.banner-top .box-text {

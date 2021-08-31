@@ -66,7 +66,7 @@ function BannerTop(props) {
                 )})`,
             }}>
             <div className="container">
-                <h1>{siteName} Academy</h1>
+                <h1>{`${siteName.replace(' Academy', '')}`} Academy</h1>
                 <div className="box-text">
                     <p>
                         Learn football the right way with the UK’s #1 weekly

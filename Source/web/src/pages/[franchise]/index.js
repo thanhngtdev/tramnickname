@@ -1,6 +1,6 @@
 import { isEmpty } from 'lodash';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import BookTrial from 'src/components/Booking/BookTrial';
 import QNA from 'src/components/Camp/QNA';
 import Intro from 'src/components/HomePage/Intro.js';
@@ -20,8 +20,12 @@ function Franchise({ data, listSite }) {
     useEffect(() => {
         if (isEmpty(data)) {
             window.location.href = '/404';
-            //
         }
+        // else {
+        //     localStorage.setItem('defaultAcademy', JSON.stringify(data.site));
+        //     isFirstRun.current = false;
+        //     // location.reload();
+        // }
     }, []);
 
     if (isEmpty(data)) return <></>;

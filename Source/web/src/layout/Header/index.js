@@ -13,8 +13,10 @@ const LinkItem = (props) => {
     const { title, href, hideMenu } = props;
     return (
         <li onClick={hideMenu} className="menu-link" style={props?.style || {}}>
-            <Link href={href} scroll>
-                {title}
+            <Link href={href} passHref scroll>
+                <a style={{ color: props.isOrange === true ? '#EE7925' : '' }}>
+                    {title}
+                </a>
             </Link>
         </li>
     );
@@ -207,7 +209,14 @@ function Header() {
                             {!isEmpty(defaultAcademy) && (
                                 <LinkItem
                                     style={{ marginLeft: 0 }}
-                                    title={defaultAcademy.ms_name + ''}
+                                    isOrange={!menuMobile}
+                                    title={defaultAcademy.ms_name}
+                                    title={
+                                        defaultAcademy.ms_name.replace(
+                                            ' Academy',
+                                            '',
+                                        ) + ' Academy'
+                                    }
                                     hideMenu={hideMenu}
                                     href={`/${defaultAcademy.ms_alias}`}
                                 />
