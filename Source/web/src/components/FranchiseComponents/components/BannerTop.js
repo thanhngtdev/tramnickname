@@ -89,6 +89,7 @@ function BannerTop(props) {
                                 type: siteActionType.PICK_DEFAULT_ACADEMY,
                             });
                             // evt.preventDefault();
+                            //
                             history.push(PathRoute.BookTrialTraining);
                         }}
                     />
