@@ -16,6 +16,8 @@ import flags from 'react-phone-number-input/flags';
 import { Fragment } from 'react';
 import { getListCourse } from 'src/redux/actions/siteAction';
 import _ from 'lodash';
+import 'react-datepicker/dist/react-datepicker.css';
+import Flatpickr from 'react-flatpickr';
 
 BookTrialCamp1.propTypes = {
     onNext: PropTypes.func,
@@ -473,15 +475,33 @@ function BookTrialCamp1(props) {
                     </div>
                     <div className="wSelect2">
                         <label className="label" style={{ display: 'block' }}>
-                            Child's date of birth *
+                            Child's date of birth{' '}
+                            <span className="required">*</span>
                         </label>
-                        <DatePicker
+                        {/* <DatePicker
                             className="input-text"
                             selected={date}
                             onChange={(date) => {
                                 setDate(date);
                             }}
+                        /> */}
+                        <Flatpickr
+                            data-enable-time
+                            className="input-text"
+                            value={date}
+                            options={{
+                                mode: 'single',
+                                dateFormat: 'm/d/Y',
+                                allowInput: true,
+                                enableTime: false,
+                            }}
+                            placeholder="Select date..."
+                            onChange={(date) => {
+                                // getClassTime(new Date(date));
+                                setDate(date[0]);
+                            }}
                         />
+
                         <label className="input-error">{dateError}</label>
                     </div>
                     <div className="wSelect2">
