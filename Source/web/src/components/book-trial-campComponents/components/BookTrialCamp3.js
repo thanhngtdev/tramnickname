@@ -9,6 +9,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import { isEmpty } from 'lodash';
 
 BookTrialCamp3.propTypes = {
     success: PropTypes.number,
@@ -252,7 +253,23 @@ function BookTrialCamp3(props) {
                         </div>
                     </div>
                 )}
-                {showPayment ? (
+                <>
+                    <div
+                        className="wSelect2"
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            paddingTop: '2rem',
+                        }}>
+                        <Checkbox checked={true} />
+                        <p style={{ marginTop: 0 }}>
+                            Please confirm you comply with our{' '}
+                            <a href="/#">Terms and Conditions</a>
+                        </p>
+                    </div>
+                    <img src={'static-file/images/paypal.png'} />
+                </>
+                {/* {showPayment ? (
                     <iframe
                         className="responsive-iframe"
                         style={{ border: 'none' }}
@@ -260,30 +277,22 @@ function BookTrialCamp3(props) {
                         width="100%"
                         height="770"></iframe>
                 ) : (
-                    <>
-                        <div
-                            className="wSelect2"
-                            style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                paddingTop: '2rem',
-                            }}>
-                            <Checkbox checked={true} />
-                            <p style={{ marginTop: 0 }}>
-                                Please confirm you comply with our{' '}
-                                <a href="/#">Terms and Conditions</a>
-                            </p>
-                        </div>
-                        <img src={'static-file/images/paypal.png'} />
-                    </>
-                )}
+                    
+                )} */}
                 <div style={{ marginTop: '3rem' }}>
                     <SolidButton
                         title={buttonTitle}
                         onClick={() => {
                             if (!showPayment) {
-                                setShowPayment(true);
-                                setButtonTitle('Confirm');
+                                if (!isEmpty(props.responseCourse.paymentUrl)) {
+                                    window.open(
+                                        props.responseCourse.paymentUrl,
+                                        'DescriptiveWindowName',
+                                        'resizable,scrollbars,status',
+                                    );
+                                    setShowPayment(true);
+                                    setButtonTitle('Confirm');
+                                }
                             } else {
                                 dispatch({
                                     type: siteActionType.GET_BOOKING,
@@ -291,6 +300,12 @@ function BookTrialCamp3(props) {
                                     token: props.responseCourse.token,
                                 });
                             }
+                            // if (!showPayment) {
+                            //     setShowPayment(true);
+                            //     setButtonTitle('Confirm');
+                            // } else {
+
+                            // }
                         }}
                     />
                 </div>
@@ -370,6 +385,10 @@ function BookTrialCamp3(props) {
                 </div>
             </>
         );
+    }
+
+    function renderIframe(scr) {
+        window;
     }
 
     return (
