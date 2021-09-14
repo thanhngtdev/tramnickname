@@ -559,8 +559,8 @@ function BookTrialCamp1(props) {
                         title="Next step of booking"
                         disabled={disabled}
                         onClick={() => {
-                            console.log(eventDate, 'event');
-                            console.log(dateSelect, 'dateSe');
+                            // console.log(eventDate, 'event');
+                            // console.log(dateSelect, 'dateSe');
                             let _dates = [];
                             let _lstDate = [];
                             let _lstPrice = [];

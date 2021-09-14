@@ -6,10 +6,10 @@ import Checkbox from 'src/components/include/Checkbox/Checkbox';
 import SolidButton from 'src/components/include/SolidButton';
 import PropTypes from 'prop-types';
 import React, { Fragment, useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import { isEmpty } from 'lodash';
+import Button from '../../Button';
 
 BookTrialCamp3.propTypes = {
     success: PropTypes.number,
@@ -31,6 +31,7 @@ function BookTrialCamp3(props) {
     const [showPayment, setShowPayment] = useState(false);
     const [buttonTitle, setButtonTitle] = useState('Make Payment');
     const [dataBooking, setDataBooking] = useState({});
+    const [checkPolicy, setCheckPolicy] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -261,7 +262,12 @@ function BookTrialCamp3(props) {
                             flexDirection: 'row',
                             paddingTop: '2rem',
                         }}>
-                        <Checkbox checked={true} />
+                        <Checkbox
+                            checked={checkPolicy}
+                            onChange={() => {
+                                setCheckPolicy(!checkPolicy);
+                            }}
+                        />
                         <p style={{ marginTop: 0 }}>
                             Please confirm you comply with our{' '}
                             <a href="/#">Terms and Conditions</a>
@@ -281,6 +287,7 @@ function BookTrialCamp3(props) {
                 )} */}
                 <div style={{ marginTop: '3rem' }}>
                     <SolidButton
+                        disabled={!checkPolicy}
                         title={buttonTitle}
                         onClick={() => {
                             if (!showPayment) {
@@ -300,14 +307,16 @@ function BookTrialCamp3(props) {
                                     token: props.responseCourse.token,
                                 });
                             }
-                            // if (!showPayment) {
-                            //     setShowPayment(true);
-                            //     setButtonTitle('Confirm');
-                            // } else {
-
-                            // }
                         }}
                     />
+                    {showPayment && (
+                        <div>
+                            <label className="input-error">
+                                "Please continue payment on Paypal website and
+                                confirm when it's done"
+                            </label>
+                        </div>
+                    )}
                 </div>
             </>
         );
@@ -319,8 +328,10 @@ function BookTrialCamp3(props) {
                 <div style={{ marginBottom: '4rem' }}>
                     {paidBooking ? (
                         <h2>
-                            Woohoo! Tony is booked in for a Holiday Camp at
-                            Isleworth Academy on the following dates:
+                            Woohoo! {dataBooking.child_name + ' '} is booked in
+                            for a Holiday Camp at
+                            {' ' + dataBooking.course_title + ' '} on the
+                            following dates:
                         </h2>
                     ) : (
                         <h2>
