@@ -16,12 +16,11 @@ import Provide from 'src/components/Provide';
 import Constants from 'src/common/Constants';
 
 function OneTraining({ data, listSite }) {
-    console.log(data, 'data');
     saveList(listSite);
     const enquireBox = useRef(null);
 
     return (
-        <DefaultLayout seo={data.seoMeta}>
+        <DefaultLayout seo={data?.seoMeta || {}}>
             <div className="about-121">
                 <AboutUs data={data?.about || {}} />
             </div>

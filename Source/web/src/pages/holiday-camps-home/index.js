@@ -17,7 +17,7 @@ import Constants from 'src/common/Constants';
 function HolidayCamp({ data, listSite }) {
     saveList(listSite);
     return (
-        <DefaultLayout seo={data.seoMeta}>
+        <DefaultLayout seo={data?.seoMeta || {}}>
             <AboutUs data={data?.about || {}} holidayCamp />
 
             <div className="about-info-holiday">

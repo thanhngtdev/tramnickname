@@ -18,6 +18,7 @@ import DefaultLayout from 'src/layout/DefaultLayout';
 const ROUTE = [PathRoute.Coaching, PathRoute.ParentHost];
 
 function JoinUs({ data, listSite }) {
+    console.log(data, 'data');
     //! state
     const refListItem = useRef(null);
     const [content, setContent] = useState(data.boxesFranchise.cfg_content);
@@ -36,7 +37,7 @@ function JoinUs({ data, listSite }) {
     if (isEmpty(data)) return <> </>;
 
     return (
-        <DefaultLayout>
+        <DefaultLayout seo={data?.seoMetaFranchise || {}}>
             <div className="bannerBox-joinus">
                 <JoinUsBanner
                     click={() => {

@@ -18,7 +18,6 @@ import Utils from 'src/common/Utils';
 const SiteNews = ({ data, listSite }) => {
     //! State
     saveList(listSite);
-    console.log(data, 'data');
 
     useEffect(() => {
         if (isEmpty(data)) {
@@ -31,7 +30,7 @@ const SiteNews = ({ data, listSite }) => {
     if (isEmpty(data)) return <> </>;
 
     return (
-        <DefaultLayout>
+        <DefaultLayout seo={data?.seoMetaFranchise || {}}>
             <AboutUs data={data?.about || {}} site={data.site} />
 
             <div className="about-info-weekly">

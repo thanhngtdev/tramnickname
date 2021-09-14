@@ -18,7 +18,7 @@ function SchoolTraining({ data, listSite }) {
     //sd
 
     return (
-        <DefaultLayout seo={data.seoMeta}>
+        <DefaultLayout seo={data?.seoMeta || {}}>
             <AboutUs data={data?.about || {}} />
 
             <div className="intro-school">

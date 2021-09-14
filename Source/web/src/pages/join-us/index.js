@@ -31,7 +31,7 @@ function JoinUs({ data, listSite }) {
     useEqualElement(refListItem);
     //! render
     return (
-        <DefaultLayout seo={data.seoMeta}>
+        <DefaultLayout seo={data?.seoMeta || {}}>
             <div className="bannerBox-joinus">
                 <JoinUsBanner
                     click={() => {

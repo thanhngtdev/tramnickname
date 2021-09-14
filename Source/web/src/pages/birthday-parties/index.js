@@ -38,7 +38,7 @@ function BirthdayParty({ data, listSite }) {
     }
 
     return (
-        <DefaultLayout seo={data.seoMeta}>
+        <DefaultLayout seo={data?.seoMeta || {}}>
             <AboutUs data={data?.about || {}} />
             <div className="qoute-birthday">
                 <Quote data={data?.about2 || {}} />

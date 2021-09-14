@@ -23,7 +23,7 @@ function HomePage({ data, listSite }) {
     }, []);
 
     return (
-        <DefaultLayout seo={data.seoMeta}>
+        <DefaultLayout seo={data?.seoMeta || {}}>
             <BannerTop bannerTop={data?.bannerTop || {}} />
             <div className="intro-homepage">
                 <Intro intro={data?.homeIntro?.cfg_value || []} />

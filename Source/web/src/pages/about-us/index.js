@@ -11,7 +11,7 @@ import Constants from 'src/common/Constants';
 function About({ data, listSite }) {
     saveList(listSite);
     return (
-        <DefaultLayout seo={data.seoMeta}>
+        <DefaultLayout seo={data?.seoMeta || {}}>
             <div className="about-us-aboutpage">
                 <AboutUsNoVideo data={data || {}} />
             </div>

@@ -18,7 +18,7 @@ function WeeklyTraining({ data, listSite }) {
     saveList(listSite);
 
     return (
-        <DefaultLayout seoMeta={data.seoMeta}>
+        <DefaultLayout seo={data?.seoMeta || {}}>
             <AboutUs data={data?.about || {}} />
 
             <div className="about-info-weekly">

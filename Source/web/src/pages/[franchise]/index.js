@@ -21,16 +21,11 @@ function Franchise({ data, listSite }) {
         if (isEmpty(data)) {
             window.location.href = '/404';
         }
-        // else {
-        //     localStorage.setItem('defaultAcademy', JSON.stringify(data.site));
-        //     isFirstRun.current = false;
-        //     // location.reload();
-        // }
     }, []);
 
     if (isEmpty(data)) return <></>;
     return (
-        <DefaultLayout seo={data.seoMeta}>
+        <DefaultLayout seo={data?.seoMetaFranchise || {}}>
             <div className="banner-franchise">
                 <BannerTop
                     social={data?.site?.socialLink || []}

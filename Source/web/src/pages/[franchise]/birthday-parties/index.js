@@ -45,7 +45,7 @@ function BirthdayParty({ data, listSite }) {
     if (isEmpty(data)) return <> </>;
 
     return (
-        <DefaultLayout>
+        <DefaultLayout seo={data?.seoMetaFranchise || {}}>
             <AboutUs data={data?.about || {}} site={data.site} />
             <div className="qoute-birthday">
                 <Quote data={data?.about2 || {}} />

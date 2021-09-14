@@ -53,9 +53,8 @@ const DefaultLayout = (props) => {
         ? process.env.NEXT_PUBLIC_NEXTJS_SITE_URL
         : currentLocation;
 
-    // console.log(url, 'url');
     //! Function
-
+    // console.log(seo, 'seo');
     //! Render
     return (
         <Fragment>
@@ -66,8 +65,12 @@ const DefaultLayout = (props) => {
                     `Professional Football Coaching-Ages 4-12 | We Make
                     Footballers`
                 }
-                description={`We Make Footballers is a UK wide football coaching company for kids aged 4 to 12 of all abilties. We offer professional and fun training to help children develop their football skills.`}
-                canonical={url}
+                description={
+                    seo?.content ||
+                    `We Make Footballers is a UK wide football coaching company for kids aged 4 to 12 of all abilties. We offer professional and fun training to help children develop their football skills.`
+                }
+                canonical={seo?.canonical || url || ''}
+                noindex={seo?.noindex === 1}
             />
             {children}
             <Footer />
