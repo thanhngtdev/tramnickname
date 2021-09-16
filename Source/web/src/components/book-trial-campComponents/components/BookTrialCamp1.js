@@ -158,23 +158,24 @@ function BookTrialCamp1(props) {
                 (item) => item.checkBox === false,
             );
 
-            //undefine === checkBoxfull
-            if (!checkFullCheckBox) {
+            // undefine === checkBoxfull;
+            if (fullCourseSelect) {
                 setTotalPrice(courseSelected.course_price);
-                setFullCourseSelect(true);
-            } else {
-                let totalPrice = 0;
-                dateCourseSelect.map((item) => {
-                    if (item.checkBox) {
-                        totalPrice += parseFloat(item.price);
-                    }
-                });
-                setTotalPrice(totalPrice);
-                setFullCourseSelect(false);
+                // setFullCourseSelect(true);
+                return;
             }
+
+            let totalPrice = 0;
+            dateCourseSelect.map((item) => {
+                if (item.checkBox) {
+                    totalPrice += parseFloat(item.price);
+                }
+            });
+            setTotalPrice(totalPrice);
+            // setFullCourseSelect(false);
         } else {
-            setTotalPrice(0);
-            setFullCourseSelect(false);
+            // setTotalPrice(0);
+            // setFullCourseSelect(false);
         }
     }, [dateCourseSelect]);
 
@@ -265,10 +266,10 @@ function BookTrialCamp1(props) {
         setDateCourseSelect(_dateCourse);
     }
 
-    function handleFullCheckBox() {
+    useEffect(() => {
         let _dateCourse = [...dateCourseSelect];
-
-        if (fullCourseSelect) {
+        console.log('aaaa', fullCourseSelect);
+        if (!fullCourseSelect) {
             _dateCourse = _dateCourse.map((item) => {
                 return { ...item, checkBox: false };
             });
@@ -277,7 +278,12 @@ function BookTrialCamp1(props) {
                 return { ...item, checkBox: true };
             });
         }
+
         setDateCourseSelect(_dateCourse);
+    }, [fullCourseSelect]);
+
+    function handleFullCheckBox() {
+        setFullCourseSelect(!fullCourseSelect);
     }
 
     return (

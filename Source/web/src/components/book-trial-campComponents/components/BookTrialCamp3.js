@@ -231,7 +231,7 @@ function BookTrialCamp3(props) {
                                         <div className="classInfo">
                                             <p>{item}</p>
                                         </div>
-                                        <b>£{props.data.lstPrice[index]}</b>
+                                        <p>£{props.data.lstPrice[index]}</p>
                                     </div>
                                 ) : (
                                     <div key={index} className="classRow">

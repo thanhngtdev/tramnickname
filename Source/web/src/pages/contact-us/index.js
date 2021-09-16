@@ -110,7 +110,7 @@ function Contact({ listSite, config }) {
     //! return
 
     return (
-        <DefaultLayout seo={data?.seoMeta || {}}>
+        <DefaultLayout>
             <div className="contactpage" style={{ position: 'relative' }}>
                 <div className="contact">
                     <div

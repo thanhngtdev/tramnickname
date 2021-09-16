@@ -214,7 +214,7 @@ function LDHolidayCamp(props) {
                             display: 'flex',
                             justifyContent: 'space-between',
                         }}>
-                        <p style={{ fontSize: '12px' }}>
+                        <p>
                             {item.date} | {item.time} | {item.course_title}
                         </p>
                     </div>
