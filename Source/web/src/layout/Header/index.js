@@ -91,7 +91,9 @@ function Header() {
             </div>
             <div className={`navi ${menuMobile ? 'show' : ''}`}>
                 <div className="menu-top">
-                    <div className="container">
+                    <div
+                    // className="container"
+                    >
                         <Link href={PathRoute.Home} scroll>
                             <LazyLoadImage
                                 alt=""
@@ -186,7 +188,9 @@ function Header() {
                     </div>
                 </div>
                 <div className="menu-down">
-                    <div className="container">
+                    <div
+                    // className="container"
+                    >
                         <div className="menu-small widget-header">
                             <div
                                 className="trustpilot-widget"

@@ -74,7 +74,7 @@ function About({ data, listSite }) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     return await Promise.all([
         siteService.getAbout(),
         siteService.getListSite(),
@@ -84,7 +84,7 @@ export async function getStaticProps() {
                 data: values[0].data.data,
                 listSite: values[1].data.data.lstSite,
             },
-            revalidate: Constants.REVALIDATE,
+            // revalidate: Constants.REVALIDATE,
         };
     });
 }

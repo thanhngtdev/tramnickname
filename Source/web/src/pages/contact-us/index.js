@@ -306,7 +306,7 @@ function Contact({ listSite, config }) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     return await Promise.all([
         siteService.getListSite(),
         siteService.getFooterConfig(),
@@ -316,14 +316,9 @@ export async function getStaticProps() {
                 listSite: values[0].data.data.lstSite,
                 config: values[1].data.data.cfg_value,
             },
-            revalidate: Constants.REVALIDATE,
+            // revalidate: Constants.REVALIDATE,
         };
     });
-
-    const listRes = await siteService.getListSite();
-    const listSite = listRes.data.data.lstSite;
-
-    return { props: { listSite } };
 }
 
 export default Contact;

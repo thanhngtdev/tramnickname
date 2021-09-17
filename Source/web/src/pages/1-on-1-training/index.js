@@ -88,7 +88,7 @@ function OneTraining({ data, listSite }) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
 
@@ -101,7 +101,10 @@ export async function getStaticProps() {
 
     const data = siteDetail.data.data;
 
-    return { props: { data, listSite }, revalidate: Constants.REVALIDATE };
+    return {
+        props: { data, listSite },
+        // revalidate: Constants.REVALIDATE
+    };
 }
 
 export default OneTraining;
