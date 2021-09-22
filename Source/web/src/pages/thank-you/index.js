@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import saveList from 'src/hooks/useSaveList';
 import DefaultLayout from 'src/layout/DefaultLayout';
 import siteService from 'src/services/siteService';
@@ -102,6 +102,10 @@ const igIcon = (
 function ThankYou({ data, listSite }) {
     saveList(listSite);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <DefaultLayout>
             <div style={{ backgroundColor: '#F2F2F2', padding: '4rem 0' }}>
@@ -140,13 +144,17 @@ function ThankYou({ data, listSite }) {
                             data.map((item, index) => {
                                 if (item.title === 'Facebook')
                                     return (
-                                        <a key={index} href={item.des || '#'}>
+                                        <a
+                                            key={index}
+                                            href={item.des || '#'}
+                                            target="_blank">
                                             {fbIcon}
                                         </a>
                                     );
                                 if (item.title === 'Twitter')
                                     return (
                                         <a
+                                            target="_blank"
                                             key={index}
                                             href={item.des || '#'}
                                             style={{ margin: '0 2rem' }}>
@@ -155,7 +163,10 @@ function ThankYou({ data, listSite }) {
                                     );
                                 if (item.title === 'Insta')
                                     return (
-                                        <a key={index} href={item.des || '#'}>
+                                        <a
+                                            key={index}
+                                            href={item.des || '#'}
+                                            target="_blank">
                                             {igIcon}
                                         </a>
                                     );

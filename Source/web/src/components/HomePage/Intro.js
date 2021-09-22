@@ -1,5 +1,5 @@
 // import Utils from "src/common/Utils";
-import { isEmpty } from 'lodash';
+import { isEmpty, set } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import ModelManager from 'src/common/ModelManager';
 import Utils from 'src/common/Utils';
 import siteService from 'src/services/siteService';
+import TrustPilot from '../TrustPilot';
 
 Intro.propTypes = {
     intro: PropTypes.array,
@@ -18,9 +19,15 @@ function Intro(props) {
     const [defaultAcademy, setDefaultAcademy] = useState({});
     const isFirstRun = useRef(true);
     const [cost, setCost] = useState({});
+    const [trustPilot, setTrustPilot] = useState({});
 
     useEffect(() => {
+        getTrustPilot();
         if (checkPound(props.intro)) {
+            if (props?.site) {
+                setDefaultAcademy(props.site);
+                return;
+            }
             setDefaultAcademy(ModelManager.getLocation());
         } else {
             setData(props.intro);
@@ -38,28 +45,32 @@ function Intro(props) {
 
     useEffect(() => {
         if (isEmpty(cost)) return;
+        if (isEmpty(trustPilot)) return;
 
         const { weeklyCost, minWeeklyCost } = cost;
 
         const converted = props.intro.map((item) => {
-            if (
-                item.content.includes('of &pound;XXX') ||
-                item.content.includes('of £XXX')
-            ) {
-                const newContent = Utils.convertCost(
+            let newContent = item.content;
+            if (newContent.includes('of $WeeklyCost')) {
+                newContent = Utils.convertCost(
                     weeklyCost,
                     listSite.length,
                     item.content,
                     minWeeklyCost,
                 );
-
-                return { ...item, content: newContent };
             }
-            return item;
+
+            newContent = Utils.convertTrustPilot(
+                trustPilot.rating,
+                trustPilot.maxRate,
+                newContent,
+            );
+
+            return { ...item, content: newContent };
         });
 
         setData(converted);
-    }, [cost]);
+    }, [cost, trustPilot]);
 
     //! Functions
     const checkCost = async () => {
@@ -82,12 +93,27 @@ function Intro(props) {
         }
     };
 
+    const getTrustPilot = async () => {
+        try {
+            const req = await siteService.getTrustPilot();
+
+            console.log(req, 'trust');
+
+            if (req.data.status === 200) {
+                const data = req.data.data;
+                setTrustPilot({
+                    rating: data[0].value,
+                    maxRate: data[1].value,
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const checkPound = (intro) => {
         for (let i = 0; i < intro.length; i++) {
-            if (
-                intro[i].content.includes('of &pound;XXX') ||
-                intro[i].content.includes('of £XXX')
-            ) {
+            if (intro[i].content.includes('of $WeeklyCost')) {
                 return true;
             }
         }

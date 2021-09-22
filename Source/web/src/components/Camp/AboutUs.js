@@ -101,6 +101,7 @@ function PlayVideo(props) {
 export default function AboutUs(props) {
     const [showVideo, setShowVIdeo] = useState(false);
     const [title, setTitle] = useState('');
+    const [des, setDes] = useState(props.data.cfg_des);
 
     useEffect(() => {
         if (isEmpty(props.site)) {
@@ -115,19 +116,20 @@ export default function AboutUs(props) {
             } else {
                 setTitle(
                     `${
-                        props.data.cfg_title.replace('In', '') +
+                        props.data.cfg_title.replace('In $AcademyName', '') +
                         ' ' +
                         ' At We Make Footballers'
                     }`,
                 );
             }
         } else {
-            setTitle(
-                `${
-                    props.data.cfg_title.replace('In', '') +
-                    ' ' +
-                    `${'In ' + props.site.ms_name}`
-                }`,
+            setTitle(`${props.data.cfg_title + ' In ' + props.site.ms_name}`);
+
+            setDes(
+                `${props.data.cfg_des.replace(
+                    '$AcademyName',
+                    props.site.ms_name,
+                )}`,
             );
         }
     }, []);
@@ -189,18 +191,8 @@ export default function AboutUs(props) {
                     <h1
                         className="contact-header"
                         style={{ pointerEvents: 'none' }}>
-                        {/* {isEmpty(props.site)
-                            ? `${
-                                  props.data.cfg_title.replace(/in/i, '') +
-                                  ' ' +
-                                  ' At We Make Footballers'
-                              }`
-                            : `${
-                                  props.data.cfg_title.replace(/in/i, '') +
-                                  ' ' +
-                                  `${'In ' + props.site.ms_name}`
-                              }`} */}
                         {title}
+                        {/* {props.data.cfg_title} */}
                     </h1>
                 </div>
                 <div className="container">
@@ -209,7 +201,7 @@ export default function AboutUs(props) {
                             <p
                                 className="pro-sub-text"
                                 style={{ color: '#5A5A5A', margin: '0px' }}>
-                                {props.data.cfg_des}
+                                {des}
                             </p>
                             <div
                                 className="trustpilot-widget truspilot-big"

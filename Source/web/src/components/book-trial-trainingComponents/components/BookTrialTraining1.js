@@ -18,6 +18,7 @@ import Select from 'react-select';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import { courseStartDate } from 'src/redux/actions/bookTrialTrainingAction';
 import { checkEmail, getListCourse } from 'src/redux/actions/siteAction';
+import siteService from 'src/services/siteService';
 
 BookTrialTraining1.propTypes = {
     onNext: PropTypes.func,
@@ -69,8 +70,12 @@ function BookTrialTraining1(props) {
             : {},
     );
     const [siteSelected, setSiteSelected] = useState(
-        (global.bookTraining && global.bookTraining.siteSelected) || {},
+        (global.bookTraining && global.bookTraining.siteSelected) ||
+            listSite[0] ||
+            {},
     );
+
+    console.log(global.bookTraining, 'global.bookTraining');
 
     const [siteError, setSiteError] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -90,6 +95,17 @@ function BookTrialTraining1(props) {
             setSiteSelected(JSON.parse(localStorage.getItem('defaultAcademy')));
         }
     }, []);
+
+    useEffect(() => {
+        if (email && siteSelected) {
+            dispatch(
+                checkEmail({
+                    email: email,
+                    company_id: siteSelected.pa_companyId,
+                }),
+            );
+        }
+    }, [siteSelected]);
 
     useEffect(() => {
         if (siteSelected?.pa_companyId) {
@@ -119,17 +135,19 @@ function BookTrialTraining1(props) {
     }, [courseSatisfied]);
 
     useEffect(() => {
-        // console.log(emailData, 'asdfasf');
         if (!_.isEmpty(emailData)) {
-            const { code } = emailData;
-            if (code === 704) {
-                setAvailableEmail(true);
-                setEmailError('This email is already registered. Want to ');
-            }
+            try {
+                const { data } = emailData;
+                if (data.email_exist === 'yes') {
+                    setAvailableEmail(true);
+                    setEmailError('This email is already registered. Want to ');
+                }
 
-            if (code === 200) {
-                setAvailableEmail(false);
-            }
+                if (data.email_exist === 'no') {
+                    setAvailableEmail(false);
+                    setEmailError('');
+                }
+            } catch (error) {}
         }
 
         if (siteReducer.type) {
@@ -253,16 +271,14 @@ function BookTrialTraining1(props) {
                     onChange={(event) => {
                         setEmail(event.target.value);
                         setEmailError('');
-
-                        if (
-                            !_.isEmpty(event.target.value) &&
-                            Utils.checkEmail(event.target.value)
-                        ) {
-                            timer.debounce(
-                                dispatch(
-                                    checkEmail({ email: event.target.value }),
-                                ),
-                                1000,
+                    }}
+                    onBlur={(event) => {
+                        if (email && Utils.checkEmail(email)) {
+                            dispatch(
+                                checkEmail({
+                                    email: event.target.value,
+                                    company_id: siteSelected.pa_companyId,
+                                }),
                             );
                         }
                     }}

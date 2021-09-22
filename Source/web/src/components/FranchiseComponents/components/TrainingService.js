@@ -84,7 +84,7 @@ function LDWeeklyTraining(props) {
                 dangerouslySetInnerHTML={{
                     __html: props.config ? props.config.content : '',
                 }}></p>
-            <h4>How much do sessions cost?</h4>
+            {/* <h4>How much do sessions cost?</h4>
 
             <p
                 style={{
@@ -94,60 +94,65 @@ function LDWeeklyTraining(props) {
                 }}>
                 £{courseSelected.course_price || 0} per{' '}
                 {courseSelected.course_length || 0} sessions
-            </p>
+            </p> */}
 
             <h4>Football training times:</h4>
             {lstCourse &&
                 lstCourse.map((item, index) => (
                     <div
                         key={index}
-                        className="classRow"
-                        onClick={() => {
-                            setCourseSelected(item);
-                        }}
                         style={{
                             backgroundColor: `${
                                 index % 2 === 0 ? '#F7F8F7' : 'white'
                             }`,
                         }}>
-                        <p>{item.day_of_week.substring(0, MAX_LENGTH)}</p>
-                        <p>
-                            {moment(
-                                item.course_day_time_start,
-                                'hh:mm:ss',
-                            ).format('h:mma')}
-                            -
-                            {moment(
-                                item.course_day_time_end,
-                                'hh:mm:ss',
-                            ).format('h:mma')}
-                        </p>
-                        <p>
-                            {item.min_age}-{item.max_age}{' '}
-                            {props.isMobile ? 'y.o.' : 'year olds'}
-                        </p>
-                        {/* {!props.isMobile && ( */}
-                        <p
-                            style={{ color: '#FF7100' }}
+                        <div
+                            className="classRow"
                             onClick={() => {
-                                // setCourseSelected(item);
-                                global.bookTraining = {
-                                    siteId: props.site.ms_id || 0,
-                                    siteName: props.site.ms_name || '',
-                                    address: '',
-                                    preDefined: { item },
-                                };
-                                dispatch({
-                                    type: siteActionType.SELECT_ACADEMY,
-                                    data: props.site,
-                                });
-
-                                // console.log(global.bookTraining, 'global2');
-                                history.push(PathRoute.BookTrialTraining);
+                                setCourseSelected(item);
                             }}>
-                            Book
-                        </p>
-                        {/* )} */}
+                            <p>{item.day_of_week.substring(0, MAX_LENGTH)}</p>
+                            <p>
+                                {moment(
+                                    item.course_day_time_start,
+                                    'hh:mm:ss',
+                                ).format('h:mma')}
+                                -
+                                {moment(
+                                    item.course_day_time_end,
+                                    'hh:mm:ss',
+                                ).format('h:mma')}
+                            </p>
+                            <p>
+                                {item.min_age}-{item.max_age}{' '}
+                                {props.isMobile ? 'y.o.' : 'year olds'}
+                            </p>
+                        </div>
+                        <div className="classRowSecond">
+                            <p style={{ marginRight: 35 }}>{`£${
+                                item.course_price || 0
+                            } per ${item.course_length || 0} sessions`}</p>
+                            <p
+                                style={{ color: '#FF7100', cursor: 'pointer' }}
+                                onClick={() => {
+                                    // setCourseSelected(item);
+                                    global.bookTraining = {
+                                        siteId: props.site.ms_id || 0,
+                                        siteName: props.site.ms_name || '',
+                                        address: '',
+                                        preDefined: { item },
+                                    };
+                                    dispatch({
+                                        type: siteActionType.SELECT_ACADEMY,
+                                        data: props.site,
+                                    });
+
+                                    // console.log(global.bookTraining, 'global2');
+                                    history.push(PathRoute.BookTrialTraining);
+                                }}>
+                                Book
+                            </p>
+                        </div>
                     </div>
                 ))}
         </div>

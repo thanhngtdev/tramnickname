@@ -216,7 +216,7 @@ export default function BookTrialHoliday(props) {
             const res = await siteService.sendEmail(param);
 
             if (res.data.status === 200) {
-                history.push(PathRoute.ThankYou);
+                history.push(PathRoute.ThankYou, undefined, { scroll: true });
             } else {
                 toast.error(res.data.error, {
                     position: toast.POSITION.BOTTOM_LEFT,
@@ -253,7 +253,12 @@ export default function BookTrialHoliday(props) {
     return (
         <div className="book_your_child_free_session" id="booking">
             <div className="container">
-                <h2 className="heading">Enquire about our holiday camps</h2>
+                <h2 className="heading">
+                    <p>
+                        Enquire about our{' '}
+                        <span style={{ whiteSpace: 'pre' }}>holiday camps</span>
+                    </p>
+                </h2>
                 <div className="text-sub">
                     Want to learn more about our Holiday camps? Get in touch via
                     the form below and we will respond within 24 hours.

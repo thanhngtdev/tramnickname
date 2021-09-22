@@ -225,6 +225,8 @@ function* bookEventSignup({ totalData }) {
 function* checkEmail({ data }) {
     const { email } = data;
 
+    // console.log(email, 'email');
+
     const response = yield API.postParentAPI(
         APIConfig.CHECK_MAIL_AVAILABLE,
         data,

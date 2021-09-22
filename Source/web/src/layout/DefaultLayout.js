@@ -84,5 +84,5 @@ export default geolocated({
     mpositionOptions: {
         enableHighAccuracy: false,
     },
-    userDecisionTimeout: 5000,
+    userDecisionTimeout: null,
 })(DefaultLayout);

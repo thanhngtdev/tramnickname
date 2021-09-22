@@ -14,8 +14,10 @@ import CoachTeam from '../../components/FranchiseComponents/components/CoachTeam
 import RelateAreas from '../../components/FranchiseComponents/components/RelateAreas';
 import TrainingReason from '../../components/FranchiseComponents/components/TrainingReason';
 import TrainingService from '../../components/FranchiseComponents/components/TrainingService';
+import Contact from '../../components/FranchiseComponents/components/Contact';
 
 function Franchise({ data, listSite }) {
+    console.log(data.site, 'site');
     saveList(listSite);
     useEffect(() => {
         if (isEmpty(data)) {
@@ -31,6 +33,10 @@ function Franchise({ data, listSite }) {
                     social={data?.site?.socialLink || []}
                     site={data?.site || {}}
                 />
+                <Contact
+                    social={data?.site?.socialLink || []}
+                    site={data?.site || {}}
+                />
             </div>
             <div className="coaching-franchise">
                 <CoachInfo coach={data?.coach || {}} />
@@ -39,6 +45,7 @@ function Franchise({ data, listSite }) {
                 <div className="intro-franchise">
                     <Intro
                         intro={data?.homeIntro?.cfg_value || []}
+                        site={data?.site}
                         weeklyCost={data?.site?.weeklyCost}
                         minWeeklyCost={data?.site?.minWeeklyCost}
                     />

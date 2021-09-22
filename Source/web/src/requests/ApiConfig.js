@@ -36,4 +36,5 @@ export const APIConfig = {
     GET_BOOKING: 'get-booking',
     EVENT_DATE: 'list-event-dates',
     CHECK_MAIL_AVAILABLE: 'email-check',
+    TRUST_PILOT: 'configuration',
 };

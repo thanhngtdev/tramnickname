@@ -196,13 +196,19 @@ class Utils {
             : 'from £' + minCost?.one || '';
 
         const venues = locations + ' venues';
-        const poundType = content.includes('of &pound;XXX')
-            ? 'of &pound;XXX'
-            : 'of £XXX';
+        // const poundType = content.includes('of $WeeklyCost')
+        //     ? 'of &pound;XXX'
+        //     : 'of £XXX';
 
         return content
-            .replace(poundType, replaceContent)
-            .replace('16 venues', venues);
+            .replace('of $WeeklyCost', replaceContent)
+            .replace('$TotalVenues', venues);
+    }
+
+    convertTrustPilot(rating, maxRate, content) {
+        return content
+            .replace('$TrustPilotRating', rating)
+            .replace('$TrustPilotMaxRate', maxRate);
     }
 
     convertToQuery(param) {

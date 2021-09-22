@@ -171,9 +171,7 @@ function Header() {
                                             };
 
                                         router.push(
-                                            !isEmpty(defaultAcademy)
-                                                ? '/' + defaultAcademy.ms_alias
-                                                : PathRoute.BookTrialTraining,
+                                            PathRoute.BookTrialTraining,
                                         );
                                     }}
                                     title={`Book a ${

@@ -1,6 +1,6 @@
 import Utils from 'src/common/Utils';
 import httpMethod from './httpMethod';
-import { APIConfig } from '../requests/ApiConfig';
+import { APIConfig, PARENT_API } from '../requests/ApiConfig';
 
 class SiteService {
     getHome() {
@@ -80,6 +80,20 @@ class SiteService {
                 location_id: location_id,
                 type: course_type,
             })}`,
+        );
+    }
+
+    checkEmail(body) {
+        return httpMethod.post(
+            `${PARENT_API}api/v2/email-check
+        `,
+            body,
+        );
+    }
+
+    getTrustPilot() {
+        return httpMethod.get(
+            `${APIConfig.TRUST_PILOT}?cfg[0]=truspilot_rating&cfg[1]=trustpilot_max_rate&cfg[2]=trustpilot_reviews`,
         );
     }
 }

@@ -30,11 +30,6 @@ function News({ listSite }) {
     useEffect(() => {
         if (articleReducer.type) {
             if (articleReducer.type === type.GET_LIST_NEWS_SUCCESS) {
-                // articleReducer.data.lstCate.map((_cateItem) => {
-                //   if (_cateItem.cate_alias === cateAlias) {
-                //     setCate(_cateItem);
-                //   }
-                // });
                 if (articleReducer.data.lstPromote.length > 0)
                     setPromoteArticle(articleReducer.data.lstPromote[0]);
                 setLastPage(articleReducer.data.lstArticle.last_page);
@@ -115,11 +110,11 @@ function News({ listSite }) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
 
-    return { props: { listSite }, revalidate: Constants.REVALIDATE };
+    return { props: { listSite } };
 }
 
 export default News;

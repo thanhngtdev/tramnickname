@@ -115,6 +115,10 @@ function ContactMap(props) {
                             );
                     })}
                 </div>
+                <div style={{ textAlign: 'right', marginTop: 10 }}>
+                    For media inquiries please contact Calacus PR on 0207 998
+                    1911 or info@calacus.com
+                </div>
             </div>
         );
     }

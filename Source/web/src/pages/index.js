@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Constants from 'src/common/Constants';
 import ModelManager from 'src/common/ModelManager';
 import BookTrial from 'src/components/Booking/BookTrial';
 import BannerTop from 'src/components/HomePage/BannerTop';

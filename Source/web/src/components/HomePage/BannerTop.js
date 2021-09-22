@@ -1,11 +1,9 @@
-import Button from 'src/components/Button';
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
+import Button from 'src/components/Button';
 import getLocalStorage from 'src/hooks/useGetLocalStorage';
-import { headerActionType } from 'src/redux/actions/actionTypes';
 
 function BannerTop(props) {
     const dispatch = useDispatch();
