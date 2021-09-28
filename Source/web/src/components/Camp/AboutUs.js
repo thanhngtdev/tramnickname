@@ -108,7 +108,9 @@ export default function AboutUs(props) {
             if (props?.holidayCamp) {
                 setTitle(
                     `${
-                        props.data.cfg_title.replace('In', '') +
+                        props.data.cfg_title
+                            .replace('In', '')
+                            .replace('$AcademyName', '') +
                         ' ' +
                         ' With We Make Footballers'
                     }`,
@@ -123,7 +125,12 @@ export default function AboutUs(props) {
                 );
             }
         } else {
-            setTitle(`${props.data.cfg_title + ' In ' + props.site.ms_name}`);
+            setTitle(
+                `${props.data.cfg_title.replace(
+                    '$AcademyName',
+                    props.site.ms_name,
+                )}`,
+            );
 
             setDes(
                 `${props.data.cfg_des.replace(
