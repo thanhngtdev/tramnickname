@@ -58,7 +58,6 @@ export async function getServerSideProps() {
                 data: values[0].data.data,
                 listSite: values[1].data.data.lstSite,
             },
-            // revalidate: Constants.REVALIDATE,
         };
     });
 }

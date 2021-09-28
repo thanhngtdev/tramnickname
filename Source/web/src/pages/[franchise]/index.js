@@ -17,7 +17,6 @@ import TrainingService from '../../components/FranchiseComponents/components/Tra
 import Contact from '../../components/FranchiseComponents/components/Contact';
 
 function Franchise({ data, listSite }) {
-    console.log(data.site, 'site');
     saveList(listSite);
     useEffect(() => {
         if (isEmpty(data)) {

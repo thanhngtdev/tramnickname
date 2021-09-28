@@ -246,7 +246,7 @@ function* checkEmail({ data }) {
 }
 
 function* addWaiting({ course_id, child_id, message }) {
-    const response = yield API.getParentAPI(APIConfig.ADD_WAITING, {
+    const response = yield API.postParentAPI(APIConfig.ADD_WAITING, {
         course_id,
         child_id,
         message,

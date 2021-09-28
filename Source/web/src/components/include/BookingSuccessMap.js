@@ -37,32 +37,38 @@ function BookingSuccessMap(props) {
         }
     }, [siteReducer]);
 
+    // console.log(props, 'props');
+
+    // useEffect(() => {
+    //     console.log(bookingInfo, 'bookinginfor');
+    // }, [bookingInfo]);
+
     return (
-        <GoogleMap defaultZoom={12} center={defaultCenter}>
-            <div className="contact-map" style={{ top: 0, bottom: 0 }}>
+        <GoogleMap defaultZoom={8} center={defaultCenter}>
+            <div className="contact-map" style={{ top: 55, bottom: 0 }}>
                 <div
                     className="text-content"
                     style={{
                         textAlign: 'left',
                         maxWidth: 450,
-                        height: '100%',
+                        height: '85%',
                     }}>
-                    <h4 style={{ marginBottom: 0 }}>Payment made </h4>
+                    <h4 style={{ marginBottom: 0 }}>Payment made:</h4>
                     <p style={{ marginTop: 0 }}>
-                        £
                         {bookingInfo?.total_price
-                            ? bookingInfo.total_price
-                            : '0'}
+                            ? '£' + bookingInfo.total_price
+                            : '1 x Free Session'}
                     </p>
                     <h4 style={{ marginBottom: 0 }}>Reference number:</h4>
                     <p style={{ marginTop: 0 }}>{bookingInfo?.booking_id}</p>
                     <h4 style={{ marginBottom: 0 }}>Time:</h4>
                     <p style={{ marginTop: 0 }}>
+                        {props.data.start_date + ' at '}
                         {timeStart && timeEnd
                             ? timeStart.slice(0, 5) + '-' + timeEnd.slice(0, 5)
                             : ''}
                     </p>
-                    <h4 style={{ marginBottom: 0 }}>Address</h4>
+                    <h4 style={{ marginBottom: 0 }}>Address:</h4>
                     <p style={{ marginTop: 0 }}>
                         {props?.siteSelected?.ms_address
                             ? props.siteSelected.ms_address

@@ -81,7 +81,7 @@ function RelateAreas(props) {
                                 )}
                             </div>
                         </div>
-                        <a href={PathRoute.HomeNews}>
+                        <a href={'/' + props.site.ms_alias + '/news'}>
                             See all {props.site ? props.site.ms_name : ''} news
                         </a>
                     </div>

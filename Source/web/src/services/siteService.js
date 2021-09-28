@@ -39,7 +39,7 @@ class SiteService {
         );
     }
 
-    getListNews({ cate, page, alias }) {
+    getListNews({ cate = '', page, alias = '' }) {
         return httpMethod.get(
             `${APIConfig.GET_LIST_NEWS}${Utils.convertToQuery({
                 cate: cate,

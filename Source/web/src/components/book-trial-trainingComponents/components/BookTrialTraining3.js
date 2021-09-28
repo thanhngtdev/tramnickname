@@ -309,6 +309,7 @@ function BookTrialTraining3(props) {
                                 marginTop: 100,
                             }}>
                             <BookingSuccessMap
+                                data={props.data}
                                 siteSelected={props.data.siteSelected}
                                 courseSelected={props.data.courseSelected}
                                 responseCourse={props.responseCourse}

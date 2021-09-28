@@ -23,54 +23,56 @@ export default function ArticleMenu(props) {
         setCurrentAcademy(ModelManager.getLocation() || {});
     }, []);
 
-    useEffect(() => {
-        if (articleReducer.type) {
-            if (
-                articleReducer.type === type.GET_LIST_NEWS_SUCCESS ||
-                articleReducer.type === type.DETAIL_ARTICLE_SUCCESS
-            ) {
-                setLstCate(articleReducer.data.lstCate);
-            }
-        }
-    }, [articleReducer]);
-    // console.log(!props.currentCate.cate_id, 'current');
+    // useEffect(() => {
+    //     if (articleReducer.type) {
+    //         if (
+    //             articleReducer.type === type.GET_LIST_NEWS_SUCCESS ||
+    //             articleReducer.type === type.DETAIL_ARTICLE_SUCCESS
+    //         ) {
+    //             setLstCate(articleReducer.data.lstCate);
+    //         }
+    //     }
+    // }, [articleReducer]);
 
     return (
         <div className="article-menu">
             <div className="container">
                 <ul>
-                    <li className={!props.currentCate?.cate_id ? 'active' : ''}>
+                    <li
+                        className={
+                            !props.currentCate && !props.isFranchise
+                                ? 'active'
+                                : ''
+                        }>
                         <Link
                             onClick={() => {
                                 if (props.setCate) props.setCate({});
                             }}
-                            // style={{ color: 'black' }}
                             href="/news"
                             passHref>
                             <a>Latest Articles</a>
                         </Link>
                     </li>
+
                     {lstCate.map((item) => (
                         <li
                             className={
-                                props.currentCate?.cate_id === item.cate_id
+                                props.currentCate === item.cate_id
                                     ? 'active'
                                     : ''
                             }
                             key={item.cate_id}>
-                            <Link
-                                onClick={() => {
-                                    if (props.setCate) props.setCate(item);
-                                    passHref;
-                                }}
-                                // style={{ color: 'black' }}
-                                href={'/news/' + item.cate_alias}>
+                            <a href={'/news/' + item.cate_alias}>
+                                {item.cate_value}
+                            </a>
+                            {/* <Link passHref href={'/news/' + item.cate_alias} scroll>
                                 <a>{item.cate_value}</a>
-                            </Link>
+                            </Link> */}
                         </li>
                     ))}
+
                     {!isEmpty(currentAcademy) && (
-                        <li>
+                        <li className={props?.isFranchise ? 'active' : ''}>
                             <Link
                                 onClick={() => {
                                     if (props.setCate)
@@ -86,6 +88,7 @@ export default function ArticleMenu(props) {
                         </li>
                     )}
                 </ul>
+
                 <div className="search">
                     <FontAwesomeIcon
                         style={{ color: '#EF8336' }}
