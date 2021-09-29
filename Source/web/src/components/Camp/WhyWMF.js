@@ -16,13 +16,19 @@ export default function WhyWMF(props) {
     const [defaultAcademy, setDefaultAcademy] = useState({});
     const isFirstRun = useRef(true);
     const [cost, setCost] = useState({});
+    const [trustPilot, setTrustPilot] = useState({});
 
     useEffect(() => {
         // console.log(checkPound(props.data.cfg_value), 'check');
+        getTrustPilot();
         if (checkPound(props.data.cfg_value)) {
+            if (props?.site) {
+                setDefaultAcademy(props.site);
+                return;
+            }
             setDefaultAcademy(ModelManager.getLocation());
         } else {
-            setData(props.data.cfg_value);
+            setData(props.intro);
         }
     }, []);
 
@@ -37,28 +43,48 @@ export default function WhyWMF(props) {
 
     useEffect(() => {
         if (isEmpty(cost)) return;
+        if (isEmpty(trustPilot)) return;
 
         const { weeklyCost, minWeeklyCost } = cost;
 
         const converted = props.data.cfg_value.map((item) => {
-            if (
-                item.des.includes('of &pound;XXX') ||
-                item.des.includes('of £XXX')
-            ) {
-                const newContent = Utils.convertCost(
+            // if (
+            //     item.des.includes('of &pound;XXX') ||
+            //     item.des.includes('of £XXX')
+            // ) {
+            //     const newContent = Utils.convertCost(
+            //         weeklyCost,
+            //         listSite.length,
+            //         item.des,
+            //         minWeeklyCost,
+            //     );
+
+            //     return { ...item, des: newContent };
+            // }
+            // return item;
+
+            let newContent = item.des;
+            if (newContent.includes('from $WeeklyCost')) {
+                newContent = Utils.convertCost(
                     weeklyCost,
                     listSite.length,
                     item.des,
                     minWeeklyCost,
                 );
-
-                return { ...item, des: newContent };
             }
-            return item;
+
+            newContent = Utils.convertTrustPilot(
+                trustPilot.rating,
+                trustPilot.maxRate,
+                trustPilot.review,
+                newContent,
+            );
+
+            return { ...item, des: newContent };
         });
 
         setData(converted);
-    }, [cost]);
+    }, [cost, trustPilot]);
 
     //! Functions
     const checkCost = async () => {
@@ -81,17 +107,30 @@ export default function WhyWMF(props) {
         }
     };
 
+    const getTrustPilot = async () => {
+        try {
+            const req = await siteService.getTrustPilot();
+            if (req.data.status === 200) {
+                const data = req.data.data;
+                // console.log(data, 'rep');
+                setTrustPilot({
+                    rating: data[0].value,
+                    maxRate: data[1].value,
+                    review: data[2].value,
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const checkPound = (intro) => {
-        // console.log(intro.length, 'intro');
+        console.log(intro, 'intro');
         for (let i = 0; i < intro.length; i++) {
-            if (
-                intro[i].des.includes('of &pound;XXX') ||
-                intro[i].des.includes('of £XXX')
-            ) {
+            if (intro[i].des.includes('from $WeeklyCost')) {
                 return true;
             }
         }
-
         return false;
     };
 

@@ -63,6 +63,7 @@ function Intro(props) {
             newContent = Utils.convertTrustPilot(
                 trustPilot.rating,
                 trustPilot.maxRate,
+                trustPilot.review,
                 newContent,
             );
 
@@ -97,13 +98,15 @@ function Intro(props) {
         try {
             const req = await siteService.getTrustPilot();
 
-            console.log(req, 'trust');
+            // console.log(req, 'trust');
 
             if (req.data.status === 200) {
                 const data = req.data.data;
+                // console.log(data, 'rep');
                 setTrustPilot({
                     rating: data[0].value,
                     maxRate: data[1].value,
+                    review: data[2].value,
                 });
             }
         } catch (error) {
