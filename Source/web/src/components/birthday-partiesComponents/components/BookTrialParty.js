@@ -63,6 +63,8 @@ function Step2(props) {
         if (response.length === 0) {
             checkInput = false;
             setCaptcha('Check captcha.');
+        } else {
+            setCaptcha('');
         }
 
         return checkInput;
@@ -179,9 +181,9 @@ const BookTrialParty = React.forwardRef((props, ref) => {
     const history = useRouter();
     const [showSelect, setShowSelect] = useState(false);
     // const [listSite, setlistSite] = useState(siteReducer.listSite);
-    const [location, setLocation] = useState(props?.site?.ms_name || '');
+    const [location, setLocation] = useState(props?.site?.ms_email || '');
 
-    const [locationId, setLocationId] = useState('');
+    const [locationId, setLocationId] = useState(props?.site?.ms_email || '');
     const [phone, setPhone] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -203,6 +205,10 @@ const BookTrialParty = React.forwardRef((props, ref) => {
             setShowSelect(!showSelect);
         }
     }, [isComponentVisible]);
+
+    useEffect(() => {
+        console.log(locationId, 'location');
+    }, [locationId]);
 
     useEffect(() => {
         if (siteReducer.type) {

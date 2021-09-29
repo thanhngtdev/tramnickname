@@ -27,7 +27,7 @@ function BookTrialSchool(props) {
 
     const [showSelect, setShowSelect] = useState(false);
     const [location, setLocation] = useState('');
-    const [locationId, setLocationId] = useState(0);
+    const [locationId, setLocationId] = useState('');
     const [email, setEmail] = useState('');
     const [locationError, setLocationError] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -45,7 +45,7 @@ function BookTrialSchool(props) {
             localStorage.getItem('defaultAcademy'),
         );
         setLocation(defaultAcademy ? defaultAcademy.ms_name : '');
-        setLocationId(defaultAcademy ? defaultAcademy.ms_id : 0);
+        setLocationId(defaultAcademy ? defaultAcademy.ms_email : '');
 
         document.addEventListener('click', handleClick);
         return () => {

@@ -148,8 +148,8 @@ export default function BookTrialHoliday(props) {
     const history = useRouter();
     const defaultAcademy = getLocalStorage();
     const [showSelect, setShowSelect] = useState(false);
-    const [location, setLocation] = useState(props.site?.ms_name || '');
-    const [locationId, setLocationId] = useState(0);
+    const [location, setLocation] = useState(props?.site?.ms_name || '');
+    const [locationId, setLocationId] = useState(props?.site?.ms_email || '');
     const [phone, setPhone] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -168,6 +168,10 @@ export default function BookTrialHoliday(props) {
             setShowSelect(!showSelect);
         }
     }, [isComponentVisible]);
+
+    useEffect(() => {
+        console.log(locationId, 'location');
+    }, [locationId]);
 
     useEffect(() => {
         if (siteReducer.type) {

@@ -29,7 +29,7 @@ function BookTrialOne(props) {
 
     const [showSelect, setShowSelect] = useState(false);
     const [location, setLocation] = useState(props.site?.ms_name || '');
-    const [locationId, setLocationId] = useState(props.site?.ms_id || 0);
+    const [locationId, setLocationId] = useState(props?.site?.ms_email || '');
     const [email, setEmail] = useState('');
     const [locationError, setLocationError] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -45,6 +45,10 @@ function BookTrialOne(props) {
 
     //! useEffect
     useComponentVisible(ref, setShowSelect);
+
+    useEffect(() => {
+        console.log(locationId, 'location');
+    }, [locationId]);
 
     useEffect(() => {
         if (siteReducer.type) {
@@ -97,6 +101,8 @@ function BookTrialOne(props) {
         if (response.length === 0) {
             checkInput = false;
             setCaptcha('Check captcha.');
+        } else {
+            setCaptcha('');
         }
 
         return checkInput;
