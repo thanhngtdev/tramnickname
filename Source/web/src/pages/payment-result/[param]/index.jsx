@@ -3,6 +3,8 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import EmailIcon from 'src/components/Booking/EmailIcon';
+import EachTab from 'src/components/EachTab';
+import HolidayCampTabSpace from 'src/components/include/HolidayCampTabSpace';
 import saveList from 'src/hooks/useSaveList';
 import DefaultLayout from 'src/layout/DefaultLayout';
 import { siteActionType } from 'src/redux/actions/actionTypes';
@@ -69,6 +71,36 @@ const PaymentResult = (props) => {
         <DefaultLayout>
             <div className="holiday-camp">
                 <div className="container">
+                    <div className="tab-view">
+                        <EachTab
+                            active={false}
+                            filled={-1 > 1}
+                            labelBtn="1"
+                            onClick={
+                                () => {}
+                                // onClickTab(1)
+                            }
+                        />
+
+                        <HolidayCampTabSpace />
+                        <EachTab
+                            active={false}
+                            filled={-1 > 2}
+                            labelBtn="2"
+                            onClick={
+                                () => {}
+                                // onClickTab(2)
+                            }
+                        />
+
+                        <HolidayCampTabSpace />
+                        <EachTab
+                            active={true}
+                            filled={false}
+                            labelBtn="3"
+                            onClick={() => {}}
+                        />
+                    </div>
                     <div className="tab-content">
                         <div className="tab-3">
                             <div style={{ marginBottom: '4rem' }}>
@@ -123,11 +155,8 @@ const PaymentResult = (props) => {
                                         </h3>
                                         <p>
                                             Please click the link in this email
-                                            to activate your
-                                        </p>
-                                        <p>
-                                            Parent Area account so you can
-                                            modify your booking.
+                                            to activate your Parent Area account
+                                            so you can modify your booking.
                                         </p>
                                     </div>
                                 </div>

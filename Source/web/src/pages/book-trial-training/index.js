@@ -53,6 +53,10 @@ function BookTrialTraining({ listSite }) {
         setCurrentLng(localStorage.getItem('longitude'));
     }, []);
 
+    const saveToLocal = (data) => {
+        window.localStorage.setItem('dataPayment', JSON.stringify(data));
+    };
+
     useEffect(() => {
         if (siteReducer.type) {
             if (
@@ -63,7 +67,7 @@ function BookTrialTraining({ listSite }) {
                     (a, b) => a.distance - b.distance,
                 );
 
-                console.log(lstSiteNearest, 'data');
+                // console.log(lstSiteNearest, 'data');
                 setShowNearby(true);
                 setListNearby(lstSiteNearest);
 
@@ -99,13 +103,10 @@ function BookTrialTraining({ listSite }) {
                     let _data = data.data;
 
                     if (_data.payment_url)
-                        window.localStorage.setItem(
-                            'dataPayment',
-                            JSON.stringify({
-                                data: { ...dataStep1, ...dataStep2 },
-                                token: _data.access_token,
-                            }),
-                        );
+                        saveToLocal({
+                            data: { ...dataStep1, ...dataStep2 },
+                            token: _data.access_token,
+                        });
 
                     setResponseCourse({
                         paymentUrl: _data.payment_url,
@@ -146,12 +147,19 @@ function BookTrialTraining({ listSite }) {
                 }
             }
             if (siteReducer.type === siteActionType.BOOK_COURSE_SUCCESS) {
+                // console.log(siteReducer.data, 'data');
+                // return;
                 if (siteReducer?.data?.data?.payment_url)
-                    setResponseCourse({
-                        paymentUrl: siteReducer.data.data.payment_url,
-                        bookingId: siteReducer.data.data.booking_id,
+                    saveToLocal({
+                        data: { ...dataStep1, ...dataStep2 },
                         token: token,
                     });
+
+                setResponseCourse({
+                    paymentUrl: siteReducer.data.data.payment_url,
+                    bookingId: siteReducer.data.data.booking_id,
+                    token: token,
+                });
                 setPaymentUrl(siteReducer.data.data.payment_url);
                 setActiveTab(4);
             }

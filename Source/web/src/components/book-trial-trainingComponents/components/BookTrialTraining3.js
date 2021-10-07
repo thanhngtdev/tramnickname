@@ -355,67 +355,57 @@ function BookTrialTraining3(props) {
                         )}
                     </div>
 
+                    <>
+                        <div className="container">
+                            <div className="success-booking">
+                                <EmailIcon style={{ margin: '3rem' }} />
+                                <div
+                                    style={{
+                                        flex: 1,
+                                        textAlign: 'left',
+                                    }}>
+                                    <h3>We have emailed you all the details</h3>
+                                    <p>
+                                        Please click the link in this email to
+                                        activate your Parent Area account so you
+                                        can modify your booking.
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <p>Can&apos;t see the email? </p>
+                                <p>Check your spam folder or Resend email.</p>
+                                <p>
+                                    Your information is safe and secure with We
+                                    Make Footballers.
+                                </p>
+                            </div>
+                        </div>
+                    </>
                     {!props.addToWaiting && (
-                        <>
-                            <div className="container">
-                                <div className="success-booking">
-                                    <EmailIcon style={{ margin: '3rem' }} />
-                                    <div
-                                        style={{
-                                            flex: 1,
-                                            textAlign: 'left',
-                                        }}>
-                                        <h3>
-                                            We have emailed you all the details
-                                        </h3>
-                                        <p>
-                                            Please click the link in this email
-                                            to activate your
-                                        </p>
-                                        <p>
-                                            Parent Area account so you can
-                                            modify your booking.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <p>Can&apos;t see the email? </p>
-                                    <p>
-                                        Check your spam folder or Resend email.
-                                    </p>
-                                    <p>
-                                        Your information is safe and secure with
-                                        We Make Footballers.
-                                    </p>
-                                </div>
-                            </div>
-                            <div
-                                style={{
-                                    height: 500,
-                                    position: 'relative',
-                                    marginTop: 100,
-                                }}>
-                                <BookingSuccessMap
-                                    data={props.data}
-                                    siteSelected={props.data.siteSelected}
-                                    courseSelected={props.data.courseSelected}
-                                    responseCourse={props.responseCourse}
-                                    googleMapURL={Constants.GOOGLE_MAP_URL}
-                                    loadingElement={
-                                        <div style={{ height: `100%` }} />
-                                    }
-                                    containerElement={
-                                        <div style={{ height: `100%` }} />
-                                    }
-                                    mapElement={
-                                        <div style={{ height: `100%` }} />
-                                    }
-                                />
-                            </div>
-                        </>
+                        <div
+                            style={{
+                                height: 500,
+                                position: 'relative',
+                                marginTop: 100,
+                            }}>
+                            <BookingSuccessMap
+                                data={props.data}
+                                siteSelected={props.data.siteSelected}
+                                courseSelected={props.data.courseSelected}
+                                responseCourse={props.responseCourse}
+                                googleMapURL={Constants.GOOGLE_MAP_URL}
+                                loadingElement={
+                                    <div style={{ height: `100%` }} />
+                                }
+                                containerElement={
+                                    <div style={{ height: `100%` }} />
+                                }
+                                mapElement={<div style={{ height: `100%` }} />}
+                            />
+                        </div>
                     )}
                 </>
-                )
             </div>
         );
     }
