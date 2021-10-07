@@ -284,7 +284,9 @@ function BookTrialTraining({ listSite }) {
                                 success={bookSuccess}
                                 message={bookMessage}
                                 data={{ ...dataStep1, ...dataStep2 }}
-                                goBack={() => setActiveTab(1)}
+                                goBack={() => {
+                                    window.location.href = `${'/book-trial-training'}`;
+                                }}
                                 responseCourse={responseCourse}
                                 bookingFull={bookingFull}
                                 findAcademy={() => {
