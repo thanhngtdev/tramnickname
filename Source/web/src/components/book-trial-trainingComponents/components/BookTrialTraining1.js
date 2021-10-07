@@ -1,8 +1,3 @@
-import { CommonStyle } from 'src/common/Styles';
-import Timer from 'src/common/Timer';
-import Utils from 'src/common/Utils';
-import BorderButton from 'src/components/include/BorderButton';
-import Radiobox from 'src/components/include/Radiobox/Radiobox';
 import 'flatpickr/dist/themes/material_orange.css';
 import _, { isEmpty } from 'lodash';
 import moment from 'moment';
@@ -15,10 +10,14 @@ import flags from 'react-phone-number-input/flags';
 // import "react-phone-number-input/style.css";
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
+import { CommonStyle } from 'src/common/Styles';
+import Timer from 'src/common/Timer';
+import Utils from 'src/common/Utils';
+import BorderButton from 'src/components/include/BorderButton';
+import Radiobox from 'src/components/include/Radiobox/Radiobox';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import { courseStartDate } from 'src/redux/actions/bookTrialTrainingAction';
 import { checkEmail, getListCourse } from 'src/redux/actions/siteAction';
-import siteService from 'src/services/siteService';
 
 BookTrialTraining1.propTypes = {
     onNext: PropTypes.func,
@@ -26,7 +25,7 @@ BookTrialTraining1.propTypes = {
 
 const FREE_MESSAGE = 'Book your child’s free training session within 3 minutes';
 const TRIAL_MESSAGE = 'Try a no obligation, one off trial session';
-let timer = new Timer();
+
 function BookTrialTraining1(props) {
     const siteReducer = useSelector((state) => state.siteReducer);
     const { emailData } = siteReducer;
@@ -353,7 +352,7 @@ function BookTrialTraining1(props) {
                                 Academy
                             </b>
                         </div>
-                        <div>
+                        <div className="wSelect2">
                             {courseSatisfied.map((item, index) => (
                                 <div
                                     key={index}
@@ -367,6 +366,13 @@ function BookTrialTraining1(props) {
                                     }}>
                                     <Radiobox
                                         onChange={() => {
+                                            if (
+                                                item.course_id ===
+                                                courseSelected.course_id
+                                            ) {
+                                                return;
+                                            }
+
                                             dispatch(
                                                 courseStartDate({
                                                     course_id: item.course_id,
@@ -406,7 +412,7 @@ function BookTrialTraining1(props) {
                                             marginRight: '1rem',
                                         }}>
                                         Total: &nbsp; £
-                                        {courseSelected.course_price}
+                                        {courseSelected.course_price || 0}
                                     </p>
                                 </>
                             )}
@@ -421,10 +427,12 @@ function BookTrialTraining1(props) {
                                 options={lstStartDate}
                                 isSearchable={false}
                                 isMulti={false}
-                                getOptionLabel={(option) =>
-                                    option.date_show +
-                                    ' ' +
-                                    new Date().getFullYear()
+                                getOptionLabel={
+                                    (option) =>
+                                        option?.date_show +
+                                        ' ' +
+                                        moment(option?.date).format('YYYY')
+                                    // new Date().getFullYear()
                                 }
                                 getOptionValue={(option) => option.date}
                                 styles={CommonStyle.select2}

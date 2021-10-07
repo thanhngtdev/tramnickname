@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import { searchFAQ } from 'src/redux/actions/faqAction';
+import { isEmpty } from 'lodash';
 
-export default function QNASearch() {
-    const dispatch = useDispatch();
+export default function QNASearch({ setSearch }) {
     const [input, setInput] = useState('');
 
     return (
@@ -28,9 +28,10 @@ export default function QNASearch() {
                     <button
                         type="button"
                         onClick={() => {
-                            if (input) {
-                                let param = { scope: 'faq', query: input };
-                                dispatch(searchFAQ({ param }));
+                            if (!isEmpty(input)) {
+                                // let param = { scope: 'faq', query: input };
+                                // dispatch(searchFAQ({ param }));
+                                setSearch(input);
                             }
                         }}>
                         Find

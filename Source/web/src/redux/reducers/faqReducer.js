@@ -9,6 +9,7 @@ const initialState = {
 };
 
 const FaqReducer = (state = initialState, action) => {
+    console.log(action, 'action');
     switch (action.type) {
         case types.GET_LIST_FAQ_SUCCESS:
             return {

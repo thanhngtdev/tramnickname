@@ -245,11 +245,12 @@ function* checkEmail({ data }) {
     }
 }
 
-function* addWaiting({ course_id, child_id, message }) {
+function* addWaiting({ course_id, child_id, message, token }) {
     const response = yield API.postParentAPI(APIConfig.ADD_WAITING, {
         course_id,
         child_id,
         message,
+        token,
     });
     // console.log(response);
     if (response && response.status === 200) {

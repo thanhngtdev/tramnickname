@@ -1,5 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { isEmpty } from 'lodash';
+import { useDispatch } from 'react-redux';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import { STORAGE_URL } from 'src/requests/ApiConfig';
 import siteService from 'src/services/siteService';
@@ -132,12 +133,15 @@ class Utils {
     getCurrentAcademy(dispatch, number) {
         let options = {
             enableHighAccuracy: true,
-            timeout: 5000,
+            timeout: 0,
             maximumAge: 0,
         };
+
+        const dispatchTest = useDispatch();
+
         const success = (pos) => {
             let crd = pos.coords;
-            dispatch({
+            dispatchTest({
                 type: siteActionType.GET_CURRENT_ACADEMY,
                 lat: crd.latitude,
                 long: crd.longitude,
@@ -145,12 +149,13 @@ class Utils {
             });
         };
         function error(err) {
-            // console.log('get location error');
-            dispatch({
-                type: siteActionType.GET_CURRENT_ACADEMY_FAILED,
-                number: number,
-            });
+            alert('get location error', err);
+            // dispatch({
+            //     type: siteActionType.GET_CURRENT_ACADEMY_FAILED,
+            //     number: number,
+            // });
         }
+
         navigator.geolocation.getCurrentPosition(success, error, options);
     }
 
@@ -179,16 +184,6 @@ class Utils {
 
         return '';
     }
-
-    // convertPrice(data) {
-    //     const { content, weeklyCost, minWeeklyCost, locations } = data;
-
-    //     const venues = locations + ' venues';
-    //     const poundType = content.includes('of &pound;XXX')
-    //         ? 'of &pound;XXX'
-    //         : 'of £XXX';
-
-    // }
 
     convertCost(weeklyCost = '', locations, content, minCost = '') {
         let replaceContent = weeklyCost?.one
@@ -243,6 +238,16 @@ class Utils {
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         var d = R * c; // Distance in km
         return d;
+    }
+
+    // convertToKm(meters) {
+    //     if (meters) {
+    //         return parseInt(parseInt(meters, 10) * 0.001);
+    //     }
+    //     return '';
+    // }
+    getAge(birth) {
+        return ~~((Date.now() - birth) / 31557600000);
     }
 
     async getDetailMicrosite(nameFranchise, cate, slug) {

@@ -37,4 +37,6 @@ export const APIConfig = {
     EVENT_DATE: 'list-event-dates',
     CHECK_MAIL_AVAILABLE: 'email-check',
     TRUST_PILOT: 'configuration',
+    URL_SEARCH: 'search',
+    GET_STATUS_PAYMENT: 'booking/paypal-confirm/',
 };

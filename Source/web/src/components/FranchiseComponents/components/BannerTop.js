@@ -81,15 +81,10 @@ function BannerTop(props) {
                                 : 'Try a free session'
                         }`}
                         onClick={(evt) => {
-                            localStorage.setItem(
-                                'defaultAcademy',
-                                JSON.stringify(props.site),
-                            );
                             dispatch({
-                                type: siteActionType.PICK_DEFAULT_ACADEMY,
+                                type: siteActionType.SELECT_ACADEMY,
+                                data: props.site,
                             });
-                            // evt.preventDefault();
-                            //
                             history.push(PathRoute.BookTrialTraining);
                         }}
                     />

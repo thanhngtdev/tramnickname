@@ -33,7 +33,6 @@ function BookTrial(props) {
     );
     const [date, setDate] = useState({});
     const [email, setEmail] = useState('');
-
     const [locationError, setLocationError] = useState('');
     const [emailError, setEmailError] = useState('');
     const [dateError, setDateError] = useState('');

@@ -1,32 +1,23 @@
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CommonStyle } from 'src/common/Styles';
-import Utils from 'src/common/Utils';
-import EachTab from 'src/components/EachTab';
-import BorderButton from 'src/components/include/BorderButton';
-import HolidayCampTabSpace from 'src/components/include/HolidayCampTabSpace';
-import Radiobox from 'src/components/include/Radiobox/Radiobox';
-import DefaultLayout from 'src/layout/DefaultLayout';
-// import "css/book-trial.css";
-import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Select from 'react-select';
-import type, { siteActionType } from 'src/redux/actions/actionTypes';
-import {
-    bookCourse,
-    bookCourseSignUp,
-    courseStartDate,
-} from 'src/redux/actions/bookTrialTrainingAction';
-import { findNearByAcademy, getListCourse } from 'src/redux/actions/siteAction';
-import swal from 'sweetalert';
+import Constants from 'src/common/Constants';
+import Utils from 'src/common/Utils';
 import BookTrialTraining1 from 'src/components/book-trial-trainingComponents/components/BookTrialTraining1';
 import BookTrialTraining2 from 'src/components/book-trial-trainingComponents/components/BookTrialTraining2';
 import BookTrialTraining3 from 'src/components/book-trial-trainingComponents/components/BookTrialTraining3';
 import BookTrialTraining4 from 'src/components/book-trial-trainingComponents/components/BookTrialTraining4';
-import siteService from 'src/services/siteService';
+import EachTab from 'src/components/EachTab';
+import HolidayCampTabSpace from 'src/components/include/HolidayCampTabSpace';
 import saveList from 'src/hooks/useSaveList';
-import Constants from 'src/common/Constants';
+import DefaultLayout from 'src/layout/DefaultLayout';
+import { siteActionType } from 'src/redux/actions/actionTypes';
+import {
+    bookCourse,
+    bookCourseSignUp,
+} from 'src/redux/actions/bookTrialTrainingAction';
+import { findNearByAcademy, getListCourse } from 'src/redux/actions/siteAction';
+import siteService from 'src/services/siteService';
+import swal from 'sweetalert';
 
 function BookTrialTraining({ listSite }) {
     // console.log(listSite, 'list');
@@ -43,28 +34,23 @@ function BookTrialTraining({ listSite }) {
     const [bookMessage, setBookMessage] = useState('');
     const [lstSite, setLstSite] = useState(listSite);
     const [siteSelected, setSiteSelected] = useState({});
-    const [siteError, setSiteError] = useState('');
     const [lstCourse, setLstCourse] = useState([]);
-    const [courseSelected, setCourseSelected] = useState({});
     const [lstStartDate, setLstStartDate] = useState([]);
-    const [startDate, setStartDate] = useState('');
-    const [trialDateError, setTrialDateError] = useState('');
     const [responseCourse, setResponseCourse] = useState({});
     const [bookingFull, setBookingFull] = useState({});
     const [token, setToken] = useState('');
-    //   const currentLat = localStorage.getItem("latitude");
-    //   const currentLng = localStorage.getItem("longitude");
+    const [showNearby, setShowNearby] = useState(false);
+    const [listNearby, setListNearby] = useState([]);
+
     const [currentLat, setCurrentLat] = useState('');
     const [currentLng, setCurrentLng] = useState('');
     const [paymentUrl, setPaymentUrl] = useState('');
-    const [showBookOther, setShowBookOther] = useState(false);
+    const [addToWaiting, setAddToWaiting] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
         setCurrentLat(localStorage.getItem('latitude'));
         setCurrentLng(localStorage.getItem('longitude'));
-
-        // dispatch({ type: type.GET_LIST_SITE });
     }, []);
 
     useEffect(() => {
@@ -72,19 +58,24 @@ function BookTrialTraining({ listSite }) {
             if (
                 siteReducer.type === siteActionType.FIND_NEARBY_ACADEMY_SUCCESS
             ) {
-                setLstSite(siteReducer.data);
+                // setLstSite(siteReducer.data);
                 const lstSiteNearest = [...siteReducer.data].sort(
                     (a, b) => a.distance - b.distance,
                 );
-                setSiteSelected(lstSiteNearest[0]);
-                setLstSite(lstSiteNearest);
-                dispatch(
-                    getListCourse({
-                        company_id: lstSiteNearest[0].pa_companyId,
-                        location_id: lstSiteNearest[0].pa_companyId,
-                        course_type: 'course',
-                    }),
-                );
+
+                console.log(lstSiteNearest, 'data');
+                setShowNearby(true);
+                setListNearby(lstSiteNearest);
+
+                // setSiteSelected(lstSiteNearest[0]);
+                // setLstSite(lstSiteNearest);
+                // dispatch(
+                //     getListCourse({
+                //         company_id: lstSiteNearest[0].pa_companyId,
+                //         location_id: lstSiteNearest[0].pa_companyId,
+                //         course_type: 'course',
+                //     }),
+                // );
             }
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
                 setLstCourse(siteReducer.data);
@@ -92,18 +83,36 @@ function BookTrialTraining({ listSite }) {
             if (siteReducer.type === siteActionType.COURSE_START_DATE_SUCCESS) {
                 setLstStartDate(siteReducer.data);
             }
+
+            if (siteReducer.type === siteActionType.ADD_WAITING_SUCCESS) {
+                setBookSuccess(1);
+                setActiveTab(3);
+                setAddToWaiting(true);
+            }
+
             if (
                 siteReducer.type === siteActionType.BOOK_COURSE_SIGNUP_SUCCESS
             ) {
                 let { data } = siteReducer;
+
                 if (data.status === 200) {
                     let _data = data.data;
-                    if (_data.Payment_URL)
-                        setResponseCourse({
-                            paymentUrl: _data.payment_url,
-                            bookingId: _data.Booking_id,
-                            token: _data.access_token,
-                        });
+
+                    if (_data.payment_url)
+                        window.localStorage.setItem(
+                            'dataPayment',
+                            JSON.stringify({
+                                data: { ...dataStep1, ...dataStep2 },
+                                token: _data.access_token,
+                            }),
+                        );
+
+                    setResponseCourse({
+                        paymentUrl: _data.payment_url,
+                        bookingId: _data.Booking_id,
+                        token: _data.access_token,
+                    });
+
                     if (dataStep1?.siteSelected?.ms_trial === 0) {
                         setBookSuccess(1);
                         setActiveTab(3);
@@ -114,12 +123,7 @@ function BookTrialTraining({ listSite }) {
                     }
                 } else if (data.status === 709) {
                     //booking class full
-                    if (data.data.other_class.course_id) {
-                        setShowBookOther(true);
-                    }
-                    if (!data.data.other_class.course_id) {
-                        setShowBookOther(false);
-                    }
+
                     setBookSuccess(3);
                     setActiveTab(3);
                     setBookingFull(data.data);
@@ -200,18 +204,6 @@ function BookTrialTraining({ listSite }) {
                 break;
         }
     };
-    function validateData() {
-        let _validate = true;
-        if (Utils.isEmpty(siteSelected)) {
-            _validate = false;
-            setSiteError('Please select a academy');
-        } else setSiteError('');
-        if (startDate === '') {
-            _validate = false;
-            setTrialDateError('Please choose trial date');
-        } else setTrialDateError('');
-        return _validate;
-    }
 
     //! Render
     return (
@@ -277,7 +269,10 @@ function BookTrialTraining({ listSite }) {
                         )}
                         {activeTab === 3 && (
                             <BookTrialTraining3
-                                showBookOther={showBookOther}
+                                addToWaiting={addToWaiting}
+                                showNearby={showNearby}
+                                setShowNearby={setShowNearby}
+                                listNearby={listNearby}
                                 success={bookSuccess}
                                 message={bookMessage}
                                 data={{ ...dataStep1, ...dataStep2 }}

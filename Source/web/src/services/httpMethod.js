@@ -9,6 +9,7 @@ class HttpMethod {
     }
 
     get(...arg) {
+        console.log(...arg, this.axios, 'arg');
         return this.axios.get(...arg);
     }
 

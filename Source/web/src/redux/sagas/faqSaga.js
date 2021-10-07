@@ -1,17 +1,17 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import API from 'src/requests/API';
 import { APIConfig } from 'src/requests/ApiConfig';
+import siteService from 'src/services/siteService';
 import type from '../actions/actionTypes';
-import service from 'src/services/httpMethod';
 
 function* searchFAQ({ param }) {
     try {
-        const response = yield service.searchArticle({ param });
+        const response = yield siteService.searchArticle({ param });
         // console.log(response);
         if (response && response.status === 200) {
             yield put({
                 type: type.SEARCH_FAQ_SUCCESS,
-                data: response.data,
+                data: response.data.data,
             });
         } else {
             yield put({

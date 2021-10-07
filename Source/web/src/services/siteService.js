@@ -1,6 +1,7 @@
 import Utils from 'src/common/Utils';
 import httpMethod from './httpMethod';
 import { APIConfig, PARENT_API } from '../requests/ApiConfig';
+import httpMethodPA from './httpMethodPA';
 
 class SiteService {
     getHome() {
@@ -96,6 +97,22 @@ class SiteService {
             `${APIConfig.TRUST_PILOT}?cfg[0]=truspilot_rating&cfg[1]=trustpilot_max_rate&cfg[2]=trustpilot_reviews`,
         );
     }
+
+    searchArticle(param) {
+        return httpMethod.post(`${APIConfig.URL_SEARCH}`, param);
+    }
+
+    searchFAQ(cate = '') {
+        return httpMethod.get(
+            `${APIConfig.GET_LIST_FAQ}${Utils.convertToQuery({
+                cate: cate,
+            })}`,
+        );
+    }
+
+    // getStatusPaymentPA(param) {
+    //     return httpMethodPA.get(`${APIConfig.GET_STATUS_PAYMENT + param}}`);
+    // }
 }
 
 export default new SiteService();

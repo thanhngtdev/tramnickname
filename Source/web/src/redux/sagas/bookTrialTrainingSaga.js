@@ -58,7 +58,7 @@ function* bookCourseSignup({ totalData }) {
     //     token_type: 'Bearer',
     // };
 
-    // console.log(response);
+    console.log(response, 'response');
     if (response) {
         yield put({
             type: actionTypes.BOOK_COURSE_SIGNUP_SUCCESS,

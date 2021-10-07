@@ -17,9 +17,10 @@ function BookTrialTraining4(props) {
                 className="responsive-iframe"
                 style={{ border: 'none' }}
                 src={props.responseCourse.paymentUrl}
+                sandbox="allow-top-navigation allow-scripts allow-same-origin allow-forms"
                 width="100%"
                 height="770"></iframe>
-            <div style={{ marginTop: 20 }}>
+            {/* <div style={{ marginTop: 20 }}>
                 <BorderButton
                     title="Confirm"
                     onClick={() => {
@@ -30,7 +31,7 @@ function BookTrialTraining4(props) {
                         });
                     }}
                 />
-            </div>
+            </div> */}
         </div>
     );
 }

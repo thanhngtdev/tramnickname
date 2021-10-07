@@ -179,17 +179,6 @@ export default function AboutInfo(props) {
                 )}
 
                 <div style={{ textAlign: 'center' }}>
-                    {/* <SolidButton
-                        title={titleButton}
-                        onClick={() => {
-                            dispatch({
-                                type: siteActionType.SELECT_ACADEMY,
-                                data: selectedAcademy,
-                            });
-                            history.push(PathRoute.BookTrialTraining);
-                        }}
-                    /> */}
-
                     <Button
                         title={titleButton}
                         onClick={() => {

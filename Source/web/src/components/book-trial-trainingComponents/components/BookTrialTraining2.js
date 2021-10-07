@@ -21,7 +21,9 @@ BookTrialTraining2.propTypes = {
 };
 
 const GENDER = ['Male', 'Female', 'Unspecified'];
+
 function BookTrialTraining2(props) {
+    console.log(props, 'props');
     const [gender, setGender] = useState(
         global.bookTraining && global.bookTraining.gender
             ? global.bookTraining.gender
@@ -304,6 +306,11 @@ function BookTrialTraining2(props) {
             <BorderButton
                 id="btn-submit-step"
                 title="Book a free training Session"
+                title={`Book a ${
+                    props.dataStep1.siteSelected.ms_trial === 1
+                        ? 'trial'
+                        : 'free'
+                } training Session`}
                 onClick={() => {
                     if (validateData()) {
                         let dataObject = {
