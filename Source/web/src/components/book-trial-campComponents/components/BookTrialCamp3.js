@@ -104,7 +104,7 @@ function BookTrialCamp3(props) {
                                             marginBottom: 25,
                                             fontWeight: 'bold',
                                         }}>
-                                        4 x available spaces for 5 year olds
+                                        {/* 4 x available spaces for 5 year olds */}
                                     </p>
                                     <Button
                                         style={styles.button}

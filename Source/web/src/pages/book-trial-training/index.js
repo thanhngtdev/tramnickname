@@ -149,19 +149,41 @@ function BookTrialTraining({ listSite }) {
             if (siteReducer.type === siteActionType.BOOK_COURSE_SUCCESS) {
                 // console.log(siteReducer.data, 'data');
                 // return;
-                if (siteReducer?.data?.data?.payment_url)
-                    saveToLocal({
-                        data: { ...dataStep1, ...dataStep2 },
-                        token: token,
-                    });
+                // if (siteReducer?.data?.data?.payment_url)
+                //     saveToLocal({
+                //         data: { ...dataStep1, ...dataStep2 },
+                //         token: token,
+                //     });
 
-                setResponseCourse({
-                    paymentUrl: siteReducer.data.data.payment_url,
-                    bookingId: siteReducer.data.data.booking_id,
-                    token: token,
-                });
-                setPaymentUrl(siteReducer.data.data.payment_url);
-                setActiveTab(4);
+                // setResponseCourse({
+                //     paymentUrl: siteReducer.data.data.payment_url,
+                //     bookingId: siteReducer.data.data.booking_id,
+                //     token: token,
+                // });
+
+                // if (dataStep1?.siteSelected?.ms_trial === 0) {
+                //     setBookSuccess(1);
+                //     setActiveTab(3);
+                // }
+                // if (dataStep1?.siteSelected?.ms_trial === 1) {
+                //     setPaymentUrl(siteReducer.data.data.payment_url);
+                //     setActiveTab(4);
+                // }
+                if (dataStep1?.siteSelected?.ms_trial === 1) {
+                    if (siteReducer?.data?.data?.payment_url) {
+                        saveToLocal({
+                            data: { ...dataStep1, ...dataStep2 },
+                            token: token,
+                        });
+                        setPaymentUrl(siteReducer.data.data.payment_url);
+                        setActiveTab(4);
+                    }
+                }
+
+                if (dataStep1?.siteSelected?.ms_trial === 0) {
+                    setBookSuccess(1);
+                    setActiveTab(3);
+                }
             }
             if (siteReducer.type === siteActionType.BOOK_COURSE_FAILED) {
                 siteReducer.data &&
@@ -300,6 +322,7 @@ function BookTrialTraining({ listSite }) {
                                     );
                                 }}
                                 bookOther={() => {
+                                    // console.log(dataStep1, 'step1');
                                     dispatch(
                                         bookCourse({
                                             course_id:
@@ -310,6 +333,10 @@ function BookTrialTraining({ listSite }) {
                                                     .start_date.date,
                                             child_id: bookingFull.child_id,
                                             token,
+                                            totalData: {
+                                                ...dataStep1,
+                                                ...dataStep2,
+                                            },
                                         }),
                                     );
                                 }}

@@ -3,9 +3,11 @@ import { GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps';
 import { useSelector } from 'react-redux';
 import Constants from 'src/common/Constants';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import AddToCalendar from '../AddToCalendar';
 import CustomMarker from './CustomMarker';
 
 function BookingSuccessMap(props) {
+    console.log(props, 'data');
     const timeStart = props?.courseSelected?.course_day_time_start;
     const timeEnd = props?.courseSelected?.course_day_time_end;
     const [bookingInfo, setBookingInfo] = useState({});
@@ -37,12 +39,6 @@ function BookingSuccessMap(props) {
         }
     }, [siteReducer]);
 
-    // console.log(props, 'props');
-
-    // useEffect(() => {
-    //     console.log(bookingInfo, 'bookinginfor');
-    // }, [bookingInfo]);
-
     return (
         <GoogleMap defaultZoom={8} center={defaultCenter}>
             <div className="contact-map" style={{ top: 55, bottom: 0 }}>
@@ -51,7 +47,7 @@ function BookingSuccessMap(props) {
                     style={{
                         textAlign: 'left',
                         maxWidth: 450,
-                        height: '85%',
+                        // height: '85%',
                     }}>
                     <h4 style={{ marginBottom: 0 }}>Payment made:</h4>
                     <p style={{ marginTop: 0 }}>
@@ -74,7 +70,19 @@ function BookingSuccessMap(props) {
                             ? props.siteSelected.ms_address
                             : ''}
                     </p>
-                    <a href="#">Add to your calendar</a>
+
+                    {/* <a href="#">Add to your calendar</a> */}
+
+                    <AddToCalendar
+                        event={{
+                            title: props?.courseSelected?.course_title,
+                            startDate: props?.data?.start_date,
+                            startTime:
+                                props?.courseSelected?.course_day_time_start,
+                            endTime: props?.courseSelected?.course_day_time_end,
+                            location: props?.courseSelected?.loc_name,
+                        }}
+                    />
                 </div>
             </div>
             <CustomMarker item={defaultMarker} />

@@ -14,12 +14,19 @@ export const bookCourseSignUp = ({ totalData }) => {
     };
 };
 
-export const bookCourse = ({ course_id, start_date, child_id, token }) => {
+export const bookCourse = ({
+    course_id,
+    start_date,
+    child_id,
+    token,
+    totalData,
+}) => {
     return {
         type: actionTypes.BOOK_COURSE,
         course_id,
         start_date,
         child_id,
         token,
+        totalData,
     };
 };

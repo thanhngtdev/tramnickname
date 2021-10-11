@@ -34,53 +34,11 @@ BookTrialTraining3.propTypes = {
 };
 
 function BookTrialTraining3(props) {
-    console.log(props, 'props');
     const dispatch = useDispatch();
-    const message1 = Utils.isEmpty(props.data)
-        ? ''
-        : 'Woohoo! ' +
-          props?.data?.child_first_name +
-          ' ' +
-          props?.data?.child_last_name +
-          ' is booked in for their trial session at ' +
-          props?.data?.siteSelected?.ms_name +
-          ' on';
-    const message2 = Utils.isEmpty(props.data)
-        ? ''
-        : props.data.start_date +
-          ' at ' +
-          moment(
-              props.data.courseSelected.course_day_time_start,
-              'hh:mm:ss',
-          ).format('hh:mma') +
-          '-' +
-          moment(
-              props.data.courseSelected.course_day_time_end,
-              'hh:mm:ss',
-          ).format('hh:mma');
-
-    const [paidBooking, setPaidBooking] = useState(
-        props?.data?.siteSelected?.ms_trial == 1 ? false : true,
-    );
-    const [dataBooking, setDataBooking] = useState({});
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-
-    // const siteReducer = useSelector((state) => state.siteReducer);
-    // useEffect(() => {
-    //     if (siteReducer.type) {
-    //         if (siteReducer.type === siteActionType.GET_BOOKING_SUCCESS) {
-    //             setDataBooking(siteReducer.data.data);
-    //             if (siteReducer.data.data.payment_status === 'Paid') {
-    //                 setPaidBooking(true);
-    //             } else {
-    //                 setPaidBooking(false);
-    //             }
-    //         }
-    //     }
-    // }, [siteReducer]);
 
     function renderOption() {
         return (
@@ -144,56 +102,23 @@ function BookTrialTraining3(props) {
                                                     style={{
                                                         textAlign: 'center',
                                                     }}>
-                                                    Could a different day at the{' '}
-                                                    {
-                                                        props?.data
-                                                            ?.siteSelected
-                                                            ?.ms_name
-                                                    }{' '}
-                                                    work?
+                                                    {`Could a different day at the ${props?.data?.siteSelected?.ms_name} work?`}
                                                 </h3>
                                                 <div
                                                     className="description"
                                                     style={{
                                                         textAlign: 'center',
                                                     }}>
-                                                    Sign up for a free session
-                                                    on the{' '}
-                                                    {
-                                                        props.bookingFull
-                                                            .other_class
-                                                            .course_title
-                                                    }
+                                                    {`Sign up for a free session
+                                                    on the ${props.bookingFull?.other_class?.course_title}`}
                                                 </div>
-                                                <div
-                                                    className="classRow"
-                                                    style={{
-                                                        marginTop: 25,
-                                                        backgroundColor:
-                                                            '#F7F8F7',
-                                                    }}>
+                                                <div>
                                                     <p>
-                                                        {
-                                                            props.bookingFull
-                                                                .other_class
-                                                                .start_date
-                                                                .date_show
-                                                        }
+                                                        {`${props.bookingFull?.other_class?.start_date?.date_show}`}
+                                                        <br />
+                                                        {`${props.bookingFull?.other_class?.available_space} x available spaces`}
                                                     </p>
                                                 </div>
-                                                <p
-                                                    style={{
-                                                        marginTop: 55,
-                                                        marginBottom: 25,
-                                                        // fontWeight: 'bold',
-                                                    }}>
-                                                    {
-                                                        props.bookingFull
-                                                            .other_class
-                                                            .available_space
-                                                    }{' '}
-                                                    x available spaces
-                                                </p>
                                                 <Button
                                                     style={styles.button}
                                                     onClick={() => {
@@ -326,31 +251,37 @@ function BookTrialTraining3(props) {
                                 </label>
                             </>
                         ) : (
-                            // `${} is added  to the waiting list for trial session at ${}. We will let you know when this session will be available.`
                             <>
-                                <h2>
-                                    {message1} <br />
-                                    <span style={{ color: '#FF7100' }}>
-                                        {message2}
-                                    </span>
-                                </h2>
-                                {/* {paidBooking ? (
-                                ) : (
+                                {!isEmpty(props.data) && (
                                     <h2>
-                                        The booking status is{' '}
-                                        {dataBooking
-                                            ? dataBooking.payment_status
-                                            : ''}
-                                        <br /> Please log in to Parent Area{' '}
-                                        <a
-                                            href="https://www.parentarea.co/parent/login"
-                                            target="_blank"
-                                            rel="noreferrer">
-                                            here
-                                        </a>{' '}
-                                        to complete booking
+                                        {`Woohoo! ${
+                                            props?.data?.child_first_name +
+                                            ' ' +
+                                            props?.data?.child_last_name
+                                        } is booked in for their ${
+                                            props?.data?.siteSelected
+                                                ?.ms_trial === 1
+                                                ? 'trial'
+                                                : 'free trial'
+                                        } session at ${
+                                            props?.data?.siteSelected?.ms_name
+                                        } on`}
+                                        <br />
+                                        <span style={{ color: '#FF7100' }}>
+                                            {`${
+                                                props?.data?.start_date
+                                            } at ${moment(
+                                                props.data.courseSelected
+                                                    .course_day_time_start,
+                                                'hh:mm:ss',
+                                            ).format('hh:mma')}-${moment(
+                                                props.data.courseSelected
+                                                    .course_day_time_end,
+                                                'hh:mm:ss',
+                                            ).format('hh:mma')}`}
+                                        </span>
                                     </h2>
-                                )} */}
+                                )}
                             </>
                         )}
                     </div>

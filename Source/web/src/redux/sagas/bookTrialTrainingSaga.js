@@ -21,15 +21,26 @@ function* getCourseStartDate({ course_id }) {
     }
 }
 
-function* bookCourse({ course_id, start_date, child_id, token }) {
-    const response = yield API.postParentAPI(APIConfig.BOOK_COURSE, {
+function* bookCourse({
+    course_id,
+    start_date,
+    child_id,
+    token = '',
+    totalData,
+}) {
+    const url =
+        totalData.siteSelected.ms_trial === 1
+            ? APIConfig.BOOK_COURSE
+            : APIConfig.BOOK_FREE_COURSE;
+
+    const response = yield API.postParentAPI(url, {
         course_id,
         start_date,
         child_id,
         token,
     });
-    // console.log(response);
-    if (response && response.status === 200) {
+
+    if (response) {
         yield put({
             type: actionTypes.BOOK_COURSE_SUCCESS,
             data: response,
@@ -48,17 +59,7 @@ function* bookCourseSignup({ totalData }) {
             ? APIConfig.BOOK_COURSE_SIGNUP
             : APIConfig.BOOK_TRIAL_SIGNUP;
     const response = yield API.postParentAPI(apiUrl, totalData);
-    // const response = {
-    //     access_token: 'niAlTPReWBrpFe2rl9PUO35i4UtEjA7YsNPs90UO',
-    //     booking_id: 43727,
-    //     child_id: 34876,
-    //     expires_in: 604800,
-    //     message: 'Success',
-    //     status: 200,
-    //     token_type: 'Bearer',
-    // };
 
-    console.log(response, 'response');
     if (response) {
         yield put({
             type: actionTypes.BOOK_COURSE_SIGNUP_SUCCESS,

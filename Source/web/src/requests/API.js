@@ -73,7 +73,6 @@ function* requestPutAPI(url, params, baseApi = BASE_API) {
 }
 
 function* postParentAPI(url, params, baseApi = PARENT_API) {
-    // console.log(url, params, 'aaaa');
     return yield requestAPI(url, 'POST', params, baseApi);
 }
 

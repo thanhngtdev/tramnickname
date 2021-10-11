@@ -32,6 +32,7 @@ export const APIConfig = {
     BOOK_COURSE_SIGNUP: 'booking-course-signup',
     BOOK_EVENT_SIGNUP: 'booking-event-signup',
     BOOK_COURSE: 'booking-course',
+    BOOK_FREE_COURSE: 'booking-free-trial',
     ADD_WAITING: 'add-to-waiting-list',
     GET_BOOKING: 'get-booking',
     EVENT_DATE: 'list-event-dates',
