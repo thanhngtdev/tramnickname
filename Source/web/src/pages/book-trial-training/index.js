@@ -306,9 +306,7 @@ function BookTrialTraining({ listSite }) {
                                 success={bookSuccess}
                                 message={bookMessage}
                                 data={{ ...dataStep1, ...dataStep2 }}
-                                goBack={() => {
-                                    window.location.href = `${'/book-trial-training'}`;
-                                }}
+                                goBack={() => setActiveTab(1)}
                                 responseCourse={responseCourse}
                                 bookingFull={bookingFull}
                                 findAcademy={() => {

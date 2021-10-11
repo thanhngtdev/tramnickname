@@ -615,6 +615,12 @@ h1{
 	top: -120px;
 }
 
+.box-list-item-card .align-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .list-intro {
 	display: grid;
     grid-template-columns: repeat(3, 1fr);

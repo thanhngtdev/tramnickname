@@ -20,6 +20,7 @@ import { siteActionType } from 'src/redux/actions/actionTypes';
 import Constants from 'src/common/Constants';
 import { isEmpty } from 'lodash';
 import NearbyList from './NearbyList';
+import useGetWidth from 'src/hooks/useGetWidth';
 // import BorderButton from 'component/include/BorderButton';
 
 BookTrialTraining3.propTypes = {
@@ -34,7 +35,9 @@ BookTrialTraining3.propTypes = {
 };
 
 function BookTrialTraining3(props) {
+    console.log(props.data, 'data');
     const dispatch = useDispatch();
+    const isMobile = useGetWidth() <= 767;
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -86,7 +89,11 @@ function BookTrialTraining3(props) {
                             <div
                                 className="box-list-item-card"
                                 style={{ top: 0, marginBottom: '2rem' }}>
-                                <div className="row">
+                                <div
+                                    className="row align-center"
+                                    className={`row ${
+                                        !isMobile ? 'align-center' : ''
+                                    }`}>
                                     {!isEmpty(
                                         props?.bookingFull?.other_class,
                                     ) && (
@@ -232,9 +239,9 @@ function BookTrialTraining3(props) {
                             <>
                                 <h2>
                                     {`${
-                                        props.data.parent_first_name +
+                                        props.data.child_first_name +
                                         ' ' +
-                                        props.data.parent_last_name
+                                        props.data.child_last_name
                                     } is added  to the waiting list for trial session at ${
                                         props.data.siteSelected.ms_name
                                     }. We will let you know when this session will be available.`}
