@@ -136,7 +136,9 @@ function Intro(props) {
                                     <div className="list-intro-item-img">
                                         <LazyLoadImage
                                             src={Utils.getThumb(item.image)}
-                                            alt={item?.des}
+                                            alt={
+                                                item?.des || 'we make football'
+                                            }
                                             // height="100%"
                                             // width="100%"
                                             // layout="fill"

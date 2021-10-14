@@ -4,8 +4,10 @@ import { useDispatch } from 'react-redux';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import { STORAGE_URL } from 'src/requests/ApiConfig';
 import siteService from 'src/services/siteService';
+import Constants from 'src/common/Constants';
 
 const { hasOwnProperty } = Object.prototype;
+
 class Utils {
     getThumb(_alias, crop) {
         if (!_alias) return null;
@@ -248,6 +250,38 @@ class Utils {
     // }
     getAge(birth) {
         return ~~((Date.now() - birth) / 31557600000);
+    }
+
+    getAllUrl(listSite) {
+        const listUrl = [
+            {
+                loc: Constants.BaseURL,
+                lastmod: new Date().toISOString(),
+            },
+        ];
+
+        //parent site
+        Constants.ROUTES.map((item) => {
+            listUrl.push({
+                loc: Constants.BaseURL + item,
+                lastmod: new Date().toISOString(),
+                priority: 0.7,
+                changefreq: 'daily',
+            });
+        });
+        //micro site
+        Constants.MICRO_ROUTES.map((item) => {
+            listSite.map((it) => {
+                listUrl.push({
+                    loc: `${Constants.BaseURL}/${it.ms_alias}${item}`,
+                    lastmod: new Date().toISOString(),
+                    priority: 0.7,
+                    changefreq: 'daily',
+                });
+            });
+        });
+
+        return listUrl;
     }
 
     async getDetailMicrosite(nameFranchise, cate, slug) {

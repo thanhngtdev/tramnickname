@@ -278,15 +278,16 @@ function Footer() {
                         <Link href={PathRoute.ListQNA}> FAQ</Link>
                         <span>|</span>
                         <Link href="/policies">Terms &amp; Conditions</Link>|
-                        <a
-                            onClick={(e) => {
-                                e.preventDefault();
-                                window.location.href = `/sitemap.xml`;
-                            }}
-                            // href="/sitemap.xml"\
+                        {/* <a
+                            // onClick={(e) => {
+                            //     e.preventDefault();
+                            //     window.location.href = `/sitemap.xml`;
+                            // }}
+                            href="/sitemap.xml"\
                         >
                             Sitemap
-                        </a>
+                        </a> */}
+                        <Link href="/sitemap.xml">Sitemap</Link>
                     </div>
                 </div>
             </div>

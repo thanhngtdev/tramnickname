@@ -28,6 +28,34 @@ const Constants = {
     REVALIDATE: 86400,
     GOOGLE_MAP_URL:
         'https://maps.googleapis.com/maps/api/js?key=AIzaSyCkHEoNpHbkdGlYwWFA8JaIOF_o-Y9B4d4&v=3.exp&libraries=geometry,drawing,places',
+
+    BaseURL: 'https://staging.wemakefootballers.com',
+    ROUTES: [
+        '/about-us',
+        '/1-on-1-training',
+        '/birthday-parties',
+        '/book-trial-camp',
+        '/book-trial-training',
+        '/coaching',
+        '/contact-us',
+        '/faqs',
+        '/holiday-camps-home',
+        '/join-us',
+        '/location',
+        '/news',
+        '/parent-host',
+        '/policies',
+        '/school-training',
+        '/weekly-training',
+    ],
+    MICRO_ROUTES: [
+        '/1-on-1-training',
+        '/birthday-parties',
+        '/holiday-camps-home',
+        '/join-us',
+        '/news',
+        '/weekly-training',
+    ],
 };
 
 export default Constants;
