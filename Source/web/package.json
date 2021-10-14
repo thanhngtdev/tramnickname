@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "analyze": "cross-env ANALYZE=tru next build"
+
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -20,6 +22,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "@next/bundle-analyzer": "^11.1.2",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.21.1",

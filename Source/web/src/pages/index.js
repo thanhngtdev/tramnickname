@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import ModelManager from 'src/common/ModelManager';
-import BookTrial from 'src/components/Booking/BookTrial';
-import BannerTop from 'src/components/HomePage/BannerTop';
-import FootballBegining from 'src/components/HomePage/FootballBegining';
-import FootballFun from 'src/components/HomePage/FootballFun';
-import InstaBox from 'src/components/HomePage/InstaBox';
-import Intro from 'src/components/HomePage/Intro.js';
-import Reason from 'src/components/HomePage/Reason';
-import WhatWeDo from 'src/components/HomePage/WhatWeDo';
 import saveList from 'src/hooks/useSaveList';
 import DefaultLayout from 'src/layout/DefaultLayout';
 import siteService from 'src/services/siteService';
+
+const BookTrial = dynamic(() => import('src/components/Booking/BookTrial'));
+const BannerTop = dynamic(() => import('src/components/HomePage/BannerTop'));
+const FootballBegining = dynamic(() =>
+    import('src/components/HomePage/FootballBegining'),
+);
+const FootballFun = dynamic(() =>
+    import('src/components/HomePage/FootballFun'),
+);
+const InstaBox = dynamic(() => import('src/components/HomePage/InstaBox'));
+const Intro = dynamic(() => import('src/components/HomePage/Intro.js'));
+const Reason = dynamic(() => import('src/components/HomePage/Reason'));
+const WhatWeDo = dynamic(() => import('src/components/HomePage/WhatWeDo'));
 
 function HomePage({ data, listSite }) {
     // console.log(listSite);

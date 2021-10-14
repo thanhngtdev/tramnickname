@@ -1,4 +1,3 @@
-
 Sitemap: https://staging.wemakefootballers.com/sitemap.xml
 
 User-agent: *
