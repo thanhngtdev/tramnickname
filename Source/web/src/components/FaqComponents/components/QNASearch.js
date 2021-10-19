@@ -24,6 +24,13 @@ export default function QNASearch({ setSearch }) {
                         type="text"
                         placeholder="Type keywords to find answers"
                         onChange={(e) => setInput(e.target.value)}
+                        onKeyPress={(e) => {
+                            if (e.charCode === 13) {
+                                if (!isEmpty(input)) {
+                                    setSearch(input);
+                                }
+                            }
+                        }}
                     />
                     <button
                         type="button"

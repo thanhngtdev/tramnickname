@@ -151,7 +151,7 @@ function BookTrialTraining2(props) {
                 <div className="wSelect2">
                     <label>The Childs Gender</label>
                     <div className="training-gender">
-                        {[0, 1, 2].map((item) => (
+                        {[1, 0, 2].map((item) => (
                             <div
                                 key={item}
                                 onClick={() => {

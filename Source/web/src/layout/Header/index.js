@@ -171,9 +171,7 @@ function Header() {
 
                                         if (defaultAcademy)
                                             global.bookTraining = {
-                                                siteId: defaultAcademy.ms_id,
-                                                siteName:
-                                                    defaultAcademy.ms_name,
+                                                siteSelected: defaultAcademy,
                                             };
 
                                         router.push(

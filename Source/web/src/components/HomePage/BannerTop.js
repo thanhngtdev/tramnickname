@@ -1,14 +1,14 @@
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 import Button from 'src/components/Button';
 import getLocalStorage from 'src/hooks/useGetLocalStorage';
 
 function BannerTop(props) {
-    const dispatch = useDispatch();
     const [textSearch, setTextSearch] = useState('');
     const [src, setSrc] = useState('');
+    const history = useRouter();
 
     const defaultAcademy = getLocalStorage();
 
@@ -42,7 +42,15 @@ function BannerTop(props) {
                                         ? 'TRIAL '
                                         : 'FREE '
                                 } SESSION`}
-                                href={PathRoute.BookTrialTraining}
+                                onClick={() => {
+                                    global.bookTraining = {
+                                        siteSelected: defaultAcademy,
+                                    };
+
+                                    history.push(PathRoute.BookTrialTraining);
+                                }}
+
+                                // href={PathRoute.BookTrialTraining}
                             />
                         </div>
                     ) : (
