@@ -26,6 +26,7 @@ function HomePage({ data, listSite }) {
         setDefaultAcademy(ModelManager.getLocation());
     }, []);
 
+    //
     return (
         <DefaultLayout seo={data?.seoMeta || {}}>
             <BannerTop bannerTop={data?.bannerTop || {}} />
