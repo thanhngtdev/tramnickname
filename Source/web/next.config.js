@@ -37,7 +37,7 @@ module.exports = withPlugins([
     [
         withOptimizedImages,
         {
-            optimizeImagesInDev: true,
+            // optimizeImagesInDev: false,
         },
     ],
     [

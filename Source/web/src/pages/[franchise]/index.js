@@ -96,45 +96,36 @@ function Franchise({ data, listSite }) {
     );
 }
 
-//
-
-// export async function getStaticPaths() {
-//     const res = await siteService.getListSite();
-//     const list = res.data.data.lstSite;
-
-//     // Get the paths we want to pre-render based on posts
-//     const paths = list.map((item) => ({
-//         params: { franchise: item.ms_alias, item: item },
-//     }));
-
-//     return { paths, fallback: false };
-// }
-
-// export async function getStaticProps(ctx) {
-//     console.log(ctx);
-//     const { params } = ctx;
-//     const res = await siteService.getListSite();
-//     let listSite = res.data.data.lstSite;
-
-//     const item = listSite.find((item) => params.franchise === item.ms_alias);
-
-//     const dataRes = await siteService.getFranchiseDetail({ id: item.ms_id });
-
-//     return {
-//         props: { data: dataRes.data.data, listSite },
-//     };
-// }
-
 export async function getServerSideProps(context) {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
 
-    let item = {};
-    item = listSite.find((item) => context.params.franchise === item.ms_alias);
+    const item = listSite.find(
+        (item) => context.params.franchise === item.ms_alias,
+    );
 
     if (isEmpty(item)) {
         return { props: { data: [], listSite } };
     }
+
+    // let id = '';
+    // const item = listSite.find((item) => {
+    //     if (item.ms_alias === context.params.franchise) {
+    //         id = item.ms_id;
+    //         return item;
+    //     }
+
+    //     return item.sub_page.find((i) => {
+    //         if (i.sub_alias === context.params.franchise) {
+    //             id = i.sub_id;
+    //             return i;
+    //         }
+    //     });
+    // });
+
+    // if (isEmpty(item) && !id) {
+    //     return { props: { data: [], listSite } };
+    // }
 
     const siteDetail = await siteService.getFranchiseDetail({ id: item.ms_id });
     const data = siteDetail.data.data;
