@@ -1,23 +1,22 @@
 import isEmpty from 'lodash/isEmpty';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
-import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
+import { toast } from 'react-toastify';
 import Constants from 'src/common/Constants';
 import ModelManager from 'src/common/ModelManager';
 import PathRoute from 'src/common/PathRoute';
 import { CommonStyle } from 'src/common/Styles';
 import Utils from 'src/common/Utils';
 import saveList from 'src/hooks/useSaveList';
-import { siteActionType } from 'src/redux/actions/actionTypes';
+import DefaultLayout from 'src/layout/DefaultLayout';
 import siteService from 'src/services/siteService';
-
 const Button = dynamic(() => import('src/components/Button'));
 const Captcha = dynamic(() => import('src/components/Captcha'));
 const ContactMap = dynamic(() => import('src/components/include/ContactMap'));
-import DefaultLayout from 'src/layout/DefaultLayout';
 
 const OPTION = [
     { value: 'Weekly Training', label: 'Weekly Training' },
@@ -30,9 +29,8 @@ const OPTION = [
     { value: 'Other', label: 'Other' },
 ];
 function Contact({ listSite, config }) {
-    const headerReducer = useSelector((state) => state.headerReducer);
     const isFirstRun = useRef(true);
-    const dispatch = useDispatch();
+    const history = useRouter();
     const [nature, setNature] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -105,6 +103,21 @@ function Contact({ listSite, config }) {
         }
 
         return checkInput;
+    }
+
+    async function sendEmail(param) {
+        try {
+            const res = await siteService.sendEmail(param);
+
+            if (res.data.status === 200) {
+                history.push(PathRoute.ThankYou);
+            } else {
+                toast.error(res.data.error, {
+                    position: toast.POSITION.BOTTOM_LEFT,
+                    autoClose: 3000,
+                });
+            }
+        } catch (err) {}
     }
 
     //! return
@@ -252,8 +265,8 @@ function Contact({ listSite, config }) {
                                                 response &&
                                                 response.length > 0
                                             ) {
-                                                const defaultAcademy =
-                                                    academy || {};
+                                                // const defaultAcademy =
+                                                //     academy || {};
                                                 let _totalData = {
                                                     type: 'contact',
                                                     academyEmail:
@@ -268,12 +281,15 @@ function Contact({ listSite, config }) {
                                                     message: message,
                                                     nature: nature,
                                                 };
-                                                // console.log(_totalData);
-                                                // return;
-                                                dispatch({
-                                                    type: siteActionType.SEND_EMAIL,
-                                                    params: _totalData,
+
+                                                sendEmail({
+                                                    param: _totalData,
                                                 });
+
+                                                // dispatch({
+                                                //     type: siteActionType.SEND_EMAIL,
+                                                //     params: _totalData,
+                                                // });
                                             }
                                         }}
                                     />

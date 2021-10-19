@@ -249,7 +249,7 @@ function Header() {
                             <LinkItem
                                 title={'Contact Us'}
                                 hideMenu={hideMenu}
-                                href={PathRoute.n}
+                                href={PathRoute.Contact}
                             />
                             <LinkItem
                                 title={'Locations'}
