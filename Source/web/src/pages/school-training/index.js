@@ -1,17 +1,40 @@
-import AboutUs from 'src/components/Camp/AboutUs';
-import InstaBox from 'src/components/Camp/InstaBox';
-import QNA from 'src/components/Camp/QNA';
-import WhyWMF from 'src/components/Camp/WhyWMF';
-import Intro from 'src/components/HomePage/Intro.js';
-import Testimonial from 'src/components/Testimonial';
 import React, { useRef } from 'react';
-import DefaultLayout from 'src/layout/DefaultLayout';
+import dynamic from 'next/dynamic';
+
+// import AboutUs from 'src/components/Camp/AboutUs';
+// import InstaBox from 'src/components/Camp/InstaBox';
+// import QNA from 'src/components/Camp/QNA';
+// import WhyWMF from 'src/components/Camp/WhyWMF';
+// import Intro from 'src/components/HomePage/Intro.js';
+// import Testimonial from 'src/components/Testimonial';
+// import DefaultLayout from 'src/layout/DefaultLayout';
+// import BookTrialSchool from 'src/components/SchoolTrainingComponents/components/BookTrialSchool';
+// import Enquire from 'src/components/SchoolTrainingComponents/components/Enquire';
+// import FootballSkill from 'src/components/Camp/FootballSkill';
+// import TrustUs from 'src/components/SchoolTrainingComponents/components/TrustUs';
+
 import siteService from 'src/services/siteService';
-import BookTrialSchool from '../../components/SchoolTrainingComponents/components/BookTrialSchool';
-import Enquire from '../../components/SchoolTrainingComponents/components/Enquire';
-// import FootballSkill from '../../components/SchoolTrainingComponents/components/FootballSkill';
-import FootballSkill from 'src/components/Camp/FootballSkill';
-import TrustUs from '../../components/SchoolTrainingComponents/components/TrustUs';
+const AboutUs = dynamic(() => import('src/components/Camp/AboutUs'));
+const InstaBox = dynamic(() => import('src/components/Camp/InstaBox'));
+const QNA = dynamic(() => import('src/components/Camp/QNA'));
+const WhyWMF = dynamic(() => import('src/components/Camp/WhyWMF'));
+const Intro = dynamic(() => import('src/components/HomePage/Intro.js'));
+const Testimonial = dynamic(() => import('src/components/Testimonial'));
+import DefaultLayout from 'src/layout/DefaultLayout';
+const BookTrialSchool = dynamic(() =>
+    import(
+        'src/components/SchoolTrainingComponents/components/BookTrialSchool'
+    ),
+);
+const Enquire = dynamic(() =>
+    import('src/components/SchoolTrainingComponents/components/Enquire'),
+);
+const FootballSkill = dynamic(() =>
+    import('src/components/Camp/FootballSkill'),
+);
+const TrustUs = dynamic(() =>
+    import('src/components/SchoolTrainingComponents/components/TrustUs'),
+);
 
 function SchoolTraining({ data, listSite }) {
     const enquireBox = useRef(null);

@@ -1,12 +1,18 @@
-import AboutSecure from 'src/components/Camp/AboutSecure';
-import DefaultLayout from 'src/layout/DefaultLayout';
 import React from 'react';
-import siteService from 'src/services/siteService';
-import AboutGuide from '../../components/AboutComponents/components/AboutGuide';
-import AboutType from '../../components/AboutComponents/components/AboutType';
-import AboutUsNoVideo from '../../components/AboutComponents/components/AboutUsNoVideo';
 import saveList from 'src/hooks/useSaveList';
-import Constants from 'src/common/Constants';
+import siteService from 'src/services/siteService';
+import dynamic from 'next/dynamic';
+const AboutSecure = dynamic(() => import('src/components/Camp/AboutSecure'));
+import DefaultLayout from 'src/layout/DefaultLayout';
+const AboutGuide = dynamic(() =>
+    import('../../components/AboutComponents/components/AboutGuide'),
+);
+const AboutType = dynamic(() =>
+    import('../../components/AboutComponents/components/AboutType'),
+);
+const AboutUsNoVideo = dynamic(() =>
+    import('../../components/AboutComponents/components/AboutUsNoVideo'),
+);
 
 function About({ data, listSite }) {
     saveList(listSite);

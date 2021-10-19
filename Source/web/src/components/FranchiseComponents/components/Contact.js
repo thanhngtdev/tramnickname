@@ -1,14 +1,9 @@
-import PathRoute from 'src/common/PathRoute';
-import { CommonStyle } from 'src/common/Styles';
-import Utils from 'src/common/Utils';
 import { useRouter } from 'next/router';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
-import { siteActionType } from 'src/redux/actions/actionTypes';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import Button from 'src/components/Button';
+import PathRoute from 'src/common/PathRoute';
+import { CommonStyle } from 'src/common/Styles';
 const propTypes = {};
 
 export default (props) => {
@@ -127,13 +122,15 @@ export default (props) => {
 
                         <div>
                             <a href={fbLink} target="_blank" rel="noreferrer">
-                                <LazyLoadImage
+                                <img
+                                    loading="lazy"
                                     alt=""
                                     src={'static-file/images/icon-fb-small.svg'}
                                 />
                             </a>
                             <a href={twLink} target="_blank" rel="noreferrer">
-                                <LazyLoadImage
+                                <img
+                                    loading="lazy"
                                     alt=""
                                     src={
                                         'static-file/images/icon-twitter-small.svg'
@@ -141,7 +138,8 @@ export default (props) => {
                                 />
                             </a>
                             <a href={igLink} target="_blank" rel="noreferrer">
-                                <LazyLoadImage
+                                <img
+                                    loading="lazy"
                                     alt=""
                                     src={
                                         'static-file/images/icon-insta-small.svg'

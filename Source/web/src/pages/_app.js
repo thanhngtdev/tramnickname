@@ -34,7 +34,6 @@ import 'slick-carousel/slick/slick.css';
 import '../../public/static-file/css/school-training.css';
 import 'flatpickr/dist/themes/airbnb.css';
 import '../../public/static-file/css/modal.css';
-import { DefaultSeo } from 'next-seo';
 
 Router.events.on('routeChangeStart', (url) => {
     NProgress.start();

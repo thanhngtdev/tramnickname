@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import { searchFAQ } from 'src/redux/actions/faqAction';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 
 export default function QNASearch({ setSearch }) {
     const [input, setInput] = useState('');

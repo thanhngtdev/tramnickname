@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { useDispatch } from 'react-redux';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import { STORAGE_URL } from 'src/requests/ApiConfig';
@@ -315,6 +315,10 @@ class Utils {
         } catch (error) {
             return { data: [], listSite: [] };
         }
+    }
+
+    saveToLocal(data) {
+        window.localStorage.setItem('dataPayment', JSON.stringify(data));
     }
 }
 

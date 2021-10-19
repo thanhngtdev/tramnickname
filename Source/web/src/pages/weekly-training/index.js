@@ -1,18 +1,23 @@
-import BookTrial from 'src/components/Booking/BookTrial';
-import AboutInfo from 'src/components/Camp/AboutInfo';
-import AboutSecure from 'src/components/Camp/AboutSecure';
-import AboutUs from 'src/components/Camp/AboutUs';
-import FootballSkill from 'src/components/Camp/FootballSkill';
-import InstaBox from 'src/components/Camp/InstaBox';
-import QNA from 'src/components/Camp/QNA';
-import TrainingInclude from 'src/components/Camp/TrainingInclude';
-import WhyWMF from 'src/components/Camp/WhyWMF';
-import Testimonial from 'src/components/Testimonial';
-import saveList from 'src/hooks/useSaveList';
-import DefaultLayout from 'src/layout/DefaultLayout';
 import React from 'react';
+import dynamic from 'next/dynamic';
+import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
-import Constants from 'src/common/Constants';
+const BookTrial = dynamic(() => import('src/components/Booking/BookTrial'));
+const AboutInfo = dynamic(() => import('src/components/Camp/AboutInfo'));
+const AboutSecure = dynamic(() => import('src/components/Camp/AboutSecure'));
+const AboutUs = dynamic(() => import('src/components/Camp/AboutUs'));
+const FootballSkill = dynamic(() =>
+    import('src/components/Camp/FootballSkill'),
+);
+const InstaBox = dynamic(() => import('src/components/Camp/InstaBox'));
+const QNA = dynamic(() => import('src/components/Camp/QNA'));
+const TrainingInclude = dynamic(() =>
+    import('src/components/Camp/TrainingInclude'),
+);
+const WhyWMF = dynamic(() => import('src/components/Camp/WhyWMF'));
+const Testimonial = dynamic(() => import('src/components/Testimonial'));
+// import DefaultLayout from 'src/layout/DefaultLayout';
+import DefaultLayout from 'src/layout/DefaultLayout';
 
 function WeeklyTraining({ data, listSite }) {
     saveList(listSite);

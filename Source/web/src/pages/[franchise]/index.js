@@ -1,20 +1,36 @@
-import { isEmpty } from 'lodash';
-import { useRouter } from 'next/router';
-import React, { useEffect, useRef } from 'react';
-import BookTrial from 'src/components/Booking/BookTrial';
-import QNA from 'src/components/Camp/QNA';
-import Intro from 'src/components/HomePage/Intro.js';
-import Testimonial from 'src/components/Testimonial';
-import saveList from 'src/hooks/useSaveList';
+import isEmpty from 'lodash/isEmpty';
+import dynamic from 'next/dynamic';
+import React, { useEffect } from 'react';
+
+const BookTrial = dynamic(() => import('src/components/Booking/BookTrial'));
+const QNA = dynamic(() => import('src/components/Camp/QNA'));
+const BannerTop = dynamic(() =>
+    import('src/components/FranchiseComponents/components/BannerTop'),
+);
+const CoachInfo = dynamic(() =>
+    import('src/components/FranchiseComponents/components/CoachInfo'),
+);
+const CoachTeam = dynamic(() =>
+    import('src/components/FranchiseComponents/components/CoachTeam'),
+);
+const Contact = dynamic(() =>
+    import('src/components/FranchiseComponents/components/Contact'),
+);
+const RelateAreas = dynamic(() =>
+    import('src/components/FranchiseComponents/components/RelateAreas'),
+);
+const TrainingReason = dynamic(() =>
+    import('src/components/FranchiseComponents/components/TrainingReason'),
+);
+const TrainingService = dynamic(() =>
+    import('src/components/FranchiseComponents/components/TrainingService'),
+);
+const Intro = dynamic(() => import('src/components/HomePage/Intro.js'));
+const Testimonial = dynamic(() => import('src/components/Testimonial'));
 import DefaultLayout from 'src/layout/DefaultLayout';
+
+import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
-import BannerTop from '../../components/FranchiseComponents/components/BannerTop';
-import CoachInfo from '../../components/FranchiseComponents/components/CoachInfo';
-import CoachTeam from '../../components/FranchiseComponents/components/CoachTeam';
-import RelateAreas from '../../components/FranchiseComponents/components/RelateAreas';
-import TrainingReason from '../../components/FranchiseComponents/components/TrainingReason';
-import TrainingService from '../../components/FranchiseComponents/components/TrainingService';
-import Contact from '../../components/FranchiseComponents/components/Contact';
 
 function Franchise({ data, listSite }) {
     saveList(listSite);

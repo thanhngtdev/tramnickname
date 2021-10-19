@@ -80,7 +80,9 @@ function BookTrialCamp2(props) {
             </label>
             {props.showLogin && (
                 <p>
-                    Have an account already?{' '}
+                    <span style={{ color: 'red' }}>
+                        Have an account already?
+                    </span>
                     <a
                         className="alink"
                         href="https://www.parentarea.co/parent/login"

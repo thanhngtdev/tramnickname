@@ -1,5 +1,4 @@
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Utils from 'src/common/Utils';
 
 // AboutSecure.propTypes = {
@@ -11,7 +10,8 @@ const Item = (props) => {
     return (
         <div key={index} className="list-intro-item">
             <div className="list-intro-item-img">
-                <LazyLoadImage
+                <img
+                    loading="lazy"
                     src={Utils.getThumb(item.image)}
                     alt=""
                     // width="500"

@@ -1,7 +1,6 @@
+import dayjs from 'dayjs';
 import parse from 'html-react-parser';
-import { isEmpty } from 'lodash';
-import moment from 'moment';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Utils from 'src/common/Utils';
 import ArticleItem from 'src/components/Article/ArticleItem';
 import ArticleMenu from 'src/components/Article/ArticleMenu';
@@ -37,7 +36,7 @@ export default ({ listSite, data }) => {
                         ? data.article.author?.user_showName
                         : ''}{' '}
                     <br />
-                    {moment(data?.article?.created_at || ' ').format(
+                    {dayjs(data?.article?.created_at || ' ').format(
                         'Do MMMM YYYY',
                     )}
                 </h4>

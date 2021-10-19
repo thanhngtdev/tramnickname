@@ -1,19 +1,10 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 import React from 'react';
 import AddToCalendarHOC from 'react-add-to-calendar-hoc';
 
-const propTypes = {};
-
-// export const event = {
-//     title: 'Super Fun Event',
-//     description: 'Example Event description.',
-//     location: 'Georgia - Sakartvelo',
-//     duration,
-//     endDatetime: moment(endDatetime).format('YYYYMMDDTHHmmssZ'),
-//     startDatetime: moment(startDatetime).format('YYYYMMDDTHHmmssZ'),
-// };
-
 export default (props) => {
+    // console.log(props, 'calendar');
+
     const ATCDropdown = (args) => (
         <ul className="atc-dropdown">
             {args.children.map((link, i) => (
@@ -32,11 +23,8 @@ export default (props) => {
     );
 
     const event = () => {
-        // const startDatetime = new Date('2021-03-03T09:00');
-        // const endDatetime = new Date('2021-03-03T11:00');
-
         const startDate = new Date(
-            `${props?.event?.startDate}T${props?.event?.statTime}`,
+            `${props?.event?.startDate}T${props?.event?.startTime}`,
         );
         const endDate = new Date(
             `${props?.event?.startDate}T${props?.event?.endTime}`,
@@ -45,16 +33,15 @@ export default (props) => {
 
         return {
             title: props?.event?.title || '',
-            description: 'We make football event',
+            description: props?.event?.detail || '',
             location: props?.event?.location || '',
             duration,
-            endDatetime: moment(endDate).format('YYYYMMDDTHHmmssZ'),
-            startDatetime: moment(startDate).format('YYYYMMDDTHHmmssZ'),
+            endDatetime: dayjs(endDate).format('YYYYMMDDTHHmmssZ'),
+            startDatetime: dayjs(startDate).format('YYYYMMDDTHHmmssZ'),
         };
     };
 
     const AddToCalendarDropdown = AddToCalendarHOC(ATCWrapper, ATCDropdown);
-
     //! Render
     return (
         <>

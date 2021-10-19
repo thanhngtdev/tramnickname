@@ -1,8 +1,7 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import 'slick-carousel/slick/slick.css';
+import React, { Fragment } from 'react';
+// import 'slick-carousel/slick/slick.css';
 import Slider from 'react-slick';
 import Utils from 'src/common/Utils';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const settings = {
     lazyLoad: 'ondemand',
@@ -71,7 +70,8 @@ function InstaBox(props) {
                                                             '_blank',
                                                         );
                                                     }}>
-                                                    <LazyLoadImage
+                                                    <img
+                                                        loading="lazy"
                                                         alt=""
                                                         src={Utils.getThumb(
                                                             item.image,

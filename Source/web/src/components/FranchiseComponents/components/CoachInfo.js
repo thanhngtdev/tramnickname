@@ -1,7 +1,6 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Utils from 'src/common/Utils';
-import PropTypes from 'prop-types';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 CoachInfo.propTypes = {
     coach: PropTypes.object,
@@ -20,7 +19,8 @@ function CoachInfo(props) {
                     }}>
                     <div className="row">
                         <div className="col-4">
-                            <LazyLoadImage
+                            <img
+                                loading="lazy"
                                 src={
                                     props.coach &&
                                     props.coach.avatar &&

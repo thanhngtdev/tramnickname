@@ -1,23 +1,23 @@
-import { CommonStyle } from 'src/common/Styles';
-import Captcha from 'src/components/Captcha';
-import ContactMap from 'src/components/include/ContactMap';
-import useGetLocalStorage from 'src/hooks/useGetLocalStorage';
-import DefaultLayout from 'src/layout/DefaultLayout';
-import _, { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import dynamic from 'next/dynamic';
 import React, { useEffect, useRef, useState } from 'react';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
-// import "react-phone-number-input/style.css";
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
-import PathRoute from 'src/common/PathRoute';
-import Utils from 'src/common/Utils';
-import { siteActionType } from 'src/redux/actions/actionTypes';
-import saveList from 'src/hooks/useSaveList';
-import siteService from 'src/services/siteService';
 import Constants from 'src/common/Constants';
-import Button from 'src/components/Button';
 import ModelManager from 'src/common/ModelManager';
+import PathRoute from 'src/common/PathRoute';
+import { CommonStyle } from 'src/common/Styles';
+import Utils from 'src/common/Utils';
+import saveList from 'src/hooks/useSaveList';
+import { siteActionType } from 'src/redux/actions/actionTypes';
+import siteService from 'src/services/siteService';
+
+const Button = dynamic(() => import('src/components/Button'));
+const Captcha = dynamic(() => import('src/components/Captcha'));
+const ContactMap = dynamic(() => import('src/components/include/ContactMap'));
+import DefaultLayout from 'src/layout/DefaultLayout';
 
 const OPTION = [
     { value: 'Weekly Training', label: 'Weekly Training' },
@@ -145,7 +145,7 @@ function Contact({ listSite, config }) {
                     <div className="container">
                         <h1 className="contact-header">
                             Get in touch with{' '}
-                            {!_.isEmpty(defaultAcademy)
+                            {!isEmpty(defaultAcademy)
                                 ? defaultAcademy?.ms_name + ' '
                                 : 'the WMF'}{' '}
                             Academy

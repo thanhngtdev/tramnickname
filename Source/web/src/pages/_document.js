@@ -24,6 +24,7 @@ export default class MyDocument extends Document {
                     <script
                         type="text/javascript"
                         src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
+                        // defer
                         async></script>
                 </Head>
                 <body>

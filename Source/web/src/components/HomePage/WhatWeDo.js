@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import React, { Fragment, useEffect, useRef, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import React, { useRef, useState } from 'react';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 import Gallery from 'src/components/HomePage/Gallery';
@@ -54,7 +53,8 @@ function WhatWeDo(props) {
                                 whatWeDo.cfg_value.map((item, index) => (
                                     <div className="col-6" key={index}>
                                         <div className="item">
-                                            <LazyLoadImage
+                                            <img
+                                                loading="lazy"
                                                 alt={item.title}
                                                 src={Utils.getThumb(item.icon)}
                                                 className="img"

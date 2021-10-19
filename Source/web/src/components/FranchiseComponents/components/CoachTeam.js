@@ -1,7 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import Utils from 'src/common/Utils';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 CoachTeam.propTypes = {
     staff: PropTypes.array,
@@ -23,7 +22,8 @@ function CoachTeam(props) {
                                 {props.staff.map((item, index) => (
                                     <div key={index} className="coach-item">
                                         <div className="coach-image">
-                                            <LazyLoadImage
+                                            <img
+                                                loading="lazy"
                                                 src={Utils.getThumb(
                                                     item.image,
                                                     'c2',

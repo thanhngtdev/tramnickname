@@ -1,10 +1,12 @@
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React from 'react';
 import Constants from 'src/common/Constants';
-import AcademyMap from 'src/components/include/AcademyMap';
 import saveList from 'src/hooks/useSaveList';
-import DefaultLayout from 'src/layout/DefaultLayout';
 import siteService from 'src/services/siteService';
+
+import DefaultLayout from 'src/layout/DefaultLayout';
+const AcademyMap = dynamic(() => import('src/components/include/AcademyMap'));
 
 function Location({ listSite }) {
     saveList(listSite);

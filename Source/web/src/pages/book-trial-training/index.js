@@ -1,23 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Constants from 'src/common/Constants';
-import Utils from 'src/common/Utils';
-import BookTrialTraining1 from 'src/components/book-trial-trainingComponents/components/BookTrialTraining1';
-import BookTrialTraining2 from 'src/components/book-trial-trainingComponents/components/BookTrialTraining2';
-import BookTrialTraining3 from 'src/components/book-trial-trainingComponents/components/BookTrialTraining3';
-import BookTrialTraining4 from 'src/components/book-trial-trainingComponents/components/BookTrialTraining4';
-import EachTab from 'src/components/EachTab';
-import HolidayCampTabSpace from 'src/components/include/HolidayCampTabSpace';
+import dynamic from 'next/dynamic';
 import saveList from 'src/hooks/useSaveList';
-import DefaultLayout from 'src/layout/DefaultLayout';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import {
     bookCourse,
     bookCourseSignUp,
 } from 'src/redux/actions/bookTrialTrainingAction';
-import { findNearByAcademy, getListCourse } from 'src/redux/actions/siteAction';
+import { findNearByAcademy } from 'src/redux/actions/siteAction';
 import siteService from 'src/services/siteService';
 import swal from 'sweetalert';
+
+const BookTrialTraining1 = dynamic(() =>
+    import(
+        'src/components/book-trial-trainingComponents/components/BookTrialTraining1'
+    ),
+);
+const BookTrialTraining2 = dynamic(() =>
+    import(
+        'src/components/book-trial-trainingComponents/components/BookTrialTraining2'
+    ),
+);
+const BookTrialTraining3 = dynamic(() =>
+    import(
+        'src/components/book-trial-trainingComponents/components/BookTrialTraining3'
+    ),
+);
+const BookTrialTraining4 = dynamic(() =>
+    import(
+        'src/components/book-trial-trainingComponents/components/BookTrialTraining4'
+    ),
+);
+const EachTab = dynamic(() => import('src/components/EachTab'));
+const HolidayCampTabSpace = dynamic(() =>
+    import('src/components/include/HolidayCampTabSpace'),
+);
+import DefaultLayout from 'src/layout/DefaultLayout';
 
 function BookTrialTraining({ listSite }) {
     // console.log(listSite, 'list');
@@ -106,6 +124,7 @@ function BookTrialTraining({ listSite }) {
                         saveToLocal({
                             data: { ...dataStep1, ...dataStep2 },
                             token: _data.access_token,
+                            isCampBooking: false,
                         });
 
                     setResponseCourse({
@@ -174,6 +193,7 @@ function BookTrialTraining({ listSite }) {
                         saveToLocal({
                             data: { ...dataStep1, ...dataStep2 },
                             token: token,
+                            isCampBooking: false,
                         });
                         setPaymentUrl(siteReducer.data.data.payment_url);
                         setActiveTab(4);
@@ -320,7 +340,6 @@ function BookTrialTraining({ listSite }) {
                                     );
                                 }}
                                 bookOther={() => {
-                                    // console.log(dataStep1, 'step1');
                                     dispatch(
                                         bookCourse({
                                             course_id:

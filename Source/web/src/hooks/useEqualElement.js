@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 export default (ref) => {
     return useEffect(() => {
@@ -7,8 +7,8 @@ export default (ref) => {
             if (listTarget.length > 0) {
                 let maxHeight = 0;
                 for (let target of listTarget) {
-                    const heightOfTarget = target.getBoundingClientRect()
-                        .height;
+                    const heightOfTarget =
+                        target.getBoundingClientRect().height;
                     if (heightOfTarget > maxHeight) {
                         maxHeight = heightOfTarget;
                     }

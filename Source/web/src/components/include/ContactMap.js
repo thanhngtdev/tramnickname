@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
+import React, { useState } from 'react';
+import { GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps';
 import Constants from 'src/common/Constants';
 import CustomMarker from 'src/components/include/CustomMarker';
-import _ from 'lodash';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 function ContactMap(props) {
     const { academy } = props;
@@ -19,27 +17,8 @@ function ContactMap(props) {
     });
 
     // useEffect(() => {
-    //     if (
-    //         !_.isEmpty(academy) &&
-    //         academy.ms_latitude &&
-    //         academy.ms_longitude
-    //     ) {
-    //         setdefaultCenter({
-    //             lat: parseFloat(academy.ms_latitude),
-    //             lng: parseFloat(academy.ms_longitude),
-    //         });
-    //         setdefaultMarker({
-    //             ms_latitude: parseFloat(academy.ms_latitude),
-    //             ms_longitude: parseFloat(academy.ms_longitude),
-    //         });
-
-    //         // console.log({ defaultCenter });
-    //     }
-    // }, [academy]);
-
-    useEffect(() => {
-        console.log(props.footerConfig, 'config');
-    }, [props.footerConfig]);
+    //     console.log(props.footerConfig, 'config');
+    // }, [props.footerConfig]);
 
     function renderWMFContact() {
         return (
@@ -70,7 +49,8 @@ function ContactMap(props) {
                                     href={item.des}
                                     target="_blank"
                                     rel="noreferrer">
-                                    <LazyLoadImage
+                                    <img
+                                        loading="lazy"
                                         alt=""
                                         src={
                                             'static-file/images/orange-fb-icon.svg'
@@ -86,7 +66,8 @@ function ContactMap(props) {
                                     href={item.des}
                                     target="_blank"
                                     rel="noreferrer">
-                                    <LazyLoadImage
+                                    <img
+                                        loading="lazy"
                                         alt=""
                                         src={
                                             '/static-file/images/orange-twitter-icon.svg'
@@ -105,7 +86,8 @@ function ContactMap(props) {
                                     href={item.des}
                                     target="_blank"
                                     rel="noreferrer">
-                                    <LazyLoadImage
+                                    <img
+                                        loading="lazy"
                                         alt=""
                                         src={
                                             'static-file/images/orange-insta-icon.svg'

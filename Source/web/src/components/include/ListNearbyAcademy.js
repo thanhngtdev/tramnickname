@@ -4,11 +4,8 @@ import {
     faPhoneAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PathRoute from 'src/common/PathRoute';
-import Utils from 'src/common/Utils';
-import Spinner from 'src/components/Spinner';
 // import avatar from "images/gallery4.jpg";
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import {
@@ -18,14 +15,12 @@ import {
     withScriptjs,
 } from 'react-google-maps';
 import { useDispatch } from 'react-redux';
-import {
-    headerActionType,
-    siteActionType,
-} from 'src/redux/actions/actionTypes';
-import WeeklyTrainingItem from './WeeklyTrainingItem';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Constants from 'src/common/Constants';
-import siteService from 'src/services/siteService';
+import PathRoute from 'src/common/PathRoute';
+import Utils from 'src/common/Utils';
+import Spinner from 'src/components/Spinner';
+import { headerActionType } from 'src/redux/actions/actionTypes';
+import WeeklyTrainingItem from './WeeklyTrainingItem';
 
 const MapWithAMarker = withScriptjs(
     withGoogleMap((props) => {
@@ -60,15 +55,15 @@ function ListNearbyAcademy(props) {
     //! useEffect
     useEffect(() => {
         setLstAcademy(props.listAcademy);
-        setNoReSult(_.isEmpty(props.listAcademy));
+        setNoReSult(isEmpty(props.listAcademy));
     }, [props.listAcademy]);
 
     //! Functions
 
     //! render
-    if (_.isEmpty(lstAcademy) && !noResult) {
+    if (isEmpty(lstAcademy) && !noResult) {
         return <Spinner />;
-    } else if (_.isEmpty(lstAcademy) && noResult) {
+    } else if (isEmpty(lstAcademy) && noResult) {
         return (
             <div className="wrap-row" style={{ paddingBottom: '40px' }}>
                 <b>
@@ -100,7 +95,8 @@ function ListNearbyAcademy(props) {
                         <p>{lstAcademy[highlightAcademy].ms_address}</p>
                     </div>
                     <div className="wrap-info">
-                        <LazyLoadImage
+                        <img
+                            loading="lazy"
                             alt=""
                             src={
                                 lstAcademy[highlightAcademy].ms_avatar &&

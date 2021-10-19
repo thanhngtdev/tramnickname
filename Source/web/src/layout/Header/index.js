@@ -1,19 +1,23 @@
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ModelManager from 'src/common/ModelManager';
 import PathRoute from 'src/common/PathRoute';
-import Button from 'src/components/Button';
-import NearbyAcademy from 'src/components/include/NearbyAcademy';
+const Button = dynamic(() => import('src/components/Button'), { ssr: true });
+const NearbyAcademy = dynamic(
+    () => import('src/components/include/NearbyAcademy'),
+    { ssr: true },
+);
+
 // import NearbyAcademy from "./include/NearbyAcademy";
 
 const LinkItem = (props) => {
     const { title, href, hideMenu } = props;
     return (
         <li onClick={hideMenu} className="menu-link" style={props?.style || {}}>
-            <Link href={href} passHref scroll>
+            <Link href={href || ''} passHref scroll>
                 <a style={{ color: props.isOrange === true ? '#EE7925' : '' }}>
                     {title}
                 </a>
@@ -71,8 +75,9 @@ function Header() {
             <div className="head-top-mobile">
                 <div className="container">
                     <Link href={PathRoute.Home}>
-                        <LazyLoadImage
+                        <img
                             // src="/static-file/images/logo.svg"
+                            loading="lazy"
                             src="/static-file/images/logo.svg"
                             className="logo"
                             alt="Logo"
@@ -95,7 +100,8 @@ function Header() {
                     // className="container"
                     >
                         <Link href={PathRoute.Home} scroll>
-                            <LazyLoadImage
+                            <img
+                                loading="lazy"
                                 alt=""
                                 src="/static-file/images/logo.svg"
                                 className="logo"
@@ -212,7 +218,7 @@ function Header() {
                                 <LinkItem
                                     style={{ marginLeft: 0 }}
                                     isOrange={!menuMobile}
-                                    title={defaultAcademy.ms_name}
+                                    // title={defaultAcademy.ms_name}
                                     title={
                                         defaultAcademy.ms_name.replace(
                                             ' Academy',
@@ -229,10 +235,23 @@ function Header() {
                                 hideMenu={hideMenu}
                                 href={PathRoute.AboutUs}
                             />
+
+                            <LinkItem
+                                title={'News'}
+                                hideMenu={hideMenu}
+                                href={`${
+                                    !isEmpty(defaultAcademy)
+                                        ? '/' +
+                                          defaultAcademy.ms_alias +
+                                          PathRoute.HomeNews
+                                        : PathRoute.HomeNews
+                                }`}
+                            />
+
                             <LinkItem
                                 title={'Contact Us'}
                                 hideMenu={hideMenu}
-                                href={PathRoute.Contact}
+                                href={PathRoute.n}
                             />
                             <LinkItem
                                 title={'Locations'}

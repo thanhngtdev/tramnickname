@@ -1,21 +1,29 @@
-import AboutUs from 'src/components/Camp/AboutUs';
-import FootballSkill from 'src/components/Camp/FootballSkill';
-import InstaBox from 'src/components/Camp/InstaBox';
-import QNA from 'src/components/Camp/QNA';
-import WhyWMF from 'src/components/Camp/WhyWMF';
-import Intro from 'src/components/HomePage/Intro.js';
-// import Spinner from "component/Spinner";
-import Testimonial from 'src/components/Testimonial';
-import saveList from 'src/hooks/useSaveList';
-import DefaultLayout from 'src/layout/DefaultLayout';
-import BookTrialOne from '../../components/1-on-1-trainingComponents/components/BookTrialOne';
+import dynamic from 'next/dynamic';
 import React, { useRef } from 'react';
 import { Button } from 'react-bootstrap';
+import saveList from 'src/hooks/useSaveList';
+import DefaultLayout from 'src/layout/DefaultLayout';
 import siteService from 'src/services/siteService';
-import Provide from 'src/components/Provide';
-import Constants from 'src/common/Constants';
+
+const AboutUs = dynamic(() => import('src/components/Camp/AboutUs'));
+const FootballSkill = dynamic(() =>
+    import('src/components/Camp/FootballSkill'),
+);
+const InstaBox = dynamic(() => import('src/components/Camp/InstaBox'));
+const QNA = dynamic(() => import('src/components/Camp/QNA'));
+const WhyWMF = dynamic(() => import('src/components/Camp/WhyWMF'));
+const Intro = dynamic(() => import('src/components/HomePage/Intro.js'));
+const Testimonial = dynamic(() => import('src/components/Testimonial'));
+const BookTrialOne = dynamic(() =>
+    import(
+        '../../components/1-on-1-trainingComponents/components/BookTrialOne'
+    ),
+);
+const Provide = dynamic(() => import('src/components/Provide'));
 
 function OneTraining({ data, listSite }) {
+    console.log(data, 'data');
+
     saveList(listSite);
     const enquireBox = useRef(null);
 
@@ -38,7 +46,7 @@ function OneTraining({ data, listSite }) {
                 />
             </div>
 
-            <Provide site={data.site || {}} provide={data?.whoProvider} />
+            <Provide isMicroSite={false} provide={data?.whoProvider} />
 
             <div className="container">
                 <div style={{ marginBottom: '120px' }} className="enquire">

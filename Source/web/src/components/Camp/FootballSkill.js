@@ -1,8 +1,7 @@
-import useGetWidth from 'src/hooks/useGetWidth';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Utils from 'src/common/Utils';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import useGetWidth from 'src/hooks/useGetWidth';
 
 FootballSkill.propTypes = {
     data: PropTypes.object,
@@ -44,7 +43,8 @@ export default function FootballSkill(props) {
                             props.data.cfg_value.map((item, index) => {
                                 return (
                                     <div className="item" key={index}>
-                                        <LazyLoadImage
+                                        <img
+                                            loading="lazy"
                                             alt=""
                                             className="img"
                                             src={Utils.getThumb(item['icon'])}

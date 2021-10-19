@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
-import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick.css';
 import Slider from 'react-slick';
 import Utils from 'src/common/Utils';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const settings = {
     lazyLoad: 'ondemand',
@@ -64,7 +63,8 @@ function InstaBox(props) {
                                                 <div
                                                     key={idx}
                                                     className="photo">
-                                                    <LazyLoadImage
+                                                    <img
+                                                        loading="lazy"
                                                         alt=""
                                                         src={Utils.getThumb(
                                                             item.image,

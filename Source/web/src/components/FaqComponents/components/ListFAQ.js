@@ -1,13 +1,12 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Fragment } from 'react';
-
+import React, { Fragment } from 'react';
+import Link from 'next/link';
 const propTypes = {};
 
 const ListFAQ = (props) => {
     //! State
     const { lstCate } = props;
+
+    console.log(lstCate, 'lstCate');
 
     //! Function
 
@@ -25,7 +24,9 @@ const ListFAQ = (props) => {
                                 // <div className="col-4">
                                 <Fragment>
                                     {item.article.data.length > 0 && (
-                                        <div className="qna-cate" key={idx}>
+                                        <div
+                                            className="qna-cate"
+                                            key={item.cate_id}>
                                             <p className="title">
                                                 {item.cate_value}
                                             </p>
@@ -33,23 +34,31 @@ const ListFAQ = (props) => {
                                                 (it, index) => {
                                                     if (index < 3) {
                                                         return (
-                                                            <a
-                                                                style={{
-                                                                    marginBottom:
-                                                                        '1rem',
-                                                                }}
-                                                                key={index}
-                                                                href={`/faqs/${item.cate_alias}`}>
-                                                                {it.atc_sapo}
-                                                            </a>
+                                                            <Link
+                                                                href={`/faqs/${item.cate_alias}#${it.atc_id}`}
+                                                                passHref
+                                                                scroll>
+                                                                <a
+                                                                    style={{
+                                                                        marginBottom:
+                                                                            '1rem',
+                                                                    }}
+                                                                    key={index}>
+                                                                    {
+                                                                        it.atc_sapo
+                                                                    }
+                                                                </a>
+                                                            </Link>
                                                         );
                                                     }
                                                 },
                                             )}
-                                            <a
-                                                href={`/faqs/${item.cate_alias}`}>
-                                                View all questions
-                                            </a>
+                                            <Link
+                                                href={`/faqs/${item.cate_alias}`}
+                                                passHref
+                                                scroll>
+                                                <a>View all questions</a>
+                                            </Link>
                                         </div>
                                     )}
                                 </Fragment>

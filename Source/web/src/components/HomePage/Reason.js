@@ -1,6 +1,5 @@
-import Utils from 'src/common/Utils';
 import React, { useEffect, useRef, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Utils from 'src/common/Utils';
 
 function Reason(props) {
     //! State
@@ -90,7 +89,8 @@ function Reason(props) {
                                         activeIndex === index ? 'active' : ''
                                     }`}
                                     id={index + 1}>
-                                    <LazyLoadImage
+                                    <img
+                                        loading="lazy"
                                         style={{
                                             maxWidth: '100%',
                                             height: 'auto',

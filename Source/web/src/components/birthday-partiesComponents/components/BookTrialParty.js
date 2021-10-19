@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { Fragment, useEffect, useRef, useState } from 'react';
@@ -180,10 +180,7 @@ const BookTrialParty = React.forwardRef((props, ref) => {
     const dispatch = useDispatch();
     const history = useRouter();
     const [showSelect, setShowSelect] = useState(false);
-    // const [listSite, setlistSite] = useState(siteReducer.listSite);
-    const [location, setLocation] = useState(props?.site?.ms_email || '');
-
-    const [locationId, setLocationId] = useState(props?.site?.ms_email || '');
+    const [location, setLocation] = useState(props?.site || '');
     const [phone, setPhone] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -207,26 +204,21 @@ const BookTrialParty = React.forwardRef((props, ref) => {
     }, [isComponentVisible]);
 
     useEffect(() => {
-        console.log(locationId, 'location');
-    }, [locationId]);
-
-    useEffect(() => {
         if (siteReducer.type) {
             if (
                 siteReducer.type ===
                     siteActionType.GET_CURRENT_ACADEMY_SUCCESS &&
                 siteReducer.number === 5
             ) {
-                setLocation(siteReducer.data.ms_name);
-                setLocationId(siteReducer.data ? siteReducer.data.ms_id : '');
+                setLocation(siteReducer.data);
             }
         }
     }, [siteReducer]);
 
-    function onClickLocation(event) {
+    function onClickLocation(data) {
         setShowSelect(false);
-        setLocation(event.target.textContent);
-        setLocationId(event.target.getAttribute('data-target'));
+        setLocation(data);
+        // setLocationId(event.target.getAttribute('data-target'));
     }
 
     async function sendEmail(param) {
@@ -252,9 +244,9 @@ const BookTrialParty = React.forwardRef((props, ref) => {
     function onSendData(step2Data) {
         let _totalData = {
             type: 'party',
-            academyEmail: locationId,
+            academyEmail: location.ms_email,
             name: name,
-            location: location,
+            location: location.ms_name,
             phone: phone,
             email: email,
             date: step2Data.date,
@@ -331,10 +323,36 @@ const BookTrialParty = React.forwardRef((props, ref) => {
                                             onClick={(evt) => {
                                                 evt.preventDefault();
                                                 setShowSelect(false);
-                                                setLocation('Loading...');
-                                                Utils.getCurrentAcademy(
-                                                    dispatch,
-                                                    5,
+
+                                                let options = {
+                                                    enableHighAccuracy: true,
+                                                    timeout: 0,
+                                                    maximumAge: 0,
+                                                };
+
+                                                const success = (pos) => {
+                                                    // setLocation('Loading');
+                                                    let crd = pos.coords;
+
+                                                    dispatch({
+                                                        type: siteActionType.GET_CURRENT_ACADEMY,
+                                                        lat: crd.latitude,
+                                                        long: crd.longitude,
+                                                        number: 5,
+                                                    });
+                                                };
+
+                                                function error(err) {
+                                                    alert(
+                                                        'Turn on location',
+                                                        err,
+                                                    );
+                                                }
+
+                                                navigator.geolocation.getCurrentPosition(
+                                                    success,
+                                                    error,
+                                                    options,
                                                 );
                                             }}
                                             className="location">
@@ -354,7 +372,7 @@ const BookTrialParty = React.forwardRef((props, ref) => {
                                             }}>
                                             {!location
                                                 ? 'Select Academy'
-                                                : location}
+                                                : location.ms_name}
                                         </div>
                                         <div
                                             className={`select-items ${
@@ -367,9 +385,11 @@ const BookTrialParty = React.forwardRef((props, ref) => {
                                                         data-target={
                                                             item.ms_email
                                                         }
-                                                        onClick={
-                                                            onClickLocation
-                                                        }>
+                                                        onClick={() => {
+                                                            onClickLocation(
+                                                                item,
+                                                            );
+                                                        }}>
                                                         {item.ms_name}
                                                     </div>
                                                 ))}

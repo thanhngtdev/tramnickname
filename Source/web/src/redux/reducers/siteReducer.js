@@ -260,6 +260,7 @@ const siteReducer = (state = initialState, action) => {
         case type.CHECK_MAIL_SUCCESS:
             return {
                 ...state,
+                type: type.CHECK_MAIL_SUCCESS,
                 emailData: action.data,
             };
 

@@ -1,13 +1,12 @@
-import PathRoute from 'src/common/PathRoute';
-import Utils from 'src/common/Utils';
-import DefaultLayout from 'src/layout/DefaultLayout';
+import parse from 'html-react-parser';
 import { snakeCase } from 'lodash';
 import Link from 'next/link';
 import React, { useRef } from 'react';
-import siteService from 'src/services/siteService';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import parse from 'html-react-parser';
+import PathRoute from 'src/common/PathRoute';
+import Utils from 'src/common/Utils';
 import useEqualElement from 'src/hooks/useEqualElement';
+import DefaultLayout from 'src/layout/DefaultLayout';
+import siteService from 'src/services/siteService';
 
 function Policy({ data }) {
     const refListItem = useRef(null);
@@ -22,7 +21,8 @@ function Policy({ data }) {
                         <p></p>
                     </div>
                     <div className="col-6" style={{ paddingLeft: 0 }}>
-                        <LazyLoadImage
+                        <img
+                            loading="lazy"
                             alt=""
                             src={'static-file/images/image_about.png'}
                         />
@@ -66,7 +66,8 @@ function Policy({ data }) {
                                     className="col-6"
                                     style={{ marginBottom: 60 }}>
                                     <div className="item">
-                                        <LazyLoadImage
+                                        <img
+                                            loading="lazy"
                                             alt=""
                                             src={Utils.getThumb(item.icon)}
                                             className="img"

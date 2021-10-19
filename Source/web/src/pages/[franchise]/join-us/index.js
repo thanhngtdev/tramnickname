@@ -1,24 +1,24 @@
 import parse from 'html-react-parser';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
-import AboutSecure from 'src/components/Camp/AboutSecure';
-import Intro from 'src/components/HomePage/Intro.js';
-import JoinUsBanner from 'src/components/JoinUsBanner';
-// import "css/slick-theme.css";
-import Testimonial from 'src/components/Testimonial';
 import useEqualElement from 'src/hooks/useEqualElement';
 import useGetWidth from 'src/hooks/useGetWidth';
 import saveList from 'src/hooks/useSaveList';
+
+const AboutSecure = dynamic(() => import('src/components/Camp/AboutSecure'));
+const Intro = dynamic(() => import('src/components/HomePage/Intro.js'));
+const JoinUsBanner = dynamic(() => import('src/components/JoinUsBanner'));
+const Testimonial = dynamic(() => import('src/components/Testimonial'));
 import DefaultLayout from 'src/layout/DefaultLayout';
 
 const ROUTE = [PathRoute.Coaching, PathRoute.ParentHost];
 
 function JoinUs({ data, listSite }) {
-    console.log(data, 'data');
+    // console.log(data, 'data');
     //! state
     const refListItem = useRef(null);
     const [content, setContent] = useState(data.boxesFranchise.cfg_content);
@@ -79,7 +79,8 @@ function JoinUs({ data, listSite }) {
                                                         key={index}
                                                         className="col-6">
                                                         <div className="item">
-                                                            <LazyLoadImage
+                                                            <img
+                                                                loading="lazy"
                                                                 alt=""
                                                                 src={Utils.getThumb(
                                                                     item.icon,

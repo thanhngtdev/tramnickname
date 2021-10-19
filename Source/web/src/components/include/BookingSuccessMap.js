@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps';
 import { useSelector } from 'react-redux';
@@ -7,9 +8,10 @@ import AddToCalendar from '../AddToCalendar';
 import CustomMarker from './CustomMarker';
 
 function BookingSuccessMap(props) {
-    console.log(props, 'data');
+    console.log(props, 'props');
     const timeStart = props?.courseSelected?.course_day_time_start;
     const timeEnd = props?.courseSelected?.course_day_time_end;
+
     const [bookingInfo, setBookingInfo] = useState({});
 
     const defaultCenter = {
@@ -36,8 +38,16 @@ function BookingSuccessMap(props) {
             if (siteReducer.type === siteActionType.BOOK_TRIAL_SIGNUP_SUCCESS) {
                 setBookingInfo(siteReducer.data.data);
             }
+
+            if (siteReducer.type === siteActionType.GET_BOOKING_SUCCESS) {
+                setBookingInfo(siteReducer.data.data);
+            }
         }
     }, [siteReducer]);
+
+    // useEffect(() => {
+    //     console.log(bookingInfo, 'long');
+    // }, [bookingInfo]);
 
     return (
         <GoogleMap defaultZoom={8} center={defaultCenter}>
@@ -58,12 +68,15 @@ function BookingSuccessMap(props) {
                     <h4 style={{ marginBottom: 0 }}>Reference number:</h4>
                     <p style={{ marginTop: 0 }}>{bookingInfo?.booking_id}</p>
                     <h4 style={{ marginBottom: 0 }}>Time:</h4>
+
                     <p style={{ marginTop: 0 }}>
-                        {props.data.start_date + ' at '}
+                        {props.data.start_date ||
+                            props?.courseSelected?.date + ' at '}
                         {timeStart && timeEnd
                             ? timeStart.slice(0, 5) + '-' + timeEnd.slice(0, 5)
                             : ''}
                     </p>
+
                     <h4 style={{ marginBottom: 0 }}>Address:</h4>
                     <p style={{ marginTop: 0 }}>
                         {props?.siteSelected?.ms_address
@@ -75,12 +88,30 @@ function BookingSuccessMap(props) {
 
                     <AddToCalendar
                         event={{
+                            detail: `${
+                                props?.data?.child_first_name +
+                                ' ' +
+                                props?.data?.child_last_name
+                            } is booked in for their ${
+                                props?.siteSelected?.ms_trial === 1
+                                    ? 'trial'
+                                    : 'free trial'
+                            }  session at ${
+                                props?.siteSelected?.ms_address || ''
+                            } on ${props?.data?.start_date} at ${dayjs(
+                                '2021-03-03T' +
+                                    props?.courseSelected
+                                        ?.course_day_time_start,
+                            ).format('hh:mma')} - ${dayjs(
+                                '2021-03-03T' +
+                                    props?.courseSelected?.course_day_time_end,
+                            ).format('hh:mma')}`,
                             title: props?.courseSelected?.course_title,
                             startDate: props?.data?.start_date,
                             startTime:
                                 props?.courseSelected?.course_day_time_start,
                             endTime: props?.courseSelected?.course_day_time_end,
-                            location: props?.courseSelected?.loc_name,
+                            location: props?.siteSelected?.ms_address || '',
                         }}
                     />
                 </div>

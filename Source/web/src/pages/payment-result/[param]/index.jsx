@@ -1,21 +1,25 @@
-import { isEmpty } from 'lodash';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import isEmpty from 'lodash/isEmpty';
+import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import EmailIcon from 'src/components/Booking/EmailIcon';
-import EachTab from 'src/components/EachTab';
-import HolidayCampTabSpace from 'src/components/include/HolidayCampTabSpace';
+import Constants from 'src/common/Constants';
+import BookingSuccessMap from 'src/components/include/BookingSuccessMap';
 import saveList from 'src/hooks/useSaveList';
-import DefaultLayout from 'src/layout/DefaultLayout';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import siteService from 'src/services/siteService';
-const propTypes = {};
+
+const EmailIcon = dynamic(() => import('src/components/Booking/EmailIcon'));
+const EachTab = dynamic(() => import('src/components/EachTab'));
+const HolidayCampTabSpace = dynamic(() =>
+    import('src/components/include/HolidayCampTabSpace'),
+);
+import DefaultLayout from 'src/layout/DefaultLayout';
 
 const PaymentResult = (props) => {
-    console.log(props, 'aaa');
+    // console.log(props, 'aaa');
 
     //! State
-
     const dispatch = useDispatch();
     const siteReducer = useSelector((state) => state.siteReducer);
 
@@ -113,21 +117,38 @@ const PaymentResult = (props) => {
                                                 ?.ms_name || ''
                                         } on `}
                                         <br />
-                                        <span style={{ color: '#FF7100' }}>
-                                            {`${
-                                                dataPayment?.data?.start_date
-                                            } at ${moment(
-                                                dataPayment?.data
-                                                    ?.courseSelected
-                                                    ?.course_day_time_start,
-                                                'hh:mm:ss',
-                                            ).format('hh:mma')}-${moment(
-                                                dataPayment?.data
-                                                    ?.courseSelected
-                                                    ?.course_day_time_end,
-                                                'hh:mm:ss',
-                                            ).format('hh:mma')}`}
-                                        </span>
+                                        {dataPayment?.isCampBooking ? (
+                                            <>
+                                                <span
+                                                    style={{
+                                                        color: '#FF7100',
+                                                    }}>
+                                                    {`${dataPayment?.data?.courseSelected?.date} at ${dataPayment?.data?.courseSelected?.time}`}
+                                                </span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span
+                                                    style={{
+                                                        color: '#FF7100',
+                                                    }}>
+                                                    {`${
+                                                        dataPayment?.data
+                                                            ?.start_date
+                                                    } at ${dayjs(
+                                                        '2021-03-03T' +
+                                                            dataPayment?.data
+                                                                ?.courseSelected
+                                                                ?.course_day_time_start,
+                                                    ).format('hh:mma')}-${dayjs(
+                                                        '2021-03-03T' +
+                                                            dataPayment?.data
+                                                                ?.courseSelected
+                                                                ?.course_day_time_end,
+                                                    ).format('hh:mma')}`}
+                                                </span>
+                                            </>
+                                        )}
                                     </h2>
                                 ) : (
                                     <h2>
@@ -171,6 +192,35 @@ const PaymentResult = (props) => {
                                     </p>
                                 </div>
                             </div>
+
+                            <div
+                                style={{
+                                    height: 500,
+                                    position: 'relative',
+                                    marginTop: 100,
+                                }}>
+                                <BookingSuccessMap
+                                    
+                                    data={dataPayment?.data}
+                                    siteSelected={
+                                        dataPayment?.data?.siteSelected
+                                    }
+                                    courseSelected={
+                                        dataPayment?.data?.courseSelected
+                                    }
+                                    // responseCourse={props.responseCourse}
+                                    googleMapURL={Constants.GOOGLE_MAP_URL}
+                                    loadingElement={
+                                        <div style={{ height: `100%` }} />
+                                    }
+                                    containerElement={
+                                        <div style={{ height: `100%` }} />
+                                    }
+                                    mapElement={
+                                        <div style={{ height: `100%` }} />
+                                    }
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -192,5 +242,4 @@ export async function getServerSideProps(ctx) {
     return { props: { id: '' } };
 }
 
-PaymentResult.propTypes = propTypes;
 export default PaymentResult;

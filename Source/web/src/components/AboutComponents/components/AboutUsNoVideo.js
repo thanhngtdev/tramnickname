@@ -1,5 +1,4 @@
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useDispatch } from 'react-redux';
 
 const propTypes = {};
@@ -18,7 +17,8 @@ const AboutUsNoVideo = ({ data }) => {
                     <p></p>
                 </div>
                 <div className="col-6" style={{ paddingLeft: 0 }}>
-                    <LazyLoadImage
+                    <img
+                        loading="lazy"
                         alt=""
                         src={'static-file/images/image_about.png'}
                     />

@@ -1,13 +1,11 @@
-import ModelManager from 'src/common/ModelManager';
-import PathRoute from 'src/common/PathRoute';
-import useComponentVisible from 'src/hooks/useComponentVisible';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import Link from 'next/link';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import ModelManager from 'src/common/ModelManager';
+import PathRoute from 'src/common/PathRoute';
+import useComponentVisible from 'src/hooks/useComponentVisible';
 import siteService from 'src/services/siteService';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import Utils from 'src/common/Utils';
 
 function Footer() {
     //! state
@@ -74,7 +72,8 @@ function Footer() {
         <div className="footer">
             <div className="container">
                 <div className="box-contact">
-                    <LazyLoadImage
+                    <img
+                        loading="lazy"
                         src={'/static-file/images/logo-white.png'}
                         alt=""
                         height={'100%'}
@@ -161,7 +160,16 @@ function Footer() {
                             </a>
                         </li>
                         <li>
-                            <Link href={PathRoute.HomeNews}>Training Tips</Link>
+                            <Link
+                                href={`${
+                                    !isEmpty(defaultAcademy)
+                                        ? '/' +
+                                          defaultAcademy.ms_alias +
+                                          PathRoute.HomeNews
+                                        : PathRoute.HomeNews
+                                }`}>
+                                News
+                            </Link>
                         </li>
                         <li>
                             <div ref={ref} className="custom-select">

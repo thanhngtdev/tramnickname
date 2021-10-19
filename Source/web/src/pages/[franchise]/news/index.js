@@ -1,15 +1,10 @@
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 import siteService from 'src/services/siteService';
-import CategoryNews from 'src/components/CategoryNews';
-const propTypes = {};
+import dynamic from 'next/dynamic';
+const CategoryNews = dynamic(() => import('src/components/CategoryNews'));
 
 const SiteNews = (props) => {
-    //! State
-
-    //! Function
-
-    //! Render
     return <CategoryNews listSite={props.listSite} data={props.data} />;
 };
 
@@ -37,5 +32,5 @@ export async function getServerSideProps(ctx) {
     return { props: { data: {}, listSite } };
 }
 
-SiteNews.propTypes = propTypes;
+// SiteNews.propTypes = propTypes;
 export default SiteNews;

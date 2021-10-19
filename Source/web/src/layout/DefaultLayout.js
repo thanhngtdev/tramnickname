@@ -8,11 +8,14 @@ import { useDispatch } from 'react-redux';
 import { geolocated } from 'react-geolocated';
 import { NextSeo } from 'next-seo';
 
-const Footer = dynamic(() => import('./Footer'));
-const Header = dynamic(() => import('./Header'));
-const TrustPilot = dynamic(() => import('src/components/TrustPilot'));
-const LocationModal = dynamic(() =>
-    import('src/components/include/LocationModal'),
+const Footer = dynamic(() => import('./Footer'), { ssr: true });
+const Header = dynamic(() => import('./Header'), { ssr: true });
+const TrustPilot = dynamic(() => import('src/components/TrustPilot'), {
+    ssr: true,
+});
+const LocationModal = dynamic(
+    () => import('src/components/include/LocationModal'),
+    { ssr: true },
 );
 
 const DEFAULT_LAT = 51.5285582;

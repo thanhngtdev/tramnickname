@@ -1,18 +1,29 @@
 /* eslint-disable no-undef */
 import React, { useRef, useState } from 'react';
-import Constants from 'src/common/Constants';
-import AboutUs from 'src/components/Camp/AboutUs';
-import BirthdayExtra from 'src/components/Camp/BirthdayExtra';
-import BirthdayPackage from 'src/components/Camp/BirthdayPackage';
-import FootballSkill from 'src/components/Camp/FootballSkill';
-import QNA from 'src/components/Camp/QNA';
-import Gallery from 'src/components/HomePage/Gallery';
-import Quote from 'src/components/Quote';
-import Testimonial from 'src/components/Testimonial';
-import saveList from 'src/hooks/useSaveList';
+import dynamic from 'next/dynamic';
+const AboutUs = dynamic(() => import('src/components/Camp/AboutUs'));
+const BirthdayExtra = dynamic(() =>
+    import('src/components/Camp/BirthdayExtra'),
+);
+const BirthdayPackage = dynamic(() =>
+    import('src/components/Camp/BirthdayPackage'),
+);
+const FootballSkill = dynamic(() =>
+    import('src/components/Camp/FootballSkill'),
+);
+const QNA = dynamic(() => import('src/components/Camp/QNA'));
+const Gallery = dynamic(() => import('src/components/HomePage/Gallery'));
+const Quote = dynamic(() => import('src/components/Quote'));
+const Testimonial = dynamic(() => import('src/components/Testimonial'));
+const BookTrialParty = dynamic(() =>
+    import(
+        '../../components/birthday-partiesComponents/components/BookTrialParty'
+    ),
+);
 import DefaultLayout from 'src/layout/DefaultLayout';
+
+import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
-import BookTrialParty from '../../components/birthday-partiesComponents/components/BookTrialParty';
 // import Spinner from "component/Spinner";
 
 function BirthdayParty({ data, listSite }) {

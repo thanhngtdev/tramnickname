@@ -1,19 +1,18 @@
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PathRoute from 'src/common/PathRoute';
-import { CommonStyle } from 'src/common/Styles';
-import Utils from 'src/common/Utils';
-import SolidButton from 'src/components/include/SolidButton';
-import _ from 'lodash';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import isEmpty from 'lodash/isEmpty';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
+import PathRoute from 'src/common/PathRoute';
+import { CommonStyle } from 'src/common/Styles';
+import Utils from 'src/common/Utils';
+import SolidButton from 'src/components/include/SolidButton';
 import { siteActionType } from 'src/redux/actions/actionTypes';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 LDWeeklyTraining.propTypes = {
     site: PropTypes.object,
@@ -113,15 +112,13 @@ function LDWeeklyTraining(props) {
                             }}>
                             <p>{item.day_of_week.substring(0, MAX_LENGTH)}</p>
                             <p>
-                                {moment(
-                                    item.course_day_time_start,
-                                    'hh:mm:ss',
-                                ).format('h:mma')}
+                                {dayjs(
+                                    '2021-03-03T' + item.course_day_time_start,
+                                ).format('hh:mma')}
                                 -
-                                {moment(
-                                    item.course_day_time_end,
-                                    'hh:mm:ss',
-                                ).format('h:mma')}
+                                {dayjs(
+                                    '2021-03-03T' + item.course_day_time_end,
+                                ).format('hh:mma')}
                             </p>
                             <p>
                                 {item.min_age}-{item.max_age}{' '}
@@ -155,6 +152,19 @@ function LDWeeklyTraining(props) {
                         </div>
                     </div>
                 ))}
+            <p>
+                <Link
+                    href={'/' + props.site.ms_alias + PathRoute.WeeklyTraining}
+                    passHref>
+                    <a
+                        style={{
+                            color: '#EE7925',
+                            textDecoration: 'underline',
+                        }}>
+                        Find out more
+                    </a>
+                </Link>
+            </p>
         </div>
     );
 }
@@ -203,14 +213,6 @@ function LDHolidayCamp(props) {
             </h5>
             {lstCourse.map((item, index) => (
                 <Fragment key={index}>
-                    {/* <div
-                        className="classRow"
-                        onClick={() => setCourseSelected(item)}
-                        style={{ fontSize: '15px' }}>
-                        <p style={{ marginRight: '10px' }}>{item.date}</p>
-                        <p style={{ width: '160px' }}>{item.time}</p>
-                        <p>{item.course_title}</p>
-                    </div> */}
                     <div
                         onClick={() => setCourseSelected(item)}
                         style={{
@@ -235,7 +237,11 @@ function LDHolidayCamp(props) {
                             See more at{' '}
                             <a
                                 style={{ color: '#ef9042' }}
-                                href={PathRoute.HolidayCamp}>
+                                href={
+                                    '/' +
+                                    props.site.ms_alias +
+                                    PathRoute.HolidayCamp
+                                }>
                                 Holiday Camps
                             </a>
                         </div>
@@ -292,7 +298,9 @@ function LDOneTraining(props) {
                 dangerouslySetInnerHTML={{
                     __html: props.config ? props.config.content : '',
                 }}></p>
-            <Link href={PathRoute.OneTraining} passHref>
+            <Link
+                href={'/' + props.site.ms_alias + PathRoute.OneTraining}
+                passHref>
                 <a style={{ color: '#EE7925', textDecoration: 'underline' }}>
                     Find out more
                 </a>
@@ -313,7 +321,9 @@ function LDBirthdayParty(props) {
                 dangerouslySetInnerHTML={{
                     __html: props.config ? props.config.content : '',
                 }}></p>
-            <Link href={PathRoute.BirthdayParty} passHref>
+            <Link
+                href={'/' + props.site.ms_alias + PathRoute.BirthdayParty}
+                passHref>
                 <a style={{ color: '#EE7925', textDecoration: 'underline' }}>
                     Find out more
                 </a>
@@ -355,6 +365,7 @@ function TrainingService(props) {
     const [hoverIndex, setHoverIndex] = useState(0);
     const [innerWidth, setInnerWith] = useState(2000);
     const list = props?.service?.cfg_value || [];
+    // console.log(props, 'props');
 
     useEffect(() => {
         window.addEventListener('resize', handleWindowSizeChange);
@@ -389,7 +400,7 @@ function TrainingService(props) {
     // console.log(props.site);
     if (isMobile) {
         return (
-            !_.isEmpty(list) && (
+            !isEmpty(list) && (
                 <div className="service-mobile">
                     <h2>
                         {props.site ? props.site.ms_name : ''} junior football
@@ -397,7 +408,8 @@ function TrainingService(props) {
                     </h2>
                     <div>
                         <div className="service-group">
-                            <LazyLoadImage
+                            <img
+                                loading="lazy"
                                 alt=""
                                 src={Utils.getThumb(list[0].icon)}
                                 style={{ width: '37px' }}
@@ -411,7 +423,8 @@ function TrainingService(props) {
                             />
                         </div>
                         <div className="service-group">
-                            <LazyLoadImage
+                            <img
+                                loading="lazy"
                                 alt=""
                                 src={Utils.getThumb(list[1].icon)}
                                 style={{ width: '37px' }}
@@ -429,7 +442,8 @@ function TrainingService(props) {
                             />
                         </div>
                         <div className="service-group">
-                            <LazyLoadImage
+                            <img
+                                loading="lazy"
                                 alt=""
                                 src={Utils.getThumb(list[2].icon)}
                                 style={{ width: '37px' }}
@@ -437,6 +451,7 @@ function TrainingService(props) {
                             <span>{list[2].title}</span>
                             <div style={{ height: '2rem' }} />
                             <LDOneTraining
+                                site={props.site}
                                 config={
                                     props.service && props.service.cfg_value
                                         ? props.service.cfg_value[2]
@@ -445,7 +460,8 @@ function TrainingService(props) {
                             />
                         </div>
                         <div className="service-group">
-                            <LazyLoadImage
+                            <img
+                                loading="lazy"
                                 alt=""
                                 src={Utils.getThumb(list[3].icon)}
                                 style={{ width: '37px' }}
@@ -453,6 +469,7 @@ function TrainingService(props) {
                             <span>{list[3].title}</span>
                             <div style={{ height: '2rem' }} />
                             <LDBirthdayParty
+                                site={props.site}
                                 config={
                                     props.service && props.service.cfg_value
                                         ? props.service.cfg_value[3]
@@ -461,7 +478,8 @@ function TrainingService(props) {
                             />
                         </div>
                         <div className="service-group">
-                            <LazyLoadImage
+                            <img
+                                loading="lazy"
                                 alt=""
                                 src={Utils.getThumb(list[4].icon)}
                                 style={{ width: '37px' }}
@@ -469,6 +487,7 @@ function TrainingService(props) {
                             <span>{list[4].title}</span>
                             <div style={{ height: '2rem' }} />
                             <LDSchoolTraining
+                                site={props.site}
                                 config={
                                     props.service && props.service.cfg_value
                                         ? props.service.cfg_value[4]
@@ -490,7 +509,7 @@ function TrainingService(props) {
                     </h2>
                     <div className="content-small">
                         <ul className="nav-tabs">
-                            {!_.isEmpty(list) &&
+                            {!isEmpty(list) &&
                                 list.map((item, index) => (
                                     <li
                                         key={index}
@@ -513,7 +532,8 @@ function TrainingService(props) {
                                         onMouseLeave={() => setHoverIndex(-1)}
                                         onClick={() => setActiveIndex(index)}>
                                         <a data-toggle="tab">
-                                            <LazyLoadImage
+                                            <img
+                                                loading="lazy"
                                                 alt=""
                                                 src={Utils.getThumb(item.icon)}
                                                 style={{ width: '37px' }}
@@ -575,6 +595,7 @@ function TrainingService(props) {
                                 }`}
                                 id={3}>
                                 <LDOneTraining
+                                    site={props.site}
                                     config={
                                         props.service && props.service.cfg_value
                                             ? props.service.cfg_value[2]
@@ -588,6 +609,7 @@ function TrainingService(props) {
                                 }`}
                                 id={4}>
                                 <LDBirthdayParty
+                                    site={props.site}
                                     config={
                                         props.service && props.service.cfg_value
                                             ? props.service.cfg_value[3]
@@ -601,6 +623,7 @@ function TrainingService(props) {
                                 }`}
                                 id={5}>
                                 <LDSchoolTraining
+                                    site={props.site}
                                     config={
                                         props.service && props.service.cfg_value
                                             ? props.service.cfg_value[4]

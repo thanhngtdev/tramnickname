@@ -1,5 +1,4 @@
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Utils from 'src/common/Utils';
 import BorderButton from 'src/components/include/BorderButton';
 
@@ -15,7 +14,8 @@ export default function BirthdayPackage(props) {
                         return (
                             <div className="package-item">
                                 <div className="package-image">
-                                    <LazyLoadImage
+                                    <img
+                                        loading="lazy"
                                         src={Utils.getThumb(item.image)}
                                         alt=""
                                     />
@@ -66,7 +66,8 @@ export default function BirthdayPackage(props) {
                                     />
                                 </div>
                                 <div className="package-image">
-                                    <LazyLoadImage
+                                    <img
+                                        loading="lazy"
                                         src={Utils.getThumb(item.image)}
                                         alt=""
                                     />

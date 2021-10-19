@@ -1,10 +1,5 @@
-import Captcha from 'src/components/Captcha';
-import BorderButton from 'src/components/include/BorderButton';
-import Dot from 'src/components/include/Dot';
-import TrustPilotText from 'src/components/TrustPilotText';
-import useComponentVisible from 'src/hooks/useComponentVisible';
-import getLocalStorage from 'src/hooks/useGetLocalStorage';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { Fragment, useEffect, useState } from 'react';
@@ -14,11 +9,17 @@ import flags from 'react-phone-number-input/flags';
 // import "react-phone-number-input/style.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import siteService from 'src/services/siteService';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
-import { siteActionType } from 'src/redux/actions/actionTypes';
 import Button from 'src/components/Button';
+import BorderButton from 'src/components/include/BorderButton';
+import Dot from 'src/components/include/Dot';
+import TrustPilotText from 'src/components/TrustPilotText';
+import useComponentVisible from 'src/hooks/useComponentVisible';
+import getLocalStorage from 'src/hooks/useGetLocalStorage';
+import { siteActionType } from 'src/redux/actions/actionTypes';
+import siteService from 'src/services/siteService';
+const Captcha = dynamic(() => import('src/components/Captcha'));
 
 BookTrialHoliday.propTypes = {
     parentFb: PropTypes.object,
@@ -146,10 +147,9 @@ export default function BookTrialHoliday(props) {
     const siteReducer = useSelector((state) => state.siteReducer);
     const dispatch = useDispatch();
     const history = useRouter();
-    const defaultAcademy = getLocalStorage();
+
     const [showSelect, setShowSelect] = useState(false);
-    const [location, setLocation] = useState(props?.site?.ms_name || '');
-    const [locationId, setLocationId] = useState(props?.site?.ms_email || '');
+    const [location, setLocation] = useState(props?.site || '');
     const [phone, setPhone] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -159,7 +159,7 @@ export default function BookTrialHoliday(props) {
     const [emailError, setEmailError] = useState('');
     const [stepActive, setStepActive] = useState(1);
     const { parentFb } = props;
-    const [captcha, setCaptcha] = useState('');
+
     const { ref, isComponentVisible, setIsComponentVisible } =
         useComponentVisible(true);
 
@@ -170,26 +170,21 @@ export default function BookTrialHoliday(props) {
     }, [isComponentVisible]);
 
     useEffect(() => {
-        console.log(locationId, 'location');
-    }, [locationId]);
-
-    useEffect(() => {
         if (siteReducer.type) {
             if (
                 siteReducer.type ===
                     siteActionType.GET_CURRENT_ACADEMY_SUCCESS &&
                 siteReducer.number === 3
             ) {
-                setLocation(siteReducer.data.ms_name);
-                setLocationId(siteReducer.data ? siteReducer.data.ms_id : '');
+                setLocation(siteReducer.data);
             }
         }
     }, [siteReducer]);
 
-    function onClickLocation(event) {
+    function onClickLocation(data) {
+        console.log(data, 'data');
         setShowSelect(false);
-        setLocation(event.target.textContent);
-        setLocationId(event.target.getAttribute('data-target'));
+        setLocation(data);
     }
 
     function validateInput() {
@@ -218,7 +213,6 @@ export default function BookTrialHoliday(props) {
     async function sendEmail(param) {
         try {
             const res = await siteService.sendEmail(param);
-
             if (res.data.status === 200) {
                 history.push(PathRoute.ThankYou, undefined, { scroll: true });
             } else {
@@ -230,19 +224,15 @@ export default function BookTrialHoliday(props) {
             }
         } catch (err) {
             setStepActive(1);
-            // toast.error(err, {
-            //   position: toast.POSITION.BOTTOM_LEFT,
-            //   autoClose: 3000,
-            // });
         }
     }
 
     function onSendData(step2Data) {
         let _totalData = {
             type: 'camp',
-            academyEmail: locationId,
+            academyEmail: location.ms_email,
             name: name,
-            location: location,
+            location: location.ms_name,
             phone: phone,
             email: email,
             childName: step2Data.childName,
@@ -279,10 +269,34 @@ export default function BookTrialHoliday(props) {
                                             onClick={(evt) => {
                                                 evt.preventDefault();
                                                 setShowSelect(false);
-                                                setLocation('Loading...');
-                                                Utils.getCurrentAcademy(
-                                                    dispatch,
-                                                    3,
+                                                let options = {
+                                                    enableHighAccuracy: true,
+                                                    timeout: 0,
+                                                    maximumAge: 0,
+                                                };
+
+                                                const success = (pos) => {
+                                                    // setLocation('Loading');
+                                                    let crd = pos.coords;
+
+                                                    dispatch({
+                                                        type: siteActionType.GET_CURRENT_ACADEMY,
+                                                        lat: crd.latitude,
+                                                        long: crd.longitude,
+                                                        number: 3,
+                                                    });
+                                                };
+
+                                                function error(err) {
+                                                    alert(
+                                                        'Turn on location',
+                                                        err,
+                                                    );
+                                                }
+                                                navigator.geolocation.getCurrentPosition(
+                                                    success,
+                                                    error,
+                                                    options,
                                                 );
                                             }}
                                             className="location">
@@ -301,7 +315,7 @@ export default function BookTrialHoliday(props) {
                                             }}>
                                             {isEmpty(location)
                                                 ? 'Select Academy'
-                                                : location}
+                                                : location.ms_name}
                                         </div>
                                         <div
                                             className={`select-items ${
@@ -311,12 +325,11 @@ export default function BookTrialHoliday(props) {
                                                 listSite.map((item) => (
                                                     <div
                                                         key={item.ms_id}
-                                                        data-target={
-                                                            item.ms_email
-                                                        }
-                                                        onClick={
-                                                            onClickLocation
-                                                        }>
+                                                        onClick={() => {
+                                                            onClickLocation(
+                                                                item,
+                                                            );
+                                                        }}>
                                                         {item.ms_name}
                                                     </div>
                                                 ))}

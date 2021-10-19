@@ -1,46 +1,14 @@
+import dayjs from 'dayjs';
+import isEmpty from 'lodash/isEmpty';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import AddToCalendarHOC from 'react-add-to-calendar-hoc';
-import moment from 'moment';
-import Button from 'src/components/Button';
 import Select from 'react-select';
 import { CommonStyle } from 'src/common/Styles';
-import { siteActionType } from 'src/redux/actions/actionTypes';
-import { isEmpty } from 'lodash';
-import Radiobox from 'src/components/include/Radiobox/Radiobox';
-import siteService from 'src/services/siteService';
 import Utils from 'src/common/Utils';
+import Button from 'src/components/Button';
+import Radiobox from 'src/components/include/Radiobox/Radiobox';
+import { siteActionType } from 'src/redux/actions/actionTypes';
 import { courseStartDate } from 'src/redux/actions/siteAction';
-
-const propTypes = {};
-const lstCourse = [
-    {
-        course_title: 'GIRLS Twickenham Wednesdays 7-13 year olds',
-        course_id: 471,
-        min_age: 6,
-        max_age: 13,
-        course_price: 48,
-        course_length: 8,
-        trial: 'Yes',
-        loc_name: 'Twickenham Academy',
-        day_of_week: 'Wednesday',
-        course_day_time_start: '18:00:00',
-        course_day_time_end: '19:00:00',
-    },
-    {
-        course_title: 'Twickenham Academy 4-7 year olds (10.30am-11.30am)',
-        course_id: 698,
-        min_age: 4,
-        max_age: 8,
-        course_price: 75,
-        course_length: 9,
-        trial: 'Yes',
-        loc_name: 'Twickenham Academy',
-        day_of_week: 'Saturday',
-        course_day_time_start: '10:30:00',
-        course_day_time_end: '11:30:00',
-    },
-];
 
 export default (props) => {
     console.log(props, 'near');
@@ -169,14 +137,14 @@ export default (props) => {
                                     {item.day_of_week}
                                 </Radiobox>
                                 <label>
-                                    {moment(
-                                        item.course_day_time_start,
-                                        'hh:mm:ss',
+                                    {dayjs(
+                                        '2021-03-03T' +
+                                            item.course_day_time_start,
                                     ).format('hh:mma')}
                                     -
-                                    {moment(
-                                        item.course_day_time_end,
-                                        'hh:mm:ss',
+                                    {dayjs(
+                                        '2021-03-03T' +
+                                            item.course_day_time_end,
                                     ).format('hh:mma')}
                                 </label>
                                 <span>
@@ -213,7 +181,7 @@ export default (props) => {
                             (option) =>
                                 option?.date_show +
                                 ' ' +
-                                moment(option?.date).format('YYYY')
+                                dayjs(option?.date).format('YYYY')
                             // new Date().getFullYear()
                         }
                         getOptionValue={(option) => option.date}
@@ -240,7 +208,7 @@ export default (props) => {
                                 courseSelected: courseSelected || {},
                                 siteSelected: selectedItem || {},
                                 start_date: !isEmpty(startDate)
-                                    ? moment(startDate).format('yyyy-MM-DD')
+                                    ? dayjs(startDate).format('YYYY-MM-DD')
                                     : '',
                             };
 

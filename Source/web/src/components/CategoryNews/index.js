@@ -1,14 +1,14 @@
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Utils from 'src/common/Utils';
-import ArticleItem from 'src/components/Article/ArticleItem';
-import ArticleMenu from 'src/components/Article/ArticleMenu';
 import saveList from 'src/hooks/useSaveList';
-import DefaultLayout from 'src/layout/DefaultLayout';
-// import "css/article.css";
 import type from 'src/redux/actions/actionTypes';
+import dynamic from 'next/dynamic';
+import DefaultLayout from 'src/layout/DefaultLayout';
+const ArticleItem = dynamic(() => import('src/components/Article/ArticleItem'));
+const ArticleMenu = dynamic(() => import('src/components/Article/ArticleMenu'));
 
 export default ({ listSite, data }) => {
     const articleReducer = useSelector((state) => state.articleReducer);

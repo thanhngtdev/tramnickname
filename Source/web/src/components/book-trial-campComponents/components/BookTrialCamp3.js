@@ -1,14 +1,13 @@
+import PropTypes from 'prop-types';
+import React, { Fragment, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import EmailIcon from 'src/components/Booking/EmailIcon';
 import TrainingIcon1 from 'src/components/Booking/TrainingIcon1';
 import TrainingIcon2 from 'src/components/Booking/TrainingIcon2';
 import TrainingIcon3 from 'src/components/Booking/TrainingIcon3';
 import Checkbox from 'src/components/include/Checkbox/Checkbox';
 import SolidButton from 'src/components/include/SolidButton';
-import PropTypes from 'prop-types';
-import React, { Fragment, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { siteActionType } from 'src/redux/actions/actionTypes';
-import { isEmpty } from 'lodash';
 import Button from '../../Button';
 
 BookTrialCamp3.propTypes = {
@@ -275,49 +274,27 @@ function BookTrialCamp3(props) {
                     </div>
                     <img src={'static-file/images/paypal.png'} />
                 </>
-                {/* {showPayment ? (
+                {showPayment ? (
                     <iframe
                         className="responsive-iframe"
                         style={{ border: 'none' }}
                         src={props.responseCourse.paymentUrl}
+                        sandbox="allow-top-navigation allow-scripts allow-same-origin allow-forms"
                         width="100%"
-                        height="770"></iframe>
+                        height="800px"></iframe>
                 ) : (
-                    
-                )} */}
-                <div style={{ marginTop: '3rem' }}>
-                    <SolidButton
-                        disabled={!checkPolicy}
-                        title={buttonTitle}
-                        onClick={() => {
-                            if (!showPayment) {
-                                if (!isEmpty(props.responseCourse.paymentUrl)) {
-                                    window.open(
-                                        props.responseCourse.paymentUrl,
-                                        'DescriptiveWindowName',
-                                        'resizable,scrollbars,status',
-                                    );
+                    <div style={{ marginTop: '3rem' }}>
+                        <SolidButton
+                            disabled={!checkPolicy}
+                            title={buttonTitle}
+                            onClick={() => {
+                                if (!showPayment) {
                                     setShowPayment(true);
-                                    setButtonTitle('Confirm');
                                 }
-                            } else {
-                                dispatch({
-                                    type: siteActionType.GET_BOOKING,
-                                    booking_id: props.responseCourse.bookingId,
-                                    token: props.responseCourse.token,
-                                });
-                            }
-                        }}
-                    />
-                    {showPayment && (
-                        <div>
-                            <label className="input-error">
-                                "Please continue payment on Paypal website and
-                                confirm when it's done"
-                            </label>
-                        </div>
-                    )}
-                </div>
+                            }}
+                        />
+                    </div>
+                )}
             </>
         );
     }
@@ -396,10 +373,6 @@ function BookTrialCamp3(props) {
                 </div>
             </>
         );
-    }
-
-    function renderIframe(scr) {
-        window;
     }
 
     return (

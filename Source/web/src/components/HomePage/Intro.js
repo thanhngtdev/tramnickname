@@ -1,13 +1,11 @@
 // import Utils from "src/common/Utils";
-import { isEmpty, set } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useSelector } from 'react-redux';
 import ModelManager from 'src/common/ModelManager';
 import Utils from 'src/common/Utils';
 import siteService from 'src/services/siteService';
-import TrustPilot from '../TrustPilot';
 
 Intro.propTypes = {
     intro: PropTypes.array,
@@ -134,7 +132,8 @@ function Intro(props) {
                             return (
                                 <div key={index} className="list-intro-item">
                                     <div className="list-intro-item-img">
-                                        <LazyLoadImage
+                                        <img
+                                            loading="lazy"
                                             src={Utils.getThumb(item.image)}
                                             alt={
                                                 item?.des || 'we make football'

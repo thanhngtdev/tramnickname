@@ -1,6 +1,7 @@
 import React from 'react';
 import siteService from 'src/services/siteService';
-import CategoryNews from 'src/components/CategoryNews';
+import dynamic from 'next/dynamic';
+const CategoryNews = dynamic(() => import('src/components/CategoryNews'));
 
 function News({ listSite, data }) {
     return <CategoryNews listSite={listSite} data={data} />;

@@ -1,18 +1,27 @@
-import AboutInfoCamp from 'src/components/Camp/AboutInfoCamp';
-import AboutSecure from 'src/components/Camp/AboutSecure';
-import AboutUs from 'src/components/Camp/AboutUs';
-import CampInclude from 'src/components/Camp/CampInclude';
-import FootballSkill from 'src/components/Camp/FootballSkill';
-import InstaBox from 'src/components/Camp/InstaBox';
-import QNA from 'src/components/Camp/QNA';
-import WhyWMF from 'src/components/Camp/WhyWMF';
-import Testimonial from 'src/components/Testimonial';
-import saveList from 'src/hooks/useSaveList';
+import dynamic from 'next/dynamic';
+const AboutInfoCamp = dynamic(() =>
+    import('src/components/Camp/AboutInfoCamp'),
+);
+const AboutSecure = dynamic(() => import('src/components/Camp/AboutSecure'));
+const AboutUs = dynamic(() => import('src/components/Camp/AboutUs'));
+const CampInclude = dynamic(() => import('src/components/Camp/CampInclude'));
+const FootballSkill = dynamic(() =>
+    import('src/components/Camp/FootballSkill'),
+);
+const InstaBox = dynamic(() => import('src/components/Camp/InstaBox'));
+const QNA = dynamic(() => import('src/components/Camp/QNA'));
+const WhyWMF = dynamic(() => import('src/components/Camp/WhyWMF'));
+const Testimonial = dynamic(() => import('src/components/Testimonial'));
 import DefaultLayout from 'src/layout/DefaultLayout';
-import BookTrialHoliday from '../../components/holiday-camps-homeComponents/components/BookTrialHoliday';
+const BookTrialHoliday = dynamic(() =>
+    import(
+        '../../components/holiday-camps-homeComponents/components/BookTrialHoliday'
+    ),
+);
+
+import saveList from 'src/hooks/useSaveList';
 import React from 'react';
 import siteService from 'src/services/siteService';
-import Constants from 'src/common/Constants';
 
 function HolidayCamp({ data, listSite }) {
     saveList(listSite);

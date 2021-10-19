@@ -1,9 +1,8 @@
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 // import { propTypes } from "react-bootstrap/esm/Image";
 import 'react-datepicker/dist/react-datepicker.css';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
 // import "react-phone-number-input/style.css";
@@ -301,7 +300,8 @@ function BookTrialSchool(props) {
                     <div className="col-right">
                         {parentFb && (
                             <div className="box-acc-review">
-                                <LazyLoadImage
+                                <img
+                                    loading="lazy"
                                     src={Utils.getThumb(
                                         parentFb.fb_image,
                                         'c1',

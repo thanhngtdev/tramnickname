@@ -6,7 +6,7 @@ import type from 'src/redux/actions/actionTypes';
 import PropTypes from 'prop-types';
 import ModelManager from 'src/common/ModelManager';
 import Link from 'next/link';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 
 ArticleMenu.propTypes = {
     currentCate: PropTypes.number,

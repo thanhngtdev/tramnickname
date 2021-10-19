@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useDispatch, useSelector } from 'react-redux';
 import Utils from 'src/common/Utils';
 import { siteActionType } from 'src/redux/actions/actionTypes';
@@ -69,7 +68,8 @@ export default function AboutGuide(props) {
             <div className="wrap-guide">
                 <div className="col-left">
                     <div className="wrap-image">
-                        <LazyLoadImage
+                        <img
+                            loading="lazy"
                             src={Utils.getThumb(props.item.cfg_des)}
                             alt="Wemakefootballers"
                         />

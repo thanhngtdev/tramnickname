@@ -1,27 +1,24 @@
-import Utils from 'src/common/Utils';
+import dayjs from 'dayjs';
+import dynamic from 'next/dynamic';
+import isEmpty from 'lodash/isEmpty';
+import PropTypes from 'prop-types';
+import React, { Fragment, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import Constants from 'src/common/Constants';
+import useGetWidth from 'src/hooks/useGetWidth';
+import { siteActionType } from 'src/redux/actions/actionTypes';
+
+const BookingSuccessMap = dynamic(() =>
+    import('src/components/include/BookingSuccessMap'),
+);
+const NearbyList = dynamic(() => import('./NearbyList'));
+
 import EmailIcon from 'src/components/Booking/EmailIcon';
 import TrainingIcon1 from 'src/components/Booking/TrainingIcon1';
 import TrainingIcon2 from 'src/components/Booking/TrainingIcon2';
 import TrainingIcon3 from 'src/components/Booking/TrainingIcon3';
-import BookingSuccessMap from 'src/components/include/BookingSuccessMap';
-// import Utils from "src/common/Utils";
-import BorderButton from 'src/components/include/BorderButton';
-import moment from 'moment';
-// import BookingSuccessMap from 'component/include/BookingSuccessMap';
-// import EmailIcon from './EmailIcon';
-// import TrainingIcon1 from './TrainingIcon1';
-// import TrainingIcon2 from './TrainingIcon2';
-// import TrainingIcon3 from './TrainingIcon3';
-import PropTypes from 'prop-types';
-import React, { Fragment, useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { siteActionType } from 'src/redux/actions/actionTypes';
-import Constants from 'src/common/Constants';
-import { isEmpty } from 'lodash';
-import NearbyList from './NearbyList';
-import useGetWidth from 'src/hooks/useGetWidth';
-// import BorderButton from 'component/include/BorderButton';
+// import BookingSuccessMap from 'src/components/include/BookingSuccessMap';
 
 BookTrialTraining3.propTypes = {
     success: PropTypes.number,
@@ -277,14 +274,14 @@ function BookTrialTraining3(props) {
                                         <span style={{ color: '#FF7100' }}>
                                             {`${
                                                 props?.data?.start_date
-                                            } at ${moment(
-                                                props.data.courseSelected
-                                                    .course_day_time_start,
-                                                'hh:mm:ss',
-                                            ).format('hh:mma')}-${moment(
-                                                props.data.courseSelected
-                                                    .course_day_time_end,
-                                                'hh:mm:ss',
+                                            } at ${dayjs(
+                                                '2021-03-03T' +
+                                                    props.data.courseSelected
+                                                        .course_day_time_start,
+                                            ).format('hh:mma')}-${dayjs(
+                                                '2021-03-03T' +
+                                                    props.data.courseSelected
+                                                        .course_day_time_end,
                                             ).format('hh:mma')}`}
                                         </span>
                                     </h2>

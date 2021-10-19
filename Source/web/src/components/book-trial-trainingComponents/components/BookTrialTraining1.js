@@ -1,6 +1,6 @@
+import dayjs from 'dayjs';
 import 'flatpickr/dist/themes/material_orange.css';
-import _, { isEmpty } from 'lodash';
-import moment from 'moment';
+import { isEmpty } from 'lodash';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { Fragment, useEffect, useState } from 'react';
@@ -11,7 +11,6 @@ import flags from 'react-phone-number-input/flags';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { CommonStyle } from 'src/common/Styles';
-import Timer from 'src/common/Timer';
 import Utils from 'src/common/Utils';
 import BorderButton from 'src/components/include/BorderButton';
 import Radiobox from 'src/components/include/Radiobox/Radiobox';
@@ -27,6 +26,7 @@ const FREE_MESSAGE = 'Book your child’s free training session within 3 minutes
 const TRIAL_MESSAGE = 'Try a no obligation, one off trial session';
 
 function BookTrialTraining1(props) {
+    console.log(global.bookTraining, 'booking');
     const siteReducer = useSelector((state) => state.siteReducer);
     const { emailData } = siteReducer;
     const { listSite } = useSelector((state) => state.listSiteReducer);
@@ -35,9 +35,9 @@ function BookTrialTraining1(props) {
     const [message, setMessage] = useState(FREE_MESSAGE);
     const [date, setDate] = useState(
         (global.bookTraining?.date_of_birth &&
-            moment(global.bookTraining.date_of_birth).toDate()) ||
+            dayjs(global.bookTraining.date_of_birth).toDate()) ||
             (global.bookTraining?.date &&
-                moment(global.bookTraining.date).toDate()) ||
+                dayjs(global.bookTraining.date).toDate()) ||
             '',
     );
     const [lstStartDate, setLstStartDate] = useState([]);
@@ -74,7 +74,7 @@ function BookTrialTraining1(props) {
             {},
     );
 
-    console.log(global.bookTraining, 'global.bookTraining');
+    // console.log(global.bookTraining, 'global.bookTraining');
 
     const [siteError, setSiteError] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -95,6 +95,10 @@ function BookTrialTraining1(props) {
         }
     }, []);
 
+    // useEffect(() => {
+
+    // }, [siteSelected]);
+
     useEffect(() => {
         if (email && siteSelected) {
             dispatch(
@@ -104,9 +108,7 @@ function BookTrialTraining1(props) {
                 }),
             );
         }
-    }, [siteSelected]);
 
-    useEffect(() => {
         if (siteSelected?.pa_companyId) {
             setCompanyId(siteSelected?.pa_companyId);
             dispatch(
@@ -134,7 +136,7 @@ function BookTrialTraining1(props) {
     }, [courseSatisfied]);
 
     useEffect(() => {
-        if (!_.isEmpty(emailData)) {
+        if (!isEmpty(emailData)) {
             try {
                 const { data } = emailData;
                 if (data.email_exist === 'yes') {
@@ -147,8 +149,11 @@ function BookTrialTraining1(props) {
                     setEmailError('');
                 }
             } catch (error) {}
+            // return;
         }
+    }, [emailData]);
 
+    useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
                 setSiteSelected(
@@ -173,6 +178,7 @@ function BookTrialTraining1(props) {
             }
 
             if (siteReducer.type === siteActionType.COURSE_START_DATE_SUCCESS) {
+                // console.log('aaaaa');
                 setLstStartDate(siteReducer.data);
 
                 if (global.bookTraining && global.bookTraining.start_date) {
@@ -327,7 +333,7 @@ function BookTrialTraining1(props) {
                     onChange={(date) => {
                         getClassTime(new Date(date));
                         setDate(date[0]);
-                        if (!_.isEmpty(siteSelected)) {
+                        if (!isEmpty(siteSelected)) {
                             dispatch(
                                 getListCourse({
                                     company_id: siteSelected.pa_companyId,
@@ -366,6 +372,10 @@ function BookTrialTraining1(props) {
                                     }}>
                                     <Radiobox
                                         onChange={() => {
+                                            // console.log(
+                                            //     courseSelected,
+                                            //     'course',
+                                            // );
                                             if (
                                                 item.course_id ===
                                                 courseSelected.course_id
@@ -387,14 +397,14 @@ function BookTrialTraining1(props) {
                                         {item.day_of_week}
                                     </Radiobox>
                                     <label>
-                                        {moment(
-                                            item.course_day_time_start,
-                                            'hh:mm:ss',
+                                        {dayjs(
+                                            '2021-03-03T' +
+                                                item.course_day_time_start,
                                         ).format('hh:mma')}
                                         -
-                                        {moment(
-                                            item.course_day_time_end,
-                                            'hh:mm:ss',
+                                        {dayjs(
+                                            '2021-03-03T' +
+                                                item.course_day_time_end,
                                         ).format('hh:mma')}
                                     </label>
                                     <span>
@@ -431,7 +441,7 @@ function BookTrialTraining1(props) {
                                     (option) =>
                                         option?.date_show +
                                         ' ' +
-                                        moment(option?.date).format('YYYY')
+                                        dayjs(option?.date).format('YYYY')
                                     // new Date().getFullYear()
                                 }
                                 getOptionValue={(option) => option.date}
@@ -502,14 +512,14 @@ function BookTrialTraining1(props) {
                                         parent_first_name: firstName,
                                         parent_last_name: lastName,
                                         date_of_birth:
-                                            moment(date).format('yyyy-MM-DD'),
+                                            dayjs(date).format('YYYY-MM-DD'),
                                         email: email,
                                         phone_number: phone,
                                         company_id: companyId,
                                         course_id: courseSelected.course_id,
                                         start_date:
-                                            moment(startDate).format(
-                                                'yyyy-MM-DD',
+                                            dayjs(startDate).format(
+                                                'YYYY-MM-DD',
                                             ),
                                     };
 

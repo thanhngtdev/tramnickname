@@ -1,7 +1,4 @@
-import Captcha from 'src/components/Captcha';
-import TrustPilotText from 'src/components/TrustPilotText';
-import useComponentVisible from 'src/hooks/useComponentVisible';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
@@ -11,11 +8,14 @@ import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import siteService from 'src/services/siteService';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
-import { siteActionType } from 'src/redux/actions/actionTypes';
 import Button from 'src/components/Button';
+import Captcha from 'src/components/Captcha';
+import TrustPilotText from 'src/components/TrustPilotText';
+import useComponentVisible from 'src/hooks/useComponentVisible';
+import { siteActionType } from 'src/redux/actions/actionTypes';
+import siteService from 'src/services/siteService';
 
 BookTrialOne.propTypes = {
     parentFb: PropTypes.object,
@@ -28,8 +28,7 @@ function BookTrialOne(props) {
     const dispatch = useDispatch();
 
     const [showSelect, setShowSelect] = useState(false);
-    const [location, setLocation] = useState(props.site?.ms_name || '');
-    const [locationId, setLocationId] = useState(props?.site?.ms_email || '');
+    const [location, setLocation] = useState(props?.site?.ms_name || '');
     const [email, setEmail] = useState('');
     const [locationError, setLocationError] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -47,28 +46,21 @@ function BookTrialOne(props) {
     useComponentVisible(ref, setShowSelect);
 
     useEffect(() => {
-        console.log(locationId, 'location');
-    }, [locationId]);
-
-    useEffect(() => {
         if (siteReducer.type) {
             if (
                 siteReducer.type ===
                     siteActionType.GET_CURRENT_ACADEMY_SUCCESS &&
                 siteReducer.number === 4
             ) {
-                setLocation(siteReducer.data.ms_name);
-                setLocationId(siteReducer.data ? siteReducer.data.ms_id : '');
+                setLocation(siteReducer.data);
             }
         }
     }, [siteReducer]);
 
     //! function
-    function onClickLocation(event) {
+    function onClickLocation(data) {
         setShowSelect(false);
-        setLocation(event.target.textContent);
-        setLocationId(event.target.getAttribute('data-target'));
-        parseInt(event.target.getAttribute('data-trial'));
+        setLocation(data);
     }
 
     function validateInput() {
@@ -131,9 +123,9 @@ function BookTrialOne(props) {
     function onSendData() {
         let _totalData = {
             type: 'onetraining',
-            academyEmail: locationId,
+            academyEmail: location.ms_email,
             name: name,
-            location: location,
+            location: location.ms_name,
             phone: phone,
             email: email,
             comment: medical,
@@ -163,8 +155,33 @@ function BookTrialOne(props) {
                                         // console.log('run');
                                         evt.preventDefault();
                                         setShowSelect(false);
-                                        setLocation('Loading...');
-                                        Utils.getCurrentAcademy(dispatch, 4);
+                                        let options = {
+                                            enableHighAccuracy: true,
+                                            timeout: 0,
+                                            maximumAge: 0,
+                                        };
+
+                                        const success = (pos) => {
+                                            // setLocation('Loading');
+                                            let crd = pos.coords;
+
+                                            dispatch({
+                                                type: siteActionType.GET_CURRENT_ACADEMY,
+                                                lat: crd.latitude,
+                                                long: crd.longitude,
+                                                number: 4,
+                                            });
+                                        };
+
+                                        function error(err) {
+                                            alert('Turn on location', err);
+                                        }
+
+                                        navigator.geolocation.getCurrentPosition(
+                                            success,
+                                            error,
+                                            options,
+                                        );
                                     }}>
                                     <span>Use </span>current location
                                 </a>
@@ -177,7 +194,9 @@ function BookTrialOne(props) {
                                         setLocationError('');
                                         return false;
                                     }}>
-                                    {!location ? 'Select Academy' : location}
+                                    {!location
+                                        ? 'Select Academy'
+                                        : location.ms_name}
                                 </div>
                                 <div
                                     className={`select-items ${
@@ -187,9 +206,9 @@ function BookTrialOne(props) {
                                         listSite.map((item) => (
                                             <div
                                                 key={item.ms_id}
-                                                data-target={item.ms_id}
-                                                data-trial={item.ms_trial || 0}
-                                                onClick={onClickLocation}>
+                                                onClick={() => {
+                                                    onClickLocation(item);
+                                                }}>
                                                 {item.ms_name}
                                             </div>
                                         ))}
@@ -230,7 +249,9 @@ function BookTrialOne(props) {
                             <label className="input-error">{phoneError}</label>
                         </li>
                         <li>
-                            <label className="label">Your Email *</label>
+                            <label className="label">
+                                Your Email <span className="required">*</span>
+                            </label>
                             <input
                                 type="text"
                                 placeholder="Example@gmail.com"

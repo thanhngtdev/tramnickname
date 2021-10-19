@@ -1,15 +1,31 @@
 import React, { useEffect, useState } from 'react';
-// import "css/book-trial.css";
+import dynamic from 'next/dynamic';
 import { useDispatch, useSelector } from 'react-redux';
 import { siteActionType } from 'src/redux/actions/actionTypes';
-import BookTrialCamp1 from '../../components/book-trial-campComponents/components/BookTrialCamp1';
-import BookTrialCamp2 from '../../components/book-trial-campComponents/components/BookTrialCamp2';
-import BookTrialCamp3 from '../../components/book-trial-campComponents/components/BookTrialCamp3';
-import HolidayCampTabSpace from 'src/components/include/HolidayCampTabSpace';
 import DefaultLayout from 'src/layout/DefaultLayout';
 import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
 import Constants from 'src/common/Constants';
+import Utils from 'src/common/Utils';
+
+const BookTrialCamp1 = dynamic(() =>
+    import(
+        'src/components/book-trial-campComponents/components/BookTrialCamp1'
+    ),
+);
+const BookTrialCamp2 = dynamic(() =>
+    import(
+        'src/components/book-trial-campComponents/components/BookTrialCamp2'
+    ),
+);
+const BookTrialCamp3 = dynamic(() =>
+    import(
+        'src/components/book-trial-campComponents/components/BookTrialCamp3'
+    ),
+);
+const HolidayCampTabSpace = dynamic(() =>
+    import('src/components/include/HolidayCampTabSpace'),
+);
 
 const DEFAULT_MESSAGE = `User registered but the booking is not completed, please Log in <a
 href="https://www.parentarea.co/parent/login"
@@ -40,12 +56,19 @@ function BookTrialCamp({ listSite }) {
                 // console.log(data);
                 if (data.status === 200) {
                     let _data = data.data;
+
                     if (_data.payment_url)
-                        setResponseCourse({
-                            paymentUrl: _data.payment_url,
-                            bookingId: _data.booking_id,
+                        // console.log({ ...dataStep1, ...dataStep2 }, 'datad');
+                        Utils.saveToLocal({
+                            data: { ...dataStep1, ...dataStep2 },
                             token: _data.access_token,
+                            isCampBooking: true,
                         });
+                    setResponseCourse({
+                        paymentUrl: _data.payment_url,
+                        bookingId: _data.booking_id,
+                        token: _data.access_token,
+                    });
                     setBookSuccess(1);
                     setActiveTab(3);
                 } else if (data.status === 709) {

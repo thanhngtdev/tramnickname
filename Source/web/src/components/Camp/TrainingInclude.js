@@ -1,13 +1,12 @@
-import React, { useRef, useState } from 'react';
-import Slider from 'react-slick';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faChevronLeft,
     faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import Utils from 'src/common/Utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import React, { useRef, useState } from 'react';
+import Slider from 'react-slick';
+import Utils from 'src/common/Utils';
 
 TrainingInclude.propTypes = {
     data: PropTypes.object,

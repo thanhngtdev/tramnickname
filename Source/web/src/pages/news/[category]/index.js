@@ -1,13 +1,15 @@
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import React, { useEffect } from 'react';
-import CategoryNews from 'src/components/CategoryNews';
+import dynamic from 'next/dynamic';
 import siteService from 'src/services/siteService';
-import Detail from 'src/components/DetailNews';
+
+const CategoryNews = dynamic(() => import('src/components/CategoryNews'));
+const Detail = dynamic(() => import('src/components/DetailNews'));
 
 const propTypes = {};
 
 const DetailNews = ({ listSite, data, isCategory }) => {
-    console.log(data, isCategory, 'data');
+    // console.log(data, isCategory, 'data');
 
     useEffect(() => {
         if (isEmpty(data)) {

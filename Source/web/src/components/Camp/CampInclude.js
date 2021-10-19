@@ -1,15 +1,14 @@
-import React, { useRef, useState, Fragment } from 'react';
-import Slider from 'react-slick';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faChevronLeft,
     faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import Dot from 'src/components/include/Dot';
-import Utils from 'src/common/Utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
+import React, { Fragment, useRef, useState } from 'react';
+import Slider from 'react-slick';
+import Utils from 'src/common/Utils';
+import Dot from 'src/components/include/Dot';
 import useGetWidth from 'src/hooks/useGetWidth';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 CampInclude.propTypes = {
     data: PropTypes.object,

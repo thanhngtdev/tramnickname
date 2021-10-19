@@ -1,31 +1,13 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Utils from 'src/common/Utils';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Utils from 'src/common/Utils';
 
 AboutUs.propTypes = {
     data: PropTypes.object,
 };
-
-const Play = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-`;
 
 const PlayButton = () => {
     return (
@@ -164,7 +146,8 @@ export default function AboutUs(props) {
                     style={{
                         paddingLeft: 0,
                     }}>
-                    <LazyLoadImage
+                    <img
+                        loading="lazy"
                         alt=""
                         src={'/static-file/images/weekly-training-video.png'}
                         // height="1000px"

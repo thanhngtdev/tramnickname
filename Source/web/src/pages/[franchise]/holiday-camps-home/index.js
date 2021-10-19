@@ -1,19 +1,40 @@
-import AboutInfoCamp from 'src/components/Camp/AboutInfoCamp';
-import AboutSecure from 'src/components/Camp/AboutSecure';
-import AboutUs from 'src/components/Camp/AboutUs';
-import CampInclude from 'src/components/Camp/CampInclude';
-import FootballSkill from 'src/components/Camp/FootballSkill';
-import InstaBox from 'src/components/Camp/InstaBox';
-import QNA from 'src/components/Camp/QNA';
-import WhyWMF from 'src/components/Camp/WhyWMF';
-import Testimonial from 'src/components/Testimonial';
-import saveList from 'src/hooks/useSaveList';
-import DefaultLayout from 'src/layout/DefaultLayout';
-import BookTrialHoliday from 'src/components/holiday-camps-homeComponents/components/BookTrialHoliday';
+import isEmpty from 'lodash/isEmpty';
 import React, { useEffect } from 'react';
-import siteService from 'src/services/siteService';
-import { isEmpty } from 'lodash';
 import Utils from 'src/common/Utils';
+import saveList from 'src/hooks/useSaveList';
+import dynamic from 'next/dynamic';
+
+// import AboutInfoCamp from 'src/components/Camp/AboutInfoCamp';
+// import AboutSecure from 'src/components/Camp/AboutSecure';
+// import AboutUs from 'src/components/Camp/AboutUs';
+// import CampInclude from 'src/components/Camp/CampInclude';
+// import FootballSkill from 'src/components/Camp/FootballSkill';
+// import InstaBox from 'src/components/Camp/InstaBox';
+// import QNA from 'src/components/Camp/QNA';
+// import WhyWMF from 'src/components/Camp/WhyWMF';
+// import BookTrialHoliday from 'src/components/holiday-camps-homeComponents/components/BookTrialHoliday';
+// import Testimonial from 'src/components/Testimonial';
+// import DefaultLayout from 'src/layout/DefaultLayout';
+
+const AboutInfoCamp = dynamic(() =>
+    import('src/components/Camp/AboutInfoCamp'),
+);
+const AboutSecure = dynamic(() => import('src/components/Camp/AboutSecure'));
+const AboutUs = dynamic(() => import('src/components/Camp/AboutUs'));
+const CampInclude = dynamic(() => import('src/components/Camp/CampInclude'));
+const FootballSkill = dynamic(() =>
+    import('src/components/Camp/FootballSkill'),
+);
+const InstaBox = dynamic(() => import('src/components/Camp/InstaBox'));
+const QNA = dynamic(() => import('src/components/Camp/QNA'));
+const WhyWMF = dynamic(() => import('src/components/Camp/WhyWMF'));
+const Testimonial = dynamic(() => import('src/components/Testimonial'));
+import DefaultLayout from 'src/layout/DefaultLayout';
+const BookTrialHoliday = dynamic(() =>
+    import(
+        'src/components/holiday-camps-homeComponents/components/BookTrialHoliday'
+    ),
+);
 
 function HolidayCamp({ data, listSite }) {
     saveList(listSite);

@@ -1,18 +1,11 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable global-require */
-/* eslint-disable react/no-unescaped-entities */
-import Utils from 'src/common/Utils';
-// import 'css/slick-theme.css';
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
+import Utils from 'src/common/Utils';
 import { getHome } from 'src/redux/actions/homeAction';
-// import { showTruspilot } from "redux/actions/trustpilotAction";
-import 'slick-carousel/slick/slick.css';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import TrustPilotText from '../TrustPilotText';
 import { showTruspilot } from 'src/redux/actions/trustpilotAction';
+
 const settings = {
     dots: true,
     infinite: false,
@@ -50,8 +43,8 @@ function Testimonial(props) {
     const { testimonial } = useSelector((state) => state.homeReducer);
 
     useEffect(() => {
-        if (_.isEmpty(props.data)) {
-            if (!_.isEmpty(testimonial)) {
+        if (isEmpty(props.data)) {
+            if (!isEmpty(testimonial)) {
                 setLstFb(testimonial);
             } else {
                 dispatch(
@@ -80,7 +73,8 @@ function Testimonial(props) {
                         lstFb.map((item, index) => (
                             <div key={index} className="col-6">
                                 <div className="box-acc-review">
-                                    <LazyLoadImage
+                                    <img
+                                        loading="lazy"
                                         alt=""
                                         src={Utils.getThumb(item.fb_image)}
                                         className="avatar"

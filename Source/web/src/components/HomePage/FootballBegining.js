@@ -1,6 +1,5 @@
-import Utils from 'src/common/Utils';
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Utils from 'src/common/Utils';
 
 function FootballBegining(props) {
     return (
@@ -14,7 +13,8 @@ function FootballBegining(props) {
                         props.footballBegining.cfg_value.map((item, index) => {
                             return (
                                 <div className="item" key={index}>
-                                    <LazyLoadImage
+                                    <img
+                                        loading="lazy"
                                         alt=""
                                         className="img"
                                         src={Utils.getThumb(item['icon'])}

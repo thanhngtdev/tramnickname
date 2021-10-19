@@ -1,14 +1,12 @@
-import DefaultLayout from 'src/layout/DefaultLayout';
+import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import QNASearch from 'src/components/FaqComponents/components/QNASearch';
-import React, { Fragment, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getListFaq } from 'src/redux/actions/faqAction';
+import saveList from 'src/hooks/useSaveList';
+import DefaultLayout from 'src/layout/DefaultLayout';
+import siteService from 'src/services/siteService';
 import ListFAQ from '../../components/FaqComponents/components/ListFAQ';
 import ResultFaqs from '../../components/FaqComponents/components/ResultFaqs';
-import siteService from 'src/services/siteService';
-import { isEmpty } from 'lodash';
-import saveList from 'src/hooks/useSaveList';
 
 const propTypes = {};
 

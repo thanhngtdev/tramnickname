@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import { Formik } from 'formik';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
@@ -8,11 +9,14 @@ import { useDispatch } from 'react-redux';
 import Select from 'react-select';
 import PathRoute from 'src/common/PathRoute';
 import { CommonStyle } from 'src/common/Styles';
-import AttachFileButton from 'src/components/AttachFileButton';
-import Captcha from 'src/components/Captcha';
 import DefaultLayout from 'src/layout/DefaultLayout';
 import siteService from 'src/services/siteService';
 import * as Yup from 'yup';
+
+const AttachFileButton = dynamic(() =>
+    import('src/components/AttachFileButton'),
+);
+const Captcha = dynamic(() => import('src/components/Captcha'));
 
 CoachingCopy.propTypes = {
     data: PropTypes.object,

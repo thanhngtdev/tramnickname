@@ -1,9 +1,8 @@
-import React from 'react';
 import parse from 'html-react-parser';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import React from 'react';
 
 const ListIcon = () => (
-    <LazyLoadImage src={'/static-file/images/list.png'} alt="" />
+    <img loading="lazy" src={'/static-file/images/list.png'} alt="" />
 );
 
 export default function BirthdayExtra(props) {

@@ -2,17 +2,25 @@ import { Formik } from 'formik';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React from 'react';
-// import "react-phone-number-input/style.css";
+import dynamic from 'next/dynamic';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
 import Select from 'react-select';
 import PathRoute from 'src/common/PathRoute';
 import { CommonStyle } from 'src/common/Styles';
-import AttachFileButton from 'src/components/AttachFileButton';
-import Captcha from 'src/components/Captcha';
-import IconUnVerify from 'src/components/include/Checkbox/IconUnVerify';
-import IconVerify from 'src/components/include/Checkbox/IconVerify';
+
+const AttachFileButton = dynamic(() =>
+    import('src/components/AttachFileButton'),
+);
+const Captcha = dynamic(() => import('src/components/Captcha'));
+const IconUnVerify = dynamic(() =>
+    import('src/components/include/Checkbox/IconUnVerify'),
+);
+const IconVerify = dynamic(() =>
+    import('src/components/include/Checkbox/IconVerify'),
+);
 import DefaultLayout from 'src/layout/DefaultLayout';
+
 import siteService from 'src/services/siteService';
 import * as Yup from 'yup';
 

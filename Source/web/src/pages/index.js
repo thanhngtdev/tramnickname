@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import ModelManager from 'src/common/ModelManager';
 import saveList from 'src/hooks/useSaveList';
-import DefaultLayout from 'src/layout/DefaultLayout';
 import siteService from 'src/services/siteService';
 
+import DefaultLayout from 'src/layout/DefaultLayout';
 const BookTrial = dynamic(() => import('src/components/Booking/BookTrial'));
 const BannerTop = dynamic(() => import('src/components/HomePage/BannerTop'));
 const FootballBegining = dynamic(() =>
@@ -22,7 +22,6 @@ function HomePage({ data, listSite }) {
     // console.log(listSite);
     saveList(listSite);
     const [defaultAcademy, setDefaultAcademy] = useState({});
-
     useEffect(() => {
         setDefaultAcademy(ModelManager.getLocation());
     }, []);

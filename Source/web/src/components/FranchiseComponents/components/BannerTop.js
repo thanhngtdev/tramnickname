@@ -1,14 +1,11 @@
-import PathRoute from 'src/common/PathRoute';
-import { CommonStyle } from 'src/common/Styles';
-import Utils from 'src/common/Utils';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Select from 'react-select';
-import { siteActionType } from 'src/redux/actions/actionTypes';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import PathRoute from 'src/common/PathRoute';
+import Utils from 'src/common/Utils';
 import Button from 'src/components/Button';
+import { siteActionType } from 'src/redux/actions/actionTypes';
 
 BannerTop.propTypes = {
     site: PropTypes.object,

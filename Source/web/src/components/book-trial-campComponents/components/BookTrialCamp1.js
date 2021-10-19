@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import Select from 'react-select';
-import { CommonStyle } from 'src/common/Styles';
-import Checkbox from 'src/components/include/Checkbox/Checkbox';
-import BorderButton from 'src/components/include/BorderButton';
-import { useDispatch, useSelector } from 'react-redux';
-import { siteActionType } from 'src/redux/actions/actionTypes';
-import DatePicker from 'react-datepicker';
-import Utils from 'src/common/Utils';
+import dayjs from 'dayjs';
+import isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
-import moment from 'moment';
-import PathRoute from 'src/common/PathRoute';
-// import 'react-phone-number-input/style.css';
-import PhoneInput from 'react-phone-number-input';
-import flags from 'react-phone-number-input/flags';
-import { Fragment } from 'react';
-import { getListCourse } from 'src/redux/actions/siteAction';
-import _, { isEmpty } from 'lodash';
+import React, { Fragment, useEffect, useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import Flatpickr from 'react-flatpickr';
+import PhoneInput from 'react-phone-number-input';
+import flags from 'react-phone-number-input/flags';
+import { useDispatch, useSelector } from 'react-redux';
+import Select from 'react-select';
+import PathRoute from 'src/common/PathRoute';
+import { CommonStyle } from 'src/common/Styles';
+import Utils from 'src/common/Utils';
+import BorderButton from 'src/components/include/BorderButton';
+import Checkbox from 'src/components/include/Checkbox/Checkbox';
+import { siteActionType } from 'src/redux/actions/actionTypes';
+import { checkEmail, getListCourse } from 'src/redux/actions/siteAction';
 
 BookTrialCamp1.propTypes = {
     onNext: PropTypes.func,
@@ -29,6 +26,7 @@ const options = {
 
 function BookTrialCamp1(props) {
     const siteReducer = useSelector((state) => state.siteReducer);
+    const { emailData } = siteReducer;
     const dispatch = useDispatch();
     const [lstSite, setLstSite] = useState(siteReducer.lstSiteCamp);
     const [siteSelected, setSiteSelected] = useState({});
@@ -58,13 +56,13 @@ function BookTrialCamp1(props) {
     const [lastNameError, setLastNameError] = useState('');
     const [dateError, setDateError] = useState('');
     const [disabled, setDisabled] = useState(false);
+    const [availableEmail, setAvailableEmail] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
-
         setSiteSelected(JSON.parse(localStorage.getItem('defaultAcademy')));
 
-        if (_.isEmpty(siteReducer.lstSiteCamp)) {
+        if (isEmpty(siteReducer.lstSiteCamp)) {
             dispatch({ type: siteActionType.GET_SITE_HAS_CAMP });
         }
     }, []);
@@ -90,7 +88,8 @@ function BookTrialCamp1(props) {
             phone &&
             firstName &&
             lastName &&
-            date
+            date &&
+            availableEmail === false
         ) {
             setDisabled(false);
         } else {
@@ -104,9 +103,25 @@ function BookTrialCamp1(props) {
         firstName,
         lastName,
         date,
+        availableEmail,
     ]);
 
     useEffect(() => {
+        if (!isEmpty(emailData)) {
+            // console.log(emailData, 'emailData');
+            try {
+                const { data } = emailData;
+                if (data.email_exist === 'yes') {
+                    setAvailableEmail(true);
+                    setEmailError('This email is already registered');
+                }
+                if (data.email_exist === 'no') {
+                    setAvailableEmail(false);
+                    setEmailError('');
+                }
+            } catch (error) {}
+        }
+
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_SITE_HAS_CAMP_SUCCESS) {
                 setLstSite(siteReducer.lstSiteCamp);
@@ -150,7 +165,7 @@ function BookTrialCamp1(props) {
                 setCompanyId(siteReducer.data.pa_companyId);
             }
         }
-    }, [siteReducer, dispatch]);
+    }, [siteReducer]);
 
     useEffect(() => {
         if (!isEmpty(dateCourseSelect)) {
@@ -268,7 +283,7 @@ function BookTrialCamp1(props) {
 
     useEffect(() => {
         let _dateCourse = [...dateCourseSelect];
-        console.log('aaaa', fullCourseSelect);
+        // console.log('aaaa', fullCourseSelect);
         if (!fullCourseSelect) {
             _dateCourse = _dateCourse.map((item) => {
                 return { ...item, checkBox: false };
@@ -490,6 +505,17 @@ function BookTrialCamp1(props) {
                                 setEmail(event.target.value);
                                 setEmailError('');
                             }}
+                            onBlur={(event) => {
+                                if (email && Utils.checkEmail(email)) {
+                                    dispatch(
+                                        checkEmail({
+                                            email: event.target.value,
+                                            company_id:
+                                                siteSelected.pa_companyId,
+                                        }),
+                                    );
+                                }
+                            }}
                         />
                         <label className="input-error">{emailError}</label>
                     </div>
@@ -604,15 +630,14 @@ function BookTrialCamp1(props) {
                                 phone_number: phone,
                                 course_id: courseSelected.course_id,
                                 dates: _dates,
-                                date_of_birth:
-                                    moment(date).format('yyyy-MM-DD'),
+                                date_of_birth: dayjs(date).format('YYYY-MM-DD'),
                                 company_id: companyId,
                                 lstDate: _lstDate,
                                 lstPrice: _lstPrice,
                                 totalPrice,
                             };
-                            console.log(dataObject, 'prj');
-                            // console.log(validateData());
+
+                            // console.log(dataObject);
                             if (validateData()) {
                                 props.onNext(dataObject);
                             }

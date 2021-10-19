@@ -1,15 +1,22 @@
-import { isEmpty } from 'lodash';
-import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import isEmpty from 'lodash/isEmpty';
+import React, { useState } from 'react';
 import Utils from 'src/common/Utils';
 
 const propTypes = {};
 
 const Provide = (props) => {
     //! State
-    const { provide } = props;
+    const { provide, isMicroSite } = props;
+
     //! Function
 
+    const convert = (content) => {
+        if (!isMicroSite) {
+            return content.replace('the $AcademyName', 'the WMF');
+        }
+
+        return content.replace('$AcademyName', props?.site?.ms_name);
+    };
     //! Render
     return (
         <div className="provides">
@@ -20,7 +27,8 @@ const Provide = (props) => {
                     </div>
                     <div className="provides-row">
                         <div className="provides-image">
-                            <LazyLoadImage
+                            <img
+                                loading="lazy"
                                 style={{ float: 'right' }}
                                 src={Utils.getThumb(
                                     provide?.cfg_value?.[0]?.image,
@@ -32,7 +40,9 @@ const Provide = (props) => {
                             <div
                                 className="provides-wrap-text"
                                 dangerouslySetInnerHTML={{
-                                    __html: provide?.cfg_value?.[0]?.content,
+                                    __html: convert(
+                                        provide?.cfg_value?.[0]?.content,
+                                    ),
                                 }}></div>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
-import { isEmpty } from 'lodash';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
@@ -160,14 +160,14 @@ export default function AboutInfo(props) {
                                 }}>
                                 <p>{item.day_of_week}</p>
                                 <p>
-                                    {moment(
-                                        item.course_day_time_start,
-                                        'hh:mm:ss',
+                                    {dayjs(
+                                        '2021-03-03T' +
+                                            item.course_day_time_start,
                                     ).format('hh:mma')}
                                     -
-                                    {moment(
-                                        item.course_day_time_end,
-                                        'hh:mm:ss',
+                                    {dayjs(
+                                        '2021-03-03T' +
+                                            item.course_day_time_end,
                                     ).format('hh:mma')}
                                 </p>
                                 <p>

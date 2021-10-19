@@ -1,11 +1,10 @@
-import { isEmpty } from 'lodash';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import Flatpickr from 'react-flatpickr';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useDispatch, useSelector } from 'react-redux';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
@@ -26,8 +25,7 @@ function BookTrial(props) {
     const history = useRouter();
 
     const [showSelect, setShowSelect] = useState(false);
-    const [location, setLocation] = useState(props.site?.ms_name || '');
-    const [locationId, setLocationId] = useState(props.site?.ms_id || 0);
+    const [location, setLocation] = useState(props.site || '');
     const [trialText, setTrialText] = useState(
         props.site?.ms_trial === 1 ? 'trial' : 'free trial',
     );
@@ -40,9 +38,9 @@ function BookTrial(props) {
         useComponentVisible(true);
 
     useEffect(() => {
+        console.log(props, 'props');
         if (!isEmpty(props.site)) {
-            setLocation(props.site?.ms_name || '');
-            setLocationId(props.site?.ms_id || 0);
+            setLocation(props.site);
         }
     }, [props.site]);
 
@@ -53,14 +51,12 @@ function BookTrial(props) {
                     siteActionType.GET_CURRENT_ACADEMY_SUCCESS &&
                 siteReducer.number === 2
             ) {
-                setLocation(siteReducer.data.ms_name);
+                setLocation(siteReducer.data);
                 setTrialText(
                     siteReducer.data && siteReducer.data.ms_trial === 1
                         ? 'trial'
                         : 'free',
                 );
-
-                setLocationId(siteReducer.data ? siteReducer.data.ms_id : '');
             }
         }
     }, [siteReducer]);
@@ -71,16 +67,11 @@ function BookTrial(props) {
         }
     }, [isComponentVisible]);
 
-    function onClickLocation(event) {
+    function handleOnClick(data) {
+        console.log(data, 'data');
+        setLocation(data);
         setShowSelect(false);
-        setLocation(event.target.textContent);
-        setLocationId(event.target.getAttribute('data-target'));
-        parseInt(event.target.getAttribute('data-trial'));
-        setTrialText(
-            parseInt(event.target.getAttribute('data-trial')) === 1
-                ? 'trial'
-                : 'free trial',
-        );
+        setTrialText(data.ms_trial === 1 ? 'trial' : 'free trial');
     }
 
     function validateInput() {
@@ -120,8 +111,34 @@ function BookTrial(props) {
                                     onClick={(evt) => {
                                         evt.preventDefault();
                                         setShowSelect(false);
-                                        setLocation('Loading...');
-                                        Utils.getCurrentAcademy(dispatch, 2);
+
+                                        let options = {
+                                            enableHighAccuracy: true,
+                                            timeout: 0,
+                                            maximumAge: 0,
+                                        };
+
+                                        const success = (pos) => {
+                                            setLocation('Loading');
+                                            let crd = pos.coords;
+
+                                            dispatch({
+                                                type: siteActionType.GET_CURRENT_ACADEMY,
+                                                lat: crd.latitude,
+                                                long: crd.longitude,
+                                                number: 2,
+                                            });
+                                        };
+
+                                        function error(err) {
+                                            alert('Turn on location', err);
+                                        }
+
+                                        navigator.geolocation.getCurrentPosition(
+                                            success,
+                                            error,
+                                            options,
+                                        );
                                     }}>
                                     <span>Use </span>current location
                                 </a>
@@ -139,7 +156,7 @@ function BookTrial(props) {
                                     }}>
                                     {isEmpty(location)
                                         ? 'Select Academy'
-                                        : location}
+                                        : location.ms_name}
                                 </div>
 
                                 <div
@@ -150,11 +167,9 @@ function BookTrial(props) {
                                         ? listSite.map((item) => (
                                               <div
                                                   key={item.ms_id}
-                                                  data-target={item.ms_id}
-                                                  data-trial={
-                                                      item.ms_trial || 0
-                                                  }
-                                                  onClick={onClickLocation}>
+                                                  onClick={() => {
+                                                      handleOnClick(item);
+                                                  }}>
                                                   {item.ms_name}
                                               </div>
                                           ))
@@ -208,18 +223,16 @@ function BookTrial(props) {
                                 onClick={() => {
                                     if (validateInput()) {
                                         global.bookTraining = {
-                                            siteId: locationId,
-                                            siteName: location,
+                                            siteSelected: location,
                                             email: email,
-                                            date: moment(date).format('M/D/Y'),
+                                            date: dayjs(date).format(
+                                                'MM/DD/YYYY',
+                                            ),
                                         };
+
                                         history.push(
                                             PathRoute.BookTrialTraining,
                                         );
-                                        // dispatch({
-                                        //     type: siteActionType.BOOK_TRAINING,
-                                        //     param,
-                                        // });
                                     }
                                 }}
                                 title={`Book a ${trialText} training session`}
@@ -229,7 +242,8 @@ function BookTrial(props) {
                     <div className="col-right">
                         {parentFb && (
                             <div className="box-acc-review">
-                                <LazyLoadImage
+                                <img
+                                    loading="lazy"
                                     src={Utils.getThumb(
                                         parentFb.fb_image,
                                         'c1',

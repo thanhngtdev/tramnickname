@@ -9,8 +9,9 @@
     "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postbuild": "next-sitemap",
-    "analyze": "cross-env ANALYZE=tru next build"
-
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,6 +28,8 @@
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "cross-env": "^7.0.3",
+    "dayjs": "^1.10.7",
     "eslint": "^7.31.0",
     "eslint-plugin-import": "^2.23.4",
     "flat": "^5.0.2",
@@ -39,6 +42,7 @@
     "moment": "^2.29.1",
     "next": "^9.5.4",
     "next-absolute-url": "^1.2.2",
+    "next-compose-plugins": "^2.2.1",
     "next-fonts": "^1.5.1",
     "next-images": "^1.7.0",
     "next-seo": "^4.26.0",
@@ -58,7 +62,6 @@
     "react-google-recaptcha": "^2.1.0",
     "react-i18next": "^11.8.12",
     "react-image-gallery": "^1.0.9",
-    "react-lazy-load-image-component": "^1.5.1",
     "react-phone-number-input": "^3.1.19",
     "react-redux": "^7.2.1",
     "react-select": "^4.3.0",

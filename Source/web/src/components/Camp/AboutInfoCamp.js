@@ -1,5 +1,5 @@
-import _, { isEmpty } from 'lodash';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import PathRoute from 'src/common/PathRoute';
 import { CommonStyle } from 'src/common/Styles';
-import SolidButton from 'src/components/include/SolidButton';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import Button from '../Button';
 
@@ -38,7 +37,7 @@ export default function AboutInfoCamp(props) {
                 course_type: 'event',
             });
         }
-        if (_.isEmpty(siteReducer.lstSiteCamp)) {
+        if (isEmpty(siteReducer.lstSiteCamp)) {
             dispatch({ type: siteActionType.GET_SITE_HAS_CAMP });
         }
     }, []);
@@ -60,7 +59,7 @@ export default function AboutInfoCamp(props) {
     }, [siteReducer]);
 
     useEffect(() => {
-        if (!_.isEmpty(siteReducer?.lstSiteCamp)) {
+        if (!isEmpty(siteReducer?.lstSiteCamp)) {
             setTxtAddress(convertListToText(lstCamp));
         }
     }, [lstCamp]);
@@ -83,7 +82,7 @@ export default function AboutInfoCamp(props) {
         <div className="about-info">
             <div className="wrap-info">
                 <p style={{ textAlign: 'center' }}>
-                    {moment().year()} Holiday Camp Calendar
+                    {dayjs().year()} Holiday Camp Calendar
                 </p>
                 <div className="wSelect2">
                     <Select
