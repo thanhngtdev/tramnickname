@@ -96,6 +96,8 @@ function Franchise({ data, listSite }) {
     );
 }
 
+//
+
 // export async function getStaticPaths() {
 //     const res = await siteService.getListSite();
 //     const list = res.data.data.lstSite;
@@ -127,9 +129,8 @@ export async function getServerSideProps(context) {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
 
-    const item = listSite.find(
-        (item) => context.params.franchise === item.ms_alias,
-    );
+    let item = {};
+    item = listSite.find((item) => context.params.franchise === item.ms_alias);
 
     if (isEmpty(item)) {
         return { props: { data: [], listSite } };
