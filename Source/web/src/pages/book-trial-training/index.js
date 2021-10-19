@@ -357,6 +357,20 @@ function BookTrialTraining({ listSite }) {
                                         }),
                                     );
                                 }}
+                                bookingNearby={(course_id, start_date) => {
+                                    dispatch(
+                                        bookCourse({
+                                            course_id: course_id,
+                                            start_date: start_date,
+                                            child_id: bookingFull.child_id,
+                                            token,
+                                            totalData: {
+                                                ...dataStep1,
+                                                ...dataStep2,
+                                            },
+                                        }),
+                                    );
+                                }}
                             />
                         )}
                         {activeTab === 4 && (

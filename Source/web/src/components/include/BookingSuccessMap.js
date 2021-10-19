@@ -70,8 +70,8 @@ function BookingSuccessMap(props) {
                     <h4 style={{ marginBottom: 0 }}>Time:</h4>
 
                     <p style={{ marginTop: 0 }}>
-                        {props.data.start_date ||
-                            props?.courseSelected?.date + ' at '}
+                        {props.data.start_date || props?.courseSelected?.date}{' '}
+                        at{' '}
                         {timeStart && timeEnd
                             ? timeStart.slice(0, 5) + '-' + timeEnd.slice(0, 5)
                             : ''}

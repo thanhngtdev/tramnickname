@@ -13,12 +13,16 @@ const BookingSuccessMap = dynamic(() =>
     import('src/components/include/BookingSuccessMap'),
 );
 const NearbyList = dynamic(() => import('./NearbyList'));
-
-import EmailIcon from 'src/components/Booking/EmailIcon';
-import TrainingIcon1 from 'src/components/Booking/TrainingIcon1';
-import TrainingIcon2 from 'src/components/Booking/TrainingIcon2';
-import TrainingIcon3 from 'src/components/Booking/TrainingIcon3';
-// import BookingSuccessMap from 'src/components/include/BookingSuccessMap';
+const EmailIcon = dynamic(() => import('src/components/Booking/EmailIcon'));
+const TrainingIcon1 = dynamic(() =>
+    import('src/components/Booking/TrainingIcon1'),
+);
+const TrainingIcon2 = dynamic(() =>
+    import('src/components/Booking/TrainingIcon2'),
+);
+const TrainingIcon3 = dynamic(() =>
+    import('src/components/Booking/TrainingIcon3'),
+);
 
 BookTrialTraining3.propTypes = {
     success: PropTypes.number,
@@ -61,6 +65,7 @@ function BookTrialTraining3(props) {
                             listNearby={props.listNearby}
                             data={props.data}
                             goBack={props.goBack}
+                            bookingNearby={props.bookingNearby}
                         />
                     </>
                 ) : (

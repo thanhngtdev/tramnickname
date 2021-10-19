@@ -11,8 +11,9 @@ import { siteActionType } from 'src/redux/actions/actionTypes';
 import { courseStartDate } from 'src/redux/actions/siteAction';
 
 export default (props) => {
-    console.log(props, 'near');
+    // console.log(props, 'near');
     //! State
+    const siteReducer = useSelector((state) => state.siteReducer);
     const dispatch = useDispatch();
     const [listCourse, setListCourse] = useState([]);
     const [selectedItem, setSelectedItem] = useState(props.listNearby[0]);
@@ -20,8 +21,9 @@ export default (props) => {
     const [lstStartDate, setLstStartDate] = useState([]);
     const [startDate, setStartDate] = useState('');
     const [defaultTrial, setDefaultTrial] = useState(0);
-    const siteReducer = useSelector((state) => state.siteReducer);
 
+    const [siteError, setSiteError] = useState('');
+    const [trialDateError, setTrialDateError] = useState('');
     //! UseEffect
 
     useEffect(() => {
@@ -40,11 +42,11 @@ export default (props) => {
             setListCourse(siteReducer.data);
             // console.log(siteReducer.data, 'site');
             if (siteReducer.data) {
-                console.log(props.data.date_of_birth, 'birth');
+                // console.log(props.data.date_of_birth, 'birth');
                 const ageStudent = Utils.getAge(
                     new Date(props.data.date_of_birth),
                 );
-                console.log(ageStudent, 'student');
+                // console.log(ageStudent, 'student');
                 const newLstCourse = [...siteReducer.data].filter(
                     (course) =>
                         course.min_age <= ageStudent &&
@@ -62,6 +64,19 @@ export default (props) => {
     }, [siteReducer]);
 
     //! Function
+
+    function validateData() {
+        let _validate = true;
+        if (isEmpty(selectedItem)) {
+            _validate = false;
+            setSiteError('Please select a academy');
+        } else setSiteError('');
+        if (startDate === '') {
+            _validate = false;
+            setTrialDateError('Please choose trial date');
+        } else setTrialDateError('');
+        return _validate;
+    }
 
     //! Render
     return (
@@ -85,9 +100,10 @@ export default (props) => {
                         getOptionValue={(option) => option.ms_id}
                         onChange={(option) => {
                             setSelectedItem(option);
-                            console.log(option, 'option');
+                            // console.log(option, 'option');
                         }}
                     />
+                    <label className="input-error">{siteError}</label>
                 </div>
 
                 {!isEmpty(selectedItem) && (
@@ -191,9 +207,7 @@ export default (props) => {
                             setDefaultTrial(option);
                         }}
                     />
-                    {/* <label className="input-error">
-                                {trialDateError}
-                            </label> */}
+                    <label className="input-error">{trialDateError}</label>
                 </div>
 
                 <div style={{ textAlign: 'center' }}>
@@ -202,22 +216,12 @@ export default (props) => {
                             selectedItem.ms_trial === 1 ? 'trial' : 'free'
                         } session`}
                         onClick={() => {
-                            global.bookTraining = {
-                                ...global.bookTraining,
-                                company_id: selectedItem.pa_companyId || '',
-                                courseSelected: courseSelected || {},
-                                siteSelected: selectedItem || {},
-                                start_date: !isEmpty(startDate)
-                                    ? dayjs(startDate).format('YYYY-MM-DD')
-                                    : '',
-                            };
-
-                            props.goBack();
-                            // dispatch({
-                            //     type: siteActionType.SELECT_ACADEMY,
-                            //     data: selectedAcademy,
-                            // });
-                            // history.push(PathRoute.BookTrialTraining);
+                            if (validateData()) {
+                                props.bookingNearby(
+                                    courseSelected.course_id,
+                                    startDate,
+                                );
+                            }
                         }}
                     />
                 </div>
