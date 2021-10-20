@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Utils from 'src/common/Utils';
+import getFranchiseName from 'src/hooks/useFranchise';
 
 RelateAreas.propTypes = {
     site: PropTypes.object,
@@ -8,25 +9,27 @@ RelateAreas.propTypes = {
 };
 
 function RelateAreas(props) {
+    const siteName = getFranchiseName(props.site) || '';
     return (
         <div className="areas">
             <div className="container">
                 <div className="area-cover">
-                    <h2>
-                        Areas the {props.site ? props.site.ms_name : ''} academy
-                        covers:
-                    </h2>
+                    <h2>Areas the {siteName} academy covers:</h2>
                     <div className="list-tag">
                         {props.site &&
                             props.site.sub_page &&
-                            props.site.sub_page.map((item, index) => (
-                                <a
-                                    key={index}
-                                    href={`/${item.sub_alias}`}
-                                    className="cover-tag">
-                                    {item.sub_name}
-                                </a>
-                            ))}
+                            props.site.sub_page.map((item, index) => {
+                                if (siteName !== item.sub_name) {
+                                    return (
+                                        <a
+                                            key={index}
+                                            href={`/${item.sub_alias}`}
+                                            className="cover-tag">
+                                            {item.sub_name}
+                                        </a>
+                                    );
+                                }
+                            })}
                     </div>
                 </div>
                 <div className="related-areas">

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Utils from 'src/common/Utils';
+import getFranchiseName from 'src/hooks/useFranchise';
 
 CoachTeam.propTypes = {
     staff: PropTypes.array,
@@ -8,11 +9,11 @@ CoachTeam.propTypes = {
 };
 
 function CoachTeam(props) {
-    // console.log(props.staff);
+    const siteName = getFranchiseName(props.site);
     return (
         <div>
             <div className="coach-head">
-                <h2>{props.site ? props.site.ms_name : ''} academy team</h2>
+                <h2>{siteName} academy team</h2>
             </div>
             {props.staff && (
                 <div className="coach-list">

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 import Button from 'src/components/Button';
+import getFranchiseName from 'src/hooks/useFranchise';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 
 BannerTop.propTypes = {
@@ -13,19 +14,10 @@ BannerTop.propTypes = {
 
 function BannerTop(props) {
     const dispatch = useDispatch();
-    const history = useRouter();
     const { data } = useSelector((state) => state.homeReducer);
-    const { franchise } = history.query;
-    let alias = franchise;
-    let siteName = '';
     let options = [];
-
-    if (props.site.ms_alias) siteName = props.site.ms_name;
-    else if (props.site && props.site.sub_page) {
-        props.site.sub_page.map((item) => {
-            if (item.sub_alias === alias) siteName = item.sub_name;
-        });
-    }
+    const history = useRouter();
+    const siteName = getFranchiseName(props.site);
 
     let fbLink = '',
         twLink = '',

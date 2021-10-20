@@ -32,13 +32,15 @@ import DefaultLayout from 'src/layout/DefaultLayout';
 import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
 
-function Franchise({ data, listSite }) {
+function Franchise({ data, listSite, isSubPage }) {
     saveList(listSite);
     useEffect(() => {
         if (isEmpty(data)) {
             window.location.href = '/404';
         }
     }, []);
+
+    console.log(isSubPage, 'subpage');
 
     if (isEmpty(data)) return <></>;
     return (
@@ -78,7 +80,10 @@ function Franchise({ data, listSite }) {
                 />
             </div>
             <div className="franchise-reason">
-                <TrainingReason reason={data?.footballBegining || {}} />
+                <TrainingReason
+                    reason={data?.footballBegining || {}}
+                    site={data?.site || {}}
+                />
             </div>
             <CoachTeam
                 staff={data?.coach?.staff || []}
@@ -100,37 +105,39 @@ export async function getServerSideProps(context) {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
 
-    const item = listSite.find(
-        (item) => context.params.franchise === item.ms_alias,
-    );
+    // const item = listSite.find(
+    //     (item) => context.params.franchise === item.ms_alias,
+    // );
 
-    if (isEmpty(item)) {
-        return { props: { data: [], listSite } };
-    }
-
-    // let id = '';
-    // const item = listSite.find((item) => {
-    //     if (item.ms_alias === context.params.franchise) {
-    //         id = item.ms_id;
-    //         return item;
-    //     }
-
-    //     return item.sub_page.find((i) => {
-    //         if (i.sub_alias === context.params.franchise) {
-    //             id = i.sub_id;
-    //             return i;
-    //         }
-    //     });
-    // });
-
-    // if (isEmpty(item) && !id) {
+    // if (isEmpty(item)) {
     //     return { props: { data: [], listSite } };
     // }
+
+    let id = '';
+    let isSubPage = false;
+    const item = listSite.find((item) => {
+        if (item.ms_alias === context.params.franchise) {
+            id = item.ms_id;
+            return item;
+        }
+
+        return item.sub_page.find((i) => {
+            if (i.sub_alias === context.params.franchise) {
+                id = i.sub_id;
+                isSubPage = true;
+                return i;
+            }
+        });
+    });
+
+    if (isEmpty(item) && !id) {
+        return { props: { data: [], listSite, isSubPage } };
+    }
 
     const siteDetail = await siteService.getFranchiseDetail({ id: item.ms_id });
     const data = siteDetail.data.data;
 
-    return { props: { data, listSite } };
+    return { props: { data, listSite, isSubPage } };
 }
 
 export default Franchise;

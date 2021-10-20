@@ -1,12 +1,16 @@
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import Utils from 'src/common/Utils';
+import getFranchiseName from 'src/hooks/useFranchise';
 
 function TrainingReason(props) {
+    const siteName = getFranchiseName(props.site);
+
     return (
         <div className="box-football-beginning training">
             <div>
                 <h2 className="heading">
-                    Why do Children & Parents in Isleworth Love our Training?
+                    Why do Children & Parents in {siteName} Love our Training?
                 </h2>
             </div>
             <div className="box-beginning-list">

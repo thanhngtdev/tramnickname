@@ -12,6 +12,7 @@ import PathRoute from 'src/common/PathRoute';
 import { CommonStyle } from 'src/common/Styles';
 import Utils from 'src/common/Utils';
 import SolidButton from 'src/components/include/SolidButton';
+import getFranchiseName from 'src/hooks/useFranchise';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 
 LDWeeklyTraining.propTypes = {
@@ -365,7 +366,7 @@ function TrainingService(props) {
     const [hoverIndex, setHoverIndex] = useState(0);
     const [innerWidth, setInnerWith] = useState(2000);
     const list = props?.service?.cfg_value || [];
-    // console.log(props, 'props');
+    const siteName = getFranchiseName(props.site);
 
     useEffect(() => {
         window.addEventListener('resize', handleWindowSizeChange);
@@ -402,10 +403,7 @@ function TrainingService(props) {
         return (
             !isEmpty(list) && (
                 <div className="service-mobile">
-                    <h2>
-                        {props.site ? props.site.ms_name : ''} junior football
-                        training services:
-                    </h2>
+                    <h2>{siteName} junior football training services:</h2>
                     <div>
                         <div className="service-group">
                             <img
@@ -504,8 +502,7 @@ function TrainingService(props) {
             <div className="box-reasons training-service">
                 <div className="container">
                     <h2 className="heading">
-                        {props.site ? props.site.ms_name : ''} junior football
-                        training services:
+                        {siteName} junior football training services:
                     </h2>
                     <div className="content-small">
                         <ul className="nav-tabs">
