@@ -43,37 +43,36 @@ function BookTrialTraining({ listSite }) {
     const siteReducer = useSelector((state) => state.siteReducer);
     const dispatch = useDispatch();
 
-    const [findAcademy, setFindAcademy] = useState(false);
     const [activeTab, setActiveTab] = useState(1);
     const [dataStep1, setDataStep1] = useState({});
     const [dataStep2, setDataStep2] = useState({});
     const [showLogin, setShowLogin] = useState(false);
     const [bookSuccess, setBookSuccess] = useState(0);
     const [bookMessage, setBookMessage] = useState('');
-    const [lstSite, setLstSite] = useState(listSite);
-    const [siteSelected, setSiteSelected] = useState({});
-    const [lstCourse, setLstCourse] = useState([]);
-    const [lstStartDate, setLstStartDate] = useState([]);
     const [responseCourse, setResponseCourse] = useState({});
     const [bookingFull, setBookingFull] = useState({});
     const [token, setToken] = useState('');
     const [showNearby, setShowNearby] = useState(false);
     const [listNearby, setListNearby] = useState([]);
-
-    const [currentLat, setCurrentLat] = useState('');
-    const [currentLng, setCurrentLng] = useState('');
-    const [paymentUrl, setPaymentUrl] = useState('');
     const [addToWaiting, setAddToWaiting] = useState(false);
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        setCurrentLat(localStorage.getItem('latitude'));
-        setCurrentLng(localStorage.getItem('longitude'));
-    }, []);
+    const [longLatSite, setLongLatSite] = useState({ long: '', lat: '' });
+    const [totalData, setTotalData] = useState({});
 
     const saveToLocal = (data) => {
         window.localStorage.setItem('dataPayment', JSON.stringify(data));
     };
+
+    useEffect(() => {
+        console.log(activeTab, 'tab');
+    }, [activeTab]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        setLongLatSite({
+            long: localStorage.getItem('longitude'),
+            lat: localStorage.getItem('latitude'),
+        });
+    }, []);
 
     useEffect(() => {
         if (siteReducer.type) {
@@ -85,25 +84,8 @@ function BookTrialTraining({ listSite }) {
                     (a, b) => a.distance - b.distance,
                 );
 
-                // console.log(lstSiteNearest, 'data');
                 setShowNearby(true);
                 setListNearby(lstSiteNearest);
-
-                // setSiteSelected(lstSiteNearest[0]);
-                // setLstSite(lstSiteNearest);
-                // dispatch(
-                //     getListCourse({
-                //         company_id: lstSiteNearest[0].pa_companyId,
-                //         location_id: lstSiteNearest[0].pa_companyId,
-                //         course_type: 'course',
-                //     }),
-                // );
-            }
-            if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
-                setLstCourse(siteReducer.data);
-            }
-            if (siteReducer.type === siteActionType.COURSE_START_DATE_SUCCESS) {
-                setLstStartDate(siteReducer.data);
             }
 
             if (siteReducer.type === siteActionType.ADD_WAITING_SUCCESS) {
@@ -122,7 +104,10 @@ function BookTrialTraining({ listSite }) {
 
                     if (_data.payment_url)
                         saveToLocal({
-                            data: { ...dataStep1, ...dataStep2 },
+                            data: {
+                                courseSelected: totalData.courseSelected,
+                                siteSelected: totalData.siteSelected,
+                            },
                             token: _data.access_token,
                             isCampBooking: false,
                         });
@@ -133,12 +118,11 @@ function BookTrialTraining({ listSite }) {
                         token: _data.access_token,
                     });
 
-                    if (dataStep1?.siteSelected?.ms_trial === 0) {
+                    if (totalData?.siteSelected?.ms_trial === 0) {
                         setBookSuccess(1);
                         setActiveTab(3);
                     }
-                    if (dataStep1?.siteSelected?.ms_trial === 1) {
-                        setPaymentUrl(data.data.payment_url);
+                    if (totalData?.siteSelected?.ms_trial === 1) {
                         setActiveTab(4);
                     }
                 } else if (data.status === 709) {
@@ -166,41 +150,26 @@ function BookTrialTraining({ listSite }) {
                 }
             }
             if (siteReducer.type === siteActionType.BOOK_COURSE_SUCCESS) {
-                // console.log(siteReducer.data, 'data');
-                // return;
-                // if (siteReducer?.data?.data?.payment_url)
-                //     saveToLocal({
-                //         data: { ...dataStep1, ...dataStep2 },
-                //         token: token,
-                //     });
-
-                // setResponseCourse({
-                //     paymentUrl: siteReducer.data.data.payment_url,
-                //     bookingId: siteReducer.data.data.booking_id,
-                //     token: token,
-                // });
-
-                // if (dataStep1?.siteSelected?.ms_trial === 0) {
-                //     setBookSuccess(1);
-                //     setActiveTab(3);
-                // }
-                // if (dataStep1?.siteSelected?.ms_trial === 1) {
-                //     setPaymentUrl(siteReducer.data.data.payment_url);
-                //     setActiveTab(4);
-                // }
-                if (dataStep1?.siteSelected?.ms_trial === 1) {
+                if (totalData?.siteSelected?.ms_trial === 1) {
                     if (siteReducer?.data?.data?.payment_url) {
                         saveToLocal({
-                            data: { ...dataStep1, ...dataStep2 },
+                            data: {
+                                courseSelected: totalData.courseSelected,
+                                siteSelected: totalData.siteSelected,
+                            },
                             token: token,
                             isCampBooking: false,
                         });
-                        setPaymentUrl(siteReducer.data.data.payment_url);
+                        setResponseCourse({
+                            paymentUrl: siteReducer.data.data.payment_url,
+                            bookingId: siteReducer.data.data.booking_id,
+                            token: token,
+                        });
                         setActiveTab(4);
                     }
                 }
 
-                if (dataStep1?.siteSelected?.ms_trial === 0) {
+                if (totalData?.siteSelected?.ms_trial === 0) {
                     setBookSuccess(1);
                     setActiveTab(3);
                 }
@@ -255,6 +224,10 @@ function BookTrialTraining({ listSite }) {
         }
     };
 
+    useEffect(() => {
+        console.log(totalData, 'totalData');
+    }, [totalData]);
+
     //! Render
     return (
         <DefaultLayout>
@@ -287,33 +260,40 @@ function BookTrialTraining({ listSite }) {
                     <div className="tab-content">
                         {activeTab === 1 && (
                             <BookTrialTraining1
-                                data={dataStep1}
+                                setLongLatSite={setLongLatSite}
                                 onNext={(data) => {
                                     global.bookTraining = {
                                         ...global.bookTraining,
                                         ...data,
                                     };
-                                    setDataStep1(data);
+                                    setTotalData({ ...totalData, ...data });
                                     setActiveTab(2);
                                 }}
                             />
                         )}
                         {activeTab === 2 && (
                             <BookTrialTraining2
-                                data={dataStep2}
+                                data={totalData}
                                 showLogin={showLogin}
-                                dataStep1={dataStep1}
+                                dataStep1={totalData}
                                 onNext={(data) => {
-                                    setDataStep2(data);
-                                    let totalData = {
-                                        ...dataStep1,
-                                        ...data,
-                                    };
                                     global.bookTraining = {
                                         ...global.bookTraining,
                                         ...data,
                                     };
-                                    dispatch(bookCourseSignUp({ totalData }));
+
+                                    // const data = { ...totalData, data };
+                                    setTotalData({ ...totalData, ...data });
+
+                                    console.log({ ...totalData, ...data });
+                                    dispatch(
+                                        bookCourseSignUp({
+                                            totalData: {
+                                                ...totalData,
+                                                ...data,
+                                            },
+                                        }),
+                                    );
                                 }}
                             />
                         )}
@@ -325,17 +305,16 @@ function BookTrialTraining({ listSite }) {
                                 listNearby={listNearby}
                                 success={bookSuccess}
                                 message={bookMessage}
-                                data={{ ...dataStep1, ...dataStep2 }}
+                                data={totalData}
                                 goBack={() => setActiveTab(1)}
                                 responseCourse={responseCourse}
                                 bookingFull={bookingFull}
                                 findAcademy={() => {
-                                    setFindAcademy(true);
-                                    setLstCourse([]);
+                                    // setLstCourse([]);
                                     dispatch(
                                         findNearByAcademy(
-                                            currentLat,
-                                            currentLng,
+                                            longLatSite.lat,
+                                            longLatSite.long,
                                         ),
                                     );
                                 }}
@@ -350,23 +329,31 @@ function BookTrialTraining({ listSite }) {
                                                     .start_date.date,
                                             child_id: bookingFull.child_id,
                                             token,
-                                            totalData: {
-                                                ...dataStep1,
-                                                ...dataStep2,
-                                            },
+                                            totalData: totalData,
                                         }),
                                     );
                                 }}
-                                bookingNearby={(course_id, start_date) => {
+                                bookingNearby={(
+                                    courseSelected,
+                                    siteSelected,
+                                    start_date,
+                                ) => {
+                                    const data = {
+                                        ...totalData,
+                                        courseSelected,
+                                        siteSelected,
+                                        start_date,
+                                    };
+                                    setTotalData({ ...data });
+
                                     dispatch(
                                         bookCourse({
-                                            course_id: course_id,
+                                            course_id: courseSelected.course_id,
                                             start_date: start_date,
                                             child_id: bookingFull.child_id,
                                             token,
                                             totalData: {
-                                                ...dataStep1,
-                                                ...dataStep2,
+                                                ...data,
                                             },
                                         }),
                                     );
@@ -376,7 +363,7 @@ function BookTrialTraining({ listSite }) {
                         {activeTab === 4 && (
                             <BookTrialTraining4
                                 responseCourse={responseCourse}
-                                url={paymentUrl}
+                                // url={paymentUrl}
                             />
                         )}
                     </div>

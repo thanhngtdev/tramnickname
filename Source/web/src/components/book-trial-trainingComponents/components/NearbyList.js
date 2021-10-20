@@ -19,13 +19,11 @@ export default (props) => {
     const [selectedItem, setSelectedItem] = useState(props.listNearby[0]);
     const [courseSelected, setCourseSelected] = useState({});
     const [lstStartDate, setLstStartDate] = useState([]);
-    const [startDate, setStartDate] = useState('');
     const [defaultTrial, setDefaultTrial] = useState(0);
-
     const [siteError, setSiteError] = useState('');
     const [trialDateError, setTrialDateError] = useState('');
-    //! UseEffect
 
+    //! UseEffect
     useEffect(() => {
         if (isEmpty(selectedItem)) return;
 
@@ -71,7 +69,7 @@ export default (props) => {
             _validate = false;
             setSiteError('Please select a academy');
         } else setSiteError('');
-        if (startDate === '') {
+        if (isEmpty(defaultTrial)) {
             _validate = false;
             setTrialDateError('Please choose trial date');
         } else setTrialDateError('');
@@ -100,7 +98,9 @@ export default (props) => {
                         getOptionValue={(option) => option.ms_id}
                         onChange={(option) => {
                             setSelectedItem(option);
-                            // console.log(option, 'option');
+                            setCourseSelected({});
+                            setDefaultTrial(0);
+                            setLstStartDate([]);
                         }}
                     />
                     <label className="input-error">{siteError}</label>
@@ -131,6 +131,7 @@ export default (props) => {
                                 }}>
                                 <Radiobox
                                     onChange={() => {
+                                        console.log(item, 'courseSelected');
                                         if (
                                             item.course_id ===
                                             courseSelected.course_id
@@ -203,7 +204,8 @@ export default (props) => {
                         getOptionValue={(option) => option.date}
                         styles={CommonStyle.select2}
                         onChange={(option) => {
-                            setStartDate(option.date);
+                            console.log(option);
+                            // setStartDate(option.date);
                             setDefaultTrial(option);
                         }}
                     />
@@ -218,8 +220,9 @@ export default (props) => {
                         onClick={() => {
                             if (validateData()) {
                                 props.bookingNearby(
-                                    courseSelected.course_id,
-                                    startDate,
+                                    courseSelected,
+                                    selectedItem,
+                                    defaultTrial.date,
                                 );
                             }
                         }}

@@ -255,6 +255,7 @@ function BookTrialTraining1(props) {
                     getOptionValue={(option) => option.ms_id}
                     styles={CommonStyle.select2}
                     onChange={(option) => {
+                        // console.log(option, 'option');
                         setMessage(
                             option.ms_trial === 1
                                 ? TRIAL_MESSAGE
@@ -522,6 +523,16 @@ function BookTrialTraining1(props) {
                                                 'YYYY-MM-DD',
                                             ),
                                     };
+
+                                    if (
+                                        siteSelected.ms_longitude &&
+                                        siteSelected.ms_latitude
+                                    ) {
+                                        props.setLongLatSite({
+                                            long: siteSelected.ms_longitude,
+                                            lat: siteSelected.ms_latitude,
+                                        });
+                                    }
 
                                     props.onNext(dataObject);
                                 }

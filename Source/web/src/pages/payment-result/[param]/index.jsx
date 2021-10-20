@@ -133,8 +133,7 @@ const PaymentResult = (props) => {
                                                         color: '#FF7100',
                                                     }}>
                                                     {`${
-                                                        dataPayment?.data
-                                                            ?.start_date
+                                                        dataBooking?.start_date
                                                     } at ${dayjs(
                                                         '2021-03-03T' +
                                                             dataPayment?.data
@@ -192,35 +191,35 @@ const PaymentResult = (props) => {
                                     </p>
                                 </div>
                             </div>
-
-                            <div
-                                style={{
-                                    height: 500,
-                                    position: 'relative',
-                                    marginTop: 100,
-                                }}>
-                                <BookingSuccessMap
-                                    
-                                    data={dataPayment?.data}
-                                    siteSelected={
-                                        dataPayment?.data?.siteSelected
-                                    }
-                                    courseSelected={
-                                        dataPayment?.data?.courseSelected
-                                    }
-                                    // responseCourse={props.responseCourse}
-                                    googleMapURL={Constants.GOOGLE_MAP_URL}
-                                    loadingElement={
-                                        <div style={{ height: `100%` }} />
-                                    }
-                                    containerElement={
-                                        <div style={{ height: `100%` }} />
-                                    }
-                                    mapElement={
-                                        <div style={{ height: `100%` }} />
-                                    }
-                                />
-                            </div>
+                            {paidBooking === true && (
+                                <div
+                                    style={{
+                                        height: 500,
+                                        position: 'relative',
+                                        marginTop: 100,
+                                    }}>
+                                    <BookingSuccessMap
+                                        data={dataPayment?.data}
+                                        siteSelected={
+                                            dataPayment?.data?.siteSelected
+                                        }
+                                        courseSelected={
+                                            dataPayment?.data?.courseSelected
+                                        }
+                                        // responseCourse={props.responseCourse}
+                                        googleMapURL={Constants.GOOGLE_MAP_URL}
+                                        loadingElement={
+                                            <div style={{ height: `100%` }} />
+                                        }
+                                        containerElement={
+                                            <div style={{ height: `100%` }} />
+                                        }
+                                        mapElement={
+                                            <div style={{ height: `100%` }} />
+                                        }
+                                    />
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
