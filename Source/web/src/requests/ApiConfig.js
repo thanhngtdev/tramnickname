@@ -27,6 +27,7 @@ export const APIConfig = {
     GET_POLICY: 'policy',
 
     GET_LIST_COURSE: 'list-courses',
+    GET_LIST_COURSE_AVAILABLE: 'get-available-course',
     COURSE_START_DATE: 'list-course-start-date',
     BOOK_TRIAL_SIGNUP: 'booking-trial-signup',
     BOOK_COURSE_SIGNUP: 'booking-course-signup',

@@ -36,7 +36,11 @@ function OneTraining({ data, listSite }) {
                 <Intro intro={data?.trainingIntro?.cfg_value || []} />
             </div>
             <div className="football-121">
-                <FootballSkill data={data?.skillGain || {}} noTitle />
+                <FootballSkill
+                    isMicroSite={false}
+                    data={data?.skillGain || {}}
+                    noTitle
+                />
             </div>
             <div className="one-training">
                 <Testimonial

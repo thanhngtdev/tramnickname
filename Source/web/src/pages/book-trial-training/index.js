@@ -44,8 +44,6 @@ function BookTrialTraining({ listSite }) {
     const dispatch = useDispatch();
 
     const [activeTab, setActiveTab] = useState(1);
-    const [dataStep1, setDataStep1] = useState({});
-    const [dataStep2, setDataStep2] = useState({});
     const [showLogin, setShowLogin] = useState(false);
     const [bookSuccess, setBookSuccess] = useState(0);
     const [bookMessage, setBookMessage] = useState('');
@@ -62,9 +60,9 @@ function BookTrialTraining({ listSite }) {
         window.localStorage.setItem('dataPayment', JSON.stringify(data));
     };
 
-    useEffect(() => {
-        console.log(activeTab, 'tab');
-    }, [activeTab]);
+    // useEffect(() => {
+    //     console.log(activeTab, 'tab');
+    // }, [activeTab]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -80,9 +78,11 @@ function BookTrialTraining({ listSite }) {
                 siteReducer.type === siteActionType.FIND_NEARBY_ACADEMY_SUCCESS
             ) {
                 // setLstSite(siteReducer.data);
-                const lstSiteNearest = [...siteReducer.data].sort(
-                    (a, b) => a.distance - b.distance,
-                );
+                const lstSiteNearest = [...siteReducer.data]
+                    .sort((a, b) => a.distance - b.distance)
+                    .filter(
+                        (item) => item.ms_id !== totalData.siteSelected.ms_id,
+                    );
 
                 setShowNearby(true);
                 setListNearby(lstSiteNearest);
@@ -150,6 +150,11 @@ function BookTrialTraining({ listSite }) {
                 }
             }
             if (siteReducer.type === siteActionType.BOOK_COURSE_SUCCESS) {
+                // if() {
+
+                // }
+
+                // setShowNearby(false)
                 if (totalData?.siteSelected?.ms_trial === 1) {
                     if (siteReducer?.data?.data?.payment_url) {
                         saveToLocal({

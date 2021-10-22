@@ -15,24 +15,6 @@ axiosApi.interceptors.response.use(
     (error) => Promise.reject(error),
 );
 
-export const saveLocalStorage = (data) => {
-    window.localStorage.setItem('userGiayDiDuong', JSON.stringify(data));
-};
-export const getLocalStorage = () => {
-    if (window.localStorage.getItem('userGiayDiDuong')) {
-        const token = JSON.parse(
-            window.localStorage.getItem('userGiayDiDuong'),
-        );
-        return token;
-    }
-    return null;
-};
-
-export const clearLocalStorage = () => {
-    window.localStorage.removeItem('userGiayDiDuong');
-    window.location.reload();
-};
-
 export const attachTokenToHeader = (token) => {
     if (token) {
         axiosApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;

@@ -66,6 +66,7 @@ function BookTrialTraining3(props) {
                             data={props.data}
                             goBack={props.goBack}
                             bookingNearby={props.bookingNearby}
+                            bookingFull={props.bookingFull}
                         />
                     </>
                 ) : (

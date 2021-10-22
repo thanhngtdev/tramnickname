@@ -1,23 +1,33 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Utils from 'src/common/Utils';
 import useGetWidth from 'src/hooks/useGetWidth';
+import isEmpty from 'lodash/isEmpty';
 
 FootballSkill.propTypes = {
     data: PropTypes.object,
 };
 
 export default function FootballSkill(props) {
-    //   const [title, setTitle] = useState(props.data.cfg_title);
+    const [title, setTitle] = useState(props.data.cfg_title);
     const isMobile = useGetWidth() <= 767;
 
-    //   useEffect(() => {
-    //     const currentAcademyName = ModelManager.getLocation()?.ms_name;
-    //     if (props.data.cfg_title.includes("Academy") && currentAcademyName) {
-    //       const name = props.data.cfg_title;
-    //       setTitle(name.replace("Academy", currentAcademyName + " Academy"));
-    //     }
-    //   }, []);
+    useEffect(() => {
+        if (isEmpty(props.data?.cfg_title)) return;
+        // console.log(props, 'microsite');
+        if (props.isMicroSite === true) {
+            setTitle(
+                props.data.cfg_title.replace(
+                    '$AcademyName',
+                    props.site.ms_name,
+                ),
+            );
+        }
+    }, []);
+
+    useEffect(() => {
+        console.log(title, 'title');
+    }, [title]);
 
     return (
         // one-training-skill
@@ -30,7 +40,7 @@ export default function FootballSkill(props) {
                 style={{
                     position: 'relative',
                 }}>
-                <h3 className="heading">{props.data?.cfg_title || ''}</h3>
+                <h3 className="heading">{title}</h3>
                 <div className="box-beginning-list">
                     <div
                         className="list"

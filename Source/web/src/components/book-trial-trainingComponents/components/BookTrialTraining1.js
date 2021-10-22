@@ -542,7 +542,7 @@ function BookTrialTraining1(props) {
                 </Fragment>
             ) : (
                 <div>
-                    <p style={{ color: 'red', fontSize: '30px' }}>
+                    <p style={{ color: '#ff7100', fontSize: '30px' }}>
                         {notAvailable}
                     </p>
                 </div>

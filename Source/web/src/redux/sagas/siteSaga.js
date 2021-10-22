@@ -203,6 +203,39 @@ function* getListCourse({ company_id, location_id, course_type }) {
     }
 }
 
+// function* getListCourseAvailable({ child_id, location_id }) {
+//     const response = yield API.getParentAPI(
+//         APIConfig.GET_LIST_COURSE_AVAILABLE,
+//         {
+//             child_id,
+//             location_id,
+//             type: course_type,
+//         },
+//     );
+//     // console.log(response, 'aaaaaa');
+//     if (response && response.status === 200) {
+//         let dataCourse = response.data;
+//         let dataEvent = [];
+
+//         if (course_type === 'event') {
+//             dataEvent = response.data;
+//         }
+
+//         yield put({
+//             type: siteActionType.g,
+//             data: response.data,
+//             dataCourse,
+//             dataEvent,
+//             courseType: course_type,
+//         });
+//     } else {
+//         yield put({
+//             type: siteActionType.GET_LIST_COURSE_FAILED,
+//             message: response ? response.message : '',
+//         });
+//     }
+// }
+
 function* bookEventSignup({ totalData }) {
     const response = yield API.postParentAPI(
         APIConfig.BOOK_EVENT_SIGNUP,
@@ -360,4 +393,8 @@ export default function* watcherSiteSaga() {
     yield takeLatest(siteActionType.GET_SITE_HAS_CAMP, getListSiteHasCamp);
     yield takeLatest(siteActionType.BOOK_TRAINING, bookTraining);
     yield takeLatest(type.CHECK_MAIL, checkEmail);
+    // yield takeLatest(
+    //     siteActionType.GET_LIST_COURSE_AVAILABLE,
+    //     getListCourseAvailable,
+    // );
 }

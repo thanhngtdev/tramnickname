@@ -40,7 +40,12 @@ export default function OneTraining({ data, listSite }) {
                 <Intro intro={data?.trainingIntro?.cfg_value || []} />
             </div>
             <div className="football-121">
-                <FootballSkill data={data?.skillGain || {}} noTitle />
+                <FootballSkill
+                    isMicroSite={true}
+                    data={data?.skillGain || {}}
+                    site={data.site || {}}
+                    noTitle
+                />
             </div>
             <div className="one-training">
                 <Testimonial
