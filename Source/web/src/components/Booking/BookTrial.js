@@ -68,7 +68,7 @@ function BookTrial(props) {
     }, [isComponentVisible]);
 
     function handleOnClick(data) {
-        console.log(data, 'data');
+        // console.log(data, 'data');
         setLocation(data);
         setShowSelect(false);
         setTrialText(data.ms_trial === 1 ? 'trial' : 'free trial');
@@ -114,7 +114,7 @@ function BookTrial(props) {
 
                                         let options = {
                                             enableHighAccuracy: true,
-                                            timeout: 0,
+                                            timeout: 5000,
                                             maximumAge: 0,
                                         };
 
@@ -131,7 +131,10 @@ function BookTrial(props) {
                                         };
 
                                         function error(err) {
-                                            alert('Turn on location', err);
+                                            alert(
+                                                'Allow this site to access your site',
+                                                err,
+                                            );
                                         }
 
                                         navigator.geolocation.getCurrentPosition(

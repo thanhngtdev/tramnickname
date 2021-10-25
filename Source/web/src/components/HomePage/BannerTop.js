@@ -5,43 +5,36 @@ import Utils from 'src/common/Utils';
 import Button from 'src/components/Button';
 import getLocalStorage from 'src/hooks/useGetLocalStorage';
 import SearchBox1 from 'src/components/SearchBox1';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { headerActionType } from 'src/redux/actions/actionTypes';
+import isEmpty from 'lodash/isEmpty';
 
 function BannerTop(props) {
     const dispatch = useDispatch();
     const [textSearch, setTextSearch] = useState('');
-    const [src, setSrc] = useState('');
-    const [isSearch, setIsSearch] = useState(false);
+    const { listSite } = useSelector((state) => state.listSiteReducer);
+    const [searchResult, setSearchResult] = useState({});
     const history = useRouter();
     const defaultAcademy = getLocalStorage();
 
     useEffect(() => {
-        const imageLoader = new Image();
-        imageLoader.src = `${Utils.getThumb(
-            props.bannerTop.cfg_value[0].image,
-        )}`;
-
-        imageLoader.onload = () => {
-            setSrc(`${Utils.getThumb(props.bannerTop.cfg_value[0].image)}`);
-        };
-    }, []);
-
-    useEffect(() => {
-        if (isSearch) {
+        if (!isEmpty(searchResult)) {
             dispatch({
                 type: headerActionType.CHANGE_LOCATION,
+                data: { ...searchResult },
             });
 
-            setIsSearch(false);
+            setTextSearch({});
         }
-    }, [isSearch]);
+    }, [searchResult]);
 
     return (
         <div
             className="banner-top"
             style={{
-                backgroundImage: `url(${src}) `,
+                backgroundImage: `url(${Utils.getThumb(
+                    props.bannerTop.cfg_value[0].image,
+                )}) `,
             }}>
             <div className="container">
                 <h1>{props.bannerTop.cfg_title}</h1>
@@ -73,39 +66,12 @@ function BannerTop(props) {
                                 Find your nearest academy:
                             </span>
                             <div className="box">
-                                {/* <input
-                                    type="text"
-                                    className="input-text"
-                                    placeholder="Enter Postcode, Address,..."
-                                    onChange={(evt) =>
-                                        setTextSearch(evt.target.value)
-                                    }
-                                /> */}
                                 <SearchBox1
-                                    setIsSearch={setIsSearch}
-                                    // isSearch={false}
-                                    // listSite={listSite}
-                                    // searched={searched}
-                                    // inputSearch={inputSearch}
-                                    // setShowListAcademy={setShowListAcademy}
-                                    // setSearched={setSearched}
-                                    // setListAcademy={setListAcademy}
-                                    // setInputSearch={setInputSearch}
-                                    // setTextResult={setTextResult}
+                                    setSearchResult={setSearchResult}
+                                    textSearch={textSearch}
+                                    setTextSearch={setTextSearch}
+                                    listSite={listSite}
                                 />
-                                {/* <div className="input-text">
-                                </div>
-                                <button
-                                    className="btn-pin"
-                                    // onClick={() =>
-                                    //     dispatch({
-                                    //         type: headerActionType.CHANGE_LOCATION,
-                                    //         data: textSearch,
-                                    //     })
-                                    // }
-                                >
-                                    {defaultAcademy ? 'Book' : 'Find'}
-                                </button> */}
                             </div>
                         </div>
                     )}

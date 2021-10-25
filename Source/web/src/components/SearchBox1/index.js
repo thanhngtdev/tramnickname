@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import Constants from 'src/common/Constants';
+import Utils from 'src/common/Utils';
 
 const { compose, withProps, lifecycle } = require('recompose');
 const { withScriptjs } = require('react-google-maps');
@@ -28,39 +29,38 @@ const PlacesWithStandaloneSearchBox = compose(
 
                 onPlacesChanged: () => {
                     const places = refs.searchBox.getPlaces();
-                    // let input = this.props.inputSearch;
+                    let input = this.props.textSearch;
                     let resultList = [];
 
-                    console.log(places, 'places');
+                    if (places.length > 0) {
+                        const place = places[0];
+                        // console.log(place, 'place');
+                        const lat = place.geometry.location.lat();
+                        const long = place.geometry.location.lng();
+                        const list = [...this.props.listSite].filter(
+                            (item) =>
+                                (item.distance =
+                                    Utils.getDistanceFromLatLonInKm(
+                                        lat,
+                                        long,
+                                        item.ms_latitude,
+                                        item.ms_longitude,
+                                    )),
+                        );
 
-                    // this.props.setIsSearch(true);
+                        list.sort((a, b) => a.distance - b.distance);
 
-                    // if (places.length > 0) {
-                    //     const place = places[0];
-                    //     // console.log(place, 'place');
-                    //     const lat = place.geometry.location.lat();
-                    //     const long = place.geometry.location.lng();
-                    //     const list = [...this.props.listSite].filter(
-                    //         (item) =>
-                    //             (item.distance =
-                    //                 Utils.getDistanceFromLatLonInKm(
-                    //                     lat,
-                    //                     long,
-                    //                     item.ms_latitude,
-                    //                     item.ms_longitude,
-                    //                 )),
-                    //     );
+                        input = place.formatted_address;
+                        resultList = [...list.slice(0, 10)];
 
-                    //     list.sort((a, b) => a.distance - b.distance);
+                        const result = {
+                            result: resultList,
+                            textSearch: input,
+                        };
+                        // console.log(result, 'result');
 
-                    //     input = place.formatted_address;
-                    //     resultList = [...list.slice(0, 10)];
-                    // }
-
-                    // this.props.setListAcademy(resultList);
-                    // this.props.setShowListAcademy(false);
-                    // this.props.setSearched(true);
-                    // this.props.setTextResult(input);
+                        this.props.setSearchResult({ ...result });
+                    }
                 },
             });
         },
@@ -78,15 +78,15 @@ const PlacesWithStandaloneSearchBox = compose(
                 className="input-text"
                 placeholder="Enter Postcode, Address,..."
                 onChange={(event) => {
-                    console.log(props, 'props');
-                    // props.setInputSearch(event.target.value);
+                    // console.log(event.target.value, 'event');
+                    props.setTextSearch(event.target.value);
                 }}
             />
         </StandaloneSearchBox>
         <button
             className="btn-pin"
             onClick={() => {
-                props.setIsSearch(true);
+                // props.setIsSearch(true);
                 const inputSearch = document.getElementById('inputSearch');
                 inputSearch.focus();
                 const enter = new KeyboardEvent('keydown', {

@@ -271,7 +271,7 @@ export default function BookTrialHoliday(props) {
                                                 setShowSelect(false);
                                                 let options = {
                                                     enableHighAccuracy: true,
-                                                    timeout: 0,
+                                                    timeout: 5000,
                                                     maximumAge: 0,
                                                 };
 
@@ -289,7 +289,7 @@ export default function BookTrialHoliday(props) {
 
                                                 function error(err) {
                                                     alert(
-                                                        'Turn on location',
+                                                        'Allow this site to access your site',
                                                         err,
                                                     );
                                                 }

@@ -21,7 +21,7 @@ export default function (setLoading, number) {
     };
 
     function error(err) {
-        alert('Turn on location', err);
+        alert('Allow this site to access your site', err);
         // dispatch({
         //     type: siteActionType.GET_CURRENT_ACADEMY_FAILED,
         //     number: number,

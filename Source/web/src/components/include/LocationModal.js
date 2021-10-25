@@ -13,37 +13,51 @@ import ListNearbyAcademy from './ListNearbyAcademy';
 import SearchBox from 'src/components/SearchBox';
 import siteService from 'src/services/siteService';
 
+const inititalValue = {
+    searched: false,
+    showListAcademy: true,
+    listAcademy: [],
+    inputSearch: '',
+    textResult: '',
+};
+
 function LocationModal() {
     const dispatch = useDispatch();
     const headerReducer = useSelector((state) => state.headerReducer);
     const siteReducer = useSelector((state) => state.siteReducer);
     const { listSite } = useSelector((state) => state.listSiteReducer);
     const [visible, setVisible] = useState(false);
-    const [searched, setSearched] = useState(false);
-    const [showListAcademy, setShowListAcademy] = useState(true);
+    const [searched, setSearched] = useState(inititalValue.searched);
+    const [showListAcademy, setShowListAcademy] = useState(
+        inititalValue.showListAcademy,
+    );
     const [query, setQuery] = useState('');
-    const [listAcademy, setListAcademy] = useState([]);
-    const [inputSearch, setInputSearch] = useState('');
-    const [textResult, setTextResult] = useState('');
+    const [listAcademy, setListAcademy] = useState(inititalValue.listAcademy);
+    const [inputSearch, setInputSearch] = useState(inititalValue.inputSearch);
+    const [textResult, setTextResult] = useState(inititalValue.textResult);
 
     useEffect(() => {
         if (headerReducer.type) {
             if (headerReducer.type === headerActionType.CHANGE_LOCATION) {
+                console.log('headerReducer', headerReducer.data);
+
                 if (headerReducer.data) {
-                    setInputSearch(headerReducer.data);
+                    setTextResult(headerReducer.data.textSearch);
+                    setInputSearch(headerReducer.data.textSearch);
+                    setListAcademy(headerReducer.data.result);
                     setShowListAcademy(false);
                     setSearched(true);
-                    // dispatch({
-                    //     type: siteActionType.SEARCH_NEARBY,
-                    //     search: headerReducer.data,
-                    //     lat: 51,
-                    //     lng: 0,
-                    // });
                 }
                 setVisible(true);
             }
             if (headerReducer.type === headerActionType.CLOSE_LOCATION) {
                 setVisible(false);
+
+                setSearched(inititalValue.searched);
+                setShowListAcademy(inititalValue.showListAcademy);
+                setListAcademy(inititalValue.listAcademy);
+                setInputSearch(inititalValue.inputSearch);
+                setTextResult(inititalValue.textResult);
             }
         }
     }, [headerReducer]);
@@ -55,14 +69,9 @@ function LocationModal() {
                     siteActionType.GET_CURRENT_ACADEMY_SUCCESS &&
                 siteReducer.number === 1
             ) {
-                setQuery(siteReducer.data.ms_name);
-            }
-            if (
-                siteReducer.type ===
-                    siteActionType.GET_CURRENT_ACADEMY_FAILED &&
-                siteReducer.number === 1
-            ) {
-                setQuery('Get current location error');
+                setInputSearch(
+                    siteReducer.data.ms_address || siteReducer.data.ms_name,
+                );
             }
         }
     }, [siteReducer]);
@@ -86,8 +95,31 @@ function LocationModal() {
     if (searched) headText = 'Select Your Local Class';
 
     function setCurrentLocation() {
-        setQuery('Loading...');
-        Utils.getCurrentAcademy(dispatch, 1);
+        // setQuery('Loading...');
+        // console.log('aaaa');
+        let options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+        };
+
+        const success = (pos) => {
+            // setLocation('Loading');
+            let crd = pos.coords;
+
+            dispatch({
+                type: siteActionType.GET_CURRENT_ACADEMY,
+                lat: crd.latitude,
+                long: crd.longitude,
+                number: 1,
+            });
+        };
+
+        function error(err) {
+            alert('Allow this site to access your site', err);
+        }
+
+        navigator.geolocation.getCurrentPosition(success, error, options);
     }
 
     return (
@@ -119,6 +151,7 @@ function LocationModal() {
                     {!searched && (
                         <div className="wrap-row">
                             <button
+                                style={{ cursor: 'pointer' }}
                                 className="current-location"
                                 onClick={() => {
                                     setCurrentLocation();

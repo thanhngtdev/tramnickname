@@ -326,7 +326,7 @@ const BookTrialParty = React.forwardRef((props, ref) => {
 
                                                 let options = {
                                                     enableHighAccuracy: true,
-                                                    timeout: 0,
+                                                    timeout: 5000,
                                                     maximumAge: 0,
                                                 };
 
@@ -344,7 +344,7 @@ const BookTrialParty = React.forwardRef((props, ref) => {
 
                                                 function error(err) {
                                                     alert(
-                                                        'Turn on location',
+                                                        'Allow this site to access your site',
                                                         err,
                                                     );
                                                 }

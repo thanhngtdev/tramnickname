@@ -24,6 +24,7 @@ const PlacesWithStandaloneSearchBox = compose(
             this.setState({
                 places: [],
                 onSearchBoxMounted: (ref) => {
+                    // console.log(ref, 'ref inside');
                     refs.searchBox = ref;
                 },
 
@@ -52,12 +53,11 @@ const PlacesWithStandaloneSearchBox = compose(
 
                         input = place.formatted_address;
                         resultList = [...list.slice(0, 10)];
+                        this.props.setListAcademy(resultList);
+                        this.props.setShowListAcademy(false);
+                        this.props.setSearched(true);
+                        this.props.setTextResult(input);
                     }
-
-                    this.props.setListAcademy(resultList);
-                    this.props.setShowListAcademy(false);
-                    this.props.setSearched(true);
-                    this.props.setTextResult(input);
                 },
             });
         },
@@ -73,6 +73,7 @@ const PlacesWithStandaloneSearchBox = compose(
                 id="inputSearch"
                 type="text"
                 placeholder="Type to enter your address, town or postcode"
+                value={props.inputSearch}
                 onChange={(event) => {
                     props.setInputSearch(event.target.value);
                 }}
