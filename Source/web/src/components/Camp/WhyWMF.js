@@ -18,6 +18,8 @@ export default function WhyWMF(props) {
     const [cost, setCost] = useState({});
     const [trustPilot, setTrustPilot] = useState({});
 
+    console.log(props, 'props');
+
     useEffect(() => {
         // console.log(checkPound(props.data.cfg_value), 'check');
         getTrustPilot();
@@ -28,7 +30,7 @@ export default function WhyWMF(props) {
             }
             setDefaultAcademy(ModelManager.getLocation());
         } else {
-            setData(props.intro);
+            setData(props.data.cfg_value);
         }
     }, []);
 
