@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import React, { useRef } from 'react';
 import { Button } from 'react-bootstrap';
 import saveList from 'src/hooks/useSaveList';
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 import siteService from 'src/services/siteService';
 
 const AboutUs = dynamic(() => import('src/components/Camp/AboutUs'));

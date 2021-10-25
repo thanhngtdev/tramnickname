@@ -35,7 +35,7 @@ const EachTab = dynamic(() => import('src/components/EachTab'));
 const HolidayCampTabSpace = dynamic(() =>
     import('src/components/include/HolidayCampTabSpace'),
 );
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 function BookTrialTraining({ listSite }) {
     // console.log(listSite, 'list');

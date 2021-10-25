@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import Select from 'react-select';
 import PathRoute from 'src/common/PathRoute';
 import { CommonStyle } from 'src/common/Styles';
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 import siteService from 'src/services/siteService';
 import * as Yup from 'yup';
 

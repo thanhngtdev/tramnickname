@@ -12,7 +12,7 @@ const InstaBox = dynamic(() => import('src/components/Camp/InstaBox'));
 const QNA = dynamic(() => import('src/components/Camp/QNA'));
 const WhyWMF = dynamic(() => import('src/components/Camp/WhyWMF'));
 const Testimonial = dynamic(() => import('src/components/Testimonial'));
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const BookTrialHoliday = dynamic(() =>
     import(
         '../../components/holiday-camps-homeComponents/components/BookTrialHoliday'

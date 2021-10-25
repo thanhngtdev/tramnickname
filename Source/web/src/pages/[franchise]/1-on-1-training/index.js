@@ -17,7 +17,7 @@ const WhyWMF = dynamic(() => import('src/components/Camp/WhyWMF'));
 const Intro = dynamic(() => import('src/components/HomePage/Intro.js'));
 
 const Testimonial = dynamic(() => import('src/components/Testimonial'));
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const Provide = dynamic(() => import('src/components/Provide'));
 
 export default function OneTraining({ data, listSite }) {

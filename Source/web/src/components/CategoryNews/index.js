@@ -6,7 +6,7 @@ import Utils from 'src/common/Utils';
 import saveList from 'src/hooks/useSaveList';
 import type from 'src/redux/actions/actionTypes';
 import dynamic from 'next/dynamic';
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const ArticleItem = dynamic(() => import('src/components/Article/ArticleItem'));
 const ArticleMenu = dynamic(() => import('src/components/Article/ArticleMenu'));
 

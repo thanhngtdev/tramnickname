@@ -1,12 +1,13 @@
 import PathRoute from 'src/common/PathRoute';
 import BorderButton from 'src/components/include/BorderButton';
-import DefaultLayout from 'src/layout/DefaultLayout';
 // import "css/policies.css";
-import { isEmpty, snakeCase } from 'lodash';
+import snakeCase from 'lodash/snakeCase';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import siteService from 'src/services/siteService';
+import dynamic from 'next/dynamic';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 function Policy({ data }) {
     const router = useRouter();

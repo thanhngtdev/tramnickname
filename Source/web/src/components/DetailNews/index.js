@@ -2,10 +2,11 @@ import dayjs from 'dayjs';
 import parse from 'html-react-parser';
 import React from 'react';
 import Utils from 'src/common/Utils';
+import dynamic from 'next/dynamic';
 import ArticleItem from 'src/components/Article/ArticleItem';
 import ArticleMenu from 'src/components/Article/ArticleMenu';
 import saveList from 'src/hooks/useSaveList';
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 export default ({ listSite, data }) => {
     //! State

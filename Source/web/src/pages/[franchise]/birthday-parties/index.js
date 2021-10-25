@@ -24,7 +24,7 @@ const QNA = dynamic(() => import('src/components/Camp/QNA'));
 const Gallery = dynamic(() => import('src/components/HomePage/Gallery'));
 const Quote = dynamic(() => import('src/components/Quote'));
 const Testimonial = dynamic(() => import('src/components/Testimonial'));
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 function BirthdayParty({ data, listSite }) {
     //! state

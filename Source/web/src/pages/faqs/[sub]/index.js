@@ -4,7 +4,8 @@ import parse from 'html-react-parser';
 import isEmpty from 'lodash/isEmpty';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import DefaultLayout from 'src/layout/DefaultLayout';
+import dynamic from 'next/dynamic';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 import siteService from 'src/services/siteService';
 
 const propTypes = {};

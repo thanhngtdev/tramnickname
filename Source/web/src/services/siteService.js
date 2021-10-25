@@ -32,7 +32,17 @@ class SiteService {
         return httpMethod.get(`${APIConfig.URL_GET_LIST_SITE}?schedule=1`);
     }
 
-    getFranchiseDetail({ id }) {
+    getFranchiseDetail({ id, isSubpage = false, subPage = '', slug = '' }) {
+        if (isSubpage) {
+            return httpMethod.get(
+                `${APIConfig.GET_DETAIL_SITE}${Utils.convertToQuery({
+                    siteId: id,
+                    slug: slug,
+                    subpage: subPage,
+                })}`,
+            );
+        }
+
         return httpMethod.get(
             `${APIConfig.GET_DETAIL_SITE}${Utils.convertToQuery({
                 siteId: id,

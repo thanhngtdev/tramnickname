@@ -4,7 +4,7 @@ import ModelManager from 'src/common/ModelManager';
 import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
 
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const BookTrial = dynamic(() => import('src/components/Booking/BookTrial'));
 const BannerTop = dynamic(() => import('src/components/HomePage/BannerTop'));
 const FootballBegining = dynamic(() =>

@@ -16,8 +16,8 @@ const TrainingInclude = dynamic(() =>
 );
 const WhyWMF = dynamic(() => import('src/components/Camp/WhyWMF'));
 const Testimonial = dynamic(() => import('src/components/Testimonial'));
-// import DefaultLayout from 'src/layout/DefaultLayout';
-import DefaultLayout from 'src/layout/DefaultLayout';
+// const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 function WeeklyTraining({ data, listSite }) {
     saveList(listSite);

@@ -19,7 +19,7 @@ const IconUnVerify = dynamic(() =>
 const IconVerify = dynamic(() =>
     import('src/components/include/Checkbox/IconVerify'),
 );
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 import siteService from 'src/services/siteService';
 import * as Yup from 'yup';

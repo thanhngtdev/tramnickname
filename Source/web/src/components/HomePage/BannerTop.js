@@ -4,12 +4,16 @@ import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 import Button from 'src/components/Button';
 import getLocalStorage from 'src/hooks/useGetLocalStorage';
+import SearchBox1 from 'src/components/SearchBox1';
+import { useDispatch } from 'react-redux';
+import { headerActionType } from 'src/redux/actions/actionTypes';
 
 function BannerTop(props) {
+    const dispatch = useDispatch();
     const [textSearch, setTextSearch] = useState('');
     const [src, setSrc] = useState('');
+    const [isSearch, setIsSearch] = useState(false);
     const history = useRouter();
-
     const defaultAcademy = getLocalStorage();
 
     useEffect(() => {
@@ -22,6 +26,16 @@ function BannerTop(props) {
             setSrc(`${Utils.getThumb(props.bannerTop.cfg_value[0].image)}`);
         };
     }, []);
+
+    useEffect(() => {
+        if (isSearch) {
+            dispatch({
+                type: headerActionType.CHANGE_LOCATION,
+            });
+
+            setIsSearch(false);
+        }
+    }, [isSearch]);
 
     return (
         <div
@@ -59,14 +73,28 @@ function BannerTop(props) {
                                 Find your nearest academy:
                             </span>
                             <div className="box">
-                                <input
+                                {/* <input
                                     type="text"
                                     className="input-text"
                                     placeholder="Enter Postcode, Address,..."
                                     onChange={(evt) =>
                                         setTextSearch(evt.target.value)
                                     }
+                                /> */}
+                                <SearchBox1
+                                    setIsSearch={setIsSearch}
+                                    // isSearch={false}
+                                    // listSite={listSite}
+                                    // searched={searched}
+                                    // inputSearch={inputSearch}
+                                    // setShowListAcademy={setShowListAcademy}
+                                    // setSearched={setSearched}
+                                    // setListAcademy={setListAcademy}
+                                    // setInputSearch={setInputSearch}
+                                    // setTextResult={setTextResult}
                                 />
+                                {/* <div className="input-text">
+                                </div>
                                 <button
                                     className="btn-pin"
                                     // onClick={() =>
@@ -77,7 +105,7 @@ function BannerTop(props) {
                                     // }
                                 >
                                     {defaultAcademy ? 'Book' : 'Find'}
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     )}

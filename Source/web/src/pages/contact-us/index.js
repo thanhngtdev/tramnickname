@@ -12,7 +12,7 @@ import PathRoute from 'src/common/PathRoute';
 import { CommonStyle } from 'src/common/Styles';
 import Utils from 'src/common/Utils';
 import saveList from 'src/hooks/useSaveList';
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 import siteService from 'src/services/siteService';
 const Button = dynamic(() => import('src/components/Button'));
 const Captcha = dynamic(() => import('src/components/Captcha'));

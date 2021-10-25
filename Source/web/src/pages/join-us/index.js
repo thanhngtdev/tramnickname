@@ -13,7 +13,7 @@ const AboutSecure = dynamic(() => import('src/components/Camp/AboutSecure'));
 const Intro = dynamic(() => import('src/components/HomePage/Intro.js'));
 const Testimonial = dynamic(() => import('src/components/Testimonial'));
 const JoinUsBanner = dynamic(() => import('src/components/JoinUsBanner'));
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const ROUTE = [PathRoute.Coaching, PathRoute.ParentHost];
 
 function JoinUs({ data, listSite }) {

@@ -1,11 +1,12 @@
 import parse from 'html-react-parser';
-import { snakeCase } from 'lodash';
+import snakeCase from 'lodash/snakeCase';
 import Link from 'next/link';
 import React, { useRef } from 'react';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 import useEqualElement from 'src/hooks/useEqualElement';
-import DefaultLayout from 'src/layout/DefaultLayout';
+import dynamic from 'next/dynamic';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 import siteService from 'src/services/siteService';
 
 function Policy({ data }) {

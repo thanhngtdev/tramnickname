@@ -27,12 +27,13 @@ const TrainingService = dynamic(() =>
 );
 const Intro = dynamic(() => import('src/components/HomePage/Intro.js'));
 const Testimonial = dynamic(() => import('src/components/Testimonial'));
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
 
 function Franchise({ data, listSite, isSubPage }) {
+    console.log(data, 'data');
     saveList(listSite);
     useEffect(() => {
         if (isEmpty(data)) {
@@ -130,14 +131,19 @@ export async function getServerSideProps(context) {
         });
     });
 
-    if (isEmpty(item) && !id) {
-        return { props: { data: [], listSite, isSubPage } };
+    if (!isEmpty(item)) {
+        const siteDetail = await siteService.getFranchiseDetail({
+            id: item.ms_id,
+            isSubpage: isSubPage,
+            subPage: id,
+            slug: 'location',
+        });
+
+        const data = siteDetail.data.data;
+        return { props: { data, listSite, isSubPage } };
     }
 
-    const siteDetail = await siteService.getFranchiseDetail({ id: item.ms_id });
-    const data = siteDetail.data.data;
-
-    return { props: { data, listSite, isSubPage } };
+    return { props: { data: [], listSite, isSubPage } };
 }
 
 export default Franchise;

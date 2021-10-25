@@ -1,9 +1,10 @@
+import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import QNASearch from 'src/components/FaqComponents/components/QNASearch';
 import saveList from 'src/hooks/useSaveList';
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 import siteService from 'src/services/siteService';
 import ListFAQ from '../../components/FaqComponents/components/ListFAQ';
 import ResultFaqs from '../../components/FaqComponents/components/ResultFaqs';

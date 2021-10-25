@@ -3,7 +3,7 @@ import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
 import dynamic from 'next/dynamic';
 const AboutSecure = dynamic(() => import('src/components/Camp/AboutSecure'));
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const AboutGuide = dynamic(() =>
     import('../../components/AboutComponents/components/AboutGuide'),
 );

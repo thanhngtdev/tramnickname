@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 // import WhyWMF from 'src/components/Camp/WhyWMF';
 // import Intro from 'src/components/HomePage/Intro.js';
 // import Testimonial from 'src/components/Testimonial';
-// import DefaultLayout from 'src/layout/DefaultLayout';
+// const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 // import BookTrialSchool from 'src/components/SchoolTrainingComponents/components/BookTrialSchool';
 // import Enquire from 'src/components/SchoolTrainingComponents/components/Enquire';
 // import FootballSkill from 'src/components/Camp/FootballSkill';
@@ -20,7 +20,7 @@ const QNA = dynamic(() => import('src/components/Camp/QNA'));
 const WhyWMF = dynamic(() => import('src/components/Camp/WhyWMF'));
 const Intro = dynamic(() => import('src/components/HomePage/Intro.js'));
 const Testimonial = dynamic(() => import('src/components/Testimonial'));
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const BookTrialSchool = dynamic(() =>
     import(
         'src/components/SchoolTrainingComponents/components/BookTrialSchool'

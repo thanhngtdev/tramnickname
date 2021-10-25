@@ -5,7 +5,7 @@ import Constants from 'src/common/Constants';
 import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
 
-import DefaultLayout from 'src/layout/DefaultLayout';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const AcademyMap = dynamic(() => import('src/components/include/AcademyMap'));
 
 function Location({ listSite }) {

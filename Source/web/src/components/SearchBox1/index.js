@@ -1,6 +1,4 @@
-import React from 'react';
-import Utils from 'src/common/Utils';
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import Constants from 'src/common/Constants';
 
 const { compose, withProps, lifecycle } = require('recompose');
@@ -21,6 +19,7 @@ const PlacesWithStandaloneSearchBox = compose(
     lifecycle({
         componentWillMount() {
             const refs = {};
+            // const dispatch = useDispatch();
             this.setState({
                 places: [],
                 onSearchBoxMounted: (ref) => {
@@ -29,35 +28,39 @@ const PlacesWithStandaloneSearchBox = compose(
 
                 onPlacesChanged: () => {
                     const places = refs.searchBox.getPlaces();
-                    let input = this.props.inputSearch;
+                    // let input = this.props.inputSearch;
                     let resultList = [];
 
-                    if (places.length > 0) {
-                        const place = places[0];
-                        // console.log(place, 'place');
-                        const lat = place.geometry.location.lat();
-                        const long = place.geometry.location.lng();
-                        const list = [...this.props.listSite].filter(
-                            (item) =>
-                                (item.distance =
-                                    Utils.getDistanceFromLatLonInKm(
-                                        lat,
-                                        long,
-                                        item.ms_latitude,
-                                        item.ms_longitude,
-                                    )),
-                        );
+                    console.log(places, 'places');
 
-                        list.sort((a, b) => a.distance - b.distance);
+                    // this.props.setIsSearch(true);
 
-                        input = place.formatted_address;
-                        resultList = [...list.slice(0, 10)];
-                    }
+                    // if (places.length > 0) {
+                    //     const place = places[0];
+                    //     // console.log(place, 'place');
+                    //     const lat = place.geometry.location.lat();
+                    //     const long = place.geometry.location.lng();
+                    //     const list = [...this.props.listSite].filter(
+                    //         (item) =>
+                    //             (item.distance =
+                    //                 Utils.getDistanceFromLatLonInKm(
+                    //                     lat,
+                    //                     long,
+                    //                     item.ms_latitude,
+                    //                     item.ms_longitude,
+                    //                 )),
+                    //     );
 
-                    this.props.setListAcademy(resultList);
-                    this.props.setShowListAcademy(false);
-                    this.props.setSearched(true);
-                    this.props.setTextResult(input);
+                    //     list.sort((a, b) => a.distance - b.distance);
+
+                    //     input = place.formatted_address;
+                    //     resultList = [...list.slice(0, 10)];
+                    // }
+
+                    // this.props.setListAcademy(resultList);
+                    // this.props.setShowListAcademy(false);
+                    // this.props.setSearched(true);
+                    // this.props.setTextResult(input);
                 },
             });
         },
@@ -72,26 +75,28 @@ const PlacesWithStandaloneSearchBox = compose(
             <input
                 id="inputSearch"
                 type="text"
-                placeholder="Type to enter your address, town or postcode"
+                className="input-text"
+                placeholder="Enter Postcode, Address,..."
                 onChange={(event) => {
-                    props.setInputSearch(event.target.value);
+                    console.log(props, 'props');
+                    // props.setInputSearch(event.target.value);
                 }}
             />
         </StandaloneSearchBox>
         <button
+            className="btn-pin"
             onClick={() => {
+                props.setIsSearch(true);
                 const inputSearch = document.getElementById('inputSearch');
                 inputSearch.focus();
-
                 const enter = new KeyboardEvent('keydown', {
                     bubbles: true,
                     cancelable: true,
                     keyCode: 13,
                 });
-
                 inputSearch.dispatchEvent(enter);
             }}>
-            {props.searched ? 'FIND' : 'GO'}
+            FIND
         </button>
     </Fragment>
 ));
