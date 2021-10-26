@@ -7,7 +7,7 @@ export const axiosApi = axios.create({
 
     // mode: 'cors',
     header: { 'Access-Control-Allow-Origin': '*' },
-    withCredentials: true,
+    // withCredentials: true,
 });
 
 axiosApi.interceptors.response.use(

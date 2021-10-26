@@ -290,30 +290,36 @@ function BookTrialTraining1(props) {
                     }}
                 />
                 <label className="input-error">
-                    {emailError}
-                    {emailError && availableEmail && (
-                        <Fragment>
-                            <a
-                                target="_blank"
-                                style={{
-                                    color: 'black',
-                                }}
-                                href={'https://www.parentarea.co/parent/login'}>
-                                Login
-                            </a>{' '}
-                            {'or'}{' '}
-                            <a
-                                target="_blank"
-                                style={{
-                                    color: 'black',
-                                }}
-                                href={
-                                    'https://www.parentarea.co/parent/reset-password'
-                                }>
-                                recover your password
-                            </a>
-                        </Fragment>
-                    )}
+                    <p>
+                        {emailError}
+                        {emailError && availableEmail && (
+                            <Fragment>
+                                <a
+                                    target="_blank"
+                                    style={{
+                                        color: '#EE7925',
+                                        fontWeight: 'bold',
+                                    }}
+                                    href={
+                                        'https://www.parentarea.co/parent/login'
+                                    }>
+                                    Login
+                                </a>{' '}
+                                {'or'}{' '}
+                                <a
+                                    target="_blank"
+                                    style={{
+                                        color: '#EE7925',
+                                        fontWeight: 'bold',
+                                    }}
+                                    href={
+                                        'https://www.parentarea.co/parent/reset-password'
+                                    }>
+                                    recover your password
+                                </a>
+                            </Fragment>
+                        )}
+                    </p>
                 </label>
             </div>
             <div className="wSelect2">

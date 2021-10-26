@@ -12,6 +12,7 @@ import ListAcademy from './ListAcademy';
 import ListNearbyAcademy from './ListNearbyAcademy';
 import SearchBox from 'src/components/SearchBox';
 import siteService from 'src/services/siteService';
+import { sendGet } from 'src/services/httpMethodPA';
 
 const inititalValue = {
     searched: false,
@@ -94,7 +95,7 @@ function LocationModal() {
         'Enter Your Postcode, Address, Town or Current Location to Find Your Nearest Class';
     if (searched) headText = 'Select Your Local Class';
 
-    function setCurrentLocation() {
+    const setCurrentLocation = () => {
         // setQuery('Loading...');
         // console.log('aaaa');
         let options = {
@@ -103,16 +104,37 @@ function LocationModal() {
             maximumAge: 0,
         };
 
-        const success = (pos) => {
+        const success = async (pos) => {
             // setLocation('Loading');
-            let crd = pos.coords;
+            let { latitude, longitude } = pos.coords;
 
-            dispatch({
-                type: siteActionType.GET_CURRENT_ACADEMY,
-                lat: crd.latitude,
-                long: crd.longitude,
-                number: 1,
-            });
+            const getApi = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
+
+            await sendGet(getApi)
+                .then((res) => {
+                    // console.log(res, 'res');
+
+                    if (res.status === 200) {
+                        setInputSearch(
+                            res.data?.locality +
+                                ' ' +
+                                res.data?.city +
+                                ' ' +
+                                res.data?.countryName,
+                        );
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                    // setListCourse([]);
+                });
+
+            // dispatch({
+            //     type: siteActionType.GET_CURRENT_ACADEMY,
+            //     lat: crd.latitude,
+            //     long: crd.longitude,
+            //     number: 1,
+            // });
         };
 
         function error(err) {
@@ -120,7 +142,7 @@ function LocationModal() {
         }
 
         navigator.geolocation.getCurrentPosition(success, error, options);
-    }
+    };
 
     return (
         <div
