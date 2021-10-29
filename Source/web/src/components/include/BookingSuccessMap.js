@@ -8,7 +8,7 @@ import AddToCalendar from '../AddToCalendar';
 import CustomMarker from './CustomMarker';
 
 function BookingSuccessMap(props) {
-    console.log(props, 'props');
+    // console.log(props, 'props');
     const timeStart = props?.courseSelected?.course_day_time_start;
     const timeEnd = props?.courseSelected?.course_day_time_end;
 

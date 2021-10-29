@@ -30,7 +30,7 @@ function HolidayCamp({ data, listSite }) {
             <AboutUs data={data?.about || {}} holidayCamp />
 
             <div className="about-info-holiday">
-                <AboutInfoCamp />
+                <AboutInfoCamp site />
             </div>
 
             <div className="about-secure-holiday">

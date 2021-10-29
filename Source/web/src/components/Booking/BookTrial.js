@@ -38,7 +38,7 @@ function BookTrial(props) {
         useComponentVisible(true);
 
     useEffect(() => {
-        console.log(props, 'props');
+        // console.log(props, 'props');
         if (!isEmpty(props.site)) {
             setLocation(props.site);
         }

@@ -18,7 +18,7 @@ export default function WhyWMF(props) {
     const [cost, setCost] = useState({});
     const [trustPilot, setTrustPilot] = useState({});
 
-    console.log(props, 'props');
+    // console.log(props, 'props');
 
     useEffect(() => {
         // console.log(checkPound(props.data.cfg_value), 'check');
