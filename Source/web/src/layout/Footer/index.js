@@ -137,7 +137,7 @@ function Footer() {
                         </li>
                         <li>
                             <a
-                                href="https://franchisewmf.com/ "
+                                href="https://franchisewmf.com/"
                                 target="_blank"
                                 rel="noreferrer">
                                 Franchise With Us

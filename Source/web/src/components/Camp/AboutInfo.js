@@ -66,6 +66,10 @@ export default function AboutInfo(props) {
         }
     }, [siteReducer]);
 
+    useEffect(() => {
+        console.log(lstCourse, 'lstCourse');
+    }, [lstCourse]);
+
     //! Functions
     const handleOnChange = (option) => {
         global.bookTraining = {
@@ -152,7 +156,10 @@ export default function AboutInfo(props) {
                             <div
                                 key={index}
                                 className="classRow"
-                                onClick={() => setCourseSelected(item)}
+                                onClick={() => {
+                                    // console.log(item, 'item');
+                                    setCourseSelected(item);
+                                }}
                                 style={{
                                     backgroundColor: `${
                                         index % 2 === 0 ? '#F7F8F7' : 'white'
@@ -169,6 +176,14 @@ export default function AboutInfo(props) {
                                         '2021-03-03T' +
                                             item.course_day_time_end,
                                     ).format('hh:mma')}
+                                    {item.gender === 1 && (
+                                        <>
+                                            <br />
+                                            <span style={{ color: '#ee7925' }}>
+                                                Girl only class
+                                            </span>
+                                        </>
+                                    )}
                                 </p>
                                 <p>
                                     {item.min_age}-{item.max_age} year olds

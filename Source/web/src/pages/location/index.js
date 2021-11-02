@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React from 'react';
 import Constants from 'src/common/Constants';
+import Utils from 'src/common/Utils';
 import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
 
@@ -31,11 +32,14 @@ function Location({ listSite }) {
                                 {listSite.map((item) => {
                                     if (item.ms_region === 'London')
                                         return (
-                                            <Link
-                                                href={'/' + item.ms_alias}
+                                            <a
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    Utils.onClickLocation(item);
+                                                }}
                                                 key={item.ms_id}>
-                                                <a>{item.ms_name}</a>
-                                            </Link>
+                                                {item.ms_name}
+                                            </a>
                                         );
                                     return null;
                                 })}
@@ -49,11 +53,16 @@ function Location({ listSite }) {
                                             'North West England'
                                         )
                                             return (
-                                                <Link
-                                                    href={'/' + item.ms_alias}
+                                                <a
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        Utils.onClickLocation(
+                                                            item,
+                                                        );
+                                                    }}
                                                     key={item.ms_id}>
-                                                    <a>{item.ms_name}</a>
-                                                </Link>
+                                                    {item.ms_name}
+                                                </a>
                                             );
                                         return null;
                                     })}
@@ -63,11 +72,16 @@ function Location({ listSite }) {
                                     {listSite.map((item) => {
                                         if (item.ms_region === 'South England')
                                             return (
-                                                <Link
-                                                    href={'/' + item.ms_alias}
+                                                <a
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        Utils.onClickLocation(
+                                                            item,
+                                                        );
+                                                    }}
                                                     key={item.ms_id}>
-                                                    <a>{item.ms_name}</a>
-                                                </Link>
+                                                    {item.ms_name}
+                                                </a>
                                             );
                                         return null;
                                     })}

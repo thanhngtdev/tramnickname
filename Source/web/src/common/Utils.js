@@ -320,6 +320,20 @@ class Utils {
     saveToLocal(data) {
         window.localStorage.setItem('dataPayment', JSON.stringify(data));
     }
+
+    async onClickLocation(item) {
+        // e.preventDefault();
+        try {
+            const res = await siteService.getDetailSite({ id: item.ms_id });
+            if (res.data.status == 200) {
+                const item = res.data?.data?.site || {};
+                localStorage.setItem('defaultAcademy', JSON.stringify(item));
+                window.location.href = `${'/' + item.ms_alias}`;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 export default new Utils();

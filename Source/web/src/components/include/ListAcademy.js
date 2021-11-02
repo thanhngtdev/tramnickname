@@ -1,7 +1,6 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
-import { useSelector } from 'react-redux';
-import siteService from 'src/services/siteService';
+import Utils from 'src/common/Utils';
 
 function ListAcademy(props) {
     const { listSite, onClickLocation } = props;
@@ -9,7 +8,7 @@ function ListAcademy(props) {
     return (
         <div className="wrap-row">
             <hr />
-            <b>We make Footballers Academies</b>
+            <b>We Make Footballers Academies</b>
             <div className="list-acade">
                 {listSite &&
                     listSite.map((item) => {
@@ -17,7 +16,7 @@ function ListAcademy(props) {
                             <a
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    onClickLocation(item);
+                                    Utils.onClickLocation(item);
                                 }}
                                 key={item.ms_id}>
                                 {item.ms_name}

@@ -65,6 +65,11 @@ function BookTrialCamp1(props) {
         if (isEmpty(siteReducer.lstSiteCamp)) {
             dispatch({ type: siteActionType.GET_SITE_HAS_CAMP });
         }
+
+        return () => {
+            setAvailableEmail(false);
+            setEmailError('');
+        };
     }, []);
 
     useEffect(() => {
@@ -113,7 +118,7 @@ function BookTrialCamp1(props) {
                 const { data } = emailData;
                 if (data.email_exist === 'yes') {
                     setAvailableEmail(true);
-                    setEmailError('This email is already registered');
+                    setEmailError('Have an account already? ');
                 }
                 if (data.email_exist === 'no') {
                     setAvailableEmail(false);
@@ -517,7 +522,26 @@ function BookTrialCamp1(props) {
                                 }
                             }}
                         />
-                        <label className="input-error">{emailError}</label>
+                        <label className="input-error">
+                            <p>
+                                {emailError}
+                                {emailError && availableEmail && (
+                                    <Fragment>
+                                        <a
+                                            target="_blank"
+                                            style={{
+                                                color: '#EE7925',
+                                                fontWeight: 'bold',
+                                            }}
+                                            href={
+                                                'https://www.parentarea.co/parent/login'
+                                            }>
+                                            Login in here
+                                        </a>
+                                    </Fragment>
+                                )}
+                            </p>
+                        </label>
                     </div>
                     <div className="wSelect2">
                         <label>Your first name</label>

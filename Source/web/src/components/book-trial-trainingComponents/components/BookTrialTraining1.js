@@ -93,6 +93,11 @@ function BookTrialTraining1(props) {
         if (isEmpty(siteSelected)) {
             setSiteSelected(JSON.parse(localStorage.getItem('defaultAcademy')));
         }
+
+        return () => {
+            setAvailableEmail(false);
+            setEmailError('');
+        };
     }, []);
 
     // useEffect(() => {
@@ -412,7 +417,7 @@ function BookTrialTraining1(props) {
                                         {dayjs(
                                             '2021-03-03T' +
                                                 item.course_day_time_end,
-                                        ).format('hh:mma')}
+                                        ).format('hh:mma')}{' '}
                                     </label>
                                     <span>
                                         {item.min_age}-{item.max_age} year olds

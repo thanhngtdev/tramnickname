@@ -1,18 +1,17 @@
 /* eslint-disable react/button-has-type */
 import { faMapMarkerAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Utils from 'src/common/Utils';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import SearchBox from 'src/components/SearchBox';
 import {
     headerActionType,
     siteActionType,
 } from 'src/redux/actions/actionTypes';
+import { sendGet } from 'src/services/httpMethodPA';
+import siteService from 'src/services/siteService';
 import ListAcademy from './ListAcademy';
 import ListNearbyAcademy from './ListNearbyAcademy';
-import SearchBox from 'src/components/SearchBox';
-import siteService from 'src/services/siteService';
-import { sendGet } from 'src/services/httpMethodPA';
 
 const inititalValue = {
     searched: false,
@@ -128,13 +127,6 @@ function LocationModal() {
                     console.log(err);
                     // setListCourse([]);
                 });
-
-            // dispatch({
-            //     type: siteActionType.GET_CURRENT_ACADEMY,
-            //     lat: crd.latitude,
-            //     long: crd.longitude,
-            //     number: 1,
-            // });
         };
 
         function error(err) {

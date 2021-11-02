@@ -34,7 +34,9 @@ import siteService from 'src/services/siteService';
 
 function Franchise({ data, listSite, isSubPage }) {
     console.log(data, 'data');
+
     saveList(listSite);
+
     useEffect(() => {
         if (isEmpty(data)) {
             window.location.href = '/404';

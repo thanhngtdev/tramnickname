@@ -246,6 +246,15 @@ function Header() {
                                 }`}
                             />
 
+                            <li className="menu-link">
+                                <a
+                                    href="https://franchisewmf.com/"
+                                    target="_blank"
+                                    rel="noreferrer">
+                                    Franchise
+                                </a>
+                            </li>
+
                             <LinkItem
                                 title={'Contact Us'}
                                 hideMenu={hideMenu}

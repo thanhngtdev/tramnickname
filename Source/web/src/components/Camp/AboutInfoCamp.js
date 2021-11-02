@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import PathRoute from 'src/common/PathRoute';
 import { CommonStyle } from 'src/common/Styles';
-import Utils from 'src/common/Utils';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import { APIConfig, PARENT_API } from 'src/requests/ApiConfig';
 import { sendGet } from 'src/services/httpMethodPA';
@@ -29,17 +28,19 @@ export default function AboutInfoCamp(props) {
         `${dayjs().year()} Holiday Camp Calendar`,
     );
 
+    const [listCourse, setListCourse] = useState([]);
+
     //! useEffect
     useEffect(() => {
         // dispatch({ type: siteActionType.GET_SITE_HAS_CAMP });
-        getListHasCamp();
-    }, []);
+        if (!isEmpty(listSite) && isEmpty(listHasCamp)) {
+            getListHasCamp();
+        }
+    }, [listSite]);
 
-    // useEffect(() => {
-    //     if (!isEmpty(selectedAcademy)) {
-    //         getListCourse();
-    //     }
-    // }, [selectedAcademy]);
+    useEffect(() => {
+        console.log(listCourse, 'listCourse');
+    }, [listCourse]);
 
     //! function
     const getListHasCamp = async () => {
@@ -51,24 +52,45 @@ export default function AboutInfoCamp(props) {
                     res.data?.data.map((item) => {
                         item?.locations?.map((el) => listCourse.push(el));
                     });
-                    console.log(listCourse, 'listCourse');
-                    setListHasCamp(listCourse || []);
+                    // console.log(listCourse, 'listCourse');
+
+                    // console.log(listSite, 'listSite');
+                    if (listCourse && listSite) {
+                        // console.log(listCourse, listSite, 'pre-filter');
+                        const filterList = [];
+
+                        listSite.map((item) => {
+                            listCourse.map((el) => {
+                                if (
+                                    item.pa_locationId ===
+                                    el.location_id + ''
+                                ) {
+                                    // console.log(el, item, 'ee');
+                                    filterList.push(item);
+                                }
+                            });
+                        });
+
+                        // console.log(listCourse, 'filter');
+                        setListCourse(listCourse);
+                        setListHasCamp(filterList);
+                    }
+
                     // console.log(listCourse, 'list');
                 }
             })
             .catch((err) => {
-                console.log(err);
+                // console.log(err);
                 setListHasCamp([]);
             });
     };
 
     const handleSelectedSite = (site) => {
-        // console.log(site, listHasCamp);
+        // console.log(site, 'site');
 
-        const availableCompany = listHasCamp.find(
+        const availableCompany = listCourse.find(
             (item) => item.location_id + '' === site.pa_locationId,
         );
-        console.log(availableCompany, 'camp');
 
         if (!isEmpty(availableCompany?.holiday_camps)) {
             setLstCourse(availableCompany.holiday_camps);
@@ -90,7 +112,7 @@ export default function AboutInfoCamp(props) {
                 <div className="wSelect2">
                     <Select
                         value={selectedAcademy}
-                        options={listSite}
+                        options={listHasCamp}
                         isSearchable={false}
                         isMulti={false}
                         styles={CommonStyle.select2}

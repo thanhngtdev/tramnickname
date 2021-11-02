@@ -23,6 +23,8 @@ LDWeeklyTraining.propTypes = {
 };
 
 function LDWeeklyTraining(props) {
+    console.log(props, 'props');
+
     const MAX_LENGTH = props.isMobile ? 2 : 10;
     const dispatch = useDispatch();
     const history = useRouter();
@@ -111,7 +113,7 @@ function LDWeeklyTraining(props) {
                             onClick={() => {
                                 setCourseSelected(item);
                             }}>
-                            <p>{item.day_of_week.substring(0, MAX_LENGTH)}</p>
+                            <p>{item?.day_of_week?.substring(0, MAX_LENGTH)}</p>
                             <p>
                                 {dayjs(
                                     '2021-03-03T' + item.course_day_time_start,

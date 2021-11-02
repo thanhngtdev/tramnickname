@@ -97,9 +97,11 @@ function ContactMap(props) {
                             );
                     })}
                 </div>
-                <div style={{ textAlign: 'right', marginTop: 10 }}>
-                    For media inquiries please contact Calacus PR on 0207 998
-                    1911 or info@calacus.com
+                <div style={{ marginTop: 40 }}>
+                    <p>
+                        Please contact <br /> Sean Conlon on <br /> +44 7904
+                        856592 or <br /> sean@wemakefootballers.com
+                    </p>
                 </div>
             </div>
         );
