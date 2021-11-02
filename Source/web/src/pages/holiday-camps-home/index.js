@@ -18,7 +18,6 @@ const BookTrialHoliday = dynamic(() =>
         '../../components/holiday-camps-homeComponents/components/BookTrialHoliday'
     ),
 );
-
 import saveList from 'src/hooks/useSaveList';
 import React from 'react';
 import siteService from 'src/services/siteService';
@@ -30,7 +29,7 @@ function HolidayCamp({ data, listSite }) {
             <AboutUs data={data?.about || {}} holidayCamp />
 
             <div className="about-info-holiday">
-                <AboutInfoCamp site />
+                <AboutInfoCamp />
             </div>
 
             <div className="about-secure-holiday">

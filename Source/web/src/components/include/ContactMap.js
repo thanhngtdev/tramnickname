@@ -99,8 +99,9 @@ function ContactMap(props) {
                 </div>
                 <div style={{ marginTop: 40 }}>
                     <p>
-                        Please contact <br /> Sean Conlon on <br /> +44 7904
-                        856592 or <br /> sean@wemakefootballers.com
+                        For media inquiries <br /> please contact <br /> Sean
+                        Conlon on <br /> +44 7904 856592 or <br />{' '}
+                        sean@wemakefootballers.com
                     </p>
                 </div>
             </div>

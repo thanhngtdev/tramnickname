@@ -176,7 +176,7 @@ export default function AboutInfo(props) {
                                         '2021-03-03T' +
                                             item.course_day_time_end,
                                     ).format('hh:mma')}
-                                    {item.gender === 1 && (
+                                    {item.gender === 0 && (
                                         <>
                                             <br />
                                             <span style={{ color: '#ee7925' }}>

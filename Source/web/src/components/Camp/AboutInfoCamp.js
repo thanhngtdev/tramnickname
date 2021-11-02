@@ -40,7 +40,15 @@ export default function AboutInfoCamp(props) {
 
     useEffect(() => {
         console.log(listCourse, 'listCourse');
-    }, [listCourse]);
+        if (!isEmpty(listHasCamp)) {
+            if (!isEmpty(props.site)) {
+                handleSelectedSite(props.site);
+                return;
+            }
+
+            handleSelectedSite(listHasCamp[0]);
+        }
+    }, [listHasCamp]);
 
     //! function
     const getListHasCamp = async () => {
