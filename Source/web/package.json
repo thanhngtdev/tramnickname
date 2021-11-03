@@ -43,7 +43,7 @@
     "install": "^0.13.0",
     "lodash": "^4.17.19",
     "moment": "^2.29.1",
-    "next": "^9.5.4",
+    "next": "^11.1.2",
     "next-absolute-url": "^1.2.2",
     "next-compose-plugins": "^2.2.1",
     "next-fonts": "^1.5.1",
@@ -84,6 +84,11 @@
     "yup": "^0.28.5"
   },
   "devDependencies": {
-    "file-loader": "^6.2.0"
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-middleware": "^5.2.1",
+    "webpack-dev-server": "^4.4.0"
   }
 }

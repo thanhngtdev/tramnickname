@@ -72,7 +72,7 @@ module.exports = withPlugins([
             ),
         ),
     ],
-    [withBundleAnalyzer],
+    // [withBundleAnalyzer],
     [
         'postcss-flexbugs-fixes',
         [
@@ -100,4 +100,7 @@ module.exports = withPlugins([
             },
         ],
     ],
+    {
+        webpack5: false,
+    },
 ]);

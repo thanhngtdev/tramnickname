@@ -1,5 +1,6 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Script from 'next/script';
 
 export default class MyDocument extends Document {
     render() {
@@ -26,6 +27,16 @@ export default class MyDocument extends Document {
                         src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
                         // defer
                         async></script>
+
+                    {/* <Script
+                        src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
+                        strategy="lazyOnload" // lazyOnload, afterInteractive
+                    />
+
+                    <Script
+                        src="https://www.google.com/recaptcha/api.js"
+                        strategy="afterInteractive" // lazyOnload, afterInteractive
+                    /> */}
                 </Head>
                 <body>
                     <Main />

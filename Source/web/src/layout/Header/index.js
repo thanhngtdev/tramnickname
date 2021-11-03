@@ -210,6 +210,12 @@ function Header() {
                                     Trustpilot
                                 </a>
                             </div>
+                            {/* <img
+                                loading="lazy"
+                                alt=""
+                                src={'static-file/images/Trustpilot_Light.png'}
+                                height="30px"
+                            /> */}
                         </div>
                         <ul className="menu-small">
                             {!isEmpty(defaultAcademy) && (

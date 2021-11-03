@@ -97,7 +97,7 @@ function Policy({ data }) {
     );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
     const policyRes = await siteService.getPolicy();
     const data = policyRes.data.data;
 

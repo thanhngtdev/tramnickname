@@ -104,7 +104,7 @@ function BirthdayParty({ data, listSite }) {
     );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
 
