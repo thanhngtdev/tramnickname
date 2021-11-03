@@ -85,6 +85,7 @@ export default function AboutUs(props) {
     const [title, setTitle] = useState('');
     const [des, setDes] = useState(props.data.cfg_des);
 
+    console.log(props, 'props');
     useEffect(() => {
         if (isEmpty(props.site)) {
             if (props?.holidayCamp) {

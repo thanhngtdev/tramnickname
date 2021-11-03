@@ -1,5 +1,6 @@
 import parse from 'html-react-parser';
 import React from 'react';
+import Utils from 'src/common/Utils';
 
 const ListIcon = () => (
     <img loading="lazy" src={'/static-file/images/list.png'} alt="" />
@@ -24,7 +25,17 @@ export default function BirthdayExtra(props) {
                                             <div
                                                 key={index}
                                                 className="extra-item">
-                                                <ListIcon />
+                                                {/* <ListIcon /> */}
+                                                <img
+                                                    loading="lazy"
+                                                    src={Utils.getThumb(
+                                                        item.image,
+                                                    )}
+                                                    alt=""
+                                                    height="48px"
+                                                    width="48px"
+                                                />
+
                                                 {parse(item.content)}
                                             </div>
                                         );
@@ -45,7 +56,15 @@ export default function BirthdayExtra(props) {
                                                 key={index}
                                                 className="extra-item">
                                                 <div>
-                                                    <ListIcon />
+                                                    <img
+                                                        loading="lazy"
+                                                        src={Utils.getThumb(
+                                                            item.image,
+                                                        )}
+                                                        alt=""
+                                                        height="48px"
+                                                        width="48px"
+                                                    />
                                                     {parse(item.content)}
                                                 </div>
                                                 {/* <br /> */}
