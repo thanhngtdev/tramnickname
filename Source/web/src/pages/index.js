@@ -60,6 +60,8 @@ export async function getStaticProps() {
         siteService.getHome(),
         siteService.getListSite(),
     ]).then((values) => {
+        console.log(values, 'values');
+
         return {
             props: {
                 data: values[0].data.data,

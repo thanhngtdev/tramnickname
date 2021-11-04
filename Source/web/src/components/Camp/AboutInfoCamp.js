@@ -39,13 +39,12 @@ export default function AboutInfoCamp(props) {
     }, [listSite]);
 
     useEffect(() => {
-        console.log(listCourse, 'listCourse');
+        // console.log(listCourse, '/listCourse');
         if (!isEmpty(listHasCamp)) {
             if (!isEmpty(props.site)) {
-                handleSelectedSite(props.site);
+                handleSelectedSite(props.site, true);
                 return;
             }
-
             handleSelectedSite(listHasCamp[0]);
         }
     }, [listHasCamp]);
@@ -93,7 +92,7 @@ export default function AboutInfoCamp(props) {
             });
     };
 
-    const handleSelectedSite = (site) => {
+    const handleSelectedSite = (site, isSiteDefault = false) => {
         // console.log(site, 'site');
 
         const availableCompany = listCourse.find(
@@ -108,6 +107,13 @@ export default function AboutInfoCamp(props) {
             setTitle(
                 `There’s no holiday camp available in ${site.ms_name}, please select another location in the list below`,
             );
+        }
+
+        if (isSiteDefault === true) {
+            setSelectedAcademy({
+                ms_name: 'Select an academy here',
+            });
+            return;
         }
 
         setSelectedAcademy(site);
@@ -126,14 +132,8 @@ export default function AboutInfoCamp(props) {
                         styles={CommonStyle.select2}
                         getOptionLabel={(option) => option.ms_name}
                         getOptionValue={(option) => option.ms_id}
-                        onChange={
-                            handleSelectedSite
-                            //     (option) => {
-                            //     setCourseSelected({});
-                            //     setLstCourse([]);
-                            //     setSelectedAcademy(option);
-                            // }
-                        }
+                        placeholder="abc"
+                        onChange={handleSelectedSite}
                     />
                 </div>
                 {lstCourse.length > 0 && (
@@ -160,19 +160,6 @@ export default function AboutInfoCamp(props) {
                 )}
 
                 <div style={{ textAlign: 'center' }}>
-                    {/* <SolidButton
-                        title="Book now"
-                        onClick={() => {
-                            if (selectedAcademy) {
-                                history.push(PathRoute.BookTrialCamp);
-                                dispatch({
-                                    type: siteActionType.SELECT_ACADEMY,
-                                    data: selectedAcademy,
-                                });
-                            }
-                        }}
-                    /> */}
-
                     <Button
                         title="Book now"
                         onClick={() => {
@@ -189,11 +176,6 @@ export default function AboutInfoCamp(props) {
                     />
                 </div>
             </div>
-            {/* {txtAddress && (
-                <p style={{ fontSize: 14, textAlign: 'center' }}>
-                    Holiday camps are available in {txtAddress}.
-                </p>
-            )} */}
         </div>
     );
 }
