@@ -198,6 +198,9 @@ export async function getServerSideProps(context) {
         22,
         'join-us',
     );
+
+    if (isEmpty(props.data)) return { notFound: true };
+
     return { props };
 }
 

@@ -16,7 +16,7 @@ export default class MyDocument extends Document {
                         as="style"
                     />
 
-                    <script
+                    {/* <script
                         type="text/javascript"
                         src="https://www.google.com/recaptcha/api.js"
                         async
@@ -26,17 +26,7 @@ export default class MyDocument extends Document {
                         type="text/javascript"
                         src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
                         // defer
-                        async></script>
-
-                    {/* <Script
-                        src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
-                        strategy="lazyOnload" // lazyOnload, afterInteractive
-                    />
-
-                    <Script
-                        src="https://www.google.com/recaptcha/api.js"
-                        strategy="afterInteractive" // lazyOnload, afterInteractive
-                    /> */}
+                        async></script> */}
                 </Head>
                 <body>
                     <Main />

@@ -115,5 +115,8 @@ export async function getServerSideProps(context) {
         14,
         '1-on-1-training',
     );
+
+    if (isEmpty(props.data)) return { notFound: true };
+
     return { props };
 }

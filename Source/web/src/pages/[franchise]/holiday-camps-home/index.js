@@ -86,6 +86,9 @@ export async function getServerSideProps(context) {
         9,
         'holiday-camps-home',
     );
+
+    if (isEmpty(props.data)) return { notFound: true };
+
     return { props };
 }
 

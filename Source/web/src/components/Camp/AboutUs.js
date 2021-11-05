@@ -150,7 +150,7 @@ export default function AboutUs(props) {
                     <img
                         loading="lazy"
                         alt=""
-                        src={'/static-file/images/weekly-training-video.png'}
+                        src={Utils.getThumb(props.data?.cfg_image || '')}
                         // height="1000px"
                     />
                     {props.data.cfg_content &&
@@ -194,21 +194,17 @@ export default function AboutUs(props) {
                                 style={{ color: '#5A5A5A', margin: '0px' }}>
                                 {des}
                             </p>
-                            <div
-                                className="trustpilot-widget truspilot-big"
-                                data-locale="en-GB"
-                                data-template-id="53aa8807dec7e10d38f59f32"
-                                data-businessunit-id="5630b23d0000ff000584db47"
-                                data-style-height="150px"
-                                data-style-width="50%"
-                                data-theme="light">
-                                <a
-                                    href="https://uk.trustpilot.com/review/wemakefootballers.com"
-                                    target="_blank"
-                                    rel="noopener">
-                                    Trustpilot
-                                </a>
-                            </div>
+                            <a
+                                href="https://uk.trustpilot.com/review/wemakefootballers.com"
+                                target="_blank"
+                                rel="noopener">
+                                {/* Trustpilot */}
+                                <img
+                                    loading="lazy"
+                                    src="https://cdn.trustpilot.net/brand-assets/4.1.0/stars/stars-5.svg"
+                                    height="100px"
+                                    width="150px"></img>
+                            </a>
                         </div>
                     </div>
                 </div>

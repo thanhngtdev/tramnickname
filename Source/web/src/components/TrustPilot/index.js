@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { showTruspilot } from 'src/redux/actions/trustpilotAction';
-
+import Script from 'next/script';
 const TrustPilot = () => {
     const dispatch = useDispatch();
     const { show } = useSelector((state) => state.trustpilotReducer);
@@ -28,6 +28,11 @@ const TrustPilot = () => {
                 zIndex: 1000,
                 top: 0,
             }}>
+            <Script
+                src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
+                strategy="lazyOnload"
+            />
+
             <div
                 style={{
                     width: '100vw',
@@ -36,7 +41,7 @@ const TrustPilot = () => {
                     marginTop: '100px',
                 }}>
                 <div
-                    class="trustpilot-widget"
+                    className="trustpilot-widget"
                     data-locale="en-US"
                     data-template-id="539ad60defb9600b94d7df2c"
                     data-businessunit-id="5630b23d0000ff000584db47"

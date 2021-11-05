@@ -1,12 +1,10 @@
+import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
-
+import React, { useEffect } from 'react';
+import { geolocated } from 'react-geolocated';
+import { useDispatch } from 'react-redux';
 import usePermissionLocation from 'src/hooks/usePermissionLocation';
 import useTruspilot from 'src/hooks/useTruspilot';
-
-import React, { Fragment, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { geolocated } from 'react-geolocated';
-import { NextSeo } from 'next-seo';
 
 const Footer = dynamic(() => import('./Footer'), { ssr: true });
 const Header = dynamic(() => import('./Header'), { ssr: true });
@@ -66,7 +64,11 @@ const DefaultLayout = (props) => {
     // console.log(seo, 'seo');
     //! Render
     return (
-        <Fragment>
+        <>
+            {/* <Script
+                src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
+                strategy="lazyOnload"
+            /> */}
             <Header />
             <NextSeo
                 title={
@@ -85,7 +87,7 @@ const DefaultLayout = (props) => {
             <Footer />
             <LocationModal />
             <TrustPilot />
-        </Fragment>
+        </>
     );
 };
 

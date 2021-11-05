@@ -14,7 +14,7 @@ export async function getServerSideProps(ctx) {
 
     const item = listSite.find((item) => ctx.query.franchise === item.ms_alias);
     if (isEmpty(item)) {
-        return { props: { data: {}, listSite } };
+        return { notFound: true };
     }
 
     const req = await siteService.getListNews({
@@ -29,7 +29,7 @@ export async function getServerSideProps(ctx) {
         };
     }
 
-    return { props: { data: {}, listSite } };
+    return { notFound: true };
 }
 
 // SiteNews.propTypes = propTypes;

@@ -194,7 +194,7 @@ function Header() {
                     // className="container"
                     >
                         <div className="menu-small widget-header">
-                            <div
+                            {/* <div
                                 className="trustpilot-widget"
                                 data-locale="en-GB"
                                 data-template-id="5419b732fbfb950b10de65e5"
@@ -209,13 +209,17 @@ function Header() {
                                     rel="noopener">
                                     Trustpilot
                                 </a>
-                            </div>
-                            {/* <img
-                                loading="lazy"
-                                alt=""
-                                src={'static-file/images/Trustpilot_Light.png'}
-                                height="30px"
-                            /> */}
+                            </div> */}
+                            <a
+                                href="https://uk.trustpilot.com/review/wemakefootballers.com"
+                                target="_blank"
+                                rel="noopener">
+                                <img
+                                    loading="lazy"
+                                    src="https://cdn.trustpilot.net/brand-assets/4.1.0/stars/stars-5.svg"
+                                    height="25px"
+                                    width="130px"></img>
+                            </a>
                         </div>
                         <ul className="menu-small">
                             {!isEmpty(defaultAcademy) && (

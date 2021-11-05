@@ -108,14 +108,6 @@ export async function getServerSideProps(context) {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
 
-    // const item = listSite.find(
-    //     (item) => context.params.franchise === item.ms_alias,
-    // );
-
-    // if (isEmpty(item)) {
-    //     return { props: { data: [], listSite } };
-    // }
-
     let id = '';
     let isSubPage = false;
     const item = listSite.find((item) => {
@@ -145,7 +137,7 @@ export async function getServerSideProps(context) {
         return { props: { data, listSite, isSubPage } };
     }
 
-    return { props: { data: [], listSite, isSubPage } };
+    return { notFound: true };
 }
 
 export default Franchise;

@@ -116,6 +116,9 @@ export async function getServerSideProps(context) {
         15,
         'birthday-parties',
     );
+
+    if (isEmpty(props.data)) return { notFound: true };
+
     return { props };
 }
 
