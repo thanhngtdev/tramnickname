@@ -21,11 +21,7 @@ const Captcha = ({ id = 'captcha', event }) => {
             <div
                 id={id}
                 className="g-recaptcha"
-                data-sitekey="6Le-VPwUAAAAAA8Ob_fIKNaXUCp1eR5_n58uY0DU"
-                // data-callback={() => {
-                //     console.log('call');
-                // }}
-            ></div>
+                data-sitekey="6Le-VPwUAAAAAA8Ob_fIKNaXUCp1eR5_n58uY0DU"></div>
         </>
     );
 };

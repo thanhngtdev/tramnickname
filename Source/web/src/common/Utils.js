@@ -304,11 +304,16 @@ class Utils {
                 slug: slug,
             });
 
-            let data = siteDetail?.data?.data;
+            let data = { ...siteDetail?.data?.data };
             if (isEmpty(data)) return { data: [], listSite };
 
             if (!isEmpty(data.masterData)) {
                 data = Object.assign(data, data.masterData);
+
+                if (data?.about && siteDetail?.data?.data?.about) {
+                    data.about.cfg_image =
+                        siteDetail?.data?.data?.about?.cfg_image;
+                }
             }
 
             return { data, listSite };

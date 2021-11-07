@@ -91,21 +91,16 @@ function Testimonial(props) {
                             </div>
                         ))}
                 </Slider>
-                <div
+                <a
                     style={{
-                        cursor: 'pointer',
+                        // cursor: 'pointer',
                         color: `${props.textColor}`,
                     }}
                     className="trustpilot"
-                    onClick={() => {
-                        dispatch(
-                            showTruspilot({
-                                show: true,
-                            }),
-                        );
-                    }}>
+                    target="_blank"
+                    href="https://www.trustpilot.com/review/wemakefootballers.com">
                     <p>See more Reviews</p>
-                </div>
+                </a>
             </div>
         </div>
     );

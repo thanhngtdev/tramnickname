@@ -18,14 +18,7 @@ export default class MyDocument extends Document {
 
                     {/* <script
                         type="text/javascript"
-                        src="https://www.google.com/recaptcha/api.js"
-                        async
-                        defer></script>
-
-                    <script
-                        type="text/javascript"
                         src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
-                        // defer
                         async></script> */}
                 </Head>
                 <body>

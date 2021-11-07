@@ -4,7 +4,6 @@ import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 import Gallery from 'src/components/HomePage/Gallery';
 import Testimonial from 'src/components/Testimonial';
-import TrustPilot from 'src/components/TrustPilot';
 import useEqualElement from 'src/hooks/useEqualElement';
 
 const ROUTE = [PathRoute.WeeklyTraining, PathRoute.HolidayCamp];
@@ -30,7 +29,7 @@ function WhatWeDo(props) {
                     zIndex: 1000,
                     top: 0,
                 }}>
-                <TrustPilot />
+                {/* <TrustPilot /> */}
                 <div
                     style={{
                         width: '100vw',

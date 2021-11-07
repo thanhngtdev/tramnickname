@@ -28,10 +28,10 @@ const TrustPilot = () => {
                 zIndex: 1000,
                 top: 0,
             }}>
-            <Script
+            {/* <Script
                 src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
                 strategy="lazyOnload"
-            />
+            /> */}
 
             <div
                 style={{

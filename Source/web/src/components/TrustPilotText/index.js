@@ -13,14 +13,8 @@ const TrustPilotText = (props) => {
         <a
             href="#"
             className="alink"
-            onClick={(e) => {
-                e.preventDefault();
-                dispatch(
-                    showTruspilot({
-                        show: true,
-                    }),
-                );
-            }}>
+            target="_blank"
+            href="https://www.trustpilot.com/review/wemakefootballers.com">
             <p>See more Reviews</p>
         </a>
     );

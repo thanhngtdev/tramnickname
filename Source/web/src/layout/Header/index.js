@@ -213,12 +213,13 @@ function Header() {
                             <a
                                 href="https://uk.trustpilot.com/review/wemakefootballers.com"
                                 target="_blank"
-                                rel="noopener">
+                                // rel="noopener"
+                            >
                                 <img
                                     loading="lazy"
-                                    src="https://cdn.trustpilot.net/brand-assets/4.1.0/stars/stars-5.svg"
-                                    height="25px"
-                                    width="130px"></img>
+                                    src="/static-file/images/header_trustpilot.png"
+                                    // height="25px"
+                                ></img>
                             </a>
                         </div>
                         <ul className="menu-small">

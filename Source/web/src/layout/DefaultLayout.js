@@ -1,5 +1,6 @@
 import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
+import Script from 'next/script';
 import React, { useEffect } from 'react';
 import { geolocated } from 'react-geolocated';
 import { useDispatch } from 'react-redux';
@@ -8,9 +9,7 @@ import useTruspilot from 'src/hooks/useTruspilot';
 
 const Footer = dynamic(() => import('./Footer'), { ssr: true });
 const Header = dynamic(() => import('./Header'), { ssr: true });
-const TrustPilot = dynamic(() => import('src/components/TrustPilot'), {
-    ssr: true,
-});
+
 const LocationModal = dynamic(
     () => import('src/components/include/LocationModal'),
     { ssr: true },
@@ -25,7 +24,7 @@ const DefaultLayout = (props) => {
     const dispatch = useDispatch();
     const locationStatus = usePermissionLocation();
     //! useEffect
-    useTruspilot();
+    // useTruspilot();
 
     // useEffect(() => {
     //     if (locationStatus == 'granted') {
@@ -65,10 +64,6 @@ const DefaultLayout = (props) => {
     //! Render
     return (
         <>
-            {/* <Script
-                src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
-                strategy="lazyOnload"
-            /> */}
             <Header />
             <NextSeo
                 title={
@@ -86,7 +81,7 @@ const DefaultLayout = (props) => {
             {children}
             <Footer />
             <LocationModal />
-            <TrustPilot />
+            {/* <TrustPilot /> */}
         </>
     );
 };
