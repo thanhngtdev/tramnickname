@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import 'flatpickr/dist/themes/material_orange.css';
+// import 'flatpickr/dist/themes/material_orange.css';
 import { isEmpty } from 'lodash';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
