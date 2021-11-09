@@ -80,7 +80,7 @@ function About({ data, listSite }) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     return await Promise.all([
         siteService.getAbout(),
         siteService.getListSite(),

@@ -7,7 +7,7 @@ function News({ listSite, data }) {
     return <CategoryNews listSite={listSite} data={data} />;
 }
 
-export async function getStaticProps(ctx) {
+export async function getServerSideProps(ctx) {
     return await Promise.all([
         siteService.getListSite(),
         siteService.getListNews({ cate: '', page: 1, alias: '' }),

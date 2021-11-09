@@ -511,7 +511,7 @@ function Coaching({ listSite }) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
 

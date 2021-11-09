@@ -95,7 +95,7 @@ const FAQ = (props) => {
     );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     return await Promise.all([
         siteService.getListSite(),
         siteService.searchFAQ(''),
