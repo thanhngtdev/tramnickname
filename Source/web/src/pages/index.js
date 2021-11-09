@@ -67,6 +67,7 @@ export async function getStaticProps() {
                 data: values[0].data.data,
                 listSite: values[1].data.data.lstSite,
             },
+            revalidate: 60,
         };
     });
 }
