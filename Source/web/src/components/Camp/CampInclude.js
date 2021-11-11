@@ -74,59 +74,58 @@ export default function CampInclude(props) {
                                 className="icon"
                             />
                         </button>
-                        {width > 767 ? (
-                            <Fragment>
-                                <div
-                                    style={{
-                                        padding: '0 2rem',
-                                        display: 'initial',
-                                    }}>
-                                    {slideItem.map((item, index) => {
-                                        if (index === slideIndex)
-                                            return (
-                                                <Fragment key={index}>
-                                                    <div style={styles.paging}>
-                                                        <button
-                                                            style={
-                                                                styles.pagingActive
-                                                            }>
-                                                            {index + 1}
-                                                        </button>
-                                                    </div>
-                                                    {index <
-                                                        slideItem.length -
-                                                            1 && <Dot />}
-                                                </Fragment>
-                                            );
-                                        else
-                                            return (
-                                                <Fragment key={index}>
+                        <b style={{ margin: '0 2rem' }}>
+                            {slideIndex + 1}/{slideItem.length}
+                        </b>
+                        {/* {width > 767 ? (
+                            <div
+                                style={{
+                                    padding: '0 2rem',
+                                    display: 'initial',
+                                }}>
+                                {slideItem.map((item, index) => {
+                                    if (index === slideIndex)
+                                        return (
+                                            <Fragment key={index}>
+                                                <div style={styles.paging}>
                                                     <button
                                                         style={
-                                                            styles.pagingButton
-                                                        }
-                                                        onClick={() => {
-                                                            sliderRef.current.slickGoTo(
-                                                                index,
-                                                            );
-                                                        }}>
-                                                        <span>{index + 1}</span>
+                                                            styles.pagingActive
+                                                        }>
+                                                        {index + 1}
                                                     </button>
-                                                    {index <
-                                                        slideItem.length -
-                                                            1 && <Dot />}
-                                                </Fragment>
-                                            );
-                                    })}
-                                </div>
-                            </Fragment>
+                                                </div>
+                                                {index <
+                                                    slideItem.length - 1 && (
+                                                    <Dot />
+                                                )}
+                                            </Fragment>
+                                        );
+                                    else
+                                        return (
+                                            <Fragment key={index}>
+                                                <button
+                                                    style={styles.pagingButton}
+                                                    onClick={() => {
+                                                        sliderRef.current.slickGoTo(
+                                                            index,
+                                                        );
+                                                    }}>
+                                                    <span>{index + 1}</span>
+                                                </button>
+                                                {index <
+                                                    slideItem.length - 1 && (
+                                                    <Dot />
+                                                )}
+                                            </Fragment>
+                                        );
+                                })}
+                            </div>
                         ) : (
-                            <Fragment>
-                                <b style={{ margin: '0 2rem' }}>
-                                    {slideIndex + 1}/{slideItem.length}
-                                </b>
-                            </Fragment>
-                        )}
+                            <b style={{ margin: '0 2rem' }}>
+                                {slideIndex + 1}/{slideItem.length}
+                            </b>
+                        )} */}
 
                         <button
                             onClick={() => {

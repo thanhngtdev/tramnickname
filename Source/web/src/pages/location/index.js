@@ -33,6 +33,7 @@ function Location({ listSite }) {
                                     if (item.ms_region === 'London')
                                         return (
                                             <a
+                                                href={`/` + item.ms_alias}
                                                 onClick={(e) => {
                                                     e.preventDefault();
                                                     Utils.onClickLocation(item);
@@ -54,6 +55,7 @@ function Location({ listSite }) {
                                         )
                                             return (
                                                 <a
+                                                    href={`/` + item.ms_alias}
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         Utils.onClickLocation(
@@ -73,6 +75,7 @@ function Location({ listSite }) {
                                         if (item.ms_region === 'South England')
                                             return (
                                                 <a
+                                                    href={`/` + item.ms_alias}
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         Utils.onClickLocation(
