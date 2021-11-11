@@ -130,7 +130,7 @@ function LocationModal() {
         };
 
         function error(err) {
-            alert('Allow this site to access your site', err);
+            alert('Allow this site to access your location', err);
         }
 
         navigator.geolocation.getCurrentPosition(success, error, options);

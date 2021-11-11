@@ -289,7 +289,7 @@ export default function BookTrialHoliday(props) {
 
                                                 function error(err) {
                                                     alert(
-                                                        'Allow this site to access your site',
+                                                        'Allow this site to access your location',
                                                         err,
                                                     );
                                                 }
