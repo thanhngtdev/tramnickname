@@ -3,13 +3,12 @@ import {
     faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import parse from 'html-react-parser';
 import PropTypes from 'prop-types';
-import React, { Fragment, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Slider from 'react-slick';
 import Utils from 'src/common/Utils';
-import Dot from 'src/components/include/Dot';
 import useGetWidth from 'src/hooks/useGetWidth';
-
 CampInclude.propTypes = {
     data: PropTypes.object,
 };
@@ -50,7 +49,8 @@ export default function CampInclude(props) {
                                         />
                                     </div>
                                     <div className="slide-text">
-                                        <p>{element.content}</p>
+                                        {/* <p>{element.content}</p> */}
+                                        {parse(element.content)}
                                         <h3>{element.title}</h3>
                                         <p>{element.des}</p>
                                     </div>
