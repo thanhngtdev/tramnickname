@@ -1,18 +1,5 @@
 import React, { useRef } from 'react';
 import dynamic from 'next/dynamic';
-
-// import AboutUs from 'src/components/Camp/AboutUs';
-// import InstaBox from 'src/components/Camp/InstaBox';
-// import QNA from 'src/components/Camp/QNA';
-// import WhyWMF from 'src/components/Camp/WhyWMF';
-// import Intro from 'src/components/HomePage/Intro.js';
-// import Testimonial from 'src/components/Testimonial';
-// const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
-// import BookTrialSchool from 'src/components/SchoolTrainingComponents/components/BookTrialSchool';
-// import Enquire from 'src/components/SchoolTrainingComponents/components/Enquire';
-// import FootballSkill from 'src/components/Camp/FootballSkill';
-// import TrustUs from 'src/components/SchoolTrainingComponents/components/TrustUs';
-
 import siteService from 'src/services/siteService';
 const AboutUs = dynamic(() => import('src/components/Camp/AboutUs'));
 const InstaBox = dynamic(() => import('src/components/Camp/InstaBox'));

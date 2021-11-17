@@ -36,6 +36,7 @@ function BirthdayParty({ data, listSite }) {
     //! function
     //scroll to enquire section when book button clicked
     function handleScroll() {
+        console.log('handle');
         window.scrollTo({
             top: ref.current.offsetTop,
             behavior: 'smooth',
@@ -67,6 +68,7 @@ function BirthdayParty({ data, listSite }) {
 
             <BirthdayPackage
                 onClick={(preferedPackage) => {
+                    console.log('aaa');
                     handleScroll();
                     clickPreferedButton(preferedPackage);
                 }}
@@ -80,7 +82,8 @@ function BirthdayParty({ data, listSite }) {
 
             <div className="birthday-booking">
                 <BookTrialParty
-                    ref={ref}
+                    // ref={ref}
+                    __ref={ref}
                     parentFb={data?.parentFb || {}}
                     package={data?.package || {}}
                     preferedPackage={preferedPackage}

@@ -270,6 +270,7 @@
 
 .modal-content .map-view .service .service-offered li {
     color: #5a5a5a;
+    margin-bottom: 10px;
 }
 
 .modal-content .map-view .service .service-offered li:before {
@@ -277,7 +278,7 @@
     font-size: 2rem;
     vertical-align: top;
     padding-right: 7px;
-    line-height: 2.2rem;
+    line-height:25px;
     color: #ee7925;
 }
 

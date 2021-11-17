@@ -172,7 +172,7 @@ function BookTrialTraining2(props) {
                     </div>
                 </div>
                 <div className="wSelect2">
-                    <label>Emergancy contact name</label>
+                    <label>Emergency contact name</label>
                     <input
                         value={name}
                         type="text"
@@ -187,7 +187,7 @@ function BookTrialTraining2(props) {
                     <label className="input-error">{nameError}</label>
                 </div>
                 <div className="wSelect2">
-                    <label>Emergancy contact telephone</label>
+                    <label>Emergency contact telephone</label>
 
                     <PhoneInput
                         flag={flags}

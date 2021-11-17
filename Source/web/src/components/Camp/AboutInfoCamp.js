@@ -122,7 +122,7 @@ export default function AboutInfoCamp(props) {
     return (
         <div className="about-info">
             <div className="wrap-info">
-                <p style={{ textAlign: 'center' }}>{title}</p>
+                <p style={{ textAlign: 'center', fontSize: 24 }}>{title}</p>
                 <div className="wSelect2">
                     <Select
                         value={selectedAcademy}

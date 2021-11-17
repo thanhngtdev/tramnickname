@@ -303,7 +303,7 @@ const BookTrialParty = React.forwardRef((props, ref) => {
 
     return (
         <div
-            ref={combinedRef}
+            ref={props.__ref}
             className="book_your_child_free_session"
             id="booking">
             <div className="container">

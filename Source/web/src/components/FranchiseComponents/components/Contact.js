@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import PathRoute from 'src/common/PathRoute';
 import { CommonStyle } from 'src/common/Styles';
-const propTypes = {};
+import siteService from 'src/services/siteService';
 
 export default (props) => {
     const dispatch = useDispatch();
@@ -49,6 +49,21 @@ export default (props) => {
             );
     }
 
+    const onClickLocation = async (item) => {
+        // setShowSelect(!showSelect);
+
+        try {
+            const res = await siteService.getDetailSite({ id: item.value });
+            if (res.data.status == 200) {
+                const item = res.data?.data?.site || {};
+                localStorage.setItem('defaultAcademy', JSON.stringify(item));
+                window.location.href = `${'/' + item.ms_alias}`;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <div className="container">
             <div className="academy-info">
@@ -64,7 +79,13 @@ export default (props) => {
                                     isMulti={false}
                                     styles={CommonStyle.select2}
                                     onChange={(option) => {
-                                        history.push('/' + option.alias);
+                                        // console.log(option, 'option');
+                                        if (option.value === props.site.ms_id)
+                                            return;
+
+                                        onClickLocation(option);
+                                        // return;
+                                        // history.push('/' + option.alias);
                                     }}
                                 />
                                 <p className="appendix">

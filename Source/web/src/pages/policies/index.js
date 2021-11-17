@@ -8,10 +8,11 @@ import useEqualElement from 'src/hooks/useEqualElement';
 import dynamic from 'next/dynamic';
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 import siteService from 'src/services/siteService';
+import saveList from 'src/hooks/useSaveList';
 
-function Policy({ data }) {
+function Policy({ data, listSite }) {
     const refListItem = useRef(null);
-
+    saveList(listSite);
     useEqualElement(refListItem);
 
     return (
@@ -55,53 +56,58 @@ function Policy({ data }) {
                 <p className="text-1">
                     Select a card to view our company policies
                 </p>
-            </div>
 
-            <div className="container">
-                <div className="list-item-card-2" style={{ marginTop: 0 }}>
-                    <div className="row" ref={refListItem}>
-                        {data.cfg_value &&
-                            data.cfg_value.map((item, index) => (
-                                <div
-                                    key={index}
-                                    className="col-6"
-                                    style={{ marginBottom: 60 }}>
-                                    <div className="item">
-                                        <img
-                                            loading="lazy"
-                                            alt=""
-                                            src={Utils.getThumb(item.icon)}
-                                            className="img"
-                                        />
-                                        <h3 className="title">{item.title}</h3>
-                                        <p className="description">
-                                            {item.des}
-                                        </p>
-                                        <Link
-                                            href={`${
-                                                PathRoute.Policy
-                                            }/${snakeCase(item.title)}`}
-                                            passHref>
-                                            <a className="more">
-                                                MORE INFORMATION
-                                            </a>
-                                        </Link>
+                <div className="container">
+                    <div className="list-item-card-2" style={{ marginTop: 5 }}>
+                        <div className="row" ref={refListItem}>
+                            {data.cfg_value &&
+                                data.cfg_value.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="col-6"
+                                        style={{ marginTop: 50 }}>
+                                        <div className="item">
+                                            <img
+                                                loading="lazy"
+                                                alt=""
+                                                src={Utils.getThumb(item.icon)}
+                                                className="img"
+                                            />
+                                            <h3 className="title">
+                                                {item.title}
+                                            </h3>
+                                            <p className="description">
+                                                {item.des}
+                                            </p>
+                                            <Link
+                                                href={`${
+                                                    PathRoute.Policy
+                                                }/${snakeCase(item.title)}`}
+                                                passHref>
+                                                <a className="more">
+                                                    MORE INFORMATION
+                                                </a>
+                                            </Link>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                        </div>
                     </div>
                 </div>
             </div>
-            <div style={{ height: 120 }} />
+            {/* <div style={{ height: 120 }} /> */}
         </DefaultLayout>
     );
 }
 
 export async function getServerSideProps() {
+    const listRes = await siteService.getListSite();
+    const listSite = listRes.data.data.lstSite;
+
     const policyRes = await siteService.getPolicy();
     const data = policyRes.data.data;
 
-    return { props: { data } };
+    return { props: { data, listSite } };
 }
 
 export default Policy;

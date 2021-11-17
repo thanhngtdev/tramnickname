@@ -186,7 +186,7 @@ function Footer() {
                                               0,
                                               15,
                                           )
-                                        : 'Select an acade'}
+                                        : 'Select an academy'}
                                 </div>
                                 <div
                                     className={`select-items ${

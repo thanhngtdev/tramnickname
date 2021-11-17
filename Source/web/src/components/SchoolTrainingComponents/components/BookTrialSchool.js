@@ -12,6 +12,7 @@ import Utils from 'src/common/Utils';
 import Captcha from 'src/components/Captcha';
 import TrustPilotText from 'src/components/TrustPilotText';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import siteService from 'src/services/siteService';
 
 // BookTrialSchool.propTypes = {
 //   parentFb: propTypes.object,
@@ -128,10 +129,11 @@ function BookTrialSchool(props) {
                     position: toast.POSITION.BOTTOM_LEFT,
                     autoClose: 3000,
                 });
-                setStepActive(1);
+                // setStepActive(1);
             }
         } catch (err) {
-            setStepActive(1);
+            console.log(err, 'err');
+            // setStepActive(1);
             // toast.error(err, {
             //   position: toast.POSITION.BOTTOM_LEFT,
             //   autoClose: 3000,
@@ -174,11 +176,38 @@ function BookTrialSchool(props) {
                                     href="/#"
                                     className="location"
                                     onClick={(evt) => {
-                                        // console.log('run');
                                         evt.preventDefault();
                                         setShowSelect(false);
-                                        setLocation('Loading...');
-                                        Utils.getCurrentAcademy(dispatch, 4);
+                                        let options = {
+                                            enableHighAccuracy: true,
+                                            timeout: 5000,
+                                            maximumAge: 0,
+                                        };
+
+                                        const success = (pos) => {
+                                            // setLocation('Loading');
+                                            let crd = pos.coords;
+
+                                            dispatch({
+                                                type: siteActionType.GET_CURRENT_ACADEMY,
+                                                lat: crd.latitude,
+                                                long: crd.longitude,
+                                                number: 4,
+                                            });
+                                        };
+
+                                        function error(err) {
+                                            alert(
+                                                'Allow this site to access your location',
+                                                err,
+                                            );
+                                        }
+
+                                        navigator.geolocation.getCurrentPosition(
+                                            success,
+                                            error,
+                                            options,
+                                        );
                                     }}>
                                     <span>Use </span>current location
                                 </a>

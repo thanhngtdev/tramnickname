@@ -148,6 +148,7 @@
 }
 
 .outputText {
+	text-align: center;
     overflow: hidden;
     resize: none;
     background: #FFFFFF;

@@ -43,7 +43,7 @@ function Franchise({ data, listSite, isSubPage }) {
         }
     }, []);
 
-    console.log(isSubPage, 'subpage');
+    // console.log(isSubPage, 'subpage');
 
     if (isEmpty(data)) return <></>;
     return (

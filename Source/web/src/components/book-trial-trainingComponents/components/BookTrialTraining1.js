@@ -340,6 +340,7 @@ function BookTrialTraining1(props) {
                         dateFormat: 'm/d/Y',
                         allowInput: true,
                         enableTime: false,
+                        maxDate: dayjs().format('MM/DD/YYYY'),
                     }}
                     placeholder="Select date..."
                     onChange={(date) => {
@@ -450,10 +451,10 @@ function BookTrialTraining1(props) {
                                 isSearchable={false}
                                 isMulti={false}
                                 getOptionLabel={
-                                    (option) =>
-                                        option?.date_show +
-                                        ' ' +
-                                        dayjs(option?.date).format('YYYY')
+                                    (option) => option?.date_show
+                                    // +
+                                    // ' ' +
+                                    // dayjs(option?.date).format('YYYY')
                                     // new Date().getFullYear()
                                 }
                                 getOptionValue={(option) => option.date}
