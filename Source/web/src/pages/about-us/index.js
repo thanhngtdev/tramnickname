@@ -68,7 +68,7 @@ function About({ data, listSite }) {
             )}
 
             <div className="about-guide-aboutpage2">
-                <AboutGuide item={data?.about4 || {}} />
+                <AboutGuide item={data?.about4 || {}} listSite={listSite} />
             </div>
 
             {data?.about5 && data?.about5?.cfg_value && (

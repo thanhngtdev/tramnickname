@@ -30,7 +30,7 @@ export default function AboutGuide(props) {
         } else {
             try {
                 const res = await siteService.getDetailSite({
-                    id: listSite[0].ms_id,
+                    id: props.listSite[0].ms_id,
                 });
                 if (res.data.status == 200) {
                     const item = res.data?.data?.site || {};
