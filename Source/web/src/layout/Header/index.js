@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import ModelManager from 'src/common/ModelManager';
 import PathRoute from 'src/common/PathRoute';
+import useGetWidth from 'src/hooks/useGetWidth';
 const Button = dynamic(() => import('src/components/Button'), { ssr: true });
 const NearbyAcademy = dynamic(
     () => import('src/components/include/NearbyAcademy'),
@@ -31,6 +32,8 @@ function Header() {
     const [menuMobile, setMenuMobile] = useState(false);
     const [fixHeader, setFixHeader] = useState(true);
     const [defaultAcademy, setDefaultAcademy] = useState({});
+    const isShowLogo = useGetWidth() <= 1240;
+    const isShowLogoHome = useGetWidth() <= 1060;
 
     useEffect(() => {
         setDefaultAcademy(ModelManager.getLocation() || {});
@@ -85,6 +88,7 @@ function Header() {
                             width={'100%'}
                         />
                     </Link>
+
                     <button
                         className={`btn-button icon-menu ${
                             menuMobile ? 'show' : ''
@@ -99,15 +103,18 @@ function Header() {
                     <div
                     // className="container"
                     >
-                        <Link href={PathRoute.Home} scroll>
-                            <img
-                                loading="lazy"
-                                alt=""
-                                src="/static-file/images/logo.svg"
-                                className="logo"
-                                onClick={hideMenu}
-                            />
-                        </Link>
+                        {!isShowLogoHome && (
+                            <Link href={PathRoute.Home} scroll>
+                                <img
+                                    loading="lazy"
+                                    alt=""
+                                    src="/static-file/images/logo.svg"
+                                    className="logo"
+                                    onClick={hideMenu}
+                                />
+                            </Link>
+                        )}
+
                         <ul className="menu">
                             <LinkItem
                                 title={'Weekly Training'}
@@ -193,35 +200,21 @@ function Header() {
                     <div
                     // className="container"
                     >
-                        <div className="menu-small widget-header">
-                            {/* <div
-                                className="trustpilot-widget"
-                                data-locale="en-GB"
-                                data-template-id="5419b732fbfb950b10de65e5"
-                                data-businessunit-id="5630b23d0000ff000584db47"
-                                data-style-height="24px"
-                                data-style-width="100%"
-                                data-theme="light"
-                                style={{ marginLeft: '-16px' }}>
+                        {!isShowLogo && (
+                            <div className="menu-small widget-header">
                                 <a
                                     href="https://uk.trustpilot.com/review/wemakefootballers.com"
                                     target="_blank"
-                                    rel="noopener">
-                                    Trustpilot
+                                    // rel="noopener"
+                                >
+                                    <img
+                                        loading="lazy"
+                                        src="/static-file/images/header_trustpilot.png"
+                                        // height="25px"
+                                    ></img>
                                 </a>
-                            </div> */}
-                            <a
-                                href="https://uk.trustpilot.com/review/wemakefootballers.com"
-                                target="_blank"
-                                // rel="noopener"
-                            >
-                                <img
-                                    loading="lazy"
-                                    src="/static-file/images/header_trustpilot.png"
-                                    // height="25px"
-                                ></img>
-                            </a>
-                        </div>
+                            </div>
+                        )}
                         <ul className="menu-small">
                             {!isEmpty(defaultAcademy) && (
                                 <LinkItem

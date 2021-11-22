@@ -302,6 +302,7 @@
 	font-size: 45px;
 	margin: 0 auto;
 	max-width: 700px;
+	font-weight: 500;
 }
 ul.camp-paid{
 	display: inline-block;
@@ -321,7 +322,7 @@ ul.camp-paid li::before {
 	font-size: 2rem;
 }
 
-@media only screen and (max-width: 767px) and (min-width: 320px) {
+@media only screen and (max-width: 768px) and (min-width: 320px) {
 	/* .about-info {
 		margin-top: 50px;
 	} */

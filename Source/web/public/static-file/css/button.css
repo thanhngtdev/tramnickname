@@ -27,7 +27,7 @@ button.btn-disabled:hover {
 
 }
 
-@media only screen and (min-width: 320px) and (max-width: 767px) {
+@media only screen and (min-width: 320px) and (max-width: 768px) {
 	.btn-book-free-session {
         width: 100% !important;
 		font-size: 11px !important;

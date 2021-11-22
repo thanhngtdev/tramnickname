@@ -19,7 +19,6 @@ export default function WhyWMF(props) {
     const [trustPilot, setTrustPilot] = useState({});
 
     // console.log(props, 'props');
-
     useEffect(() => {
         // console.log(checkPound(props.data.cfg_value), 'check');
         getTrustPilot();
@@ -45,28 +44,12 @@ export default function WhyWMF(props) {
 
     useEffect(() => {
         if (isEmpty(cost)) return;
-        if (isEmpty(trustPilot)) return;
 
         const { weeklyCost, minWeeklyCost } = cost;
 
         const converted = props.data.cfg_value.map((item) => {
-            // if (
-            //     item.des.includes('of &pound;XXX') ||
-            //     item.des.includes('of £XXX')
-            // ) {
-            //     const newContent = Utils.convertCost(
-            //         weeklyCost,
-            //         listSite.length,
-            //         item.des,
-            //         minWeeklyCost,
-            //     );
-
-            //     return { ...item, des: newContent };
-            // }
-            // return item;
-
             let newContent = item.des;
-            if (newContent.includes('from $WeeklyCost')) {
+            if (newContent.includes('$WeeklyCost')) {
                 newContent = Utils.convertCost(
                     weeklyCost,
                     listSite.length,
@@ -86,7 +69,28 @@ export default function WhyWMF(props) {
         });
 
         setData(converted);
-    }, [cost, trustPilot]);
+    }, [cost]);
+
+    useEffect(() => {
+        // console.log('trustpilot', trustPilot);
+
+        if (isEmpty(trustPilot)) return;
+
+        const converted = props.data.cfg_value.map((item) => {
+            // console.log('new content');
+            let newContent = item.des;
+            newContent = Utils.convertTrustPilot(
+                trustPilot.rating,
+                trustPilot.maxRate,
+                trustPilot.review,
+                newContent,
+            );
+
+            return { ...item, des: newContent };
+        });
+
+        setData(converted);
+    }, [trustPilot]);
 
     //! Functions
     const checkCost = async () => {
@@ -127,9 +131,9 @@ export default function WhyWMF(props) {
     };
 
     const checkPound = (intro) => {
-        console.log(intro, 'intro');
+        // console.log(intro, 'intro');
         for (let i = 0; i < intro.length; i++) {
-            if (intro[i].des.includes('from $WeeklyCost')) {
+            if (intro[i].des.includes('$WeeklyCost')) {
                 return true;
             }
         }

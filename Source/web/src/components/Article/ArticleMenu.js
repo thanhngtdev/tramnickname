@@ -18,6 +18,7 @@ export default function ArticleMenu(props) {
     const [lstCate, setLstCate] = useState(props?.lstCate || []);
     const [displayForm, setDisplayForm] = useState(false);
     const articleReducer = useSelector((state) => state.articleReducer);
+    const [textSearch, setTextSearch] = useState('');
 
     useEffect(() => {
         setCurrentAcademy(ModelManager.getLocation() || {});
@@ -99,58 +100,51 @@ export default function ArticleMenu(props) {
                     />
                 </div>
             </div>
-            <div
-                className="form-input"
-                style={{ display: displayForm ? 'flex' : 'none' }}>
-                <div>
-                    <div style={{ display: 'flex' }} className="container">
-                        <input
-                            type="text"
-                            placeholder="Search news"
-                            // defaultValue={query}
-                            // onChange={(e) => setQuery(e.target.value)}
-                            // onKeyDown={(e) => {
-                            //     if (e.key === 'Enter') {
-                            //         setShowListAcademy(false);
-                            //         setSearched(true);
-                            //         dispatch({
-                            //             type: siteActionType.SEARCH_NEARBY,
-                            //             search: query,
-                            //             lat: 51,
-                            //             lng: 0,
-                            //         });
-                            //     }
-                            // }}
-                        />
-                        {/* <button>
-                                // onClick={() => {
-                                //     setShowListAcademy(false);
-                                //     setSearched(true);
-                                //     dispatch({
-                                //         type: siteActionType.SEARCH_NEARBY,
-                                //         search: query,
-                                //         lat: 51,
-                                //         lng: 0,
-                                //     });
-                                // }}>
-                                {searched ? 'FIND' : 'GO'}
-                            </button> */}
-                        <button>Search</button>
-                        <FontAwesomeIcon
-                            style={{
-                                color: 'black',
-                                margin: 'auto 20px',
-                                fontSize: '25px',
-                            }}
-                            icon={faTimes}
-                            onClick={() => {
-                                setDisplayForm(!displayForm);
-                            }}
-                        />
+            {displayForm && (
+                <div className="form-input">
+                    <div>
+                        <div style={{ display: 'flex' }} className="container">
+                            <input
+                                type="text"
+                                placeholder="Search news"
+                                value={textSearch}
+                                onChange={(e) => {
+                                    // console.log(e.target.value, 'target');
+                                    setTextSearch(e.target.value);
+                                }}
+                                // defaultValue={query}
+                                // onChange={(e) => setQuery(e.target.value)}
+                                // onKeyDown={(e) => {
+                                //     if (e.key === 'Enter') {
+                                //         setShowListAcademy(false);
+                                //         setSearched(true);
+                                //         dispatch({
+                                //             type: siteActionType.SEARCH_NEARBY,
+                                //             search: query,
+                                //             lat: 51,
+                                //             lng: 0,
+                                //         });
+                                //     }
+                                // }}
+                            />
+
+                            <button>Search</button>
+                            <FontAwesomeIcon
+                                style={{
+                                    color: 'black',
+                                    margin: 'auto 20px',
+                                    fontSize: '25px',
+                                }}
+                                icon={faTimes}
+                                onClick={() => {
+                                    setDisplayForm(!displayForm);
+                                }}
+                            />
+                        </div>
                     </div>
+                    <div className="overlay"></div>
                 </div>
-                <div className="overlay"></div>
-            </div>
+            )}
         </div>
     );
 }

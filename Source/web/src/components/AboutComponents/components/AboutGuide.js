@@ -1,64 +1,47 @@
+import isEmpty from 'lodash/isEmpty';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import Utils from 'src/common/Utils';
-import { siteActionType } from 'src/redux/actions/actionTypes';
+import siteService from 'src/services/siteService';
 
 export default function AboutGuide(props) {
-    const title = props.item.cfg_title;
-    const [newTitle, setNewTitle] = useState('');
-    const [defaultAcademy, setDefaultAcademy] = useState({});
-    const dispatch = useDispatch();
-    const [lstCourse, setLstCourse] = useState([]);
-    const siteReducer = useSelector((state) => state.siteReducer);
+    const [newTitle, setNewTitle] = useState(props.item.cfg_title || '');
+    const [cost, setCost] = useState({});
 
     //! useEffect
     useEffect(() => {
-        setDefaultAcademy(
-            JSON.parse(localStorage.getItem('defaultAcademy')) || {},
-        );
+        checkCost();
     }, []);
 
     useEffect(() => {
-        if (siteReducer.type) {
-            if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
-                setDefaultAcademy(
-                    JSON.parse(localStorage.getItem('defaultAcademy')),
-                );
-            }
-            if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
-                setLstCourse(
-                    siteReducer.data.sort(
-                        (a, b) => a.course_price - b.course_price,
-                    ),
-                );
-            }
+        // console.log(cost, 'cost');
+        if (!isEmpty(cost)) {
+            const { weeklyCost, minWeeklyCost } = cost;
+            setNewTitle(
+                Utils.convertCost(weeklyCost, 0, newTitle, minWeeklyCost),
+            );
         }
-    }, [siteReducer]);
+    }, [cost]);
 
-    useEffect(() => {
-        if (title && defaultAcademy && !!lstCourse[0]?.course_price) {
-            for (let i = 0; i < title.length; i++) {
-                if (title[i] === '£') {
-                    setNewTitle(
-                        title.substring(0, i + 1) +
-                            lstCourse[0].course_price +
-                            title.substring(i + 2),
-                    );
-                }
-            }
+    const checkCost = async () => {
+        if (localStorage.getItem('defaultAcademy')) {
+            const academy = JSON.parse(localStorage.getItem('defaultAcademy'));
+            const { weeklyCost, minWeeklyCost } = academy;
+            setCost({ weeklyCost, minWeeklyCost });
         } else {
-            setNewTitle(title);
+            try {
+                const res = await siteService.getDetailSite({
+                    id: listSite[0].ms_id,
+                });
+                if (res.data.status == 200) {
+                    const item = res.data?.data?.site || {};
+                    const { weeklyCost, minWeeklyCost } = item;
+                    setCost({ weeklyCost, minWeeklyCost });
+                }
+            } catch (error) {
+                console.log(error);
+            }
         }
-    }, [title, lstCourse[0]]);
-
-    useEffect(() => {
-        dispatch({
-            type: siteActionType.GET_LIST_COURSE,
-            company_id: defaultAcademy.pa_companyId,
-            location_id: defaultAcademy.pa_locationId,
-            course_type: 'course',
-        });
-    }, [defaultAcademy]);
+    };
 
     return (
         <div className="about-guide">

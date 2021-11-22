@@ -282,7 +282,7 @@
     color: #ee7925;
 }
 
-@media only screen and (max-width: 767px) and (min-width: 320px) {
+@media only screen and (max-width: 768px) and (min-width: 320px) {
     .modal-content .close {
         right: 0.5rem;
         top: 0.5rem;

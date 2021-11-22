@@ -36,7 +36,7 @@ function BirthdayParty({ data, listSite }) {
     //! function
     //scroll to enquire section when book button clicked
     function handleScroll() {
-        console.log('handle');
+        // console.log('handle');
         window.scrollTo({
             top: ref.current.offsetTop,
             behavior: 'smooth',
@@ -68,7 +68,7 @@ function BirthdayParty({ data, listSite }) {
 
             <BirthdayPackage
                 onClick={(preferedPackage) => {
-                    console.log('aaa');
+                    // console.log('aaa');
                     handleScroll();
                     clickPreferedButton(preferedPackage);
                 }}

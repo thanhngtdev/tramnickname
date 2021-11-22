@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
-
+import parse from 'html-react-parser';
 QNA.propTypes = {
     data: PropTypes.array,
 };
 
 export default function QNA(props) {
+    console.log(props, 'props');
     const [activeIndex, setActiveIndex] = useState(0);
 
     const capitalize = (s) => {
@@ -38,11 +39,9 @@ export default function QNA(props) {
                                 <h4 className="question">
                                     {capitalize(item.atc_sapo.toLowerCase())}
                                 </h4>
-                                <p
-                                    className="answer"
-                                    dangerouslySetInnerHTML={{
-                                        __html: item.atc_content,
-                                    }}></p>
+                                <p className="answer">
+                                    {parse(item.atc_content)}
+                                </p>
                             </div>
                             <div className="qIcon">
                                 <FontAwesomeIcon

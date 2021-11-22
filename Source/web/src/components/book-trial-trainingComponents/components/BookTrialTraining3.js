@@ -36,7 +36,7 @@ BookTrialTraining3.propTypes = {
 };
 
 function BookTrialTraining3(props) {
-    console.log(props.data, 'data');
+    // console.log(props.data, 'data');
     const dispatch = useDispatch();
     const isMobile = useGetWidth() <= 767;
 

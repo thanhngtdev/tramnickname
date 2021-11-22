@@ -189,19 +189,19 @@ class Utils {
 
     convertCost(weeklyCost = '', locations, content, minCost = '') {
         let replaceContent = weeklyCost?.one
-            ? 'of £' + weeklyCost?.one
-            : 'from £' + minCost?.one || '';
+            ? weeklyCost?.one
+            : minCost?.one || '';
 
         const venues = locations + ' venues';
 
-        if (content.includes('from $WeeklyCost')) {
+        if (content.includes('$WeeklyCost')) {
             return content
-                .replace('from $WeeklyCost', replaceContent)
+                .replace('$WeeklyCost', replaceContent)
                 .replace('$TotalVenues', venues);
         }
 
         return content
-            .replace('of $WeeklyCost', replaceContent)
+            .replace('$WeeklyCost', replaceContent)
             .replace('$TotalVenues', venues);
     }
 

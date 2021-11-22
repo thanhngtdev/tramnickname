@@ -195,7 +195,7 @@
 	border-radius: 6px;
 }
 
-@media only screen and (max-width: 767px) and (min-width: 320px) {
+@media only screen and (max-width: 768px) and (min-width: 320px) {
 	.holiday-camp{
 		margin-top: 40px;
 	}

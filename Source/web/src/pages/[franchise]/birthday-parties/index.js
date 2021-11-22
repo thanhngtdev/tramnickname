@@ -87,7 +87,7 @@ function BirthdayParty({ data, listSite }) {
 
             <BookTrialParty
                 site={data.site}
-                ref={ref}
+                __ref={ref}
                 parentFb={data?.parentFb || {}}
                 package={data?.package || {}}
                 preferedPackage={preferedPackage}

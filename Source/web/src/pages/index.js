@@ -60,7 +60,7 @@ export async function getServerSideProps() {
         siteService.getHome(),
         siteService.getListSite(),
     ]).then((values) => {
-        console.log(values, 'values');
+        // console.log(values, 'values');
 
         return {
             props: {

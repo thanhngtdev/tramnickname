@@ -96,7 +96,6 @@ export default ({ listSite, data }) => {
                     </div>
                 </div>
             </div>
-            <div style={{ clear: 'both' }} />
 
             {page < lastPage && (
                 <div className="view-all">
