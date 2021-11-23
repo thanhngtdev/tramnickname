@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../Button';
+import isEmpty from 'lodash/isEmpty';
 
 export default function JoinUsBanner(props) {
+    const [title, setTitle] = useState(props.data?.cfg_title || '');
+    const [des, setDes] = useState(props.data?.cfg_des || '');
+
+    useEffect(() => {
+        if (!isEmpty(props.site)) {
+            const replacedTitle = title.replace(
+                '$AcademyName',
+                props.site.ms_name,
+            );
+            const replacedDes = title.replace(
+                '$AcademyName',
+                props.site.ms_name,
+            );
+
+            setTitle(replacedTitle);
+            setDes(replacedDes);
+        }
+    }, []);
+
     return (
         <div className="about-us">
             <div className="row">
@@ -22,18 +42,18 @@ export default function JoinUsBanner(props) {
                         className="contact-header"
                         // style={{ paddingRight: '100px' }}
                     >
-                        {props.data?.cfg_title || ''}
+                        {title}
                     </h1>
                 </div>
                 <div className="container">
                     <div className="get-in-touch">
                         <div className="list-form">
                             <p className="pro-text" style={{ marginTop: '0' }}>
-                                {props.data?.cfg_des || ''}
+                                {des}
                             </p>
 
                             <div
-                                style={{ marginTop: 50 }}
+                                style={{ marginTop: 30 }}
                                 className="box-button">
                                 <Button
                                     style={{ width: 200 }}
@@ -42,28 +62,6 @@ export default function JoinUsBanner(props) {
                                         props.click();
                                     }}
                                 />
-                                {/* <a
-                                    onClick={() => {
-                                        props.click();
-                                    }}
-                                    className="btn-book-free-session white-hover"
-                                    // href={PathRoute.Coaching}
-                                    style={{
-                                        background: '#FF7531',
-                                        borderRadius: '6px',
-                                        width: '250px',
-                                        display: 'inline-block',
-                                        border: '0',
-                                        cursor: 'pointer',
-                                        fontWeight: '500',
-                                        fontSize: '16px',
-                                        textAlign: 'center',
-                                        color: 'white',
-                                        textTransform: 'uppercase',
-                                        padding: '20px 10px 30px',
-                                    }}>
-                                    Join Us
-                                </a> */}
                             </div>
                         </div>
                     </div>
