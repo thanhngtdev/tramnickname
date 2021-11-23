@@ -327,6 +327,10 @@ ul.camp-paid li::before {
 		margin-top: 50px;
 	} */
 
+	.birthday-extra .extra-column .extra-item img {
+		margin-bottom: 2rem;
+	}
+
 	.birthday-qoute {
 		padding: 0;
 		padding-top: 55px;

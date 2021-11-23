@@ -33,8 +33,7 @@ import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
 
 function Franchise({ data, listSite, isSubPage }) {
-    console.log(data, 'data');
-
+    // console.log(data, 'data');
     saveList(listSite);
 
     useEffect(() => {
@@ -42,6 +41,21 @@ function Franchise({ data, listSite, isSubPage }) {
             window.location.href = '/404';
         }
     }, []);
+
+    const onClickLocation = async (item) => {
+        // setShowSelect(!showSelect);
+
+        try {
+            const res = await siteService.getDetailSite({ id: item.value });
+            if (res.data.status == 200) {
+                const item = res.data?.data?.site || {};
+                localStorage.setItem('defaultAcademy', JSON.stringify(item));
+                window.location.href = `${'/' + item.ms_alias}`;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     // console.log(isSubPage, 'subpage');
 
@@ -54,6 +68,7 @@ function Franchise({ data, listSite, isSubPage }) {
                     site={data?.site || {}}
                 />
                 <Contact
+                    onClickLocation={onClickLocation}
                     social={data?.site?.socialLink || []}
                     site={data?.site || {}}
                 />
@@ -78,6 +93,7 @@ function Franchise({ data, listSite, isSubPage }) {
             </div>
             <div className="franchise-servive">
                 <TrainingService
+                    onClickLocation={onClickLocation}
                     site={data?.site || {}}
                     service={data?.service || {}}
                 />

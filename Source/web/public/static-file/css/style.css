@@ -2478,6 +2478,10 @@ background-color: #fff;
 
 @media only screen and (min-width: 320px) and (max-width: 768px) {
 
+	.menu-small .select-selected {
+		font-size: 14px;
+	}
+
 	.btn-book-free-session {
 		font-size: 11px !important;
 	}

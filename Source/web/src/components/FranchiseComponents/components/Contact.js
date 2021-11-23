@@ -49,21 +49,6 @@ export default (props) => {
             );
     }
 
-    const onClickLocation = async (item) => {
-        // setShowSelect(!showSelect);
-
-        try {
-            const res = await siteService.getDetailSite({ id: item.value });
-            if (res.data.status == 200) {
-                const item = res.data?.data?.site || {};
-                localStorage.setItem('defaultAcademy', JSON.stringify(item));
-                window.location.href = `${'/' + item.ms_alias}`;
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
     return (
         <div className="container">
             <div className="academy-info">
@@ -83,7 +68,7 @@ export default (props) => {
                                         if (option.value === props.site.ms_id)
                                             return;
 
-                                        onClickLocation(option);
+                                        props.onClickLocation(option);
                                         // return;
                                         // history.push('/' + option.alias);
                                     }}

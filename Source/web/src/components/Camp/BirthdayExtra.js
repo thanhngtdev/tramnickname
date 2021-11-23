@@ -65,10 +65,13 @@ export default function BirthdayExtra(props) {
                                                         height="48px"
                                                         width="48px"
                                                     />
-                                                    {parse(item.content)}
+                                                    {parse(
+                                                        item.content +
+                                                            `<b>${item.des}</b>`,
+                                                    )}
                                                 </div>
                                                 {/* <br /> */}
-                                                <b>{item.des}</b>
+                                                {/* <b>{item.des}</b> */}
                                             </div>
                                         );
                                     }
@@ -77,7 +80,6 @@ export default function BirthdayExtra(props) {
                     </div>
                 </div>
 
-                <div style={{ clear: 'both' }}></div>
                 <div style={{ textAlign: 'center', paddingTop: '2rem' }}>
                     <p>
                         Once you have decided which package you require,

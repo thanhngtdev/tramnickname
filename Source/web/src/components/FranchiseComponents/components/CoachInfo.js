@@ -13,9 +13,7 @@ function CoachInfo(props) {
                 <div
                     className="box-list-item-card"
                     style={{
-                        top: 0,
-                        padding: '8rem 0 12rem',
-                        pointerEvents: 'none',
+                        paddingTop: '3rem',
                     }}>
                     <div className="row">
                         <div className="col-4">

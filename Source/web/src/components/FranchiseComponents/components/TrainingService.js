@@ -23,8 +23,6 @@ LDWeeklyTraining.propTypes = {
 };
 
 function LDWeeklyTraining(props) {
-    console.log(props, 'props');
-
     const MAX_LENGTH = props.isMobile ? 2 : 10;
     const dispatch = useDispatch();
     const history = useRouter();
@@ -68,7 +66,9 @@ function LDWeeklyTraining(props) {
                             isSearchable={false}
                             isMulti={false}
                             styles={CommonStyle.select2}
-                            onChange={() => {}}
+                            onChange={(option) => {
+                                props.onClickLocation(option);
+                            }}
                         />
                         <p className="appendix">
                             *{props.site && props.site.ms_name} has{' '}
@@ -364,6 +364,7 @@ TrainingService.propTypes = {
 // const imageServiceActive = require('images/service-active.png');
 
 function TrainingService(props) {
+    console.log(props, 'props training');
     const [activeIndex, setActiveIndex] = useState(0);
     const [hoverIndex, setHoverIndex] = useState(0);
     const [innerWidth, setInnerWith] = useState(2000);
@@ -420,6 +421,7 @@ function TrainingService(props) {
                                 site={props.site}
                                 options={options}
                                 isMobile={true}
+                                onClickLocation={props.onClickLocation}
                             />
                         </div>
                         <div className="service-group">
@@ -572,6 +574,7 @@ function TrainingService(props) {
                                             ? props.service.cfg_value[0]
                                             : {}
                                     }
+                                    onClickLocation={props.onClickLocation}
                                 />
                             </div>
                             <div
