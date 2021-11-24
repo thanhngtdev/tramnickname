@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
-import type from 'src/redux/actions/actionTypes';
 import PropTypes from 'prop-types';
 import ModelManager from 'src/common/ModelManager';
 import Link from 'next/link';
 import isEmpty from 'lodash/isEmpty';
+import siteService from 'src/services/siteService';
+import ArticleItem from './ArticleItem';
 
 ArticleMenu.propTypes = {
     currentCate: PropTypes.number,
@@ -16,133 +17,179 @@ ArticleMenu.propTypes = {
 export default function ArticleMenu(props) {
     const [currentAcademy, setCurrentAcademy] = useState({});
     const [lstCate, setLstCate] = useState(props?.lstCate || []);
-    const [displayForm, setDisplayForm] = useState(false);
+    const [displayForm, setDisplayForm] = useState(true);
     const articleReducer = useSelector((state) => state.articleReducer);
     const [textSearch, setTextSearch] = useState('');
 
+    const [listNews, setListNews] = useState([]);
+    const [results, setResults] = useState([]);
+
     useEffect(() => {
         setCurrentAcademy(ModelManager.getLocation() || {});
+        getListNews();
     }, []);
 
-    // useEffect(() => {
-    //     if (articleReducer.type) {
-    //         if (
-    //             articleReducer.type === type.GET_LIST_NEWS_SUCCESS ||
-    //             articleReducer.type === type.DETAIL_ARTICLE_SUCCESS
-    //         ) {
-    //             setLstCate(articleReducer.data.lstCate);
-    //         }
-    //     }
-    // }, [articleReducer]);
+    useEffect(() => {
+        console.log(listNews, 'listNews');
+    }, [listNews]);
+
+    const getListNews = async () => {
+        const data = await siteService.getListNews({
+            cate: '',
+            page: 1,
+            alias: '',
+        });
+        // console.log(data, 'data');
+
+        if (data?.data?.status === 200 && data?.data?.data?.lstArticle?.data) {
+            setListNews(data?.data?.data?.lstArticle?.data);
+        }
+    };
 
     return (
         <div className="article-menu">
-            <div className="container">
-                <ul>
-                    <li
-                        className={
-                            !props.currentCate && !props.isFranchise
-                                ? 'active'
-                                : ''
-                        }>
-                        <Link
-                            onClick={() => {
-                                if (props.setCate) props.setCate({});
-                            }}
-                            href="/news"
-                            passHref>
-                            <a>Latest Articles</a>
-                        </Link>
-                    </li>
-
-                    {lstCate.map((item) => (
+            {displayForm ? (
+                <div className="container">
+                    <ul>
                         <li
                             className={
-                                props.currentCate === item.cate_id
+                                !props.currentCate && !props.isFranchise
                                     ? 'active'
                                     : ''
-                            }
-                            key={item.cate_id}>
-                            <a href={'/news/' + item.cate_alias}>
-                                {item.cate_value}
-                            </a>
-                            {/* <Link passHref href={'/news/' + item.cate_alias} scroll>
-                                <a>{item.cate_value}</a>
-                            </Link> */}
-                        </li>
-                    ))}
-
-                    {!isEmpty(currentAcademy) && (
-                        <li className={props?.isFranchise ? 'active' : ''}>
+                            }>
                             <Link
                                 onClick={() => {
-                                    if (props.setCate)
-                                        props.setCate({
-                                            alias: currentAcademy.ms_alias,
-                                        });
+                                    if (props.setCate) props.setCate({});
                                 }}
-                                style={{ color: 'black' }}
-                                href={'/' + currentAcademy.ms_alias + '/news'}
+                                href="/news"
                                 passHref>
-                                <a>{currentAcademy.ms_name + ' News'}</a>
+                                <a>Latest Articles</a>
                             </Link>
                         </li>
-                    )}
-                </ul>
 
-                <div className="search">
+                        {lstCate.map((item) => (
+                            <li
+                                className={
+                                    props.currentCate === item.cate_id
+                                        ? 'active'
+                                        : ''
+                                }
+                                key={item.cate_id}>
+                                <a href={'/news/' + item.cate_alias}>
+                                    {item.cate_value}
+                                </a>
+                                {/* <Link passHref href={'/news/' + item.cate_alias} scroll>
+                                <a>{item.cate_value}</a>
+                            </Link> */}
+                            </li>
+                        ))}
+
+                        {!isEmpty(currentAcademy) && (
+                            <li className={props?.isFranchise ? 'active' : ''}>
+                                <Link
+                                    onClick={() => {
+                                        if (props.setCate)
+                                            props.setCate({
+                                                alias: currentAcademy.ms_alias,
+                                            });
+                                    }}
+                                    style={{ color: 'black' }}
+                                    href={
+                                        '/' + currentAcademy.ms_alias + '/news'
+                                    }
+                                    passHref>
+                                    <a>{currentAcademy.ms_name + ' News'}</a>
+                                </Link>
+                            </li>
+                        )}
+                    </ul>
+
+                    <div className="search">
+                        <FontAwesomeIcon
+                            style={{ color: '#EF8336' }}
+                            icon={faSearch}
+                            onClick={() => {
+                                setDisplayForm(!displayForm);
+                                setResults([]);
+                                setTextSearch('');
+                            }}
+                        />
+                    </div>
+                </div>
+            ) : (
+                <div className="form-input container">
+                    <input
+                        type="text"
+                        placeholder="Search news"
+                        value={textSearch}
+                        onChange={(e) => {
+                            setTextSearch(e.target.value);
+                            const list = listNews.filter((item) => {
+                                return item.atc_title
+                                    .toLowerCase()
+                                    .includes(e.target.value.toLowerCase());
+                            });
+
+                            setResults(list);
+                        }}
+                    />
+
+                    {/* <button
+                        onClick={() => {
+                            if (!textSearch) return;
+
+                            console.log('search', textSearch);
+
+                            const list = listNews.filter((item) => {
+                                return item.atc_title
+                                    .toLowerCase()
+                                    .includes(textSearch);
+                            });
+
+                            setResults(list);
+
+                            // console.log(list, 'earaaa');
+                        }}>
+                        Search
+                    </button> */}
                     <FontAwesomeIcon
-                        style={{ color: '#EF8336' }}
-                        icon={faSearch}
+                        style={{
+                            color: '#ee7925',
+                            margin: 'auto 20px',
+                            fontSize: '25px',
+                            marginTop: 10,
+                        }}
+                        icon={faTimes}
                         onClick={() => {
                             setDisplayForm(!displayForm);
                         }}
                     />
-                </div>
-            </div>
-            {displayForm && (
-                <div className="form-input">
-                    <div>
-                        <div style={{ display: 'flex' }} className="container">
-                            <input
-                                type="text"
-                                placeholder="Search news"
-                                value={textSearch}
-                                onChange={(e) => {
-                                    // console.log(e.target.value, 'target');
-                                    setTextSearch(e.target.value);
-                                }}
-                                // defaultValue={query}
-                                // onChange={(e) => setQuery(e.target.value)}
-                                // onKeyDown={(e) => {
-                                //     if (e.key === 'Enter') {
-                                //         setShowListAcademy(false);
-                                //         setSearched(true);
-                                //         dispatch({
-                                //             type: siteActionType.SEARCH_NEARBY,
-                                //             search: query,
-                                //             lat: 51,
-                                //             lng: 0,
-                                //         });
-                                //     }
-                                // }}
-                            />
-
-                            <button>Search</button>
-                            <FontAwesomeIcon
-                                style={{
-                                    color: 'black',
-                                    margin: 'auto 20px',
-                                    fontSize: '25px',
-                                }}
-                                icon={faTimes}
-                                onClick={() => {
-                                    setDisplayForm(!displayForm);
-                                }}
-                            />
+                    {!isEmpty(results) && (
+                        <div
+                            className="article-list"
+                            style={{
+                                // position: 'relative',
+                                padding: '50px 0',
+                                borderRadius: 6,
+                                maxHeight: 375,
+                                overflowY: 'scroll',
+                                marginTop: 5,
+                                maxWidth: '90%',
+                            }}>
+                            <div className="container">
+                                <div className="article-list-grid">
+                                    {results.map((item, index) => {
+                                        return (
+                                            <ArticleItem
+                                                key={index}
+                                                item={item}
+                                            />
+                                        );
+                                    })}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className="overlay"></div>
+                    )}
                 </div>
             )}
         </div>

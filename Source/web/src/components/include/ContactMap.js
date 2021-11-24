@@ -7,7 +7,7 @@ function ContactMap(props) {
     const { academy } = props;
 
     const [defaultCenter, setdefaultCenter] = useState({
-        lat: Constants.DEFAULT_LOCATION.lat,
+        lat: Constants.DEFAULT_LOCATION.lat + 0.13,
         lng: Constants.DEFAULT_LOCATION.lng,
     });
 
@@ -109,7 +109,7 @@ function ContactMap(props) {
     }
 
     return (
-        <GoogleMap defaultZoom={12} center={defaultCenter}>
+        <GoogleMap defaultZoom={11} center={defaultCenter}>
             <div className="contact-map">{renderWMFContact()}</div>
             <CustomMarker item={defaultMarker} />
         </GoogleMap>
