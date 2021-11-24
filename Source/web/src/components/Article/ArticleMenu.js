@@ -124,10 +124,24 @@ export default function ArticleMenu(props) {
                         value={textSearch}
                         onChange={(e) => {
                             setTextSearch(e.target.value);
+
+                            if (!e.target.value) {
+                                setResults([]);
+
+                                return;
+                            }
+
                             const list = listNews.filter((item) => {
-                                return item.atc_title
-                                    .toLowerCase()
-                                    .includes(e.target.value.toLowerCase());
+                                return (
+                                    item.atc_title
+                                        .toLowerCase()
+                                        .includes(
+                                            e.target.value.toLowerCase(),
+                                        ) ||
+                                    item.atc_content
+                                        .toLowerCase()
+                                        .includes(e.target.value.toLowerCase())
+                                );
                             });
 
                             setResults(list);
