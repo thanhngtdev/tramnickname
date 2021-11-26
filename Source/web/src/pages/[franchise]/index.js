@@ -146,7 +146,7 @@ export async function getServerSideProps(context) {
             id: item.ms_id,
             isSubpage: isSubPage,
             subPage: id,
-            slug: 'location',
+            slug: 'home',
         });
 
         const data = siteDetail.data.data;

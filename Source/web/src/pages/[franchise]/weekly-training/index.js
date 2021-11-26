@@ -21,7 +21,7 @@ const Testimonial = dynamic(() => import('src/components/Testimonial'));
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 const SiteNews = ({ data, listSite }) => {
-    console.log(data, 'data');
+    // console.log(data, 'data');
     //! State
     saveList(listSite);
 
