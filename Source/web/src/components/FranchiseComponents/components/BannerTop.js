@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
@@ -46,6 +46,10 @@ function BannerTop(props) {
                 }),
             );
     }
+
+    useEffect(() => {
+        console.log(data, 'datahome');
+    }, [data]);
 
     function checkSubname(name = '') {
         if (!name) return '<> </>';

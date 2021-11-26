@@ -1,6 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
 import dynamic from 'next/dynamic';
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 const BookTrial = dynamic(() => import('src/components/Booking/BookTrial'));
 const QNA = dynamic(() => import('src/components/Camp/QNA'));
@@ -30,16 +31,21 @@ const Testimonial = dynamic(() => import('src/components/Testimonial'));
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 import saveList from 'src/hooks/useSaveList';
+import { getHome } from 'src/redux/actions/homeAction';
 import siteService from 'src/services/siteService';
 
 function Franchise({ data, listSite, isSubPage }) {
-    // console.log(data, 'data');
+    console.log(data, 'data');
+    const dispatch = useDispatch();
+
     saveList(listSite);
 
     useEffect(() => {
         if (isEmpty(data)) {
             window.location.href = '/404';
         }
+
+        dispatch(getHome());
     }, []);
 
     const onClickLocation = async (item) => {
