@@ -339,6 +339,19 @@ class Utils {
             console.log(error);
         }
     }
+
+    checkSubname(name = '') {
+        if (!name) return '<> </>';
+
+        if (name.includes(' - ')) {
+            const split = name.split(' - ');
+
+            return `${split[0]}<br>
+            <span className="subname">${split[1]}</span>`;
+        }
+
+        return `<span>${name}</span>`;
+    }
 }
 
 export default new Utils();

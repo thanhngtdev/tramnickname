@@ -1,6 +1,7 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
 import Utils from 'src/common/Utils';
+import parse from 'html-react-parser';
 
 function ListAcademy(props) {
     const { listSite, onClickLocation } = props;
@@ -19,7 +20,8 @@ function ListAcademy(props) {
                                     Utils.onClickLocation(item);
                                 }}
                                 key={item.ms_id}>
-                                {item.ms_name}
+                                {/* {item.ms_name} */}
+                                {parse(Utils.checkSubname(item.ms_name))}
                             </a>
                         );
                     })}

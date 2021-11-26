@@ -143,6 +143,18 @@ h1{
 	
 }
 
+.subname {
+	font-size: 12px;
+	font-style: italic;
+	color: #EE7925;
+}
+
+.subname-32 {
+	font-size: 32px;
+	font-style: italic;
+	color: #EE7925;
+}
+
 .input-text::placeholder {
 	color: rgb(0 0 0 / 30%);
 }

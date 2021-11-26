@@ -14,6 +14,7 @@ import {
     withGoogleMap,
     withScriptjs,
 } from 'react-google-maps';
+import parse from 'html-react-parser';
 import { useDispatch } from 'react-redux';
 import Constants from 'src/common/Constants';
 import PathRoute from 'src/common/PathRoute';
@@ -83,7 +84,11 @@ function ListNearbyAcademy(props) {
                 <div className="main-info wrap-row">
                     <div className="wrap-address">
                         <h3 style={{ marginTop: 0 }}>
-                            {lstAcademy[highlightAcademy].ms_name}
+                            {parse(
+                                Utils.checkSubname(
+                                    lstAcademy[highlightAcademy].ms_name,
+                                ),
+                            )}
                         </h3>
                         <label>
                             {'~'}

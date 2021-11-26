@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
+import parse from 'html-react-parser';
 import React from 'react';
 import Constants from 'src/common/Constants';
 import Utils from 'src/common/Utils';
@@ -11,6 +11,20 @@ const AcademyMap = dynamic(() => import('src/components/include/AcademyMap'));
 
 function Location({ listSite }) {
     saveList(listSite);
+
+    const checkSubname = (name = '') => {
+        if (!name) return '<> </>';
+
+        if (name.includes(' - ')) {
+            const split = name.split(' - ');
+
+            return `${split[0]}<br>
+            <span className="subname">${split[1]}</span>`;
+        }
+
+        return `<span>${name}</span>`;
+    };
+
     return (
         <DefaultLayout>
             <div className="map">
@@ -30,16 +44,25 @@ function Location({ listSite }) {
                             <div className="acade-left">
                                 <h3>London</h3>
                                 {listSite.map((item) => {
+                                    // console.log(checkSubname(item.ms_name));
                                     if (item.ms_region === 'London')
                                         return (
                                             <a
+                                                style={{
+                                                    lineHeight: '20px',
+                                                    marginBottom: 20,
+                                                }}
                                                 href={`/` + item.ms_alias}
                                                 onClick={(e) => {
                                                     e.preventDefault();
                                                     Utils.onClickLocation(item);
                                                 }}
                                                 key={item.ms_id}>
-                                                {item.ms_name}
+                                                {parse(
+                                                    Utils.checkSubname(
+                                                        item.ms_name,
+                                                    ),
+                                                )}
                                             </a>
                                         );
                                     return null;
@@ -55,6 +78,10 @@ function Location({ listSite }) {
                                         )
                                             return (
                                                 <a
+                                                    style={{
+                                                        lineHeight: '20px',
+                                                        marginBottom: 20,
+                                                    }}
                                                     href={`/` + item.ms_alias}
                                                     onClick={(e) => {
                                                         e.preventDefault();
@@ -63,7 +90,11 @@ function Location({ listSite }) {
                                                         );
                                                     }}
                                                     key={item.ms_id}>
-                                                    {item.ms_name}
+                                                    {parse(
+                                                        checkSubname(
+                                                            item.ms_name,
+                                                        ),
+                                                    )}
                                                 </a>
                                             );
                                         return null;
@@ -75,6 +106,10 @@ function Location({ listSite }) {
                                         if (item.ms_region === 'South England')
                                             return (
                                                 <a
+                                                    style={{
+                                                        lineHeight: '20px',
+                                                        marginBottom: 20,
+                                                    }}
                                                     href={`/` + item.ms_alias}
                                                     onClick={(e) => {
                                                         e.preventDefault();
@@ -83,7 +118,11 @@ function Location({ listSite }) {
                                                         );
                                                     }}
                                                     key={item.ms_id}>
-                                                    {item.ms_name}
+                                                    {parse(
+                                                        checkSubname(
+                                                            item.ms_name,
+                                                        ),
+                                                    )}
                                                 </a>
                                             );
                                         return null;

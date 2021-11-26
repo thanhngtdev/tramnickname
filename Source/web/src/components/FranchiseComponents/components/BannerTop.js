@@ -7,6 +7,7 @@ import Utils from 'src/common/Utils';
 import Button from 'src/components/Button';
 import getFranchiseName from 'src/hooks/useFranchise';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import parse from 'html-react-parser';
 
 BannerTop.propTypes = {
     site: PropTypes.object,
@@ -46,6 +47,19 @@ function BannerTop(props) {
             );
     }
 
+    function checkSubname(name = '') {
+        if (!name) return '<> </>';
+
+        if (name.includes(' - ')) {
+            const split = name.split(' - ');
+
+            return `${split[0]} Academy<br>
+            <span className="subname-32">${split[1]}</span>`;
+        }
+
+        return `<span>${name}</span>`;
+    }
+
     return (
         <div
             className="banner-top"
@@ -55,7 +69,10 @@ function BannerTop(props) {
                 )})`,
             }}>
             <div className="container">
-                <h1>{`${siteName.replace(' Academy', '')}`} Academy</h1>
+                <h1 style={{ lineHeight: '3rem' }}>
+                    {/* {`${siteName.replace(' Academy', '')}`} */}
+                    {parse(checkSubname(`${siteName.replace(' Academy', '')}`))}
+                </h1>
                 <div className="box-text">
                     <p>
                         Learn football the right way with the UK’s #1 weekly

@@ -8,7 +8,7 @@ QNA.propTypes = {
 };
 
 export default function QNA(props) {
-    console.log(props, 'props');
+    // console.log(props, 'props');
     const [activeIndex, setActiveIndex] = useState(0);
 
     const capitalize = (s) => {

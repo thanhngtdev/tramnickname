@@ -22,8 +22,6 @@ const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 function WeeklyTraining({ data, listSite }) {
     saveList(listSite);
 
-    // console.log(data, 'data');
-
     return (
         <DefaultLayout seo={data?.seoMeta || {}}>
             <AboutUs data={data?.about || {}} />

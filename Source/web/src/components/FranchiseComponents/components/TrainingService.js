@@ -364,7 +364,7 @@ TrainingService.propTypes = {
 // const imageServiceActive = require('images/service-active.png');
 
 function TrainingService(props) {
-    console.log(props, 'props training');
+    // console.log(props, 'props training');
     const [activeIndex, setActiveIndex] = useState(0);
     const [hoverIndex, setHoverIndex] = useState(0);
     const [innerWidth, setInnerWith] = useState(2000);
