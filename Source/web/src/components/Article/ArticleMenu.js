@@ -8,6 +8,7 @@ import Link from 'next/link';
 import isEmpty from 'lodash/isEmpty';
 import siteService from 'src/services/siteService';
 import ArticleItem from './ArticleItem';
+import useGetWidth from 'src/hooks/useGetWidth';
 
 ArticleMenu.propTypes = {
     currentCate: PropTypes.number,
@@ -20,9 +21,10 @@ export default function ArticleMenu(props) {
     const [displayForm, setDisplayForm] = useState(true);
     const articleReducer = useSelector((state) => state.articleReducer);
     const [textSearch, setTextSearch] = useState('');
-
     const [listNews, setListNews] = useState([]);
     const [results, setResults] = useState([]);
+    const [isShowDrop, setIsShowDrop] = useState();
+    const isMobile = useGetWidth() <= 768;
 
     useEffect(() => {
         setCurrentAcademy(ModelManager.getLocation() || {});
@@ -30,8 +32,30 @@ export default function ArticleMenu(props) {
     }, []);
 
     useEffect(() => {
-        console.log(listNews, 'listNews');
-    }, [listNews]);
+        // console.log(isMobile);
+        if (isShowDrop === 'undefined') return;
+
+        if (isMobile) {
+            setIsShowDrop(false);
+        } else {
+            setIsShowDrop(true);
+        }
+    }, [isMobile]);
+
+    useEffect(() => {
+        // console.log(isShowDrop, 'isShowDrop');
+        if (isShowDrop === 'undefined') return;
+
+        const btn = document.getElementsByClassName('dropdownlist');
+        if (!btn) return;
+        // console.log(btn, 'dropdownlist');
+
+        if (isShowDrop) {
+            btn[0].style.display = 'inherit';
+        } else {
+            btn[0].style.display = 'none';
+        }
+    }, [isShowDrop]);
 
     const getListNews = async () => {
         const data = await siteService.getListNews({
@@ -50,59 +74,81 @@ export default function ArticleMenu(props) {
         <div className="article-menu">
             {displayForm ? (
                 <div className="container">
-                    <ul>
-                        <li
-                            className={
-                                !props.currentCate && !props.isFranchise
-                                    ? 'active'
-                                    : ''
-                            }>
-                            <Link
-                                onClick={() => {
-                                    if (props.setCate) props.setCate({});
-                                }}
-                                href="/news"
-                                passHref>
-                                <a>Latest Articles</a>
-                            </Link>
-                        </li>
+                    <button
+                        className="dropdownLogo"
+                        onClick={() => {
+                            // console.log('aaaaaaaa');
+                            if (isShowDrop === 'undefined') {
+                                setIsShowDrop(true);
+                                return;
+                            }
 
-                        {lstCate.map((item) => (
+                            setIsShowDrop(!isShowDrop);
+                        }}></button>
+                    <div className="dropdownlist">
+                        <ul>
                             <li
                                 className={
-                                    props.currentCate === item.cate_id
+                                    !props.currentCate && !props.isFranchise
                                         ? 'active'
                                         : ''
-                                }
-                                key={item.cate_id}>
-                                <a href={'/news/' + item.cate_alias}>
-                                    {item.cate_value}
-                                </a>
-                                {/* <Link passHref href={'/news/' + item.cate_alias} scroll>
-                                <a>{item.cate_value}</a>
-                            </Link> */}
-                            </li>
-                        ))}
-
-                        {!isEmpty(currentAcademy) && (
-                            <li className={props?.isFranchise ? 'active' : ''}>
+                                }>
                                 <Link
                                     onClick={() => {
-                                        if (props.setCate)
-                                            props.setCate({
-                                                alias: currentAcademy.ms_alias,
-                                            });
+                                        if (props.setCate) props.setCate({});
                                     }}
-                                    style={{ color: 'black' }}
-                                    href={
-                                        '/' + currentAcademy.ms_alias + '/news'
-                                    }
+                                    href="/news"
                                     passHref>
-                                    <a>{currentAcademy.ms_name + ' News'}</a>
+                                    <a className="article-a">Latest Articles</a>
                                 </Link>
                             </li>
-                        )}
-                    </ul>
+
+                            {lstCate.map((item) => (
+                                <li
+                                    className={
+                                        props.currentCate === item.cate_id
+                                            ? 'active'
+                                            : ''
+                                    }
+                                    key={item.cate_id}>
+                                    <a
+                                        className="article-a"
+                                        href={'/news/' + item.cate_alias}>
+                                        {item.cate_value}
+                                    </a>
+                                    {/* <Link passHref href={'/news/' + item.cate_alias} scroll>
+                                <a>{item.cate_value}</a>
+                            </Link> */}
+                                </li>
+                            ))}
+
+                            {!isEmpty(currentAcademy) && (
+                                <li
+                                    className={
+                                        props?.isFranchise ? 'active' : ''
+                                    }>
+                                    <Link
+                                        onClick={() => {
+                                            if (props.setCate)
+                                                props.setCate({
+                                                    alias: currentAcademy.ms_alias,
+                                                });
+                                        }}
+                                        style={{ color: 'black' }}
+                                        href={
+                                            '/' +
+                                            currentAcademy.ms_alias +
+                                            '/news'
+                                        }
+                                        passHref>
+                                        <a className="article-a">
+                                            {currentAcademy.ms_name + ' News'}
+                                        </a>
+                                    </Link>
+                                </li>
+                            )}
+                        </ul>
+                    </div>
 
                     <div className="search">
                         <FontAwesomeIcon
