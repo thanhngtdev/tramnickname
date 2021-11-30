@@ -20,7 +20,11 @@
     top: 0;
     content: '';
     background: #ef9042;
-    height: 1350px;
+    height: 1435px;
+}
+
+.franchise-review .box-slide-review {
+    margin-top: 50px;
 }
 
 .training {
@@ -88,9 +92,9 @@
     margin-right: 20px;
 }
 .coach .col-8 p {
-    padding: 6rem;
+    padding: 0 6rem;
     color: #1a1919;
-    line-height: 28px;
+    /* line-height: 28px; */
 }
 
 .coach .col-4 img {
@@ -519,7 +523,7 @@
         top: 1160px;
         content: '';
         background: #ef9042;
-        height: 1460px;
+        height: 1550px;
     }
 
     .franchise-review .box-slide-review {
