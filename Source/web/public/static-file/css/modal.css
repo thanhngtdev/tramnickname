@@ -105,8 +105,9 @@
     flex: 0 0 25%;
     font-size: 0.9rem;
     line-height: 1rem;
-    color: #1A1919;
+    color: #1a1919;
     margin-bottom: 11px;
+    min-height: 30px;
 }
 
 .modal-content .list-acade a:hover,
@@ -180,8 +181,6 @@
     font-weight: 500;
     font-size: 1rem;
 }
-
-
 
 .modal-content .wrap-contact {
     display: flex;
@@ -279,7 +278,7 @@
     font-size: 2rem;
     vertical-align: top;
     padding-right: 7px;
-    line-height:25px;
+    line-height: 25px;
     color: #ee7925;
 }
 
@@ -326,7 +325,7 @@
         order: 2;
     }
 
-    .modal-content .wrap-address p{
+    .modal-content .wrap-address p {
         text-align: center;
     }
 
@@ -343,8 +342,6 @@
         padding-top: 1rem;
     }
 
-
-
     .modal-content .wrap-contact a:last-child {
         padding-right: 0;
     }
@@ -357,9 +354,7 @@
         height: 500px;
     }
 
-    .modal-content .wrap-contact a{
+    .modal-content .wrap-contact a {
         margin-left: initial;
     }
-
-
 }

@@ -51,6 +51,7 @@ function Location({ listSite }) {
                                                 style={{
                                                     lineHeight: '20px',
                                                     marginBottom: 20,
+                                                    minHeight: 40,
                                                 }}
                                                 href={`/` + item.ms_alias}
                                                 onClick={(e) => {
@@ -81,6 +82,7 @@ function Location({ listSite }) {
                                                     style={{
                                                         lineHeight: '20px',
                                                         marginBottom: 20,
+                                                        minHeight: 40,
                                                     }}
                                                     href={`/` + item.ms_alias}
                                                     onClick={(e) => {
@@ -109,6 +111,7 @@ function Location({ listSite }) {
                                                     style={{
                                                         lineHeight: '20px',
                                                         marginBottom: 20,
+                                                        minHeight: 40,
                                                     }}
                                                     href={`/` + item.ms_alias}
                                                     onClick={(e) => {

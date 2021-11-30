@@ -80,7 +80,7 @@ function Franchise({ data, listSite, isSubPage }) {
                 />
             </div>
             <div className="coaching-franchise">
-                <CoachInfo coach={data?.coach || {}} />
+                <CoachInfo coach={data?.coach || {}} site={data?.site || {}} />
             </div>
             <div className="franchise-review">
                 <div className="intro-franchise">

@@ -18,8 +18,8 @@
     position: absolute;
     left: 0;
     top: 0;
-    content: "";
-    background: #EF9042;
+    content: '';
+    background: #ef9042;
     height: 1350px;
 }
 
@@ -47,7 +47,7 @@
     padding: 37px;
 }
 .training-service .nav-tabs a {
-    transform: scale(1.0);
+    transform: scale(1);
     transition: transform 700ms ease-out;
 }
 
@@ -92,6 +92,11 @@
     color: #1a1919;
     line-height: 28px;
 }
+
+.coach .col-4 img {
+    background: linear-gradient(180deg, #fff 23%, #f0f0f0 20%);
+}
+
 .coach-head {
     background-color: #f2f2f2;
     padding: 3rem 15% 16rem;
@@ -187,7 +192,7 @@
     margin: 0;
     padding-top: 0.5rem;
 }
-.group-info .text-express-enquiry{
+.group-info .text-express-enquiry {
     font-size: 1.125rem;
     color: rgba(255, 113, 0, 0.7);
     margin: 0;
@@ -213,7 +218,7 @@
     text-align: center;
 }
 .service-mobile .service-group {
-	padding-top: 2rem;
+    padding-top: 2rem;
     font-size: 1.5rem;
     font-weight: bold;
     color: #1a1919;
@@ -307,7 +312,7 @@
     font-size: 1.5rem;
     color: #1a1919;
 }
-.areas a{
+.areas a {
     font-size: 1.125rem;
     font-weight: normal;
     color: #ee7925;
@@ -343,7 +348,7 @@
 }
 .rAcademy {
     margin-right: 1.8rem;
-    background-color: #D8D8D8;
+    background-color: #d8d8d8;
 }
 .rAcademy img {
     border-radius: 6px 6px 0 0;
@@ -366,14 +371,14 @@
     border-radius: 6px 6px 0 0;
     width: 100%;
 }
-.rNews .rTitle{
+.rNews .rTitle {
     font-size: 1rem;
-    color: #5A5A5A;
+    color: #5a5a5a;
 }
 .rNews .rSapo {
     font-size: 1.125rem;
     font-weight: 500;
-    color: #1A1919;
+    color: #1a1919;
 }
 
 .franchise-servive .classRow {
@@ -381,15 +386,12 @@
     cursor: initial;
 }
 
-
 .franchise-servive .classRowSecond {
     display: flex;
     flex-direction: row;
     padding-left: 1rem;
     /* cursor: pointer; */
 }
-
-
 
 @media only screen and (max-width: 1000px) {
     .coach-list .fix-width {
@@ -404,13 +406,12 @@
 }
 @media only screen and (max-width: 768px) and (min-width: 319px) {
     .banner-franchise .banner-top .box-text {
-        margin-top:130px ;
+        margin-top: 130px;
     }
 
     .coach-list .rsub-list {
         overflow-y: hidden;
         overflow-x: scroll;
-     
     }
 
     .academy-info {
@@ -457,20 +458,20 @@
     .qItem .qIcon {
         display: none;
     }
-    .areas{
+    .areas {
         padding: 2rem 0;
     }
-    .areas h2{
+    .areas h2 {
         text-align: center;
         font-size: 38px;
     }
-    .area-cover{
+    .area-cover {
         margin-bottom: 0;
     }
-    .related-areas{
+    .related-areas {
         flex-direction: column;
     }
-    .rList-academy{
+    .rList-academy {
         flex-direction: column;
     }
     .rAcademy {
@@ -485,7 +486,7 @@
         margin-right: 0.2rem;
     }
 
-    .banner-franchise .academy-info{
+    .banner-franchise .academy-info {
         text-align: left;
     }
 
@@ -499,25 +500,25 @@
         margin-bottom: 40px;
     }
 
-    .banner-franchise .academy-info .group-info:first-child .wrap-contact a{
+    .banner-franchise .academy-info .group-info:first-child .wrap-contact a {
         margin: 0 !important;
     }
 
-    .banner-franchise .academy-info .group-info:first-child p{
+    .banner-franchise .academy-info .group-info:first-child p {
         margin: 13px 0 !important;
     }
 
-    .banner-franchise .academy-info .group-info:last-child .social a{
+    .banner-franchise .academy-info .group-info:last-child .social a {
         margin-right: 15px !important;
     }
-    
+
     .franchise-review::before {
         width: 100%;
         position: absolute;
         left: 0;
         top: 1160px;
-        content: "";
-        background: #EF9042;
+        content: '';
+        background: #ef9042;
         height: 1460px;
     }
 
@@ -542,11 +543,11 @@
         height: 500px;
     }
 
-    .academy-info .group-info:last-child{
+    .academy-info .group-info:last-child {
         margin-left: 0px;
     }
 
-    .academy-info .group-info:first-child{
+    .academy-info .group-info:first-child {
         margin-right: 0px;
     }
 
@@ -555,7 +556,7 @@
         padding-bottom: 0 !important;
     }
 
-    .intro-franchise .box-list-item-card  {
+    .intro-franchise .box-list-item-card {
         top: 75px !important;
     }
 }

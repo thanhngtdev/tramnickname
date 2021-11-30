@@ -32,17 +32,6 @@ export default function ArticleMenu(props) {
     }, []);
 
     useEffect(() => {
-        // console.log(isMobile);
-        if (isShowDrop === 'undefined') return;
-
-        if (isMobile) {
-            setIsShowDrop(false);
-        } else {
-            setIsShowDrop(true);
-        }
-    }, [isMobile]);
-
-    useEffect(() => {
         // console.log(isShowDrop, 'isShowDrop');
         if (isShowDrop === 'undefined') return;
 
@@ -56,6 +45,17 @@ export default function ArticleMenu(props) {
             btn[0].style.display = 'none';
         }
     }, [isShowDrop]);
+
+    useEffect(() => {
+        if (isShowDrop === 'undefined') return;
+        // console.log(isMobile, 'isMobile');
+
+        if (isMobile) {
+            setIsShowDrop(false);
+        } else {
+            setIsShowDrop(true);
+        }
+    }, [isMobile]);
 
     const getListNews = async () => {
         const data = await siteService.getListNews({
@@ -76,6 +76,7 @@ export default function ArticleMenu(props) {
                 <div className="container">
                     <button
                         className="dropdownLogo"
+                        type="button"
                         onClick={() => {
                             // console.log('aaaaaaaa');
                             if (isShowDrop === 'undefined') {

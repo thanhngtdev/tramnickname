@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Utils from 'src/common/Utils';
+import parse from 'html-react-parser';
 
 CoachInfo.propTypes = {
     coach: PropTypes.object,
 };
 function CoachInfo(props) {
     // console.log(props.coach);
+
     return (
         <div className="coach">
             <div className="container">
@@ -28,6 +30,7 @@ function CoachInfo(props) {
                                 }
                                 alt=""
                             />
+
                             <div style={{ paddingLeft: '2rem', width: '100%' }}>
                                 <p
                                     style={{
@@ -51,10 +54,8 @@ function CoachInfo(props) {
                             </div>
                         </div>
                         <div className="col-8">
-                            <p>
-                                {(props.coach && props.coach.description) ||
-                                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae mi massa. Vestibulum egestas accumsan turpis, vitae luctus justo placerat et. Maecenas tincidunt quis massa eget iaculis. Cras lacus mi, lacinia nec nisl vel, lacinia venenatis mi. Nullam nec tempus lacus. Vestibulum elementum odio odio, ut commodo sem porta porttitor. Vestibulum dapibus est sem, condimentum ultricies enim feugiat quis.'}
-                            </p>
+                            {parse(props?.site?.aboutUs?.text || '')}
+                            {/* <p>{}</p> */}
                         </div>
                     </div>
                 </div>
