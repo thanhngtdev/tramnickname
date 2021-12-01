@@ -19,7 +19,7 @@ const Reason = dynamic(() => import('src/components/HomePage/Reason'));
 const WhatWeDo = dynamic(() => import('src/components/HomePage/WhatWeDo'));
 
 function HomePage({ data, listSite }) {
-    // console.log(listSite);
+    console.log(listSite), data, 'test';
     saveList(listSite);
     const [defaultAcademy, setDefaultAcademy] = useState({});
     useEffect(() => {

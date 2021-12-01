@@ -14,6 +14,8 @@ CampInclude.propTypes = {
 };
 
 export default function CampInclude(props) {
+    console.log(props, 'props');
+
     const sliderRef = useRef(null);
     const [slideIndex, setSlideIndex] = useState(0);
     const width = useGetWidth();
@@ -39,24 +41,27 @@ export default function CampInclude(props) {
                 <div className="container">
                     <h2 className="contact-header">{props.data.cfg_title}</h2>
                     <Slider ref={sliderRef} className="list lazy" {...settings}>
-                        {slideItem.map((element, index) => (
-                            <div key={index}>
-                                <div className="slide-item">
-                                    <div className="slide-image">
-                                        <img
-                                            alt=""
-                                            src={Utils.getThumb(element.image)}
-                                        />
-                                    </div>
-                                    <div className="slide-text">
-                                        {/* <p>{element.content}</p> */}
-                                        {parse(element.content)}
-                                        <h3>{element.title}</h3>
-                                        <p>{element.des}</p>
+                        {props.data.cfg_value &&
+                            props.data.cfg_value.map((element, index) => (
+                                <div key={index}>
+                                    <div className="slide-item">
+                                        <div className="slide-image">
+                                            <img
+                                                alt=""
+                                                src={Utils.getThumb(
+                                                    element.image,
+                                                )}
+                                            />
+                                        </div>
+                                        <div className="slide-text">
+                                            {/* <p>{element.content}</p> */}
+                                            {parse(element.content + '')}
+                                            <h3>{element.title}</h3>
+                                            <p>{element.des}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
                     </Slider>
                     <div
                         className={

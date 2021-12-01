@@ -27,6 +27,8 @@ const BookTrialHoliday = dynamic(() =>
 function HolidayCamp({ data, listSite }) {
     saveList(listSite);
 
+    console.log(data, ' data');
+
     useEffect(() => {
         if (isEmpty(data)) {
             window.location.href = '/404';

@@ -1,11 +1,15 @@
 import axios from 'axios';
 import cloneDeep from 'lodash/cloneDeep';
 import { BASE_API } from '../requests/ApiConfig';
+import https from 'https';
 
 class HttpMethod {
     constructor() {
         this.axios = axios;
         this.axios.defaults.baseURL = BASE_API;
+        this.axios.defaults.httpsAgent = new https.Agent({
+            rejectUnauthorized: false,
+        });
     }
 
     get(...arg) {

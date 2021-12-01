@@ -18,7 +18,7 @@ export default function WhyWMF(props) {
     const [cost, setCost] = useState({});
     const [trustPilot, setTrustPilot] = useState({});
 
-    // console.log(props, 'props');
+    // console.log(props, 'props12');
     useEffect(() => {
         // console.log(checkPound(props.data.cfg_value), 'check');
         getTrustPilot();
@@ -43,9 +43,12 @@ export default function WhyWMF(props) {
     }, [defaultAcademy]);
 
     useEffect(() => {
+        // console.log(cost, 'cost');
         if (isEmpty(cost)) return;
 
         const { weeklyCost, minWeeklyCost } = cost;
+
+        // console.log(cost, listSite.length, 'listSite.length');
 
         const converted = props.data.cfg_value.map((item) => {
             let newContent = item.des;
@@ -97,6 +100,11 @@ export default function WhyWMF(props) {
         if (!isEmpty(defaultAcademy)) {
             const { weeklyCost, minWeeklyCost } = defaultAcademy;
             setCost({ weeklyCost, minWeeklyCost });
+        } else if (!isEmpty(props?.site)) {
+            setCost({
+                weeklyCost: props.site.weeklyCost,
+                minWeeklyCost: props.site.minWeeklyCost,
+            });
         } else {
             try {
                 const res = await siteService.getDetailSite({
