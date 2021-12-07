@@ -10,6 +10,8 @@ const { hasOwnProperty } = Object.prototype;
 
 class Utils {
     getThumb(_alias, crop) {
+        // console.log(process.env.STORAGE_URL, 'STORAGE_URL');
+
         if (!_alias) return null;
         let alias = _alias;
         if (!alias.startsWith('http')) {
@@ -18,6 +20,9 @@ class Utils {
             }
             alias = STORAGE_URL + alias;
         }
+
+        // console.log(alias, 'STORAGE_URL');
+
         let realUrl = alias;
         if (crop && crop !== '') {
             const pos = alias.lastIndexOf('/');

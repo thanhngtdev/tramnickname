@@ -1,11 +1,9 @@
-const BASE_URL = 'https://staging-admin.wemakefootballers.com/';
+const BASE_URL = process.env.BASE_URL_API;
 
 // const BASE_URL = 'http://local.wmf.com/';
-export const BASE_API = `${BASE_URL}api/`;
-// export const PARENT_API = 'https://parentarea.co/api/v2/';
-export const PARENT_API = 'https://staging.parentarea.co/api/v2/';
-
-export const STORAGE_URL = `${BASE_URL}storage/`;
+export const BASE_API = process.env.NEXT_PUBLIC_BASE_URL_API;
+export const PARENT_API = process.env.NEXT_PUBLIC_PARENT_URL_API;
+export const STORAGE_URL = process.env.NEXT_PUBLIC_STORAGE_URL_API;
 
 export const APIConfig = {
     URL_GET_HOME: 'home',

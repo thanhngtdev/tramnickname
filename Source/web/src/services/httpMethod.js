@@ -5,6 +5,7 @@ import https from 'https';
 
 class HttpMethod {
     constructor() {
+        // console.log(BASE_API, 'BASE_API');
         this.axios = axios;
         this.axios.defaults.baseURL = BASE_API;
         this.axios.defaults.httpsAgent = new https.Agent({

@@ -75,7 +75,6 @@ function InstaBox(props) {
                                                         alt=""
                                                         src={Utils.getThumb(
                                                             item.image,
-                                                            'c3',
                                                         )}
                                                     />
                                                     <div className="bg">

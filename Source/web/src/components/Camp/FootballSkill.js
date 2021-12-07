@@ -25,9 +25,9 @@ export default function FootballSkill(props) {
         }
     }, []);
 
-    useEffect(() => {
-        console.log(title, 'title');
-    }, [title]);
+    // useEffect(() => {
+    //     console.log(title, 'title');
+    // }, [title]);
 
     return (
         // one-training-skill

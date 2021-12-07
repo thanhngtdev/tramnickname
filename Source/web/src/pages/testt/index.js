@@ -9,14 +9,8 @@ export default (props) => {
         console.log('Captcha value:', value);
     }
 
+    console.log(process.env.STORAGE_URL, 'process.env.BASE_URL_API');
+
     //! Render
-    return (
-        <div>
-            <ReCAPTCHA
-                sitekey="6Le-VPwUAAAAAA8Ob_fIKNaXUCp1eR5_n58uY0DU"
-                onChange={onChange}
-                type="image"
-            />
-        </div>
-    );
+    return <div>{`${process.env.STORAGE_URL}`}</div>;
 };

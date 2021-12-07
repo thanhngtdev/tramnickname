@@ -37,6 +37,11 @@ const settings = {
 };
 
 function Testimonial(props) {
+    // console.log(
+    //     process.env.BASE_URL_API,
+    //     process.env.STORAGE_URL_API,
+    //     'process.env.STORAGE_URL;',
+    // );
     const isFirstRun = useRef(true);
     const [lstFb, setLstFb] = useState([]);
     const dispatch = useDispatch();
