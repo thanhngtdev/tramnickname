@@ -9,6 +9,8 @@ RelateAreas.propTypes = {
 };
 
 function RelateAreas(props) {
+    console.log(props, 'props');
+
     const siteName = getFranchiseName(props.site) || '';
     return (
         <div className="areas">
@@ -43,18 +45,29 @@ function RelateAreas(props) {
                                 props.site.associalted &&
                                 props.site.associalted.map((item, index) => (
                                     <div key={index} className="rAcademy">
-                                        <img
-                                            loading="lazy"
-                                            alt=""
-                                            src={Utils.getThumb(
-                                                item.ms_avatar,
-                                                'c1',
-                                            )}
-                                        />
-                                        <p>
-                                            {item.ms_name} -{' '}
-                                            {item.distance.toFixed(2)}KM
-                                        </p>
+                                        <a
+                                            href={item.ms_alias}
+                                            onclick={(e) => {
+                                                e.preventDefault();
+                                                props.onClickLocation({
+                                                    value: item.ms_id,
+                                                });
+                                            }}>
+                                            <img
+                                                loading="lazy"
+                                                alt=""
+                                                src={Utils.getThumb(
+                                                    item.ms_avatar,
+                                                    'c1',
+                                                )}
+                                                // height="100px"
+                                                // width="100px"
+                                            />
+                                            <p>
+                                                {item.ms_name} -{' '}
+                                                {item.distance.toFixed(2)}KM
+                                            </p>
+                                        </a>
                                     </div>
                                 ))}
                         </div>

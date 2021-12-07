@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import React, { useRef, useState } from 'react';
 import Slider from 'react-slick';
 import Utils from 'src/common/Utils';
+import useGetWidth from 'src/hooks/useGetWidth';
 
 TrainingInclude.propTypes = {
     data: PropTypes.object,
@@ -15,6 +16,7 @@ TrainingInclude.propTypes = {
 export default function TrainingInclude(props) {
     const sliderRef = useRef(null);
     const [slideIndex, setSlideIndex] = useState(0);
+    const isMobile = useGetWidth() < 768;
 
     const settings = {
         lazyLoad: 'ondemand',
@@ -38,12 +40,15 @@ export default function TrainingInclude(props) {
                         {slideItem.map((element, index) => (
                             <div key={index}>
                                 <div className="slide-item">
+                                    {/* {!isMobile && (
+                                    )} */}
                                     <div className="slide-image">
                                         <img
                                             alt=""
                                             src={Utils.getThumb(element.image)}
                                         />
                                     </div>
+
                                     <div className="slide-text">
                                         <p style={{ fontSize: '32px' }}>
                                             {element.title}

@@ -18,7 +18,7 @@ const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const ROUTE = [PathRoute.Coaching, PathRoute.ParentHost];
 
 function JoinUs({ data, listSite }) {
-    console.log(data, 'data');
+    // console.log(data, 'data');
     //! state
     const refListItem = useRef(null);
     const [content, setContent] = useState(data.boxesFranchise.cfg_content);

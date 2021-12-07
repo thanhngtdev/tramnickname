@@ -35,7 +35,7 @@ import { getHome } from 'src/redux/actions/homeAction';
 import siteService from 'src/services/siteService';
 
 function Franchise({ data, listSite, isSubPage }) {
-    console.log(data, 'data');
+    // console.log(data, 'data');
     const dispatch = useDispatch();
 
     saveList(listSite);
@@ -119,6 +119,7 @@ function Franchise({ data, listSite, isSubPage }) {
                 <QNA data={data?.faq || []} />
             </div>
             <RelateAreas
+                onClickLocation={onClickLocation}
                 site={data?.site || {}}
                 article={data?.article || {}}
             />

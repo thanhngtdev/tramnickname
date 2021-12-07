@@ -9,28 +9,26 @@ button.btn-disabled:hover {
 }
 
 .btn-book-free-session {
-	/* width: 219px;
+    /* width: 219px;
 	height: 44px; */
-	background: #ee7925;
-	border-radius: 6px;
-	cursor: pointer;
-	border: 1px solid #ee7925;
-	line-height: 44px;
-	padding: 10px 10px;
-	font-weight: 500;
-	font-size: 16px;
-	text-align: center;
-	letter-spacing: 1.5px;
-	text-transform: uppercase;
-	color: #FFFFFF;
-	display: inline-block;
-
+    background: #ee7925;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid #ee7925;
+    line-height: 44px;
+    padding: 10px 10px;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #ffffff;
+    display: inline-block;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 768px) {
-	.btn-book-free-session {
+    .btn-book-free-session {
         width: 100% !important;
-		font-size: 11px !important;
-	}
-
+        font-size: 13px !important;
+    }
 }

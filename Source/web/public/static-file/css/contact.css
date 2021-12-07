@@ -1,5 +1,3 @@
-
-
 .get-in-touch {
     overflow: hidden;
 }
@@ -190,8 +188,8 @@
 .contact-map {
     position: absolute;
     top: 400px;
-	left: 10%;
-	z-index: 999;
+    left: 10%;
+    z-index: 999;
 }
 
 .contact-map .text-content {
@@ -222,13 +220,11 @@
     margin-top: 110px;
 }
 
-
 @media only screen and (max-width: 1000px) and (min-width: 768px) {
     .contact-header {
         padding-right: 0;
         font-size: 34px;
     }
-
 }
 
 @media only screen and (max-width: 768px) and (min-width: 320px) {
@@ -273,5 +269,9 @@
 
     .contactpage .contact-map {
         top: -210px;
+    }
+
+    .get-in-touch .input-text {
+        font-size: 20px;
     }
 }

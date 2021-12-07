@@ -1,81 +1,77 @@
 .training-include {
-	margin-top: -85px;
-	position: relative;
+    margin-top: -85px;
+    position: relative;
 }
 
 .training-include .slide-item {
-	display: flex;
-	flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .training-include .slide-image {
-	flex: 1;
-	padding: 15px;
+    flex: 1;
+    padding: 15px;
 }
 
-
-
 .training-include .slide-text {
-	padding-bottom: 6rem;
-	flex: 2;
+    padding-bottom: 6rem;
+    flex: 2;
 }
 
 .training-include .slide-text h3 {
-	font-size: 32px;
+    font-size: 32px;
 }
 
 .training-include .slide-control {
-	position: relative;
+    position: relative;
     bottom: 15rem;
     left: 35.4%;
 }
 
 .training-include .slide-control .slide-number {
-	margin: 0 3rem;
+    margin: 0 3rem;
 }
 
 .training-include .slide-button {
-	padding: 1rem 1.5rem;
-	border: 1px solid #5a5a5a;
-	border-radius: 6px;
-	background-color: white;
+    padding: 1rem 1.5rem;
+    border: 1px solid #5a5a5a;
+    border-radius: 6px;
+    background-color: white;
 }
 
 .training-include .slide-button .icon {
-	color: #5a5a5a;
-	font-size: 14px;
-	margin-left: 15px;
+    color: #5a5a5a;
+    font-size: 14px;
+    margin-left: 15px;
 }
 
 .training-include .slick-slide img {
-	min-width: 315px;
+    min-width: 315px;
 }
 
 .box-acc-review {
-	border-top-color: #5a5a5a;
+    border-top-color: #5a5a5a;
 }
 
-
-
 .about-info-birthday {
-	margin-top: -70px;
-	position: absolute;
-	width: 100%
+    margin-top: -70px;
+    position: absolute;
+    width: 100%;
 }
 
 .about-info-birthday img {
-	margin-top: -80px;
-	margin-left: -55px;
+    margin-top: -80px;
+    margin-left: -55px;
 }
 
 .about-info-birthday .slide-text {
-	line-height: 1.6;
-	width: 650px;
+    line-height: 1.6;
+    width: 650px;
     float: right;
 }
 
 .birthday-qoute {
-	position: relative;
+    position: relative;
     padding: 80px 80px 80px 0px;
     background-color: white;
     overflow: hidden;
@@ -83,494 +79,495 @@
 }
 
 .birthday-review {
-	background-color: #EF9042;
-	padding-top: 185px;
-	padding-bottom: 15px;
-	margin-top: 0px;
+    background-color: #ef9042;
+    padding-top: 185px;
+    padding-bottom: 15px;
+    margin-top: 0px;
 }
 
 .football-skill {
-	background: none;
-	position: relative;
+    background: none;
+    position: relative;
 }
 
 .football-skill::before {
-	width: 100%;
-	position: absolute;
-	left: 0;
-	top: 0;
-	content: '';
-	background: #ef9042;
-	height: 800px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: '';
+    background: #ef9042;
+    height: 800px;
 }
 
 .one-training-skill::before {
-	width: 100%;
-	position: absolute;
-	left: 0;
-	top: 0;
-	content: '';
-	background: #ef9042;
-	height: 670px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: '';
+    background: #ef9042;
+    height: 670px;
 }
 
 .football-skill .box-beginning-list {
-	box-shadow: 0px 20px 60px rgba(2, 2, 30, 0.088833);
+    box-shadow: 0px 20px 60px rgba(2, 2, 30, 0.088833);
 }
 
 .football-skill .heading::before {
-	content: none;
+    content: none;
 }
 
 .why-wmf .heading {
-	font-size: 75px;
-	text-align: center;
+    font-size: 75px;
+    text-align: center;
 }
 
 .why-wmf .list-item {
-	padding: 4.5rem 2rem;
-	height: 420px;
+    padding: 4.5rem 2rem;
+    height: 420px;
 }
 
 .why-wmf .list-number {
-	position: absolute;
-	top: 15px;
-	left: 15px;
-	font-size: 155px;
-	font-weight: bold;
-	color: #FF7100;
-	opacity: 0.1;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 155px;
+    font-weight: bold;
+    color: #ff7100;
+    opacity: 0.1;
 }
 
-.why-wmf p{
-	color: #1A1919;
+.why-wmf p {
+    color: #1a1919;
 }
 
 .birthday-package {
-	margin-top: 100px;
+    margin-top: 100px;
 }
 
 .birthday-package .heading {
-	font-weight: bold;
-	font-size: 75px;
-	line-height: 99px;
-	text-align: center;
-	margin: auto;
-	position: relative;
-	padding-bottom: 60px;
-	max-width: 750px;
-	width: 100%;
+    font-weight: bold;
+    font-size: 75px;
+    line-height: 99px;
+    text-align: center;
+    margin: auto;
+    position: relative;
+    padding-bottom: 60px;
+    max-width: 750px;
+    width: 100%;
 }
 
 .birthday-package .package-item {
-	display: flex;
-	flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .birthday-package .package-item .package-image {
-	flex: 10;
-	padding: 0rem 4rem;
-	background-color: #F2F2F2;
-	margin-bottom: 8rem;
-	max-width: 585px;
+    flex: 10;
+    padding: 0rem 4rem;
+    background-color: #f2f2f2;
+    margin-bottom: 8rem;
+    max-width: 585px;
     max-height: 410px;
 }
 
 .birthday-package .package-item .package-image img {
-	max-width : 80% ;
-	display: block;
+    max-width: 80%;
+    display: block;
     margin: 0 auto;
 }
 
 .birthday-package .package-item .package-text {
-	flex: 9;
+    flex: 9;
 }
 
 .birthday-package .package-item .package-text h3 {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .birthday-package .package-item .package-include {
-	opacity: 1;
-	font-weight: 500;
-	margin-top: 5px;
+    opacity: 1;
+    font-weight: 500;
+    margin-top: 5px;
 }
 
 .birthday-package .package-item .package-des {
-	color: #1A1919;
-	opacity: 0.7;
-	margin-bottom: 2rem;
+    color: #1a1919;
+    opacity: 0.7;
+    margin-bottom: 2rem;
 }
 
 .birthday-package .package-item .text-left {
-	padding-right: 60px;
+    padding-right: 60px;
 }
 
 .birthday-package .package-item .text-right {
-	padding-left: 60px;
+    padding-left: 60px;
 }
 
 .birthday-package .package-item .package-cost {
-	background-color: #F2F2F2;
-	padding: 20px;
-	color: #FF7100;
+    background-color: #f2f2f2;
+    padding: 20px;
+    color: #ff7100;
 }
 
 .birthday-extra .extra-column {
-	box-shadow: 0px 20px 60px rgba(2, 2, 30, 0.088833);
-	padding: 4rem;
+    box-shadow: 0px 20px 60px rgba(2, 2, 30, 0.088833);
+    padding: 4rem;
 }
 
 .birthday-extra .extra-column h3.heading {
-	font-size: 45px;
-	font-weight: bold;
+    font-size: 45px;
+    font-weight: bold;
 }
 
 .birthday-extra .extra-column .extra-item {
-	margin-top: 3rem;
-	overflow: hidden;
+    margin-top: 3rem;
+    overflow: hidden;
 }
 
-.birthday-extra .extra-column .extra-item p{
-	margin-top: 0;
-	margin-bottom: 0;
+.birthday-extra .extra-column .extra-item p {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .birthday-extra .extra-column .extra-item img {
-	margin-right: 2rem;
-	display: block;
-	float: left;
+    margin-right: 2rem;
+    display: block;
+    float: left;
 }
 
 .provides {
-	margin-bottom: 4rem;
+    margin-bottom: 4rem;
 }
 
 .provides .heading {
-	font-weight: bold;
-	font-size: 75px;
-	line-height: 99px;
-	margin: auto;
-	position: relative;
-	padding-bottom: 25px;
-	width: 100%;
+    font-weight: bold;
+    font-size: 75px;
+    line-height: 99px;
+    margin: auto;
+    position: relative;
+    padding-bottom: 25px;
+    width: 100%;
 }
 
 .provides .provides-row {
-	display: flex;
-	flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .provides .provides-image {
-	flex: 2;
+    flex: 2;
 }
 
 .provides .provides-text {
-	flex: 3;
+    flex: 3;
 }
 
 .provides .provides-wrap-text {
-	max-width: 650px;
-	margin-left: 4rem;
-	padding-right: 15px,
+    max-width: 650px;
+    margin-left: 4rem;
+    padding-right: 15px;
 }
 
-.provides .provides-wrap-text p:first-child{
-	margin-top: 0;
+.provides .provides-wrap-text p:first-child {
+    margin-top: 0;
 }
 
-.provides .provides-wrap-text p:nth-child(2){
-	padding: 1rem;
-	background-color: #F2F2F2;
+.provides .provides-wrap-text p:nth-child(2) {
+    padding: 1rem;
+    background-color: #f2f2f2;
 }
 
-.provides .provides-wrap-text p:last-child{
-	padding: 1rem;
-	background-color: #F2F2F2;
-	color: #FF7100;
+.provides .provides-wrap-text p:last-child {
+    padding: 1rem;
+    background-color: #f2f2f2;
+    color: #ff7100;
 }
 
 .enquire {
-	text-align: center;
-	color: white;
-	background-color: #EF9042;
-	padding: 4rem 1rem;
-	border-radius: 6px
+    text-align: center;
+    color: white;
+    background-color: #ef9042;
+    padding: 4rem 1rem;
+    border-radius: 6px;
 }
 
 .enquire .enquire-header {
-	font-size: 45px;
-	margin: 0 auto;
-	max-width: 700px;
-	font-weight: 500;
+    font-size: 45px;
+    margin: 0 auto;
+    max-width: 700px;
+    font-weight: 500;
 }
-ul.camp-paid{
-	display: inline-block;
-	list-style: none;
+ul.camp-paid {
+    display: inline-block;
+    list-style: none;
 }
 ul.camp-paid li {
-	color: #5A5A5A;
-	padding: 0.5rem;
+    color: #5a5a5a;
+    padding: 0.5rem;
 }
 ul.camp-paid li::before {
-	content: '\2022';
-	color: #FF7100;
-	font-weight: bold;
-	display: inline-block;
-	width: 1em;
-	margin-left: -1em;
-	font-size: 2rem;
+    content: '\2022';
+    color: #ff7100;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    font-size: 2rem;
 }
 
 @media only screen and (max-width: 768px) and (min-width: 320px) {
-	/* .about-info {
+    /* .about-info {
 		margin-top: 50px;
 	} */
 
-	.birthday-extra .extra-column .extra-item img {
-		margin-bottom: 2rem;
-	}
+    .birthday-extra .extra-column .extra-item img {
+        margin-bottom: 2rem;
+    }
 
-	.birthday-qoute {
-		padding: 0;
-		padding-top: 55px;
-	}
+    .birthday-qoute {
+        padding: 0;
+        padding-top: 55px;
+    }
 
-	.about-secure {
-		margin-top: -100px;
-		text-align: center;
-	}
+    .about-secure {
+        margin-top: -100px;
+        text-align: center;
+    }
 
-	.training-include .slide-item {
-		flex-direction: column;
-	}
+    .training-include .slide-item {
+        flex-direction: column;
+    }
 
-	.training-include .slide-image {
-		order: 2;
-		padding: 20px 0;
-	}
+    .training-include .slide-image {
+        display: none;
+        order: 2;
+        padding: 20px 0;
+    }
 
-	.training-include .slide-image img {
-		width: 100%;
-	}
+    .training-include .slide-image img {
+        width: 100%;
+    }
 
-	.training-include .slide-text {
-		order: 1;
-		/* padding-left: 15px; */
-	}
+    .training-include .slide-text {
+        order: 1;
+        /* padding-left: 15px; */
+    }
 
-	.training-include .slide-control {
-		top: -53rem;
-    	left: 0px;
-	}
+    .training-include .slide-control {
+        top: 0 !important;
+        left: 0px;
+        bottom: 0px !important;
+    }
 
-	.training-include .slide-control .slide-number {
-		margin: 0 48px;
-	}
-	
-	.training-include .mobile {
-		/* top: 33rem; */
-	}
+    .training-include .slide-control .slide-number {
+        margin: 0 48px;
+    }
 
-	.football-skill {
-		background: white;
-	}
+    .training-include .mobile {
+        /* top: 33rem; */
+    }
 
-	.football-skill::before {
-		height: 0;
-	}
+    .football-skill {
+        background: white;
+    }
 
-	.football-skill .heading {
-		color: black;
-		padding: 0;
-	}
+    .football-skill::before {
+        height: 0;
+    }
 
-	.football-skill .box-beginning-list .list {
-		display: flex;
-		flex-direction: column;
-		width: auto;
-		height: auto;
-		padding: 10px 0;
-	}
+    .football-skill .heading {
+        color: black;
+        padding: 0;
+    }
 
-	.football-skill .box-beginning-list .list .item {
-		text-align: center;
-		width: 100%;
-		margin-bottom: 25px;
-		padding: 0;
-	}
+    .football-skill .box-beginning-list .list {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        height: auto;
+        padding: 10px 0;
+    }
 
-	.box-football-beginning .box-beginning-list .list .item .title {
-		margin-bottom: 0px;
-	}
-	.box-slide-review {
-		/* background-color: #ef9042; */
-		margin-top: -180px;
-		padding: 200px 15px 2rem;
-	}
+    .football-skill .box-beginning-list .list .item {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 25px;
+        padding: 0;
+    }
 
-	.box-slide-review .slide .box-acc-review {
-		border-top-color: white;
-	}
+    .box-football-beginning .box-beginning-list .list .item .title {
+        margin-bottom: 0px;
+    }
+    .box-slide-review {
+        /* background-color: #ef9042; */
+        margin-top: -180px;
+        padding: 200px 15px 2rem;
+    }
 
-	.football-skill .box-beginning-list {
-		box-shadow: none;
-		padding: 0;
-	}
+    .box-slide-review .slide .box-acc-review {
+        border-top-color: white;
+    }
 
-	/* .box-football-beginning {
+    .football-skill .box-beginning-list {
+        box-shadow: none;
+        padding: 0;
+    }
+
+    /* .box-football-beginning {
 		padding-left: 0;
 	} */
 
-	.why-wmf .list-item {
-		border: 1px solid #EFEFEF;
-		border-radius: 6px;
-		height: 320px;
-	}
+    .why-wmf .list-item {
+        border: 1px solid #efefef;
+        border-radius: 6px;
+        height: 320px;
+    }
 
-	.why-wmf .row .col-4 {
-		border-bottom: initial;
-	}
+    .why-wmf .row .col-4 {
+        border-bottom: initial;
+    }
 
-	.about-info-birthday {
-		position: relative;
-	}
+    .about-info-birthday {
+        position: relative;
+    }
 
-	.birthday-review {
-		margin-top: 0;
-		padding-top: 0;
-	}
+    .birthday-review {
+        margin-top: 0;
+        padding-top: 0;
+    }
 
-	.birthday-review .slide .box-acc-review {
-		border-top-color: transparent;
-	}
+    .birthday-review .slide .box-acc-review {
+        border-top-color: transparent;
+    }
 
-	.about-info-birthday img {
-		margin-left: 0;
-		max-width: 60px;
-	}
+    .about-info-birthday img {
+        margin-left: 0;
+        max-width: 60px;
+    }
 
-	.about-info-birthday .slide-text {
-		display: block;
-		width: 100%;
-		margin: 0 auto;
-		padding-top: 10px;
-		padding-bottom: 5rem;
-	}
+    .about-info-birthday .slide-text {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        padding-top: 10px;
+        padding-bottom: 5rem;
+    }
 
-	.one-training {
-		background-color: white;
-	}
+    .one-training {
+        background-color: white;
+    }
 
-	.one-training .slide .box-acc-review {
-		border-top-color: black;
-	}
+    .one-training .slide .box-acc-review {
+        border-top-color: black;
+    }
 
-	.why-wmf .heading,
-	.birthday-package {
-		margin-top: 0;
-	}
+    .why-wmf .heading,
+    .birthday-package {
+        margin-top: 0;
+    }
 
-	.why-wmf .heading {
-		font-size: 38px;
-	}
-	
-	.birthday-package .heading {
-		font-size: 38px;
-		line-height: 57px;
-	}
+    .why-wmf .heading {
+        font-size: 38px;
+    }
 
-	.provides .heading {
-		font-size: 38px;
-		line-height: 57px;
-		text-align: center;
-	}
+    .birthday-package .heading {
+        font-size: 38px;
+        line-height: 57px;
+    }
 
-	.birthday-package .package-item {
-		flex-direction: column;
-		margin-bottom: 5rem;
-	}
+    .provides .heading {
+        font-size: 38px;
+        line-height: 57px;
+        text-align: center;
+    }
 
-	.birthday-package .package-item:last-child {
-		margin-bottom: 50px;
-	}
+    .birthday-package .package-item {
+        flex-direction: column;
+        margin-bottom: 5rem;
+    }
 
-	.birthday-package .package-item .package-image {
-		margin-bottom: 1rem;
-		order: 1;
-	}
+    .birthday-package .package-item:last-child {
+        margin-bottom: 50px;
+    }
 
-	.birthday-package .package-item .package-text {
-		order: 2;
-	}
+    .birthday-package .package-item .package-image {
+        margin-bottom: 1rem;
+        order: 1;
+    }
 
-	.birthday-package .package-item .package-include {
-		margin-top: 0;
-	}
+    .birthday-package .package-item .package-text {
+        order: 2;
+    }
 
-	.birthday-package .package-item .text-right,
-	.birthday-package .package-item .text-left {
-		padding-left: 0;
-		padding-right: 0;
-	}
+    .birthday-package .package-item .package-include {
+        margin-top: 0;
+    }
 
-	.birthday-package .package-item .package-cost {
-		margin-left: -15px;
-		margin-right: -15px;
-	}
+    .birthday-package .package-item .text-right,
+    .birthday-package .package-item .text-left {
+        padding-left: 0;
+        padding-right: 0;
+    }
 
-	.birthday-extra .extra-column {
-		margin-bottom: 2rem;
-		padding: 3rem 1rem;
-	}
+    .birthday-package .package-item .package-cost {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
 
-	.birthday-extra .extra-column h3.heading {
-		font-size: 24px;
-	}
+    .birthday-extra .extra-column {
+        margin-bottom: 2rem;
+        padding: 3rem 1rem;
+    }
 
-	.provides .provides-row {
-		flex-direction: column;
-	}
+    .birthday-extra .extra-column h3.heading {
+        font-size: 24px;
+    }
 
-	.provides .provides-image {
-		order: 2;
-		padding: 15px;
-	}
+    .provides .provides-row {
+        flex-direction: column;
+    }
 
-	.provides .provides-image img {
-		border-radius: 6px;
-	}
+    .provides .provides-image {
+        order: 2;
+        padding: 15px;
+    }
 
-	.provides .provides-text {
-		order: 1;
-	}
+    .provides .provides-image img {
+        border-radius: 6px;
+    }
 
-	.provides .provides-wrap-text {
-		max-width: 650px;
-		margin-left: 0;
-		padding-right: 0;
-	}
+    .provides .provides-text {
+        order: 1;
+    }
 
-	.provides .provides-wrap-text p,
-	.provides .provides-wrap-text>b {
-		padding-right: 15px;
-		padding-left: 15px;
-	}
+    .provides .provides-wrap-text {
+        max-width: 650px;
+        margin-left: 0;
+        padding-right: 0;
+    }
 
-	.enquire {
-		margin-left: -15px;
-		margin-right: -15px;
-		border-radius: 0;
-		margin-top: -250px;
-		padding-top: 195px;
-	}
+    .provides .provides-wrap-text p,
+    .provides .provides-wrap-text > b {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
 
-	.enquire .enquire-header {
-		font-size: 32px;
-	}
+    .enquire {
+        margin-left: -15px;
+        margin-right: -15px;
+        border-radius: 0;
+        margin-top: -250px;
+        padding-top: 195px;
+    }
 
-	.enquire button {
-		padding: 1.5rem 1rem !important;
-	}
-	
+    .enquire .enquire-header {
+        font-size: 32px;
+    }
+
+    .enquire button {
+        padding: 1.5rem 1rem !important;
+    }
 }

@@ -356,7 +356,7 @@
 }
 .rAcademy img {
     border-radius: 6px 6px 0 0;
-    width: 100%;
+    /* width: 100%; */
 }
 .rAcademy p {
     margin: 0;

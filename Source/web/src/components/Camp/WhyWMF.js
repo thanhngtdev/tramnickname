@@ -11,6 +11,7 @@ WhyWMF.propTypes = {
 };
 
 export default function WhyWMF(props) {
+    // console.log(props, 'props whyWMF');
     const [data, setData] = useState([]);
     const { listSite } = useSelector((state) => state.listSiteReducer);
     const [defaultAcademy, setDefaultAcademy] = useState({});
@@ -22,6 +23,7 @@ export default function WhyWMF(props) {
     useEffect(() => {
         // console.log(checkPound(props.data.cfg_value), 'check');
         getTrustPilot();
+
         if (checkPound(props.data.cfg_value)) {
             if (props?.site) {
                 setDefaultAcademy(props.site);
@@ -39,12 +41,13 @@ export default function WhyWMF(props) {
             return;
         }
 
+        // console.log(defaultAcademy, ' defaultAcademy');
         checkCost();
     }, [defaultAcademy]);
 
     useEffect(() => {
         // console.log(cost, 'cost');
-        if (isEmpty(cost)) return;
+        if (isEmpty(cost) || isEmpty(trustPilot)) return;
 
         const { weeklyCost, minWeeklyCost } = cost;
 
@@ -72,44 +75,53 @@ export default function WhyWMF(props) {
         });
 
         setData(converted);
-    }, [cost]);
+    }, [cost, trustPilot]);
 
-    useEffect(() => {
-        // console.log('trustpilot', trustPilot);
+    // useEffect(() => {
+    //     console.log(data, 'data');
+    // }, [data]);
 
-        if (isEmpty(trustPilot)) return;
+    // useEffect(() => {
+    //     // console.log('trustpilot', trustPilot);
 
-        const converted = props.data.cfg_value.map((item) => {
-            // console.log('new content');
-            let newContent = item.des;
-            newContent = Utils.convertTrustPilot(
-                trustPilot.rating,
-                trustPilot.maxRate,
-                trustPilot.review,
-                newContent,
-            );
+    //     if (isEmpty(trustPilot)) return;
 
-            return { ...item, des: newContent };
-        });
+    //     const converted = props.data.cfg_value.map((item) => {
+    //         // console.log('new content');
+    //         let newContent = item.des;
+    //         newContent = Utils.convertTrustPilot(
+    //             trustPilot.rating,
+    //             trustPilot.maxRate,
+    //             trustPilot.review,
+    //             newContent,
+    //         );
 
-        setData(converted);
-    }, [trustPilot]);
+    //         return { ...item, des: newContent };
+    //     });
+
+    //     setData(converted);
+    // }, [trustPilot]);
 
     //! Functions
     const checkCost = async () => {
         if (!isEmpty(defaultAcademy)) {
             const { weeklyCost, minWeeklyCost } = defaultAcademy;
             setCost({ weeklyCost, minWeeklyCost });
-        } else if (!isEmpty(props?.site)) {
-            setCost({
-                weeklyCost: props.site.weeklyCost,
-                minWeeklyCost: props.site.minWeeklyCost,
-            });
-        } else {
+        }
+        //  else if (!isEmpty(props?.site)) {
+        //     setCost({
+        //         weeklyCost: props.site.weeklyCost,
+        //         minWeeklyCost: props.site.minWeeklyCost,
+        //     });
+        // }
+        else {
+            // console.log();
             try {
                 const res = await siteService.getDetailSite({
                     id: listSite[0].ms_id,
                 });
+
+                // console.log(res, 'res');
                 if (res.data.status == 200) {
                     const item = res.data?.data?.site || {};
                     const { weeklyCost, minWeeklyCost } = item;
