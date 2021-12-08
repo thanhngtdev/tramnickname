@@ -9,7 +9,7 @@ RelateAreas.propTypes = {
 };
 
 function RelateAreas(props) {
-    console.log(props, 'props');
+    // console.log(props, 'props');
 
     const siteName = getFranchiseName(props.site) || '';
     return (

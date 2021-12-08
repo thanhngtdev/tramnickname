@@ -14,6 +14,8 @@ BannerTop.propTypes = {
 };
 
 function BannerTop(props) {
+    console.log(props.site, 'site');
+
     const dispatch = useDispatch();
     const { data } = useSelector((state) => state.homeReducer);
     let options = [];
@@ -47,9 +49,9 @@ function BannerTop(props) {
             );
     }
 
-    useEffect(() => {
-        console.log(data, 'datahome');
-    }, [data]);
+    // useEffect(() => {
+    //     console.log(data, 'datahome');
+    // }, [data]);
 
     function checkSubname(name = '') {
         if (!name) return '<> </>';
@@ -73,7 +75,7 @@ function BannerTop(props) {
                 )})`,
             }}>
             <div className="container">
-                <h1 style={{ lineHeight: '3rem' }}>
+                <h1 style={{ lineHeight: '4rem' }}>
                     {/* {`${siteName.replace(' Academy', '')}`} */}
                     {parse(checkSubname(`${siteName.replace(' Academy', '')}`))}
                 </h1>

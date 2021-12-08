@@ -14,7 +14,7 @@ CampInclude.propTypes = {
 };
 
 export default function CampInclude(props) {
-    console.log(props, 'props');
+    // console.log(props, 'props');
 
     const sliderRef = useRef(null);
     const [slideIndex, setSlideIndex] = useState(0);
