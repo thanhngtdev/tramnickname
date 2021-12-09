@@ -110,6 +110,10 @@
     min-height: 30px;
 }
 
+.modal-content .list-acade a span {
+    margin-right: 10px;
+}
+
 .modal-content .list-acade a:hover,
 .modal-content .list-acade a:focus,
 .modal-content .list-acade a:active {

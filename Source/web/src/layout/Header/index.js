@@ -221,12 +221,7 @@ function Header() {
                                     style={{ marginLeft: 0 }}
                                     isOrange={!menuMobile}
                                     // title={defaultAcademy.ms_name}
-                                    title={
-                                        defaultAcademy.ms_name.replace(
-                                            ' Academy',
-                                            '',
-                                        ) + ' Academy'
-                                    }
+                                    title={defaultAcademy.ms_name || ''}
                                     hideMenu={hideMenu}
                                     href={`/${defaultAcademy.ms_alias}`}
                                 />
