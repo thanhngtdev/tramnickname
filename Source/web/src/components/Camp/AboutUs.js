@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import Utils from 'src/common/Utils';
 import Script from 'next/script';
 import useTruspilot from 'src/hooks/useTruspilot';
+import useGetWidth from 'src/hooks/useGetWidth';
 
 AboutUs.propTypes = {
     data: PropTypes.object,
@@ -86,8 +87,11 @@ export default function AboutUs(props) {
     const [showVideo, setShowVIdeo] = useState(false);
     const [title, setTitle] = useState('');
     const [des, setDes] = useState(props.data.cfg_des);
+    const isMobile = useGetWidth() <= 768;
 
-    // console.log(props, 'props');
+    console.log(isMobile, 'isMobiee');
+
+    // console.log(prop s, 'props');
 
     useTruspilot();
 
@@ -147,45 +151,48 @@ export default function AboutUs(props) {
                         }}
                     />
                 )}
-            <div className="row">
-                <div className="col-6">
-                    <p></p>
-                </div>
-                <div
-                    className="col-6"
-                    style={{
-                        paddingLeft: 0,
-                    }}>
-                    <img
-                        loading="lazy"
-                        alt=""
-                        src={Utils.getThumb(props.data?.cfg_image || '')}
-                        // height="1000px"
-                    />
-                    {props.data.cfg_content &&
-                        props.data.cfg_content.includes('youtube.com') && (
-                            <div
-                                style={{
-                                    position: 'absolute',
-                                    top: '50%',
-                                    left: '50%',
-                                    backgroundColor: '#ffffff',
-                                    borderRadius: '50%',
-                                    width: '100px',
-                                    height: '100px',
-                                    alignItems: 'center',
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    cursor: 'pointer',
-                                    transform: 'translate(-50%, -50%)',
-                                    zIndex: 1,
-                                }}
-                                onClick={() => setShowVIdeo(true)}>
-                                <PlayButton />
-                            </div>
-                        )}
+            <div className="container">
+                <div className="row">
+                    <div className="col-6">
+                        <p></p>
+                    </div>
+                    <div
+                        className="col-6"
+                        style={{
+                            paddingLeft: 0,
+                        }}>
+                        <img
+                            loading="lazy"
+                            alt=""
+                            src={Utils.getThumb(props.data?.cfg_image || '')}
+                            // height="1000px"
+                        />
+                        {props.data.cfg_content &&
+                            props.data.cfg_content.includes('youtube.com') && (
+                                <div
+                                    style={{
+                                        position: 'absolute',
+                                        top: '50%',
+                                        left: '50%',
+                                        backgroundColor: '#ffffff',
+                                        borderRadius: '50%',
+                                        width: '100px',
+                                        height: '100px',
+                                        alignItems: 'center',
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        cursor: 'pointer',
+                                        transform: 'translate(-50%, -50%)',
+                                        zIndex: 1,
+                                    }}
+                                    onClick={() => setShowVIdeo(true)}>
+                                    <PlayButton />
+                                </div>
+                            )}
+                    </div>
                 </div>
             </div>
+
             <div className="about-us-content">
                 <div className="container" style={{ pointerEvents: 'none' }}>
                     <h1

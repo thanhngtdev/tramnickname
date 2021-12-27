@@ -40,29 +40,34 @@ export default function CampInclude(props) {
             {props.data && (
                 <div className="container">
                     <h2 className="contact-header">{props.data.cfg_title}</h2>
-                    <Slider ref={sliderRef} className="list lazy" {...settings}>
-                        {props.data.cfg_value &&
-                            props.data.cfg_value.map((element, index) => (
-                                <div key={index}>
-                                    <div className="slide-item">
-                                        <div className="slide-image">
-                                            <img
-                                                alt=""
-                                                src={Utils.getThumb(
-                                                    element.image,
-                                                )}
-                                            />
-                                        </div>
-                                        <div className="slide-text">
-                                            {/* <p>{element.content}</p> */}
-                                            {parse(element.content + '')}
-                                            <h3>{element.title}</h3>
-                                            <p>{element.des}</p>
+                    <div className="container">
+                        <Slider
+                            ref={sliderRef}
+                            className="list lazy"
+                            {...settings}>
+                            {props.data.cfg_value &&
+                                props.data.cfg_value.map((element, index) => (
+                                    <div key={index}>
+                                        <div className="slide-item">
+                                            <div className="slide-image">
+                                                <img
+                                                    alt=""
+                                                    src={Utils.getThumb(
+                                                        element.image,
+                                                    )}
+                                                />
+                                            </div>
+                                            <div className="slide-text">
+                                                {/* <p>{element.content}</p> */}
+                                                {parse(element.content + '')}
+                                                <h3>{element.title}</h3>
+                                                <p>{element.des}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
-                    </Slider>
+                                ))}
+                        </Slider>
+                    </div>
                     <div
                         className={
                             width > 767

@@ -47,8 +47,8 @@ export default function ArticleMenu(props) {
     }, [isShowDrop]);
 
     useEffect(() => {
+        // console.log(isShowDrop, 'isMobile');
         if (isShowDrop === 'undefined') return;
-        // console.log(isMobile, 'isMobile');
 
         if (isMobile) {
             setIsShowDrop(false);
@@ -56,6 +56,8 @@ export default function ArticleMenu(props) {
             setIsShowDrop(true);
         }
     }, [isMobile]);
+
+    useEffect(() => {}, []);
 
     const getListNews = async () => {
         const data = await siteService.getListNews({
@@ -85,7 +87,11 @@ export default function ArticleMenu(props) {
                             }
 
                             setIsShowDrop(!isShowDrop);
-                        }}></button>
+                        }}>
+                        {!isShowDrop && (
+                            <span style={{ paddingLeft: 50 }}>abc</span>
+                        )}
+                    </button>
                     <div className="dropdownlist">
                         <ul>
                             <li
@@ -150,7 +156,6 @@ export default function ArticleMenu(props) {
                             )}
                         </ul>
                     </div>
-
                     <div className="search">
                         <FontAwesomeIcon
                             style={{ color: '#EF8336' }}

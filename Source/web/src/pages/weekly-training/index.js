@@ -31,7 +31,6 @@ function WeeklyTraining({ data, listSite }) {
             <div className="about-info-weekly">
                 <AboutInfo lstAcademy={listSite || []} />
             </div>
-
             <div className="about-secure-weekly">
                 <AboutSecure data={data?.academyIntro || []} />
             </div>

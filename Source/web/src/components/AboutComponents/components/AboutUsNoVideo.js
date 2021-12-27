@@ -1,29 +1,59 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import useGetWidth from 'src/hooks/useGetWidth';
 
 const propTypes = {};
 
 const AboutUsNoVideo = ({ data }) => {
     //! State
     const dispatch = useDispatch();
+    const isMobile = useGetWidth() <= 768;
 
     //! Function
+
+    // console.log(isMobile, 'isMobile');
 
     //! Render
     return (
         <div className="about-us">
-            <div className="row">
-                <div className="col-6">
-                    <p></p>
+            {isMobile ? (
+                <div className="container">
+                    <div className="row">
+                        <div className="col-6">
+                            <p></p>
+                        </div>
+                        <div
+                            className="col-6"
+                            style={{ paddingLeft: 0 }}
+                            // style={{
+                            //     backgroundImage: `static-file/images/image_about.png`,
+                            // }}
+                        >
+                            <img
+                                loading="lazy"
+                                alt=""
+                                src={'static-file/images/image_about.png'}
+                            />
+                        </div>
+                    </div>
                 </div>
-                <div className="col-6" style={{ paddingLeft: 0 }}>
-                    <img
-                        loading="lazy"
-                        alt=""
-                        src={'static-file/images/image_about.png'}
-                    />
+            ) : (
+                // <div className="container">
+                <div className="row">
+                    <div className="col-6">
+                        <p></p>
+                    </div>
+                    <div className="col-6" style={{ paddingLeft: 0 }}>
+                        <img
+                            loading="lazy"
+                            alt=""
+                            src={'static-file/images/image_about.png'}
+                        />
+                    </div>
                 </div>
-            </div>
+                // </div>
+            )}
+
             <div className="about-us-content">
                 <div className="container">
                     <h1 className="contact-header about-contact-header">

@@ -8,8 +8,8 @@
 
 .camp-review {
     width: 100%;
-	    display: inline-block;
-        position: relative;
+    display: inline-block;
+    position: relative;
 }
 
 .camp-review::before {
@@ -27,35 +27,34 @@
 }
 
 .about-info-holiday .about-info .wrap-info {
-	max-width: 700px;
+    max-width: 700px;
     margin: auto;
     width: 100%;
-	border-radius: 6px;
-	box-shadow: 0 20px 60px rgba(2, 2, 30, 0.09);
-	position: relative;
+    border-radius: 6px;
+    box-shadow: 0 20px 60px rgba(2, 2, 30, 0.09);
+    position: relative;
     background-color: white;
-	padding:50px;
+    padding: 50px;
 }
 
 .about-info-holiday .about-info .wrap-info .about-info-content {
-	position: relative;
-	background-size: white;
+    position: relative;
+    background-size: white;
 }
 
 .about-info-holiday .about-info .wrap-info .about-info-title {
-	text-align: center;
+    text-align: center;
 }
 
 .about-info-holiday .about-info .wrap-info .btn-book-free-session {
-	width: 205px;
+    width: 205px;
 }
 
 .about-camp-holiday .training-include .slide-control {
     bottom: 22rem;
 }
 
- 
-@media only screen and (max-width: 768px) and (min-width: 320px) { 
+@media only screen and (max-width: 768px) and (min-width: 320px) {
     .about-info-holiday .about-info {
         margin-top: 150px;
     }
@@ -69,13 +68,13 @@
     }
 
     .about-secure-holiday .list-intro-item {
-        background-color: #F2F2F2;
+        background-color: #f2f2f2;
         box-shadow: none;
     }
 
     .about-info-holiday .about-info .wrap-info .about-info-title {
-		text-align: left;
-	}
+        text-align: left;
+    }
 
     .about-info-holiday .about-info .wrap-info .btn-book-free-session {
         width: 100%;
@@ -83,7 +82,7 @@
 
     .camp-review {
         width: 100%;
-	    display: inline-block;
+        display: inline-block;
         position: relative;
         background-color: #fff;
     }
@@ -92,10 +91,10 @@
         width: 100%;
         position: absolute;
         left: 0;
-        top: 1000px;
+        top: 600px;
         content: '';
         background: #ef9042;
-        height: 1018px;
+        height: 645px;
     }
 
     .camp-review .training-include {
@@ -105,14 +104,12 @@
     .football-holiday {
         margin-top: 75px;
     }
-    
+
     .football-holiday .box-football-beginning {
         padding: 0;
-    } 
+    }
 
     .camp-review .box-slide-review {
-        padding-top: 0
+        padding-top: 0;
     }
-    
-
 }

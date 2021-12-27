@@ -36,29 +36,36 @@ export default function TrainingInclude(props) {
             {props.data && (
                 <div className="container">
                     <h2 className="contact-header">{props.data.cfg_title}</h2>
-                    <Slider ref={sliderRef} className="list lazy" {...settings}>
-                        {slideItem.map((element, index) => (
-                            <div key={index}>
-                                <div className="slide-item">
-                                    {/* {!isMobile && (
+                    <div className="container">
+                        <Slider
+                            ref={sliderRef}
+                            className="list lazy"
+                            {...settings}>
+                            {slideItem.map((element, index) => (
+                                <div key={index}>
+                                    <div className="slide-item">
+                                        {/* {!isMobile && (
                                     )} */}
-                                    <div className="slide-image">
-                                        <img
-                                            alt=""
-                                            src={Utils.getThumb(element.image)}
-                                        />
-                                    </div>
+                                        <div className="slide-image">
+                                            <img
+                                                alt=""
+                                                src={Utils.getThumb(
+                                                    element.image,
+                                                )}
+                                            />
+                                        </div>
 
-                                    <div className="slide-text">
-                                        <p style={{ fontSize: '32px' }}>
-                                            {element.title}
-                                        </p>
-                                        <p>{element.des}</p>
+                                        <div className="slide-text">
+                                            <p style={{ fontSize: '32px' }}>
+                                                {element.title}
+                                            </p>
+                                            <p>{element.des}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
-                    </Slider>
+                            ))}
+                        </Slider>
+                    </div>
                     <div className="slide-control">
                         <button
                             onClick={() => {
