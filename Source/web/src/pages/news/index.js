@@ -4,6 +4,8 @@ import dynamic from 'next/dynamic';
 const CategoryNews = dynamic(() => import('src/components/CategoryNews'));
 
 function News({ listSite, data }) {
+    console.log(data, 'data');
+
     return <CategoryNews listSite={listSite} data={data} />;
 }
 

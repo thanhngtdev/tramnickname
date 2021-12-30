@@ -24,11 +24,33 @@ export default function ArticleMenu(props) {
     const [listNews, setListNews] = useState([]);
     const [results, setResults] = useState([]);
     const [isShowDrop, setIsShowDrop] = useState();
+    const [name, setName] = useState('');
     const isMobile = useGetWidth() <= 768;
 
     useEffect(() => {
         setCurrentAcademy(ModelManager.getLocation() || {});
         getListNews();
+
+        if (props?.isFranchise) {
+            setName(currentAcademy.ms_name + ' News');
+            return;
+        }
+
+        if (props.currentCate) {
+            for (let index = 0; index < lstCate.length; index++) {
+                if (lstCate[index].cate_id === props.currentCate) {
+                    setName(lstCate[index].cate_value);
+                    break;
+                }
+            }
+
+            return;
+        }
+
+        if (!props.currentCate && !props.isFranchise) {
+            setName('Latest Articles');
+            return;
+        }
     }, []);
 
     useEffect(() => {
@@ -76,6 +98,7 @@ export default function ArticleMenu(props) {
         <div className="article-menu">
             {displayForm ? (
                 <div className="container">
+                    {/* <span> */}
                     <button
                         className="dropdownLogo"
                         type="button"
@@ -87,11 +110,20 @@ export default function ArticleMenu(props) {
                             }
 
                             setIsShowDrop(!isShowDrop);
-                        }}>
-                        {!isShowDrop && (
-                            <span style={{ paddingLeft: 50 }}>abc</span>
-                        )}
-                    </button>
+                        }}></button>
+                    {!isShowDrop && (
+                        <span
+                            style={{
+                                // paddingLeft: 10,
+                                color: '#ee7925',
+                                position: 'relative',
+                                top: 25,
+                                left: 15,
+                            }}>
+                            {name}
+                        </span>
+                    )}
+                    {/* </span> */}
                     <div className="dropdownlist">
                         <ul>
                             <li

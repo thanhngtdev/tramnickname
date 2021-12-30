@@ -151,7 +151,55 @@ export default function AboutUs(props) {
                         }}
                     />
                 )}
-            <div className="container">
+
+            {isMobile ? (
+                <div className="container">
+                    <div className="row">
+                        <div className="col-6">
+                            <p></p>
+                        </div>
+                        <div
+                            className="col-6"
+                            style={{
+                                paddingLeft: 0,
+                            }}>
+                            <img
+                                loading="lazy"
+                                alt=""
+                                src={Utils.getThumb(
+                                    props.data?.cfg_image || '',
+                                )}
+                                // height="1000px"
+                            />
+                            {props.data.cfg_content &&
+                                props.data.cfg_content.includes(
+                                    'youtube.com',
+                                ) && (
+                                    <div
+                                        style={{
+                                            position: 'absolute',
+                                            top: '50%',
+                                            left: '50%',
+                                            backgroundColor: '#ffffff',
+                                            borderRadius: '50%',
+                                            width: '100px',
+                                            height: '100px',
+                                            alignItems: 'center',
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            cursor: 'pointer',
+                                            transform: 'translate(-50%, -50%)',
+                                            zIndex: 1,
+                                        }}
+                                        onClick={() => setShowVIdeo(true)}>
+                                        <PlayButton />
+                                    </div>
+                                )}
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                // <div className="container">
                 <div className="row">
                     <div className="col-6">
                         <p></p>
@@ -191,7 +239,8 @@ export default function AboutUs(props) {
                             )}
                     </div>
                 </div>
-            </div>
+                // </div>
+            )}
 
             <div className="about-us-content">
                 <div className="container" style={{ pointerEvents: 'none' }}>
