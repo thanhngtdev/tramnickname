@@ -148,7 +148,7 @@
 .outputText {
     text-align: center;
     overflow: hidden;
-    resize: none;
+    resize: both;
     background: #ffffff;
     border: 1px solid #e7e7e7;
     border-radius: 6px;
@@ -238,5 +238,9 @@
 
     .tab-view .wrap-tab {
         padding: 1px;
+    }
+
+    .about-info .wrap-info .outputText {
+        min-height: 80px;
     }
 }

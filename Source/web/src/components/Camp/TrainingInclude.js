@@ -32,11 +32,12 @@ export default function TrainingInclude(props) {
         : [];
 
     return (
-        <div className="training-include">
+        <div className="container">
             {props.data && (
-                <div className="container">
+                <div className="training-include">
                     <h2 className="contact-header">{props.data.cfg_title}</h2>
                     <div className="container">
+                        {/* <div className="slide-container"> */}
                         <Slider
                             ref={sliderRef}
                             className="list lazy"
@@ -44,8 +45,6 @@ export default function TrainingInclude(props) {
                             {slideItem.map((element, index) => (
                                 <div key={index}>
                                     <div className="slide-item">
-                                        {/* {!isMobile && (
-                                    )} */}
                                         <div className="slide-image">
                                             <img
                                                 alt=""
@@ -65,35 +64,36 @@ export default function TrainingInclude(props) {
                                 </div>
                             ))}
                         </Slider>
-                    </div>
-                    <div className="slide-control">
-                        <button
-                            onClick={() => {
-                                sliderRef.current.slickGoTo(slideIndex - 1);
-                            }}
-                            className="slide-button">
-                            <FontAwesomeIcon
-                                icon={faChevronLeft}
-                                className="icon"
-                            />
-                        </button>
-                        <b
-                            className="slide-number"
-                            // style={{ margin: '0 2rem' }}
-                        >
-                            {slideIndex + 1}/{slideItem.length}
-                        </b>
-                        <button
-                            onClick={() => {
-                                sliderRef.current.slickGoTo(slideIndex + 1);
-                            }}
-                            className="slide-button">
-                            NEXT{' '}
-                            <FontAwesomeIcon
-                                icon={faChevronRight}
-                                className="icon"
-                            />
-                        </button>
+                        <div className="slide-control">
+                            <button
+                                onClick={() => {
+                                    sliderRef.current.slickGoTo(slideIndex - 1);
+                                }}
+                                className="slide-button">
+                                <FontAwesomeIcon
+                                    icon={faChevronLeft}
+                                    className="icon"
+                                />
+                            </button>
+                            <b
+                                className="slide-number"
+                                // style={{ margin: '0 2rem' }}
+                            >
+                                {slideIndex + 1}/{slideItem.length}
+                            </b>
+                            <button
+                                onClick={() => {
+                                    sliderRef.current.slickGoTo(slideIndex + 1);
+                                }}
+                                className="slide-button">
+                                NEXT{' '}
+                                <FontAwesomeIcon
+                                    icon={faChevronRight}
+                                    className="icon"
+                                />
+                            </button>
+                        </div>
+                        {/* </div> */}
                     </div>
                 </div>
             )}

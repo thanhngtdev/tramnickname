@@ -353,6 +353,7 @@
 .rAcademy {
     margin-right: 1.8rem;
     background-color: #d8d8d8;
+    max-width: 10rem;
 }
 .rAcademy img {
     border-radius: 6px 6px 0 0;
@@ -361,7 +362,7 @@
 .rAcademy p {
     margin: 0;
     padding: 1rem;
-    font-size: 1.5rem;
+    /* font-size: 1.5rem; */
     background-color: rgba(255, 255, 255, 0.85);
 }
 .latest-news {

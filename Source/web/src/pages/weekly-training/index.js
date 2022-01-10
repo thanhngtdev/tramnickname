@@ -21,7 +21,6 @@ const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 function WeeklyTraining({ data, listSite }) {
     // console.log(data, 'data');
-
     saveList(listSite);
 
     return (

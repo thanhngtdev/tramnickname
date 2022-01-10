@@ -1,5 +1,5 @@
 .tab-1 .btn-submit {
-    background: #FF7531;
+    background: #ff7531;
     border-radius: 6px;
     width: 390px;
     display: inline-block;
@@ -12,33 +12,33 @@
     text-align: center;
     letter-spacing: 1.71429px;
     text-transform: uppercase;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .textArea {
     resize: none;
-    background: #FFFFFF;
-	border: 1px solid #E7E7E7;
-	border-radius: 6px;
-	color: rgba(0, 0, 0, 1);
-	padding: 17px 30px;
-	cursor: pointer;
-	height: 200px;
-	line-height: 31px;
-	/* padding-right: 95px; */
-	font-weight: normal;
-	font-size: 24px;
-	width: 100%;
+    background: #ffffff;
+    border: 1px solid #e7e7e7;
+    border-radius: 6px;
+    color: rgba(0, 0, 0, 1);
+    padding: 17px 30px;
+    cursor: pointer;
+    height: 200px;
+    line-height: 31px;
+    /* padding-right: 95px; */
+    font-weight: normal;
+    font-size: 24px;
+    width: 100%;
     display: inline-block;
 }
 
 .attach-file {
-    border: 1px solid #E7E7E7;
-	border-radius: 6px;
+    border: 1px solid #e7e7e7;
+    border-radius: 6px;
     display: block;
     width: 120px;
     height: 70px;
-    background: #FF7531;
+    background: #ff7531;
     cursor: pointer;
 }
 
@@ -48,6 +48,10 @@
 
 .enquire-joinus {
     margin-bottom: 120px;
+}
+
+.enquire-joinus .enquire {
+    padding-top: 65px;
 }
 
 .enquire-joinus .content {
@@ -65,16 +69,15 @@
     margin-top: 110px;
 }
 
-
 .about-coach-joinus .about-coach {
     padding-bottom: 300px;
 }
 
-.about-coach-joinus .about-coach p:last-child{
+.about-coach-joinus .about-coach p:last-child {
     margin-bottom: 70px;
 }
 
-.about-secure-joinus {  
+.about-secure-joinus {
     height: 400px;
 }
 
@@ -87,8 +90,7 @@
         margin-top: 0;
     }
 
-
-    .tab-1 .btn-submit{
+    .tab-1 .btn-submit {
         width: 340px;
     }
 
@@ -96,7 +98,7 @@
         margin-top: 90px;
     } */
 
-    .bannerBox-joinus .list-form{
+    .bannerBox-joinus .list-form {
         text-align: center;
     }
 
@@ -109,8 +111,8 @@
     }
 
     .enquire-joinus {
-        margin-bottom:0;
-        margin-top: 1060px;
+        margin-bottom: 0;
+        margin-top: 1400px;
     }
 
     .intro-joinus {
@@ -130,16 +132,15 @@
         margin-top: 200px;
     }
 
-    .about-coach-joinus .about-coach{
+    .about-coach-joinus .about-coach {
         padding-bottom: 185px;
     }
 
-
     .about-coach-joinus .about-coach .btn-right {
-		padding: 15px 104px !important;
-	}
+        padding: 15px 104px !important;
+    }
 
-    .enquire-joinus .title{
+    .enquire-joinus .title {
         font-size: 32px;
     }
 
@@ -147,9 +148,7 @@
         font-size: 22px;
     }
 
-    .enquire-joinus .content br{
+    .enquire-joinus .content br {
         display: none;
     }
-
-
 }

@@ -248,7 +248,7 @@ function BookTrialSchool(props) {
                             <label className="label">Your name</label>
                             <input
                                 type="text"
-                                placeholder=""
+                                placeholder="Enter your name"
                                 className="input-text"
                                 onChange={(event) => {
                                     setName(event.target.value);
@@ -259,16 +259,6 @@ function BookTrialSchool(props) {
                         </li>
                         <li>
                             <label className="label">Your phone number</label>
-                            {/* <input
-                                type="text"
-                                placeholder=""
-                                className="input-text"
-                                onChange={(event) => {
-                                    setPhone(event.target.value);
-                                    setPhoneError('');
-                                }}
-                            /> */}
-
                             <PhoneInput
                                 flag={flags}
                                 defaultCountry="GB"
@@ -286,6 +276,7 @@ function BookTrialSchool(props) {
                         <li>
                             <label className="label">Your Email *</label>
                             <input
+                                placeholder="Example@gmail.com"
                                 type="text"
                                 className="input-text"
                                 onChange={(event) => {

@@ -215,6 +215,8 @@
 .birthday-extra .extra-column {
     box-shadow: 0px 20px 60px rgba(2, 2, 30, 0.088833);
     padding: 4rem;
+    min-height: 700px;
+    margin-bottom: 50px;
 }
 
 .birthday-extra .extra-column h3.heading {
@@ -236,6 +238,12 @@
     margin-right: 2rem;
     display: block;
     float: left;
+}
+
+.birthday-extra .birthday-warning {
+    /* text-align: center;
+    margin-top: 10px; */
+    min-height: 715px;
 }
 
 .provides {
@@ -323,6 +331,13 @@ ul.camp-paid li::before {
 		margin-top: 50px;
 	} */
 
+    .birthday-extra .birthday-warning {
+        /* text-align: center;
+    margin-top: 10px; */
+        min-height: none;
+        max-height: 600px !important;
+    }
+
     .birthday-extra .extra-column .extra-item img {
         margin-bottom: 2rem;
     }
@@ -353,7 +368,9 @@ ul.camp-paid li::before {
 
     .training-include .slide-text {
         order: 1;
+        padding-bottom: 0;
         /* padding-left: 15px; */
+        min-height: 500px;
     }
 
     .training-include .slide-control {
@@ -363,7 +380,7 @@ ul.camp-paid li::before {
     }
 
     .training-include .slide-control .slide-number {
-        margin: 0 48px;
+        margin: 0 40px;
     }
 
     .training-include .mobile {

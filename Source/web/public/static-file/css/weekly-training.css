@@ -50,14 +50,15 @@
     }
 
     .background-weekly .training-include {
-        margin-top: -120px;
+        margin-top: -145px;
+        margin-bottom: 50px;
     }
 
     .background-weekly::before {
         width: 100%;
         position: absolute;
         left: 0;
-        top: 645px !important;
+        top: 685px !important;
         content: '';
         background: #ef9042;
         height: 1018px;
@@ -72,7 +73,9 @@
     }
 
     .background-weekly .box-slide-review {
-        padding-top: 258px !important;
+        /* padding-top: 258px !important; */
+        padding: 0;
+        margin: 0;
     }
 
     .background-weekly .box-slide-review .slick-dots .slick-active button {
