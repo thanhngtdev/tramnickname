@@ -6,45 +6,54 @@ import Utils from 'src/common/Utils';
 import saveList from 'src/hooks/useSaveList';
 import type from 'src/redux/actions/actionTypes';
 import dynamic from 'next/dynamic';
+import httpMethod from 'src/services/httpMethod';
+import Button from '../../components/Button';
+
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const ArticleItem = dynamic(() => import('src/components/Article/ArticleItem'));
 const ArticleMenu = dynamic(() => import('src/components/Article/ArticleMenu'));
 
 export default ({ listSite, data }) => {
-    const articleReducer = useSelector((state) => state.articleReducer);
     const dispatch = useDispatch();
-    const [lstNews, setLstNews] = useState([]);
+    const [lstNews, setLstNews] = useState({});
     const [page, setPage] = useState(1);
-    const [lastPage, setLastPage] = useState(1);
+    // const [lastPage, setLastPage] = useState(1);
     const [promoteArticle, setPromoteArticle] = useState({});
     const [cate, setCate] = useState({});
+    const [lstArticle, setLstArticle] = useState([]);
+    const [nextPage, setNextPage] = useState('');
 
     saveList(listSite);
-
     useEffect(() => {
         if (!isEmpty(data)) {
             setPromoteArticle(data.lstPromote[0]);
-            setLstNews(data.lstArticle.data);
+            // setLstNews(data.lstArticle.data);
+            setNextPage(data.lstArticle.next_page_url);
+            setLstArticle(data.lstArticle.data);
         }
     }, []);
 
-    useEffect(() => {
-        if (articleReducer.type) {
-            if (articleReducer.type === type.GET_LIST_NEWS_SUCCESS) {
-                if (articleReducer.data.lstPromote.length > 0) {
-                    setPromoteArticle(articleReducer.data.lstPromote[0]);
-                }
+    const getMoreNews = async (nextLink) => {
+        try {
+            const res = await httpMethod.get(nextLink);
+            // console.log(res, 'res');
 
-                setLastPage(articleReducer.data.lstArticle.last_page);
+            if (res.data.status == 200 && res.data.data) {
+                const { data } = res.data;
 
-                if (page === 1) setLstNews(articleReducer.data.lstArticle.data);
-                else
-                    setLstNews(
-                        lstNews.concat(articleReducer.data.lstArticle.data),
-                    );
+                const newsList = [...data.lstArticle.data, ...lstArticle];
+
+                setNextPage(data.lstArticle.next_page_url);
+                setLstArticle(newsList);
             }
+            // if (res.data.status == 200) {
+            //     setFooterConfig(res.data.data.cfg_value);
+            // }
+            // console.log(res.data, "footer");
+        } catch (error) {
+            console.log(error);
         }
-    }, [articleReducer]);
+    };
 
     return (
         <DefaultLayout>
@@ -89,14 +98,24 @@ export default ({ listSite, data }) => {
             <div className="article-list" style={{ padding: '70px 0' }}>
                 <div className="container">
                     <div className="article-list-grid">
-                        {lstNews &&
-                            lstNews.map((item, index) => {
+                        {lstArticle &&
+                            lstArticle.map((item, index) => {
                                 return <ArticleItem key={index} item={item} />;
                             })}
                     </div>
+                    {nextPage && (
+                        <div className="article-loadmore">
+                            <Button
+                                onClick={() => {
+                                    getMoreNews(nextPage);
+                                }}
+                                title="Load more..."
+                            />
+                        </div>
+                    )}
                 </div>
             </div>
-
+            {/* 
             {page < lastPage && (
                 <div className="view-all">
                     <div className="container">
@@ -114,7 +133,7 @@ export default ({ listSite, data }) => {
                         </span>
                     </div>
                 </div>
-            )}
+            )} */}
         </DefaultLayout>
     );
 };
