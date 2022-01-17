@@ -169,7 +169,7 @@ function Header() {
                                     style={{
                                         fontSize: 14,
                                         marginLeft: 40,
-                                        fontWeight: 100,
+                                        fontWeight: 500,
                                         letterSpacing: 2.3,
                                     }}
                                     onClick={(evt) => {

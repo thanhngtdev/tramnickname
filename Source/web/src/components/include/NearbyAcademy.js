@@ -95,7 +95,7 @@ function NearbyAcademy() {
                     }
                 }}>
                 {!isEmpty(defaultAcademy)
-                    ? `${defaultAcademy.ms_name.replace('Academy', '')}`
+                    ? `${defaultAcademy?.location_name?.text}`
                     : 'Find your nearest academy'}
             </div>
             <div className={`tooltip ${showSelect ? '' : 'select-hide'}`}>
