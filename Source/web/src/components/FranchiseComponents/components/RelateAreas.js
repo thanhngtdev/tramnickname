@@ -36,44 +36,55 @@ function RelateAreas(props) {
                 </div>
                 <div className="related-areas">
                     <div className="other-academy">
-                        <h3>
-                            Other academies nearby you might be interested in:
-                        </h3>
-                        <div className="rList-academy">
-                            {props &&
-                                props.site &&
-                                props.site.associalted &&
-                                props.site.associalted.map((item, index) => (
-                                    <>
-                                        <div key={index} className="rAcademy">
-                                            <a
-                                                href={item.ms_alias}
-                                                onclick={(e) => {
-                                                    e.preventDefault();
-                                                    props.onClickLocation({
-                                                        value: item.ms_id,
-                                                    });
-                                                }}>
-                                                <img
-                                                    loading="lazy"
-                                                    alt=""
-                                                    src={Utils.getThumb(
-                                                        item.ms_avatar,
-                                                        'c1',
-                                                    )}
-                                                    // height="100px"
-                                                    // width="100px"
-                                                />
-                                                <p>
-                                                    {item.ms_name} -{' '}
-                                                    {item.distance.toFixed(2)}KM
-                                                </p>
-                                            </a>
-                                        </div>
-                                    </>
-                                ))}
-                        </div>
-                        <a href="/#">See more academies nearby</a>
+                        {props?.site?.associalted.length > 0 && (
+                            <>
+                                <h3>
+                                    Other academies nearby you might be
+                                    interested in:
+                                </h3>
+                                <div className="rList-academy">
+                                    {props.site.associalted.map(
+                                        (item, index) => (
+                                            <>
+                                                <div
+                                                    key={index}
+                                                    className="rAcademy">
+                                                    <a
+                                                        href={item.ms_alias}
+                                                        onclick={(e) => {
+                                                            e.preventDefault();
+                                                            props.onClickLocation(
+                                                                {
+                                                                    value: item.ms_id,
+                                                                },
+                                                            );
+                                                        }}>
+                                                        <img
+                                                            loading="lazy"
+                                                            alt=""
+                                                            src={Utils.getThumb(
+                                                                item.ms_avatar,
+                                                                'c1',
+                                                            )}
+                                                            // height="100px"
+                                                            // width="100px"
+                                                        />
+                                                        <p>
+                                                            {item.ms_name} -{' '}
+                                                            {item.distance.toFixed(
+                                                                2,
+                                                            )}
+                                                            KM
+                                                        </p>
+                                                    </a>
+                                                </div>
+                                            </>
+                                        ),
+                                    )}
+                                </div>
+                                <a href="/#">See more academies nearby</a>
+                            </>
+                        )}
                     </div>
                     <div className="latest-news">
                         <div>

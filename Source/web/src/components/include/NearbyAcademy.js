@@ -105,7 +105,7 @@ function NearbyAcademy() {
                             Based on your location, your selected academy is
                             <span className="name">
                                 {' '}
-                                {defaultAcademy?.ms_name}
+                                {defaultAcademy?.location_name?.text}
                             </span>
                         </h3>
                         <a
@@ -138,6 +138,18 @@ function NearbyAcademy() {
                         If you wish to change this please choose &apos;Another
                         Location&apos;
                     </p>
+                    <div className="wrapcontent">
+                        <span>Want to start over?</span>
+                        <button
+                            onClick={() => {
+                                localStorage.removeItem('defaultAcademy');
+                                localStorage.removeItem('longitude');
+                                localStorage.removeItem('latitude');
+                                window.location.href = '/';
+                            }}>
+                            Clear location
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

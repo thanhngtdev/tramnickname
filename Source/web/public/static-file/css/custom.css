@@ -94,7 +94,7 @@ a.link {
 .tooltip .wrap {
     background-color: #fff;
     box-shadow: 1px 1px 20px #aaa;
-    padding: 0 15px 1px;
+    padding: 0 15px 15px;
     border-radius: 5px;
     width: 100%;
     white-space: normal;

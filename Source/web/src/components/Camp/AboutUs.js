@@ -89,7 +89,7 @@ export default function AboutUs(props) {
     const [des, setDes] = useState(props.data.cfg_des);
     const isMobile = useGetWidth() <= 768;
 
-    console.log(isMobile, 'isMobiee');
+    // console.log(isMobile, 'isMobiee');
 
     // console.log(prop s, 'props');
 
