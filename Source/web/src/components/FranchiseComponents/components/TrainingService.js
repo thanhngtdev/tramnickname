@@ -26,13 +26,10 @@ function LDWeeklyTraining(props) {
     const MAX_LENGTH = props.isMobile ? 2 : 10;
     const dispatch = useDispatch();
     const history = useRouter();
-
     const [lstCourse, setLstCourse] = useState([]);
     const [courseSelected, setCourseSelected] = useState({});
 
     useEffect(() => {
-        // console.log(_.isEmpty(props.site), props.site, 'aaa');
-
         props.site &&
             dispatch({
                 type: siteActionType.GET_LIST_COURSE,
@@ -67,7 +64,7 @@ function LDWeeklyTraining(props) {
                             isMulti={false}
                             styles={CommonStyle.select2}
                             onChange={(option) => {
-                                props.onClickLocation(option);
+                                props.onClickLocation(option, true);
                             }}
                         />
                         <p className="appendix">
@@ -364,7 +361,7 @@ TrainingService.propTypes = {
 // const imageServiceActive = require('images/service-active.png');
 
 function TrainingService(props) {
-    // console.log(props, 'props training');
+    console.log(props, 'props training');
     const [activeIndex, setActiveIndex] = useState(0);
     const [hoverIndex, setHoverIndex] = useState(0);
     const [innerWidth, setInnerWith] = useState(2000);
@@ -501,143 +498,141 @@ function TrainingService(props) {
                 </div>
             )
         );
-    } else {
-        return (
-            <div className="box-reasons training-service">
-                <div className="container">
-                    <h2 className="heading">
-                        {siteName} junior football training services:
-                    </h2>
-                    <div className="content-small">
-                        <ul className="nav-tabs">
-                            {!isEmpty(list) &&
-                                list.map((item, index) => (
-                                    <li
-                                        key={index}
-                                        className={
-                                            activeIndex === index ||
-                                            hoverIndex === index
-                                                ? 'active'
-                                                : ''
-                                        }
-                                        style={{
-                                            borderBottomColor:
-                                                activeIndex - 1 === index ||
-                                                hoverIndex - 1 === index
-                                                    ? '#ef9042'
-                                                    : '',
-                                        }}
-                                        onMouseEnter={() =>
-                                            setHoverIndex(index)
-                                        }
-                                        onMouseLeave={() => setHoverIndex(-1)}
-                                        onClick={() => setActiveIndex(index)}>
-                                        <a data-toggle="tab">
-                                            <img
-                                                loading="lazy"
-                                                alt=""
-                                                src={Utils.getThumb(item.icon)}
-                                                style={{ width: '37px' }}
+    }
+
+    return (
+        <div className="box-reasons training-service">
+            <div className="container">
+                <h2 className="heading">
+                    {siteName} junior football training services:
+                </h2>
+                <div className="content-small">
+                    <ul className="nav-tabs">
+                        {!isEmpty(list) &&
+                            list.map((item, index) => (
+                                <li
+                                    key={index}
+                                    className={
+                                        activeIndex === index ||
+                                        hoverIndex === index
+                                            ? 'active'
+                                            : ''
+                                    }
+                                    style={{
+                                        borderBottomColor:
+                                            activeIndex - 1 === index ||
+                                            hoverIndex - 1 === index
+                                                ? '#ef9042'
+                                                : '',
+                                    }}
+                                    onMouseEnter={() => setHoverIndex(index)}
+                                    onMouseLeave={() => setHoverIndex(-1)}
+                                    onClick={() => setActiveIndex(index)}>
+                                    <a data-toggle="tab">
+                                        <img
+                                            loading="lazy"
+                                            alt=""
+                                            src={Utils.getThumb(item.icon)}
+                                            style={{ width: '37px' }}
+                                        />
+                                        {item.title}
+                                    </a>
+                                    {activeIndex === index && (
+                                        <div className="right-arrow">
+                                            <FontAwesomeIcon
+                                                icon={faArrowRight}
+                                                style={{
+                                                    color: '#EE7925',
+                                                    fontSize: '0.5rem',
+                                                }}
                                             />
-                                            {item.title}
-                                        </a>
-                                        {activeIndex === index && (
-                                            <div className="right-arrow">
-                                                <FontAwesomeIcon
-                                                    icon={faArrowRight}
-                                                    style={{
-                                                        color: '#EE7925',
-                                                        fontSize: '0.5rem',
-                                                    }}
-                                                />
-                                            </div>
-                                        )}
-                                    </li>
-                                ))}
-                        </ul>
+                                        </div>
+                                    )}
+                                </li>
+                            ))}
+                    </ul>
+                    <div
+                        className="tab-content"
+                        style={{
+                            borderTop: '1px solid #FF7100',
+                            paddingTop: '2rem',
+                        }}>
                         <div
-                            className="tab-content"
-                            style={{
-                                borderTop: '1px solid #FF7100',
-                                paddingTop: '2rem',
-                            }}>
-                            <div
-                                className={`tab-pane ${
-                                    activeIndex === 0 ? 'active' : ''
-                                }`}
-                                id={1}>
-                                <LDWeeklyTraining
-                                    site={props.site}
-                                    options={options}
-                                    config={
-                                        props.service && props.service.cfg_value
-                                            ? props.service.cfg_value[0]
-                                            : {}
-                                    }
-                                    onClickLocation={props.onClickLocation}
-                                />
-                            </div>
-                            <div
-                                className={`tab-pane ${
-                                    activeIndex === 1 ? 'active' : ''
-                                }`}
-                                id={2}>
-                                <LDHolidayCamp
-                                    site={props.site}
-                                    config={
-                                        props.service && props.service.cfg_value
-                                            ? props.service.cfg_value[1]
-                                            : {}
-                                    }
-                                />
-                            </div>
-                            <div
-                                className={`tab-pane ${
-                                    activeIndex === 2 ? 'active' : ''
-                                }`}
-                                id={3}>
-                                <LDOneTraining
-                                    site={props.site}
-                                    config={
-                                        props.service && props.service.cfg_value
-                                            ? props.service.cfg_value[2]
-                                            : {}
-                                    }
-                                />
-                            </div>
-                            <div
-                                className={`tab-pane ${
-                                    activeIndex === 3 ? 'active' : ''
-                                }`}
-                                id={4}>
-                                <LDBirthdayParty
-                                    site={props.site}
-                                    config={
-                                        props.service && props.service.cfg_value
-                                            ? props.service.cfg_value[3]
-                                            : {}
-                                    }
-                                />
-                            </div>
-                            <div
-                                className={`tab-pane ${
-                                    activeIndex === 4 ? 'active' : ''
-                                }`}
-                                id={5}>
-                                <LDSchoolTraining
-                                    site={props.site}
-                                    config={
-                                        props.service && props.service.cfg_value
-                                            ? props.service.cfg_value[4]
-                                            : {}
-                                    }
-                                />
-                            </div>
+                            className={`tab-pane ${
+                                activeIndex === 0 ? 'active' : ''
+                            }`}
+                            id={1}>
+                            <LDWeeklyTraining
+                                site={props.site}
+                                options={options}
+                                config={
+                                    props.service && props.service.cfg_value
+                                        ? props.service.cfg_value[0]
+                                        : {}
+                                }
+                                onClickLocation={props.onClickLocation}
+                            />
+                        </div>
+                        <div
+                            className={`tab-pane ${
+                                activeIndex === 1 ? 'active' : ''
+                            }`}
+                            id={2}>
+                            <LDHolidayCamp
+                                site={props.site}
+                                config={
+                                    props.service && props.service.cfg_value
+                                        ? props.service.cfg_value[1]
+                                        : {}
+                                }
+                            />
+                        </div>
+                        <div
+                            className={`tab-pane ${
+                                activeIndex === 2 ? 'active' : ''
+                            }`}
+                            id={3}>
+                            <LDOneTraining
+                                site={props.site}
+                                config={
+                                    props.service && props.service.cfg_value
+                                        ? props.service.cfg_value[2]
+                                        : {}
+                                }
+                            />
+                        </div>
+                        <div
+                            className={`tab-pane ${
+                                activeIndex === 3 ? 'active' : ''
+                            }`}
+                            id={4}>
+                            <LDBirthdayParty
+                                site={props.site}
+                                config={
+                                    props.service && props.service.cfg_value
+                                        ? props.service.cfg_value[3]
+                                        : {}
+                                }
+                            />
+                        </div>
+                        <div
+                            className={`tab-pane ${
+                                activeIndex === 4 ? 'active' : ''
+                            }`}
+                            id={5}>
+                            <LDSchoolTraining
+                                site={props.site}
+                                config={
+                                    props.service && props.service.cfg_value
+                                        ? props.service.cfg_value[4]
+                                        : {}
+                                }
+                            />
                         </div>
                     </div>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }
 export default TrainingService;

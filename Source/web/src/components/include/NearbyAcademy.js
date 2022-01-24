@@ -138,7 +138,7 @@ function NearbyAcademy() {
                         If you wish to change this please choose &apos;Another
                         Location&apos;
                     </p>
-                    <div className="wrapcontent">
+                    <div className="wrapcontent-mobile">
                         <span>Want to start over?</span>
                         <button
                             onClick={() => {

@@ -26,7 +26,7 @@ const FREE_MESSAGE = 'Book your child’s free training session within 3 minutes
 const TRIAL_MESSAGE = 'Try a no obligation, one off trial session';
 
 function BookTrialTraining1(props) {
-    console.log(global.bookTraining, 'booking');
+    // console.log(global.bookTraining, 'booking');
     const siteReducer = useSelector((state) => state.siteReducer);
     const { emailData } = siteReducer;
     const { listSite } = useSelector((state) => state.listSiteReducer);

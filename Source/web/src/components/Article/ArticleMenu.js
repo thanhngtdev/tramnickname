@@ -28,11 +28,13 @@ export default function ArticleMenu(props) {
     const isMobile = useGetWidth() <= 768;
 
     useEffect(() => {
-        setCurrentAcademy(ModelManager.getLocation() || {});
+        const current = ModelManager.getLocation() || {};
+        setCurrentAcademy(current);
         getListNews();
 
         if (props?.isFranchise) {
-            setName(currentAcademy.ms_name + ' News');
+            // debugger;
+            setName(current.location_name.text + ' News');
             return;
         }
 
@@ -119,6 +121,7 @@ export default function ArticleMenu(props) {
                                 position: 'relative',
                                 top: 25,
                                 left: 15,
+                                // fontSize: 15,
                             }}>
                             {name}
                         </span>

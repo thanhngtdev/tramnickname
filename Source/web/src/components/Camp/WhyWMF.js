@@ -23,7 +23,6 @@ export default function WhyWMF(props) {
     useEffect(() => {
         // console.log(checkPound(props.data.cfg_value), 'check');
         getTrustPilot();
-
         if (checkPound(props.data.cfg_value)) {
             if (props?.site) {
                 setDefaultAcademy(props.site);
@@ -46,7 +45,7 @@ export default function WhyWMF(props) {
     }, [defaultAcademy]);
 
     useEffect(() => {
-        // console.log(cost, 'cost');
+        console.log(cost, trustPilot, 'cost');
         if (isEmpty(cost) || isEmpty(trustPilot)) return;
 
         const { weeklyCost, minWeeklyCost } = cost;
@@ -74,84 +73,45 @@ export default function WhyWMF(props) {
             return { ...item, des: newContent };
         });
 
+        // console.log(converted, 'converted');
+
         setData(converted);
     }, [cost, trustPilot]);
-
-    // useEffect(() => {
-    //     console.log(data, 'data');
-    // }, [data]);
-
-    // useEffect(() => {
-    //     // console.log('trustpilot', trustPilot);
-
-    //     if (isEmpty(trustPilot)) return;
-
-    //     const converted = props.data.cfg_value.map((item) => {
-    //         // console.log('new content');
-    //         let newContent = item.des;
-    //         newContent = Utils.convertTrustPilot(
-    //             trustPilot.rating,
-    //             trustPilot.maxRate,
-    //             trustPilot.review,
-    //             newContent,
-    //         );
-
-    //         return { ...item, des: newContent };
-    //     });
-
-    //     setData(converted);
-    // }, [trustPilot]);
 
     //! Functions
     const checkCost = async () => {
         if (!isEmpty(defaultAcademy)) {
             const { weeklyCost, minWeeklyCost } = defaultAcademy;
             setCost({ weeklyCost, minWeeklyCost });
-        }
-        //  else if (!isEmpty(props?.site)) {
-        //     setCost({
-        //         weeklyCost: props.site.weeklyCost,
-        //         minWeeklyCost: props.site.minWeeklyCost,
-        //     });
-        // }
-        else {
-            // console.log();
-            try {
-                const res = await siteService.getDetailSite({
-                    id: listSite[0].ms_id,
-                });
+        } else {
+            const res = await siteService.getDetailSite({
+                id: listSite[0].ms_id,
+            });
 
-                // console.log(res, 'res');
-                if (res.data.status == 200) {
-                    const item = res.data?.data?.site || {};
-                    const { weeklyCost, minWeeklyCost } = item;
-                    setCost({ weeklyCost, minWeeklyCost });
-                }
-            } catch (error) {
-                console.log(error);
+            if (res.data.status == 200) {
+                const item = res.data?.data?.site || {};
+                const { weeklyCost, minWeeklyCost } = item;
+                setCost({ weeklyCost, minWeeklyCost });
             }
         }
     };
 
     const getTrustPilot = async () => {
-        try {
-            const req = await siteService.getTrustPilot();
-            if (req.data.status === 200) {
-                const data = req.data.data;
-                // console.log(data, 'rep');
-                setTrustPilot({
-                    rating: data[0].value,
-                    maxRate: data[1].value,
-                    review: data[2].value,
-                });
-            }
-        } catch (error) {
-            console.log(error);
+        const req = await siteService.getTrustPilot();
+        // console.log(req, 'rep');
+        if (req.data.status === 200) {
+            const data = req.data.data;
+            setTrustPilot({
+                rating: data[0]?.value,
+                maxRate: data[1]?.value,
+                review: data[2]?.value,
+            });
         }
     };
 
     const checkPound = (intro) => {
         // console.log(intro, 'intro');
+
         for (let i = 0; i < intro.length; i++) {
             if (intro[i].des.includes('$WeeklyCost')) {
                 return true;

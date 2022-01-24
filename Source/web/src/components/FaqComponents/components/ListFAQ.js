@@ -6,7 +6,7 @@ const ListFAQ = (props) => {
     //! State
     const { lstCate } = props;
 
-    console.log(lstCate, 'lstCate');
+    // console.log(lstCate, 'lstCate');
 
     //! Function
 

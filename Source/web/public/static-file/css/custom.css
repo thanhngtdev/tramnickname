@@ -134,6 +134,12 @@ a.link {
     justify-content: space-between;
 }
 
+.tooltip .wrap .wrapcontent-mobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .tooltip .wrap button,
 .tooltip .wrap button:hover,
 .tooltip .wrap button:focus,
@@ -331,6 +337,10 @@ a.link {
 
     .box-list-item-card .item {
         margin-top: 100px;
+    }
+
+    .tooltip .wrap .wrapcontent-mobile {
+        flex-direction: column;
     }
 }
 

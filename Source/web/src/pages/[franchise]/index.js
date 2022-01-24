@@ -2,6 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 import dynamic from 'next/dynamic';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 
 const BookTrial = dynamic(() => import('src/components/Booking/BookTrial'));
 const QNA = dynamic(() => import('src/components/Camp/QNA'));
@@ -33,10 +34,13 @@ const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 import saveList from 'src/hooks/useSaveList';
 import { getHome } from 'src/redux/actions/homeAction';
 import siteService from 'src/services/siteService';
+import { useRef } from 'react';
 
 function Franchise({ data, listSite, isSubPage }) {
     // console.log(data, 'data');
     const dispatch = useDispatch();
+    const router = useRouter();
+    const targetRef = useRef(null);
 
     saveList(listSite);
 
@@ -48,15 +52,27 @@ function Franchise({ data, listSite, isSubPage }) {
         dispatch(getHome());
     }, []);
 
-    const onClickLocation = async (item) => {
-        // setShowSelect(!showSelect);
+    useEffect(() => {
+        const split = router.asPath.split('#');
 
+        if (split?.[1] === 'training-services') {
+            targetRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+            });
+        }
+    }, [targetRef]);
+
+    const onClickLocation = async (item, trainingService = false) => {
+        // setShowSelect(!showSelect);
         try {
             const res = await siteService.getDetailSite({ id: item.value });
             if (res.data.status == 200) {
                 const item = res.data?.data?.site || {};
                 localStorage.setItem('defaultAcademy', JSON.stringify(item));
-                window.location.href = `${'/' + item.ms_alias}`;
+                window.location.href = `${'/' + item.ms_alias}${
+                    trainingService ? '#training-services' : ''
+                }`;
             }
         } catch (error) {
             console.log(error);
@@ -102,9 +118,10 @@ function Franchise({ data, listSite, isSubPage }) {
                     onClickLocation={onClickLocation}
                     site={data?.site || {}}
                     service={data?.service || {}}
+                    targetRef={targetRef}
                 />
             </div>
-            <div className="franchise-reason">
+            <div ref={targetRef} className="franchise-reason">
                 <TrainingReason
                     reason={data?.footballBegining || {}}
                     site={data?.site || {}}
@@ -153,7 +170,7 @@ export async function getServerSideProps(context) {
             id: item.ms_id,
             isSubpage: isSubPage,
             subPage: id,
-            slug: 'home',
+            slug: 'location-landing',
         });
 
         const data = siteDetail.data.data;
