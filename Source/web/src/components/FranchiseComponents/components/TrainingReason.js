@@ -13,7 +13,7 @@ function TrainingReason(props) {
                     Why do Children & Parents in {siteName} Love our Training?
                 </h2>
             </div>
-            <div className="box-beginning-list">
+            <div ref={props.targetRef} className="box-beginning-list">
                 <div className="list">
                     {props.reason.cfg_value &&
                         props.reason.cfg_value.map((item, index) => {

@@ -118,11 +118,12 @@ function Franchise({ data, listSite, isSubPage }) {
                     onClickLocation={onClickLocation}
                     site={data?.site || {}}
                     service={data?.service || {}}
-                    targetRef={targetRef}
+                    // targetRef={targetRef}
                 />
             </div>
-            <div ref={targetRef} className="franchise-reason">
+            <div className="franchise-reason">
                 <TrainingReason
+                    targetRef={targetRef}
                     reason={data?.footballBegining || {}}
                     site={data?.site || {}}
                 />
