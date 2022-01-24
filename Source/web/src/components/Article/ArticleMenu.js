@@ -99,7 +99,12 @@ export default function ArticleMenu(props) {
     return (
         <div className="article-menu">
             {displayForm ? (
-                <div className="container">
+                <div
+                    style={
+                        !isMobile
+                            ? { paddingLeft: 30, paddingRight: 30 }
+                            : { paddingLeft: 15 }
+                    }>
                     {/* <span> */}
                     <button
                         className="dropdownLogo"
