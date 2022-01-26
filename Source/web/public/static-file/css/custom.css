@@ -141,6 +141,7 @@ a.link {
 }
 
 .tooltip .wrap .wrapcontent-mobile button h3 {
+    text-transform: capitalize;
     font-size: 0.9em;
     margin: 0;
 }
