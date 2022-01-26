@@ -3,6 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import PathRoute from 'src/common/PathRoute';
@@ -19,6 +20,7 @@ export default function AboutInfo(props) {
     const siteReducer = useSelector((state) => state.siteReducer);
     const history = useRouter();
     const dispatch = useDispatch();
+    const textareaRef = useRef(null);
     const [selectedAcademy, setSelectedAcademy] = useState(
         props.site || props.lstAcademy?.[0] || {},
     );
@@ -47,6 +49,9 @@ export default function AboutInfo(props) {
 
     //! UseEffect
     useEffect(() => {
+        const address = document.getElementById('address');
+        address.autoResize = true;
+
         if (!isEmpty(selectedAcademy?.pa_companyId))
             dispatch({
                 type: siteActionType.GET_LIST_COURSE,
@@ -67,8 +72,10 @@ export default function AboutInfo(props) {
     }, [siteReducer]);
 
     useEffect(() => {
-        console.log(lstCourse, 'lstCourse');
-    }, [lstCourse]);
+        textareaRef.current.style.height = '0px';
+        const scrollHeight = textareaRef.current.scrollHeight;
+        textareaRef.current.style.height = scrollHeight + 'px';
+    }, [selectedAcademy]);
 
     //! Functions
     const handleOnChange = (option) => {
@@ -124,6 +131,7 @@ export default function AboutInfo(props) {
                 <div className="wSelect2">
                     <label>Address</label>
                     <textarea
+                        id="address"
                         disabled={true}
                         value={
                             lstAddress.length > 0 && lstAddress[0].label
@@ -132,6 +140,7 @@ export default function AboutInfo(props) {
                         }
                         type="text"
                         className="outputText"
+                        ref={textareaRef}
                     />
                 </div>
 

@@ -1586,12 +1586,20 @@ h1 {
 .trust-us {
     background-color: #f2f2f2;
     margin-bottom: 80px;
-    padding: 20px 395px 80px;
+    padding-top: 25px;
+    padding-bottom: 70px;
 }
 
 .trust-us .heading {
-    font-size: 75px;
-    text-align: center;
+    display: flex;
+}
+
+.trust-us .heading .left {
+    font-size: 45px;
+    flex: 1;
+}
+.trust-us .heading .right {
+    flex: 1;
 }
 
 .trust-us .trust-us-list-image {
@@ -1599,6 +1607,10 @@ h1 {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: auto;
     grid-gap: 20px;
+}
+
+.trust-us .trust-us-list-image .trust-us-image {
+    text-align: center;
 }
 
 .footer {

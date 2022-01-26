@@ -4,7 +4,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import Utils from 'src/common/Utils';
 import useGetWidth from 'src/hooks/useGetWidth';
@@ -22,6 +22,7 @@ export default function TrainingInclude(props) {
         lazyLoad: 'ondemand',
         infinite: true,
         initialSlide: 0,
+        // variableWidth: true,
         beforeChange: (current, next) => setSlideIndex(next),
     };
 
@@ -31,71 +32,79 @@ export default function TrainingInclude(props) {
           })
         : [];
 
+    useEffect(() => {
+        console.log(sliderRef.current, 'sliderRef');
+        const slickTrack = document.getElementsByClassName('slick-track');
+        console.log(slickTrack, 'slickTrack');
+    }, []);
+
     return (
         <div className="container">
             {props.data && (
                 <div className="training-include">
                     <h2 className="contact-header">{props.data.cfg_title}</h2>
                     <div className="container">
-                        {/* <div className="slide-container"> */}
-                        <Slider
-                            ref={sliderRef}
-                            className="list lazy"
-                            {...settings}>
-                            {slideItem.map((element, index) => (
-                                <div key={index}>
-                                    <div className="slide-item">
-                                        <div className="slide-image">
-                                            <img
-                                                alt=""
-                                                src={Utils.getThumb(
-                                                    element.image,
-                                                )}
-                                            />
-                                        </div>
+                        <div className="slide-container">
+                            <Slider
+                                ref={sliderRef}
+                                className="list lazy"
+                                {...settings}>
+                                {slideItem.map((element, index) => (
+                                    <div key={index}>
+                                        <div className="slide-item">
+                                            <div className="slide-image">
+                                                <img
+                                                    alt=""
+                                                    src={Utils.getThumb(
+                                                        element.image,
+                                                    )}
+                                                />
+                                            </div>
 
-                                        <div className="slide-text">
-                                            <p style={{ fontSize: '32px' }}>
-                                                {element.title}
-                                            </p>
-                                            <p>{element.des}</p>
+                                            <div className="slide-text">
+                                                <p style={{ fontSize: '32px' }}>
+                                                    {element.title}
+                                                </p>
+                                                <p>{element.des}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
-                        </Slider>
-                        <div className="slide-control">
-                            <button
-                                onClick={() => {
-                                    sliderRef.current.slickGoTo(slideIndex - 1);
-                                }}
-                                className="slide-button">
-                                <FontAwesomeIcon
-                                    icon={faChevronLeft}
-                                    className="icon"
-                                />
-                            </button>
-                            <b
-                                className="slide-number"
-                                // style={{ margin: '0 2rem' }}
-                            >
-                                {slideIndex + 1}/{slideItem.length}
-                            </b>
-                            <button
-                                onClick={() => {
-                                    sliderRef.current.slickGoTo(slideIndex + 1);
-                                }}
-                                className="slide-button">
-                                NEXT{' '}
-                                <FontAwesomeIcon
-                                    icon={faChevronRight}
-                                    className="icon"
-                                />
-                            </button>
+                                ))}
+                            </Slider>
+                            <div className="slide-control">
+                                <button
+                                    onClick={() => {
+                                        sliderRef.current.slickGoTo(
+                                            slideIndex - 1,
+                                        );
+                                    }}
+                                    className="slide-button">
+                                    <FontAwesomeIcon
+                                        icon={faChevronLeft}
+                                        className="icon"
+                                    />
+                                </button>
+                                <b className="slide-number">
+                                    {slideIndex + 1}/{slideItem.length}
+                                </b>
+                                <button
+                                    onClick={() => {
+                                        sliderRef.current.slickGoTo(
+                                            slideIndex + 1,
+                                        );
+                                    }}
+                                    className="slide-button">
+                                    NEXT{' '}
+                                    <FontAwesomeIcon
+                                        icon={faChevronRight}
+                                        className="icon"
+                                    />
+                                </button>
+                            </div>
                         </div>
-                        {/* </div> */}
                     </div>
                 </div>
+                // </div>
             )}
         </div>
     );

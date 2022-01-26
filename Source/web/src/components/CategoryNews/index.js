@@ -14,6 +14,7 @@ const ArticleItem = dynamic(() => import('src/components/Article/ArticleItem'));
 const ArticleMenu = dynamic(() => import('src/components/Article/ArticleMenu'));
 
 export default ({ listSite, data }) => {
+    console.log(data, 'data');
     const dispatch = useDispatch();
     const [lstNews, setLstNews] = useState({});
     const [page, setPage] = useState(1);
@@ -41,7 +42,7 @@ export default ({ listSite, data }) => {
             if (res.data.status == 200 && res.data.data) {
                 const { data } = res.data;
 
-                const newsList = [...data.lstArticle.data, ...lstArticle];
+                const newsList = [...lstArticle, ...data.lstArticle.data];
 
                 setNextPage(data.lstArticle.next_page_url);
                 setLstArticle(newsList);

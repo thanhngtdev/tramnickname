@@ -54,6 +54,10 @@
         margin-bottom: 50px;
     }
 
+    .background-weekly .training-include .contact-header {
+        color: initial !important;
+    }
+
     .background-weekly::before {
         width: 100%;
         position: absolute;

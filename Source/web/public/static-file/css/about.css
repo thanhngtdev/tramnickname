@@ -228,14 +228,15 @@
         height: 600px;
         mask-image: linear-gradient(
             to top,
-            rgba(0, 0, 0, 0.7) 0%,
-            rgba(0, 0, 0, 0.4) 50%,
+            #000000d1 90%,
+            #00000066 70%,
             transparent 200%
         );
+
         -webkit-mask-image: linear-gradient(
             to top,
-            rgba(0, 0, 0, 0.7) 0%,
-            rgba(0, 0, 0, 0.4) 50%,
+            #000000d1 90%,
+            #00000066 70%,
             transparent 200%
         );
     }

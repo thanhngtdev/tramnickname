@@ -1,6 +1,6 @@
 .training-include {
     margin-top: -85px;
-    position: relative;
+    /* position: relative; */
 }
 
 .training-include .slide-item {
@@ -23,9 +23,11 @@
 }
 
 .training-include .slide-control {
-    position: relative;
-    bottom: 15rem;
-    left: 35.4%;
+    position: absolute;
+    left: 380px;
+    top: 300px;
+    /* bottom: 15rem; */
+    /* left: 35.4%; */
 }
 
 .training-include .slide-control .slide-number {
@@ -47,6 +49,10 @@
 
 .training-include .slick-slide img {
     min-width: 315px;
+}
+
+.training-include .slide-container {
+    position: relative;
 }
 
 .box-acc-review {
@@ -370,13 +376,14 @@ ul.camp-paid li::before {
         order: 1;
         padding-bottom: 0;
         /* padding-left: 15px; */
-        min-height: 500px;
+        min-height: 565px;
     }
 
     .training-include .slide-control {
-        top: 0 !important;
+        /* top: 0 !important; */
+        top: 500px;
         left: 0px;
-        bottom: 0px !important;
+        /* bottom: 0px !important; */
     }
 
     .training-include .slide-control .slide-number {

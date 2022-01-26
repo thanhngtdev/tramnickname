@@ -147,7 +147,7 @@ function NearbyAcademy() {
                                 localStorage.removeItem('latitude');
                                 window.location.href = '/';
                             }}>
-                            Clear location
+                            <h3>Clear location</h3>
                         </button>
                     </div>
                 </div>
