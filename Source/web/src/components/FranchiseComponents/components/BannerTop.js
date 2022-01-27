@@ -53,14 +53,15 @@ function BannerTop(props) {
     //     console.log(data, 'datahome');
     // }, [data]);
 
-    function checkSubname(name = '') {
+    function checkSubname(item) {
+        return `${item.location_name.text}<br>
+                    <span className="subname-32">${
+                        item.sub_name.text || ''
+                    }</span>`;
         if (!name) return '<> </>';
 
         if (name.includes(' - ')) {
             const split = name.split(' - ');
-
-            return `${split[0]} Academy<br>
-            <span className="subname-32">${split[1]}</span>`;
         }
 
         return `<span>${name}</span>`;
@@ -77,7 +78,7 @@ function BannerTop(props) {
             <div className="container">
                 <h1 style={{ lineHeight: '4rem' }}>
                     {/* {`${siteName.replace(' Academy', '')}`} */}
-                    {parse(checkSubname(`${siteName.replace(' Academy', '')}`))}
+                    {parse(checkSubname(props.site))}
                 </h1>
                 <div className="box-text">
                     <p>

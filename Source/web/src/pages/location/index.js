@@ -12,19 +12,6 @@ const AcademyMap = dynamic(() => import('src/components/include/AcademyMap'));
 function Location({ listSite }) {
     saveList(listSite);
 
-    const checkSubname = (name = '') => {
-        if (!name) return '<> </>';
-
-        if (name.includes(' - ')) {
-            const split = name.split(' - ');
-
-            return `${split[0]}<br>
-            <span className="subname">${split[1]}</span>`;
-        }
-
-        return `<span>${name}</span>`;
-    };
-
     return (
         <DefaultLayout>
             <div className="map">
@@ -60,9 +47,7 @@ function Location({ listSite }) {
                                                 }}
                                                 key={item.ms_id}>
                                                 {parse(
-                                                    Utils.checkSubname(
-                                                        item.ms_name,
-                                                    ),
+                                                    Utils.checkSubname(item),
                                                 )}
                                             </a>
                                         );
@@ -93,8 +78,8 @@ function Location({ listSite }) {
                                                     }}
                                                     key={item.ms_id}>
                                                     {parse(
-                                                        checkSubname(
-                                                            item.ms_name,
+                                                        Utils.checkSubname(
+                                                            item,
                                                         ),
                                                     )}
                                                 </a>
@@ -122,8 +107,8 @@ function Location({ listSite }) {
                                                     }}
                                                     key={item.ms_id}>
                                                     {parse(
-                                                        checkSubname(
-                                                            item.ms_name,
+                                                        Utils.checkSubname(
+                                                            item,
                                                         ),
                                                     )}
                                                 </a>

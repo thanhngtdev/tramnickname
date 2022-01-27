@@ -345,14 +345,16 @@ class Utils {
         }
     }
 
-    checkSubname(name = '') {
+    checkSubname(item) {
+        // console.log(item, 'item');
+        return `${item.ms_name}<br>
+        <span className="subname">${item.ms_subName.text || ''}</span>`;
         if (!name) return '<> </>';
+
+        // console.log(name, 'name');
 
         if (name.includes(' - ')) {
             const split = name.split(' - ');
-
-            return `${split[0]}<br>
-            <span className="subname">${split[1]}</span>`;
         }
 
         return `<span>${name}</span>`;

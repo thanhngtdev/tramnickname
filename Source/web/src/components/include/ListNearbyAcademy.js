@@ -86,7 +86,7 @@ function ListNearbyAcademy(props) {
                         <h3 style={{ marginTop: 0 }}>
                             {parse(
                                 Utils.checkSubname(
-                                    lstAcademy[highlightAcademy].ms_name,
+                                    lstAcademy[highlightAcademy],
                                 ),
                             )}
                         </h3>

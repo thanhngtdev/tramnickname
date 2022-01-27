@@ -138,17 +138,21 @@ function NearbyAcademy() {
                         If you wish to change this please choose &apos;Another
                         Location&apos;
                     </p>
-                    <div className="wrapcontent-mobile">
-                        <span>Want to start over?</span>
-                        <button
-                            onClick={() => {
-                                localStorage.removeItem('defaultAcademy');
-                                localStorage.removeItem('longitude');
-                                localStorage.removeItem('latitude');
-                                window.location.href = '/';
-                            }}>
-                            <h3>Clear location</h3>
-                        </button>
+                    <div className="wraphead">
+                        <span>
+                            Want to start over?{' '}
+                            <h3
+                                className="name"
+                                style={{ cursor: 'pointer', display: 'inline' }}
+                                onClick={() => {
+                                    localStorage.removeItem('defaultAcademy');
+                                    localStorage.removeItem('longitude');
+                                    localStorage.removeItem('latitude');
+                                    window.location.href = '/';
+                                }}>
+                                Clear location
+                            </h3>
+                        </span>
                     </div>
                 </div>
             </div>

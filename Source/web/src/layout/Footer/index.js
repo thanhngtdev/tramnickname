@@ -181,11 +181,8 @@ function Footer() {
                                         setIsComponentVisible(true);
                                         setShowSelect(!showSelect);
                                     }}>
-                                    {defaultAcademy?.ms_name
-                                        ? defaultAcademy?.ms_name.substring(
-                                              0,
-                                              15,
-                                          )
+                                    {defaultAcademy?.location_name?.text
+                                        ? defaultAcademy?.location_name?.text
                                         : 'Select an academy'}
                                 </div>
                                 <div

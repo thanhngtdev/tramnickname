@@ -21,7 +21,7 @@ function ListAcademy(props) {
                                 }}
                                 key={item.ms_id}>
                                 {/* {item.ms_name} */}
-                                {parse(Utils.checkSubname(item.ms_name))}
+                                {parse(Utils.checkSubname(item))}
                             </a>
                         );
                     })}
