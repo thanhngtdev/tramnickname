@@ -13,8 +13,8 @@ const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const ArticleItem = dynamic(() => import('src/components/Article/ArticleItem'));
 const ArticleMenu = dynamic(() => import('src/components/Article/ArticleMenu'));
 
-export default ({ listSite, data }) => {
-    console.log(data, 'data');
+export default ({ listSite, data, isCategory = false }) => {
+    // console.log(data, 'data');
     const dispatch = useDispatch();
     const [lstNews, setLstNews] = useState({});
     const [page, setPage] = useState(1);
@@ -29,23 +29,46 @@ export default ({ listSite, data }) => {
         if (!isEmpty(data)) {
             setPromoteArticle(data.lstPromote[0]);
             // setLstNews(data.lstArticle.data);
-            setNextPage(data.lstArticle.next_page_url);
             setLstArticle(data.lstArticle.data);
+            // setNextPage(data.lstArticle.next_page_url);
+
+            if (data.lstArticle.next_page_url) {
+                const nextURL = isCategory
+                    ? data.lstArticle.next_page_url + `&cate=${data.categoryId}`
+                    : data.lstArticle.next_page_url;
+
+                setNextPage(nextURL);
+            } else {
+                setNextPage(null);
+            }
         }
     }, []);
 
     const getMoreNews = async (nextLink) => {
+        const propsData = { ...data };
+
         try {
             const res = await httpMethod.get(nextLink);
             // console.log(res, 'res');
 
             if (res.data.status == 200 && res.data.data) {
+                // debugger;
                 const { data } = res.data;
 
                 const newsList = [...lstArticle, ...data.lstArticle.data];
-
-                setNextPage(data.lstArticle.next_page_url);
                 setLstArticle(newsList);
+
+                if (data.lstArticle.next_page_url) {
+                    const nextURL = isCategory
+                        ? data.lstArticle.next_page_url +
+                          `&cate=${propsData.categoryId}`
+                        : data.lstArticle.next_page_url;
+
+                    // console.log(nextURL, 'nextURL');
+                    setNextPage(nextURL);
+                } else {
+                    setNextPage(null);
+                }
             }
             // if (res.data.status == 200) {
             //     setFooterConfig(res.data.data.cfg_value);
@@ -55,6 +78,8 @@ export default ({ listSite, data }) => {
             console.log(error);
         }
     };
+
+    function getUrlNextPage() {}
 
     return (
         <DefaultLayout>

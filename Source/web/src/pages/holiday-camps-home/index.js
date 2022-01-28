@@ -23,6 +23,7 @@ import React from 'react';
 import siteService from 'src/services/siteService';
 
 function HolidayCamp({ data, listSite }) {
+    console.log(data, ' data');
     saveList(listSite);
     return (
         <DefaultLayout seo={data?.seoMeta || {}}>

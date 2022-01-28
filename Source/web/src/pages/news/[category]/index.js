@@ -9,7 +9,7 @@ const Detail = dynamic(() => import('src/components/DetailNews'));
 const propTypes = {};
 
 const DetailNews = ({ listSite, data, isCategory }) => {
-    // console.log(data, isCategory, 'data');
+    console.log(data, isCategory, 'data');
 
     useEffect(() => {
         if (isEmpty(data)) {
@@ -20,7 +20,13 @@ const DetailNews = ({ listSite, data, isCategory }) => {
     if (isEmpty(data)) return <></>;
 
     if (isCategory) {
-        return <CategoryNews listSite={listSite} data={data} />;
+        return (
+            <CategoryNews
+                listSite={listSite}
+                data={data}
+                isCategory={isCategory}
+            />
+        );
     }
 
     return <Detail listSite={listSite} data={data} />;
