@@ -54,7 +54,7 @@ function BannerTop(props) {
     // }, [data]);
 
     function checkSubname(item) {
-        return `${item.location_name.text}<br>
+        return `${item.ms_name} <br>
                     <span className="subname-32">${
                         item.sub_name.text || ''
                     }</span>`;
@@ -81,27 +81,28 @@ function BannerTop(props) {
                     {parse(checkSubname(props.site))}
                 </h1>
                 <div className="box-text">
-                    <p>
+                    {/* <p>
                         Learn football the right way with the UK’s #1 weekly
                         training programs & holiday camps
-                    </p>
+                    </p> */}
 
-                    <Button
-                        style={{ width: 350 }}
-                        title={`${
-                            props.site && props.site.ms_trial === 1
-                                ? 'Book a trial session'
-                                : 'Try a free session'
-                        }`}
-                        onClick={(evt) => {
-                            dispatch({
-                                type: siteActionType.SELECT_ACADEMY,
-                                data: props.site,
-                            });
-                            history.push(PathRoute.BookTrialTraining);
-                        }}
-                    />
+                    {parse(props.site.aboutUs.text)}
                 </div>
+                <Button
+                    style={{ width: 350 }}
+                    title={`${
+                        props.site && props.site.ms_trial === 1
+                            ? 'Book a trial session'
+                            : 'Try a free session'
+                    }`}
+                    onClick={(evt) => {
+                        dispatch({
+                            type: siteActionType.SELECT_ACADEMY,
+                            data: props.site,
+                        });
+                        history.push(PathRoute.BookTrialTraining);
+                    }}
+                />
             </div>
         </div>
     );

@@ -13,7 +13,7 @@ function CoachTeam(props) {
     return (
         <div>
             <div className="coach-head">
-                <h2>{siteName} academy team</h2>
+                <h2>{siteName} team</h2>
             </div>
             {props.staff && (
                 <div className="coach-list">

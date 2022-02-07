@@ -466,12 +466,19 @@ h1 {
 
 .banner-top .box-text {
     max-width: 610px;
+    max-height: 335px;
+    overflow-y: scroll;
     width: 100%;
-    display: inline-block;
+    display: block;
     font-weight: normal;
     font-size: 32px;
     line-height: 46px;
     color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.banner-top .box-text::-webkit-scrollbar {
+    display: none;
 }
 
 .banner-top .box-text p {

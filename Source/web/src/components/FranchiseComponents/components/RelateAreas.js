@@ -16,7 +16,7 @@ function RelateAreas(props) {
         <div className="areas">
             <div className="container">
                 <div className="area-cover">
-                    <h2>Areas the {siteName} academy covers:</h2>
+                    <h2>Areas the {siteName} covers:</h2>
                     <div className="list-tag">
                         {props.site &&
                             props.site.sub_page &&

@@ -37,7 +37,7 @@ import siteService from 'src/services/siteService';
 import { useRef } from 'react';
 
 function Franchise({ data, listSite, isSubPage }) {
-    // console.log(data, 'data');
+    console.log(data, 'data');
     const dispatch = useDispatch();
     const router = useRouter();
     const targetRef = useRef(null);
