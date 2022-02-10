@@ -51,7 +51,8 @@
 }
 
 .about-camp-holiday .training-include .slide-control {
-    bottom: 22rem;
+    position: absolute;
+    left: 395px !important;
 }
 
 @media only screen and (max-width: 768px) and (min-width: 320px) {
@@ -78,6 +79,11 @@
 
     .about-info-holiday .about-info .wrap-info .btn-book-free-session {
         width: 100%;
+    }
+
+    .about-camp-holiday .training-include .slide-control {
+        position: absolute;
+        left: 0 !important;
     }
 
     .camp-review {

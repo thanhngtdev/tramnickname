@@ -14,6 +14,7 @@ import Utils from 'src/common/Utils';
 import SolidButton from 'src/components/include/SolidButton';
 import getFranchiseName from 'src/hooks/useFranchise';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import parse from 'html-react-parser';
 
 LDWeeklyTraining.propTypes = {
     site: PropTypes.object,
@@ -50,7 +51,7 @@ function LDWeeklyTraining(props) {
         }
     }, [siteReducer]);
 
-    // console.log(props.site, 'site');
+    console.log(props, 'site props');
     return (
         <div>
             <div className="group-info" style={{ boxShadow: 'none' }}>
@@ -79,21 +80,7 @@ function LDWeeklyTraining(props) {
                     </p>
                 )}
             </div>
-            <p
-                dangerouslySetInnerHTML={{
-                    __html: props.config ? props.config.content : '',
-                }}></p>
-            {/* <h4>How much do sessions cost?</h4>
-
-            <p
-                style={{
-                    color: '#FF7100',
-                    backgroundColor: '#F7F8F7',
-                    padding: '2rem',
-                }}>
-                £{courseSelected.course_price || 0} per{' '}
-                {courseSelected.course_length || 0} sessions
-            </p> */}
+            {parse(props?.config?.content)}
 
             <h4>Football training times:</h4>
             {lstCourse &&

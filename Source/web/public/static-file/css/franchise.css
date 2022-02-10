@@ -273,7 +273,9 @@
 .qItem .qContent .question {
     margin-top: 0;
     margin-bottom: 0;
+    text-transform: uppercase;
 }
+
 .qItem .answer {
     display: none;
     margin-bottom: 0;
@@ -288,7 +290,9 @@
 }
 .qa .active .answer {
     display: block;
+    text-transform: uppercase;
 }
+
 .qItem .qIcon {
     padding: 2rem 3rem;
     align-self: center;

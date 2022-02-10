@@ -36,6 +36,8 @@ function InstaBox(props) {
         }
     }
 
+    // console.log(numOfSlide, 'numOfSlide');
+
     return (
         <Fragment>
             {instaFeed && instaFeed !== 'undefined' && (
@@ -70,13 +72,15 @@ function InstaBox(props) {
                                                             item.image,
                                                         )}
                                                     />
-                                                    <div className="bg">
+                                                    {/* <div className="bg">
                                                         <h3 className="title">
-                                                            {`${
-                                                                '@' + item.title
-                                                            }`}
+                                                            {item.title &&
+                                                                `${
+                                                                    '@' +
+                                                                    item.title
+                                                                }`}
                                                         </h3>
-                                                    </div>
+                                                    </div> */}
                                                 </div>
                                             );
                                         })}

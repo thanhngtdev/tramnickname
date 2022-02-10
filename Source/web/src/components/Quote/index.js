@@ -1,4 +1,5 @@
 import React from 'react';
+import parse from 'html-react-parser';
 
 const propTypes = {};
 
@@ -16,7 +17,9 @@ const Qoute = (props) => {
                         loading="lazy"
                         src={'/static-file/images/left-quote.png'}
                     />
-                    <span className="slide-text">{props.data?.cfg_des}</span>
+                    <span className="slide-text">
+                        {parse(props.data?.cfg_content)}
+                    </span>
                 </div>
             </div>
         </div>

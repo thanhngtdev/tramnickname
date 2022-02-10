@@ -37,7 +37,8 @@ export default function QNA(props) {
                             }`}</label>
                             <div className="qContent">
                                 <h4 className="question">
-                                    {capitalize(item.atc_sapo.toLowerCase())}
+                                    {/* {capitalize(item.atc_sapo.toLowerCase())} */}
+                                    {item.atc_sapo}
                                 </h4>
                                 <p className="answer">
                                     {parse(item.atc_content)}

@@ -27,6 +27,7 @@ import siteService from 'src/services/siteService';
 // import Spinner from "component/Spinner";
 
 function BirthdayParty({ data, listSite }) {
+    console.log(data, 'data');
     //! state
     const [preferedPackage, setPreferedPackage] = useState('');
     const ref = useRef();

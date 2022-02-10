@@ -100,9 +100,11 @@ function BookTrialTraining1(props) {
         };
     }, []);
 
-    // useEffect(() => {
-
-    // }, [siteSelected]);
+    useEffect(() => {
+        if (!siteSelected && listSite) {
+            setSiteSelected(listSite[0]);
+        }
+    }, [listSite]);
 
     useEffect(() => {
         if (email && siteSelected) {
@@ -146,7 +148,7 @@ function BookTrialTraining1(props) {
                 const { data } = emailData;
                 if (data.email_exist === 'yes') {
                     setAvailableEmail(true);
-                    setEmailError('This email is already registered. Want to ');
+                    setEmailError('This email is already registered. ');
                 }
 
                 if (data.email_exist === 'no') {
@@ -221,7 +223,7 @@ function BookTrialTraining1(props) {
         } else setEmailError('');
         if (availableEmail && Utils.checkEmail(email)) {
             _validate = false;
-            setEmailError('This email is already registered. Want to ');
+            setEmailError('This email is already registered. ');
         }
         if (phone === '' || !Utils.checkPhone(phone)) {
             _validate = false;
@@ -302,7 +304,7 @@ function BookTrialTraining1(props) {
                                 <a
                                     target="_blank"
                                     style={{
-                                        color: '#EE7925',
+                                        color: '#1a1919',
                                         fontWeight: 'bold',
                                     }}
                                     href={
@@ -314,7 +316,7 @@ function BookTrialTraining1(props) {
                                 <a
                                     target="_blank"
                                     style={{
-                                        color: '#EE7925',
+                                        color: '#1a1919',
                                         fontWeight: 'bold',
                                     }}
                                     href={
@@ -474,7 +476,7 @@ function BookTrialTraining1(props) {
                                 value={firstName}
                                 type="text"
                                 className="inputText"
-                                placeholder="Example name"
+                                placeholder="I.e. David"
                                 onChange={(event) => {
                                     setFirstName(event.target.value);
                                 }}
@@ -489,7 +491,7 @@ function BookTrialTraining1(props) {
                                 value={lastName}
                                 type="text"
                                 className="inputText"
-                                placeholder="Example name"
+                                placeholder="I.e. Beckham"
                                 onChange={(event) => {
                                     setLastName(event.target.value);
                                 }}

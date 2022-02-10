@@ -307,7 +307,10 @@ const BookTrialParty = React.forwardRef((props, ref) => {
             className="book_your_child_free_session"
             id="booking">
             <div className="container">
-                <h2 className="heading">Enquire about our birthday parties</h2>
+                <h2 className="heading">
+                    Enquire about our <br />
+                    birthday parties
+                </h2>
                 <div className="text-sub">
                     Enquire about our Birthday Parties in 2 minutes.
                 </div>

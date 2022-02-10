@@ -76,6 +76,11 @@
     float: right;
 }
 
+.about-info-birthday .slide-text p {
+    text-align: left;
+    margin: 0;
+}
+
 .birthday-qoute {
     position: relative;
     padding: 80px 80px 80px 0px;
