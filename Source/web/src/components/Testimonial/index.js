@@ -66,7 +66,7 @@ function Testimonial(props) {
         } else {
             setLstFb(props.data);
         }
-    }, [props.data]);
+    }, [props.data, testimonial]);
 
     return (
         <div className="container">

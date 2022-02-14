@@ -14,7 +14,7 @@ BannerTop.propTypes = {
 };
 
 function BannerTop(props) {
-    console.log(props.site, 'site');
+    // console.log(props.site, 'site');
 
     const dispatch = useDispatch();
     const { data } = useSelector((state) => state.homeReducer);
@@ -81,12 +81,7 @@ function BannerTop(props) {
                     {parse(checkSubname(props.site))}
                 </h1>
                 <div className="box-text">
-                    {/* <p>
-                        Learn football the right way with the UK’s #1 weekly
-                        training programs & holiday camps
-                    </p> */}
-
-                    {parse(props.site.aboutUs.text)}
+                    <p>{props?.masterData?.about?.cfg_des}</p>
                 </div>
                 <Button
                     style={{ width: 350 }}

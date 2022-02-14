@@ -88,6 +88,7 @@ function Franchise({ data, listSite, isSubPage }) {
                 <BannerTop
                     social={data?.site?.socialLink || []}
                     site={data?.site || {}}
+                    masterData={data?.masterData || {}}
                 />
                 <Contact
                     onClickLocation={onClickLocation}
