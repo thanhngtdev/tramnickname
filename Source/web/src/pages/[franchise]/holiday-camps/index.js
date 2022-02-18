@@ -88,7 +88,7 @@ export async function getServerSideProps(context) {
     const props = await Utils.getDetailMicrosite(
         context.params.franchise,
         9,
-        'holiday-camps-home',
+        'holiday-camps',
     );
 
     if (isEmpty(props.data)) return { notFound: true };

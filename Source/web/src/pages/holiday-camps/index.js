@@ -78,7 +78,7 @@ export async function getServerSideProps() {
         // id: listSite[0].ms_id,
         // cate: 9,
         // location: '',
-        slug: 'holiday-camps-home',
+        slug: 'holiday-camps',
     });
 
     const data = siteDetail.data.data;
