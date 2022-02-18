@@ -66,8 +66,9 @@
 }
 
 .about-info-birthday img {
-    margin-top: -80px;
-    margin-left: -55px;
+    position: absolute;
+    top: -20px;
+    left: -55px;
 }
 
 .about-info-birthday .slide-text {
@@ -473,7 +474,9 @@ ul.camp-paid li::before {
     }
 
     .about-info-birthday img {
-        margin-left: 0;
+        /* margin-left: 0; */
+        left: 0;
+        top: 10px;
         max-width: 60px;
     }
 

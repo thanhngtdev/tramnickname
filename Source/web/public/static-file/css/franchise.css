@@ -273,7 +273,7 @@
 .qItem .qContent .question {
     margin-top: 0;
     margin-bottom: 0;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .qItem .answer {
@@ -290,7 +290,7 @@
 }
 .qa .active .answer {
     display: block;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .qItem .qIcon {

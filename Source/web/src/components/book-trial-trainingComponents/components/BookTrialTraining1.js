@@ -304,8 +304,8 @@ function BookTrialTraining1(props) {
                                 <a
                                     target="_blank"
                                     style={{
-                                        color: '#1a1919',
-                                        fontWeight: 'bold',
+                                        color: '#ff7100',
+                                        // fontWeight: 'bold',
                                     }}
                                     href={
                                         'https://www.parentarea.co/parent/login'
@@ -316,8 +316,8 @@ function BookTrialTraining1(props) {
                                 <a
                                     target="_blank"
                                     style={{
-                                        color: '#1a1919',
-                                        fontWeight: 'bold',
+                                        color: '#ff7100',
+                                        // fontWeight: 'bold',
                                     }}
                                     href={
                                         'https://www.parentarea.co/parent/reset-password'

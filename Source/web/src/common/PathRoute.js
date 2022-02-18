@@ -1,10 +1,10 @@
 let PathRoute = {
     Home: '/',
     Contact: '/contact-us',
-    HolidayCamp: '/holiday-camps-home',
+    HolidayCamp: '/holiday-camps',
     OneTraining: '/1-on-1-training',
     BirthdayParty: '/birthday-parties',
-    WeeklyTraining: '/weekly-training',
+    WeeklyTraining: '/weekly-football-training',
     // Franchise: '/franchise/:alias-:id([0-9]+)',
     Franchise: '/:title',
     AboutUs: '/about-us',
@@ -23,8 +23,8 @@ let PathRoute = {
     SchoolTraining: '/school-training',
     Error: '/error',
     JoinUs: '/join-us',
-    Coaching: '/coaching',
-    ParentHost: '/parent-host',
+    Coaching: '/join-us/coaching',
+    ParentHost: '/join-us/parent-host',
 };
 
 export default PathRoute;

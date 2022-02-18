@@ -56,7 +56,11 @@ export async function getServerSideProps(ctx) {
                 const req = await siteService.getDetailNews({ id });
                 if (!isEmpty(req?.data.data)) {
                     return {
-                        props: { listSite, data: req?.data.data, isCategory },
+                        props: {
+                            listSite,
+                            data: req?.data.data,
+                            isCategory,
+                        },
                     };
                 }
             } catch (error) {

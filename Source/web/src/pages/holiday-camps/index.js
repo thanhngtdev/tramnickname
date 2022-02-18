@@ -1,9 +1,4 @@
-import isEmpty from 'lodash/isEmpty';
-import React, { useEffect } from 'react';
-import Utils from 'src/common/Utils';
-import saveList from 'src/hooks/useSaveList';
 import dynamic from 'next/dynamic';
-
 const AboutInfoCamp = dynamic(() =>
     import('src/components/Camp/AboutInfoCamp'),
 );
@@ -20,28 +15,24 @@ const Testimonial = dynamic(() => import('src/components/Testimonial'));
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const BookTrialHoliday = dynamic(() =>
     import(
-        'src/components/holiday-camps-homeComponents/components/BookTrialHoliday'
+        '../../components/holiday-camps-homeComponents/components/BookTrialHoliday'
     ),
 );
+import saveList from 'src/hooks/useSaveList';
+import React from 'react';
+import siteService from 'src/services/siteService';
 
 function HolidayCamp({ data, listSite }) {
-    saveList(listSite);
-
     console.log(data, ' data');
 
-    useEffect(() => {
-        if (isEmpty(data)) {
-            window.location.href = '/404';
-        }
-    }, []);
-
-    if (isEmpty(data)) return <> </>;
+    // return <> </>;
+    saveList(listSite);
     return (
-        <DefaultLayout seo={data?.seoMetaFranchise || {}}>
-            <AboutUs data={data?.about || {}} site={data.site} />
+        <DefaultLayout seo={data?.seoMeta || {}}>
+            <AboutUs data={data?.about || {}} holidayCamp />
 
             <div className="about-info-holiday">
-                <AboutInfoCamp site={data.site} />
+                <AboutInfoCamp />
             </div>
 
             <div className="about-secure-holiday">
@@ -62,13 +53,10 @@ function HolidayCamp({ data, listSite }) {
                 <FootballSkill data={data?.skillGain || {}} />
             </div>
 
-            <WhyWMF data={data?.whyWMF || {}} site={data.site} />
+            <WhyWMF data={data.whyWMF || {}} />
 
             <div className="booking-weekly">
-                <BookTrialHoliday
-                    parentFb={data?.parentFb || {}}
-                    site={data.site}
-                />
+                <BookTrialHoliday parentFb={data.parentFb || {}} />
             </div>
 
             <div className="insta-weekly">
@@ -82,16 +70,23 @@ function HolidayCamp({ data, listSite }) {
     );
 }
 
-export async function getServerSideProps(context) {
-    const props = await Utils.getDetailMicrosite(
-        context.params.franchise,
-        9,
-        'holiday-camps-home',
-    );
+export async function getServerSideProps() {
+    const listRes = await siteService.getListSite();
+    const listSite = listRes.data.data.lstSite;
 
-    if (isEmpty(props.data)) return { notFound: true };
+    const siteDetail = await siteService.getDetailSite({
+        // id: listSite[0].ms_id,
+        // cate: 9,
+        // location: '',
+        slug: 'holiday-camps-home',
+    });
 
-    return { props };
+    const data = siteDetail.data.data;
+
+    return {
+        props: { data, listSite },
+        //  revalidate: Constants.REVALIDATE
+    };
 }
 
 export default HolidayCamp;

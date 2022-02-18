@@ -13,6 +13,14 @@ class SiteService {
     }
 
     getDetailSite({ id, cate = '', location = '', slug = '' }) {
+        if (!id) {
+            return httpMethod.get(
+                `${APIConfig.GET_DETAIL_SITE}${Utils.convertToQuery({
+                    slug: slug,
+                })}`,
+            );
+        }
+
         return httpMethod.get(
             `${APIConfig.GET_DETAIL_SITE}${Utils.convertToQuery({
                 siteId: id,
