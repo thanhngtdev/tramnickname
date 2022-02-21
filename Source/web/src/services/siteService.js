@@ -69,10 +69,10 @@ class SiteService {
         );
     }
 
-    getDetailNews({ id }) {
+    getDetailNews({ slug }) {
         return httpMethod.get(
             `${APIConfig.DETAIL_ARTICLE}${Utils.convertToQuery({
-                atcId: id,
+                slug: slug,
             })}`,
         );
     }

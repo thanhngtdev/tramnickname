@@ -112,8 +112,7 @@ export default ({ listSite, data, isCategory = false }) => {
                 }}>
                 <h4>Featured Article</h4>
                 <h2>
-                    <Link
-                        href={`/news/${promoteArticle.atc_alias}-${promoteArticle.atc_id}`}>
+                    <Link href={`/news/${promoteArticle.atc_alias}`}>
                         <a style={{ color: 'white' }}>
                             {promoteArticle.atc_title}
                         </a>

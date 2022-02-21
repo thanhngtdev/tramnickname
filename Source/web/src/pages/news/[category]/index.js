@@ -47,26 +47,24 @@ export async function getServerSideProps(ctx) {
         const listRes = await siteService.getListSite();
         const listSite = listRes.data.data.lstSite;
 
-        const arr = ctx.query.category.split('-');
-        const id = arr[arr.length - 1];
-
-        //check id
-        if (!isNaN(id)) {
-            try {
-                const req = await siteService.getDetailNews({ id });
-                if (!isEmpty(req?.data.data)) {
-                    return {
-                        props: {
-                            listSite,
-                            data: req?.data.data,
-                            isCategory,
-                        },
-                    };
-                }
-            } catch (error) {
-                return { props: { listSite, data: {}, isCategory } };
-            }
+        const slug = ctx.query.category;
+        // const id = arr[arr.length - 1];
+        const req = await siteService.getDetailNews({ slug });
+        if (!isEmpty(req?.data.data)) {
+            return {
+                props: {
+                    listSite,
+                    data: req?.data.data,
+                    isCategory,
+                },
+            };
         }
+        // try {
+        // } catch (error) {
+        //     return { props: { listSite, data: {}, isCategory } };
+        // }
+        // if (!isNaN(id)) {
+        // }
 
         return { props: { listSite, data: {}, isCategory } };
     }
