@@ -13,8 +13,6 @@ import saveList from 'src/hooks/useSaveList';
 function Policy({ data, listSite }) {
     console.log(data, 'data');
 
-    return <> </>;
-
     const refListItem = useRef(null);
     saveList(listSite);
     useEqualElement(refListItem);

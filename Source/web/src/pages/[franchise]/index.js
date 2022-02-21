@@ -36,8 +36,8 @@ import { getHome } from 'src/redux/actions/homeAction';
 import siteService from 'src/services/siteService';
 import { useRef } from 'react';
 
-function Franchise({ data, listSite, isSubPage }) {
-    console.log(data, 'data');
+function Franchise({ data, listSite, isSubPage, item }) {
+    console.log(data, item, isSubPage, 'data');
     const dispatch = useDispatch();
     const router = useRouter();
     const targetRef = useRef(null);
@@ -50,6 +50,24 @@ function Franchise({ data, listSite, isSubPage }) {
         }
 
         dispatch(getHome());
+
+        // console.log(router, 'router');
+
+        // const abc = listSite.find((item) => {
+        //     debugger;
+
+        //     if (item.ms_alias === router.query.franchise) {
+        //         return item;
+        //     }
+
+        //     return item.sub_page.find((i) => {
+        //         if (i.sub_alias === router.query.franchise) {
+        //             return i;
+        //         }
+        //     });
+        // });
+
+        // console.log(abc, 'abc');
     }, []);
 
     useEffect(() => {
@@ -152,20 +170,32 @@ export async function getServerSideProps(context) {
 
     let id = '';
     let isSubPage = false;
-    const item = listSite.find((item) => {
+    let item = listSite.find((item) => {
         if (item.ms_alias === context.params.franchise) {
             id = item.ms_id;
             return item;
         }
 
-        return item.sub_page.find((i) => {
-            if (i.sub_alias === context.params.franchise) {
-                id = i.sub_id;
-                isSubPage = true;
-                return i;
-            }
-        });
+        // return item.sub_page.find((i) => {
+        //     if (i.sub_alias === context.params.franchise) {
+        //         id = i.sub_id;
+        //         isSubPage = true;
+        //         return i;
+        //     }
+        // });
     });
+
+    if (isEmpty(item)) {
+        item = listSite.find((item) => {
+            return item.sub_page.find((i) => {
+                if (i.sub_alias === context.params.franchise) {
+                    id = i.sub_id;
+                    isSubPage = true;
+                    return i;
+                }
+            });
+        });
+    }
 
     if (!isEmpty(item)) {
         const siteDetail = await siteService.getFranchiseDetail({
@@ -176,7 +206,7 @@ export async function getServerSideProps(context) {
         });
 
         const data = siteDetail.data.data;
-        return { props: { data, listSite, isSubPage } };
+        return { props: { data, listSite, isSubPage, item } };
     }
 
     return { notFound: true };
