@@ -79,6 +79,7 @@ export async function getServerSideProps() {
     const siteDetail = await siteService.getDetailSite({
         id: listSite[0].ms_id,
         cate: 21,
+        slug: 'school-training',
     });
 
     const data = siteDetail.data.data;

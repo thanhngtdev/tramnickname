@@ -277,6 +277,10 @@
         top: -210px;
     }
 
+    .contactpage .contact-header {
+        color: #000000 !important;
+    }
+
     .get-in-touch .input-text {
         font-size: 20px;
     }

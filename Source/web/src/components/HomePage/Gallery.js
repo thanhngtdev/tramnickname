@@ -25,6 +25,8 @@ Gallery.propTypes = {
 // ];
 
 export default function Gallery(props) {
+    console.log(props, 'props');
+
     const galleryRef = useRef(null);
     const lstImage = props.gallery.cfg_value || [];
     const lstView = props.gallery2.cfg_value || [];
@@ -44,10 +46,7 @@ export default function Gallery(props) {
             <div className="box-professional">
                 <div className="box-head">
                     <h2 className="heading">Professional, safe &amp; fun!</h2>
-                    <p className="text-sub">
-                        {props?.title ||
-                            'See what over 3,000 children do at our sessions each week'}
-                    </p>
+                    <p className="text-sub">{props?.gallery?.cfg_des}</p>
                 </div>
                 <div className="list-item">
                     <div className="row">

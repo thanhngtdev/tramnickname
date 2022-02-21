@@ -38,7 +38,7 @@ export default ({ listSite, data }) => {
                         : ''}{' '}
                     <br />
                     {dayjs(data?.article?.created_at || ' ').format(
-                        'Do MMMM YYYY',
+                        'DD MMMM YYYY',
                     )}
                 </h4>
             </div>

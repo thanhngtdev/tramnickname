@@ -108,7 +108,7 @@ export default ({ listSite, data, isCategory = false }) => {
                     )})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
-                    backgroundPosition: 'fixed',
+                    backgroundPosition: 'center',
                 }}>
                 <h4>Featured Article</h4>
                 <h2>
