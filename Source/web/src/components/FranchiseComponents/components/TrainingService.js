@@ -80,7 +80,7 @@ function LDWeeklyTraining(props) {
                     </p>
                 )}
             </div>
-            {parse(props?.config?.content)}
+            {parse(props?.config?.content || '')}
 
             <h4>Football training times:</h4>
             {lstCourse &&
@@ -405,6 +405,11 @@ function TrainingService(props) {
                                 site={props.site}
                                 options={options}
                                 isMobile={true}
+                                config={
+                                    props.service && props.service.cfg_value
+                                        ? props.service.cfg_value[0]
+                                        : {}
+                                }
                                 onClickLocation={props.onClickLocation}
                             />
                         </div>

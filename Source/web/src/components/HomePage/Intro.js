@@ -102,9 +102,9 @@ function Intro(props) {
                 const data = req.data.data;
                 // console.log(data, 'rep');
                 setTrustPilot({
-                    rating: data[0].value,
-                    maxRate: data[1].value,
-                    review: data[2].value,
+                    rating: data[0]?.value || 0,
+                    maxRate: data[1]?.value || 0,
+                    review: data[2]?.value || 0,
                 });
             }
         } catch (error) {
@@ -147,7 +147,7 @@ function Intro(props) {
                                         />
                                     </div>
                                     <div className="title">
-                                        <h3>{item.title}</h3>
+                                        <h3>{item?.title || ''}</h3>
                                     </div>
                                     <div
                                         className="description"
