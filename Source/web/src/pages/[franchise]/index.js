@@ -158,6 +158,7 @@ function Franchise({ data, listSite, isSubPage, item }) {
             <RelateAreas
                 onClickLocation={onClickLocation}
                 site={data?.site || {}}
+                listSite={listSite || []}
                 article={data?.article || {}}
             />
         </DefaultLayout>

@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Utils from 'src/common/Utils';
 import getFranchiseName from 'src/hooks/useFranchise';
+import isEmpty from 'lodash/isEmpty';
 
 RelateAreas.propTypes = {
     site: PropTypes.object,
@@ -9,7 +10,31 @@ RelateAreas.propTypes = {
 };
 
 function RelateAreas(props) {
+    const [listNearBy, setListNearBy] = useState([]);
+    const [isFull, setIsFull] = useState(false);
     // console.log(props, 'props');
+
+    useEffect(() => {
+        console.log(props, 'props relate');
+        const { site, listSite } = props;
+        if (!isEmpty(site) && !isEmpty(listSite)) {
+            const list = [...listSite].filter(
+                (item) => item.ms_id !== site.ms_id,
+            );
+            const listNearBy = list.filter(
+                (item) =>
+                    (item.distance = Utils.getDistanceFromLatLonInKm(
+                        site.ms_latitude,
+                        site.ms_longitude,
+                        item.ms_latitude,
+                        item.ms_longitude,
+                    )),
+            );
+
+            listNearBy.sort((a, b) => a.distance - b.distance);
+            setListNearBy([...listNearBy.slice(0, 10)]);
+        }
+    }, []);
 
     const siteName = getFranchiseName(props.site) || '';
     return (
@@ -43,22 +68,14 @@ function RelateAreas(props) {
                                     interested in:
                                 </h3>
                                 <div className="rList-academy">
-                                    {props.site.associalted.map(
-                                        (item, index) => (
-                                            <>
-                                                <div
-                                                    key={index}
-                                                    className="rAcademy">
-                                                    <a
-                                                        href={item.ms_alias}
-                                                        onclick={(e) => {
-                                                            e.preventDefault();
-                                                            props.onClickLocation(
-                                                                {
-                                                                    value: item.ms_id,
-                                                                },
-                                                            );
-                                                        }}>
+                                    {listNearBy &&
+                                        listNearBy
+                                            .slice(0, isFull ? 10 : 2)
+                                            .map((item, index) => (
+                                                <>
+                                                    <div
+                                                        key={index}
+                                                        className="rAcademy">
                                                         <img
                                                             loading="lazy"
                                                             alt=""
@@ -67,22 +84,40 @@ function RelateAreas(props) {
                                                                 'c1',
                                                             )}
                                                             // height="100px"
-                                                            // width="100px"
+                                                            // width="500px"
                                                         />
-                                                        <p>
-                                                            {item.ms_name} -{' '}
-                                                            {item.distance.toFixed(
-                                                                2,
-                                                            )}
-                                                            KM
-                                                        </p>
-                                                    </a>
-                                                </div>
-                                            </>
-                                        ),
-                                    )}
+                                                        <a
+                                                            href={item.ms_alias}
+                                                            onclick={(e) => {
+                                                                e.preventDefault();
+                                                                props.onClickLocation(
+                                                                    {
+                                                                        value: item.ms_id,
+                                                                    },
+                                                                );
+                                                            }}>
+                                                            <p>
+                                                                {item.ms_name} -{' '}
+                                                                {item.distance.toFixed(
+                                                                    2,
+                                                                )}
+                                                                km
+                                                            </p>
+                                                        </a>
+                                                    </div>
+                                                </>
+                                            ))}
                                 </div>
-                                <a href="/#">See more academies nearby</a>
+                                {!isFull && (
+                                    <a
+                                        href="/#"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setIsFull(true);
+                                        }}>
+                                        See more academies nearby
+                                    </a>
+                                )}
                             </>
                         )}
                     </div>
