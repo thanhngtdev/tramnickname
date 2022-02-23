@@ -163,36 +163,38 @@ function Header() {
                                         : PathRoute.BirthdayParty
                                 }`}
                             />
+                            {!isShowLogo && (
+                                <li>
+                                    <Button
+                                        style={{
+                                            fontSize: 14,
+                                            marginLeft: 40,
+                                            fontWeight: 500,
+                                            letterSpacing: 2.3,
+                                        }}
+                                        onClick={(evt) => {
+                                            // evt.preventDefault();
+                                            setMenuMobile(false);
 
-                            <li>
-                                <Button
-                                    style={{
-                                        fontSize: 14,
-                                        marginLeft: 40,
-                                        fontWeight: 500,
-                                        letterSpacing: 2.3,
-                                    }}
-                                    onClick={(evt) => {
-                                        // evt.preventDefault();
-                                        setMenuMobile(false);
+                                            if (defaultAcademy)
+                                                global.bookTraining = {
+                                                    siteSelected:
+                                                        defaultAcademy,
+                                                };
 
-                                        if (defaultAcademy)
-                                            global.bookTraining = {
-                                                siteSelected: defaultAcademy,
-                                            };
-
-                                        router.push(
-                                            PathRoute.BookTrialTraining,
-                                        );
-                                    }}
-                                    title={`Book a ${
-                                        defaultAcademy &&
-                                        defaultAcademy.ms_trial === 1
-                                            ? 'trial'
-                                            : 'free'
-                                    } session`}
-                                />
-                            </li>
+                                            router.push(
+                                                PathRoute.BookTrialTraining,
+                                            );
+                                        }}
+                                        title={`Book a ${
+                                            defaultAcademy &&
+                                            defaultAcademy.ms_trial === 1
+                                                ? 'trial'
+                                                : 'free'
+                                        } session`}
+                                    />
+                                </li>
+                            )}
                         </ul>
                     </div>
                 </div>
@@ -265,17 +267,23 @@ function Header() {
                                 href={PathRoute.Location}
                             />
 
-                            <li className="login">
-                                <a
-                                    href="https://www.parentarea.co/parent/login"
-                                    target="_blank"
-                                    rel="noreferrer">
-                                    Login
-                                </a>
-                            </li>
-                            <li>
-                                <NearbyAcademy onChangeLocation={hideMenu} />
-                            </li>
+                            {!isShowLogo && (
+                                <>
+                                    <li className="login">
+                                        <a
+                                            href="https://www.parentarea.co/parent/login"
+                                            target="_blank"
+                                            rel="noreferrer">
+                                            Login
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <NearbyAcademy
+                                            onChangeLocation={hideMenu}
+                                        />
+                                    </li>
+                                </>
+                            )}
                         </ul>
                     </div>
                 </div>

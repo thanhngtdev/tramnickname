@@ -160,7 +160,7 @@ function Contact({ listSite, config }) {
                             Get in touch with{' '}
                             {!isEmpty(defaultAcademy)
                                 ? defaultAcademy?.ms_name + ' '
-                                : 'the We Make Footballers'}
+                                : 'the We Make Footballers Academy'}
                         </h1>
                         <div className="get-in-touch" action="">
                             <ul className="list-form">

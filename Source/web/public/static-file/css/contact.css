@@ -219,7 +219,7 @@
 .contact-header {
     padding-right: 300px;
     font-weight: bold;
-    font-size: 70px;
+    font-size: 4rem;
 }
 
 .contact {
@@ -229,7 +229,7 @@
 @media only screen and (max-width: 1000px) and (min-width: 768px) {
     .contact-header {
         padding-right: 0;
-        font-size: 34px;
+        /* font-size: 34px; */
     }
 }
 

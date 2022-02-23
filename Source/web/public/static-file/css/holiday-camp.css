@@ -24,14 +24,17 @@
 
 .training-include .slide-control {
     position: absolute;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: inherit;
     left: 380px;
     top: 300px;
-    /* bottom: 15rem; */
-    /* left: 35.4%; */
+    gap: 40px;
 }
 
 .training-include .slide-control .slide-number {
-    margin: 0 3rem;
+    /* margin: 0 3rem; */
 }
 
 .training-include .slide-button {
@@ -389,11 +392,14 @@ ul.camp-paid li::before {
         /* top: 0 !important; */
         top: 500px;
         left: 0px;
+        gap: 0;
+        justify-content: space-between;
         /* bottom: 0px !important; */
     }
 
     .training-include .slide-control .slide-number {
-        margin: 0 40px;
+        /* margin: 0 40px;
+         */
     }
 
     .training-include .mobile {

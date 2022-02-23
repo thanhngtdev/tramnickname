@@ -129,10 +129,9 @@ export default function AboutInfo(props) {
                     />
                 </div>
                 <div className="wSelect2">
-                    <label>Address</label>
                     <textarea
                         id="address"
-                        disabled={true}
+                        // disabled={true}
                         value={
                             lstAddress.length > 0 && lstAddress[0].label
                                 ? lstAddress[0].label

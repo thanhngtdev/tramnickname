@@ -90,7 +90,7 @@ export default function CampInclude(props) {
                                     className="icon"
                                 />
                             </button>
-                            <b style={{ margin: '0 2rem' }}>
+                            <b>
                                 {slideIndex + 1}/{slideItem.length}
                             </b>
                             {/* {width > 767 ? (
