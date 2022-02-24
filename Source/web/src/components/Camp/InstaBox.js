@@ -6,8 +6,9 @@ import Utils from 'src/common/Utils';
 const settings = {
     lazyLoad: 'ondemand',
     infinite: true,
-    autoplaySpeed: 6000,
+    autoplaySpeed: 2500,
     autoplay: true,
+    speed: 1000,
 };
 function InstaBox(props) {
     const { instaFeed } = props || {};

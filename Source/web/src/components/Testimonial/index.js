@@ -9,7 +9,7 @@ import { showTruspilot } from 'src/redux/actions/trustpilotAction';
 const settings = {
     dots: true,
     infinite: false,
-    speed: 300,
+    speed: 1000,
     slidesToShow: 2,
     slidesToScroll: 2,
     responsive: [
@@ -18,7 +18,7 @@ const settings = {
             settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
-                autoplaySpeed: 6000,
+                autoplaySpeed: 2500,
                 infinite: true,
                 dots: true,
             },
@@ -28,7 +28,7 @@ const settings = {
             settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
-                autoplaySpeed: 6000,
+                autoplaySpeed: 2500,
                 autoplay: true,
                 infinite: true,
             },

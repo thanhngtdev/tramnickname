@@ -139,9 +139,9 @@ function BookTrialOne(props) {
     return (
         <div className="book_your_child_free_session" id="booking">
             <div className="container">
-                <h2 className="heading">Enquire about our 1-to-1 Training</h2>
+                <h2 className="heading">Enquire about our 1-on-1 Training</h2>
                 <div className="text-sub">
-                    It only takes two minutes to enquire your 1-on-1 Training.
+                    It only takes two minutes to enquire about 1-on-1 Training.
                 </div>
                 <div className="full-width">
                     <ul className="list-form" ref={props._ref}>

@@ -6,7 +6,8 @@ import Utils from 'src/common/Utils';
 const settings = {
     lazyLoad: 'ondemand',
     infinite: true,
-    autoplaySpeed: 6000,
+    speed: 1000,
+    autoplaySpeed: 2500,
     autoplay: true,
 };
 function InstaBox(props) {

@@ -32,12 +32,18 @@ function Header() {
     const [menuMobile, setMenuMobile] = useState(false);
     const [fixHeader, setFixHeader] = useState(true);
     const [defaultAcademy, setDefaultAcademy] = useState({});
-    const isShowLogo = useGetWidth() <= 1240;
+    // const isShowLogo = useGetWidth() > 1240 || useGetWidth() <= 768;
     const isShowLogoHome = useGetWidth() <= 1060;
+    const mobile = useGetWidth();
+    const [isShowLogo, setIsShowLogo] = useState(mobile);
 
     useEffect(() => {
         setDefaultAcademy(ModelManager.getLocation() || {});
     }, []);
+
+    useEffect(() => {
+        setIsShowLogo(mobile > 1240 || mobile <= 768);
+    }, [mobile]);
 
     // const siteReducer = useSelector((state) => state.siteReducer);
     // useEffect(() => {
@@ -163,7 +169,7 @@ function Header() {
                                         : PathRoute.BirthdayParty
                                 }`}
                             />
-                            {!isShowLogo && (
+                            {isShowLogo && (
                                 <li>
                                     <Button
                                         style={{
@@ -202,7 +208,7 @@ function Header() {
                     <div
                     // className="container"
                     >
-                        {!isShowLogo && (
+                        {isShowLogo && (
                             <div className="menu-small widget-header">
                                 <a
                                     href="https://uk.trustpilot.com/review/wemakefootballers.com"
@@ -267,7 +273,7 @@ function Header() {
                                 href={PathRoute.Location}
                             />
 
-                            {!isShowLogo && (
+                            {isShowLogo && (
                                 <>
                                     <li className="login">
                                         <a
