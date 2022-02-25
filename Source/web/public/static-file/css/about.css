@@ -16,12 +16,12 @@
         rgba(0, 0, 0, 0.4) 50%,
         transparent 200%
     );
-    -webkit-mask-image: linear-gradient(
+    /* -webkit-mask-image: linear-gradient(
         to right,
         rgba(0, 0, 0, 0.7) 0%,
         rgba(0, 0, 0, 0.4) 50%,
         transparent 200%
-    );
+    ); */
 }
 
 .about-us .about-us-content {
@@ -226,7 +226,17 @@
 
     .about-us .row .col-6 img {
         height: 600px;
-        mask-image: linear-gradient(
+        /* mask-image: linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+        ) !important; */
+        filter: brightness(70%);
+        /* opacity: 1; */
+        /* -webkit-mask-image: linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+        ) !important; */
+        /* mask-image: linear-gradient(
             to top,
             #000000d1 90%,
             #00000066 70%,
@@ -238,7 +248,7 @@
             #000000d1 90%,
             #00000066 70%,
             transparent 200%
-        );
+        ); */
     }
 
     .get-in-touch .about {
