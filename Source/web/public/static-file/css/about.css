@@ -231,17 +231,10 @@
             rgba(0, 0, 0, 0.7)
         ) !important; */
         filter: brightness(70%);
-        /* opacity: 1; */
-        /* -webkit-mask-image: linear-gradient(
-            rgba(0, 0, 0, 0.7),
-            rgba(0, 0, 0, 0.7)
-        ) !important; */
-        /* mask-image: linear-gradient(
-            to top,
-            #000000d1 90%,
-            #00000066 70%,
-            transparent 200%
-        );
+
+        -webkit-mask-image: initial;
+        mask-image: initial;
+        /*
 
         -webkit-mask-image: linear-gradient(
             to top,
