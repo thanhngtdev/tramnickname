@@ -278,9 +278,7 @@ function BookTrialTraining3(props) {
                                         } on`}
                                         <br />
                                         <span style={{ color: '#FF7100' }}>
-                                            {`${
-                                                props?.data?.start_date
-                                            } at ${dayjs(
+                                            {`${dayjs(
                                                 '2021-03-03T' +
                                                     props.data.courseSelected
                                                         .course_day_time_start,
@@ -288,7 +286,9 @@ function BookTrialTraining3(props) {
                                                 '2021-03-03T' +
                                                     props.data.courseSelected
                                                         .course_day_time_end,
-                                            ).format('hh:mma')}`}
+                                            ).format('hh:mma')} on ${
+                                                props?.data?.start_date
+                                            }`}
                                         </span>
                                     </h2>
                                 )}
@@ -315,7 +315,8 @@ function BookTrialTraining3(props) {
                             </div>
                             <div>
                                 <p>Can&apos;t see the email? </p>
-                                <p>Check your spam folder or Resend email.</p>
+                                {/* <p>Check your spam folder or Resend email.</p> */}
+                                <p>Check your spam folder</p>
                                 <p>
                                     Your information is safe and secure with We
                                     Make Footballers.

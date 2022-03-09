@@ -148,6 +148,10 @@ function BookTrialTraining1(props) {
                 const { data } = emailData;
                 if (data.email_exist === 'yes') {
                     setAvailableEmail(true);
+                    setCourseSatisfied([]);
+                    setLstStartDate([]);
+                    setDate('');
+                    setNotAvailable('');
                     setEmailError('This email is already registered. ');
                 }
 
@@ -248,6 +252,23 @@ function BookTrialTraining1(props) {
         return _validate;
     }
 
+    function renderItem(option) {
+        if (!isEmpty(option?.ms_subName?.text)) {
+            return (
+                <span>
+                    {`${option.ms_name}`}
+                    {' - '}
+                    <span
+                        style={{
+                            color: '#FF7100',
+                        }}>{`${option.ms_subName.text}`}</span>{' '}
+                </span>
+            );
+        }
+
+        return <span>{option.ms_name}</span>;
+    }
+
     return (
         <div className="tab-1">
             <h2>{message}</h2>
@@ -258,7 +279,7 @@ function BookTrialTraining1(props) {
                     options={listSite}
                     isSearchable={false}
                     isMulti={false}
-                    getOptionLabel={(option) => option.ms_name}
+                    getOptionLabel={renderItem}
                     getOptionValue={(option) => option.ms_id}
                     styles={CommonStyle.select2}
                     onChange={(option) => {
@@ -337,6 +358,7 @@ function BookTrialTraining1(props) {
                     data-enable-time
                     className="input-text"
                     value={date}
+                    disabled={availableEmail || !email}
                     options={{
                         mode: 'single',
                         dateFormat: 'm/d/Y',
@@ -361,7 +383,7 @@ function BookTrialTraining1(props) {
                 />
                 <label className="input-error">{dateError}</label>
             </div>
-            {courseSatisfied.length > 0 && siteSelected ? (
+            {courseSatisfied.length > 0 && siteSelected && !availableEmail ? (
                 <Fragment>
                     <div style={{ backgroundColor: 'white', padding: '2rem' }}>
                         <div className="wSelect2">

@@ -9,11 +9,20 @@ import saveList from 'src/hooks/useSaveList';
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 export default ({ listSite, data }) => {
+    console.log(data, 'data1');
+
     //! State
     saveList(listSite);
+
+    const seo = {
+        title: data?.article?.atc_seo_title,
+        content: data?.article?.atc_seo_content,
+        canonical: data?.article?.atc_seo_canonical,
+    };
+
     //! Render
     return (
-        <DefaultLayout>
+        <DefaultLayout seo={seo}>
             <ArticleMenu
                 lstCate={data?.lstCate}
                 currentCate={data?.article?.atc_cate}
@@ -29,7 +38,9 @@ export default ({ listSite, data }) => {
                         ) +
                         ')',
                     backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'cover',
+                    // backgroundSize: 'cover',
+                    backgroundSize: '100% 100%',
+                    backgroundPosition: 'center',
                 }}>
                 <h2>{data?.article?.atc_title || ''}</h2>
                 <h4>

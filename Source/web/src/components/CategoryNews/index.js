@@ -104,10 +104,11 @@ export default ({ listSite, data, isCategory = false }) => {
                 style={{
                     backgroundImage: `url(${Utils.getThumb(
                         promoteArticle.atc_featureImg,
-                        'c1',
+                        'c2',
                     )})`,
                     backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'cover',
+                    // backgroundSize: 'cover',
+                    backgroundSize: '100% 100%',
                     backgroundPosition: 'center',
                 }}>
                 <h4>Featured Article</h4>

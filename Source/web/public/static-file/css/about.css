@@ -7,10 +7,11 @@
 }
 
 .about-us .row .col-6 img {
+    min-height: 700px;
     height: 90vh;
     width: 100%;
     object-fit: cover;
-    mask-image: linear-gradient(
+    /* mask-image: linear-gradient(
         to right,
         rgba(0, 0, 0, 0.7) 0%,
         rgba(0, 0, 0, 0.4) 50%,
@@ -21,7 +22,7 @@
         rgba(0, 0, 0, 0.7) 0%,
         rgba(0, 0, 0, 0.4) 50%,
         transparent 200%
-    );
+    ); */
 }
 
 .about-us .about-us-content {
