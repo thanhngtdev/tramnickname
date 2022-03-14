@@ -5,6 +5,7 @@ import Head from 'next/head';
 import NProgress from 'nprogress';
 import '../../public/static-file/scss/nprogress.scss';
 import store from 'src/redux/store';
+import { appWithTranslation } from 'next-i18next';
 
 import '../../public/static-file/css/style.css';
 import '../../public/static-file/css/about.css';
@@ -41,7 +42,7 @@ Router.events.on('routeChangeStart', (url) => {
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-export default function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
     return (
         <Provider store={store}>
             <Head>
@@ -60,3 +61,5 @@ export default function MyApp({ Component, pageProps }) {
         </Provider>
     );
 }
+
+export default appWithTranslation(MyApp);

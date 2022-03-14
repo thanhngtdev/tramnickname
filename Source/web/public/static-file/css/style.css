@@ -322,12 +322,90 @@ h1 {
 
 .menu-top {
     width: 100%;
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     height: 61px;
     border-bottom: 1px solid #ededed;
-    padding-top: 9px;
+    /* padding-top: 9px; */
     padding-left: 30px;
     padding-right: 30px;
+}
+
+.menu-left {
+    display: flex;
+    flex-direction: row;
+    /* align-items: flex-start; */
+    gap: 25px;
+}
+
+.menu-left .custom-select {
+    position: relative !important;
+}
+
+.menu-left .select-selected {
+    border: 1px solid #ededed;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    height: 36px;
+    line-height: 20px;
+    width: 90px;
+    text-transform: uppercase;
+    padding-left: 5px;
+}
+
+.menu-left .select-selected::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0px;
+    width: 22px;
+    height: 35px;
+    background: url(/static-file/images/chevron-down.svg) no-repeat left center;
+}
+
+.menu-left .active:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0px;
+    width: 22px;
+    height: 35px;
+    background: url(/static-file/images/chevron-up.svg) no-repeat left center;
+}
+
+.menu-left .select-hide {
+    display: none;
+}
+
+.menu-left .select-items {
+    position: absolute;
+    top: 90%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    border: 1px solid #ededed;
+    background-color: #fff;
+    border-top: 0;
+    max-height: 240px;
+    border-radius: 0 0 4px 4px;
+    padding: 5px;
+}
+
+.menu-left .select-items .select-item {
+    /* display: flex;
+    justify-content: center; */
+    cursor: pointer;
+    /* padding-left: 5px; */
+}
+
+.select-mobile {
+    display: none;
 }
 
 .menu-top .menu {
@@ -2464,7 +2542,7 @@ h1 {
     }
 
     .menu-small .select-selected {
-        font-size: 14px;
+        font-size: 15px;
     }
 
     .btn-book-free-session {
@@ -2632,6 +2710,46 @@ h1 {
         width: initial !important;
         margin-left: initial !important;
         padding: 0 15px;
+    }
+
+    .select-mobile {
+        display: flex;
+        justify-content: center;
+    }
+
+    .select-mobile .custom-select-mobile {
+        position: relative;
+        width: 245px;
+    }
+
+    .select-mobile .custom-select-mobile .select-hide {
+        display: none;
+    }
+
+    .select-mobile .custom-select-mobile .select-selected-mobile {
+        color: #ededed;
+        padding: 8px 16px;
+        border: 1px solid #ededed;
+        border-radius: 4px;
+        cursor: pointer;
+        user-select: none;
+        font-size: 16px;
+        height: 36px;
+        line-height: 20px;
+        /* padding-left: 36px; */
+        padding-right: 25px;
+        display: flex;
+    }
+
+    .select-mobile .select-items {
+        display: flex;
+        padding-left: 15px;
+    }
+
+    .select-mobile .select-items .select-item {
+        /* display: flex;
+        padding-left: 15px; */
+        color: #ff7531;
     }
 
     .banner-top {
@@ -3227,5 +3345,9 @@ h1 {
         /* 
 		background: url(../images/hs_photo_mobile.jpg) no-repeat center top #fff; */
         background-size: cover;
+    }
+
+    .menu-left .custom-select {
+        display: none;
     }
 }

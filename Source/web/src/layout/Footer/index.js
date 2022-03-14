@@ -28,18 +28,6 @@ function Footer() {
         }
     }, [isComponentVisible]);
 
-    //! function
-    // function onClickLocation(event, item) {
-    //     setShowSelect(!showSelect);
-    //     // localStorage.setItem('defaultAcademy', JSON.stringify(item));
-    //     // console.log(item);
-    //     // return;
-
-    //     Utils.setDefaultAcademy(item.ms_id);
-
-    //     window.location.href = `${'/' + item.ms_alias}`;
-    // }
-
     const onClickLocation = async (item) => {
         setShowSelect(!showSelect);
 

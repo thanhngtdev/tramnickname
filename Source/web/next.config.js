@@ -7,6 +7,7 @@ const withPlugins = require('next-compose-plugins');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
     enabled: process.env.ANALYZE === 'true',
 });
+const { i18n } = require('./next-i18next.config');
 
 // module.exports = withFonts(
 //     withCss(
@@ -102,5 +103,8 @@ module.exports = withPlugins([
     ],
     {
         webpack5: false,
+    },
+    {
+        i18n,
     },
 ]);

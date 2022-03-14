@@ -6,14 +6,34 @@ import React, { useEffect, useState } from 'react';
 import ModelManager from 'src/common/ModelManager';
 import PathRoute from 'src/common/PathRoute';
 import useGetWidth from 'src/hooks/useGetWidth';
+import useComponentVisible from 'src/hooks/useComponentVisible';
+
 const Button = dynamic(() => import('src/components/Button'), { ssr: true });
 const NearbyAcademy = dynamic(
     () => import('src/components/include/NearbyAcademy'),
     { ssr: true },
 );
 
-// import NearbyAcademy from "./include/NearbyAcademy";
-
+const ukFlag = <img src={'static-file/images/uk-flag.svg'}></img>;
+const usFlag = <img src={'static-file/images/us-flag.svg'}></img>;
+const list = [
+    {
+        title: 'Weekly Training',
+        href: PathRoute.WeeklyTraining,
+    },
+    {
+        title: 'Holiday Camps',
+        href: PathRoute.HolidayCamp,
+    },
+    {
+        title: '1-on-1 Training',
+        href: PathRoute.OneTraining,
+    },
+    {
+        title: 'Birthday Parties',
+        href: PathRoute.BirthdayParty,
+    },
+];
 const LinkItem = (props) => {
     const { title, href, hideMenu } = props;
     return (
@@ -29,6 +49,7 @@ const LinkItem = (props) => {
 
 function Header() {
     const router = useRouter();
+    // console.log(router, 'router');
     const [menuMobile, setMenuMobile] = useState(false);
     const [fixHeader, setFixHeader] = useState(true);
     const [defaultAcademy, setDefaultAcademy] = useState({});
@@ -36,6 +57,15 @@ function Header() {
     const isShowLogoHome = useGetWidth() <= 1060;
     const mobile = useGetWidth();
     const [isShowLogo, setIsShowLogo] = useState(mobile);
+    const [showSelect, setShowSelect] = useState(false);
+    const { ref, isComponentVisible, setIsComponentVisible } =
+        useComponentVisible(true);
+
+    useEffect(() => {
+        if (!isComponentVisible && showSelect) {
+            setShowSelect(false);
+        }
+    }, [isComponentVisible]);
 
     useEffect(() => {
         setDefaultAcademy(ModelManager.getLocation() || {});
@@ -44,23 +74,6 @@ function Header() {
     useEffect(() => {
         setIsShowLogo(mobile > 1240 || mobile <= 768);
     }, [mobile]);
-
-    // const siteReducer = useSelector((state) => state.siteReducer);
-    // useEffect(() => {
-    //     if (siteReducer.type) {
-    //         if (
-    //             siteReducer.type === siteActionType.FIND_NEARBY_SUCESS &&
-    //             !defaultAcademy?.ms_id
-    //         ) {
-    //             setDefaultAcademy(siteReducer.data);
-    //         }
-    //         if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
-    //             setDefaultAcademy(
-    //                 JSON.parse(localStorage.getItem('defaultAcademy')),
-    //             );
-    //         }
-    //     }
-    // }, [siteReducer]);
 
     function hideMenu() {
         setMenuMobile(false);
@@ -78,6 +91,10 @@ function Header() {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+    const { pathname, query, asPath, locales, locale: activeLocale } = router;
+    const otherLocales = (locales || []).filter(
+        (locale) => locale !== activeLocale,
+    );
 
     return (
         <div className={`header ${fixHeader ? '' : 'fix-header'}`} style={{}}>
@@ -106,9 +123,7 @@ function Header() {
             </div>
             <div className={`navi ${menuMobile ? 'show' : ''}`}>
                 <div className="menu-top">
-                    <div
-                    // className="container"
-                    >
+                    <div className="menu-left">
                         {!isShowLogoHome && (
                             <Link href={PathRoute.Home} scroll>
                                 <img
@@ -121,88 +136,96 @@ function Header() {
                             </Link>
                         )}
 
-                        <ul className="menu">
-                            <LinkItem
-                                title={'Weekly Training'}
-                                hideMenu={hideMenu}
-                                href={`${
-                                    !isEmpty(defaultAcademy)
-                                        ? '/' +
-                                          defaultAcademy.ms_alias +
-                                          PathRoute.WeeklyTraining
-                                        : PathRoute.WeeklyTraining
+                        <div ref={ref} className="custom-select">
+                            <div
+                                className={`select-selected ${
+                                    showSelect && 'active'
                                 }`}
-                            />
-
-                            <LinkItem
-                                title={'Holiday Camps'}
-                                hideMenu={hideMenu}
-                                href={`${
-                                    !isEmpty(defaultAcademy)
-                                        ? '/' +
-                                          defaultAcademy.ms_alias +
-                                          PathRoute.HolidayCamp
-                                        : PathRoute.HolidayCamp
-                                }`}
-                            />
-
-                            <LinkItem
-                                title={'1-on-1 Training'}
-                                hideMenu={hideMenu}
-                                href={`${
-                                    !isEmpty(defaultAcademy)
-                                        ? '/' +
-                                          defaultAcademy.ms_alias +
-                                          PathRoute.OneTraining
-                                        : PathRoute.OneTraining
-                                }`}
-                            />
-
-                            <LinkItem
-                                title={'Birthday Parties'}
-                                hideMenu={hideMenu}
-                                href={`${
-                                    !isEmpty(defaultAcademy)
-                                        ? '/' +
-                                          defaultAcademy.ms_alias +
-                                          PathRoute.BirthdayParty
-                                        : PathRoute.BirthdayParty
-                                }`}
-                            />
-                            {isShowLogo && (
-                                <li>
-                                    <Button
-                                        style={{
-                                            fontSize: 14,
-                                            marginLeft: 40,
-                                            fontWeight: 500,
-                                            letterSpacing: 2.3,
-                                        }}
-                                        onClick={(evt) => {
-                                            // evt.preventDefault();
-                                            setMenuMobile(false);
-
-                                            if (defaultAcademy)
-                                                global.bookTraining = {
-                                                    siteSelected:
-                                                        defaultAcademy,
-                                                };
-
-                                            router.push(
-                                                PathRoute.BookTrialTraining,
-                                            );
-                                        }}
-                                        title={`Book a ${
-                                            defaultAcademy &&
-                                            defaultAcademy.ms_trial === 1
-                                                ? 'trial'
-                                                : 'free'
-                                        } session`}
-                                    />
-                                </li>
-                            )}
-                        </ul>
+                                onClick={() => {
+                                    setIsComponentVisible(true);
+                                    setShowSelect(!showSelect);
+                                }}>
+                                {router.locale === 'us' ? (
+                                    <>{usFlag}&nbsp;US</>
+                                ) : (
+                                    <>{ukFlag}&nbsp;UK</>
+                                )}
+                            </div>
+                            <div
+                                className={`select-items ${
+                                    !showSelect && 'select-hide'
+                                }`}>
+                                {otherLocales.map((locale) => {
+                                    const { pathname, query, asPath } = router;
+                                    return (
+                                        <Link
+                                            href={{ pathname, query }}
+                                            as={asPath}
+                                            locale={locale}>
+                                            <a
+                                                className="select-item"
+                                                onClick={() => {
+                                                    setShowSelect(false);
+                                                }}>
+                                                {locale === 'us' ? (
+                                                    <>{usFlag}&nbsp;US</>
+                                                ) : (
+                                                    <>{ukFlag}&nbsp;UK</>
+                                                )}
+                                            </a>
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
                     </div>
+
+                    <ul className="menu">
+                        {list.map((item) => (
+                            <LinkItem
+                                title={item.title}
+                                hideMenu={hideMenu}
+                                href={`${
+                                    !isEmpty(defaultAcademy)
+                                        ? '/' +
+                                          defaultAcademy.ms_alias +
+                                          item.href
+                                        : item.href
+                                }`}
+                            />
+                        ))}
+                        {isShowLogo && (
+                            <li>
+                                <Button
+                                    style={{
+                                        fontSize: 14,
+                                        marginLeft: 40,
+                                        fontWeight: 500,
+                                        letterSpacing: 2.3,
+                                    }}
+                                    onClick={(evt) => {
+                                        // evt.preventDefault();
+                                        setMenuMobile(false);
+
+                                        if (defaultAcademy)
+                                            global.bookTraining = {
+                                                siteSelected: defaultAcademy,
+                                            };
+
+                                        router.push(
+                                            PathRoute.BookTrialTraining,
+                                        );
+                                    }}
+                                    title={`Book a ${
+                                        defaultAcademy &&
+                                        defaultAcademy.ms_trial === 1
+                                            ? 'trial'
+                                            : 'free'
+                                    } session`}
+                                />
+                            </li>
+                        )}
+                    </ul>
                 </div>
                 <div className="menu-down">
                     <div
@@ -283,6 +306,73 @@ function Header() {
                                             Login
                                         </a>
                                     </li>
+
+                                    <li className="select-mobile">
+                                        <div
+                                            ref={ref}
+                                            className="custom-select-mobile">
+                                            <div
+                                                className={`select-selected-mobile ${
+                                                    showSelect && 'active'
+                                                }`}
+                                                onClick={() => {
+                                                    setIsComponentVisible(true);
+                                                    setShowSelect(!showSelect);
+                                                }}>
+                                                {router.locale === 'us' ? (
+                                                    <>{usFlag}&nbsp;US</>
+                                                ) : (
+                                                    <>{ukFlag}&nbsp;UK</>
+                                                )}
+                                            </div>
+                                            <div
+                                                className={`select-items ${
+                                                    !showSelect && 'select-hide'
+                                                }`}>
+                                                {otherLocales.map((locale) => {
+                                                    const {
+                                                        pathname,
+                                                        query,
+                                                        asPath,
+                                                    } = router;
+                                                    return (
+                                                        <Link
+                                                            href={{
+                                                                pathname,
+                                                                query,
+                                                            }}
+                                                            as={asPath}
+                                                            locale={locale}>
+                                                            <a
+                                                                className="select-item"
+                                                                onClick={() => {
+                                                                    setShowSelect(
+                                                                        false,
+                                                                    );
+                                                                    setMenuMobile(
+                                                                        false,
+                                                                    );
+                                                                }}>
+                                                                {locale ===
+                                                                'us' ? (
+                                                                    <>
+                                                                        {usFlag}
+                                                                        &nbsp;US
+                                                                    </>
+                                                                ) : (
+                                                                    <>
+                                                                        {ukFlag}
+                                                                        &nbsp;UK
+                                                                    </>
+                                                                )}
+                                                            </a>
+                                                        </Link>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    </li>
+
                                     <li>
                                         <NearbyAcademy
                                             onChangeLocation={hideMenu}

@@ -3,14 +3,23 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 export default (props) => {
     //! State
+    const { locale } = props;
 
     //! Function
-    function onChange(value) {
-        console.log('Captcha value:', value);
-    }
+    // function onChange(value) {
+    //     console.log('Captcha value:', value);
+    // }
 
-    console.log(process.env.STORAGE_URL, 'process.env.BASE_URL_API');
+    // console.log(process.env.STORAGE_URL, 'process.env.BASE_URL_API');
 
     //! Render
-    return <div>{`${process.env.STORAGE_URL}`}</div>;
+    return <div>{`${locale}`}</div>;
 };
+
+export function getStaticProps({ locale }) {
+    return {
+        props: {
+            locale,
+        },
+    };
+}
