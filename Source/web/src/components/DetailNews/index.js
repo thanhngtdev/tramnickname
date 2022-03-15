@@ -32,10 +32,7 @@ export default ({ listSite, data }) => {
                 style={{
                     backgroundImage:
                         'url(' +
-                        Utils.getThumb(
-                            data?.article?.atc_featureImg || '',
-                            'c2',
-                        ) +
+                        Utils.getThumb(data?.article?.atc_banner || '', 'c2') +
                         ')',
                     backgroundRepeat: 'no-repeat',
                     // backgroundSize: 'cover',

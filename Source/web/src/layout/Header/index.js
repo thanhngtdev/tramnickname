@@ -137,7 +137,7 @@ function Header() {
                         )}
 
                         <div ref={ref} className="custom-select">
-                            <div
+                            {/* <div
                                 className={`select-selected ${
                                     showSelect && 'active'
                                 }`}
@@ -150,7 +150,7 @@ function Header() {
                                 ) : (
                                     <>{ukFlag}&nbsp;UK</>
                                 )}
-                            </div>
+                            </div> */}
                             <div
                                 className={`select-items ${
                                     !showSelect && 'select-hide'
@@ -307,7 +307,7 @@ function Header() {
                                         </a>
                                     </li>
 
-                                    <li className="select-mobile">
+                                    {/* <li className="select-mobile">
                                         <div
                                             ref={ref}
                                             className="custom-select-mobile">
@@ -371,7 +371,7 @@ function Header() {
                                                 })}
                                             </div>
                                         </div>
-                                    </li>
+                                    </li> */}
 
                                     <li>
                                         <NearbyAcademy
