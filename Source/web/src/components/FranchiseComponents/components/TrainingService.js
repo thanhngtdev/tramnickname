@@ -51,7 +51,7 @@ function LDWeeklyTraining(props) {
         }
     }, [siteReducer]);
 
-    console.log(props, 'site props');
+    // console.log(props, 'site props');
     return (
         <div>
             <div className="group-info" style={{ boxShadow: 'none' }}>
@@ -162,6 +162,7 @@ LDHolidayCamp.propTypes = {
     config: PropTypes.object,
 };
 function LDHolidayCamp(props) {
+    // console.log(props, ' props holiday');
     const dispatch = useDispatch();
     const history = useRouter();
 
@@ -190,10 +191,11 @@ function LDHolidayCamp(props) {
     return (
         <>
             <h4>{props.config ? props.config.des : ''}</h4>
-            <p
+            {/* <p
                 dangerouslySetInnerHTML={{
-                    __html: props.config ? props.config.content : '',
-                }}></p>
+                    __html: props.config.content || '',
+                }}></p> */}
+            {parse(props?.config?.content || '')}
             <h5>
                 Upcoming camps by {props.site ? props.site.ms_name : ''}{' '}
                 Academy:
@@ -295,10 +297,11 @@ function LDOneTraining(props) {
     return (
         <>
             <h4>{props.config ? props.config.des : ''}</h4>
-            <p
+            {/* <p
                 dangerouslySetInnerHTML={{
                     __html: props.config ? props.config.content : '',
-                }}></p>
+                }}></p> */}
+            {parse(props?.config?.content || '')}
             <Link
                 href={'/' + props.site.ms_alias + PathRoute.OneTraining}
                 passHref>
@@ -318,10 +321,11 @@ function LDBirthdayParty(props) {
     return (
         <>
             <h4>{props.config ? props.config.des : ''}</h4>
-            <p
+            {/* <p
                 dangerouslySetInnerHTML={{
                     __html: props.config ? props.config.content : '',
-                }}></p>
+                }}></p> */}
+            {parse(props?.config?.content || '')}
             <Link
                 href={'/' + props.site.ms_alias + PathRoute.BirthdayParty}
                 passHref>
@@ -340,10 +344,11 @@ LDSchoolTraining.propTypes = {
 function LDSchoolTraining(props) {
     return (
         <>
-            <p
+            {/* <p
                 dangerouslySetInnerHTML={{
                     __html: props.config ? props.config.content : '',
-                }}></p>
+                }}></p> */}
+            {parse(props?.config?.content || '')}
             <Link href={PathRoute.SchoolTraining} passHref>
                 <a style={{ color: '#EE7925', textDecoration: 'underline' }}>
                     Find out more

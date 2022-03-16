@@ -8,6 +8,7 @@ import Button from 'src/components/Button';
 import getFranchiseName from 'src/hooks/useFranchise';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import parse from 'html-react-parser';
+import useGetWidth from 'src/hooks/useGetWidth';
 
 BannerTop.propTypes = {
     site: PropTypes.object,
@@ -21,6 +22,7 @@ function BannerTop(props) {
     let options = [];
     const history = useRouter();
     const siteName = getFranchiseName(props.site);
+    const isMobile = useGetWidth() <= 768;
 
     let fbLink = '',
         twLink = '',
@@ -49,9 +51,9 @@ function BannerTop(props) {
             );
     }
 
-    // useEffect(() => {
-    //     console.log(data, 'datahome');
-    // }, [data]);
+    useEffect(() => {
+        console.log(data, 'datahome');
+    }, [data]);
 
     function checkSubname(item) {
         return `${item.ms_name} <br>
@@ -72,7 +74,9 @@ function BannerTop(props) {
             className="banner-top"
             style={{
                 backgroundImage: `url(${Utils.getThumb(
-                    data?.bannerTop?.cfg_value[0]?.image,
+                    !isMobile
+                        ? data?.bannerTop?.cfg_image
+                        : data?.bannerTop?.cfg_mobileBanner,
                 )})`,
             }}>
             <div className="container">
