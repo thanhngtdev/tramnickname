@@ -167,10 +167,10 @@ export default function AboutUs(props) {
                                 loading="lazy"
                                 alt=""
                                 src={Utils.getThumb(
-                                    props.data?.cfg_image,
-                                    // !isMobile
-                                    //     ? props.data?.cfg_image
-                                    //     : props.data?.cfg_mobileBanner,
+                                    // props.data?.cfg_image,
+                                    !isMobile
+                                        ? props.data?.cfg_image
+                                        : props.data?.cfg_mobileBanner,
                                 )}
                                 // height="1000px"
                             />
