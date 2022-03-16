@@ -4,64 +4,52 @@ import Slider from 'react-slick';
 import Utils from 'src/common/Utils';
 import useGetWidth from 'src/hooks/useGetWidth';
 
-const settings = {
-    lazyLoad: 'ondemand',
-    infinite: true,
-    autoplaySpeed: 2500,
-    autoplay: true,
-    speed: 1000,
-};
 function InstaBox(props) {
+    let settings = {
+        lazyLoad: 'ondemand',
+        infinite: true,
+        autoplaySpeed: 2500,
+        autoplay: true,
+        speed: 1000,
+    };
     const { instaFeed } = props || {};
-    const width = useGetWidth();
+    const isMobile = useGetWidth() <= 768;
     let numOfSlide = [];
     let lstImage = instaFeed ? instaFeed.cfg_value : [];
 
-    if (lstImage && lstImage.length > 0) {
-        let i;
-        for (i = 0; i < lstImage.length / 6; i++) {
+    if (isMobile) {
+        if (lstImage && lstImage.length > 0) {
+            let i;
             let slideImage = [];
-            // slideImage.push(-1);
-            if (width > 768) slideImage.push(-1);
-
-            if (lstImage.length > 6 * i) slideImage.push(lstImage[6 * i]);
-
-            if (width > 768) slideImage.push(-1);
-            if (lstImage.length > 6 * i + 1)
-                slideImage.push(lstImage[6 * i + 1]);
-            if (lstImage.length > 6 * i + 2)
-                slideImage.push(lstImage[6 * i + 2]);
-            if (lstImage.length > 6 * i + 3)
-                slideImage.push(lstImage[6 * i + 3]);
-            if (lstImage.length > 6 * i + 4)
-                slideImage.push(lstImage[6 * i + 4]);
-            if (lstImage.length > 6 * i + 5)
-                slideImage.push(lstImage[6 * i + 5]);
+            for (i = 0; i < lstImage.length; i++) {
+                slideImage.push(lstImage[i]);
+            }
             numOfSlide.push(slideImage);
+
+            settings = { ...settings, autoplay: false };
+        }
+    } else {
+        if (lstImage && lstImage.length > 0) {
+            let i;
+            for (i = 0; i < lstImage.length / 6; i++) {
+                let slideImage = [];
+                slideImage.push(-1);
+                if (lstImage.length > 6 * i) slideImage.push(lstImage[6 * i]);
+                slideImage.push(-1);
+                if (lstImage.length > 6 * i + 1)
+                    slideImage.push(lstImage[6 * i + 1]);
+                if (lstImage.length > 6 * i + 2)
+                    slideImage.push(lstImage[6 * i + 2]);
+                if (lstImage.length > 6 * i + 3)
+                    slideImage.push(lstImage[6 * i + 3]);
+                if (lstImage.length > 6 * i + 4)
+                    slideImage.push(lstImage[6 * i + 4]);
+                if (lstImage.length > 6 * i + 5)
+                    slideImage.push(lstImage[6 * i + 5]);
+                numOfSlide.push(slideImage);
+            }
         }
     }
-    // if (lstImage && lstImage.length > 0) {
-    //     let i;
-    //     for (i = 0; i < lstImage.length / 6; i++) {
-    //         let slideImage = [];
-    //         slideImage.push(-1);
-    //         if (lstImage.length > 6 * i) slideImage.push(lstImage[6 * i]);
-    //         slideImage.push(-1);
-    //         if (lstImage.length > 6 * i + 1)
-    //             slideImage.push(lstImage[6 * i + 1]);
-    //         if (lstImage.length > 6 * i + 2)
-    //             slideImage.push(lstImage[6 * i + 2]);
-    //         if (lstImage.length > 6 * i + 3)
-    //             slideImage.push(lstImage[6 * i + 3]);
-    //         if (lstImage.length > 6 * i + 4)
-    //             slideImage.push(lstImage[6 * i + 4]);
-    //         if (lstImage.length > 6 * i + 5)
-    //             slideImage.push(lstImage[6 * i + 5]);
-    //         numOfSlide.push(slideImage);
-    //     }
-    // }
-
-    // console.log(numOfSlide, 'numOfSlide');
 
     return (
         <Fragment>

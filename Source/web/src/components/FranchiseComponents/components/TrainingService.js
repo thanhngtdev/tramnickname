@@ -198,76 +198,90 @@ function LDHolidayCamp(props) {
                 Upcoming camps by {props.site ? props.site.ms_name : ''}{' '}
                 Academy:
             </h5>
-            {lstCourse.map((item, index) => (
-                <Fragment key={index}>
-                    <div
-                        onClick={() => setCourseSelected(item)}
-                        style={{
-                            borderBottom: '1px solid #F2F2F2',
-                            fontWeight: 'normal',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                        }}>
-                        <p>
-                            {item.date} | {item.time} | {item.course_title}
-                        </p>
-                    </div>
+            {lstCourse ? (
+                <>
+                    {lstCourse.map((item, index) => (
+                        <Fragment key={index}>
+                            <div
+                                onClick={() => setCourseSelected(item)}
+                                style={{
+                                    borderBottom: '1px solid #F2F2F2',
+                                    fontWeight: 'normal',
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                }}>
+                                <p>
+                                    {item.date} | {item.time} |{' '}
+                                    {item.course_title}
+                                </p>
+                            </div>
 
-                    <div style={{ clear: 'both', marginBottom: 16 }} />
-                </Fragment>
-            ))}
-            {!props.isMobile && (
-                <Fragment>
-                    <h5>How much do camps cost?</h5>
-                    {Utils.isEmpty(courseSelected) ? (
-                        <div>
-                            See more at{' '}
-                            <a
-                                style={{ color: '#ef9042' }}
-                                href={
-                                    '/' +
-                                    props.site.ms_alias +
-                                    PathRoute.HolidayCamp
-                                }>
-                                Holiday Camps
-                            </a>
-                        </div>
-                    ) : (
+                            <div style={{ clear: 'both', marginBottom: 16 }} />
+                        </Fragment>
+                    ))}
+                    {!props.isMobile && (
                         <Fragment>
-                            <div
-                                style={{
-                                    borderBottom: '1px solid #F2F2F2',
-                                    marginBottom: 16,
-                                }}>
-                                £{courseSelected.half_day_price} per half day
-                            </div>
-                            <div
-                                style={{
-                                    borderBottom: '1px solid #F2F2F2',
-                                    marginBottom: 16,
-                                }}>
-                                £{courseSelected.single_day_price} per full day
-                            </div>
-                            <div
-                                style={{
-                                    borderBottom: '1px solid #F2F2F2',
-                                    marginBottom: 16,
-                                }}>
-                                £{courseSelected.course_price} full week
-                            </div>
-                            <SolidButton
-                                title="Book Now"
-                                onClick={() => {
-                                    global.bookCamp = {
-                                        siteId: props.site.ms_id || 0,
-                                        siteName: props.site.ms_name || '',
-                                    };
-                                    history.push(PathRoute.BookTrialCamp);
-                                }}
-                            />
+                            <h5>How much do camps cost?</h5>
+                            {Utils.isEmpty(courseSelected) ? (
+                                <div>
+                                    See more at{' '}
+                                    <a
+                                        style={{ color: '#ef9042' }}
+                                        href={
+                                            '/' +
+                                            props.site.ms_alias +
+                                            PathRoute.HolidayCamp
+                                        }>
+                                        Holiday Camps
+                                    </a>
+                                </div>
+                            ) : (
+                                <Fragment>
+                                    <div
+                                        style={{
+                                            borderBottom: '1px solid #F2F2F2',
+                                            marginBottom: 16,
+                                        }}>
+                                        £{courseSelected.half_day_price} per
+                                        half day
+                                    </div>
+                                    <div
+                                        style={{
+                                            borderBottom: '1px solid #F2F2F2',
+                                            marginBottom: 16,
+                                        }}>
+                                        £{courseSelected.single_day_price} per
+                                        full day
+                                    </div>
+                                    <div
+                                        style={{
+                                            borderBottom: '1px solid #F2F2F2',
+                                            marginBottom: 16,
+                                        }}>
+                                        £{courseSelected.course_price} full week
+                                    </div>
+                                    <SolidButton
+                                        title="Book Now"
+                                        onClick={() => {
+                                            global.bookCamp = {
+                                                siteId: props.site.ms_id || 0,
+                                                siteName:
+                                                    props.site.ms_name || '',
+                                            };
+                                            history.push(
+                                                PathRoute.BookTrialCamp,
+                                            );
+                                        }}
+                                    />
+                                </Fragment>
+                            )}
                         </Fragment>
                     )}
-                </Fragment>
+                </>
+            ) : (
+                <p>
+                    {`There are currently no holiday camps available at ${props.site.location_name.text}`}
+                </p>
             )}
         </>
     );

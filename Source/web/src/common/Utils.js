@@ -359,6 +359,23 @@ class Utils {
 
         return `<span>${name}</span>`;
     }
+
+    renderItem(option) {
+        if (!isEmpty(option?.ms_subName?.text)) {
+            return (
+                <span>
+                    {`${option.ms_name}`}
+                    {' - '}
+                    <span
+                        style={{
+                            color: '#FF7100',
+                        }}>{`${option.ms_subName.text}`}</span>{' '}
+                </span>
+            );
+        }
+
+        return <span>{option.ms_name}</span>;
+    }
 }
 
 export default new Utils();

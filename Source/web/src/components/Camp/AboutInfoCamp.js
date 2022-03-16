@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import PathRoute from 'src/common/PathRoute';
 import { CommonStyle } from 'src/common/Styles';
+import Utils from 'src/common/Utils';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import { APIConfig, PARENT_API } from 'src/requests/ApiConfig';
 import { sendGet } from 'src/services/httpMethodPA';
@@ -130,7 +131,9 @@ export default function AboutInfoCamp(props) {
                         isSearchable={false}
                         isMulti={false}
                         styles={CommonStyle.select2}
-                        getOptionLabel={(option) => option.ms_name}
+                        getOptionLabel={(option) => {
+                            return Utils.renderItem(option);
+                        }}
                         getOptionValue={(option) => option.ms_id}
                         placeholder="abc"
                         onChange={handleSelectedSite}

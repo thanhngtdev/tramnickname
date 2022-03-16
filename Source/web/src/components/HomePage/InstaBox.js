@@ -2,38 +2,53 @@ import React, { Fragment } from 'react';
 // import 'slick-carousel/slick/slick.css';
 import Slider from 'react-slick';
 import Utils from 'src/common/Utils';
+import useGetWidth from 'src/hooks/useGetWidth';
 
-const settings = {
-    lazyLoad: 'ondemand',
-    infinite: true,
-    speed: 1000,
-    autoplaySpeed: 2500,
-    autoplay: true,
-};
 function InstaBox(props) {
     const { instaFeed } = props || {};
-
+    const isMobile = useGetWidth() <= 768;
     let numOfSlide = [];
     let lstImage = instaFeed ? instaFeed.cfg_value : [];
 
-    if (lstImage && lstImage.length > 0) {
-        let i;
-        for (i = 0; i < lstImage.length / 6; i++) {
+    let settings = {
+        lazyLoad: 'ondemand',
+        infinite: true,
+        speed: 1000,
+        autoplaySpeed: 2500,
+        autoplay: true,
+    };
+
+    if (isMobile) {
+        if (lstImage && lstImage.length > 0) {
+            let i;
             let slideImage = [];
-            slideImage.push(-1);
-            if (lstImage.length > 6 * i) slideImage.push(lstImage[6 * i]);
-            slideImage.push(-1);
-            if (lstImage.length > 6 * i + 1)
-                slideImage.push(lstImage[6 * i + 1]);
-            if (lstImage.length > 6 * i + 2)
-                slideImage.push(lstImage[6 * i + 2]);
-            if (lstImage.length > 6 * i + 3)
-                slideImage.push(lstImage[6 * i + 3]);
-            if (lstImage.length > 6 * i + 4)
-                slideImage.push(lstImage[6 * i + 4]);
-            if (lstImage.length > 6 * i + 5)
-                slideImage.push(lstImage[6 * i + 5]);
+            for (i = 0; i < lstImage.length; i++) {
+                slideImage.push(lstImage[i]);
+            }
             numOfSlide.push(slideImage);
+
+            settings = { ...settings, autoplay: false };
+        }
+    } else {
+        if (lstImage && lstImage.length > 0) {
+            let i;
+            for (i = 0; i < lstImage.length / 6; i++) {
+                let slideImage = [];
+                slideImage.push(-1);
+                if (lstImage.length > 6 * i) slideImage.push(lstImage[6 * i]);
+                slideImage.push(-1);
+                if (lstImage.length > 6 * i + 1)
+                    slideImage.push(lstImage[6 * i + 1]);
+                if (lstImage.length > 6 * i + 2)
+                    slideImage.push(lstImage[6 * i + 2]);
+                if (lstImage.length > 6 * i + 3)
+                    slideImage.push(lstImage[6 * i + 3]);
+                if (lstImage.length > 6 * i + 4)
+                    slideImage.push(lstImage[6 * i + 4]);
+                if (lstImage.length > 6 * i + 5)
+                    slideImage.push(lstImage[6 * i + 5]);
+                numOfSlide.push(slideImage);
+            }
         }
     }
 

@@ -112,6 +112,31 @@ function BookTrialCamp1(props) {
     ]);
 
     useEffect(() => {
+        // console.log('====================================');
+        // console.log(date.getFullYear(), dayjs().year());
+
+        // console.log(courseSelected, '====================================');
+        if (courseSelected) {
+            const old = dayjs().year() - date.getFullYear();
+
+            if (old < courseSelected.min_age) {
+                setDisabled(true);
+                setDateError(
+                    'Your child is too young for this holiday camp, please select another camp',
+                );
+                return;
+            } else if (old > courseSelected.max_age) {
+                setDisabled(true);
+                setDateError(
+                    'Your child is too old for this holiday camp, please select another camp',
+                );
+                return;
+            }
+            setDateError('');
+        }
+    }, [date]);
+
+    useEffect(() => {
         if (!isEmpty(emailData)) {
             // console.log(emailData, 'emailData');
             try {
@@ -329,7 +354,9 @@ function BookTrialCamp1(props) {
                     options={lstSite}
                     isSearchable={false}
                     isMulti={false}
-                    getOptionLabel={(option) => option.ms_name}
+                    getOptionLabel={(option) => {
+                        return Utils.renderItem(option);
+                    }}
                     getOptionValue={(option) => option.ms_id}
                     styles={CommonStyle.select2}
                     onChange={(option) => {
@@ -584,6 +611,7 @@ function BookTrialCamp1(props) {
                                 dateFormat: 'm/d/Y',
                                 allowInput: true,
                                 enableTime: false,
+                                maxDate: dayjs().format('MM/DD/YYYY'),
                             }}
                             placeholder="Select date..."
                             onChange={(date) => {

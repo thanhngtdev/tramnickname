@@ -8,6 +8,7 @@ import SearchBox1 from 'src/components/SearchBox1';
 import { useDispatch, useSelector } from 'react-redux';
 import { headerActionType } from 'src/redux/actions/actionTypes';
 import isEmpty from 'lodash/isEmpty';
+import useGetWidth from 'src/hooks/useGetWidth';
 
 function BannerTop(props) {
     const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function BannerTop(props) {
     const [searchResult, setSearchResult] = useState({});
     const history = useRouter();
     const defaultAcademy = getLocalStorage();
+    const isMobile = useGetWidth() <= 768;
 
     useEffect(() => {
         if (!isEmpty(searchResult)) {
@@ -33,7 +35,9 @@ function BannerTop(props) {
             className="banner-top"
             style={{
                 backgroundImage: `url(${Utils.getThumb(
-                    props.bannerTop.cfg_value[0].image,
+                    isMobile
+                        ? props.bannerTop.cfg_mobileBanner
+                        : props.bannerTop.cfg_image,
                 )}) `,
             }}>
             <div className="container">

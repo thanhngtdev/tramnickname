@@ -173,7 +173,7 @@ function BookTrial(props) {
                                                   onClick={() => {
                                                       handleOnClick(item);
                                                   }}>
-                                                  {item.ms_name}
+                                                  {Utils.renderItem(item)}
                                               </div>
                                           ))
                                         : null}

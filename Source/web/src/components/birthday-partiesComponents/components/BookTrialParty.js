@@ -393,7 +393,7 @@ const BookTrialParty = React.forwardRef((props, ref) => {
                                                                 item,
                                                             );
                                                         }}>
-                                                        {item.ms_name}
+                                                        {Utils.renderItem(item)}
                                                     </div>
                                                 ))}
                                         </div>

@@ -134,7 +134,7 @@ function RelateAreas(props) {
                                             alt=""
                                             src={Utils.getThumb(
                                                 props.article.atc_featureImg,
-                                                'c1',
+                                                'c2',
                                             )}
                                         />
                                         <p className="rTitle">

@@ -330,7 +330,7 @@ export default function BookTrialHoliday(props) {
                                                                 item,
                                                             );
                                                         }}>
-                                                        {item.ms_name}
+                                                        {Utils.renderItem(item)}
                                                     </div>
                                                 ))}
                                         </div>

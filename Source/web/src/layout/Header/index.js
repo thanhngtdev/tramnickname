@@ -181,19 +181,20 @@ function Header() {
                     </div>
 
                     <ul className="menu">
-                        {list.map((item) => (
-                            <LinkItem
-                                title={item.title}
-                                hideMenu={hideMenu}
-                                href={`${
-                                    !isEmpty(defaultAcademy)
-                                        ? '/' +
-                                          defaultAcademy.ms_alias +
-                                          item.href
-                                        : item.href
-                                }`}
-                            />
-                        ))}
+                        {list &&
+                            list.map((item) => (
+                                <LinkItem
+                                    title={item.title}
+                                    hideMenu={hideMenu}
+                                    href={`${
+                                        !isEmpty(defaultAcademy)
+                                            ? '/' +
+                                              defaultAcademy.ms_alias +
+                                              item.href
+                                            : item.href
+                                    }`}
+                                />
+                            ))}
                         {isShowLogo && (
                             <li>
                                 <Button

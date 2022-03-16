@@ -23,6 +23,7 @@ const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 import siteService from 'src/services/siteService';
 import * as Yup from 'yup';
+import Utils from 'src/common/Utils';
 
 Coaching.propTypes = {
     data: PropTypes.object,
@@ -205,9 +206,10 @@ function Coaching({ listSite }) {
                                             options={listSite}
                                             isSearchable={false}
                                             isMulti={false}
-                                            getOptionLabel={(option) =>
-                                                option.ms_name
-                                            }
+                                            getOptionLabel={(option) => {
+                                                // console.log();
+                                                return Utils.renderItem(option);
+                                            }}
                                             getOptionValue={(option) =>
                                                 option.ms_id
                                             }
@@ -232,9 +234,10 @@ function Coaching({ listSite }) {
                                             options={listSite}
                                             isSearchable={false}
                                             isMulti={false}
-                                            getOptionLabel={(option) =>
-                                                option.ms_name
-                                            }
+                                            getOptionLabel={(option) => {
+                                                // console.log();
+                                                return Utils.renderItem(option);
+                                            }}
                                             getOptionValue={(option) =>
                                                 option.ms_id
                                             }
@@ -259,9 +262,10 @@ function Coaching({ listSite }) {
                                             options={listSite}
                                             isSearchable={false}
                                             isMulti={false}
-                                            getOptionLabel={(option) =>
-                                                option.ms_name
-                                            }
+                                            getOptionLabel={(option) => {
+                                                // console.log();
+                                                return Utils.renderItem(option);
+                                            }}
                                             getOptionValue={(option) =>
                                                 option.ms_id
                                             }

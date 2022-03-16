@@ -358,8 +358,10 @@ ul.camp-paid li::before {
     }
 
     .birthday-qoute {
-        padding: 0;
-        padding-top: 55px;
+        padding: 75px 1px 10px 0px;
+        /* padding: 0; */
+        /* 
+        padding-top: 55px; */
     }
 
     .about-secure {
@@ -482,7 +484,7 @@ ul.camp-paid li::before {
     .about-info-birthday img {
         /* margin-left: 0; */
         left: 0;
-        top: 10px;
+        top: 30px;
         max-width: 60px;
     }
 

@@ -215,7 +215,7 @@ function BookTrialOne(props) {
                                                 onClick={() => {
                                                     onClickLocation(item);
                                                 }}>
-                                                {item.ms_name}
+                                                {Utils.renderItem(item)}
                                             </div>
                                         ))}
                                 </div>

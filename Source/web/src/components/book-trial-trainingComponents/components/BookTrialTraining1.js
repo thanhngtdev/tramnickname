@@ -252,22 +252,22 @@ function BookTrialTraining1(props) {
         return _validate;
     }
 
-    function renderItem(option) {
-        if (!isEmpty(option?.ms_subName?.text)) {
-            return (
-                <span>
-                    {`${option.ms_name}`}
-                    {' - '}
-                    <span
-                        style={{
-                            color: '#FF7100',
-                        }}>{`${option.ms_subName.text}`}</span>{' '}
-                </span>
-            );
-        }
+    // function renderItem(option) {
+    //     if (!isEmpty(option?.ms_subName?.text)) {
+    //         return (
+    //             <span>
+    //                 {`${option.ms_name}`}
+    //                 {' - '}
+    //                 <span
+    //                     style={{
+    //                         color: '#FF7100',
+    //                     }}>{`${option.ms_subName.text}`}</span>{' '}
+    //             </span>
+    //         );
+    //     }
 
-        return <span>{option.ms_name}</span>;
-    }
+    //     return <span>{option.ms_name}</span>;
+    // }
 
     return (
         <div className="tab-1">
@@ -279,7 +279,9 @@ function BookTrialTraining1(props) {
                     options={listSite}
                     isSearchable={false}
                     isMulti={false}
-                    getOptionLabel={renderItem}
+                    getOptionLabel={(option) => {
+                        return Utils.renderItem(option);
+                    }}
                     getOptionValue={(option) => option.ms_id}
                     styles={CommonStyle.select2}
                     onChange={(option) => {
