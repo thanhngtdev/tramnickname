@@ -318,6 +318,8 @@ class Utils {
                 if (data?.about && siteDetail?.data?.data?.about) {
                     data.about.cfg_image =
                         siteDetail?.data?.data?.about?.cfg_image;
+                    data.about.cfg_mobileBanner =
+                        siteDetail?.data?.data?.about?.cfg_mobileBanner;
                 }
             }
 

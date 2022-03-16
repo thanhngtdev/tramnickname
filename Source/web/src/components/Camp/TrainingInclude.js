@@ -33,7 +33,7 @@ export default function TrainingInclude(props) {
         : [];
 
     useEffect(() => {
-        console.log(sliderRef.current, 'sliderRef');
+        // console.log(sliderRef.current, 'sliderRef');
         const slickTrack = document.getElementsByClassName('slick-track');
         console.log(slickTrack, 'slickTrack');
     }, []);

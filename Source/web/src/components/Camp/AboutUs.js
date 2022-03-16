@@ -91,8 +91,8 @@ export default function AboutUs(props) {
 
     // console.log(isMobile, 'isMobiee');
 
-    // console.log(prop s, 'props');
-
+    // console.log(props, 'props');
+    //
     useTruspilot();
 
     useEffect(() => {
