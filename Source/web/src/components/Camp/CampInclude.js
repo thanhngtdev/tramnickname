@@ -41,39 +41,32 @@ export default function CampInclude(props) {
                 <div className="container">
                     <h2 className="contact-header">{props.data.cfg_title}</h2>
                     <div className="slide-container">
-                        <div className="container">
-                            <Slider
-                                ref={sliderRef}
-                                className="list lazy"
-                                {...settings}>
-                                {props.data.cfg_value &&
-                                    props.data.cfg_value.map(
-                                        (element, index) => (
-                                            <div key={index}>
-                                                <div className="slide-item">
-                                                    <div className="slide-image">
-                                                        <img
-                                                            alt=""
-                                                            src={Utils.getThumb(
-                                                                element.image,
-                                                            )}
-                                                        />
-                                                    </div>
-                                                    <div className="slide-text">
-                                                        {/* <p>{element.content}</p> */}
-                                                        {parse(
-                                                            element.content +
-                                                                '',
-                                                        )}
-                                                        <h3>{element.title}</h3>
-                                                        <p>{element.des}</p>
-                                                    </div>
-                                                </div>
+                        <Slider
+                            ref={sliderRef}
+                            className="list lazy"
+                            {...settings}>
+                            {props.data.cfg_value &&
+                                props.data.cfg_value.map((element, index) => (
+                                    <div key={index}>
+                                        <div className="slide-item">
+                                            <div className="slide-image">
+                                                <img
+                                                    alt=""
+                                                    src={Utils.getThumb(
+                                                        element.image,
+                                                    )}
+                                                />
                                             </div>
-                                        ),
-                                    )}
-                            </Slider>
-                        </div>
+                                            <div className="slide-text">
+                                                {/* <p>{element.content}</p> */}
+                                                {parse(element.content + '')}
+                                                <h3>{element.title}</h3>
+                                                <p>{element.des}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                        </Slider>
                         <div
                             className={
                                 width > 767
@@ -93,56 +86,6 @@ export default function CampInclude(props) {
                             <b>
                                 {slideIndex + 1}/{slideItem.length}
                             </b>
-                            {/* {width > 767 ? (
-                            <div
-                            style={{
-                                padding: '0 2rem',
-                                display: 'initial',
-                            }}>
-                            {slideItem.map((item, index) => {
-                                if (index === slideIndex)
-                                return (
-                                    <Fragment key={index}>
-                                    <div style={styles.paging}>
-                                    <button
-                                    style={
-                                        styles.pagingActive
-                                    }>
-                                    {index + 1}
-                                    </button>
-                                    </div>
-                                    {index <
-                                        slideItem.length - 1 && (
-                                            <Dot />
-                                            )}
-                                            </Fragment>
-                                            );
-                                            else
-                                            return (
-                                                <Fragment key={index}>
-                                                <button
-                                                style={styles.pagingButton}
-                                                onClick={() => {
-                                                    sliderRef.current.slickGoTo(
-                                                        index,
-                                                        );
-                                                    }}>
-                                                    <span>{index + 1}</span>
-                                                    </button>
-                                                    {index <
-                                                        slideItem.length - 1 && (
-                                                            <Dot />
-                                                            )}
-                                                            </Fragment>
-                                                            );
-                                                        })}
-                            </div>
-                        ) : (
-                            <b style={{ margin: '0 2rem' }}>
-                                {slideIndex + 1}/{slideItem.length}
-                                </b>
-                            )} */}
-
                             <button
                                 onClick={() => {
                                     sliderRef.current.slickGoTo(slideIndex + 1);
