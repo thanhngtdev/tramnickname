@@ -393,8 +393,7 @@ function BookTrialTraining1(props) {
                                 Choose your class time{' '}
                                 <span style={{ color: '#FF7100' }}>
                                     @{siteSelected.ms_name}
-                                </span>{' '}
-                                Academy
+                                </span>
                             </b>
                         </div>
                         <div className="wSelect2">
@@ -439,12 +438,12 @@ function BookTrialTraining1(props) {
                                         {dayjs(
                                             '2021-03-03T' +
                                                 item.course_day_time_start,
-                                        ).format('hh:mma')}
+                                        ).format('HH:mma')}
                                         -
                                         {dayjs(
                                             '2021-03-03T' +
                                                 item.course_day_time_end,
-                                        ).format('hh:mma')}{' '}
+                                        ).format('HH:mma')}{' '}
                                     </label>
                                     <span>
                                         {item.min_age}-{item.max_age} year olds

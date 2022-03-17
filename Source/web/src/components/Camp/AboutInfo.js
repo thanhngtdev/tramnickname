@@ -10,6 +10,7 @@ import PathRoute from 'src/common/PathRoute';
 import { CommonStyle } from 'src/common/Styles';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import Button from '../Button';
+import Utils from 'src/common/Utils';
 
 AboutInfo.propTypes = {
     lstAcademy: PropTypes.array,
@@ -123,7 +124,9 @@ export default function AboutInfo(props) {
                         isSearchable={false}
                         isMulti={false}
                         styles={CommonStyle.select2}
-                        getOptionLabel={(option) => option.ms_name}
+                        getOptionLabel={(option) => {
+                            return Utils.renderItem(option);
+                        }}
                         getOptionValue={(option) => option.ms_id}
                         onChange={handleOnChange}
                     />
@@ -178,12 +181,12 @@ export default function AboutInfo(props) {
                                     {dayjs(
                                         '2021-03-03T' +
                                             item.course_day_time_start,
-                                    ).format('hh:mma')}
+                                    ).format('HH:mma')}
                                     -
                                     {dayjs(
                                         '2021-03-03T' +
                                             item.course_day_time_end,
-                                    ).format('hh:mma')}
+                                    ).format('HH:mma')}
                                     {item.gender === 0 && (
                                         <>
                                             <br />

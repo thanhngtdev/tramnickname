@@ -8,20 +8,23 @@ import AddToCalendar from '../AddToCalendar';
 import CustomMarker from './CustomMarker';
 
 function BookingSuccessMap(props) {
-    // console.log(props, 'props');
+    const { siteSelected } = props;
+    // console.log(+siteSelected.ms_latitude, 'props');
     const timeStart = props?.courseSelected?.course_day_time_start;
     const timeEnd = props?.courseSelected?.course_day_time_end;
 
     const [bookingInfo, setBookingInfo] = useState({});
 
     const defaultCenter = {
-        lat: Constants.DEFAULT_LOCATION.lat,
-        lng: Constants.DEFAULT_LOCATION.lng,
+        lat: +siteSelected.ms_latitude || Constants.DEFAULT_LOCATION.lat,
+        lng: +siteSelected.ms_longitude || Constants.DEFAULT_LOCATION.lng,
     };
 
     const defaultMarker = {
-        ms_latitude: Constants.DEFAULT_LOCATION.lat,
-        ms_longitude: Constants.DEFAULT_LOCATION.lng,
+        ms_latitude:
+            +siteSelected.ms_latitude || Constants.DEFAULT_LOCATION.lat,
+        ms_longitude:
+            +siteSelected.ms_longitude || Constants.DEFAULT_LOCATION.lng,
     };
 
     const siteReducer = useSelector((state) => state.siteReducer);
@@ -45,12 +48,8 @@ function BookingSuccessMap(props) {
         }
     }, [siteReducer]);
 
-    // useEffect(() => {
-    //     console.log(bookingInfo, 'long');
-    // }, [bookingInfo]);
-
     return (
-        <GoogleMap defaultZoom={8} center={defaultCenter}>
+        <GoogleMap defaultZoom={12} center={defaultCenter}>
             <div className="contact-map" style={{ top: 55, bottom: 0 }}>
                 <div
                     className="text-content"
@@ -102,10 +101,10 @@ function BookingSuccessMap(props) {
                                 '2021-03-03T' +
                                     props?.courseSelected
                                         ?.course_day_time_start,
-                            ).format('hh:mma')} - ${dayjs(
+                            ).format('HH:mma')} - ${dayjs(
                                 '2021-03-03T' +
                                     props?.courseSelected?.course_day_time_end,
-                            ).format('hh:mma')}`,
+                            ).format('HH:mma')}`,
                             title: props?.courseSelected?.course_title,
                             startDate: props?.data?.start_date,
                             startTime:

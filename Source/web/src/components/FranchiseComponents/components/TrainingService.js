@@ -101,11 +101,11 @@ function LDWeeklyTraining(props) {
                             <p>
                                 {dayjs(
                                     '2021-03-03T' + item.course_day_time_start,
-                                ).format('hh:mma')}
+                                ).format('HH:mma')}
                                 -
                                 {dayjs(
                                     '2021-03-03T' + item.course_day_time_end,
-                                ).format('hh:mma')}
+                                ).format('HH:mma')}
                             </p>
                             <p>
                                 {item.min_age}-{item.max_age}{' '}
@@ -188,19 +188,20 @@ function LDHolidayCamp(props) {
         }
     }, [siteReducer]);
 
+    useEffect(() => {
+        console.log(lstCourse, 'lstCourse');
+    }, [lstCourse]);
+
     return (
         <>
             <h4>{props.config ? props.config.des : ''}</h4>
-            {/* <p
-                dangerouslySetInnerHTML={{
-                    __html: props.config.content || '',
-                }}></p> */}
+
             {parse(props?.config?.content || '')}
+
             <h5>
-                Upcoming camps by {props.site ? props.site.ms_name : ''}{' '}
-                Academy:
+                Upcoming camps by {props.site ? props.site.ms_name + ':' : ''}
             </h5>
-            {lstCourse ? (
+            {lstCourse?.length ? (
                 <>
                     {lstCourse.map((item, index) => (
                         <Fragment key={index}>
@@ -281,7 +282,7 @@ function LDHolidayCamp(props) {
                     )}
                 </>
             ) : (
-                <p>
+                <p style={{ color: 'red' }}>
                     {`There are currently no holiday camps available at ${props.site.location_name.text}`}
                 </p>
             )}

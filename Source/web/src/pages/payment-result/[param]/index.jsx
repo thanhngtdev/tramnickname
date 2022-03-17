@@ -139,12 +139,12 @@ const PaymentResult = (props) => {
                                                             dataPayment?.data
                                                                 ?.courseSelected
                                                                 ?.course_day_time_start,
-                                                    ).format('hh:mma')}-${dayjs(
+                                                    ).format('HH:mma')}-${dayjs(
                                                         '2021-03-03T' +
                                                             dataPayment?.data
                                                                 ?.courseSelected
                                                                 ?.course_day_time_end,
-                                                    ).format('hh:mma')}`}
+                                                    ).format('HH:mma')}`}
                                                 </span>
                                             </>
                                         )}

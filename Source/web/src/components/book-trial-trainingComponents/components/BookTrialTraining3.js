@@ -282,11 +282,11 @@ function BookTrialTraining3(props) {
                                                 '2021-03-03T' +
                                                     props.data.courseSelected
                                                         .course_day_time_start,
-                                            ).format('hh:mma')}-${dayjs(
+                                            ).format('HH:mma')}-${dayjs(
                                                 '2021-03-03T' +
                                                     props.data.courseSelected
                                                         .course_day_time_end,
-                                            ).format('hh:mma')} on ${
+                                            ).format('HH:mma')} on ${
                                                 props?.data?.start_date
                                             }`}
                                         </span>
