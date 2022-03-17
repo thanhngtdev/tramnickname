@@ -103,8 +103,7 @@ export default ({ listSite, data, isCategory = false }) => {
                 className="article-feature"
                 style={{
                     backgroundImage: `url(${Utils.getThumb(
-                        promoteArticle.atc_featureImg,
-                        'c2',
+                        promoteArticle.atc_banner,
                     )})`,
                     backgroundRepeat: 'no-repeat',
                     // backgroundSize: 'cover',
