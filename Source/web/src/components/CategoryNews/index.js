@@ -106,8 +106,8 @@ export default ({ listSite, data, isCategory = false }) => {
                         promoteArticle.atc_banner,
                     )})`,
                     backgroundRepeat: 'no-repeat',
-                    // backgroundSize: 'cover',
-                    backgroundSize: '100% 100%',
+                    backgroundSize: 'cover',
+                    // backgroundSize: '100% 100%',
                     backgroundPosition: 'center',
                 }}>
                 <h4>Featured Article</h4>

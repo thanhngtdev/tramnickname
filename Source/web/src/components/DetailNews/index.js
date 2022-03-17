@@ -35,8 +35,8 @@ export default ({ listSite, data }) => {
                         Utils.getThumb(data?.article?.atc_banner || '') +
                         ')',
                     backgroundRepeat: 'no-repeat',
-                    // backgroundSize: 'cover',
-                    backgroundSize: '100% 100%',
+                    backgroundSize: 'cover',
+                    // backgroundSize: '100% 100%',
                     backgroundPosition: 'center',
                 }}>
                 <h2>{data?.article?.atc_title || ''}</h2>
