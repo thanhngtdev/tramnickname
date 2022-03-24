@@ -360,7 +360,7 @@ function BookTrialTraining1(props) {
                     data-enable-time
                     className="input-text"
                     value={date}
-                    disabled={availableEmail || !email}
+                    disabled={availableEmail}
                     options={{
                         mode: 'single',
                         dateFormat: 'm/d/Y',

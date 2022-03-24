@@ -27,7 +27,7 @@ function BookTrial(props) {
     const [showSelect, setShowSelect] = useState(false);
     const [location, setLocation] = useState(props.site || '');
     const [trialText, setTrialText] = useState(
-        props.site?.ms_trial === 1 ? 'trial' : 'free trial',
+        props.site?.ms_trial === 1 ? 'session' : 'free session',
     );
     const [date, setDate] = useState({});
     const [email, setEmail] = useState('');
@@ -54,7 +54,7 @@ function BookTrial(props) {
                 setLocation(siteReducer.data);
                 setTrialText(
                     siteReducer.data && siteReducer.data.ms_trial === 1
-                        ? 'trial'
+                        ? 'session'
                         : 'free',
                 );
             }
@@ -71,7 +71,7 @@ function BookTrial(props) {
         // console.log(data, 'data');
         setLocation(data);
         setShowSelect(false);
-        setTrialText(data.ms_trial === 1 ? 'trial' : 'free trial');
+        setTrialText(data.ms_trial === 1 ? 'session' : 'free session');
     }
 
     function validateInput() {
@@ -238,7 +238,10 @@ function BookTrial(props) {
                                         );
                                     }
                                 }}
-                                title={`Book a ${trialText} training session`}
+                                title={`Book a ${trialText.replace(
+                                    'session',
+                                    '',
+                                )} training session`}
                             />
                         </li>
                     </ul>

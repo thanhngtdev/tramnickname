@@ -11,8 +11,7 @@ import siteService from 'src/services/siteService';
 import saveList from 'src/hooks/useSaveList';
 
 function Policy({ data, listSite }) {
-    console.log(data, 'data');
-
+    // console.log(data, 'data');
     const refListItem = useRef(null);
     saveList(listSite);
     useEqualElement(refListItem);
@@ -67,8 +66,14 @@ function Policy({ data, listSite }) {
                                     <div
                                         key={index}
                                         className="col-6"
-                                        style={{ marginTop: 50 }}>
-                                        <div className="item">
+                                        style={{
+                                            marginTop: 50,
+                                        }}>
+                                        <div
+                                            className="item"
+                                            style={{
+                                                minHeight: 655,
+                                            }}>
                                             <img
                                                 loading="lazy"
                                                 alt=""
