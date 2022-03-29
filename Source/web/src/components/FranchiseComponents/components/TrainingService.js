@@ -46,7 +46,7 @@ function LDWeeklyTraining(props) {
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
                 // console.log(siteReducer.dataCourse,"data");
                 if (siteReducer.courseType === 'course') {
-                    debugger;
+                    // debugger;
 
                     setLstCourse(siteReducer.dataCourse);
                 }

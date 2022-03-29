@@ -95,8 +95,6 @@ function LocationModal() {
     if (searched) headText = 'Select Your Local Class';
 
     const setCurrentLocation = () => {
-        // setQuery('Loading...');
-        // console.log('aaaa');
         let options = {
             enableHighAccuracy: true,
             timeout: 5000,

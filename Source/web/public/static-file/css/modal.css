@@ -262,9 +262,14 @@
 }
 
 .modal-content .map-view .book-trial {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background-color: #ee7925;
     color: white;
     text-transform: uppercase;
+    cursor: pointer;
 }
 
 .modal-content .map-view .service .service-offered ul {

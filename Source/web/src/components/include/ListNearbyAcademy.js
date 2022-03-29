@@ -15,12 +15,15 @@ import {
     withScriptjs,
 } from 'react-google-maps';
 import parse from 'html-react-parser';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Constants from 'src/common/Constants';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 import Spinner from 'src/components/Spinner';
-import { headerActionType } from 'src/redux/actions/actionTypes';
+import {
+    headerActionType,
+    siteActionType,
+} from 'src/redux/actions/actionTypes';
 import WeeklyTrainingItem from './WeeklyTrainingItem';
 
 const MapWithAMarker = withScriptjs(
@@ -46,12 +49,14 @@ const MapWithAMarker = withScriptjs(
 );
 
 function ListNearbyAcademy(props) {
+    const siteReducer = useSelector((state) => state.siteReducer);
     const history = useRouter();
     const dispatch = useDispatch();
     const chooseAcademyModal = useRef(null);
     const [lstAcademy, setLstAcademy] = useState(props.listAcademy || []);
     const [highlightAcademy, setHighlightAcademy] = useState(0);
     const [noResult, setNoReSult] = useState(false);
+    const [weeklyCourse, setWeeklyCourse] = useState([]);
 
     //! useEffect
     useEffect(() => {
@@ -59,6 +64,24 @@ function ListNearbyAcademy(props) {
         setNoReSult(isEmpty(props.listAcademy));
     }, [props.listAcademy]);
 
+    useEffect(() => {
+        if (!isEmpty(lstAcademy[highlightAcademy])) {
+            dispatch({
+                type: siteActionType.GET_LIST_COURSE,
+                company_id: lstAcademy[highlightAcademy].pa_companyId,
+                location_id: lstAcademy[highlightAcademy].pa_locationId,
+                course_type: 'course',
+            });
+        }
+    }, [highlightAcademy]);
+
+    useEffect(() => {
+        if (siteReducer?.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
+            if (siteReducer.courseType === 'course') {
+                setWeeklyCourse(siteReducer.dataCourse);
+            }
+        }
+    }, [siteReducer]);
     //! Functions
 
     //! render
@@ -188,15 +211,13 @@ function ListNearbyAcademy(props) {
                     <div className="service">
                         <div className="weekly-training">
                             <h3>Weekly training schedule:</h3>
-                            {lstAcademy[highlightAcademy].weeklyTraining?.class
-                                .length > 0 &&
-                                lstAcademy[
-                                    highlightAcademy
-                                ].weeklyTraining.class.map((item, index) => (
+                            {weeklyCourse &&
+                                weeklyCourse.map((item, index) => (
                                     <WeeklyTrainingItem
-                                        data={item}
+                                        item={item}
                                         key={index}
                                         index={index}
+                                        site={lstAcademy[highlightAcademy]}
                                     />
                                 ))}
                         </div>
