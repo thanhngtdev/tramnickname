@@ -8,7 +8,7 @@ export default function ArticleItem(props) {
         <div className="article-item">
             <img
                 loading="lazy"
-                src={Utils.getThumb(item.atc_featureImg, 'c2')}
+                src={Utils.getThumb(item.atc_featureImg)}
                 alt={item.atc_title}
             />
             <h6>{item.cate_article.cate_value}</h6>
