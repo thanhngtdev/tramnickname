@@ -14,7 +14,7 @@ const ArticleItem = dynamic(() => import('src/components/Article/ArticleItem'));
 const ArticleMenu = dynamic(() => import('src/components/Article/ArticleMenu'));
 
 export default ({ listSite, data, isCategory = false }) => {
-    // console.log(data, 'data');
+    console.log(data, 'data');
     const dispatch = useDispatch();
     const [lstNews, setLstNews] = useState({});
     const [page, setPage] = useState(1);
@@ -78,8 +78,6 @@ export default ({ listSite, data, isCategory = false }) => {
             console.log(error);
         }
     };
-
-    function getUrlNextPage() {}
 
     return (
         <DefaultLayout>

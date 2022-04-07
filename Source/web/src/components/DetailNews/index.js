@@ -26,6 +26,7 @@ export default ({ listSite, data }) => {
             <ArticleMenu
                 lstCate={data?.lstCate}
                 currentCate={data?.article?.atc_cate}
+                isFranchise={data?.article?.cate_article?.cate_id === 20}
             />
             <div
                 className="article-feature"

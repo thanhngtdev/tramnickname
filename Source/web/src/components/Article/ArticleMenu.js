@@ -16,6 +16,8 @@ ArticleMenu.propTypes = {
 };
 
 export default function ArticleMenu(props) {
+    console.log(props, 'props');
+
     const [currentAcademy, setCurrentAcademy] = useState({});
     const [lstCate, setLstCate] = useState(props?.lstCate || []);
     const [displayForm, setDisplayForm] = useState(true);
