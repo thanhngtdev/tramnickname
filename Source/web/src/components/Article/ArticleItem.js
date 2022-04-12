@@ -11,12 +11,30 @@ export default function ArticleItem(props) {
         setDefaultAcademy(ModelManager.getLocation());
     }, []);
 
-    const renderCate = (cate_article) => {
-        if (cate_article.cate_id === 20 && defaultAcademy) {
+    const renderCate = () => {
+        if (item.cate_article.cate_id === 20 && defaultAcademy) {
             return <h6>{defaultAcademy?.ms_name}</h6>;
         }
 
         return <h6>{item.cate_article.cate_value}</h6>;
+    };
+
+    const renderLink = () => {
+        if (item.cate_article.cate_id === 20 && defaultAcademy) {
+            return (
+                <Link
+                    href={`/${defaultAcademy?.ms_alias}/news/${item.atc_alias}`}
+                    passHref>
+                    <a className="title">{item.atc_title}</a>
+                </Link>
+            );
+        }
+
+        return (
+            <Link href={`/news/${item.atc_alias}`} passHref>
+                <a className="title">{item.atc_title}</a>
+            </Link>
+        );
     };
 
     return (
@@ -26,10 +44,8 @@ export default function ArticleItem(props) {
                 src={Utils.getThumb(item.atc_featureImg)}
                 alt={item.atc_title}
             />
-            {renderCate(item.cate_article)}
-            <Link href={`/news/${item.atc_alias}`} passHref>
-                <a className="title">{item.atc_title}</a>
-            </Link>
+            {renderCate()}
+            {renderLink()}
         </div>
     );
 }
