@@ -327,7 +327,7 @@ function BookTrialTraining1(props) {
                                 <a
                                     target="_blank"
                                     style={{
-                                        color: 'black',
+                                        color: 'orange',
 
                                         // fontWeight: 'bold',
                                     }}
@@ -336,11 +336,11 @@ function BookTrialTraining1(props) {
                                     }>
                                     Login
                                 </a>{' '}
-                                <span style={{ color: 'black' }}>or</span>{' '}
+                                <span style={{ color: 'orange' }}>or</span>{' '}
                                 <a
                                     target="_blank"
                                     style={{
-                                        color: 'black',
+                                        color: 'orange',
                                         // fontWeight: 'bold',
                                     }}
                                     href={

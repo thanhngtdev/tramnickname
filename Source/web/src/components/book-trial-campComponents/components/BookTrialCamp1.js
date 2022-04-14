@@ -559,7 +559,7 @@ function BookTrialCamp1(props) {
                                         <a
                                             target="_blank"
                                             style={{
-                                                color: 'black',
+                                                color: 'orange',
                                                 // color: '#EE7925',
                                                 fontWeight: 'bold',
                                             }}
