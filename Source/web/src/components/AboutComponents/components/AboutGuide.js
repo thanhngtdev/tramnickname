@@ -38,7 +38,7 @@ export default function AboutGuide(props) {
                     setCost({ weeklyCost, minWeeklyCost });
                 }
             } catch (error) {
-                console.log(error);
+                // console.log(error);
             }
         }
     };
@@ -46,7 +46,7 @@ export default function AboutGuide(props) {
     return (
         <div className="about-guide">
             <div className="container">
-                <h2>{newTitle}</h2>
+                <h1>{newTitle}</h1>
             </div>
             <div className="wrap-guide">
                 <div className="col-left">

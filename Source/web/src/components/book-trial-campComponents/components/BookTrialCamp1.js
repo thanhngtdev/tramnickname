@@ -551,13 +551,16 @@ function BookTrialCamp1(props) {
                         />
                         <label className="input-error">
                             <p>
-                                {emailError}
+                                <span style={{ color: 'black' }}>
+                                    {emailError}
+                                </span>
                                 {emailError && availableEmail && (
                                     <Fragment>
                                         <a
                                             target="_blank"
                                             style={{
-                                                color: '#EE7925',
+                                                color: 'black',
+                                                // color: '#EE7925',
                                                 fontWeight: 'bold',
                                             }}
                                             href={

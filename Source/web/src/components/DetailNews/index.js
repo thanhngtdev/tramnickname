@@ -9,7 +9,7 @@ import saveList from 'src/hooks/useSaveList';
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 export default ({ listSite, data }) => {
-    console.log(data, 'data1');
+    // console.log(data, 'data1');
 
     //! State
     saveList(listSite);
@@ -40,7 +40,7 @@ export default ({ listSite, data }) => {
                     // backgroundSize: '100% 100%',
                     backgroundPosition: 'center',
                 }}>
-                <h2>{data?.article?.atc_title || ''}</h2>
+                <h1>{data?.article?.atc_title || ''}</h1>
                 <h4>
                     {data?.article?.author
                         ? data.article.author?.user_showName

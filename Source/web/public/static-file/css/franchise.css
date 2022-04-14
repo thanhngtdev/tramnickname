@@ -18,7 +18,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    content: '';
+    content: "";
     background: #ef9042;
     height: 1320px;
 }
@@ -38,10 +38,6 @@
 }
 .box-reasons .nav-tabs {
     padding-right: 100px;
-}
-
-.training-service {
-    margin-top: 200px;
 }
 
 .training-service .nav-tabs li {
@@ -135,11 +131,7 @@
     padding: 0 0.75rem;
 }
 .coach-image {
-    background: radial-gradient(
-        circle,
-        rgba(196, 200, 201, 1) 0%,
-        rgba(255, 255, 255, 1) 100%
-    );
+    background: radial-gradient(circle, rgba(196, 200, 201, 1) 0%, rgba(255, 255, 255, 1) 100%);
     border-radius: 6px 6px 0 0;
     display: flex;
     justify-content: center;
@@ -426,6 +418,10 @@
     color: #1a1919;
 }
 
+.franchise-servive {
+    margin-top: -170px;
+}
+
 .franchise-servive .classRow {
     padding-bottom: 0;
     cursor: initial;
@@ -562,7 +558,7 @@
         position: absolute;
         left: 0;
         top: 1160px;
-        content: '';
+        content: "";
         background: #ef9042;
         height: 1550px;
     }

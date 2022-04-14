@@ -16,8 +16,6 @@ ArticleMenu.propTypes = {
 };
 
 export default function ArticleMenu(props) {
-    console.log(props, 'props');
-
     const [currentAcademy, setCurrentAcademy] = useState({});
     const [lstCate, setLstCate] = useState(props?.lstCate || []);
     const [displayForm, setDisplayForm] = useState(true);
@@ -28,6 +26,8 @@ export default function ArticleMenu(props) {
     const [isShowDrop, setIsShowDrop] = useState();
     const [name, setName] = useState('');
     const isMobile = useGetWidth() <= 768;
+
+    console.log('results', results);
 
     useEffect(() => {
         const current = ModelManager.getLocation() || {};
@@ -227,14 +227,16 @@ export default function ArticleMenu(props) {
 
                             const list = listNews.filter((item) => {
                                 return (
+                                    //* search by title
                                     item.atc_title
                                         .toLowerCase()
-                                        .includes(
-                                            e.target.value.toLowerCase(),
-                                        ) ||
-                                    item.atc_content
-                                        .toLowerCase()
                                         .includes(e.target.value.toLowerCase())
+                                    //* search by content
+                                    //     ||
+
+                                    // item.atc_content
+                                    //     .toLowerCase()
+                                    //     .includes(e.target.value.toLowerCase())
                                 );
                             });
 

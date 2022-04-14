@@ -7,15 +7,20 @@ function ContactMap(props) {
     const { academy } = props;
 
     const [defaultCenter, setdefaultCenter] = useState({
-        lat: Constants.DEFAULT_LOCATION.lat + 0.13,
-        lng: Constants.DEFAULT_LOCATION.lng,
+        lat: Number(academy.ms_latitude),
+        lng: Number(academy.ms_longitude),
     });
 
-    const [defaultMarker, setdefaultMarker] = useState({
-        ms_latitude: Constants.DEFAULT_LOCATION.lat,
-        ms_longitude: Constants.DEFAULT_LOCATION.lng,
-    });
+    // const [defaultMarker, setdefaultMarker] = useState({
+    //     ms_latitude: Constants.DEFAULT_LOCATION.lat,
+    //     ms_longitude: Constants.DEFAULT_LOCATION.lng,
+    // });
 
+    const [defaultMarker, setdefaultMark] = useState({
+        ms_latitude: Number(academy.ms_latitude),
+        ms_longitude: Number(academy.ms_longitude),
+    });
+    console.log('defaultMarker', typeof academy.ms_latitude);
     // useEffect(() => {
     //     console.log(props.footerConfig, 'config');
     // }, [props.footerConfig]);

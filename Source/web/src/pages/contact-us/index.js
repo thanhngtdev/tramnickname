@@ -54,6 +54,7 @@ function Contact({ listSite, config }) {
         setDefaultAcademy(ModelManager.getLocation() || {});
     }, []);
 
+    // console.log('defaultAcademy', defaultAcademy);
     useEffect(() => {
         if (isFirstRun.current) {
             isFirstRun.current = false;
@@ -144,7 +145,7 @@ function Contact({ listSite, config }) {
                                     <div style={{ height: `100%` }} />
                                 }
                                 mapElement={<div style={{ height: `100%` }} />}
-                                // academy={academy}
+                                academy={defaultAcademy}
                             />
                         </div>
                     </div>

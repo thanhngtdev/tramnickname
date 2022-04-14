@@ -170,7 +170,7 @@ function AutocompleteInput(props) {
                 return;
             }
 
-            console.log('aaaa');
+            // console.log('aaaa');
             setActiveSuggestion(activeSuggestion - 1);
         }
         // User pressed the down arrow, increment the index
