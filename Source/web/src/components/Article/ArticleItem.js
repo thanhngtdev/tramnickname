@@ -6,7 +6,7 @@ import Utils from 'src/common/Utils';
 export default function ArticleItem(props) {
     const [defaultAcademy, setDefaultAcademy] = useState({});
     const { item } = props;
-    console.log('tmmmmm', item);
+   
     useEffect(() => {
         setDefaultAcademy(ModelManager.getLocation());
     }, []);
@@ -36,7 +36,7 @@ export default function ArticleItem(props) {
             </Link>
         );
     };
-    console.log('itemitemitemitem', item);
+   
     return (
         <div className="article-item">
             <img
