@@ -144,7 +144,7 @@ function Contact({ listSite, config }) {
                                     <div style={{ height: `100%` }} />
                                 }
                                 mapElement={<div style={{ height: `100%` }} />}
-                                // academy={academy}
+                                academy={defaultAcademy}
                             />
                         </div>
                     </div>
