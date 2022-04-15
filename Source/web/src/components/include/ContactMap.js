@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps';
 import Constants from 'src/common/Constants';
 import CustomMarker from 'src/components/include/CustomMarker';
@@ -11,19 +11,20 @@ function ContactMap(props) {
         lng: Number(academy.ms_longitude),
     });
 
-    // const [defaultMarker, setdefaultMarker] = useState({
-    //     ms_latitude: Constants.DEFAULT_LOCATION.lat,
-    //     ms_longitude: Constants.DEFAULT_LOCATION.lng,
-    // });
-
-    const [defaultMarker, setdefaultMark] = useState({
-        ms_latitude: Number(academy.ms_latitude),
-        ms_longitude: Number(academy.ms_longitude),
+    const [defaultMarker, setdefaultMarker] = useState({
+        ms_latitude: Constants.DEFAULT_LOCATION.lat,
+        ms_longitude: Constants.DEFAULT_LOCATION.lng,
     });
-    console.log('defaultMarker', typeof academy.ms_latitude);
-    // useEffect(() => {
-    //     console.log(props.footerConfig, 'config');
-    // }, [props.footerConfig]);
+    useEffect(() => {
+        setdefaultCenter({
+            lat: Number(academy.ms_latitude) + 0.13,
+            lng: Number(academy.ms_longitude),
+        });
+        setdefaultMarker({
+            ms_latitude: Number(academy.ms_latitude),
+            ms_longitude: Number(academy.ms_longitude),
+        });
+    }, [academy]);
 
     function renderWMFContact() {
         return (

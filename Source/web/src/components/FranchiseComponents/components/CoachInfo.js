@@ -54,7 +54,8 @@ function CoachInfo(props) {
                             </div>
                         </div>
                         <div className="col-8">
-                            {parse(props?.site?.aboutUs?.text || '')}
+                            {/* {parse(props?.site?.aboutUs?.text || '')} */}
+                            {parse(props?.site?.sub_page?.sub_AboutUS?.text || '')}
                             {/* <p>{}</p> */}
                         </div>
                     </div>

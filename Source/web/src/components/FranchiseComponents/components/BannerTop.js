@@ -56,9 +56,9 @@ function BannerTop(props) {
     }, [data]);
 
     function checkSubname(item) {
-        return `${item.ms_name} <br>
-                    <span className="subname-32">${
-                        item.sub_name.text || ''
+        return `Football Coaching near ${siteName}<br>
+                    <span className="subname-32"> By We Make Footballers: ${
+                        item.ms_name|| ''
                     }</span>`;
         if (!name) return '<> </>';
 
@@ -84,9 +84,9 @@ function BannerTop(props) {
                     {/* {`${siteName.replace(' Academy', '')}`} */}
                     {parse(checkSubname(props.site))}
                 </h1>
-                <div className="box-text">
-                    <p>{props?.masterData?.about?.cfg_des}</p>
-                </div>
+                <h2 className="box-text">
+                    <p>{props?.masterData?.about?.cfg_des} near {siteName}</p>
+                </h2>
                 <Button
                     style={{ width: 350 }}
                     title={`${

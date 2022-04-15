@@ -319,7 +319,7 @@ function BookTrialTraining1(props) {
                         }
                     }}
                 />
-                <label className="input-error">
+                <label className="input-error color-black">
                     <p>
                         <span style={{ color: 'black' }}> {emailError} </span>
                         {emailError && availableEmail && (
