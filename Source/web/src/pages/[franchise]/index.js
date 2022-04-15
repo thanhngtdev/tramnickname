@@ -114,9 +114,20 @@ function Franchise({ data, listSite, isSubPage, item }) {
                     site={data?.site || {}}
                 />
             </div>
-            <div className="coaching-franchise">
+
+            <div className="franchise-servive">
+                <TrainingService
+                    onClickLocation={onClickLocation}
+                    site={data?.site || {}}
+                    service={data?.service || {}}
+                    // targetRef={targetRef}
+                />
+            </div>
+
+            <div className="coaching-franchise " style={{ marginTop: '200px' }}>
                 <CoachInfo coach={data?.coach || {}} site={data?.site || {}} />
             </div>
+
             <div className="franchise-review">
                 <div className="intro-franchise">
                     <Intro
@@ -132,14 +143,14 @@ function Franchise({ data, listSite, isSubPage, item }) {
                     textColor={'white'}
                 />
             </div>
-            <div className="franchise-servive">
+            {/* <div className="franchise-servive">
                 <TrainingService
                     onClickLocation={onClickLocation}
                     site={data?.site || {}}
                     service={data?.service || {}}
                     // targetRef={targetRef}
                 />
-            </div>
+            </div> */}
             <div className="franchise-reason">
                 <TrainingReason
                     targetRef={targetRef}

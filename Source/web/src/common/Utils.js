@@ -343,7 +343,7 @@ class Utils {
                 window.location.href = `${'/' + item.ms_alias}`;
             }
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     }
 

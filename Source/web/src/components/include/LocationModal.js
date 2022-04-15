@@ -39,7 +39,7 @@ function LocationModal() {
     useEffect(() => {
         if (headerReducer.type) {
             if (headerReducer.type === headerActionType.CHANGE_LOCATION) {
-                console.log('headerReducer', headerReducer.data);
+                // console.log('headerReducer', headerReducer.data);
 
                 if (headerReducer.data) {
                     setTextResult(headerReducer.data.textSearch);
@@ -122,7 +122,7 @@ function LocationModal() {
                     }
                 })
                 .catch((err) => {
-                    console.log(err);
+                    // console.log(err);
                     // setListCourse([]);
                 });
         };

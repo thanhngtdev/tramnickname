@@ -321,13 +321,14 @@ function BookTrialTraining1(props) {
                 />
                 <label className="input-error color-black">
                     <p>
-                        {emailError}
+                        <span style={{ color: 'black' }}> {emailError} </span>
                         {emailError && availableEmail && (
                             <Fragment>
                                 <a
                                     target="_blank"
                                     style={{
-                                        color: '#ff7100',
+                                        color: 'orange',
+
                                         // fontWeight: 'bold',
                                     }}
                                     href={
@@ -335,11 +336,11 @@ function BookTrialTraining1(props) {
                                     }>
                                     Login
                                 </a>{' '}
-                                {'or'}{' '}
+                                <span style={{ color: 'orange' }}>or</span>{' '}
                                 <a
                                     target="_blank"
                                     style={{
-                                        color: '#ff7100',
+                                        color: 'orange',
                                         // fontWeight: 'bold',
                                     }}
                                     href={

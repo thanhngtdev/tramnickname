@@ -54,6 +54,7 @@ function Contact({ listSite, config }) {
         setDefaultAcademy(ModelManager.getLocation() || {});
     }, []);
 
+    // console.log('defaultAcademy', defaultAcademy);
     useEffect(() => {
         if (isFirstRun.current) {
             isFirstRun.current = false;

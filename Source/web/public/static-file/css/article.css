@@ -52,6 +52,13 @@
     margin-top: 0;
 }
 
+.article-feature h1 {
+    font-size: 80px;
+    max-width: 770px;
+    color: #fff;
+    margin-top: 0;
+}
+
 .article-feature h2 {
     font-size: 60px;
     max-width: 770px;
@@ -92,6 +99,11 @@
     margin: 0;
     display: block;
     /* max-height: 150px; */
+}
+
+.article-list h1 {
+    color: #5a5a5a;
+    font-size: 45px;
 }
 
 .article-list h2 {
