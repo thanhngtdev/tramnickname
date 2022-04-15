@@ -22,6 +22,10 @@ a.link {
     color: red;
 }
 
+.color-black {
+    color: #000000 !important;
+}
+
 .book_your_child_free_session .container {
     z-index: 0;
 }
