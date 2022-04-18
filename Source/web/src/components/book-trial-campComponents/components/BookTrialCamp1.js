@@ -551,7 +551,7 @@ function BookTrialCamp1(props) {
                         />
                         <label className="input-error color-black">
                             <p>
-                                <span style={{ color: 'black' }}>
+                                <span style={{ color: '#000000' }}>
                                     {emailError}
                                 </span>
                                 {emailError && availableEmail && (
