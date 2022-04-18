@@ -7,20 +7,10 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import siteService from 'src/services/siteService';
 import dynamic from 'next/dynamic';
+import { kebabCase } from 'lodash';
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 function Policy({ data }) {
-    const router = useRouter();
-    const { sub } = router.query;
-    // const elementFounded = (data?.cfg_value).find(
-    //   (el) => snakeCase(el.title) === snakeCase(sub)
-    // );
-
-    // if (isEmpty(elementFounded)) {
-    //   router.push("404");
-    //   return null;
-    // }
-
     return (
         <DefaultLayout>
             <div
@@ -44,24 +34,13 @@ function Policy({ data }) {
 }
 
 export async function getServerSideProps(context) {
-    // console.log(context);
     const { sub } = context.params;
     const policyRes = await siteService.getPolicy();
     const data = policyRes.data.data;
 
     const item = (data?.cfg_value).find(
-        (el) => snakeCase(el.title) === snakeCase(sub),
+        (el) => kebabCase(el.title.replace('&', 'and')) === sub,
     );
-
-    // if (!item) {
-    //   return {
-    //     redirect: {
-    //       destination: `/`,
-    //       statusCode: 303,
-    //     },
-    //   };
-    // }
-
     return { props: { data: item } };
 }
 
