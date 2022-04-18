@@ -13,7 +13,7 @@ export default (props) => {
     // console.log(process.env.STORAGE_URL, 'process.env.BASE_URL_API');
 
     //! Render
-    return <div>{`${locale}`}</div>;
+    return <div>{`${locale}abc`}</div>;
 };
 
 export function getStaticProps({ locale }) {
