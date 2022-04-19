@@ -40,6 +40,7 @@ module.exports = {
         config.optimization.minimize = true;
         return config
       },
+};
 
 
 module.exports = withPlugins([
