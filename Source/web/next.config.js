@@ -34,6 +34,14 @@ const { i18n } = require('./next-i18next.config');
 //     ),
 // );
 
+module.exports = {
+    webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+        config.optimization.splitChunks.cacheGroups = { }
+        config.optimization.minimize = true;
+        return config
+      },
+
+
 module.exports = withPlugins([
     [
         withOptimizedImages,
