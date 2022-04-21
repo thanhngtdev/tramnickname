@@ -118,7 +118,7 @@ export async function getServerSideProps() {
 
     const policyRes = await siteService.getPolicy();
     const data = policyRes.data.data;
-
+   
     return { props: { data, listSite } };
 }
 
