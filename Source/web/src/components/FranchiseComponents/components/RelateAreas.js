@@ -15,7 +15,7 @@ function RelateAreas(props) {
     // console.log(props, 'props');
 
     useEffect(() => {
-        console.log(props, 'props relate');
+        // console.log(props, 'props relate');
         const { site, listSite } = props;
         if (!isEmpty(site) && !isEmpty(listSite)) {
             const list = [...listSite].filter(
@@ -34,9 +34,9 @@ function RelateAreas(props) {
 
             listNearBy.sort((a, b) => a.distance - b.distance);
 
-            console.log('====================================');
-            console.log(listNearBy, 'list');
-            console.log('====================================');
+            // console.log('====================================');
+            // console.log(listNearBy, 'list');
+            // console.log('====================================');
             setListNearBy([...listNearBy.slice(0, 10)]);
         }
     }, []);

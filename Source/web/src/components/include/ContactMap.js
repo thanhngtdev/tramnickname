@@ -7,8 +7,8 @@ function ContactMap(props) {
     const { academy } = props;
 
     const [defaultCenter, setdefaultCenter] = useState({
-        lat: Constants.DEFAULT_LOCATION.lat + 0.13,
-        lng: Constants.DEFAULT_LOCATION.lng,
+        lat: Number(academy.ms_latitude),
+        lng: Number(academy.ms_longitude),
     });
 
     const [defaultMarker, setdefaultMarker] = useState({
@@ -17,13 +17,13 @@ function ContactMap(props) {
     });
     useEffect(() => {
         setdefaultCenter({
-        lat: Number(academy.ms_latitude) + 0.13,
-        lng: Number(academy.ms_longitude),
-        })
+            lat: Number(academy.ms_latitude) + 0.13,
+            lng: Number(academy.ms_longitude),
+        });
         setdefaultMarker({
-        ms_latitude: Number(academy.ms_latitude),
-        ms_longitude: Number(academy.ms_longitude),
-        })
+            ms_latitude: Number(academy.ms_latitude),
+            ms_longitude: Number(academy.ms_longitude),
+        });
     }, [academy]);
 
     function renderWMFContact() {

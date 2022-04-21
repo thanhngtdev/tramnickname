@@ -192,7 +192,7 @@ function LDHolidayCamp(props) {
     }, [siteReducer]);
 
     useEffect(() => {
-        console.log(lstCourse, 'lstCourse');
+        // console.log(lstCourse, 'lstCourse');
     }, [lstCourse]);
 
     return (

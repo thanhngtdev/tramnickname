@@ -1,14 +1,14 @@
 import parse from 'html-react-parser';
-import snakeCase from 'lodash/snakeCase';
+import { kebabCase } from 'lodash';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React, { useRef } from 'react';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 import useEqualElement from 'src/hooks/useEqualElement';
-import dynamic from 'next/dynamic';
-const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
-import siteService from 'src/services/siteService';
 import saveList from 'src/hooks/useSaveList';
+import siteService from 'src/services/siteService';
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 function Policy({ data, listSite }) {
     // console.log(data, 'data');
@@ -89,7 +89,12 @@ function Policy({ data, listSite }) {
                                             <Link
                                                 href={`${
                                                     PathRoute.Policy
-                                                }/${snakeCase(item.title)}`}
+                                                }/${kebabCase(
+                                                    item.title.replace(
+                                                        '&',
+                                                        'and',
+                                                    ),
+                                                )}`}
                                                 passHref>
                                                 <a className="more">
                                                     MORE INFORMATION
