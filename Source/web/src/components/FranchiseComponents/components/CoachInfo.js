@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Utils from 'src/common/Utils';
 import parse from 'html-react-parser';
+import getFranchiseName from 'src/hooks/useFranchise';
 
 CoachInfo.propTypes = {
     coach: PropTypes.object,
 };
 function CoachInfo(props) {
-    // console.log(props.coach);
-
+    const siteName = getFranchiseName(props.site);
     return (
         <div className="coach">
             <div className="container">
@@ -54,9 +54,18 @@ function CoachInfo(props) {
                             </div>
                         </div>
                         <div className="col-8">
-                            {/* {parse(props?.site?.aboutUs?.text || '')} */}
-                            {parse(props?.site?.sub_page?.sub_AboutUS?.text || '')}
-                            {/* <p>{}</p> */}
+                            {props?.site?.sub_page.map((item, index) => {
+                                if (siteName === item.sub_name) {
+                                    return (
+                                        <div key={item.id}>
+                                            {parse(
+                                                item?.sub_page_data?.about_us
+                                                    ?.text || '',
+                                            )}
+                                        </div>
+                                    );
+                                }
+                            })}
                         </div>
                     </div>
                 </div>
