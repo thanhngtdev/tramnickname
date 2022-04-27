@@ -1,4 +1,4 @@
-import Constants from 'src/common/Constants';
+const Constants = dynamic(() => import('src/common/Constants'));
 
 module.exports = {
     siteUrl: Constants.BaseURL,
