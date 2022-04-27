@@ -54,13 +54,13 @@ const DefaultLayout = (props) => {
         }
     }, [props]);
 
-    const currentLocation = process.browser ? window.location.origin : null;
+    const currentLocation = process.browser ? window.location.href : null;
     const url = process.env.NEXT_PUBLIC_NEXTJS_SITE_URL
         ? process.env.NEXT_PUBLIC_NEXTJS_SITE_URL
         : currentLocation;
 
     //! Function
-    // console.log(seo, 'seo');
+    
     //! Render
     return (
         <>

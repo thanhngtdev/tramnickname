@@ -33,6 +33,7 @@
     "dayjs": "^1.10.7",
     "eslint": "^7.31.0",
     "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-react-app": "^6.2.2",
     "flat": "^5.0.2",
     "formik": "^2.2.6",
     "html-react-parser": "^1.2.7",
