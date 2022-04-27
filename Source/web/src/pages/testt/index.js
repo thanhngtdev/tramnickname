@@ -19,7 +19,7 @@ export default (props) => {
 export function getStaticProps({ locale }) {
     return {
         props: {
-            locale,
+            locale: locale || null,
         },
     };
 }
