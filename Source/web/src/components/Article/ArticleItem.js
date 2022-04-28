@@ -25,7 +25,15 @@ export default function ArticleItem(props) {
                 <Link
                     href={`/${defaultAcademy?.ms_alias}/news/${item.atc_alias}`}
                     passHref>
-                    <a className="title">{item.atc_title}</a>
+                    <h3
+                        style={{
+                            color: '#5a5a5a',
+                            fontSize: '30px',
+                            textAlign: 'center',
+                        }}
+                        className="title">
+                        {item.atc_title}
+                    </h3>
                 </Link>
             );
         }
