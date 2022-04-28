@@ -6,7 +6,7 @@ import Utils from 'src/common/Utils';
 export default function ArticleItem(props) {
     const [defaultAcademy, setDefaultAcademy] = useState({});
     const { item } = props;
-
+    console.log('asdasdasdasd', item);
     useEffect(() => {
         setDefaultAcademy(ModelManager.getLocation());
     }, []);
@@ -27,7 +27,7 @@ export default function ArticleItem(props) {
                     passHref>
                     <h3
                         style={{
-                            color: '#5a5a5a',
+                            color: '#767676',
                             fontSize: '30px',
                             textAlign: 'center',
                         }}
@@ -41,7 +41,9 @@ export default function ArticleItem(props) {
         return (
             <Link href={`/news/${item.atc_alias}`} passHref>
                 <a className="title">
-                    <h3>{item.atc_title}</h3>
+                    <h3 style={{ color: '#767676', fontSize: '28px' }}>
+                        {item.atc_title}
+                    </h3>
                 </a>
             </Link>
         );
