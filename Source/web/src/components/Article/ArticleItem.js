@@ -33,7 +33,7 @@ export default function ArticleItem(props) {
         return (
             <Link href={`/news/${item.atc_alias}`} passHref>
                 <a className="title">
-                    <h1>{item.atc_title}</h1>
+                    <h3>{item.atc_title}</h3>
                 </a>
             </Link>
         );

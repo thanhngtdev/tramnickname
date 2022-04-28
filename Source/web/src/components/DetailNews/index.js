@@ -40,7 +40,7 @@ export default ({ listSite, data }) => {
                     // backgroundSize: '100% 100%',
                     backgroundPosition: 'center',
                 }}>
-                <h1>{data?.article?.atc_title || ''}</h1>
+                <h2>{data?.article?.atc_title || ''}</h2>
                 <h4>
                     {data?.article?.author
                         ? data.article.author?.user_showName
