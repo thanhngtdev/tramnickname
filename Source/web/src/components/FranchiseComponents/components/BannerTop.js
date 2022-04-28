@@ -91,8 +91,9 @@ function BannerTop(props) {
                 </h1>
                 <h2 className="box-text">
                     <p>
-                        {/* {props?.masterData?.about?.cfg_des} near {siteName} */}
-                        {props?.masterData?.about?.cfg_des}
+                        {isSubPage
+                            ? `${props?.masterData?.about?.cfg_des} near ${siteName}`
+                            : `${props?.masterData?.about?.cfg_des}`}
                     </p>
                 </h2>
                 <Button
