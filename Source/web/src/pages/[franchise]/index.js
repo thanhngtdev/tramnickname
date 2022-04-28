@@ -37,7 +37,6 @@ import siteService from 'src/services/siteService';
 import { useRef } from 'react';
 
 function Franchise({ data, listSite, isSubPage, item }) {
-    console.log(data, item, isSubPage, 'data');
     const dispatch = useDispatch();
     const router = useRouter();
     const targetRef = useRef(null);
@@ -107,6 +106,7 @@ function Franchise({ data, listSite, isSubPage, item }) {
                     social={data?.site?.socialLink || []}
                     site={data?.site || {}}
                     masterData={data?.masterData || {}}
+                    isSubPage={isSubPage}
                 />
                 <Contact
                     onClickLocation={onClickLocation}
@@ -125,7 +125,7 @@ function Franchise({ data, listSite, isSubPage, item }) {
             </div>
 
             <div className="coaching-franchise " style={{ marginTop: '200px' }}>
-                <CoachInfo coach={data?.coach || {}} site={data?.site || {}} />
+                <CoachInfo coach={data?.coach || {}} site={data?.site || {}} isSubPage={isSubPage}/>
             </div>
 
             <div className="franchise-review">
