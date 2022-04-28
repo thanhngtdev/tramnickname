@@ -9,6 +9,7 @@ CoachInfo.propTypes = {
 };
 function CoachInfo(props) {
     const siteName = getFranchiseName(props.site);
+    const isSubPage = props.isSubPage;
     return (
         <div className="coach">
             <div className="container">
@@ -54,18 +55,21 @@ function CoachInfo(props) {
                             </div>
                         </div>
                         <div className="col-8">
-                            {props?.site?.sub_page.map((item, index) => {
-                                if (siteName === item.sub_name) {
-                                    return (
-                                        <div key={item.id}>
-                                            {parse(
-                                                item?.sub_page_data?.about_us
-                                                    ?.text || '',
-                                            )}
-                                        </div>
-                                    );
-                                }
-                            })}
+                            {isSubPage
+                                ? props?.site?.sub_page.map((item, index) => {
+                                      if (siteName === item.sub_name) {
+                                          return (
+                                              <div key={item.id}>
+                                                  {parse(
+                                                      item?.sub_page_data
+                                                          ?.about_us?.text ||
+                                                          '',
+                                                  )}
+                                              </div>
+                                          );
+                                      }
+                                  })
+                                : parse(props?.site?.aboutUs?.text || '')}
                         </div>
                     </div>
                 </div>

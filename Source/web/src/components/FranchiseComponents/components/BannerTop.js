@@ -15,8 +15,7 @@ BannerTop.propTypes = {
 };
 
 function BannerTop(props) {
-    // console.log(props.site, 'site');
-
+    const isSubPage = props.isSubPage;
     const dispatch = useDispatch();
     const { data } = useSelector((state) => state.homeReducer);
     let options = [];
@@ -56,10 +55,16 @@ function BannerTop(props) {
     }, [data]);
 
     function checkSubname(item) {
-        return `Football Coaching near ${siteName}<br>
+        if (isSubPage) {
+            return `Football Coaching near ${siteName}<br>
                     <span className="subname-32"> By We Make Footballers: ${
-                        item.ms_name|| ''
+                        item.ms_name || ''
                     }</span>`;
+        } else {
+            return `${item.ms_name} <br>
+            <span className="subname-32">${item.sub_name.text || ''}</span>`;
+        }
+
         if (!name) return '<> </>';
 
         if (name.includes(' - ')) {
@@ -85,7 +90,9 @@ function BannerTop(props) {
                     {parse(checkSubname(props.site))}
                 </h1>
                 <h2 className="box-text">
-                    <p>{props?.masterData?.about?.cfg_des} near {siteName}</p>
+                    <p>
+                        {props?.masterData?.about?.cfg_des} near {siteName}
+                    </p>
                 </h2>
                 <Button
                     style={{ width: 350 }}
