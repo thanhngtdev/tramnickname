@@ -144,7 +144,7 @@ h1 {
 .subname-32 {
     font-size: 32px;
     font-style: italic;
-    color: #EE7925;
+    color: white;
 }
 
 .input-text::placeholder {
