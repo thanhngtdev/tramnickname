@@ -9,6 +9,7 @@ import isEmpty from 'lodash/isEmpty';
 import siteService from 'src/services/siteService';
 import ArticleItem from './ArticleItem';
 import useGetWidth from 'src/hooks/useGetWidth';
+import ArticleSearch from 'src/components/Article/ArticleSearch';
 
 ArticleMenu.propTypes = {
     currentCate: PropTypes.number,
@@ -26,13 +27,14 @@ export default function ArticleMenu(props) {
     const [isShowDrop, setIsShowDrop] = useState();
     const [name, setName] = useState('');
     const isMobile = useGetWidth() <= 768;
-
-    console.log('results', results);
+    const [allNews, setAllNews] = useState([]);
+    const [displaySearch, setDisplaySearch] = useState(false);
 
     useEffect(() => {
         const current = ModelManager.getLocation() || {};
         setCurrentAcademy(current);
         getListNews();
+        getListAllNews();
 
         if (props?.isFranchise) {
             // debugger;
@@ -96,6 +98,14 @@ export default function ArticleMenu(props) {
         if (data?.data?.status === 200 && data?.data?.data?.lstArticle?.data) {
             setListNews(data?.data?.data?.lstArticle?.data);
         }
+    };
+
+    const getListAllNews = async () => {
+        const data = await siteService.getAllListNews({
+            data: [],
+        });
+
+        setAllNews(data.data.data);
     };
 
     return (
@@ -225,7 +235,8 @@ export default function ArticleMenu(props) {
                                 return;
                             }
 
-                            const list = listNews.filter((item) => {
+                            const list = allNews.filter((item) => {
+                                setDisplaySearch(true);
                                 return (
                                     //* search by title
                                     item.atc_title
@@ -289,6 +300,14 @@ export default function ArticleMenu(props) {
                             <div className="container">
                                 <div className="article-list-grid">
                                     {results.map((item, index) => {
+                                        if (displaySearch) {
+                                            return (
+                                                <ArticleSearch
+                                                    key={index}
+                                                    item={item}
+                                                />
+                                            );
+                                        }
                                         return (
                                             <ArticleItem
                                                 key={index}
