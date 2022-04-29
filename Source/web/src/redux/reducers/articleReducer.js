@@ -16,6 +16,16 @@ const articleReducer = (state = initialState, action) => {
                 type: type.GET_LIST_NEWS_FAILED,
                 message: action.message,
             };
+        case type.GET_LIST_ALL_NEW_SUCCESS:
+            return {
+                type: type.GET_LIST_ALL_NEW_SUCCESS,
+                data: action.data,
+            };
+        case type.GET_LIST_ALL_NEW_FAILED:
+            return {
+                type: type.GET_LIST_ALL_NEW_FAILED,
+                message: action.message,
+            };
         case type.DETAIL_ARTICLE_SUCCESS:
             return {
                 type: type.DETAIL_ARTICLE_SUCCESS,

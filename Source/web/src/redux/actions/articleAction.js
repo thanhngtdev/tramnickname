@@ -7,6 +7,13 @@ export const getListNews = (data) => {
     };
 };
 
+export const getAllListNews = (data) => {
+    return {
+        type: actionTypes.GET_LIST_ALL_NEW,
+        ...data,
+    };
+};
+
 export const getDetailNews = (data) => {
     return {
         type: actionTypes.DETAIL_ARTICLE,
