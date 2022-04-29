@@ -24,6 +24,7 @@ export const APIConfig = {
     GET_FOOTER_CONFIG: 'static/footer',
     GET_POLICY: 'policy',
     GET_LIST_COMPANY_HAS_CAMP: 'list-company-has-camp',
+    GET_LIST_ALL_NEWS: 'article/search-news',
 
     GET_LIST_COURSE: 'list-courses',
     GET_LIST_COURSE_AVAILABLE: 'get-available-course',

@@ -69,6 +69,14 @@ class SiteService {
         );
     }
 
+    getAllListNews({ data }) {
+        return httpMethod.get(
+            `${APIConfig.GET_LIST_ALL_NEWS}${Utils.convertToQuery({
+                data: data,
+            })}`,
+        );
+    }
+
     getDetailNews({ slug }) {
         return httpMethod.get(
             `${APIConfig.DETAIL_ARTICLE}${Utils.convertToQuery({
