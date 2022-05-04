@@ -46,7 +46,7 @@ export default function AboutGuide(props) {
     return (
         <div className="about-guide">
             <div className="container">
-                <h1>{newTitle}</h1>
+                <h1 className="title-about-guide">{newTitle}</h1>
             </div>
             <div className="wrap-guide">
                 <div className="col-left">

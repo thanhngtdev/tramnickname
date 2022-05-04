@@ -58,6 +58,7 @@ export default function BirthdayExtra(props) {
                                 <h3 className="heading">
                                     {partyOptional.cfg_title}
                                 </h3>
+
                                 {partyOptional.cfg_value &&
                                     partyOptional.cfg_value.map(
                                         (item, index) => {
@@ -76,10 +77,12 @@ export default function BirthdayExtra(props) {
                                                                 height="48px"
                                                                 width="48px"
                                                             />
-                                                            {parse(
-                                                                item.content +
-                                                                    `<b>${item.des}</b>`,
-                                                            )}
+                                                            <div className="content__extra">
+                                                                {parse(
+                                                                    item.content +
+                                                                        `<b>${item.des}</b>`,
+                                                                )}
+                                                            </div>
                                                         </div>
                                                         {/* <br /> */}
                                                         {/* <b>{item.des}</b> */}

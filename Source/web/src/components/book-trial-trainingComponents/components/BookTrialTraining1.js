@@ -336,7 +336,7 @@ function BookTrialTraining1(props) {
                                     }>
                                     Login
                                 </a>{' '}
-                                <span style={{ color: 'orange' }}>or</span>{' '}
+                                <span style={{ color: 'black' }}>or</span>{' '}
                                 <a
                                     target="_blank"
                                     style={{

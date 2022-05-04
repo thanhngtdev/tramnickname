@@ -9,7 +9,7 @@ import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
 import EyeIcon from 'src/components/Booking/EyeIcon';
 
-const GENDER = ['Male', 'Female', 'Unspecified'];
+const GENDER = ['Female', 'Male', 'Unspecified'];
 
 BookTrialCamp2.propTypes = {
     onNext: PropTypes.func,
@@ -121,10 +121,11 @@ function BookTrialCamp2(props) {
                         onChange={(event) => setMedicalInfo(event.target.value)}
                     />
                 </div>
+
                 <div className="wSelect2">
                     <label>The Child Gender</label>
                     <div className="training-gender">
-                        {[0, 1, 2].map((item) => (
+                        {[1, 0, 2].map((item) => (
                             <div
                                 key={item}
                                 onClick={() => setGender(item)}
