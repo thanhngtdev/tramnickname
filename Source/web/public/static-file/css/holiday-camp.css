@@ -343,12 +343,14 @@ ul.camp-paid li::before {
     margin-left: -1em;
     font-size: 2rem;
 }
-
+.content__extra {
+    width: 400px;
+}
 @media only screen and (max-width: 768px) and (min-width: 320px) {
     /* .about-info {
 		margin-top: 50px;
 	} */
-
+    
     .birthday-extra .birthday-warning {
         /* text-align: center;
     margin-top: 10px; */
@@ -359,6 +361,8 @@ ul.camp-paid li::before {
     .birthday-extra .extra-column .extra-item img {
         margin-bottom: 2rem;
     }
+
+
 
     .birthday-qoute {
         padding: 75px 1px 10px 0px;
