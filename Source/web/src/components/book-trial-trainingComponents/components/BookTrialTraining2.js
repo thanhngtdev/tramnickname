@@ -20,7 +20,7 @@ BookTrialTraining2.propTypes = {
     dataStep1: PropTypes.object,
 };
 
-const GENDER = ['Male', 'Female', 'Unspecified'];
+const GENDER = ['Female', 'Male', 'Unspecified'];
 
 function BookTrialTraining2(props) {
     // console.log(props, 'props');
@@ -150,6 +150,7 @@ function BookTrialTraining2(props) {
                 </div>
                 <div className="wSelect2">
                     <label>The Childs Gender</label>
+
                     <div className="training-gender">
                         {[1, 0, 2].map((item) => (
                             <div
