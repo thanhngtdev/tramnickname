@@ -203,7 +203,6 @@ function BookTrialTraining2(props) {
                     <label className="input-error">{phoneError}</label>
                 </div>
             </div>
-
             <h2>Please create your password</h2>
             <div className="wSelect2">
                 <label>password</label>
@@ -255,7 +254,6 @@ function BookTrialTraining2(props) {
                     number, symbol, or whitespace character
                 </div>
             </div>
-
             {props.dataStep1.siteSelected &&
                 props.dataStep1.siteSelected.ms_trial === 1 && (
                     <div style={{ backgroundColor: 'white', padding: '2rem' }}>
@@ -288,11 +286,11 @@ function BookTrialTraining2(props) {
                         </div>
                     </div>
                 )}
-
             <p style={{ fontSize: 24 }}>
                 By clicking below we will setup your account in our booking
                 software, Parent Area.
             </p>
+
             {props.showLogin && (
                 <div style={{ padding: 20 }}>
                     Have an account already?{' '}
@@ -306,7 +304,6 @@ function BookTrialTraining2(props) {
             )}
             <BorderButton
                 id="btn-submit-step"
-                title="Book a free training Session"
                 title={`Book a ${
                     props.dataStep1.siteSelected.ms_trial === 1
                         ? 'trial'

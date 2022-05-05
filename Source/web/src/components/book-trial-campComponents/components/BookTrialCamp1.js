@@ -143,7 +143,7 @@ function BookTrialCamp1(props) {
                 const { data } = emailData;
                 if (data.email_exist === 'yes') {
                     setAvailableEmail(true);
-                    setEmailError('Have an account already? ');
+                    setEmailError('YOUR EMAIL IS ALREADY REGISTERED.');
                 }
                 if (data.email_exist === 'no') {
                     setAvailableEmail(false);
@@ -556,6 +556,7 @@ function BookTrialCamp1(props) {
                                 </span>
                                 {emailError && availableEmail && (
                                     <Fragment>
+                                        <span> PLEASE </span>
                                         <a
                                             target="_blank"
                                             style={{
@@ -566,8 +567,9 @@ function BookTrialCamp1(props) {
                                             href={
                                                 'https://www.parentarea.co/parent/login'
                                             }>
-                                            Login in here
+                                            LOGIN
                                         </a>
+                                        <span> TO MAKE YOUR BOOKING.</span>
                                     </Fragment>
                                 )}
                             </p>

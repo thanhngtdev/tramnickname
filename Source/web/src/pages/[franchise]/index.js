@@ -115,7 +115,7 @@ function Franchise({ data, listSite, isSubPage, item }) {
                 />
             </div>
 
-            <div className="franchise-servive">
+            <div id="training-services" className="franchise-servive">
                 <TrainingService
                     onClickLocation={onClickLocation}
                     site={data?.site || {}}
@@ -125,7 +125,11 @@ function Franchise({ data, listSite, isSubPage, item }) {
             </div>
 
             <div className="coaching-franchise " style={{ marginTop: '200px' }}>
-                <CoachInfo coach={data?.coach || {}} site={data?.site || {}} isSubPage={isSubPage}/>
+                <CoachInfo
+                    coach={data?.coach || {}}
+                    site={data?.site || {}}
+                    isSubPage={isSubPage}
+                />
             </div>
 
             <div className="franchise-review">
