@@ -32,7 +32,7 @@ export default function OneTraining({ data, listSite }) {
     if (isEmpty(data)) return <> </>;
 
     return (
-        <DefaultLayout seo={data?.seoMetaFranchise || {}}>
+        <DefaultLayout seo={data?.seoMeta || {}}>
             <div className="about-121">
                 <AboutUs data={data?.about || {}} site={data.site} />
             </div>
