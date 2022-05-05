@@ -11,6 +11,7 @@
     line-height: 110px;
     text-align: center;
     color: #1a1919;
+    text-align: left;
 }
 .about-us .row .col-6 img {
     min-height: 700px;
