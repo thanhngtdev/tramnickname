@@ -347,6 +347,7 @@ function BookTrialCamp1(props) {
                     Log in here.
                 </a>
             </p>
+            {console.log(lstHoliday, courseSelected, siteSelected, 'ss')}
             <div className="wSelect2">
                 <label>Select academy</label>
                 <Select

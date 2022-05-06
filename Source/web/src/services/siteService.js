@@ -1,7 +1,7 @@
 import Utils from 'src/common/Utils';
 import httpMethod from './httpMethod';
 import { APIConfig, PARENT_API } from '../requests/ApiConfig';
-import httpMethodPA from './httpMethodPA';
+import { get } from './httpMethodPA';
 
 class SiteService {
     getHome() {
@@ -137,9 +137,10 @@ class SiteService {
         );
     }
 
-    // getStatusPaymentPA(param) {
-    //     return httpMethodPA.get(`${APIConfig.GET_STATUS_PAYMENT + param}}`);
-    // }
+    getStatusPaymentPA(param) {
+        return get(`${APIConfig.GET_STATUS_PAYMENT + param}}`);
+        // return httpMethodPA.get(`${APIConfig.GET_STATUS_PAYMENT + param}}`);
+    }
 }
 
 export default new SiteService();
