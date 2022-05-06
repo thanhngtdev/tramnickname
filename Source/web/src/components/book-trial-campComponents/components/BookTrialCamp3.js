@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PathRoute from 'src/common/PathRoute';
 import EmailIcon from 'src/components/Booking/EmailIcon';
 import TrainingIcon1 from 'src/components/Booking/TrainingIcon1';
 import TrainingIcon2 from 'src/components/Booking/TrainingIcon2';
@@ -269,7 +270,7 @@ function BookTrialCamp3(props) {
                         />
                         <p style={{ marginTop: 0 }}>
                             Please confirm you comply with our{' '}
-                            <a href="/#">Terms and Conditions</a>
+                            <a href={PathRoute.Policy}>Terms and Conditions</a>
                         </p>
                     </div>
                     <img src={'static-file/images/paypal.png'} />
