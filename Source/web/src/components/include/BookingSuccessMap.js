@@ -47,7 +47,6 @@ function BookingSuccessMap(props) {
             }
         }
     }, [siteReducer]);
-
     return (
         <GoogleMap defaultZoom={12} center={defaultCenter}>
             <div className="contact-map" style={{ top: 55, bottom: 0 }}>

@@ -2,6 +2,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 import actionTypes from '../actions/actionTypes';
 import API from 'src/requests/API';
 import { APIConfig } from 'src/requests/ApiConfig';
+import { isNull } from 'lodash';
 
 function* getCourseStartDate({ course_id }) {
     const response = yield API.getParentAPI(APIConfig.COURSE_START_DATE, {
@@ -73,8 +74,28 @@ function* bookCourseSignup({ totalData }) {
     }
 }
 
+function* resendEmail({ bookingId, headerToken }) {
+    console.log(bookingId, headerToken, 'abc');
+    const response = yield API.getParentAPI2(
+        APIConfig.RESEND_EMAIL_ID(bookingId),
+        { token: headerToken },
+    );
+    if (response && response.status === 200) {
+        yield put({
+            type: actionTypes.RESEND_EMAIL_SUCCESS,
+            data: response.data,
+        });
+    } else {
+        yield put({
+            type: actionTypes.RESEND_EMAIL_FAILED,
+            message: response ? response.message : '',
+        });
+    }
+}
+
 export default function* watcherBookTrialTraining() {
     yield takeLatest(actionTypes.BOOK_COURSE_SIGNUP, bookCourseSignup);
     yield takeLatest(actionTypes.BOOK_COURSE, bookCourse);
     yield takeLatest(actionTypes.COURSE_START_DATE, getCourseStartDate);
+    yield takeLatest(actionTypes.RESEND_EMAIL, resendEmail);
 }

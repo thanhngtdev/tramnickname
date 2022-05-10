@@ -210,6 +210,26 @@ const siteReducer = (state = initialState, action) => {
                 message: action.message,
             };
 
+        case siteActionType.RESEND_EMAIL:
+            return {
+                ...state,
+                type: siteActionType.RESEND_EMAIL,
+                data: action.data,
+            };
+
+        case siteActionType.RESEND_EMAIL_SUCCESS:
+            return {
+                ...state,
+                type: siteActionType.RESEND_EMAIL_SUCCESS,
+                data: action.data,
+            };
+        case siteActionType.RESEND_EMAIL_FAILED:
+            return {
+                ...state,
+                type: siteActionType.RESEND_EMAIL_FAILED,
+                message: action.message,
+            };
+
         case type.CLEAR_SEND_EMAIL:
             return {
                 ...state,
