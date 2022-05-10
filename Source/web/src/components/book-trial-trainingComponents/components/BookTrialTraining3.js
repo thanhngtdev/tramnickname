@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import Constants from 'src/common/Constants';
 import useGetWidth from 'src/hooks/useGetWidth';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import { resendEmail } from 'src/redux/actions/siteAction';
 
 const BookingSuccessMap = dynamic(() =>
     import('src/components/include/BookingSuccessMap'),
@@ -39,6 +40,11 @@ function BookTrialTraining3(props) {
     // console.log(props.data, 'data');
     const dispatch = useDispatch();
     const isMobile = useGetWidth() <= 767;
+    const bookingId = props?.responseCourse?.bookingId;
+    const headerToken = props?.responseCourse?.token;
+    const handleOnSendGmail = () => {
+        dispatch(resendEmail(bookingId, headerToken));
+    };
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -315,8 +321,19 @@ function BookTrialTraining3(props) {
                             </div>
                             <div>
                                 <p>Can&apos;t see the email? </p>
-                                {/* <p>Check your spam folder or Resend email.</p> */}
-                                <p>Check your spam folder</p>
+                                <p>
+                                    Check your spam folder or{' '}
+                                    <span
+                                        style={{
+                                            color: 'orange',
+                                            cursor: 'pointer',
+                                        }}
+                                        onClick={handleOnSendGmail}>
+                                        Resend email
+                                    </span>{' '}
+                                    .
+                                </p>
+                                {/* <p>Check your spam folder</p> */}
                                 <p>
                                     Your information is safe and secure with We
                                     Make Footballers.

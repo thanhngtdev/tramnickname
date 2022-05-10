@@ -378,6 +378,7 @@ function* refreshAcademyData({ siteId, cate = '' }) {
 export default function* watcherSiteSaga() {
     yield takeLatest(siteActionType.REFRESH_DEFAULT_DATA, refreshAcademyData);
     yield takeLatest(siteActionType.SEND_EMAIL, sendEmail);
+
     yield takeLatest(siteActionType.EVENT_DATE, eventDate);
     yield takeLatest(siteActionType.GET_BOOKING, getBooking);
     yield takeLatest(siteActionType.ADD_WAITING, addWaiting);

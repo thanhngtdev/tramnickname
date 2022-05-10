@@ -48,3 +48,11 @@ export const checkEmail = (data) => {
         data,
     };
 };
+
+export const resendEmail = (bookingId, headerToken) => {
+    return {
+        type: actionTypes.RESEND_EMAIL,
+        bookingId: bookingId,
+        headerToken: headerToken,
+    };
+};

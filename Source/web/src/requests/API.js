@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
+import { isEmpty } from 'lodash';
 import { BASE_API, PARENT_API } from './ApiConfig';
 
 function* requestAPI(url, method, params, baseApi = BASE_API) {
@@ -33,7 +34,45 @@ function* requestGetAPI(url, params, baseApi = BASE_API) {
         }
         uri = uri.join('&');
         url = url + '?' + uri;
-        // console.log(baseApi, url, params);
+        const header =
+            params && params.token
+                ? {
+                      Accept: 'application/json',
+                      'Content-Type': 'application/json',
+                      'Access-Control-Allow-Origin': '*',
+                      Authorization: `Bearer ${params.token || ''}`,
+                  }
+                : {
+                      Accept: 'application/json',
+                  };
+
+        // console.log(header);
+        const res = yield fetch(`${baseApi}${url}`, {
+            method: 'GET',
+            headers: header,
+        }).then((response) => {
+            // console.log(response);
+            return response.json();
+        });
+        if (res.status === 200) {
+            return res;
+        }
+        return -1;
+    } catch (error) {
+        // console.log(error);
+        return -1;
+    }
+}
+
+function* requestGetAPI2(url, params, baseApi = BASE_API) {
+    try {
+        let uri = [];
+        for (var key in params) {
+            if (key !== 'token') uri.push(key + '=' + params[key]);
+        }
+        uri = uri.join('&');
+        url = url;
+        console.log(baseApi, url, params, 's');
         const header =
             params && params.token
                 ? {
@@ -80,12 +119,17 @@ function* getParentAPI(url, params, baseApi = PARENT_API) {
     return yield requestGetAPI(url, params, baseApi);
 }
 
+function* getParentAPI2(url, params, baseApi = PARENT_API) {
+    return yield requestGetAPI2(url, params, baseApi);
+}
+
 const API = {
     requestGetAPI,
     getParentAPI,
     requestPostAPI,
     postParentAPI,
     requestPutAPI,
+    getParentAPI2,
 };
 
 export default API;

@@ -41,4 +41,6 @@ export const APIConfig = {
     TRUST_PILOT: 'configuration',
     URL_SEARCH: 'search',
     GET_STATUS_PAYMENT: 'booking/paypal-confirm/',
+    RESEND_EMAIL: 'resend-booking-email/',
+    RESEND_EMAIL_ID: (id) => `resend-booking-email/${id}`,
 };

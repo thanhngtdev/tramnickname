@@ -30,3 +30,10 @@ export const bookCourse = ({
         totalData,
     };
 };
+
+export const resendEmail = ({ booking_id }) => {
+    return {
+        type: actionTypes.RESEND_EMAIL,
+        booking_id: booking_id,
+    };
+};
