@@ -36,7 +36,7 @@ export async function getServerSideProps(ctx) {
 
     if (req.data.status === 200) {
         return {
-            props: { data: { ...req.data.data, isFranchise: true }, listSite, siteDetails },
+            props: { data: { ...req.data.data, isFranchise: true }, listSite },
         };
     }
 
