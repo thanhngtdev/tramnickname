@@ -3,15 +3,15 @@ import React from 'react';
 import siteService from 'src/services/siteService';
 import dynamic from 'next/dynamic';
 const CategoryNews = dynamic(() => import('src/components/CategoryNews'));
-//const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const SiteNews = (props) => {
     console.log(props, 'props');
    
 
     return (
-        //<DefaultLayout seo={siteDetails?.seoMetaFranchise || {}}>
+        <DefaultLayout seo={detailSite?.seoMetaFranchise || {}}>
     <CategoryNews listSite={props.listSite} data={props.data} />
-   // </DefaultLayout>
+    </DefaultLayout>
     );
 };
 
