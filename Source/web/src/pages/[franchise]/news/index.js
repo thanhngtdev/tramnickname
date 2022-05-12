@@ -9,7 +9,7 @@ const SiteNews = (props) => {
    
 
     return (
-        <DefaultLayout seo={props.microSite.data?.seoMetaFranchise || {}}>
+        <DefaultLayout seo={data?.seoMetaFranchise || {}}>
     <CategoryNews listSite={props.listSite} data={props.data} />
     </DefaultLayout>
     );
@@ -36,7 +36,7 @@ export async function getServerSideProps(ctx) {
 
     if (req.data.status === 200) {
         return {
-            props: { data: { ...req.data.data, isFranchise: true }, listSite, microSite },
+            props: { data: { ...req.data.data, isFranchise: true, microSite }, listSite },
         };
     }
 
