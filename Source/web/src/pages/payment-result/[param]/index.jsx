@@ -56,7 +56,7 @@ const PaymentResult = (props) => {
                 console.log(siteReducer);
                 if (siteReducer.data) {
                     setDataBooking(siteReducer?.data?.data);
-                    if (siteReducer.data.data.payment_status === 'Completed') {
+                    if (siteReducer.data.data.payment_status === 'completed') {
                         setPaidBooking(true);
                     } else {
                         setPaidBooking(false);

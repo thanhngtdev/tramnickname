@@ -44,7 +44,7 @@ function BookTrialCamp3(props) {
                 // console.log(siteReducer.data);
                 setDataBooking(siteReducer.data.data);
                 setGetBooking(true);
-                if (siteReducer.data.data.payment_status === 'Completed') {
+                if (siteReducer.data.data.payment_status === 'completed') {
                     setPaidBooking(true);
                 } else {
                     setPaidBooking(false);
