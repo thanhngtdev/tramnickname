@@ -138,7 +138,7 @@ function BookTrialTraining1(props) {
 
     useEffect(() => {
         if (courseSatisfied.length === 0 && !!date) {
-            setNotAvailable('There is no class available');
+            setNotAvailable('Our classes are for 4-12 year olds. There are no classes available at this location for the age you have provided.');
         }
     }, [courseSatisfied]);
 
