@@ -9,9 +9,9 @@ const SiteNews = (props) => {
    
 
     return (
-        //<DefaultLayout seo={detailSite?.seoMetaFranchise || {}}>
+        <DefaultLayout seo={detailSite.data?.seoMetaFranchise || {}}>
     <CategoryNews listSite={props.listSite} data={props.data} />
-   // </DefaultLayout>
+    </DefaultLayout>
     );
 };
 
