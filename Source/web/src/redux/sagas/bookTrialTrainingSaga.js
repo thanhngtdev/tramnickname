@@ -62,10 +62,20 @@ function* bookCourseSignup({ totalData }) {
     const response = yield API.postParentAPI(apiUrl, totalData);
 
     if (response) {
+        console.log(response);
         yield put({
             type: actionTypes.BOOK_COURSE_SIGNUP_SUCCESS,
             data: response,
         });
+
+        yield put({
+            type: actionTypes.RESEND_EMAIL,
+            data: {
+                bookingId:response.booking_id,
+                headerToken: response.access_token
+            }
+        })
+
     } else {
         yield put({
             type: actionTypes.BOOK_COURSE_SIGNUP_FAILED,
