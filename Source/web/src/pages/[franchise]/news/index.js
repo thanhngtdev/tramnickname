@@ -8,8 +8,7 @@ const SiteNews = (props) => {
    
 
     return (
-       
-    <CategoryNews listSite={props.listSite} data={props.data} seo={props.data.detailSite.data?.seoMetaFranchise} />
+    <CategoryNews listSite={props.listSite} data={props.data} />
     );
 };
 
@@ -20,11 +19,7 @@ export async function getServerSideProps(ctx) {
     if (isEmpty(item)) {
         return { notFound: true };
     }
-    const detailSite = await Utils.getDetailMicrosite(
-        context.params.franchise,
-        99,
-        'news',
-    );
+
     const req = await siteService.getListNews({
         cate: '',
         page: 1,
@@ -33,7 +28,7 @@ export async function getServerSideProps(ctx) {
 
     if (req.data.status === 200) {
         return {
-            props: { data: { ...req.data.data, isFranchise: true, detailSite }, listSite },
+            props: { data: { ...req.data.data, isFranchise: true }, listSite },
         };
     }
 
