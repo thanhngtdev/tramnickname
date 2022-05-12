@@ -10,22 +10,22 @@ const SiteNews = (props) => {
 
     return (
        // <DefaultLayout seo={detailSite.data?.seoMetaFranchise || {}}>
-    <CategoryNews listSite={props.listSite} data={props.data} />
+    <CategoryNews listSite={props.listSite} data={props.data} seo={detailSite?.seoMetaFranchise} />
    // </DefaultLayout>
     );
 };
 
-// export async function getServerSideDetailedProps(context) {
-//     const detailSite = await Utils.getDetailMicrosite(
-//         context.params.franchise,
-//         14,
-//         'news',
-//     );
+export async function getServerSideDetailedProps(context) {
+    const detailSite = await Utils.getDetailMicrosite(
+        context.params.franchise,
+        14,
+        'news',
+    );
 
-//     if (isEmpty(detailSite.data)) return { notFound: true };
+    if (isEmpty(detailSite.data)) return { notFound: true };
 
-//     return { detailSite };
-// }
+    return { detailSite };
+}
 
 export async function getServerSideProps(ctx) {
     const listRes = await siteService.getListSite();

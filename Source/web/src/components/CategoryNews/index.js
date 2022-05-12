@@ -13,7 +13,7 @@ const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const ArticleItem = dynamic(() => import('src/components/Article/ArticleItem'));
 const ArticleMenu = dynamic(() => import('src/components/Article/ArticleMenu'));
 
-export default ({ listSite, data, isCategory = false }) => {
+export default ({ listSite, data, isCategory = false, seo }) => {
     console.log(data, 'data');
     const dispatch = useDispatch();
     const [lstNews, setLstNews] = useState({});
@@ -80,7 +80,7 @@ export default ({ listSite, data, isCategory = false }) => {
     };
 
     return (
-        <DefaultLayout>
+        <DefaultLayout seo={seo || {}}>
             <ArticleMenu
                 lstCate={data?.lstCate}
                 currentCate={data?.categoryId}
