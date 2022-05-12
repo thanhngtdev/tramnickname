@@ -312,9 +312,12 @@ function BookTrialCamp3(props) {
                             following dates:
                         </h2>
                     ) : (
-                        <h2>
+                        <h3>
+                            Thank you for booking {dataBooking.child_name + ' '} to the {' ' + dataBooking.course_title}
+                            
                             The booking status is {dataBooking.payment_status}{' '}
-                            Please log in to Parent Area{' '}
+                            We will send the booking confirmation to your email
+                            You can log in to Parent Area{' '}
                             <a
                                 href="https://www.parentarea.co/parent/login"
                                 target="_blank"
@@ -322,8 +325,8 @@ function BookTrialCamp3(props) {
                                 className="alink">
                                 here
                             </a>{' '}
-                            to complete booking
-                        </h2>
+                            to manage your booking
+                        </h3>
                     )}
                 </div>
                 {paidBooking && (
