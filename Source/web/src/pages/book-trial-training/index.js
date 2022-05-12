@@ -114,7 +114,7 @@ function BookTrialTraining({ listSite }) {
 
                     setResponseCourse({
                         paymentUrl: _data.payment_url,
-                        bookingId: _data.Booking_id,
+                        bookingId: _data.booking_id,
                         token: _data.access_token,
                     });
 
