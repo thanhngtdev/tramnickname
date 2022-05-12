@@ -71,8 +71,8 @@ function* bookCourseSignup({ totalData }) {
         yield put({
             type: actionTypes.RESEND_EMAIL,
             data: {
-                bookingId:response.booking_id,
-                headerToken: response.access_token
+                bookingId:response.data.booking_id,
+                headerToken: response.data.access_token
             }
         })
 
