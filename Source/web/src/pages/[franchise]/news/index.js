@@ -9,7 +9,7 @@ const SiteNews = (props) => {
    
 
     return (
-        <DefaultLayout seo={data?.seoMetaFranchise || {}}>
+        <DefaultLayout seo={props.microSite.data?.seoMetaFranchise || {}}>
     <CategoryNews listSite={props.listSite} data={props.data} />
     </DefaultLayout>
     );
@@ -18,7 +18,11 @@ const SiteNews = (props) => {
 export async function getServerSideProps(ctx) {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
-
+    const microSite = await Utils.getDetailMicrosite(
+        context.params.franchise,
+        18,
+        'news',
+    );
     const item = listSite.find((item) => ctx.query.franchise === item.ms_alias);
     if (isEmpty(item)) {
         return { notFound: true };
@@ -32,22 +36,12 @@ export async function getServerSideProps(ctx) {
 
     if (req.data.status === 200) {
         return {
-            props: { data: { ...req.data.data, isFranchise: true }, listSite },
+            props: { data: { ...req.data.data, isFranchise: true }, listSite, microSite },
         };
     }
 
     return { notFound: true };
 }
-export async function getServerSideProps(context) {
-    const props = await Utils.getDetailMicrosite(
-        context.params.franchise,
-        18,
-        'news',
-    );
 
-    if (isEmpty(props.data)) return { notFound: true };
-
-    return { props };
-}
 // SiteNews.propTypes = propTypes;
 export default SiteNews;
