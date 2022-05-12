@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import dynamic from 'next/dynamic';
 import saveList from 'src/hooks/useSaveList';
@@ -10,7 +10,7 @@ import {
 import { findNearByAcademy } from 'src/redux/actions/siteAction';
 import siteService from 'src/services/siteService';
 import swal from 'sweetalert';
-import router, { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 const BookTrialTraining1 = dynamic(() =>
     import(
@@ -39,7 +39,7 @@ const HolidayCampTabSpace = dynamic(() =>
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 function BookTrialTraining({ listSite }) {
-    console.log(listSite, 'list');
+    
     saveList(listSite);
     const siteReducer = useSelector((state) => state.siteReducer);
     const dispatch = useDispatch();
@@ -60,10 +60,18 @@ function BookTrialTraining({ listSite }) {
     const saveToLocal = (data) => {
         window.localStorage.setItem('dataPayment', JSON.stringify(data));
     };
+    const history = useRouter();
+    const academyLocation = history.query.franchise;
 
-    // useEffect(() => {
-    //     console.log(activeTab, 'tab');
-    // }, [activeTab]);
+    const defaultAcademyss = listSite.find(
+        (e) => academyLocation === e.ms_alias,
+    );
+
+    useLayoutEffect(() => {
+        history.replace({
+            query: { ...history.query, step: activeTab },
+        });
+    }, [activeTab]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -266,8 +274,13 @@ function BookTrialTraining({ listSite }) {
                     <div className="tab-content">
                         {activeTab === 1 && (
                             <BookTrialTraining1
+                                defaultAcademyss={defaultAcademyss}
                                 setLongLatSite={setLongLatSite}
                                 onNext={(data) => {
+                                    history.replace({
+                                        query: { ...history.query, step: 2 },
+                                    });
+
                                     global.bookTraining = {
                                         ...global.bookTraining,
                                         ...data,
@@ -381,7 +394,7 @@ function BookTrialTraining({ listSite }) {
 export async function getServerSideProps() {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
-
+    console.log('listsssss', listSite);
     return { props: { listSite } };
 }
 

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev -p 3005",
     "build": "next build",
-    "start": "next start",
+    "start": "next  start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postbuild": "next-sitemap",
     "analyze": "cross-env ANALYZE=true next build",

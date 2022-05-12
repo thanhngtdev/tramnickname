@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import isEmpty from 'lodash/isEmpty';
-import { useRouter } from 'next/router';
+import router, { Router, useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useRef } from 'react';
@@ -145,7 +145,6 @@ export default function AboutInfo(props) {
                         ref={textareaRef}
                     />
                 </div>
-
                 {selectedAcademy && selectedAcademy.ms_trial === 1 && (
                     <div className="wSelect2">
                         <label>Cost</label>
@@ -160,7 +159,6 @@ export default function AboutInfo(props) {
                         </p>
                     </div>
                 )}
-
                 {lstCourse.length > 0 && (
                     <div className="wSelect2">
                         {lstCourse.map((item, index) => (
@@ -212,7 +210,19 @@ export default function AboutInfo(props) {
                                 type: siteActionType.SELECT_ACADEMY,
                                 data: selectedAcademy,
                             });
-                            history.push(PathRoute.BookTrialTraining);
+                            console.log(
+                                'seee',
+                                selectedAcademy.ms_alias,
+                                history.query,
+                            );
+                            if (selectedAcademy.ms_alias === undefined) {
+                                history.push(PathRoute.BookTrialTraining);
+                            }
+                            history.push(
+                                PathRoute.BookTrialTrainingWithAlias(
+                                    selectedAcademy.ms_alias,
+                                ),
+                            );
                         }}
                     />
                 </div>
