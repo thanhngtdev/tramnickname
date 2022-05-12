@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import dynamic from 'next/dynamic';
 import saveList from 'src/hooks/useSaveList';
@@ -39,7 +39,7 @@ const HolidayCampTabSpace = dynamic(() =>
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 function BookTrialTraining({ listSite }) {
-    // console.log(listSite, 'list');
+    
     saveList(listSite);
     const siteReducer = useSelector((state) => state.siteReducer);
     const dispatch = useDispatch();
@@ -61,11 +61,17 @@ function BookTrialTraining({ listSite }) {
         window.localStorage.setItem('dataPayment', JSON.stringify(data));
     };
     const history = useRouter();
-    console.log('sssasdasdassad', history.query.franchise);
     const academyLocation = history.query.franchise;
-    // useEffect(() => {
-    //     console.log(activeTab, 'tab');
-    // }, [activeTab]);
+
+    const defaultAcademyss = listSite.find(
+        (e) => academyLocation === e.ms_alias,
+    );
+
+    useLayoutEffect(() => {
+        history.replace({
+            query: { ...history.query, step: activeTab },
+        });
+    }, [activeTab]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -268,8 +274,13 @@ function BookTrialTraining({ listSite }) {
                     <div className="tab-content">
                         {activeTab === 1 && (
                             <BookTrialTraining1
+                                defaultAcademyss={defaultAcademyss}
                                 setLongLatSite={setLongLatSite}
                                 onNext={(data) => {
+                                    history.replace({
+                                        query: { ...history.query, step: 2 },
+                                    });
+
                                     global.bookTraining = {
                                         ...global.bookTraining,
                                         ...data,
@@ -383,7 +394,7 @@ function BookTrialTraining({ listSite }) {
 export async function getServerSideProps() {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
-
+    console.log('listsssss', listSite);
     return { props: { listSite } };
 }
 

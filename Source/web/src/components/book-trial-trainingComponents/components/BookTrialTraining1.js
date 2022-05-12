@@ -27,6 +27,7 @@ const FREE_MESSAGE = 'Book your child’s free training session within 3 minutes
 const TRIAL_MESSAGE = 'Try a no obligation, one off trial session';
 
 function BookTrialTraining1(props) {
+    console.log('asdasdasds', props);
     const siteReducer = useSelector((state) => state.siteReducer);
     const { emailData } = siteReducer;
     const { listSite } = useSelector((state) => state.listSiteReducer);
@@ -69,7 +70,8 @@ function BookTrialTraining1(props) {
             : {},
     );
     const [siteSelected, setSiteSelected] = useState(
-        (global.bookTraining && global.bookTraining.siteSelected) ||
+        props.defaultAcademyss ||
+            (global.bookTraining && global.bookTraining.siteSelected) ||
             listSite[0] ||
             {},
     );
@@ -165,7 +167,11 @@ function BookTrialTraining1(props) {
             // return;
         }
     }, [emailData]);
-
+    // const item = props.defaultAcademyss;
+    //     localStorage.setItem('defaultAcademy', JSON.stringify(item));
+    //     // window.location.href = `${'/' + item.ms_alias}`;
+    //     alert('2');
+    //     setLocation({});
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
@@ -295,11 +301,13 @@ function BookTrialTraining1(props) {
                         );
 
                         setSiteSelected(option);
-                        router.push(
-                            PathRoute.BookTrialTrainingWithAlias(
+
+                        history.push({
+                            pathname: PathRoute.BookTrialTrainingWithAlias(
                                 option.ms_alias,
                             ),
-                        );
+                            query: { step: router.query.step },
+                        });
                     }}
                 />
                 <label className="input-error">{siteError}</label>
