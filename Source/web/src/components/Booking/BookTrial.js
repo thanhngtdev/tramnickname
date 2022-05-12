@@ -60,7 +60,6 @@ function BookTrial(props) {
             }
         }
     }, [siteReducer]);
-
     useEffect(() => {
         if (!isComponentVisible && showSelect) {
             setShowSelect(!showSelect);

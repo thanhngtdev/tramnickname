@@ -15,6 +15,7 @@ let PathRoute = {
     ListNews: '/news/:cateAlias',
     DetailNews: '/news/:alias-:id([0-9]+)',
     BookTrialTraining: '/book-trial-training',
+    BookTrialTrainingWithAlias: (alias) => `/${alias}/book-trial-training`,
     BookTrialCamp: '/book-trial-camp',
     ThankYou: '/thank-you',
     AcademyNews: '/:alias/news',

@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 // import 'flatpickr/dist/themes/material_orange.css';
 import { isEmpty } from 'lodash';
-import { useRouter } from 'next/router';
+import router, { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { Fragment, useEffect, useState } from 'react';
 import Flatpickr from 'react-flatpickr';
@@ -10,6 +10,7 @@ import flags from 'react-phone-number-input/flags';
 // import "react-phone-number-input/style.css";
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
+import PathRoute from 'src/common/PathRoute';
 import { CommonStyle } from 'src/common/Styles';
 import Utils from 'src/common/Utils';
 import BorderButton from 'src/components/include/BorderButton';
@@ -26,7 +27,6 @@ const FREE_MESSAGE = 'Book your child’s free training session within 3 minutes
 const TRIAL_MESSAGE = 'Try a no obligation, one off trial session';
 
 function BookTrialTraining1(props) {
-    // console.log(global.bookTraining, 'booking');
     const siteReducer = useSelector((state) => state.siteReducer);
     const { emailData } = siteReducer;
     const { listSite } = useSelector((state) => state.listSiteReducer);
@@ -138,7 +138,9 @@ function BookTrialTraining1(props) {
 
     useEffect(() => {
         if (courseSatisfied.length === 0 && !!date) {
-            setNotAvailable('Our classes are for 4-12 year olds. There are no classes available at this location for the age you have provided.');
+            setNotAvailable(
+                'Our classes are for 4-12 year olds. There are no classes available at this location for the age you have provided.',
+            );
         }
     }, [courseSatisfied]);
 
@@ -274,6 +276,7 @@ function BookTrialTraining1(props) {
             <h2>{message}</h2>
             <div className="wSelect2">
                 <label>Select academy</label>
+
                 <Select
                     value={siteSelected}
                     options={listSite}
@@ -285,7 +288,6 @@ function BookTrialTraining1(props) {
                     getOptionValue={(option) => option.ms_id}
                     styles={CommonStyle.select2}
                     onChange={(option) => {
-                        // console.log(option, 'option');
                         setMessage(
                             option.ms_trial === 1
                                 ? TRIAL_MESSAGE
@@ -293,6 +295,11 @@ function BookTrialTraining1(props) {
                         );
 
                         setSiteSelected(option);
+                        router.push(
+                            PathRoute.BookTrialTrainingWithAlias(
+                                option.ms_alias,
+                            ),
+                        );
                     }}
                 />
                 <label className="input-error">{siteError}</label>

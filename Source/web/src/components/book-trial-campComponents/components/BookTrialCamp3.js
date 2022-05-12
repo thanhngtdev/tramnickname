@@ -313,10 +313,13 @@ function BookTrialCamp3(props) {
                         </h2>
                     ) : (
                         <h3>
-                            Thank you for booking {dataBooking.child_name + ' '} to the {' ' + dataBooking.course_title}
-                            
-                            The booking status is {dataBooking.payment_status}{' '}
-                            <br/>We will send the booking confirmation to your email
+                            Thank you for booking {dataBooking.child_name + ' '}{' '}
+                            to the {' ' + dataBooking.course_title}
+                            The booking status is {
+                                dataBooking.payment_status
+                            }{' '}
+                            <br />
+                            We will send the booking confirmation to your email
                             You can log in to Parent Area{' '}
                             <a
                                 href="https://www.parentarea.co/parent/login"

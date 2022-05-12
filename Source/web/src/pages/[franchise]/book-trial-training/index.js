@@ -10,7 +10,7 @@ import {
 import { findNearByAcademy } from 'src/redux/actions/siteAction';
 import siteService from 'src/services/siteService';
 import swal from 'sweetalert';
-import router, { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 const BookTrialTraining1 = dynamic(() =>
     import(
@@ -39,7 +39,7 @@ const HolidayCampTabSpace = dynamic(() =>
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 function BookTrialTraining({ listSite }) {
-    console.log(listSite, 'list');
+    // console.log(listSite, 'list');
     saveList(listSite);
     const siteReducer = useSelector((state) => state.siteReducer);
     const dispatch = useDispatch();
@@ -60,7 +60,9 @@ function BookTrialTraining({ listSite }) {
     const saveToLocal = (data) => {
         window.localStorage.setItem('dataPayment', JSON.stringify(data));
     };
-
+    const history = useRouter();
+    console.log('sssasdasdassad', history.query.franchise);
+    const academyLocation = history.query.franchise;
     // useEffect(() => {
     //     console.log(activeTab, 'tab');
     // }, [activeTab]);

@@ -212,10 +212,20 @@ function Header() {
                                             global.bookTraining = {
                                                 siteSelected: defaultAcademy,
                                             };
-
-                                        router.push(
-                                            PathRoute.BookTrialTraining,
-                                        );
+                                        if (
+                                            defaultAcademy.ms_alias ===
+                                            undefined
+                                        ) {
+                                            router.push(
+                                                PathRoute.BookTrialTraining,
+                                            );
+                                        } else {
+                                            router.push(
+                                                PathRoute.BookTrialTrainingWithAlias(
+                                                    defaultAcademy.ms_alias,
+                                                ),
+                                            );
+                                        }
                                     }}
                                     title={`Book a ${
                                         defaultAcademy &&
