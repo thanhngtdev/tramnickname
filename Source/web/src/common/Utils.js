@@ -320,6 +320,8 @@ class Utils {
                         siteDetail?.data?.data?.about?.cfg_image;
                     data.about.cfg_mobileBanner =
                         siteDetail?.data?.data?.about?.cfg_mobileBanner;
+                        data.about.cfg_content =
+                        siteDetail?.data?.data?.about?.cfg_content;
                 }
             }
 
