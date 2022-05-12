@@ -150,20 +150,22 @@ const PaymentResult = (props) => {
                                         )}
                                     </h2>
                                 ) : (
-                                    <h2>
-                                        The booking status is{' '}
+                                    <h3>
+                                         Thank you for booking {dataBooking.child_name + ' '} to the {' ' + dataBooking.course_title}
+                                       <br/> The booking status is{' '}
                                         {dataBooking
                                             ? dataBooking.payment_status
                                             : ''}
-                                        <br /> Please log in to Parent Area{' '}
+                                             <br/>We will send the booking confirmation to your email
+                                        <br /> You can log in to Parent Area{' '}
                                         <a
                                             href="https://www.parentarea.co/parent/login"
                                             target="_blank"
                                             rel="noreferrer">
                                             here
                                         </a>{' '}
-                                        to complete booking
-                                    </h2>
+                                        to manage your booking
+                                    </h3>
                                 )}
                             </div>
                             <div className="container">
