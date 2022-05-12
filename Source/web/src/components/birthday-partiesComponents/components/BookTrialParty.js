@@ -78,7 +78,7 @@ function Step2(props) {
     return (
         <Fragment>
             <li>
-                <label className="label">Prefered package</label>
+                <label className="label">Preferred package</label>
 
                 <div className="custom-select">
                     <div
