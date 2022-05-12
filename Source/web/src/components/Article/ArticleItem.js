@@ -25,15 +25,10 @@ export default function ArticleItem(props) {
                 <Link
                     href={`/${defaultAcademy?.ms_alias}/news/${item.atc_alias}`}
                     passHref>
-                    <h3
-                        style={{
-                            color: '#767676',
-                            fontSize: '30px',
-                            textAlign: 'center',
-                        }}
-                        className="title">
+                    
+                        <a className="title">
                         {item.atc_title}
-                    </h3>
+                    </a>
                 </Link>
             );
         }
@@ -41,9 +36,7 @@ export default function ArticleItem(props) {
         return (
             <Link href={`/news/${item.atc_alias}`} passHref>
                 <a className="title">
-                    <h3 style={{ color: '#767676', fontSize: '28px' }}>
                         {item.atc_title}
-                    </h3>
                 </a>
             </Link>
         );
