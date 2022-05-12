@@ -3,11 +3,16 @@ import React from 'react';
 import siteService from 'src/services/siteService';
 import dynamic from 'next/dynamic';
 const CategoryNews = dynamic(() => import('src/components/CategoryNews'));
-
+const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const SiteNews = (props) => {
     console.log(props, 'props');
+   
 
-    return <CategoryNews listSite={props.listSite} data={props.data} />;
+    return (
+        <DefaultLayout seo={data?.seoMetaFranchise || {}}>
+    <CategoryNews listSite={props.listSite} data={props.data} />
+    </DefaultLayout>
+    );
 };
 
 export async function getServerSideProps(ctx) {
@@ -33,6 +38,16 @@ export async function getServerSideProps(ctx) {
 
     return { notFound: true };
 }
+export async function getServerSideProps(context) {
+    const props = await Utils.getDetailMicrosite(
+        context.params.franchise,
+        18,
+        'news',
+    );
 
+    if (isEmpty(props.data)) return { notFound: true };
+
+    return { props };
+}
 // SiteNews.propTypes = propTypes;
 export default SiteNews;
