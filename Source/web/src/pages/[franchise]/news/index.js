@@ -15,14 +15,21 @@ const SiteNews = (props) => {
     );
 };
 
+export async function getServerSideDetailedProps(context) {
+    const detailSite = await Utils.getDetailMicrosite(
+        context.params.franchise,
+        14,
+        'news',
+    );
+
+    if (isEmpty(detailSite.data)) return { notFound: true };
+
+    return { detailSite };
+}
+
 export async function getServerSideProps(ctx) {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
-    // const siteDetails = await Utils.getDetailMicrosite(
-    //     context.params.franchise,
-    //     18,
-    //     'news',
-    // );
     const item = listSite.find((item) => ctx.query.franchise === item.ms_alias);
     if (isEmpty(item)) {
         return { notFound: true };
