@@ -90,9 +90,9 @@ function BookTrialTraining1(props) {
 
     //! useEffect
     useEffect(() => {
-        // if (isEmpty(siteSelected)) {
-        //     setSiteSelected(JSON.parse(localStorage.getItem('defaultAcademy')));
-        // }
+        if (isEmpty(siteSelected)) {
+            setSiteSelected(JSON.parse(localStorage.getItem('defaultAcademy')));
+        }
 
         return () => {
             setAvailableEmail(false);
@@ -166,11 +166,11 @@ function BookTrialTraining1(props) {
 
     useEffect(() => {
         if (siteReducer.type) {
-            // if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
-            //     setSiteSelected(
-            //         JSON.parse(localStorage.getItem('defaultAcademy')),
-            //     );
-            // }
+            if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
+                setSiteSelected(
+                    JSON.parse(localStorage.getItem('defaultAcademy')),
+                );
+            }
 
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
                 // console.log('list');
@@ -373,15 +373,15 @@ function BookTrialTraining1(props) {
                     onChange={(date) => {
                         getClassTime(new Date(date));
                         setDate(date[0]);
-                        if (!isEmpty(siteSelected)) {
-                            dispatch(
-                                getListCourse({
-                                    company_id: siteSelected.pa_companyId,
-                                    location_id: siteSelected.pa_locationId,
-                                    course_type: 'course',
-                                }),
-                            );
-                        }
+                        // if (!isEmpty(siteSelected)) {
+                        //     dispatch(
+                        //         getListCourse({
+                        //             company_id: siteSelected.pa_companyId,
+                        //             location_id: siteSelected.pa_locationId,
+                        //             course_type: 'course',
+                        //         }),
+                        //     );
+                        //}
                     }}
                 />
                 <label className="input-error">{dateError}</label>
