@@ -18,7 +18,7 @@ const SiteNews = (props) => {
 export async function getServerSideProps(ctx) {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
-    const microSite = await Utils.getDetailMicrosite(
+    const siteDetails = await Utils.getDetailMicrosite(
         context.params.franchise,
         18,
         'news',
@@ -36,7 +36,7 @@ export async function getServerSideProps(ctx) {
 
     if (req.data.status === 200) {
         return {
-            props: { data: { ...req.data.data, isFranchise: true, microSite }, listSite },
+            props: { data: { ...req.data.data, isFranchise: true }, listSite },
         };
     }
 
