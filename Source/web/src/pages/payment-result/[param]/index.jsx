@@ -152,11 +152,14 @@ const PaymentResult = (props) => {
                                 ) : (
                                     <h3>
                                          Thank you for booking {dataBooking.child_name + ' '} to the {' ' + dataBooking.course_title}
+                                         <br/>
                                        <br/> The booking status is{' '}
                                         {dataBooking
                                             ? dataBooking.payment_status
                                             : ''}
+                                            <br/>
                                              <br/>We will send the booking confirmation to your email
+                                             <br/>
                                         <br /> You can log in to Parent Area{' '}
                                         <a
                                             href="https://www.parentarea.co/parent/login"
@@ -185,7 +188,7 @@ const PaymentResult = (props) => {
                                 <div>
                                     <p>Can&apos;t see the email? </p>
                                     <p>
-                                        Check your spam folder or Resend email.
+                                        Check your spam folder.
                                     </p>
                                     <p>
                                         Your information is safe and secure with
