@@ -223,27 +223,42 @@ function Header() {
                                         // evt.preventDefault();
                                         setMenuMobile(false);
 
-                                        if (defaultAcademy)
-                                            global.bookTraining = {
-                                                siteSelected: defaultAcademy,
-                                            };
-                                        if (
-                                            defaultAcademy.ms_alias ===
-                                            undefined
-                                        ) {
+                                        if (defaultAcademyss === undefined) {
                                             router.push(
                                                 PathRoute.BookTrialTraining,
                                             );
-                                        } else {
+                                        } else if (defaultAcademyss) {
                                             router.push(
                                                 PathRoute.BookTrialTrainingWithAlias(
-                                                    defaultAcademy.ms_alias,
+                                                    defaultAcademyss.ms_alias,
                                                     {
                                                         step: 1,
                                                     },
                                                 ),
                                             );
                                         }
+
+                                        // if (defaultAcademy)
+                                        //     global.bookTraining = {
+                                        //         siteSelected: defaultAcademy,
+                                        //     };
+                                        // if (
+                                        //     defaultAcademy.ms_alias ===
+                                        //     undefined
+                                        // ) {
+                                        //     router.push(
+                                        //         PathRoute.BookTrialTraining,
+                                        //     );
+                                        // } else {
+                                        //     router.push(
+                                        //         PathRoute.BookTrialTrainingWithAlias(
+                                        //             defaultAcademy.ms_alias,
+                                        //             {
+                                        //                 step: 1,
+                                        //             },
+                                        //         ),
+                                        //     );
+                                        // }
                                     }}
                                     title={`Book a ${
                                         defaultAcademy &&
@@ -279,6 +294,7 @@ function Header() {
                             'defaultAcademssssssssy',
                             defaultAcademy,
                             defaultAcademyss,
+                            academyLocation,
                         )}
                         <ul className="menu-small">
                             {!isEmpty(defaultAcademy) && (
