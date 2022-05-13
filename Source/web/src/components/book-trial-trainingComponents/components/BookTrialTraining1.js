@@ -27,12 +27,12 @@ const FREE_MESSAGE = 'Book your child’s free training session within 3 minutes
 const TRIAL_MESSAGE = 'Try a no obligation, one off trial session';
 
 function BookTrialTraining1(props) {
-    console.log('asdasdasds', props);
     const siteReducer = useSelector((state) => state.siteReducer);
     const { emailData } = siteReducer;
     const { listSite } = useSelector((state) => state.listSiteReducer);
     const dispatch = useDispatch();
     const history = useRouter();
+
     const [message, setMessage] = useState(FREE_MESSAGE);
     const [date, setDate] = useState(
         (global.bookTraining?.date_of_birth &&
@@ -69,13 +69,13 @@ function BookTrialTraining1(props) {
             ? global.bookTraining.preDefined.item
             : {},
     );
-    const [siteSelected, setSiteSelected] = useState(
-        props.defaultAcademyss ||
-            (global.bookTraining && global.bookTraining.siteSelected) ||
-            listSite[0] ||
-            {},
-    );
+    const [siteSelected, setSiteSelected] = useState({});
 
+    useEffect(() => {
+        if (props.defaultAcademyss) {
+            setSiteSelected(props.defaultAcademyss);
+        }
+    }, [props.defaultAcademyss]);
     // console.log(global.bookTraining, 'global.bookTraining');
 
     const [siteError, setSiteError] = useState('');
@@ -102,11 +102,11 @@ function BookTrialTraining1(props) {
         };
     }, []);
 
-    useEffect(() => {
-        if (!siteSelected && listSite) {
-            setSiteSelected(listSite[0]);
-        }
-    }, [listSite]);
+    // useEffect(() => {
+    //     if (!siteSelected && listSite) {
+    //         setSiteSelected(listSite[0]);
+    //     }
+    // }, [listSite]);
 
     useEffect(() => {
         if (email && siteSelected) {
@@ -276,7 +276,8 @@ function BookTrialTraining1(props) {
 
     //     return <span>{option.ms_name}</span>;
     // }
-
+    console.log('propsss', listSite[1]);
+    const options = 'defaultInputValue';
     return (
         <div className="tab-1">
             <h2>{message}</h2>
@@ -301,7 +302,7 @@ function BookTrialTraining1(props) {
                         );
 
                         setSiteSelected(option);
-
+                        console.log('opasdasdasdasd', option);
                         history.push({
                             pathname: PathRoute.BookTrialTrainingWithAlias(
                                 option.ms_alias,
@@ -485,6 +486,7 @@ function BookTrialTraining1(props) {
                     <div style={{ marginTop: '4rem', marginBottom: '4rem' }}>
                         <div className="wSelect2">
                             <label>Trial Date</label>
+
                             <Select
                                 value={defaultTrial}
                                 // defaultValue={0}

@@ -5,7 +5,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { headerActionType } from 'src/redux/actions/actionTypes';
 
-function NearbyAcademy() {
+function NearbyAcademy({ defaultAcademyProps }) {
+    console.log('ssdefaultAcademydefaultAcademy', defaultAcademyProps);
     const dispatch = useDispatch();
     const wrapperRef = useRef(null);
     const siteReducer = useSelector((state) => state.siteReducer);
@@ -52,6 +53,25 @@ function NearbyAcademy() {
         };
     }, []);
 
+    const checkName = () => {
+        // {
+        //     defaultAcademyProps
+        //         ? defaultAcademyProps.ms_alias.charAt(0).toUpperCase() +
+        //           defaultAcademyProps.ms_alias.slice(1)
+        //         : defaultAcademy?.location_name?.text;
+        // }
+        console.log(
+            'defaultAcademyPropsdefaultAcademyProps',
+            defaultAcademyProps,
+        );
+        if (defaultAcademyProps) {
+            return defaultAcademyProps.ms_name;
+        }
+        if (defaultAcademyProps === undefined) {
+            return <></>;
+        }
+    };
+
     function handleClick(event) {
         const { target } = event;
         if (!wrapperRef.current.contains(target)) {
@@ -94,20 +114,33 @@ function NearbyAcademy() {
                         });
                     }
                 }}>
-                {!isEmpty(defaultAcademy)
+                {checkName()}
+                {/* {defaultAcademyProps
+                    ? defaultAcademyProps.ms_name
+                    : !isEmpty(defaultAcademy)
                     ? `${defaultAcademy?.location_name?.text}`
-                    : 'Find your nearest academy'}
+                    : 'Find your nearest academy'} */}
             </div>
             <div className={`tooltip ${showSelect ? '' : 'select-hide'}`}>
                 <div className="wrap">
                     <div className="wraphead">
-                        <h3>
-                            Based on your location, your selected academy is
-                            <span className="name">
-                                {' '}
-                                {defaultAcademy?.location_name?.text}
-                            </span>
-                        </h3>
+                        {defaultAcademyProps ? (
+                            <h3>
+                                Based on your location, your selected academy is
+                                <span className="name">
+                                    {'  '}
+                                    {defaultAcademyProps
+                                        ? defaultAcademyProps.ms_alias
+                                              .charAt(0)
+                                              .toUpperCase() +
+                                          defaultAcademyProps.ms_alias.slice(1)
+                                        : defaultAcademy?.location_name?.text}
+                                </span>
+                            </h3>
+                        ) : (
+                            <h3>You need choose a location</h3>
+                        )}
+
                         <a
                             href="/#"
                             onClick={(e) => {
