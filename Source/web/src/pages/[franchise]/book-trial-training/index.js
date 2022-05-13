@@ -39,7 +39,6 @@ const HolidayCampTabSpace = dynamic(() =>
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 function BookTrialTraining({ listSite }) {
-    
     saveList(listSite);
     const siteReducer = useSelector((state) => state.siteReducer);
     const dispatch = useDispatch();
@@ -394,7 +393,6 @@ function BookTrialTraining({ listSite }) {
 export async function getServerSideProps() {
     const listRes = await siteService.getListSite();
     const listSite = listRes.data.data.lstSite;
-    console.log('listsssss', listSite);
     return { props: { listSite } };
 }
 

@@ -7,6 +7,9 @@ import ModelManager from 'src/common/ModelManager';
 import PathRoute from 'src/common/PathRoute';
 import useGetWidth from 'src/hooks/useGetWidth';
 import useComponentVisible from 'src/hooks/useComponentVisible';
+import siteService from 'src/services/siteService';
+import saveList from 'src/hooks/useSaveList';
+import { useSelector } from 'react-redux';
 
 const Button = dynamic(() => import('src/components/Button'), { ssr: true });
 const NearbyAcademy = dynamic(
@@ -49,7 +52,13 @@ const LinkItem = (props) => {
 
 function Header() {
     const router = useRouter();
-    // console.log(router, 'router');
+    const academyLocation = router.query.franchise;
+    const { listSite } = useSelector((state) => state.listSiteReducer);
+
+    const defaultAcademyss = listSite.find(
+        (e) => academyLocation === e.ms_alias,
+    );
+
     const [menuMobile, setMenuMobile] = useState(false);
     const [fixHeader, setFixHeader] = useState(true);
     const [defaultAcademy, setDefaultAcademy] = useState({});
@@ -95,6 +104,12 @@ function Header() {
     const otherLocales = (locales || []).filter(
         (locale) => locale !== activeLocale,
     );
+
+    useEffect(() => {
+        if (defaultAcademyss) {
+            setDefaultAcademy(defaultAcademyss);
+        }
+    }, [defaultAcademyss]);
 
     return (
         <div className={`header ${fixHeader ? '' : 'fix-header'}`} style={{}}>
@@ -223,6 +238,9 @@ function Header() {
                                             router.push(
                                                 PathRoute.BookTrialTrainingWithAlias(
                                                     defaultAcademy.ms_alias,
+                                                    {
+                                                        step: 1,
+                                                    },
                                                 ),
                                             );
                                         }
@@ -257,15 +275,28 @@ function Header() {
                                 </a>
                             </div>
                         )}
+                        {console.log(
+                            'defaultAcademssssssssy',
+                            defaultAcademy,
+                            defaultAcademyss,
+                        )}
                         <ul className="menu-small">
                             {!isEmpty(defaultAcademy) && (
                                 <LinkItem
                                     style={{ marginLeft: 0 }}
                                     isOrange={!menuMobile}
                                     // title={defaultAcademy.ms_name}
-                                    title={defaultAcademy.ms_name || ''}
+                                    title={
+                                        defaultAcademyss === undefined
+                                            ? ''
+                                            : defaultAcademy.ms_name
+                                    }
                                     hideMenu={hideMenu}
-                                    href={`/${defaultAcademy.ms_alias}`}
+                                    href={
+                                        defaultAcademyss
+                                            ? `/${defaultAcademyss.ms_alias}`
+                                            : `/${defaultAcademy.ms_alias}`
+                                    }
                                 />
                             )}
 
@@ -387,6 +418,9 @@ function Header() {
                                     <li>
                                         <NearbyAcademy
                                             onChangeLocation={hideMenu}
+                                            defaultAcademyProps={
+                                                defaultAcademyss
+                                            }
                                         />
                                     </li>
                                 </>
