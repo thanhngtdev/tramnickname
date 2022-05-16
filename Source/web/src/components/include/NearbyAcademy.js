@@ -59,10 +59,6 @@ function NearbyAcademy({ defaultAcademyProps }) {
         //           defaultAcademyProps.ms_alias.slice(1)
         //         : defaultAcademy?.location_name?.text;
         // }
-        console.log(
-            'defaultAcademyPropsdefaultAcademyProps',
-            defaultAcademyProps,
-        );
         if (defaultAcademyProps) {
             return defaultAcademyProps.ms_name;
         }

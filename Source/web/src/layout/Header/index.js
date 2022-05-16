@@ -10,6 +10,7 @@ import useComponentVisible from 'src/hooks/useComponentVisible';
 import siteService from 'src/services/siteService';
 import saveList from 'src/hooks/useSaveList';
 import { useSelector } from 'react-redux';
+import { route } from 'next/dist/server/router';
 
 const Button = dynamic(() => import('src/components/Button'), { ssr: true });
 const NearbyAcademy = dynamic(
@@ -110,12 +111,24 @@ function Header() {
             setDefaultAcademy(defaultAcademyss);
         }
     }, [defaultAcademyss]);
+    console.log(
+        'defaultAcademydefaultAcademy',
+        defaultAcademy,
+        defaultAcademyss,
+    );
 
     return (
         <div className={`header ${fixHeader ? '' : 'fix-header'}`} style={{}}>
             <div className="head-top-mobile">
                 <div className="container">
-                    <Link href={PathRoute.Home}>
+                    <Link
+                        href={
+                            defaultAcademy
+                                ? PathRoute.BookTrialTrainingWithAlias(
+                                      defaultAcademy.ms_alias,
+                                  )
+                                : PathRoute.Home
+                        }>
                         <img
                             // src="/static-file/images/logo.svg"
                             loading="lazy"
@@ -136,11 +149,18 @@ function Header() {
                     </button>
                 </div>
             </div>
+
             <div className={`navi ${menuMobile ? 'show' : ''}`}>
                 <div className="menu-top">
                     <div className="menu-left">
                         {!isShowLogoHome && (
-                            <Link href={PathRoute.Home} scroll>
+                            <Link
+                                href={`${
+                                    !isEmpty(defaultAcademy)
+                                        ? '/' + defaultAcademy.ms_alias
+                                        : PathRoute.Home
+                                }`}
+                                scroll>
                                 <img
                                     loading="lazy"
                                     alt=""
@@ -224,9 +244,17 @@ function Header() {
                                         setMenuMobile(false);
 
                                         if (defaultAcademyss === undefined) {
-                                            router.push(
-                                                PathRoute.BookTrialTraining,
-                                            );
+                                            if (defaultAcademy) {
+                                                router.push(
+                                                    PathRoute.BookTrialTrainingWithAlias(
+                                                        defaultAcademy.ms_alias,
+                                                    ),
+                                                );
+                                            } else {
+                                                router.push(
+                                                    PathRoute.BookTrialTraining,
+                                                );
+                                            }
                                         } else if (defaultAcademyss) {
                                             router.push(
                                                 PathRoute.BookTrialTrainingWithAlias(
@@ -289,12 +317,6 @@ function Header() {
                                     ></img>
                                 </a>
                             </div>
-                        )}
-                        {console.log(
-                            'defaultAcademssssssssy',
-                            defaultAcademy,
-                            defaultAcademyss,
-                            academyLocation,
                         )}
                         <ul className="menu-small">
                             {!isEmpty(defaultAcademy) && (
