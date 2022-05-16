@@ -32,7 +32,7 @@ function BookTrialTraining1(props) {
     const { listSite } = useSelector((state) => state.listSiteReducer);
     const dispatch = useDispatch();
     const history = useRouter();
-
+    console.log('siteReducersiteReducer', siteReducer, email);
     const [message, setMessage] = useState(FREE_MESSAGE);
     const [date, setDate] = useState(
         (global.bookTraining?.date_of_birth &&
@@ -70,7 +70,7 @@ function BookTrialTraining1(props) {
             : {},
     );
     const [siteSelected, setSiteSelected] = useState({});
-
+    console.log('siteSelecteds', siteSelected);
     useEffect(() => {
         if (props.defaultAcademyss) {
             setSiteSelected(props.defaultAcademyss);
@@ -93,7 +93,7 @@ function BookTrialTraining1(props) {
     //! useEffect
     useEffect(() => {
         if (isEmpty(siteSelected)) {
-            setSiteSelected(JSON.parse(localStorage.getItem('defaultAcademy')));
+            // setSiteSelected(JSON.parse(localStorage.getItem('defaultAcademy')));
         }
 
         return () => {

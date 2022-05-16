@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { headerActionType } from 'src/redux/actions/actionTypes';
 
 function NearbyAcademy({ defaultAcademyProps }) {
-    console.log('ssdefaultAcademydefaultAcademy', defaultAcademyProps);
     const dispatch = useDispatch();
     const wrapperRef = useRef(null);
     const siteReducer = useSelector((state) => state.siteReducer);
@@ -68,7 +67,7 @@ function NearbyAcademy({ defaultAcademyProps }) {
             return defaultAcademyProps.ms_name;
         }
         if (defaultAcademyProps === undefined) {
-            return <></>;
+            return <>Find your nearest academy</>;
         }
     };
 

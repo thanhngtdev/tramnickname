@@ -73,6 +73,13 @@ function BookTrialTraining({ listSite }) {
         });
     }, []);
 
+    const history = useRouter();
+    const academyLocation = history.query.franchise;
+
+    const defaultAcademyss = listSite.find(
+        (e) => academyLocation === e.ms_alias,
+    );
+
     useEffect(() => {
         if (siteReducer.type) {
             if (
@@ -266,6 +273,7 @@ function BookTrialTraining({ listSite }) {
                     <div className="tab-content">
                         {activeTab === 1 && (
                             <BookTrialTraining1
+                                // defaultAcademyss={defaultAcademyss}
                                 setLongLatSite={setLongLatSite}
                                 onNext={(data) => {
                                     global.bookTraining = {
