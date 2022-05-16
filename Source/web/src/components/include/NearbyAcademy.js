@@ -67,7 +67,7 @@ function NearbyAcademy({ defaultAcademyProps }) {
             return defaultAcademyProps.ms_name;
         }
         if (defaultAcademyProps === undefined) {
-            return <></>;
+            return <>Find your nearest academy</>;
         }
     };
 
