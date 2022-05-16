@@ -87,6 +87,10 @@ function BookingSuccessMap(props) {
                         event={{
                             detail: `${
                                 bookingInfo?.child_name
+                                ? bookingInfo.child_name
+                                : props?.data?.child_first_name +
+                                ' ' +
+                                props?.data?.child_last_name
                             } is booked in for their ${
                                 props?.siteSelected?.ms_trial === 1
                                     ? 'trial'
@@ -94,7 +98,12 @@ function BookingSuccessMap(props) {
                             }  session at ${
                                 props?.siteSelected?.ms_address || ''
                            
-                            } on ${bookingInfo?.start_date} at ${dayjs(
+                            } on ${
+                                bookingInfo?.start_date
+                                ? bookingInfo.startDate
+                                : props?.data?.start_date
+
+                            } at ${dayjs(
                                 '2021-03-03T' +
                                     props?.courseSelected
                                         ?.course_day_time_start,
