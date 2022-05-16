@@ -112,9 +112,7 @@ function NearbyAcademy({ defaultAcademyProps }) {
                                 Based on your location, your selected academy is
                                 <span className="name">
                                     {'  '}
-                                    {defaultAcademy
-                                        ? defaultAcademy.location_name.text
-                                        : defaultAcademy?.location_name?.text}
+                                    {defaultAcademy?.location_name?.text}
                                 </span>
                             </h3>
                         ) : (
