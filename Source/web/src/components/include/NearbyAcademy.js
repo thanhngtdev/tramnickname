@@ -14,6 +14,7 @@ function NearbyAcademy({ defaultAcademyProps }) {
     // const [nearbyAcademy, setNearbyAcademy] = useState();s
     // JSON.parse(localStorage.getItem("defaultAcademy")) || {}
     const [defaultAcademy, setDefaultAcademy] = useState();
+    console.log(defaultAcademy, 'defaultAcademy');
     // JSON.parse(localStorage.getItem("defaultAcademy")) || {}
     const [showSelect, setShowSelect] = useState(false);
 
@@ -51,21 +52,6 @@ function NearbyAcademy({ defaultAcademyProps }) {
             document.removeEventListener('click', handleClick);
         };
     }, []);
-
-    const checkName = () => {
-        // {
-        //     defaultAcademyProps
-        //         ? defaultAcademyProps.ms_alias.charAt(0).toUpperCase() +
-        //           defaultAcademyProps.ms_alias.slice(1)
-        //         : defaultAcademy?.location_name?.text;
-        // }
-        if (defaultAcademyProps) {
-            return defaultAcademyProps.ms_name;
-        }
-        if (defaultAcademyProps === undefined) {
-            return <>Find your nearest academy</>;
-        }
-    };
 
     function handleClick(event) {
         const { target } = event;
@@ -109,7 +95,9 @@ function NearbyAcademy({ defaultAcademyProps }) {
                         });
                     }
                 }}>
-                {checkName()}
+                {!isEmpty(defaultAcademy)
+                    ? `${defaultAcademy?.location_name?.text}`
+                    : 'Find your nearest academy'}
                 {/* {defaultAcademyProps
                     ? defaultAcademyProps.ms_name
                     : !isEmpty(defaultAcademy)
@@ -119,16 +107,13 @@ function NearbyAcademy({ defaultAcademyProps }) {
             <div className={`tooltip ${showSelect ? '' : 'select-hide'}`}>
                 <div className="wrap">
                     <div className="wraphead">
-                        {defaultAcademyProps ? (
+                        {defaultAcademy ? (
                             <h3>
                                 Based on your location, your selected academy is
                                 <span className="name">
                                     {'  '}
-                                    {defaultAcademyProps
-                                        ? defaultAcademyProps.ms_alias
-                                              .charAt(0)
-                                              .toUpperCase() +
-                                          defaultAcademyProps.ms_alias.slice(1)
+                                    {defaultAcademy
+                                        ? defaultAcademy.ms_alias
                                         : defaultAcademy?.location_name?.text}
                                 </span>
                             </h3>
