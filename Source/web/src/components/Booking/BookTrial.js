@@ -233,10 +233,6 @@ function BookTrial(props) {
                                                 'MM/DD/YYYY',
                                             ),
                                         };
-                                        console.log(
-                                            'global.bookTraining',
-                                            global.bookTraining,
-                                        );
                                         history.push(
                                             PathRoute.BookTrialTrainingWithAlias(
                                                 location.ms_alias,
