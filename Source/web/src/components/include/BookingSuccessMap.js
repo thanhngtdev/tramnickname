@@ -59,8 +59,8 @@ function BookingSuccessMap(props) {
                     }}>
                     <h4 style={{ marginBottom: 0 }}>Payment made:</h4>
                     <p style={{ marginTop: 0 }}>
-                        {bookingInfo?.total_price
-                            ? '£' + bookingInfo.total_price
+                        {bookingInfo?.total_paid_amount
+                            ? '£' + bookingInfo.total_paid_amount
                             : '1 x Free Session'}
                     </p>
                     <h4 style={{ marginBottom: 0 }}>Reference number:</h4>
