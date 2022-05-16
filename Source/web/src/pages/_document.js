@@ -21,7 +21,7 @@ export default class MyDocument extends Document {
                         async></script> */}
                         {/* <!-- Google Tag Manager --> */}
 
-                        <Script
+                        {/* <Script
                             id="google-analytics"
                             src="https://www.googletagmanager.com/gtag/js?id=GTM-PMMW2QG"
                             onLoad={() => {
@@ -42,15 +42,15 @@ export default class MyDocument extends Document {
                                     f.parentNode.insertBefore(j, f);
                                 })(window, document, 'script', 'dataLayer', 'GTM-PMMW2QG');
                             }}
-                        />
+                        /> */}
                         {/* <!-- End Google Tag Manager --> */}
                 </Head>
                 <body>
                     <Main />
                     <NextScript />
                     {/* <!-- Google Tag Manager (noscript) --> */}
-                    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMMW2QG"
-                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+                    {/* <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMMW2QG"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> */}
                     {/* <!-- End Google Tag Manager (noscript) --> */}
                 </body>
             </Html>
