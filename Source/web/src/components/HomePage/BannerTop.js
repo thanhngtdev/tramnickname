@@ -58,7 +58,11 @@ function BannerTop(props) {
                                         siteSelected: defaultAcademy,
                                     };
 
-                                    history.push(PathRoute.BookTrialTraining);
+                                    history.push(
+                                        PathRoute.BookTrialTrainingWithAlias(
+                                            defaultAcademy.ms_alias,
+                                        ),
+                                    );
                                 }}
 
                                 // href={PathRoute.BookTrialTraining}

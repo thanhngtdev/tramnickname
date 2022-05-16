@@ -10,6 +10,7 @@ import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
 import TrustPilotText from 'src/components/TrustPilotText';
 import useComponentVisible from 'src/hooks/useComponentVisible';
+import getLocalStorage from 'src/hooks/useGetLocalStorage';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import Button from '../Button';
 
@@ -23,6 +24,7 @@ function BookTrial(props) {
     const { listSite } = useSelector((state) => state.listSiteReducer);
     const dispatch = useDispatch();
     const history = useRouter();
+    const defaultAcademy = getLocalStorage();
 
     const [showSelect, setShowSelect] = useState(false);
     const [location, setLocation] = useState(props.site || '');
@@ -231,9 +233,10 @@ function BookTrial(props) {
                                                 'MM/DD/YYYY',
                                             ),
                                         };
-
                                         history.push(
-                                            PathRoute.BookTrialTraining,
+                                            PathRoute.BookTrialTrainingWithAlias(
+                                                location.ms_alias,
+                                            ),
                                         );
                                     }
                                 }}

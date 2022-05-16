@@ -108,7 +108,12 @@ function BannerTop(props) {
                             type: siteActionType.SELECT_ACADEMY,
                             data: props.site,
                         });
-                        history.push(PathRoute.BookTrialTraining);
+
+                        history.push(
+                            PathRoute.BookTrialTrainingWithAlias(
+                                props.site.ms_alias,
+                            ),
+                        );
                     }}
                 />
             </div>
