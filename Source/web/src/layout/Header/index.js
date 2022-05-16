@@ -111,11 +111,6 @@ function Header() {
             setDefaultAcademy(defaultAcademyss);
         }
     }, [defaultAcademyss]);
-    console.log(
-        'defaultAcademydefaultAcademy',
-        defaultAcademy,
-        defaultAcademyss,
-    );
 
     return (
         <div className={`header ${fixHeader ? '' : 'fix-header'}`} style={{}}>
