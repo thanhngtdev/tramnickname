@@ -113,7 +113,7 @@ function NearbyAcademy({ defaultAcademyProps }) {
                                 <span className="name">
                                     {'  '}
                                     {defaultAcademy
-                                        ? defaultAcademy.ms_alias
+                                        ? defaultAcademy.location_name
                                         : defaultAcademy?.location_name?.text}
                                 </span>
                             </h3>

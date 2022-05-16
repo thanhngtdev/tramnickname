@@ -67,13 +67,18 @@ function BookingSuccessMap(props) {
                     <p style={{ marginTop: 0 }}>{bookingInfo?.booking_id}</p>
                     <h4 style={{ marginBottom: 0 }}>Time:</h4>
 
-                    <p style={{ marginTop: 0 }}>
+                     { <p style={{ marginTop: 0 }}>
+                     {bookingInfo?.sessions[0]}
+                    </p>}
+
+
+                    {/* <p style={{ marginTop: 0 }}>
                         {props.data.start_date || props?.courseSelected?.date}{' '}
                         at{' '}
                         {timeStart && timeEnd
                             ? timeStart.slice(0, 5) + '-' + timeEnd.slice(0, 5)
                             : ''}
-                    </p>
+                    </p> */}
 
                     <h4 style={{ marginBottom: 0 }}>Address:</h4>
                     <p style={{ marginTop: 0 }}>
@@ -87,23 +92,22 @@ function BookingSuccessMap(props) {
                     <AddToCalendar
                         event={{
                             detail: `${
-                                props?.data?.child_first_name +
-                                ' ' +
-                                props?.data?.child_last_name
+                                bookingInfo?.child_name
                             } is booked in for their ${
                                 props?.siteSelected?.ms_trial === 1
                                     ? 'trial'
                                     : 'free trial'
                             }  session at ${
                                 props?.siteSelected?.ms_address || ''
-                            } on ${props?.data?.start_date} at ${dayjs(
-                                '2021-03-03T' +
-                                    props?.courseSelected
-                                        ?.course_day_time_start,
-                            ).format('HH:mma')} - ${dayjs(
-                                '2021-03-03T' +
-                                    props?.courseSelected?.course_day_time_end,
-                            ).format('HH:mma')}`,
+                            } on ${bookingInfo?.sessions[0]}}`,
+                            // } on ${bookingInfo?.start_date} at ${dayjs(
+                            //     '2021-03-03T' +
+                            //         props?.courseSelected
+                            //             ?.course_day_time_start,
+                            // ).format('HH:mma')} - ${dayjs(
+                            //     '2021-03-03T' +
+                            //         props?.courseSelected?.course_day_time_end,
+                            // ).format('HH:mma')}`,
                             title: props?.courseSelected?.course_title,
                             startDate: props?.data?.start_date,
                             startTime:
