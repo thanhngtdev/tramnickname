@@ -29,7 +29,6 @@ export default function ArticleMenu(props) {
     const isMobile = useGetWidth() <= 768;
     const [allNews, setAllNews] = useState([]);
     const [displaySearch, setDisplaySearch] = useState(false);
-    console.log('propssss', props);
     useEffect(() => {
         const current = ModelManager.getLocation() || {};
         setCurrentAcademy(current);

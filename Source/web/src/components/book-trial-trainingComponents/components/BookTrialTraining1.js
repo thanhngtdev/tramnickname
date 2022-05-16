@@ -40,6 +40,7 @@ function BookTrialTraining1(props) {
                 dayjs(global.bookTraining.date).toDate()) ||
             '',
     );
+
     const [lstStartDate, setLstStartDate] = useState([]);
     const [companyId, setCompanyId] = useState(0);
     const [startDate, setStartDate] = useState('');
@@ -68,8 +69,14 @@ function BookTrialTraining1(props) {
             ? global.bookTraining.preDefined.item
             : {},
     );
-    const [siteSelected, setSiteSelected] = useState({});
-    console.log('siteSelecteds', siteSelected);
+    // const [siteSelected, setSiteSelected] = useState({});
+    const [siteSelected, setSiteSelected] = useState(
+        (global.bookTraining && global.bookTraining.siteSelected) ||
+            (global.bookTraining && global.bookTraining.siteSelected) ||
+            listSite[0] ||
+            {},
+    );
+
     useEffect(() => {
         if (props.defaultAcademyss) {
             setSiteSelected(props.defaultAcademyss);
@@ -171,6 +178,7 @@ function BookTrialTraining1(props) {
     //     // window.location.href = `${'/' + item.ms_alias}`;
     //     alert('2');
     //     setLocation({});
+
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.PICK_DEFAULT_ACADEMY) {
@@ -185,6 +193,7 @@ function BookTrialTraining1(props) {
 
                 if (global.bookTraining && global.bookTraining.date_of_birth) {
                     getClassTime(new Date(date));
+
                     dispatch(
                         courseStartDate({
                             course_id:
@@ -275,7 +284,6 @@ function BookTrialTraining1(props) {
 
     //     return <span>{option.ms_name}</span>;
     // }
-    console.log('propsss', listSite[1]);
     const options = 'defaultInputValue';
     return (
         <div className="tab-1">
@@ -301,7 +309,6 @@ function BookTrialTraining1(props) {
                         );
 
                         setSiteSelected(option);
-                        console.log('opasdasdasdasd', option);
                         history.push({
                             pathname: PathRoute.BookTrialTrainingWithAlias(
                                 option.ms_alias,
@@ -388,6 +395,7 @@ function BookTrialTraining1(props) {
                     onChange={(date) => {
                         getClassTime(new Date(date));
                         setDate(date[0]);
+
                         // if (!isEmpty(siteSelected)) {
                         //     dispatch(
                         //         getListCourse({
