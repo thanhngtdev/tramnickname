@@ -63,6 +63,7 @@ function Header() {
     const [menuMobile, setMenuMobile] = useState(false);
     const [fixHeader, setFixHeader] = useState(true);
     const [defaultAcademy, setDefaultAcademy] = useState({});
+
     // const isShowLogo = useGetWidth() > 1240 || useGetWidth() <= 768;
     const isShowLogoHome = useGetWidth() <= 1060;
     const mobile = useGetWidth();
@@ -116,14 +117,7 @@ function Header() {
         <div className={`header ${fixHeader ? '' : 'fix-header'}`} style={{}}>
             <div className="head-top-mobile">
                 <div className="container">
-                    <Link
-                        href={
-                            defaultAcademy
-                                ? PathRoute.BookTrialTrainingWithAlias(
-                                      defaultAcademy.ms_alias,
-                                  )
-                                : PathRoute.Home
-                        }>
+                    <Link href={PathRoute.Home}>
                         <img
                             // src="/static-file/images/logo.svg"
                             loading="lazy"
@@ -150,11 +144,12 @@ function Header() {
                     <div className="menu-left">
                         {!isShowLogoHome && (
                             <Link
-                                href={`${
-                                    !isEmpty(defaultAcademy)
-                                        ? '/' + defaultAcademy.ms_alias
-                                        : PathRoute.Home
-                                }`}
+                                // href={`${
+                                //     !isEmpty(defaultAcademy)
+                                //         ? '/' + defaultAcademy.ms_alias
+                                //         : PathRoute.Home
+                                // }`}
+                                href={PathRoute.Home}
                                 scroll>
                                 <img
                                     loading="lazy"
@@ -318,18 +313,19 @@ function Header() {
                                 <LinkItem
                                     style={{ marginLeft: 0 }}
                                     isOrange={!menuMobile}
-                                    // title={defaultAcademy.ms_name}
-                                    title={
-                                        defaultAcademyss === undefined
-                                            ? ''
-                                            : defaultAcademy.ms_name
-                                    }
+                                    title={defaultAcademy.ms_name}
+                                    // title={
+                                    //     defaultAcademyss === undefined
+                                    //         ? ''
+                                    //         : defaultAcademy.ms_name
+                                    // }
                                     hideMenu={hideMenu}
-                                    href={
-                                        defaultAcademyss
-                                            ? `/${defaultAcademyss.ms_alias}`
-                                            : `/${defaultAcademy.ms_alias}`
-                                    }
+                                    // href={
+                                    //     defaultAcademyss
+                                    //         ? `/${defaultAcademyss.ms_alias}`
+                                    //         : `/${defaultAcademy.ms_alias}`
+                                    // }
+                                    href={`/${defaultAcademy.ms_alias}`}
                                 />
                             )}
 
