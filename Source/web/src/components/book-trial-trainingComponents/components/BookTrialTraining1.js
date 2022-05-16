@@ -32,7 +32,6 @@ function BookTrialTraining1(props) {
     const { listSite } = useSelector((state) => state.listSiteReducer);
     const dispatch = useDispatch();
     const history = useRouter();
-    console.log('siteReducersiteReducer', siteReducer, email);
     const [message, setMessage] = useState(FREE_MESSAGE);
     const [date, setDate] = useState(
         (global.bookTraining?.date_of_birth &&
