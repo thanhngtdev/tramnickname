@@ -70,12 +70,7 @@ function BookTrialTraining1(props) {
             : {},
     );
     // const [siteSelected, setSiteSelected] = useState({});
-    const [siteSelected, setSiteSelected] = useState(
-        (global.bookTraining && global.bookTraining.siteSelected) ||
-            (global.bookTraining && global.bookTraining.siteSelected) ||
-            listSite[0] ||
-            {},
-    );
+    const [siteSelected, setSiteSelected] = useState({});
 
     useEffect(() => {
         if (props.defaultAcademyss) {
