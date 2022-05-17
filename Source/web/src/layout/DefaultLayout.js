@@ -65,7 +65,7 @@ const DefaultLayout = (props) => {
     return (
         <>
             <Header />
-            <Script
+            {/* <Script
                 id="google-analytics"
                 src="https://www.googletagmanager.com/gtag/js?id=GTM-PMMW2QG"
                 onLoad={() => {
@@ -86,7 +86,7 @@ const DefaultLayout = (props) => {
                         f.parentNode.insertBefore(j, f);
                     })(window, document, 'script', 'dataLayer', 'GTM-PMMW2QG');
                 }}
-            />
+            /> */}
             <NextSeo
                 title={
                     seo?.title ||
