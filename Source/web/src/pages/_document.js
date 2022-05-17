@@ -16,11 +16,6 @@ export default class MyDocument extends Document {
                         as="style"
                     />
 
-                    {/* <script
-                        type="text/javascript"
-                        src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
-                        async></script> */}
-
                     <Script
                         strategy="afterInteractive"
                         dangerouslySetInnerHTML={{
