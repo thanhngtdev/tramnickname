@@ -66,9 +66,8 @@ function BookingSuccessMap(props) {
                     <h4 style={{ marginBottom: 0 }}>Reference number:</h4>
                     <p style={{ marginTop: 0 }}>{bookingInfo?.booking_id}</p>
                     <h4 style={{ marginBottom: 0 }}>Time:</h4>
-
                     <p style={{ marginTop: 0 }}>
-                        {props.data.start_date || props?.courseSelected?.date}{' '}
+                        {bookingInfo?.start_date || props?.courseSelected?.date}{' '}
                         at{' '}
                         {timeStart && timeEnd
                             ? timeStart.slice(0, 5) + '-' + timeEnd.slice(0, 5)
@@ -87,7 +86,9 @@ function BookingSuccessMap(props) {
                     <AddToCalendar
                         event={{
                             detail: `${
-                                props?.data?.child_first_name +
+                                bookingInfo?.child_name
+                                ? bookingInfo.child_name
+                                : props?.data?.child_first_name +
                                 ' ' +
                                 props?.data?.child_last_name
                             } is booked in for their ${
@@ -96,7 +97,13 @@ function BookingSuccessMap(props) {
                                     : 'free trial'
                             }  session at ${
                                 props?.siteSelected?.ms_address || ''
-                            } on ${props?.data?.start_date} at ${dayjs(
+                           
+                            } on ${
+                                bookingInfo?.start_date
+                                ? bookingInfo.startDate
+                                : props?.data?.start_date
+
+                            } at ${dayjs(
                                 '2021-03-03T' +
                                     props?.courseSelected
                                         ?.course_day_time_start,
