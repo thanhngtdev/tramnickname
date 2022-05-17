@@ -21,35 +21,6 @@ export default class MyDocument extends Document {
                         src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
                         async></script> */}
 
-                    {/* <Script
-                        id="google-analytics"
-                        src="https://www.googletagmanager.com/gtag/js?id=GTM-PMMW2QG"
-                        onLoad={() => {
-                            (function (w, d, s, l, i) {
-                                w[l] = w[l] || [];
-                                w[l].push({
-                                    'gtm.start': new Date().getTime(),
-                                    event: 'gtm.js',
-                                });
-                                var f = d.getElementsByTagName(s)[0],
-                                    j = d.createElement(s),
-                                    dl = l != 'dataLayer' ? '&l=' + l : '';
-                                j.async = true;
-                                j.src =
-                                    'https://www.googletagmanager.com/gtm.js?id=' +
-                                    i +
-                                    dl;
-                                f.parentNode.insertBefore(j, f);
-                            })(
-                                window,
-                                document,
-                                'script',
-                                'dataLayer',
-                                'GTM-PMMW2QG',
-                            );
-                        }}
-                    /> */}
-
                     <Script
                         strategy="afterInteractive"
                         dangerouslySetInnerHTML={{
