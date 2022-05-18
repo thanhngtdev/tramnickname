@@ -7,7 +7,7 @@ module.exports = {
     robotsTxtOptions: {
         policies: [{ userAgent: '*', allow: '' }],
         additionalSitemaps: [
-            'https://wemakefootballers.com/sitemap.xml', // <==== Add here
+            'https://staging.wemakefootballers.com/sitemap.xml', // <==== Add here
         ],
     },
 };
