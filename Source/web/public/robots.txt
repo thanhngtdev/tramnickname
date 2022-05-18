@@ -1,4 +1,4 @@
-Sitemap: https://staging.wemakefootballers.com/sitemap.xml
+Sitemap: https://wemakefootballers.com/sitemap.xml
 
 User-agent: *
-Disallow: /
+Disallow: 
