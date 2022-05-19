@@ -33,13 +33,7 @@ function BookTrialTraining1(props) {
     const dispatch = useDispatch();
     const history = useRouter();
     const [message, setMessage] = useState(FREE_MESSAGE);
-    const [date, setDate] = useState(
-        (global.bookTraining?.date_of_birth &&
-            dayjs(global.bookTraining.date_of_birth).toDate()) ||
-            (global.bookTraining?.date &&
-                dayjs(global.bookTraining.date).toDate()) ||
-            '',
-    );
+    const [date, setDate] = useState('');
 
     const [lstStartDate, setLstStartDate] = useState([]);
     const [companyId, setCompanyId] = useState(0);
@@ -77,7 +71,6 @@ function BookTrialTraining1(props) {
             setSiteSelected(props.defaultAcademyss);
         }
     }, [props.defaultAcademyss]);
-    // console.log(global.bookTraining, 'global.bookTraining');
 
     const [siteError, setSiteError] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -92,6 +85,15 @@ function BookTrialTraining1(props) {
     const [availableEmail, setAvailableEmail] = useState(false);
 
     //! useEffect
+
+    useEffect(() => {
+        if (global?.bookTraining) {
+            const nextDay = dayjs(global?.bookTraining?.date).toDate();
+            setDate(nextDay);
+            getClassTime(new Date(nextDay));
+        }
+    }, [global?.bookTraining]);
+
     useEffect(() => {
         if (isEmpty(siteSelected)) {
             // setSiteSelected(JSON.parse(localStorage.getItem('defaultAcademy')));
@@ -192,7 +194,7 @@ function BookTrialTraining1(props) {
                     dispatch(
                         courseStartDate({
                             course_id:
-                                global.bookTraining.courseSelected.course_id,
+                                global?.bookTraining?.courseSelected?.course_id,
                         }),
                     );
                     setCourseSelected(global.bookTraining.courseSelected);
@@ -374,6 +376,7 @@ function BookTrialTraining1(props) {
                 <label className="label" style={{ display: 'block' }}>
                     Child's date of birth *
                 </label>
+
                 <Flatpickr
                     data-enable-time
                     className="input-text"
