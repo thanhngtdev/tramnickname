@@ -38,7 +38,9 @@ export default function ArticleMenu(props) {
 
         if (props?.isFranchise) {
             // debugger;
-            setName(current.location_name.text + ' News');
+            setName(current?.location_name 
+                ?current.location_name.text + ' News'
+                :'');
             return;
         }
 
