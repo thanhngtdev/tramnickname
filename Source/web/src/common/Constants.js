@@ -29,7 +29,7 @@ const Constants = {
     GOOGLE_MAP_URL:
         'https://maps.googleapis.com/maps/api/js?key=AIzaSyCkHEoNpHbkdGlYwWFA8JaIOF_o-Y9B4d4&v=3.exp&libraries=geometry,drawing,places',
 
-    BaseURL: 'https:/staging.wemakefootballers.com',
+    BaseURL: 'https:/wemakefootballers.com',
     ROUTES: [
         '/about-us',
         '/1-on-1-training',
