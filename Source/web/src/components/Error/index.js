@@ -18,7 +18,7 @@ const ErrorPage = (props) => {
             style={{
                 background:
                     'url(' +
-                    `${'/static-file/images/bg_404.png'}` +
+                    `${'/static-file/images/bg_404.webp'}` +
                     ') no-repeat center center',
                 height: 960,
                 paddingTop: 120,
