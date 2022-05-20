@@ -2,6 +2,7 @@ import React from 'react';
 import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
 import dynamic from 'next/dynamic';
+import parse from 'html-react-parser';
 const AboutSecure = dynamic(() => import('src/components/Camp/AboutSecure'));
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const AboutGuide = dynamic(() =>
@@ -34,7 +35,10 @@ function About({ data, listSite }) {
                                                 {item.title}
                                             </p>
                                             <hr />
-                                            <p>{item.content}</p>
+                                            <p>
+                                                {parse(item.content)}
+                                                {/* {item.content + 'abc'} */}
+                                            </p>
                                         </div>
                                     ))}
                             </div>
