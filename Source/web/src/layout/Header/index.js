@@ -313,7 +313,11 @@ function Header() {
                                 <LinkItem
                                     style={{ marginLeft: 0 }}
                                     isOrange={!menuMobile}
-                                    title={defaultAcademy.ms_name}
+                                    title={
+                                        defaultAcademy
+                                            ? defaultAcademy.ms_name
+                                            : ''
+                                    }
                                     // title={
                                     //     defaultAcademyss === undefined
                                     //         ? ''
