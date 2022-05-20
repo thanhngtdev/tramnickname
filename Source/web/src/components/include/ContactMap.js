@@ -105,9 +105,8 @@ function ContactMap(props) {
                 </div>
                 <div style={{ marginTop: 40 }}>
                     <p>
-                        For media inquiries <br /> please contact <br /> Sean
-                        Conlon on <br /> +44 7904 856592 or <br />{' '}
-                        sean@wemakefootballers.com
+                        For media inquiries <br /> please contact <br /> Laura
+                        James on <br />laura@wemakefootballers.com <br />{' '}
                     </p>
                 </div>
             </div>
