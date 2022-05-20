@@ -10,6 +10,7 @@ function ListAcademy(props) {
         <div className="wrap-row">
             <hr />
             <b>We Make Footballers Academies</b>
+
             <div className="list-acade">
                 {listSite &&
                     listSite.map((item) => {

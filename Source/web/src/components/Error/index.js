@@ -1,15 +1,18 @@
 import PathRoute from 'src/common/PathRoute';
 import SolidButton from 'src/components/include/SolidButton';
 import { useRouter } from 'next/router';
-import React from 'react';
+import saveList from 'src/hooks/useSaveList';
+import React, { useEffect } from 'react';
+import siteService from 'src/services/siteService';
 
 const propTypes = {};
 
 const BACKGROUND = '/static-file/images/bg_404.png';
-const ErrorPage = (props) => {
+const ErrorPage = () => {
     //! State
     const history = useRouter(useRouter);
-
+    // saveList(listSite);
+    // console.log('listRes', abc, listRes);
     //! Function
 
     //! Render
@@ -52,4 +55,5 @@ const ErrorPage = (props) => {
 };
 
 ErrorPage.propTypes = propTypes;
+
 export default ErrorPage;
