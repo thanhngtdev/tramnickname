@@ -1,5 +1,6 @@
 import React from 'react';
 import Utils from 'src/common/Utils';
+import Image from 'next/image' 
 
 function FootballBegining(props) {
     return (
@@ -13,11 +14,17 @@ function FootballBegining(props) {
                         props.footballBegining.cfg_value.map((item, index) => {
                             return (
                                 <div className="item" key={index}>
-                                    <img
+                                    {/* <img
                                         loading="lazy"
                                         alt=""
                                         className="img"
                                         src={Utils.getThumb(item['icon'])}
+                                    /> */}
+                                    <Image
+                                    src={Utils.getThumb(item['icon'])}
+                                    alt=""
+                                    className='img'
+                                    loading='lazy'
                                     />
                                     <h3 className="title">{item['title']}</h3>
                                     <p className="description">{item['des']}</p>

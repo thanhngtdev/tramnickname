@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import Utils from 'src/common/Utils';
+import Image from 'next/image'
 
 Gallery.propTypes = {
     gallery: PropTypes.object,
@@ -54,7 +55,15 @@ export default function Gallery(props) {
                             <div className="row">
                                 {lstImage && lstImage.length > 0 && (
                                     <div className="item mt-285">
-                                        <img
+                                        {/* <img
+                                            loading="lazy"
+                                            alt=""
+                                            src={Utils.getThumb(
+                                                lstImage[0].image,
+                                                'c1',
+                                            )}
+                                        /> */}
+                                         <Image
                                             loading="lazy"
                                             alt=""
                                             src={Utils.getThumb(
@@ -66,7 +75,7 @@ export default function Gallery(props) {
                                 )}
                                 {lstImage && lstImage.length > 1 && (
                                     <div className="item mt-285">
-                                        <img
+                                        <Image
                                             loading="lazy"
                                             alt=""
                                             src={Utils.getThumb(
@@ -82,7 +91,7 @@ export default function Gallery(props) {
                             <div className="row">
                                 <div className="col-6">
                                     {lstImage && lstImage.length > 2 && (
-                                        <img
+                                        <Image
                                             loading="lazy"
                                             alt=""
                                             src={Utils.getThumb(
@@ -93,7 +102,7 @@ export default function Gallery(props) {
                                         />
                                     )}
                                     {lstImage && lstImage.length > 3 && (
-                                        <img
+                                        <Image
                                             loading="lazy"
                                             alt=""
                                             src={Utils.getThumb(
@@ -105,7 +114,7 @@ export default function Gallery(props) {
                                 </div>
                                 <div className="col-6">
                                     {lstImage && lstImage.length > 4 && (
-                                        <img
+                                        <Image
                                             loading="lazy"
                                             alt=""
                                             src={Utils.getThumb(
@@ -118,7 +127,7 @@ export default function Gallery(props) {
                             </div>
                             <div className="full-width mt-30 hiden-mobile">
                                 {lstImage && lstImage.length > 5 && (
-                                    <img
+                                    <Image
                                         loading="lazy"
                                         alt=""
                                         src={Utils.getThumb(
