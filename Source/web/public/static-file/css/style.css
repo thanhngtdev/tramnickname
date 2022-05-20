@@ -1613,7 +1613,7 @@ h1 {
 .box-10-years {
     width: 100%;
     display: inline-block;
-    background: url(/static-file/images/photos10years.jpg) no-repeat center top;
+    background: url(/static-file/images/photos10years.webp) no-repeat center top;
     background-size: cover;
     padding-top: 195px;
     padding-bottom: 300px;
