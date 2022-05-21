@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import useGetWidth from 'src/hooks/useGetWidth';
-
+import parse from 'html-react-parser';
 const propTypes = {};
 
 const AboutUsNoVideo = ({ data }) => {
@@ -70,10 +70,10 @@ const AboutUsNoVideo = ({ data }) => {
                             <p
                                 style={{
                                     fontSize: '20px',
-                                    lineHeight: '30px',
+                                    lineHeight: '27px',
                                 }}
                                 className="pro-sub-text">
-                                {data.about?.cfg_content || ''}
+                                {parse(data.about?.cfg_content) || ''}
                             </p>
                         </div>
                     </div>
