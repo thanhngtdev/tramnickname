@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import Router from 'next/router';
 import Head from 'next/head';
@@ -6,6 +6,7 @@ import NProgress from 'nprogress';
 import '../../public/static-file/scss/nprogress.scss';
 import store from 'src/redux/store';
 import { appWithTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 
 import '../../public/static-file/css/style.css';
 import '../../public/static-file/css/about.css';
@@ -43,6 +44,23 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
+    const router = useRouter();
+
+    useEffect(() => {
+        const fb_id = process.env.FB_ID;
+
+        import('react-facebook-pixel')
+            .then((x) => x.default)
+            .then((ReactPixel) => {
+                ReactPixel.init(fb_id); // facebookPixelId
+                ReactPixel.pageView();
+
+                router.events.on('routeChangeComplete', () => {
+                    ReactPixel.pageView();
+                });
+            });
+    }, [router.events]);
+
     return (
         <Provider store={store}>
             <Head>
