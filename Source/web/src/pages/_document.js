@@ -9,7 +9,10 @@ export default class MyDocument extends Document {
             <Html lang="en">
                 <Head>
                     <meta charSet="utf-8" />
-
+                    <meta
+                        name="facebook-domain-verification"
+                        content="78wuiiw8y43oa59hfk7xc2b2r87crg"
+                    />
                     <link rel="icon" href="/static-file/images/favicon.ico" />
                     <link
                         rel="stylesheet"

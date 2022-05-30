@@ -7,6 +7,7 @@ import '../../public/static-file/scss/nprogress.scss';
 import store from 'src/redux/store';
 import { appWithTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+import * as fbq from '../lib/fpixel';
 
 import '../../public/static-file/css/style.css';
 import '../../public/static-file/css/about.css';
@@ -36,6 +37,7 @@ import 'slick-carousel/slick/slick.css';
 import '../../public/static-file/css/school-training.css';
 import 'flatpickr/dist/themes/airbnb.css';
 import '../../public/static-file/css/modal.css';
+import Script from 'next/script';
 
 Router.events.on('routeChangeStart', (url) => {
     NProgress.start();
@@ -46,19 +48,32 @@ Router.events.on('routeChangeError', () => NProgress.done());
 function MyApp({ Component, pageProps }) {
     const router = useRouter();
 
+    // useEffect(() => {
+    //     const fb_id = process.env.FB_ID;
+
+    //     import('react-facebook-pixel')
+    //         .then((x) => x.default)
+    //         .then((ReactPixel) => {
+    //             ReactPixel.init(fb_id); // facebookPixelId
+    //             ReactPixel.pageView();
+
+    //             router.events.on('routeChangeComplete', () => {
+    //                 ReactPixel.pageView();
+    //             });
+    //         });
+    // }, [router.events]);
+
     useEffect(() => {
-        const fb_id = process.env.FB_ID;
+        // This pageview only triggers the first time (it's important for Pixel to have real information)
+        fbq.pageview();
+        const handleRouteChange = () => {
+            fbq.pageview();
+        };
 
-        import('react-facebook-pixel')
-            .then((x) => x.default)
-            .then((ReactPixel) => {
-                ReactPixel.init(fb_id); // facebookPixelId
-                ReactPixel.pageView();
-
-                router.events.on('routeChangeComplete', () => {
-                    ReactPixel.pageView();
-                });
-            });
+        router.events.on('routeChangeComplete', handleRouteChange);
+        return () => {
+            router.events.off('routeChangeComplete', handleRouteChange);
+        };
     }, [router.events]);
 
     return (
@@ -75,6 +90,24 @@ function MyApp({ Component, pageProps }) {
                     We offer professional and fun training to help children develop their football skills.`}
                 /> */}
             </Head>
+            <Script
+                id="fb-pixel"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: `
+                        !function(f,b,e,v,n,t,s)
+                        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                        n.queue=[];t=b.createElement(e);t.async=!0;
+                        t.src=v;s=b.getElementsByTagName(e)[0];
+                        s.parentNode.insertBefore(t,s)}(window, document,'script',
+                        'https://connect.facebook.net/en_US/fbevents.js');
+                        fbq('init', '4981326851954035');
+                        fbq('track', 'PageView');`,
+                }}
+            />
+
             <Component {...pageProps} />
         </Provider>
     );
