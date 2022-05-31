@@ -177,7 +177,7 @@ function LDHolidayCamp(props) {
             dispatch({
                 type: siteActionType.GET_LIST_COURSE,
                 company_id: props.site.pa_companyId,
-                location_id: props.site.location_id,
+                location_id: props.site.pa_locationId,
                 course_type: 'event',
             });
     }, [props.site]);

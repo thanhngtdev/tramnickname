@@ -78,7 +78,7 @@ function BookTrialCamp1(props) {
             dispatch(
                 getListCourse({
                     company_id: siteSelected.pa_companyId,
-                    location_id: siteSelected.location_id,
+                    location_id: siteSelected.pa_locationId,
                     course_type: 'event',
                 }),
             );
