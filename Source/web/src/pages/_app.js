@@ -83,12 +83,6 @@ function MyApp({ Component, pageProps }) {
                     name="viewport"
                     content="width=device-width, initial-scale=1"
                 />
-                {/* <DefaultSeo
-                    title="Professional Football Coaching-Ages 4-12 | We Make
-                    Footballers"
-                    description={`We Make Footballers is a UK wide football coaching company for kids aged 4 to 12 of all abilties.
-                    We offer professional and fun training to help children develop their football skills.`}
-                /> */}
             </Head>
             <Script
                 id="fb-pixel"
