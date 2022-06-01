@@ -5,7 +5,7 @@ module.exports = {
     generateRobotsTxt: true, // (optional)
     exclude: ['/sitemap.xml'], // <= exclude here
     robotsTxtOptions: {
-        policies: [{ userAgent: '*', allow: '' }],
+        policies: [{ userAgent: '*', disallow: '/' }],
         additionalSitemaps: [
             'https://wemakefootballers.com/sitemap.xml', // <==== Add here
         ],

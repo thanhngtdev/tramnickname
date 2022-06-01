@@ -66,60 +66,7 @@ const DefaultLayout = (props) => {
         <>
             <Header />
 
-            <Script
-                id="google-analytics"
-                src="https://www.googletagmanager.com/gtag/js?id=GTM-PMMW2QG"
-                onLoad={() => {
-                    (function (w, d, s, l, i) {
-                        w[l] = w[l] || [];
-                        w[l].push({
-                            'gtm.start': new Date().getTime(),
-                            event: 'gtm.js',
-                        });
-                        var f = d.getElementsByTagName(s)[0],
-                            j = d.createElement(s),
-                            dl = l != 'dataLayer' ? '&l=' + l : '';
-                        j.async = true;
-                        j.src =
-                            'https://www.googletagmanager.com/gtm.js?id=' +
-                            i +
-                            dl;
-                        f.parentNode.insertBefore(j, f);
-                    })(window, document, 'script', 'dataLayer', 'GTM-PMMW2QG');
-                }}
-            />
-            <Script
-                id="fb-pixel"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                    __html: `
-                        !function(f,b,e,v,n,t,s)
-                        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-                        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-                        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-                        n.queue=[];t=b.createElement(e);t.async=!0;
-                        t.src=v;s=b.getElementsByTagName(e)[0];
-                        s.parentNode.insertBefore(t,s)}(window, document,'script',
-                        'https://connect.facebook.net/en_US/fbevents.js');
-                        fbq('init', '4981326851954035');
-                        fbq('track', 'PageView');`,
-                }}
-            />
-            <script
-            if="hotjar"
-                        dangerouslySetInnerHTML={{
-                            __html: `(function(h,o,t,j,a,r){
-                        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                        h._hjSettings={hjid:2994035,hjsv:6};
-                        a=o.getElementsByTagName('head')[0];
-                        r=o.createElement('script');r.async=1;
-                        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-                        a.appendChild(r);
-                    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=')`,
-                        }}
-                    />
-
-            <NextSeo
+            {/* <NextSeo
                 title={
                     seo?.title ||
                     `Professional Football Coaching-Ages 4-12 | We Make
@@ -131,7 +78,7 @@ const DefaultLayout = (props) => {
                 }
                 canonical={seo?.canonical || url || ''}
                 noindex={seo?.noindex === 1}
-            />
+            /> */}
             {children}
             <Footer />
             <LocationModal />
