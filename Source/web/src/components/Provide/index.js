@@ -8,15 +8,16 @@ const Provide = (props) => {
     //! State
     const { provide, isMicroSite } = props;
 
-    //! Function
+    // const convert = (content) => {
+    //     if (!content) return;
+    //     if (!content.includes('$AcademyName')) return;
 
-    const convert = (content) => {
-        if (!isMicroSite) {
-            return content.replace('the $AcademyName', 'the WMF');
-        }
+    //     if (!isMicroSite) {
+    //         return content.replace('the $AcademyName', 'the WMF');
+    //     }
 
-        return content.replace('$AcademyName', props?.site?.ms_name);
-    };
+    //     return content.replace('$AcademyName', props?.site?.ms_name);
+    // };
     //! Render
     return (
         <div className="provides">
@@ -40,9 +41,7 @@ const Provide = (props) => {
                             <div
                                 className="provides-wrap-text"
                                 dangerouslySetInnerHTML={{
-                                    __html: convert(
-                                        provide?.cfg_value?.[0]?.content,
-                                    ),
+                                    __html: provide?.cfg_value?.[0]?.content,
                                 }}></div>
                         </div>
                     </div>

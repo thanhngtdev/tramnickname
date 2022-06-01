@@ -87,9 +87,11 @@ const DefaultLayout = (props) => {
     );
 };
 
-export default geolocated({
-    mpositionOptions: {
-        enableHighAccuracy: false,
-    },
-    userDecisionTimeout: null,
-})(DefaultLayout);
+export default DefaultLayout;
+
+// export default geolocated({
+//     mpositionOptions: {
+//         enableHighAccuracy: false,
+//     },
+//     userDecisionTimeout: null,
+// })(DefaultLayout);

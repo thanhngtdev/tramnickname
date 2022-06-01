@@ -50,20 +50,25 @@ function BannerTop(props) {
             );
     }
 
-    useEffect(() => {
-        console.log(data, 'datahome');
-    }, [data]);
-
     function checkSubname(item) {
         if (isSubPage) {
             return `Football Coaching near ${siteName}<br>
                     <span className="subname-32"> By We Make Footballers: ${
                         item.ms_name || ''
                     }</span>`;
-        } else {
-            return `${item.ms_name} <br>
-            <span className="subname-32">${item.sub_name.text || ''}</span>`;
         }
+
+        if (item.sub_name?.text) {
+            return `Football training for kids in ${
+                item.location_name.text
+            } <br>
+            <span className="subname-32">${item.ms_name || ''}, ${
+                item.sub_name.text
+            }</span>`;
+        }
+
+        return `Football training for kids in ${item.location_name.text} <br>
+        <span className="subname-32">${item.ms_name || ''}</span>`;
 
         if (!name) return '<> </>';
 
