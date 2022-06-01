@@ -7,6 +7,7 @@ import '../../public/static-file/scss/nprogress.scss';
 import store from 'src/redux/store';
 import { appWithTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+import * as fbq from '../lib/fpixel';
 
 import '../../public/static-file/css/style.css';
 import '../../public/static-file/css/about.css';
@@ -44,45 +45,18 @@ Router.events.on('routeChangeStart', (url) => {
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-function MyApp({ Component, pageProps }) {
-    const router = useRouter();
-
-    // useEffect(() => {
-    //     const fb_id = process.env.FB_ID;
-
-    //     import('react-facebook-pixel')
-    //         .then((x) => x.default)
-    //         .then((ReactPixel) => {
-    //             ReactPixel.init(fb_id); // facebookPixelId
-    //             ReactPixel.pageView();
-
-    //             router.events.on('routeChangeComplete', () => {
-    //                 ReactPixel.pageView();
-    //             });
-    //         });
-    // }, [router.events]);
-
-    useEffect(() => {
-      
-
-        router.events.on('routeChangeComplete', handleRouteChange);
-        return () => {
-            router.events.off('routeChangeComplete', handleRouteChange);
-        };
-    }, [router.events]);
-
-    return (
-        <Provider store={store}>
-            <Head>
-                <meta
-                    name="viewport"
-                    content="width=device-width, initial-scale=1"
-                />
-            </Head>
-
-            <Component {...pageProps} />
-        </Provider>
-    );
-}
-
-export default appWithTranslation(MyApp);
+    function MyApp({ Component, pageProps }) {
+        return (
+            <Provider store={store}>
+                <Head>
+                    <meta
+                        name="viewport"
+                        content="width=device-width, initial-scale=1"
+                    />
+                    
+                </Head>
+                <Component {...pageProps} />
+            </Provider>
+        );
+    }
+    export default appWithTranslation(MyApp);
