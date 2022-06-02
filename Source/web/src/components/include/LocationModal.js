@@ -200,7 +200,7 @@ function LocationModal() {
                         </div>
                     </div>
                 </div>
-                {console.log(listSite, 'listSite')}
+                {/* {console.log(listSite, 'listSite')} */}
                 {!showListAcademy ? (
                     <ListNearbyAcademy
                         listAcademy={listAcademy}

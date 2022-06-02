@@ -25,6 +25,7 @@ import {
     siteActionType,
 } from 'src/redux/actions/actionTypes';
 import WeeklyTrainingItem from './WeeklyTrainingItem';
+import useGetWidth from 'src/hooks/useGetWidth';
 
 const MapWithAMarker = withScriptjs(
     withGoogleMap((props) => {
@@ -57,6 +58,7 @@ function ListNearbyAcademy(props) {
     const [highlightAcademy, setHighlightAcademy] = useState(0);
     const [noResult, setNoReSult] = useState(false);
     const [weeklyCourse, setWeeklyCourse] = useState([]);
+    const isMobile = useGetWidth() <= 768;
 
     //! useEffect
     useEffect(() => {
@@ -100,75 +102,34 @@ function ListNearbyAcademy(props) {
             </div>
         );
     }
-    // console.log(lstAcademy);
-    return (
-        <div ref={chooseAcademyModal} style={{ paddingBottom: '5rem' }}>
-            {lstAcademy.length > highlightAcademy && (
-                <div className="main-info wrap-row">
-                    <div className="wrap-address">
-                        <h3 style={{ marginTop: 0 }}>
-                            {parse(
-                                Utils.checkSubname(
-                                    lstAcademy[highlightAcademy],
-                                ),
-                            )}
-                        </h3>
-                        <label>
-                            {'~'}
-                            {Utils.showDistance(
-                                lstAcademy[highlightAcademy].distance,
-                            )}
-                            {` kilometers away`}
-                        </label>
-                        <p>{lstAcademy[highlightAcademy].ms_address}</p>
-                    </div>
-                    <div className="wrap-info">
-                        <img
-                            loading="lazy"
-                            alt=""
-                            src={
-                                lstAcademy[highlightAcademy].ms_avatar &&
-                                lstAcademy[highlightAcademy].ms_avatar !== ''
-                                    ? Utils.getThumb(
-                                          lstAcademy[highlightAcademy]
-                                              .ms_avatar,
-                                          'c1',
-                                      )
-                                    : '/static-file/images/gallery4.jpg'
-                            }
-                        />
-                    </div>
-                    <div className="wrap-contact">
-                        <a
-                            // href="/#"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                props.onClickLocation(
-                                    lstAcademy[highlightAcademy],
-                                );
-                            }}>
-                            Set as default location
-                        </a>
-                        <a
-                            onClick={() => {
-                                dispatch({
-                                    type: headerActionType.CLOSE_LOCATION,
-                                    param: lstAcademy[highlightAcademy],
-                                });
-                                history.push(PathRoute.Contact);
-                            }}>
-                            <FontAwesomeIcon icon={faEnvelope} />
-                            Enquiry form
-                        </a>
-                        <a
-                            href={`tel:${lstAcademy[highlightAcademy].ms_phone}`}>
-                            <FontAwesomeIcon icon={faPhoneAlt} />
-                            Call
-                        </a>
-                    </div>
-                </div>
-            )}
-            <div style={{ clear: 'both' }} />
+
+    const renderAddress = () => (
+        <>
+            <div className="wrap-contact">
+                <a
+                    // href="/#"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        props.onClickLocation(lstAcademy[highlightAcademy]);
+                    }}>
+                    <span>Set as default location</span>
+                </a>
+                <a
+                    onClick={() => {
+                        dispatch({
+                            type: headerActionType.CLOSE_LOCATION,
+                            param: lstAcademy[highlightAcademy],
+                        });
+                        history.push(PathRoute.Contact);
+                    }}>
+                    <FontAwesomeIcon icon={faEnvelope} />
+                    Enquiry form
+                </a>
+                <a href={`tel:${lstAcademy[highlightAcademy].ms_phone}`}>
+                    <FontAwesomeIcon icon={faPhoneAlt} />
+                    Call
+                </a>
+            </div>
             {lstAcademy.length > highlightAcademy && (
                 <div className="more-info">
                     <a
@@ -187,6 +148,51 @@ function ListNearbyAcademy(props) {
                     </a>
                 </div>
             )}
+        </>
+    );
+
+    return (
+        <div ref={chooseAcademyModal} style={{ paddingBottom: '5rem' }}>
+            {lstAcademy.length > highlightAcademy && (
+                <div className="map-view">
+                    <div className="main-info wrap-row">
+                        <div className="wrap-address">
+                            <h3 style={{ marginTop: 0 }}>
+                                {parse(
+                                    Utils.checkSubname(
+                                        lstAcademy[highlightAcademy],
+                                    ),
+                                )}
+                            </h3>
+                            <label>
+                                {'~'}
+                                {Utils.showDistance(
+                                    lstAcademy[highlightAcademy].distance,
+                                )}
+                                {` kilometers away`}
+                            </label>
+                            <p>{lstAcademy[highlightAcademy].ms_address}</p>
+                            {!isMobile && renderAddress()}
+                        </div>
+                    </div>
+                    <div className="service">
+                        <div className="weekly-training">
+                            <h3>Weekly training schedule:</h3>
+                            {weeklyCourse &&
+                                weeklyCourse.map((item, index) => (
+                                    <WeeklyTrainingItem
+                                        item={item}
+                                        key={index}
+                                        index={index}
+                                        site={lstAcademy[highlightAcademy]}
+                                    />
+                                ))}
+                        </div>
+                        {isMobile && renderAddress()}
+                    </div>
+                </div>
+            )}
+
             {lstAcademy.length > 0 && (
                 <div className="map-view">
                     <div className="map">
@@ -204,23 +210,10 @@ function ListNearbyAcademy(props) {
                                     }}
                                 />
                             }
-                            // marker={lstAcademy.slice(0, 1)}
                             highlight={lstAcademy[highlightAcademy]}
                         />
                     </div>
                     <div className="service">
-                        <div className="weekly-training">
-                            <h3>Weekly training schedule:</h3>
-                            {weeklyCourse &&
-                                weeklyCourse.map((item, index) => (
-                                    <WeeklyTrainingItem
-                                        item={item}
-                                        key={index}
-                                        index={index}
-                                        site={lstAcademy[highlightAcademy]}
-                                    />
-                                ))}
-                        </div>
                         <div className="service-offered">
                             <h3>Services offered:</h3>
                             <ul>

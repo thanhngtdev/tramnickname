@@ -39,7 +39,7 @@ const HolidayCampTabSpace = dynamic(() =>
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 function BookTrialTraining({ listSite }) {
-    console.log(listSite, 'list');
+    // console.log(listSite, 'list');
     saveList(listSite);
     const siteReducer = useSelector((state) => state.siteReducer);
     const dispatch = useDispatch();

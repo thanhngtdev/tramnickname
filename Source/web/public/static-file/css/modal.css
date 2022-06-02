@@ -133,12 +133,14 @@
 }
 
 .modal-content .main-info {
-    display: flex;
+    /* display: flex; */
+    width: 50%;
     font-size: 1rem;
     background-color: white;
-    margin-top: 5rem;
+    /* margin-top: 5rem; */
     padding-top: 3rem;
     padding-bottom: 3rem;
+   
 }
 
 .modal-content .wrap-address,
@@ -167,11 +169,6 @@
 }
 
 .modal-content .more-info {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding-bottom: 3rem;
-    margin-top: -3rem;
     background-color: white;
 }
 
@@ -189,6 +186,7 @@
 .modal-content .wrap-contact {
     display: flex;
     flex-direction: column;
+    margin-bottom: 0.8rem;
     /* align-items: flex-end; */
 }
 
@@ -196,7 +194,6 @@
     display: block;
     color: #ee7925;
     margin-bottom: 0.8rem;
-    margin-left: 50px;
 }
 
 .modal-content .wrap-contact svg {
@@ -206,7 +203,7 @@
 
 .modal-content .wrap-contact a:first-child {
     text-decoration: underline;
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
     color: #5a5a5a;
 }
 
@@ -221,7 +218,8 @@
 }
 
 .modal-content .map-view .map {
-    flex: 4;
+    /* flex: 4; */
+    width: 50%;
 }
 
 .modal-content .map-view .service {
@@ -299,8 +297,10 @@
 
     .modal-content h2 {
         font-size: 1.8rem;
-        padding-left: 2rem;
-        padding-right: 2rem;
+    }
+
+    .modal-content .map-view .map {
+        width: 100%;
     }
 
     .modal-content .wrap-row {
@@ -313,7 +313,8 @@
     }
 
     .modal-content .main-info {
-        margin-top: 10rem;
+        width: 100%;
+        margin-top: 2rem;
     }
 
     .modal-content .list-acade a {
@@ -342,13 +343,21 @@
         order: 1;
     }
 
+    .modal-content .map-view .service {
+        padding: 0 0.5rem
+    }
+
     .modal-content .wrap-contact {
+        margin-top: 2rem;
         order: 3;
     }
 
     .modal-content .more-info {
+        display: flex;
+        justify-content: center;
         margin-top: 0;
-        padding-top: 1rem;
+        margin-bottom: 2rem;
+        /* padding-top: 1rem; */
     }
 
     .modal-content .wrap-contact a:last-child {
