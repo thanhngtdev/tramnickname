@@ -135,15 +135,12 @@ function ListNearbyAcademy(props) {
                     <a
                         onClick={(e) => {
                             e.preventDefault();
-                            // console.log(lstAcademy[highlightAcademy]);
                             props.onClickLocation(lstAcademy[highlightAcademy]);
                             // dispatch({
                             //     type: headerActionType.CLOSE_LOCATION,
                             //     param: lstAcademy[highlightAcademy],
                             // });
-                        }}
-                        // href={'/' + lstAcademy[highlightAcademy].ms_alias}
-                    >
+                        }}>
                         More infomation
                     </a>
                 </div>
@@ -152,7 +149,9 @@ function ListNearbyAcademy(props) {
     );
 
     return (
-        <div ref={chooseAcademyModal} style={{ paddingBottom: '5rem' }}>
+        <div
+            ref={chooseAcademyModal}
+            style={{ paddingBottom: '5rem', marginTop: isMobile ? 0 : '5rem' }}>
             {lstAcademy.length > highlightAcademy && (
                 <div className="map-view">
                     <div className="main-info wrap-row">
@@ -178,6 +177,15 @@ function ListNearbyAcademy(props) {
                     <div className="service">
                         <div className="weekly-training">
                             <h3>Weekly training schedule:</h3>
+                            {weeklyCourse &&
+                                weeklyCourse.map((item, index) => (
+                                    <WeeklyTrainingItem
+                                        item={item}
+                                        key={index}
+                                        index={index}
+                                        site={lstAcademy[highlightAcademy]}
+                                    />
+                                ))}
                             {weeklyCourse &&
                                 weeklyCourse.map((item, index) => (
                                     <WeeklyTrainingItem

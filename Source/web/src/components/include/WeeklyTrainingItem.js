@@ -18,11 +18,12 @@ function WeeklTrainingItem(props) {
         <div
             className="wrap-course"
             key={index}
-            style={{
-                borderColor: '#EE7925',
-                borderWidth: 1,
-                borderStyle: 'solid',
-            }}>
+            // style={{
+            //     borderColor: '#EE7925',
+            //     borderWidth: 1,
+            //     borderStyle: 'solid',
+            // }}
+        >
             <div className={`${index % 2 === 0 ? 'course-odd' : 'course'}`}>
                 <label className="course-time">
                     {item.day_of_week}&nbsp;

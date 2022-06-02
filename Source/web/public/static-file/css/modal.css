@@ -20,6 +20,15 @@
     border-radius: 4px;
 }
 
+.modal-content .wrap-course{
+    border: 1px solid #EE7925;
+    border-bottom: 1px solid transparent;
+}
+
+.modal-content .wrap-course:last-child{
+    border-bottom: 1px solid #EE7925;
+}
+
 .modal-content .wrap-row {
     padding: 0 6rem;
 }
@@ -223,7 +232,9 @@
 }
 
 .modal-content .map-view .service {
-    flex: 5;
+    /* flex: 5; */
+    background: white;
+    width: 50%;
     padding: 2rem 0 2rem 2rem;
 }
 
@@ -344,7 +355,8 @@
     }
 
     .modal-content .map-view .service {
-        padding: 0 0.5rem
+        padding: 0 0.5rem;
+        width: 100%;
     }
 
     .modal-content .wrap-contact {
