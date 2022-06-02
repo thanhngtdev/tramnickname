@@ -90,10 +90,7 @@ function BannerTop(props) {
                 )})`,
             }}>
             <div className="container">
-                <h1 style={{ lineHeight: '4rem' }}>
-                    {/* {`${siteName.replace(' Academy', '')}`} */}
-                    {parse(checkSubname(props.site))}
-                </h1>
+                <h1>{parse(checkSubname(props.site))}</h1>
                 <h2 className="box-text">
                     <p>
                         {isSubPage
