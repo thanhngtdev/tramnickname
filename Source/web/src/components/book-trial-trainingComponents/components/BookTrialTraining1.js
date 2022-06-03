@@ -87,7 +87,7 @@ function BookTrialTraining1(props) {
     //! useEffect
 
     useEffect(() => {
-        if (global?.bookTraining) {
+        if (global?.bookTraining?.date) {
             const nextDay = dayjs(global?.bookTraining?.date).toDate();
             setDate(nextDay);
             getClassTime(new Date(nextDay));
@@ -104,12 +104,6 @@ function BookTrialTraining1(props) {
             setEmailError('');
         };
     }, []);
-
-    // useEffect(() => {
-    //     if (!siteSelected && listSite) {
-    //         setSiteSelected(listSite[0]);
-    //     }
-    // }, [listSite]);
 
     useEffect(() => {
         if (email && siteSelected) {
@@ -142,6 +136,7 @@ function BookTrialTraining1(props) {
     }, [ageStudent, lstCourse]);
 
     useEffect(() => {
+        console.log(!!date, '!!date');
         if (courseSatisfied.length === 0 && !!date) {
             setNotAvailable(
                 'Our classes are for 4-12 year olds. There are no classes available at this location for the age you have provided.',

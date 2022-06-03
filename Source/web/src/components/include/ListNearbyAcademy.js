@@ -186,15 +186,6 @@ function ListNearbyAcademy(props) {
                                         site={lstAcademy[highlightAcademy]}
                                     />
                                 ))}
-                            {weeklyCourse &&
-                                weeklyCourse.map((item, index) => (
-                                    <WeeklyTrainingItem
-                                        item={item}
-                                        key={index}
-                                        index={index}
-                                        site={lstAcademy[highlightAcademy]}
-                                    />
-                                ))}
                         </div>
                         {isMobile && renderAddress()}
                     </div>
