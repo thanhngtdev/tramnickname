@@ -63,14 +63,17 @@ function Header() {
     const [menuMobile, setMenuMobile] = useState(false);
     const [fixHeader, setFixHeader] = useState(true);
     const [defaultAcademy, setDefaultAcademy] = useState({});
-
-    // const isShowLogo = useGetWidth() > 1240 || useGetWidth() <= 768;
     const isShowLogoHome = useGetWidth() <= 1060;
     const mobile = useGetWidth();
     const [isShowLogo, setIsShowLogo] = useState(mobile);
     const [showSelect, setShowSelect] = useState(false);
     const { ref, isComponentVisible, setIsComponentVisible } =
         useComponentVisible(true);
+    const [defaultTypeform, setDefaultTypeform] = useState({});
+
+    useEffect(() => {
+        console.log(defaultTypeform, 'defaultTypeform');
+    }, [defaultTypeform]);
 
     useEffect(() => {
         if (!isComponentVisible && showSelect) {
@@ -79,6 +82,21 @@ function Header() {
     }, [isComponentVisible]);
 
     useEffect(() => {
+        async function getDefaultTypeForm() {
+            try {
+                const res = await siteService.getHome();
+                if (res?.data?.status === 200 && res?.data?.data) {
+                    const { defaultConfig } = res?.data?.data;
+                    // console.log(defaultConfig, 'defaultConfig');
+                    defaultConfig &&
+                        setDefaultTypeform(res?.data?.data?.defaultConfig);
+                }
+            } catch (error) {
+                console.log(error, 'error');
+            }
+        }
+
+        getDefaultTypeForm();
         setDefaultAcademy(ModelManager.getLocation() || {});
     }, []);
 
@@ -143,14 +161,7 @@ function Header() {
                 <div className="menu-top">
                     <div className="menu-left">
                         {!isShowLogoHome && (
-                            <Link
-                                // href={`${
-                                //     !isEmpty(defaultAcademy)
-                                //         ? '/' + defaultAcademy.ms_alias
-                                //         : PathRoute.Home
-                                // }`}
-                                href={PathRoute.Home}
-                                scroll>
+                            <Link href={PathRoute.Home} scroll>
                                 <img
                                     loading="lazy"
                                     alt=""
@@ -218,33 +229,33 @@ function Header() {
                                     idTypeForm={
                                         defaultAcademy?.ms_use_typeform === 1
                                             ? defaultAcademy?.ms_typeform_id
-                                            : null
+                                            : defaultTypeform?.default_typeform_id
                                     }
-                                    onClick={(evt) => {
-                                        setMenuMobile(false);
-                                        if (defaultAcademyss === undefined) {
-                                            if (defaultAcademy) {
-                                                router.push(
-                                                    PathRoute.BookTrialTrainingWithAlias(
-                                                        defaultAcademy.ms_alias,
-                                                    ),
-                                                );
-                                            } else {
-                                                router.push(
-                                                    PathRoute.BookTrialTraining,
-                                                );
-                                            }
-                                        } else if (defaultAcademyss) {
-                                            router.push(
-                                                PathRoute.BookTrialTrainingWithAlias(
-                                                    defaultAcademyss.ms_alias,
-                                                    {
-                                                        step: 1,
-                                                    },
-                                                ),
-                                            );
-                                        }
-                                    }}
+                                    // onClick={(evt) => {
+                                    //     setMenuMobile(false);
+                                    //     if (defaultAcademyss === undefined) {
+                                    //         if (defaultAcademy) {
+                                    //             router.push(
+                                    //                 PathRoute.BookTrialTrainingWithAlias(
+                                    //                     defaultAcademy.ms_alias,
+                                    //                 ),
+                                    //             );
+                                    //         } else {
+                                    //             router.push(
+                                    //                 PathRoute.BookTrialTraining,
+                                    //             );
+                                    //         }
+                                    //     } else if (defaultAcademyss) {
+                                    //         router.push(
+                                    //             PathRoute.BookTrialTrainingWithAlias(
+                                    //                 defaultAcademyss.ms_alias,
+                                    //                 {
+                                    //                     step: 1,
+                                    //                 },
+                                    //             ),
+                                    //         );
+                                    //     }
+                                    // }}
                                     title={`Book a ${
                                         defaultAcademy &&
                                         defaultAcademy.ms_trial === 1

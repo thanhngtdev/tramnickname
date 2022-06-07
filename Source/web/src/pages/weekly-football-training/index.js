@@ -21,7 +21,6 @@ const Testimonial = dynamic(() => import('src/components/Testimonial'));
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 function WeeklyTraining({ data, listSite }) {
-    console.log(data, 'data');
     saveList(listSite);
 
     if (isEmpty(data)) return <></>;

@@ -30,7 +30,6 @@ function HomePage({ data, listSite }) {
     const isShowBooking =
         isEmpty(defaultAcademy) || defaultAcademy?.ms_use_typeform !== 1;
 
-    // console.log(isShowBooking, 'isShowBooking');
     return (
         <DefaultLayout seo={data?.seoMeta || {}}>
             <BannerTop bannerTop={data?.bannerTop || {}} />

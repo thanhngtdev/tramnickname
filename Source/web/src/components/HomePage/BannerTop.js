@@ -94,55 +94,6 @@ function BannerTop(props) {
                 <div className="box-text">
                     <p>{props.bannerTop.cfg_des}</p>
                     {renderButton()}
-                    {/* {defaultAcademy.ms_id ? (
-                        <div className="box-button">
-                            <PopupButton
-                                // useRef={useref}
-                                id={'uK3XMh'}
-                                className="btn-book-free-session white-hover"
-                                // style={buttonStyle}
-                                size={90}
-                                medium="demo-test"
-                                hidden={{ foo: 'foo value', bar: 'bar value' }}>
-                                open popup
-                            </PopupButton>
-                            <Button
-                                title={`BOOK A ${
-                                    defaultAcademy &&
-                                    defaultAcademy.ms_trial === 1
-                                        ? 'TRIAL '
-                                        : 'FREE '
-                                } SESSION`}
-                                onClick={() => {
-                                    global.bookTraining = {
-                                        siteSelected: defaultAcademy,
-                                    };
-
-                                    history.push(
-                                        PathRoute.BookTrialTrainingWithAlias(
-                                            defaultAcademy.ms_alias,
-                                        ),
-                                    );
-                                }}
-
-                                // href={PathRoute.BookTrialTraining}
-                            />
-                        </div>
-                    ) : (
-                        // <div className="box-pin">
-                        //     <span className="text-form ">
-                        //         Find your nearest academy:
-                        //     </span>
-                        //     <div className="box">
-                        //         <SearchBox1
-                        //             setSearchResult={setSearchResult}
-                        //             textSearch={textSearch}
-                        //             setTextSearch={setTextSearch}
-                        //             listSite={listSite}
-                        //         />
-                        //     </div>
-                        // </div>
-                    )} */}
                 </div>
             </div>
         </div>

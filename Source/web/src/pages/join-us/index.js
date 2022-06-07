@@ -191,9 +191,9 @@ export async function getServerSideProps() {
     const listSite = listRes.data.data.lstSite;
 
     const siteDetail = await siteService.getDetailSite({
-        id: listSite[0].ms_id,
-        cate: 22,
-        location: '',
+        // id: listSite[0].ms_id,
+        // cate: 22,
+        // location: '',
         slug: 'join-us',
     });
 

@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import Utils from 'src/common/Utils';
 import saveList from 'src/hooks/useSaveList';
 import dynamic from 'next/dynamic';
+import getLocalStorage from 'src/hooks/useGetLocalStorage';
 
 const BookTrial = dynamic(() => import('src/components/Booking/BookTrial'));
 const AboutInfo = dynamic(() => import('src/components/Camp/AboutInfo'));
@@ -21,9 +22,8 @@ const Testimonial = dynamic(() => import('src/components/Testimonial'));
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 const SiteNews = ({ data, listSite }) => {
-    // console.log(data, 'data');
-    //! State
     saveList(listSite);
+    const defaultAcademy = getLocalStorage();
 
     useEffect(() => {
         if (isEmpty(data)) {
@@ -63,9 +63,14 @@ const SiteNews = ({ data, listSite }) => {
 
             <WhyWMF data={data?.whyWMF || {}} site={data.site} />
 
-            <div className="booking-weekly">
-                <BookTrial parentFb={data?.parentFb || {}} site={data.site} />
-            </div>
+            {defaultAcademy?.ms_use_typeform !== 1 && (
+                <div className="booking-weekly">
+                    <BookTrial
+                        parentFb={data?.parentFb || {}}
+                        site={data.site}
+                    />
+                </div>
+            )}
 
             <div className="insta-weekly">
                 <InstaBox instaFeed={data?.instaFeed || {}} />

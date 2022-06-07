@@ -69,14 +69,6 @@ function BannerTop(props) {
 
         return `Football training for kids in ${item.location_name.text} <br>
         <span className="subname-32">${item.ms_name || ''}</span>`;
-
-        if (!name) return '<> </>';
-
-        if (name.includes(' - ')) {
-            const split = name.split(' - ');
-        }
-
-        return `<span>${name}</span>`;
     }
 
     return (
@@ -99,6 +91,11 @@ function BannerTop(props) {
                     </p>
                 </h2>
                 <Button
+                    idTypeForm={
+                        props.site.ms_use_typeform === 1
+                            ? props.site.ms_typeform_id
+                            : null
+                    }
                     style={{ width: 350 }}
                     title={`${
                         props.site && props.site.ms_trial === 1
