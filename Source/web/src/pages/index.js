@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import ModelManager from 'src/common/ModelManager';
 import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
+import { isEmpty } from 'lodash';
 
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const BookTrial = dynamic(() => import('src/components/Booking/BookTrial'));
@@ -26,7 +27,10 @@ function HomePage({ data, listSite }) {
         setDefaultAcademy(ModelManager.getLocation());
     }, []);
 
-    //
+    const isShowBooking =
+        isEmpty(defaultAcademy) || defaultAcademy?.ms_use_typeform !== 1;
+
+    // console.log(isShowBooking, 'isShowBooking');
     return (
         <DefaultLayout seo={data?.seoMeta || {}}>
             <BannerTop bannerTop={data?.bannerTop || {}} />
@@ -42,7 +46,13 @@ function HomePage({ data, listSite }) {
             />
 
             <Reason reason={data?.reason?.cfg_value || []} />
-            <BookTrial parentFb={data?.parentFb || {}} site={defaultAcademy} />
+            {isShowBooking && (
+                <BookTrial
+                    parentFb={data?.parentFb || {}}
+                    site={defaultAcademy}
+                />
+            )}
+
             <div className="fb-begin-homepage">
                 <FootballBegining
                     footballBegining={data?.footballBegining || {}}

@@ -102,7 +102,6 @@ function LocationModal() {
         };
 
         const success = async (pos) => {
-            // setLocation('Loading');
             let { latitude, longitude } = pos.coords;
 
             const getApi = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;

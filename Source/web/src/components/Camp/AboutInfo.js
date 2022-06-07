@@ -73,6 +73,8 @@ export default function AboutInfo(props) {
     }, [siteReducer]);
 
     useEffect(() => {
+        // console.log(selectedAcademy, 'selectedAcademy');
+
         textareaRef.current.style.height = '0px';
         const scrollHeight = textareaRef.current.scrollHeight;
         textareaRef.current.style.height = scrollHeight + 'px';
@@ -204,17 +206,18 @@ export default function AboutInfo(props) {
 
                 <div style={{ textAlign: 'center' }}>
                     <Button
+                        idTypeForm={
+                            selectedAcademy?.ms_use_typeform === 1
+                                ? selectedAcademy?.ms_typeform_id
+                                : null
+                        }
                         title={titleButton}
+                        type
                         onClick={() => {
                             dispatch({
                                 type: siteActionType.SELECT_ACADEMY,
                                 data: selectedAcademy,
                             });
-                            console.log(
-                                'seee',
-                                selectedAcademy.ms_alias,
-                                history.query,
-                            );
                             if (selectedAcademy.ms_alias === undefined) {
                                 history.push(PathRoute.BookTrialTraining);
                             }

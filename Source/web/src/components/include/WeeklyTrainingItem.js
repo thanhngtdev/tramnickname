@@ -7,23 +7,54 @@ import {
     headerActionType,
     siteActionType,
 } from 'src/redux/actions/actionTypes';
+import { PopupButton } from '@typeform/embed-react';
 
 function WeeklTrainingItem(props) {
-    // const [bookTrial, setBookTrial] = useState(-1);
     const { item, index, site } = props;
     const dispatch = useDispatch();
     const history = useRouter();
 
+    const renderButton = () => {
+        if (site.ms_use_typeform === 1) {
+            return (
+                <PopupButton
+                    id={site.ms_typeform_id}
+                    className="book-trial"
+                    style={{
+                        border: 0,
+                    }}
+                    size={90}>
+                    Book a free session
+                </PopupButton>
+            );
+        }
+
+        return (
+            <label
+                className="book-trial"
+                onClick={() => {
+                    global.bookTraining = {
+                        siteId: site.ms_id || 0,
+                        siteName: site.ms_name || '',
+                        address: '',
+                        preDefined: { item },
+                    };
+                    dispatch({
+                        type: siteActionType.SELECT_ACADEMY,
+                        data: site,
+                    });
+
+                    dispatch({ type: headerActionType.CLOSE_LOCATION });
+
+                    history.push(PathRoute.BookTrialTraining);
+                }}>
+                Book a free session
+            </label>
+        );
+    };
+
     return (
-        <div
-            className="wrap-course"
-            key={index}
-            // style={{
-            //     borderColor: '#EE7925',
-            //     borderWidth: 1,
-            //     borderStyle: 'solid',
-            // }}
-        >
+        <div className="wrap-course" key={index}>
             <div className={`${index % 2 === 0 ? 'course-odd' : 'course'}`}>
                 <label className="course-time">
                     {item.day_of_week}&nbsp;
@@ -36,27 +67,7 @@ function WeeklTrainingItem(props) {
                         'HH:mma',
                     )}
                 </label>
-                <label
-                    className="book-trial"
-                    onClick={() => {
-                        // console.log('book session');
-                        global.bookTraining = {
-                            siteId: site.ms_id || 0,
-                            siteName: site.ms_name || '',
-                            address: '',
-                            preDefined: { item },
-                        };
-                        dispatch({
-                            type: siteActionType.SELECT_ACADEMY,
-                            data: site,
-                        });
-
-                        dispatch({ type: headerActionType.CLOSE_LOCATION });
-
-                        history.push(PathRoute.BookTrialTraining);
-                    }}>
-                    Book a free session
-                </label>
+                {renderButton()}
             </div>
         </div>
     );

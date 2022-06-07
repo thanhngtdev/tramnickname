@@ -136,10 +136,6 @@ function ListNearbyAcademy(props) {
                         onClick={(e) => {
                             e.preventDefault();
                             props.onClickLocation(lstAcademy[highlightAcademy]);
-                            // dispatch({
-                            //     type: headerActionType.CLOSE_LOCATION,
-                            //     param: lstAcademy[highlightAcademy],
-                            // });
                         }}>
                         More infomation
                     </a>

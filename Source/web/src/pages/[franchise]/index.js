@@ -35,11 +35,13 @@ import saveList from 'src/hooks/useSaveList';
 import { getHome } from 'src/redux/actions/homeAction';
 import siteService from 'src/services/siteService';
 import { useRef } from 'react';
+import getLocalStorage from 'src/hooks/useGetLocalStorage';
 
 function Franchise({ data, listSite, isSubPage, item }) {
     const dispatch = useDispatch();
     const router = useRouter();
     const targetRef = useRef(null);
+    const defaultAcademy = getLocalStorage();
 
     saveList(listSite);
 
@@ -49,24 +51,6 @@ function Franchise({ data, listSite, isSubPage, item }) {
         }
 
         dispatch(getHome());
-
-        // console.log(router, 'router');
-
-        // const abc = listSite.find((item) => {
-        //     debugger;
-
-        //     if (item.ms_alias === router.query.franchise) {
-        //         return item;
-        //     }
-
-        //     return item.sub_page.find((i) => {
-        //         if (i.sub_alias === router.query.franchise) {
-        //             return i;
-        //         }
-        //     });
-        // });
-
-        // console.log(abc, 'abc');
     }, []);
 
     useEffect(() => {
@@ -96,7 +80,8 @@ function Franchise({ data, listSite, isSubPage, item }) {
         }
     };
 
-    // console.log(isSubPage, 'subpage');
+    const isShowBooking =
+        isEmpty(defaultAcademy) || defaultAcademy?.ms_use_typeform !== 1;
 
     if (isEmpty(data)) return <></>;
     return (
@@ -147,14 +132,7 @@ function Franchise({ data, listSite, isSubPage, item }) {
                     textColor={'white'}
                 />
             </div>
-            {/* <div className="franchise-servive">
-                <TrainingService
-                    onClickLocation={onClickLocation}
-                    site={data?.site || {}}
-                    service={data?.service || {}}
-                    // targetRef={targetRef}
-                />
-            </div> */}
+
             <div className="franchise-reason">
                 <TrainingReason
                     targetRef={targetRef}
@@ -166,7 +144,10 @@ function Franchise({ data, listSite, isSubPage, item }) {
                 staff={data?.coach?.staff || []}
                 site={data?.site || {}}
             />
-            <BookTrial parentFb={data?.parentFb} site={data?.site} />
+            {isShowBooking && (
+                <BookTrial parentFb={data?.parentFb} site={data?.site} />
+            )}
+
             <div className="faq-weekly">
                 <QNA data={data?.faq || []} />
             </div>
@@ -191,14 +172,6 @@ export async function getServerSideProps(context) {
             id = item.ms_id;
             return item;
         }
-
-        // return item.sub_page.find((i) => {
-        //     if (i.sub_alias === context.params.franchise) {
-        //         id = i.sub_id;
-        //         isSubPage = true;
-        //         return i;
-        //     }
-        // });
     });
 
     if (isEmpty(item)) {

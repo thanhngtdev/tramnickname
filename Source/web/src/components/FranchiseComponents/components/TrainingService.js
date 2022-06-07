@@ -1,8 +1,11 @@
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { PopupButton } from '@typeform/embed-react';
 import dayjs from 'dayjs';
+import parse from 'html-react-parser';
 import isEmpty from 'lodash/isEmpty';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,8 +16,6 @@ import Utils from 'src/common/Utils';
 import SolidButton from 'src/components/include/SolidButton';
 import getFranchiseName from 'src/hooks/useFranchise';
 import { siteActionType } from 'src/redux/actions/actionTypes';
-import parse from 'html-react-parser';
-import router, { Router, useRouter } from 'next/router';
 
 LDWeeklyTraining.propTypes = {
     site: PropTypes.object,
@@ -53,6 +54,48 @@ function LDWeeklyTraining(props) {
             }
         }
     }, [siteReducer]);
+
+    const renderBookingBtn = (index) => {
+        if (props.site.ms_use_typeform === 1) {
+            return (
+                <PopupButton
+                    id={props.site.ms_typeform_id}
+                    style={{
+                        border: 0,
+                        backgroundColor: `${
+                            index % 2 === 0 ? '#F7F8F7' : 'white'
+                        }`,
+                        padding: 0,
+                        color: '#EE7925',
+                        cursor: 'pointer',
+                    }}
+                    size={90}>
+                    Book
+                </PopupButton>
+            );
+        }
+
+        return (
+            <p
+                style={{ color: '#FF7100', cursor: 'pointer' }}
+                onClick={() => {
+                    // setCourseSelected(item);
+                    global.bookTraining = {
+                        siteId: props.site.ms_id || 0,
+                        siteName: props.site.ms_name || '',
+                        address: '',
+                        preDefined: { item },
+                    };
+                    dispatch({
+                        type: siteActionType.SELECT_ACADEMY,
+                        data: props.site,
+                    });
+                    history.push(PathRoute.BookTrialTraining);
+                }}>
+                Book
+            </p>
+        );
+    };
 
     // console.log(props, 'site props');
     return (
@@ -119,26 +162,7 @@ function LDWeeklyTraining(props) {
                             <p style={{ marginRight: 35 }}>{`£${
                                 item.course_price || 0
                             } per ${item.course_length || 0} sessions`}</p>
-                            <p
-                                style={{ color: '#FF7100', cursor: 'pointer' }}
-                                onClick={() => {
-                                    // setCourseSelected(item);
-                                    global.bookTraining = {
-                                        siteId: props.site.ms_id || 0,
-                                        siteName: props.site.ms_name || '',
-                                        address: '',
-                                        preDefined: { item },
-                                    };
-                                    dispatch({
-                                        type: siteActionType.SELECT_ACADEMY,
-                                        data: props.site,
-                                    });
-
-                                    // console.log(global.bookTraining, 'global2');
-                                    history.push(PathRoute.BookTrialTraining);
-                                }}>
-                                Book
-                            </p>
+                            {renderBookingBtn(index)}
                         </div>
                     </div>
                 ))}
