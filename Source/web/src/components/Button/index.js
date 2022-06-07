@@ -1,9 +1,22 @@
 import Link from 'next/link';
 import React from 'react';
+import { PopupButton } from '@typeform/embed-react';
 
 export default (props) => {
-    const { href = '', title = '', style = {} } = props;
-    // console.log(props, 'sss');
+    const { idTypeForm, href = '', title = '', style = {} } = props;
+
+    //button for typeform
+    if (idTypeForm) {
+        return (
+            <PopupButton
+                id={idTypeForm}
+                className="btn-book-free-session white-hover"
+                style={style}
+                size={90}>
+                {title}
+            </PopupButton>
+        );
+    }
 
     if (props.onClick) {
         return (

@@ -162,20 +162,6 @@ function Header() {
                         )}
 
                         <div ref={ref} className="custom-select">
-                            {/* <div
-                                className={`select-selected ${
-                                    showSelect && 'active'
-                                }`}
-                                onClick={() => {
-                                    setIsComponentVisible(true);
-                                    setShowSelect(!showSelect);
-                                }}>
-                                {router.locale === 'us' ? (
-                                    <>{usFlag}&nbsp;US</>
-                                ) : (
-                                    <>{ukFlag}&nbsp;UK</>
-                                )}
-                            </div> */}
                             <div
                                 className={`select-items ${
                                     !showSelect && 'select-hide'
@@ -229,10 +215,13 @@ function Header() {
                                         fontWeight: 500,
                                         letterSpacing: 2.3,
                                     }}
+                                    idTypeForm={
+                                        defaultAcademy?.ms_use_typeform === 1
+                                            ? defaultAcademy?.ms_typeform_id
+                                            : null
+                                    }
                                     onClick={(evt) => {
-                                        // evt.preventDefault();
                                         setMenuMobile(false);
-
                                         if (defaultAcademyss === undefined) {
                                             if (defaultAcademy) {
                                                 router.push(
@@ -255,28 +244,6 @@ function Header() {
                                                 ),
                                             );
                                         }
-
-                                        // if (defaultAcademy)
-                                        //     global.bookTraining = {
-                                        //         siteSelected: defaultAcademy,
-                                        //     };
-                                        // if (
-                                        //     defaultAcademy.ms_alias ===
-                                        //     undefined
-                                        // ) {
-                                        //     router.push(
-                                        //         PathRoute.BookTrialTraining,
-                                        //     );
-                                        // } else {
-                                        //     router.push(
-                                        //         PathRoute.BookTrialTrainingWithAlias(
-                                        //             defaultAcademy.ms_alias,
-                                        //             {
-                                        //                 step: 1,
-                                        //             },
-                                        //         ),
-                                        //     );
-                                        // }
                                     }}
                                     title={`Book a ${
                                         defaultAcademy &&

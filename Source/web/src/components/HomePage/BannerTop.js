@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { headerActionType } from 'src/redux/actions/actionTypes';
 import isEmpty from 'lodash/isEmpty';
 import useGetWidth from 'src/hooks/useGetWidth';
+import { PopupButton } from '@typeform/embed-react';
 
 function BannerTop(props) {
     const dispatch = useDispatch();
@@ -30,6 +31,54 @@ function BannerTop(props) {
         }
     }, [searchResult]);
 
+    const renderButton = () => {
+        if (defaultAcademy.ms_id) {
+            const title = `BOOK A ${
+                defaultAcademy && defaultAcademy.ms_trial === 1
+                    ? 'TRIAL '
+                    : 'FREE '
+            } SESSION`;
+
+            return (
+                <div className="box-button">
+                    <Button
+                        idTypeForm={
+                            defaultAcademy.ms_use_typeform === 1
+                                ? defaultAcademy.ms_typeform_id
+                                : null
+                        }
+                        title={title}
+                        onClick={() => {
+                            global.bookTraining = {
+                                siteSelected: defaultAcademy,
+                            };
+
+                            history.push(
+                                PathRoute.BookTrialTrainingWithAlias(
+                                    defaultAcademy.ms_alias,
+                                ),
+                            );
+                        }}
+                    />
+                </div>
+            );
+        }
+
+        return (
+            <div className="box-pin">
+                <span className="text-form ">Find your nearest academy:</span>
+                <div className="box">
+                    <SearchBox1
+                        setSearchResult={setSearchResult}
+                        textSearch={textSearch}
+                        setTextSearch={setTextSearch}
+                        listSite={listSite}
+                    />
+                </div>
+            </div>
+        );
+    };
+
     return (
         <div
             className="banner-top"
@@ -44,8 +93,19 @@ function BannerTop(props) {
                 <h1>{props.bannerTop.cfg_title}</h1>
                 <div className="box-text">
                     <p>{props.bannerTop.cfg_des}</p>
-                    {defaultAcademy.ms_id ? (
+                    {renderButton()}
+                    {/* {defaultAcademy.ms_id ? (
                         <div className="box-button">
+                            <PopupButton
+                                // useRef={useref}
+                                id={'uK3XMh'}
+                                className="btn-book-free-session white-hover"
+                                // style={buttonStyle}
+                                size={90}
+                                medium="demo-test"
+                                hidden={{ foo: 'foo value', bar: 'bar value' }}>
+                                open popup
+                            </PopupButton>
                             <Button
                                 title={`BOOK A ${
                                     defaultAcademy &&
@@ -69,20 +129,20 @@ function BannerTop(props) {
                             />
                         </div>
                     ) : (
-                        <div className="box-pin">
-                            <span className="text-form ">
-                                Find your nearest academy:
-                            </span>
-                            <div className="box">
-                                <SearchBox1
-                                    setSearchResult={setSearchResult}
-                                    textSearch={textSearch}
-                                    setTextSearch={setTextSearch}
-                                    listSite={listSite}
-                                />
-                            </div>
-                        </div>
-                    )}
+                        // <div className="box-pin">
+                        //     <span className="text-form ">
+                        //         Find your nearest academy:
+                        //     </span>
+                        //     <div className="box">
+                        //         <SearchBox1
+                        //             setSearchResult={setSearchResult}
+                        //             textSearch={textSearch}
+                        //             setTextSearch={setTextSearch}
+                        //             listSite={listSite}
+                        //         />
+                        //     </div>
+                        // </div>
+                    )} */}
                 </div>
             </div>
         </div>
