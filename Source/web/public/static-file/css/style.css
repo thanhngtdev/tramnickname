@@ -1257,7 +1257,8 @@ h1 {
 }
 
 .book_your_child_free_session .list-form .text-policy {
-    line-height: 28px;
+    line-height: 32px;
+    /* color: #343333; */
 }
 
 .book_your_child_free_session .list-form li {

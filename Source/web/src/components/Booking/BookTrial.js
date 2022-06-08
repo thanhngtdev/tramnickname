@@ -13,6 +13,7 @@ import useComponentVisible from 'src/hooks/useComponentVisible';
 import getLocalStorage from 'src/hooks/useGetLocalStorage';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import Button from '../Button';
+import TextPolicy from '../TextPolicy';
 
 BookTrial.propTypes = {
     parentFb: PropTypes.object,
@@ -265,17 +266,7 @@ function BookTrial(props) {
                                 )} training session`}
                             />
                         </li>
-                        <p className="text-policy">
-                            For more information about our privacy practices,
-                            please read our{' '}
-                            <a
-                                className="link"
-                                href={PathRoute.Policy + '/privacy'}>
-                                Privacy Policy
-                            </a>
-                            . By clicking above, you agree that we may process
-                            your information in accordance with these terms.
-                        </p>
+                        <TextPolicy />
                     </ul>
                     <div className="col-right">
                         {parentFb && (

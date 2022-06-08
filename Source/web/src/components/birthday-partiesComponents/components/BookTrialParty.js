@@ -12,6 +12,7 @@ import Utils from 'src/common/Utils';
 import Captcha from 'src/components/Captcha';
 import BorderButton from 'src/components/include/BorderButton';
 import Dot from 'src/components/include/Dot';
+import TextPolicy from 'src/components/TextPolicy';
 import TrustPilotText from 'src/components/TrustPilotText';
 import useComponentVisible from 'src/hooks/useComponentVisible';
 import { siteActionType } from 'src/redux/actions/actionTypes';
@@ -491,17 +492,7 @@ const BookTrialParty = React.forwardRef((props, ref) => {
                             />
                         )}
 
-                        <p className="text-policy">
-                            For more information about our privacy practices,
-                            please read our{' '}
-                            <a
-                                className="link"
-                                href={PathRoute.Policy + '/privacy'}>
-                                Privacy Policy
-                            </a>
-                            . By clicking above, you agree that we may process
-                            your information in accordance with these terms.
-                        </p>
+                        <TextPolicy />
                     </ul>
 
                     <div className="col-right">

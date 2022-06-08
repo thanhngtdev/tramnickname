@@ -139,9 +139,8 @@ function Franchise({ data, listSite, isSubPage, item }) {
                 staff={data?.coach?.staff || []}
                 site={data?.site || {}}
             />
-            {defaultTypeform.use_typeform === 0 && (
-                <BookTrial parentFb={data?.parentFb} site={data?.site} />
-            )}
+
+            <BookTrial parentFb={data?.parentFb} site={data?.site} />
 
             <div className="faq-weekly">
                 <QNA data={data?.faq || []} />

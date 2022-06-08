@@ -14,6 +14,7 @@ import Utils from 'src/common/Utils';
 import Button from 'src/components/Button';
 import BorderButton from 'src/components/include/BorderButton';
 import Dot from 'src/components/include/Dot';
+import TextPolicy from 'src/components/TextPolicy';
 import TrustPilotText from 'src/components/TrustPilotText';
 import useComponentVisible from 'src/hooks/useComponentVisible';
 import getLocalStorage from 'src/hooks/useGetLocalStorage';
@@ -422,17 +423,7 @@ export default function BookTrialHoliday(props) {
                         {stepActive == 2 && (
                             <Step2 onSendData={(data) => onSendData(data)} />
                         )}
-                        <p className="text-policy">
-                            For more information about our privacy practices,
-                            please read our{' '}
-                            <a
-                                className="link"
-                                href={PathRoute.Policy + '/privacy'}>
-                                Privacy Policy
-                            </a>
-                            . By clicking above, you agree that we may process
-                            your information in accordance with these terms.
-                        </p>
+                        <TextPolicy />
                     </ul>
 
                     <div className="col-right">

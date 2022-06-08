@@ -11,6 +11,7 @@ import ModelManager from 'src/common/ModelManager';
 import PathRoute from 'src/common/PathRoute';
 import { CommonStyle } from 'src/common/Styles';
 import Utils from 'src/common/Utils';
+import TextPolicy from 'src/components/TextPolicy';
 import saveList from 'src/hooks/useSaveList';
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 import siteService from 'src/services/siteService';
@@ -294,25 +295,7 @@ function Contact({ listSite, config }) {
                                         }}
                                     />
                                 </li>
-                                <p
-                                    className="text-policy"
-                                    // style={{ fontSize: 14, color: '#1A1919' }}
-                                >
-                                    For more information about our privacy
-                                    practices, please read our
-                                    <a
-                                        style={{
-                                            color: '#FF7531',
-                                            textDecoration: 'underline',
-                                        }}
-                                        href={PathRoute.Policy + '/privacy'}>
-                                        {' '}
-                                        Privacy Policy
-                                    </a>
-                                    . By clicking above, you agree that we may
-                                    process your information in accordance with
-                                    these terms.
-                                </p>
+                                <TextPolicy />
                             </ul>
                         </div>
                     </div>
