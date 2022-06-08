@@ -70,6 +70,10 @@ function Header() {
     const [showSelect, setShowSelect] = useState(false);
     const { ref, isComponentVisible, setIsComponentVisible } =
         useComponentVisible(true);
+    const { pathname, query, asPath, locales, locale: activeLocale } = router;
+    const otherLocales = (locales || []).filter(
+        (locale) => locale !== activeLocale,
+    );
 
     useEffect(() => {
         if (!isComponentVisible && showSelect) {
@@ -83,6 +87,7 @@ function Header() {
                 const res = await siteService.getHome();
                 if (res?.data?.status === 200 && res?.data?.data) {
                     const { defaultConfig } = res?.data?.data;
+                    // console.log(defaultConfig, 'defaultConfig');
                     defaultConfig &&
                         dispatch(
                             saveDefautConfig({ defaultConfig: defaultConfig }),
@@ -93,8 +98,21 @@ function Header() {
             }
         }
 
-        getDefaultTypeForm();
-        setDefaultAcademy(ModelManager.getLocation() || {});
+        const selectedAcademy = ModelManager.getLocation();
+        if (!isEmpty(selectedAcademy)) {
+            dispatch(
+                saveDefautConfig({
+                    defaultConfig: {
+                        default_typeform_id: selectedAcademy.ms_typeform_id,
+                        use_typeform: selectedAcademy.ms_use_typeform,
+                    },
+                }),
+            );
+        } else {
+            getDefaultTypeForm();
+        }
+
+        setDefaultAcademy(selectedAcademy);
     }, []);
 
     useEffect(() => {
@@ -117,10 +135,6 @@ function Header() {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-    const { pathname, query, asPath, locales, locale: activeLocale } = router;
-    const otherLocales = (locales || []).filter(
-        (locale) => locale !== activeLocale,
-    );
 
     useEffect(() => {
         if (defaultAcademyss) {
@@ -224,35 +238,35 @@ function Header() {
                                         letterSpacing: 2.3,
                                     }}
                                     idTypeForm={
-                                        defaultAcademy?.ms_use_typeform === 1
-                                            ? defaultAcademy?.ms_typeform_id
-                                            : defaultTypeform?.default_typeform_id
+                                        defaultTypeform?.use_typeform === 1
+                                            ? defaultTypeform?.default_typeform_id
+                                            : null
                                     }
-                                    // onClick={(evt) => {
-                                    //     setMenuMobile(false);
-                                    //     if (defaultAcademyss === undefined) {
-                                    //         if (defaultAcademy) {
-                                    //             router.push(
-                                    //                 PathRoute.BookTrialTrainingWithAlias(
-                                    //                     defaultAcademy.ms_alias,
-                                    //                 ),
-                                    //             );
-                                    //         } else {
-                                    //             router.push(
-                                    //                 PathRoute.BookTrialTraining,
-                                    //             );
-                                    //         }
-                                    //     } else if (defaultAcademyss) {
-                                    //         router.push(
-                                    //             PathRoute.BookTrialTrainingWithAlias(
-                                    //                 defaultAcademyss.ms_alias,
-                                    //                 {
-                                    //                     step: 1,
-                                    //                 },
-                                    //             ),
-                                    //         );
-                                    //     }
-                                    // }}
+                                    onClick={(evt) => {
+                                        setMenuMobile(false);
+                                        if (defaultAcademyss === undefined) {
+                                            if (defaultAcademy) {
+                                                router.push(
+                                                    PathRoute.BookTrialTrainingWithAlias(
+                                                        defaultAcademy.ms_alias,
+                                                    ),
+                                                );
+                                            } else {
+                                                router.push(
+                                                    PathRoute.BookTrialTraining,
+                                                );
+                                            }
+                                        } else if (defaultAcademyss) {
+                                            router.push(
+                                                PathRoute.BookTrialTrainingWithAlias(
+                                                    defaultAcademyss.ms_alias,
+                                                    {
+                                                        step: 1,
+                                                    },
+                                                ),
+                                            );
+                                        }
+                                    }}
                                     title={`Book a ${
                                         defaultAcademy &&
                                         defaultAcademy.ms_trial === 1

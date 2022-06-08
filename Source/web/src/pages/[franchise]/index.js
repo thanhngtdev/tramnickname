@@ -35,13 +35,11 @@ import saveList from 'src/hooks/useSaveList';
 import { getHome } from 'src/redux/actions/homeAction';
 import siteService from 'src/services/siteService';
 import { useRef } from 'react';
-import getLocalStorage from 'src/hooks/useGetLocalStorage';
 
 function Franchise({ data, listSite, isSubPage, item }) {
     const dispatch = useDispatch();
     const router = useRouter();
     const targetRef = useRef(null);
-    const defaultAcademy = getLocalStorage();
     const { defaultTypeform } = useSelector((state) => state.homeReducer);
 
     saveList(listSite);
@@ -79,10 +77,6 @@ function Franchise({ data, listSite, isSubPage, item }) {
             console.log(error);
         }
     };
-
-    const isShowBooking =
-        defaultAcademy?.ms_use_typeform !== 1 ||
-        defaultTypeform?.use_typeform === 0;
 
     if (isEmpty(data)) return <></>;
     return (
@@ -145,7 +139,7 @@ function Franchise({ data, listSite, isSubPage, item }) {
                 staff={data?.coach?.staff || []}
                 site={data?.site || {}}
             />
-            {isShowBooking && (
+            {defaultTypeform.use_typeform === 0 && (
                 <BookTrial parentFb={data?.parentFb} site={data?.site} />
             )}
 

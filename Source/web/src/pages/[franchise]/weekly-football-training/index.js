@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Utils from 'src/common/Utils';
 import saveList from 'src/hooks/useSaveList';
 import dynamic from 'next/dynamic';
-import getLocalStorage from 'src/hooks/useGetLocalStorage';
+import { useSelector } from 'react-redux';
 
 const BookTrial = dynamic(() => import('src/components/Booking/BookTrial'));
 const AboutInfo = dynamic(() => import('src/components/Camp/AboutInfo'));
@@ -23,7 +23,7 @@ const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 const SiteNews = ({ data, listSite }) => {
     saveList(listSite);
-    const defaultAcademy = getLocalStorage();
+    const { defaultTypeform } = useSelector((state) => state.homeReducer);
 
     useEffect(() => {
         if (isEmpty(data)) {
@@ -63,7 +63,7 @@ const SiteNews = ({ data, listSite }) => {
 
             <WhyWMF data={data?.whyWMF || {}} site={data.site} />
 
-            {defaultAcademy?.ms_use_typeform !== 1 && (
+            {defaultTypeform?.use_typeform === 0 && (
                 <div className="booking-weekly">
                     <BookTrial
                         parentFb={data?.parentFb || {}}

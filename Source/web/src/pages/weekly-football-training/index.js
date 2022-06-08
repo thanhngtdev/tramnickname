@@ -85,7 +85,6 @@ export async function getServerSideProps() {
 
     return {
         props: { data, listSite },
-        // revalidate: Constants.REVALIDATE
     };
 }
 

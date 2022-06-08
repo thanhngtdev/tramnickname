@@ -29,10 +29,6 @@ function HomePage({ data, listSite }) {
         setDefaultAcademy(ModelManager.getLocation());
     }, []);
 
-    const isShowBooking =
-        defaultAcademy?.ms_use_typeform !== 1 ||
-        defaultTypeform.use_typeform === 0;
-
     return (
         <DefaultLayout seo={data?.seoMeta || {}}>
             <BannerTop bannerTop={data?.bannerTop || {}} />
@@ -48,7 +44,7 @@ function HomePage({ data, listSite }) {
             />
 
             <Reason reason={data?.reason?.cfg_value || []} />
-            {isShowBooking && (
+            {defaultTypeform.use_typeform === 0 && (
                 <BookTrial
                     parentFb={data?.parentFb || {}}
                     site={defaultAcademy}

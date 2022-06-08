@@ -44,9 +44,9 @@ function BannerTop(props) {
                 <div className="box-button">
                     <Button
                         idTypeForm={
-                            defaultAcademy.ms_use_typeform === 1
-                                ? defaultAcademy.ms_typeform_id
-                                : defaultTypeform?.default_typeform_id
+                            defaultTypeform.use_typeform === 1
+                                ? defaultTypeform.default_typeform_id
+                                : null
                         }
                         title={title}
                         onClick={() => {
