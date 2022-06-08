@@ -82,7 +82,7 @@ function Franchise({ data, listSite, isSubPage, item }) {
     };
 
     const isShowBooking =
-        defaultTypeform.use_typeform === 0 ||
+        defaultTypeform?.use_typeform === 0 ||
         defaultAcademy?.ms_use_typeform !== 1;
 
     if (isEmpty(data)) return <></>;
