@@ -22,10 +22,10 @@ function BookTrial(props) {
     const { parentFb } = props;
     const siteReducer = useSelector((state) => state.siteReducer);
     const { listSite } = useSelector((state) => state.listSiteReducer);
+    const { defaultTypeform } = useSelector((state) => state.homeReducer);
     const dispatch = useDispatch();
     const history = useRouter();
     const defaultAcademy = getLocalStorage();
-
     const [showSelect, setShowSelect] = useState(false);
     const [location, setLocation] = useState(props.site || '');
     const [trialText, setTrialText] = useState(
@@ -103,127 +103,146 @@ function BookTrial(props) {
                 </div>
                 <div className="full-width">
                     <ul className="list-form">
-                        <li>
-                            <label className="label">
-                                Select Academy
-                                <a
-                                    href="/#"
-                                    className="location"
-                                    onClick={(evt) => {
-                                        evt.preventDefault();
-                                        setShowSelect(false);
+                        {defaultTypeform.use_typeform === 0 && (
+                            <>
+                                <li>
+                                    <label className="label">
+                                        Select Academy
+                                        <a
+                                            href="/#"
+                                            className="location"
+                                            onClick={(evt) => {
+                                                evt.preventDefault();
+                                                setShowSelect(false);
 
-                                        let options = {
-                                            enableHighAccuracy: true,
-                                            timeout: 5000,
-                                            maximumAge: 0,
-                                        };
+                                                let options = {
+                                                    enableHighAccuracy: true,
+                                                    timeout: 5000,
+                                                    maximumAge: 0,
+                                                };
 
-                                        const success = (pos) => {
-                                            setLocation('Loading');
-                                            let crd = pos.coords;
+                                                const success = (pos) => {
+                                                    setLocation('Loading');
+                                                    let crd = pos.coords;
 
-                                            dispatch({
-                                                type: siteActionType.GET_CURRENT_ACADEMY,
-                                                lat: crd.latitude,
-                                                long: crd.longitude,
-                                                number: 2,
-                                            });
-                                        };
+                                                    dispatch({
+                                                        type: siteActionType.GET_CURRENT_ACADEMY,
+                                                        lat: crd.latitude,
+                                                        long: crd.longitude,
+                                                        number: 2,
+                                                    });
+                                                };
 
-                                        function error(err) {
-                                            alert(
-                                                'Allow this site to access your location',
-                                                err,
-                                            );
-                                        }
+                                                function error(err) {
+                                                    alert(
+                                                        'Allow this site to access your location',
+                                                        err,
+                                                    );
+                                                }
 
-                                        navigator.geolocation.getCurrentPosition(
-                                            success,
-                                            error,
-                                            options,
-                                        );
-                                    }}>
-                                    <span>Use </span>current location
-                                </a>
-                            </label>
-                            <div ref={ref} className="custom-select">
-                                <div
-                                    className={`select-selected ${
-                                        showSelect ? 'active' : ''
-                                    }`}
-                                    onClick={() => {
-                                        setIsComponentVisible(true);
-                                        setShowSelect(!showSelect);
-                                        setLocationError('');
-                                        return false;
-                                    }}>
-                                    {isEmpty(location)
-                                        ? 'Select Academy'
-                                        : location.ms_name}
-                                </div>
+                                                navigator.geolocation.getCurrentPosition(
+                                                    success,
+                                                    error,
+                                                    options,
+                                                );
+                                            }}>
+                                            <span>Use </span>current location
+                                        </a>
+                                    </label>
+                                    <div ref={ref} className="custom-select">
+                                        <div
+                                            className={`select-selected ${
+                                                showSelect ? 'active' : ''
+                                            }`}
+                                            onClick={() => {
+                                                setIsComponentVisible(true);
+                                                setShowSelect(!showSelect);
+                                                setLocationError('');
+                                                return false;
+                                            }}>
+                                            {isEmpty(location)
+                                                ? 'Select Academy'
+                                                : location.ms_name}
+                                        </div>
 
-                                <div
-                                    className={`select-items ${
-                                        showSelect ? '' : 'select-hide'
-                                    }`}>
-                                    {!isEmpty(listSite)
-                                        ? listSite.map((item) => (
-                                              <div
-                                                  key={item.ms_id}
-                                                  onClick={() => {
-                                                      handleOnClick(item);
-                                                  }}>
-                                                  {Utils.renderItem(item)}
-                                              </div>
-                                          ))
-                                        : null}
-                                </div>
-                            </div>
-                            <label className="input-error">
-                                {locationError}
-                            </label>
-                        </li>
-                        <li>
-                            <label className="label">
-                                Your Email <span className="required">*</span>
-                            </label>
-                            <input
-                                type="text"
-                                className="input-text"
-                                placeholder="Example@gmail.com"
-                                onChange={(event) => {
-                                    setEmail(event.target.value);
-                                    setEmailError('');
-                                }}
-                            />
-                            <label className="input-error">{emailError}</label>
-                        </li>
-                        <li>
-                            <label className="label">
-                                Child's date of birth{' '}
-                                <span className="required">*</span>
-                            </label>
-                            <Flatpickr
-                                data-enable-time
-                                className="input-text"
-                                value={date}
-                                options={{
-                                    mode: 'single',
-                                    dateFormat: 'm/d/Y',
-                                    allowInput: true,
-                                    enableTime: false,
-                                }}
-                                placeholder="Select date..."
-                                onChange={(date) => {
-                                    // getClassTime(new Date(date));
-                                    setDate(date[0]);
-                                }}
-                            />
-                            <label className="input-error">{dateError}</label>
-                        </li>
+                                        <div
+                                            className={`select-items ${
+                                                showSelect ? '' : 'select-hide'
+                                            }`}>
+                                            {!isEmpty(listSite)
+                                                ? listSite.map((item) => (
+                                                      <div
+                                                          key={item.ms_id}
+                                                          onClick={() => {
+                                                              handleOnClick(
+                                                                  item,
+                                                              );
+                                                          }}>
+                                                          {Utils.renderItem(
+                                                              item,
+                                                          )}
+                                                      </div>
+                                                  ))
+                                                : null}
+                                        </div>
+                                    </div>
+                                    <label className="input-error">
+                                        {locationError}
+                                    </label>
+                                </li>
+                                <li>
+                                    <label className="label">
+                                        Your Email{' '}
+                                        <span className="required">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="input-text"
+                                        placeholder="Example@gmail.com"
+                                        onChange={(event) => {
+                                            setEmail(event.target.value);
+                                            setEmailError('');
+                                        }}
+                                    />
+                                    <label className="input-error">
+                                        {emailError}
+                                    </label>
+                                </li>
+                                <li>
+                                    <label className="label">
+                                        Child's date of birth{' '}
+                                        <span className="required">*</span>
+                                    </label>
+                                    <Flatpickr
+                                        data-enable-time
+                                        className="input-text"
+                                        value={date}
+                                        options={{
+                                            mode: 'single',
+                                            dateFormat: 'm/d/Y',
+                                            allowInput: true,
+                                            enableTime: false,
+                                        }}
+                                        placeholder="Select date..."
+                                        onChange={(date) => {
+                                            // getClassTime(new Date(date));
+                                            setDate(date[0]);
+                                        }}
+                                    />
+                                    <label className="input-error">
+                                        {dateError}
+                                    </label>
+                                </li>
+                            </>
+                        )}
+
                         <li>
                             <Button
+                                idTypeForm={
+                                    defaultTypeform.use_typeform === 1
+                                        ? defaultTypeform.default_typeform_id
+                                        : null
+                                }
                                 onClick={() => {
                                     if (validateInput()) {
                                         global.bookTraining = {
@@ -246,6 +265,17 @@ function BookTrial(props) {
                                 )} training session`}
                             />
                         </li>
+                        <p className="text-policy">
+                            For more information about our privacy practices,
+                            please read our{' '}
+                            <a
+                                className="link"
+                                href={PathRoute.Policy + '/privacy'}>
+                                Privacy Policy
+                            </a>
+                            . By clicking above, you agree that we may process
+                            your information in accordance with these terms.
+                        </p>
                     </ul>
                     <div className="col-right">
                         {parentFb && (

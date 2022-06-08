@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import Utils from 'src/common/Utils';
 import saveList from 'src/hooks/useSaveList';
 import dynamic from 'next/dynamic';
-import { useSelector } from 'react-redux';
 
 const BookTrial = dynamic(() => import('src/components/Booking/BookTrial'));
 const AboutInfo = dynamic(() => import('src/components/Camp/AboutInfo'));
@@ -23,8 +22,6 @@ const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 const SiteNews = ({ data, listSite }) => {
     saveList(listSite);
-    const { defaultTypeform } = useSelector((state) => state.homeReducer);
-
     useEffect(() => {
         if (isEmpty(data)) {
             window.location.href = '/404';
@@ -63,14 +60,9 @@ const SiteNews = ({ data, listSite }) => {
 
             <WhyWMF data={data?.whyWMF || {}} site={data.site} />
 
-            {defaultTypeform?.use_typeform === 0 && (
-                <div className="booking-weekly">
-                    <BookTrial
-                        parentFb={data?.parentFb || {}}
-                        site={data.site}
-                    />
-                </div>
-            )}
+            <div className="booking-weekly">
+                <BookTrial parentFb={data?.parentFb || {}} site={data.site} />
+            </div>
 
             <div className="insta-weekly">
                 <InstaBox instaFeed={data?.instaFeed || {}} />

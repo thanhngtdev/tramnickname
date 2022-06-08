@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic';
 import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
 import isEmpty from 'lodash/isEmpty';
-import { useSelector } from 'react-redux';
 const BookTrial = dynamic(() => import('src/components/Booking/BookTrial'));
 const AboutInfo = dynamic(() => import('src/components/Camp/AboutInfo'));
 const AboutSecure = dynamic(() => import('src/components/Camp/AboutSecure'));
@@ -18,12 +17,10 @@ const TrainingInclude = dynamic(() =>
 );
 const WhyWMF = dynamic(() => import('src/components/Camp/WhyWMF'));
 const Testimonial = dynamic(() => import('src/components/Testimonial'));
-// const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 function WeeklyTraining({ data, listSite }) {
     saveList(listSite);
-    const { defaultTypeform } = useSelector((state) => state.homeReducer);
 
     if (isEmpty(data)) return <></>;
 
@@ -54,11 +51,9 @@ function WeeklyTraining({ data, listSite }) {
 
             <WhyWMF data={data?.whyWMF || {}} />
 
-            {defaultTypeform.use_typeform === 0 && (
-                <div className="booking-weekly">
-                    <BookTrial parentFb={data?.parentFb || {}} />
-                </div>
-            )}
+            <div className="booking-weekly">
+                <BookTrial parentFb={data?.parentFb || {}} />
+            </div>
 
             <div className="insta-weekly">
                 <InstaBox instaFeed={data?.instaFeed || {}} />

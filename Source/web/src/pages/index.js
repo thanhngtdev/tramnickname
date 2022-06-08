@@ -44,12 +44,8 @@ function HomePage({ data, listSite }) {
             />
 
             <Reason reason={data?.reason?.cfg_value || []} />
-            {defaultTypeform.use_typeform === 0 && (
-                <BookTrial
-                    parentFb={data?.parentFb || {}}
-                    site={defaultAcademy}
-                />
-            )}
+
+            <BookTrial parentFb={data?.parentFb || {}} site={defaultAcademy} />
 
             <div className="fb-begin-homepage">
                 <FootballBegining
