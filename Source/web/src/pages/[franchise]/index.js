@@ -1,7 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
 import dynamic from 'next/dynamic';
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
 const BookTrial = dynamic(() => import('src/components/Booking/BookTrial'));
@@ -42,6 +42,7 @@ function Franchise({ data, listSite, isSubPage, item }) {
     const router = useRouter();
     const targetRef = useRef(null);
     const defaultAcademy = getLocalStorage();
+    const { defaultTypeform } = useSelector((state) => state.homeReducer);
 
     saveList(listSite);
 
@@ -81,7 +82,8 @@ function Franchise({ data, listSite, isSubPage, item }) {
     };
 
     const isShowBooking =
-        isEmpty(defaultAcademy) || defaultAcademy?.ms_use_typeform !== 1;
+        defaultTypeform.use_typeform === 0 ||
+        defaultAcademy?.ms_use_typeform !== 1;
 
     if (isEmpty(data)) return <></>;
     return (

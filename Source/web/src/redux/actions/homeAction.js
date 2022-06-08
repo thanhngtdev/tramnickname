@@ -6,3 +6,10 @@ export const getHome = (data) => {
         type: actionTypes.GET_HOME,
     };
 };
+
+export const saveDefautConfig = (data) => {
+    return {
+        ...data,
+        type: actionTypes.SAVE_DEFAULT_CONFIG_TYPEFORM,
+    };
+};

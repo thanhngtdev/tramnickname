@@ -9,8 +9,9 @@ import useGetWidth from 'src/hooks/useGetWidth';
 import useComponentVisible from 'src/hooks/useComponentVisible';
 import siteService from 'src/services/siteService';
 import saveList from 'src/hooks/useSaveList';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { route } from 'next/dist/server/router';
+import { saveDefautConfig } from 'src/redux/actions/homeAction';
 
 const Button = dynamic(() => import('src/components/Button'), { ssr: true });
 const NearbyAcademy = dynamic(
@@ -52,14 +53,14 @@ const LinkItem = (props) => {
 };
 
 function Header() {
+    const dispatch = useDispatch();
     const router = useRouter();
     const academyLocation = router.query.franchise;
     const { listSite } = useSelector((state) => state.listSiteReducer);
-
+    const { defaultTypeform } = useSelector((state) => state.homeReducer);
     const defaultAcademyss = listSite.find(
         (e) => academyLocation === e.ms_alias,
     );
-
     const [menuMobile, setMenuMobile] = useState(false);
     const [fixHeader, setFixHeader] = useState(true);
     const [defaultAcademy, setDefaultAcademy] = useState({});
@@ -69,11 +70,6 @@ function Header() {
     const [showSelect, setShowSelect] = useState(false);
     const { ref, isComponentVisible, setIsComponentVisible } =
         useComponentVisible(true);
-    const [defaultTypeform, setDefaultTypeform] = useState({});
-
-    useEffect(() => {
-        console.log(defaultTypeform, 'defaultTypeform');
-    }, [defaultTypeform]);
 
     useEffect(() => {
         if (!isComponentVisible && showSelect) {
@@ -87,9 +83,10 @@ function Header() {
                 const res = await siteService.getHome();
                 if (res?.data?.status === 200 && res?.data?.data) {
                     const { defaultConfig } = res?.data?.data;
-                    // console.log(defaultConfig, 'defaultConfig');
                     defaultConfig &&
-                        setDefaultTypeform(res?.data?.data?.defaultConfig);
+                        dispatch(
+                            saveDefautConfig({ defaultConfig: defaultConfig }),
+                        );
                 }
             } catch (error) {
                 console.log(error, 'error');
@@ -359,72 +356,6 @@ function Header() {
                                             Login
                                         </a>
                                     </li>
-
-                                    {/* <li className="select-mobile">
-                                        <div
-                                            ref={ref}
-                                            className="custom-select-mobile">
-                                            <div
-                                                className={`select-selected-mobile ${
-                                                    showSelect && 'active'
-                                                }`}
-                                                onClick={() => {
-                                                    setIsComponentVisible(true);
-                                                    setShowSelect(!showSelect);
-                                                }}>
-                                                {router.locale === 'us' ? (
-                                                    <>{usFlag}&nbsp;US</>
-                                                ) : (
-                                                    <>{ukFlag}&nbsp;UK</>
-                                                )}
-                                            </div>
-                                            <div
-                                                className={`select-items ${
-                                                    !showSelect && 'select-hide'
-                                                }`}>
-                                                {otherLocales.map((locale) => {
-                                                    const {
-                                                        pathname,
-                                                        query,
-                                                        asPath,
-                                                    } = router;
-                                                    return (
-                                                        <Link
-                                                            href={{
-                                                                pathname,
-                                                                query,
-                                                            }}
-                                                            as={asPath}
-                                                            locale={locale}>
-                                                            <a
-                                                                className="select-item"
-                                                                onClick={() => {
-                                                                    setShowSelect(
-                                                                        false,
-                                                                    );
-                                                                    setMenuMobile(
-                                                                        false,
-                                                                    );
-                                                                }}>
-                                                                {locale ===
-                                                                'us' ? (
-                                                                    <>
-                                                                        {usFlag}
-                                                                        &nbsp;US
-                                                                    </>
-                                                                ) : (
-                                                                    <>
-                                                                        {ukFlag}
-                                                                        &nbsp;UK
-                                                                    </>
-                                                                )}
-                                                            </a>
-                                                        </Link>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-                                    </li> */}
 
                                     <li>
                                         <NearbyAcademy

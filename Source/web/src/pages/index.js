@@ -4,6 +4,7 @@ import ModelManager from 'src/common/ModelManager';
 import saveList from 'src/hooks/useSaveList';
 import siteService from 'src/services/siteService';
 import { isEmpty } from 'lodash';
+import { useSelector } from 'react-redux';
 
 const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 const BookTrial = dynamic(() => import('src/components/Booking/BookTrial'));
@@ -20,15 +21,17 @@ const Reason = dynamic(() => import('src/components/HomePage/Reason'));
 const WhatWeDo = dynamic(() => import('src/components/HomePage/WhatWeDo'));
 
 function HomePage({ data, listSite }) {
-    // console.log(data, 'test');
     saveList(listSite);
     const [defaultAcademy, setDefaultAcademy] = useState({});
+    const { defaultTypeform } = useSelector((state) => state.homeReducer);
+
     useEffect(() => {
         setDefaultAcademy(ModelManager.getLocation());
     }, []);
 
     const isShowBooking =
-        isEmpty(defaultAcademy) || defaultAcademy?.ms_use_typeform !== 1;
+        defaultTypeform.use_typeform === 0 ||
+        defaultAcademy?.ms_use_typeform !== 1;
 
     return (
         <DefaultLayout seo={data?.seoMeta || {}}>

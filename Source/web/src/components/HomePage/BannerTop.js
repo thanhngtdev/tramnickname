@@ -15,6 +15,7 @@ function BannerTop(props) {
     const dispatch = useDispatch();
     const [textSearch, setTextSearch] = useState('');
     const { listSite } = useSelector((state) => state.listSiteReducer);
+    const { defaultTypeform } = useSelector((state) => state.homeReducer);
     const [searchResult, setSearchResult] = useState({});
     const history = useRouter();
     const defaultAcademy = getLocalStorage();
@@ -45,7 +46,7 @@ function BannerTop(props) {
                         idTypeForm={
                             defaultAcademy.ms_use_typeform === 1
                                 ? defaultAcademy.ms_typeform_id
-                                : null
+                                : defaultTypeform?.default_typeform_id
                         }
                         title={title}
                         onClick={() => {

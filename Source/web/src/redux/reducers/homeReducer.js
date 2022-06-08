@@ -3,6 +3,7 @@ import type from '../actions/actionTypes';
 const initialState = {
     message: '',
     testimonial: [],
+    defaultTypeform: {},
 };
 
 const homeReducer = (state = initialState, action) => {
@@ -17,6 +18,11 @@ const homeReducer = (state = initialState, action) => {
             return {
                 type: type.GET_HOME_FAILED,
                 message: action.message,
+            };
+
+        case type.SAVE_DEFAULT_CONFIG_TYPEFORM:
+            return {
+                defaultTypeform: action.defaultConfig,
             };
         default:
             return state;
