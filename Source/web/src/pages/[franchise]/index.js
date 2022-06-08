@@ -66,7 +66,6 @@ function Franchise({ data, listSite, isSubPage, item }) {
     }, [targetRef]);
 
     const onClickLocation = async (item, trainingService = false) => {
-        // setShowSelect(!showSelect);
         try {
             const res = await siteService.getDetailSite({ id: item.value });
             if (res.data.status == 200) {
@@ -82,8 +81,8 @@ function Franchise({ data, listSite, isSubPage, item }) {
     };
 
     const isShowBooking =
-        defaultTypeform?.use_typeform === 0 ||
-        defaultAcademy?.ms_use_typeform !== 1;
+        defaultAcademy?.ms_use_typeform !== 1 ||
+        defaultTypeform?.use_typeform === 0;
 
     if (isEmpty(data)) return <></>;
     return (

@@ -30,8 +30,8 @@ function HomePage({ data, listSite }) {
     }, []);
 
     const isShowBooking =
-        defaultTypeform.use_typeform === 0 ||
-        defaultAcademy?.ms_use_typeform !== 1;
+        defaultAcademy?.ms_use_typeform !== 1 ||
+        defaultTypeform.use_typeform === 0;
 
     return (
         <DefaultLayout seo={data?.seoMeta || {}}>
