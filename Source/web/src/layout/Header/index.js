@@ -3,15 +3,13 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ModelManager from 'src/common/ModelManager';
 import PathRoute from 'src/common/PathRoute';
-import useGetWidth from 'src/hooks/useGetWidth';
 import useComponentVisible from 'src/hooks/useComponentVisible';
-import siteService from 'src/services/siteService';
-import saveList from 'src/hooks/useSaveList';
-import { useDispatch, useSelector } from 'react-redux';
-import { route } from 'next/dist/server/router';
+import useGetWidth from 'src/hooks/useGetWidth';
 import { saveDefautConfig } from 'src/redux/actions/homeAction';
+import siteService from 'src/services/siteService';
 
 const Button = dynamic(() => import('src/components/Button'), { ssr: true });
 const NearbyAcademy = dynamic(

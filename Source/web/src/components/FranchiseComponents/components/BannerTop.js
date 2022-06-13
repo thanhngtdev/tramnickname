@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
@@ -14,25 +14,27 @@ BannerTop.propTypes = {
     site: PropTypes.object,
 };
 
+const style = {
+    fontSize: 14,
+    fontWeight: 500,
+    letterSpacing: 2.3,
+    backgroundColor: 'white',
+    border: '1px solid #ef9042',
+    color: '#ef9042',
+    // marginTop: 25,
+    textAlign: 'left',
+};
+
 function BannerTop(props) {
+    console.log(props, 'props');
     const isSubPage = props.isSubPage;
     const dispatch = useDispatch();
+    const { defaultTypeform } = useSelector((state) => state.homeReducer);
     const { data } = useSelector((state) => state.homeReducer);
     let options = [];
     const history = useRouter();
     const siteName = getFranchiseName(props.site);
     const isMobile = useGetWidth() <= 768;
-
-    let fbLink = '',
-        twLink = '',
-        igLink = '';
-    if (props.social && props.social.length > 0) {
-        props.social.map((item) => {
-            if (item.name === 'Facebook') fbLink = item.link;
-            if (item.name === 'Instagram') igLink = item.link;
-            if (item.name === 'Twitter') twLink = item.link;
-        });
-    }
 
     if (props.site) {
         options.push({
@@ -81,40 +83,73 @@ function BannerTop(props) {
                         : data?.bannerTop?.cfg_mobileBanner,
                 )})`,
             }}>
-            <div className="container">
-                <h1>{parse(checkSubname(props.site))}</h1>
-                <h2 className="box-text">
-                    <p>
+            <div className="container banner">
+                <div className="banner_left">
+                    <h1>{parse(checkSubname(props.site))}</h1>
+                    <div className="box-text">
                         {isSubPage
                             ? `${props?.masterData?.about?.cfg_des} near ${siteName}`
                             : `${props?.masterData?.about?.cfg_des}`}
-                    </p>
-                </h2>
-                <Button
-                    idTypeForm={
-                        props.site.ms_use_typeform === 1
-                            ? props.site.ms_typeform_id
-                            : null
-                    }
-                    style={{ width: 350 }}
-                    title={`${
-                        props.site && props.site.ms_trial === 1
-                            ? 'Book a trial session'
-                            : 'Try a free session'
-                    }`}
-                    onClick={(evt) => {
-                        dispatch({
-                            type: siteActionType.SELECT_ACADEMY,
-                            data: props.site,
-                        });
+                    </div>
+                    <Button
+                        idTypeForm={
+                            props.site.ms_use_typeform === 1
+                                ? props.site.ms_typeform_id
+                                : null
+                        }
+                        style={{ width: 350 }}
+                        title={`${
+                            props.site && props.site.ms_trial === 1
+                                ? 'Book a trial session'
+                                : 'Try a free session'
+                        }`}
+                        onClick={(evt) => {
+                            dispatch({
+                                type: siteActionType.SELECT_ACADEMY,
+                                data: props.site,
+                            });
 
-                        history.push(
-                            PathRoute.BookTrialTrainingWithAlias(
-                                props.site.ms_alias,
-                            ),
-                        );
-                    }}
-                />
+                            history.push(
+                                PathRoute.BookTrialTrainingWithAlias(
+                                    props.site.ms_alias,
+                                ),
+                            );
+                        }}
+                    />
+                </div>
+                <div className="banner_right">
+                    <div className="banner_right_box">
+                        <div className="box_title">
+                            <div className="title">
+                                Try a free training session
+                            </div>
+                            <p className="sub_title">
+                                to experience our training
+                            </p>
+                        </div>
+                        <div className="box_contact">
+                            <Button
+                                style={style}
+                                onClick={(evt) => {}}
+                                title={props.site.ms_phone}
+                            />
+                            <Button
+                                style={style}
+                                idTypeForm={
+                                    defaultTypeform?.use_typeform === 1
+                                        ? defaultTypeform?.default_typeform_id
+                                        : null
+                                }
+                                onClick={(evt) => {}}
+                                title={`Book a ${
+                                    props.site && props.site.ms_trial === 1
+                                        ? 'trial'
+                                        : 'free'
+                                } session`}
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
