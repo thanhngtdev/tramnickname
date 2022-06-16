@@ -231,9 +231,14 @@ function AutocompleteInput(props) {
                                             </Link>
                                         </div>
                                     </div>
-                                    <label className="sub-title">
-                                        {suggestion.ms_address || ''}
-                                    </label>
+
+                                    {suggestion.ms_addresses.map?.(
+                                        (address) => (
+                                            <label className="sub-title">
+                                                {address?.ms_address || ''}
+                                            </label>
+                                        ),
+                                    )}
                                 </div>
                             </li>
                         );
