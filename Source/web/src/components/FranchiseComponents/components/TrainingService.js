@@ -28,31 +28,54 @@ function LDWeeklyTraining(props) {
     const MAX_LENGTH = props.isMobile ? 2 : 10;
     const dispatch = useDispatch();
     const history = useRouter();
-    const [lstCourse, setLstCourse] = useState([]);
+    // const [lstCourse, setLstCourse] = useState([]);
     const [courseSelected, setCourseSelected] = useState({});
+
+    const [listCourse,setListCourse] = useState([]);
+
+    // console.log('trainingService',props);
 
     useEffect(() => {
         props.site &&
+        props.site.ms_addresses.forEach((item,index) => {
+            
             dispatch({
                 type: siteActionType.GET_LIST_COURSE,
                 company_id: props.site.pa_companyId,
-                location_id: props.site.pa_locationId,
-                course_type: 'course',
-            });
+                location_id: item.pa_locationId,
+                ms_address: item.ms_address,
+                course_type: 'course'
+            })
+        })
+        
     }, [props.site]);
 
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
+        let isCheck = true;
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
                 // console.log(siteReducer.dataCourse,"data");
                 if (siteReducer.courseType === 'course') {
                     // debugger;
-
-                    setLstCourse(siteReducer.dataCourse);
+                    listCourse.forEach((item) => {
+                        if(item.ms_address === siteReducer.ms_address){
+                            isCheck = false;
+                        }
+                    })
+                    if(isCheck){
+                        setListCourse((prev) => {
+                            return[
+                                ...prev,
+                                siteReducer
+                            ]
+                        })
+                    }
+                    // setLstCourse(siteReducer.dataCourse);
                 }
             }
         }
+        // console.log('listCourse: ',listCourse);
     }, [siteReducer]);
 
     const renderBookingBtn = (index) => {
@@ -129,43 +152,55 @@ function LDWeeklyTraining(props) {
             {parse(props?.config?.content || '')}
 
             <h4>Football training times:</h4>
-            {lstCourse &&
-                lstCourse.map((item, index) => (
-                    <div
-                        key={index}
-                        style={{
-                            backgroundColor: `${
-                                index % 2 === 0 ? '#F7F8F7' : 'white'
-                            }`,
-                        }}>
-                        <div
-                            className="classRow"
-                            onClick={() => {
-                                setCourseSelected(item);
-                            }}>
-                            <p>{item?.day_of_week?.substring(0, MAX_LENGTH)}</p>
-                            <p>
-                                {dayjs(
-                                    '2021-03-03T' + item.course_day_time_start,
-                                ).format('HH:mma')}
-                                -
-                                {dayjs(
-                                    '2021-03-03T' + item.course_day_time_end,
-                                ).format('HH:mma')}
-                            </p>
-                            <p>
-                                {item.min_age}-{item.max_age}{' '}
-                                {props.isMobile ? 'y.o.' : 'year olds'}
-                            </p>
+            {listCourse.length>0 &&
+                listCourse.map((item, index) => {
+                    const {ms_address,dataCourse} = item;
+                    console.log(item);
+                    return(
+                        <div key={index}>
+                            <h3>{ms_address}</h3>
+
+                            {dataCourse.map((item,index) => (
+                                <div
+                                    key={index}
+                                    style={{
+                                        backgroundColor: `${
+                                            index % 2 === 0 ? '#F7F8F7' : 'white'
+                                        }`,
+                                    }}>
+                                    <div
+                                        className="classRow"
+                                        onClick={() => {
+                                            setCourseSelected(item);
+                                        }}>
+                                        <p>{item?.day_of_week?.substring(0, MAX_LENGTH)}</p>
+                                        <p>
+                                            {dayjs(
+                                                '2021-03-03T' + item.course_day_time_start,
+                                            ).format('HH:mma')}
+                                            -
+                                            {dayjs(
+                                                '2021-03-03T' + item.course_day_time_end,
+                                            ).format('HH:mma')}
+                                        </p>
+                                        <p>
+                                            {item.min_age}-{item.max_age}{' '}
+                                            {props.isMobile ? 'y.o.' : 'year olds'}
+                                        </p>
+                                    </div>
+                                    <div className="classRowSecond">
+                                        <p style={{ marginRight: 35 }}>{`£${
+                                            item.course_price || 0
+                                        } per ${item.course_length || 0} sessions`}</p>
+                                        {renderBookingBtn(index)}
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                        <div className="classRowSecond">
-                            <p style={{ marginRight: 35 }}>{`£${
-                                item.course_price || 0
-                            } per ${item.course_length || 0} sessions`}</p>
-                            {renderBookingBtn(index)}
-                        </div>
-                    </div>
-                ))}
+
+                        
+                    )
+                })}
             <p>
                 <Link
                     href={'/' + props.site.ms_alias + PathRoute.WeeklyTraining}

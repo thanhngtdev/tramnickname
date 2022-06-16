@@ -173,7 +173,8 @@ function* findNearbyAcademy({ lat, long }) {
     }
 }
 
-function* getListCourse({ company_id, location_id, course_type }) {
+function* getListCourse({ company_id, location_id,ms_address, course_type }) {
+    // console.log('location_id',location_id);
     const response = yield API.getParentAPI(APIConfig.GET_LIST_COURSE, {
         company_id,
         location_id,
@@ -193,6 +194,7 @@ function* getListCourse({ company_id, location_id, course_type }) {
             data: response.data,
             dataCourse,
             dataEvent,
+            ms_address,
             courseType: course_type,
         });
     } else {
@@ -202,6 +204,36 @@ function* getListCourse({ company_id, location_id, course_type }) {
         });
     }
 }
+
+// function* getListCourse({ company_id, location_id, course_type }) {
+//     const response = yield API.getParentAPI(APIConfig.GET_LIST_COURSE, {
+//         company_id,
+//         location_id,
+//         type: course_type,
+//     });
+//     // console.log(response, 'aaaaaa');
+//     if (response && response.status === 200) {
+//         let dataCourse = response.data;
+//         let dataEvent = [];
+
+//         if (course_type === 'event') {
+//             dataEvent = response.data;
+//         }
+
+//         yield put({
+//             type: siteActionType.GET_LIST_COURSE_SUCCESS,
+//             data: response.data,
+//             dataCourse,
+//             dataEvent,
+//             courseType: course_type,
+//         });
+//     } else {
+//         yield put({
+//             type: siteActionType.GET_LIST_COURSE_FAILED,
+//             message: response ? response.message : '',
+//         });
+//     }
+// }
 
 // function* getListCourseAvailable({ child_id, location_id }) {
 //     const response = yield API.getParentAPI(
