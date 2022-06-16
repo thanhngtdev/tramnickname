@@ -257,8 +257,13 @@
 .modal-content .map-view .course-odd {
     background-color: white;
 }
+.conentWrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ee7925;
+}
 
-.modal-content .map-view .course-time,
+.modal-content .map-view .course-time ,
 .modal-content .map-view .course-age,
 .modal-content .map-view .book-trial {
     font-size: 1rem;
@@ -274,7 +279,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    padding: 0;
     background-color: #ee7925;
     color: white;
     text-transform: uppercase;

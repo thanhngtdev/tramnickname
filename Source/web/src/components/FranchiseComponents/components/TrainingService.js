@@ -16,6 +16,7 @@ import Utils from 'src/common/Utils';
 import SolidButton from 'src/components/include/SolidButton';
 import getFranchiseName from 'src/hooks/useFranchise';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import TrainingServiceItem from './TrainingServiceItem';
 
 LDWeeklyTraining.propTypes = {
     site: PropTypes.object,
@@ -32,14 +33,31 @@ function LDWeeklyTraining(props) {
     const [courseSelected, setCourseSelected] = useState({});
 
     useEffect(() => {
-        props.site &&
+        if (!isEmpty(props.site)) {
+            const listId = props.site.ms_addresses
+                .map((item) => item.pa_locationId)
+                .join(',');
+
             dispatch({
                 type: siteActionType.GET_LIST_COURSE,
                 company_id: props.site.pa_companyId,
-                location_id: props.site.pa_locationId,
+                location_id: listId,
                 course_type: 'course',
             });
+        }
     }, [props.site]);
+
+    const convertLocation = (locationsIds, weeklyCourses) => {
+        const locations = locationsIds.map((el) => el);
+        const group = locations.reduce((previousValue, currentValue) => {
+            const locationGroup = weeklyCourses.filter(
+                (el) => el.location_id == currentValue.pa_locationId,
+            );
+            previousValue[currentValue?.ms_address] = locationGroup;
+            return previousValue;
+        }, {});
+        return group;
+    };
 
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
@@ -49,123 +67,47 @@ function LDWeeklyTraining(props) {
                 if (siteReducer.courseType === 'course') {
                     // debugger;
 
-                    setLstCourse(siteReducer.dataCourse);
+                    setLstCourse(
+                        convertLocation(
+                            props.site.ms_addresses,
+                            siteReducer.dataCourse,
+                        ),
+                    );
                 }
             }
         }
     }, [siteReducer]);
 
-    const renderBookingBtn = (index) => {
-        if (props.site.ms_use_typeform === 1) {
-            return (
-                <PopupButton
-                    id={props.site.ms_typeform_id}
-                    style={{
-                        border: 0,
-                        backgroundColor: `${
-                            index % 2 === 0 ? '#F7F8F7' : 'white'
-                        }`,
-                        padding: 0,
-                        color: '#EE7925',
-                        cursor: 'pointer',
-                    }}
-                    size={90}>
-                    Book
-                </PopupButton>
-            );
-        }
+    const newAddressLenght = props.site.ms_addresses.length;
+    const newAddress = props.site.ms_addresses;
 
-        return (
-            <p
-                style={{ color: '#FF7100', cursor: 'pointer' }}
-                onClick={() => {
-                    // setCourseSelected(item);
-                    global.bookTraining = {
-                        siteId: props.site.ms_id || 0,
-                        siteName: props.site.ms_name || '',
-                        address: '',
-                        preDefined: { item },
-                    };
-                    dispatch({
-                        type: siteActionType.SELECT_ACADEMY,
-                        data: props.site,
-                    });
-                    history.push(PathRoute.BookTrialTraining);
-                }}>
-                Book
-            </p>
-        );
-    };
-
-    // console.log(props, 'site props');
     return (
         <div>
             <div className="group-info" style={{ boxShadow: 'none' }}>
                 <label className="group-name">Address</label>
-                {props.options.length > 1 ? (
-                    <div>
-                        <Select
-                            defaultValue={props.options[0]}
-                            options={props.options}
-                            isSearchable={false}
-                            isMulti={false}
-                            styles={CommonStyle.select2}
-                            onChange={(option) => {
-                                props.onClickLocation(option, true);
-                            }}
-                        />
-                        <p className="appendix">
-                            *{props.site && props.site.ms_name} has{' '}
-                            {props.options.length} different locations. Choose
-                            your preference here
-                        </p>
-                    </div>
+                {newAddressLenght && newAddressLenght > 1 ? (
+                    newAddress.map((address) => {
+                        return <h4>{address.ms_address}</h4>;
+                    })
                 ) : (
-                    <p style={{ margin: '8px 16px' }}>
-                        {props.options[0].label}
-                    </p>
+                    <h4>{newAddress[0].ms_address}</h4>
                 )}
             </div>
             {parse(props?.config?.content || '')}
 
             <h4>Football training times:</h4>
+
             {lstCourse &&
-                lstCourse.map((item, index) => (
-                    <div
+                Object.entries(lstCourse).map((item, index) => (
+                    <TrainingServiceItem
+                        title={item[0]}
+                        item={item[1]}
                         key={index}
-                        style={{
-                            backgroundColor: `${
-                                index % 2 === 0 ? '#F7F8F7' : 'white'
-                            }`,
-                        }}>
-                        <div
-                            className="classRow"
-                            onClick={() => {
-                                setCourseSelected(item);
-                            }}>
-                            <p>{item?.day_of_week?.substring(0, MAX_LENGTH)}</p>
-                            <p>
-                                {dayjs(
-                                    '2021-03-03T' + item.course_day_time_start,
-                                ).format('HH:mma')}
-                                -
-                                {dayjs(
-                                    '2021-03-03T' + item.course_day_time_end,
-                                ).format('HH:mma')}
-                            </p>
-                            <p>
-                                {item.min_age}-{item.max_age}{' '}
-                                {props.isMobile ? 'y.o.' : 'year olds'}
-                            </p>
-                        </div>
-                        <div className="classRowSecond">
-                            <p style={{ marginRight: 35 }}>{`£${
-                                item.course_price || 0
-                            } per ${item.course_length || 0} sessions`}</p>
-                            {renderBookingBtn(index)}
-                        </div>
-                    </div>
+                        index={index}
+                        site={props.site}
+                    />
                 ))}
+
             <p>
                 <Link
                     href={'/' + props.site.ms_alias + PathRoute.WeeklyTraining}

@@ -174,6 +174,7 @@ function* findNearbyAcademy({ lat, long }) {
 }
 
 function* getListCourse({ company_id, location_id, course_type }) {
+    console.log(company_id, location_id, 'djhsdkfhs');
     const response = yield API.getParentAPI(APIConfig.GET_LIST_COURSE, {
         company_id,
         location_id,

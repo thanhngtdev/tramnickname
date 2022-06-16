@@ -26,7 +26,6 @@ const style = {
 };
 
 function BannerTop(props) {
-    console.log(props, 'props');
     const isSubPage = props.isSubPage;
     const dispatch = useDispatch();
     const { defaultTypeform } = useSelector((state) => state.homeReducer);

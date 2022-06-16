@@ -6,7 +6,7 @@ import Utils from 'src/common/Utils';
 export default function ArticleItem(props) {
     const [defaultAcademy, setDefaultAcademy] = useState({});
     const { item } = props;
-    console.log('asdasdasdasd', item);
+
     useEffect(() => {
         setDefaultAcademy(ModelManager.getLocation());
     }, []);
@@ -25,19 +25,14 @@ export default function ArticleItem(props) {
                 <Link
                     href={`/${defaultAcademy?.ms_alias}/news/${item.atc_alias}`}
                     passHref>
-                    
-                        <a className="title">
-                        {item.atc_title}
-                    </a>
+                    <a className="title">{item.atc_title}</a>
                 </Link>
             );
         }
 
         return (
             <Link href={`/news/${item.atc_alias}`} passHref>
-                <a className="title">
-                        {item.atc_title}
-                </a>
+                <a className="title">{item.atc_title}</a>
             </Link>
         );
     };
