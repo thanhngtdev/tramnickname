@@ -180,7 +180,6 @@ function* getListCourse({ company_id, location_id, course_type }) {
         location_id,
         type: course_type,
     });
-
     if (response && response.status === 200) {
         let dataCourse = response.data;
         let dataEvent = [];
