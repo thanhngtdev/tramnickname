@@ -8,7 +8,19 @@ const saveList = (list) => {
 
     useEffect(() => {
         if (!isEmpty(list)) {
-            dispatch(saveListSite(list));
+            const newList = list.map((item) => {
+                let ms_addresses = item.ms_addresses;
+
+                try {
+                    ms_addresses = JSON.parse(item.ms_addresses);
+                } catch (error) {
+                    console.log(error, 'err');
+                }
+
+                return { ...item, ...ms_addresses[0] };
+            });
+
+            dispatch(saveListSite(newList));
         }
     }, []);
 };

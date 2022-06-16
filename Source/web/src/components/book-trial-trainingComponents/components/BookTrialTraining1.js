@@ -117,10 +117,13 @@ function BookTrialTraining1(props) {
 
         if (siteSelected?.pa_companyId) {
             setCompanyId(siteSelected?.pa_companyId);
+            const locationId = siteSelected.ms_addresses
+                .map((el) => el.pa_locationId)
+                .join(',');
             dispatch(
                 getListCourse({
                     company_id: siteSelected.pa_companyId,
-                    location_id: siteSelected.pa_locationId,
+                    location_id: locationId,
                     course_type: 'course',
                 }),
             );
@@ -404,67 +407,73 @@ function BookTrialTraining1(props) {
             </div>
             {courseSatisfied.length > 0 && siteSelected && !availableEmail ? (
                 <Fragment>
-                    <div style={{ backgroundColor: 'white', padding: '2rem' }}>
-                        <div className="wSelect2">
-                            <b>
-                                Choose your class time{' '}
-                                <span style={{ color: '#FF7100' }}>
-                                    @{siteSelected.ms_name}
-                                </span>
-                            </b>
-                        </div>
+                    <div style={{ backgroundColor: 'white'}}>
                         <div className="wSelect2">
                             {courseSatisfied.map((item, index) => (
-                                <div
-                                    key={index}
-                                    className="classRow"
-                                    style={{
-                                        backgroundColor: `${
-                                            index % 2 === 0
-                                                ? '#F7F8F7'
-                                                : 'white'
-                                        }`,
-                                    }}>
-                                    <Radiobox
-                                        onChange={() => {
-                                            // console.log(
-                                            //     courseSelected,
-                                            //     'course',
-                                            // );
-                                            if (
+                                <div>
+                                    <div className="wSelect2 wSelected2" key={index}>
+                                        <b>
+                                            Choose your class time{' '}
+                                            <span style={{ color: '#FF7100' }}>
+                                                {/* @{siteSelected.ms_name} */}
+                                                @{item.loc_name}
+                                            </span>
+                                        </b>
+                                    </div>
+                                    <div
+                                        key={index}
+                                        className="classRow"
+                                        style={{
+                                            // backgroundColor: `${
+                                            //     index % 2 === 0
+                                            //         ? '#F7F8F7'
+                                            //         : 'white'
+                                            // }`,
+                                            backgroundColor: "#F7F8F7"
+                                        }}>
+                                        <Radiobox
+                                            onChange={() => {
+                                                // console.log(
+                                                //     courseSelected,
+                                                //     'course',
+                                                // );
+                                                if (
+                                                    item.course_id ===
+                                                    courseSelected.course_id
+                                                ) {
+                                                    return;
+                                                }
+
+                                                dispatch(
+                                                    courseStartDate({
+                                                        course_id:
+                                                            item.course_id,
+                                                    }),
+                                                );
+                                                setCourseSelected(item);
+                                            }}
+                                            checked={
                                                 item.course_id ===
                                                 courseSelected.course_id
-                                            ) {
-                                                return;
-                                            }
-
-                                            dispatch(
-                                                courseStartDate({
-                                                    course_id: item.course_id,
-                                                }),
-                                            );
-                                            setCourseSelected(item);
-                                        }}
-                                        checked={
-                                            item.course_id ===
-                                            courseSelected.course_id
-                                        }>
-                                        {item.day_of_week}
-                                    </Radiobox>
-                                    <label>
-                                        {dayjs(
-                                            '2021-03-03T' +
-                                                item.course_day_time_start,
-                                        ).format('HH:mma')}
-                                        -
-                                        {dayjs(
-                                            '2021-03-03T' +
-                                                item.course_day_time_end,
-                                        ).format('HH:mma')}{' '}
-                                    </label>
-                                    <span>
-                                        {item.min_age}-{item.max_age} year olds
-                                    </span>
+                                            }>
+                                            {item.day_of_week}
+                                        </Radiobox>
+                                        <label>
+                                            {dayjs(
+                                                '2021-03-03T' +
+                                                    item.course_day_time_start,
+                                            ).format('HH:mma')}
+                                            -
+                                            {dayjs(
+                                                '2021-03-03T' +
+                                                    item.course_day_time_end,
+                                            ).format('HH:mma')}{' '}
+                                        </label>
+                                        <span>
+                                            {item.min_age}-{item.max_age} year
+                                            olds
+                                        </span>
+                                    </div>
                                 </div>
                             ))}
                             {siteSelected.ms_trial === 1 && (

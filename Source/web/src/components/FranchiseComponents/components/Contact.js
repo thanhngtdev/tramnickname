@@ -49,60 +49,28 @@ export default (props) => {
             );
     }
 
+    const addressLenght = props.site.ms_addresses.length;
+    const newAddress = props.site.ms_addresses;
+
     return (
         <div className="container">
             <div className="academy-info">
                 <div className="group-info">
                     <label className="group-name">Address</label>
                     <div className="wrap-contact">
-                        {options.length > 1 ? (
-                            <div>
-                                <Select
-                                    value={options[0]}
-                                    options={options}
-                                    isSearchable={false}
-                                    isMulti={false}
-                                    styles={CommonStyle.select2}
-                                    onChange={(option) => {
-                                        // console.log(option, 'option');
-                                        if (option.value === props.site.ms_id)
-                                            return;
-
-                                        props.onClickLocation(option);
-                                        // return;
-                                        // history.push('/' + option.alias);
-                                    }}
-                                />
-                                <p className="appendix">
-                                    *{props.site && props.site.ms_name} has{' '}
-                                    {options.length} different locations. Choose
-                                    your preference here
-                                </p>
-                            </div>
+                        {addressLenght > 1 ? (
+                            newAddress.map((address) => {
+                                return (
+                                    <p style={{ margin: '8px 16px' }}>
+                                        {address.ms_address}
+                                    </p>
+                                );
+                            })
                         ) : (
                             <p style={{ margin: '8px 16px' }}>
-                                {options[0].label}
+                                {newAddress[0]?.ms_address}
                             </p>
                         )}
-
-                        {/* <a
-                            className="text-express-enquiry"
-                            style={{
-                                margin: '10px 16px',
-                            }}
-                            href=""
-                            onClick={() => {
-                                localStorage.setItem(
-                                    'defaultAcademy',
-                                    JSON.stringify(props.site),
-                                );
-                                dispatch({
-                                    type: siteActionType.PICK_DEFAULT_ACADEMY,
-                                });
-                                window.location.reload();
-                            }}>
-                            Make this my default location
-                        </a> */}
                     </div>
                 </div>
                 <div className="group-info">
