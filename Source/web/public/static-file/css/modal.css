@@ -238,7 +238,7 @@
     padding: 2rem 0 2rem 2rem;
 }
 
-.modal-content .map-view .service p {
+.modal-content .map-view .service h7 {
     color: #1a1919;
     font-weight: bold;
     font-size: 1rem;
