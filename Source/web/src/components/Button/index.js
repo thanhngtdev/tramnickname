@@ -3,7 +3,7 @@ import React from 'react';
 import { PopupButton } from '@typeform/embed-react';
 
 export default (props) => {
-    const { idTypeForm, href = '', title = '', style = {} } = props;
+    const { idTypeForm, href = '', title = '', style = {}, icon } = props;
 
     //button for typeform
     if (idTypeForm) {
@@ -13,6 +13,7 @@ export default (props) => {
                 className="btn-book-free-session white-hover"
                 style={style}
                 size={90}>
+                {icon}
                 {title}
             </PopupButton>
         );
@@ -24,6 +25,7 @@ export default (props) => {
                 style={style}
                 className="btn-book-free-session white-hover"
                 onClick={() => props.onClick()}>
+                {icon}
                 {title}
             </button>
         );

@@ -9,6 +9,12 @@ import getFranchiseName from 'src/hooks/useFranchise';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import parse from 'html-react-parser';
 import useGetWidth from 'src/hooks/useGetWidth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faArrowRight,
+    faMousePointer,
+    faPhone,
+} from '@fortawesome/free-solid-svg-icons';
 
 BannerTop.propTypes = {
     site: PropTypes.object,
@@ -83,6 +89,15 @@ function BannerTop(props) {
                 )})`,
             }}>
             <div className="container banner">
+                <div className="right-arrow">
+                    <FontAwesomeIcon
+                        icon={faArrowRight}
+                        style={{
+                            color: '#EE7925',
+                            fontSize: '0.5rem',
+                        }}
+                    />
+                </div>
                 <div className="banner_left">
                     <h1>{parse(checkSubname(props.site))}</h1>
                     <div className="box-text">
@@ -120,7 +135,7 @@ function BannerTop(props) {
                     <div className="banner_right_box">
                         <div className="box_title">
                             <div className="title">
-                                Try a free training session
+                                <b>Try a free training session</b>
                             </div>
                             <p className="sub_title">
                                 to experience our training
@@ -130,7 +145,19 @@ function BannerTop(props) {
                             <Button
                                 style={style}
                                 onClick={(evt) => {}}
-                                title={props.site.ms_phone}
+                                title={<b className='contact-book__bannertop'>{props.site.ms_phone}</b>}
+                                icon={
+                                    <FontAwesomeIcon
+                                        icon={faPhone}
+                                        flip="horizontal"
+                                        style={{
+                                            color: '#EE7925',
+                                            fontSize: '1.1rem',
+                                            marginRight: '0.5rem',
+                                            marginLeft: '0.5rem',
+                                        }}
+                                    />
+                                }
                             />
                             <Button
                                 style={style}
@@ -140,11 +167,24 @@ function BannerTop(props) {
                                         : null
                                 }
                                 onClick={(evt) => {}}
-                                title={`Book a ${
-                                    props.site && props.site.ms_trial === 1
-                                        ? 'trial'
-                                        : 'free'
-                                } session`}
+                                title={
+                                    <b className='contact-book__bannertop'>{`Book a ${
+                                        props.site && props.site.ms_trial === 1
+                                            ? 'trial'
+                                            : 'free'
+                                    } session`}</b>
+                                }
+                                icon={
+                                    <FontAwesomeIcon
+                                        icon={faMousePointer}
+                                        style={{
+                                            color: '#EE7925',
+                                            fontSize: '1.1rem',
+                                            marginRight: '0.5rem',
+                                            marginLeft: '0.5rem',
+                                        }}
+                                    />
+                                }
                             />
                         </div>
                     </div>
