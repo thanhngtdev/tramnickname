@@ -149,14 +149,14 @@ function BannerTop(props) {
                             <Button
                                 style={style}
                                 onClick={(evt) => {}}
-                                title={<b>{props.site.ms_phone}</b>}
+                                title={<b className='contact-book__bannertop'>{props.site.ms_phone}</b>}
                                 icon={
                                     <FontAwesomeIcon
                                         icon={faPhone}
                                         flip="horizontal"
                                         style={{
                                             color: '#EE7925',
-                                            fontSize: '1rem',
+                                            fontSize: '1.1rem',
                                             marginRight: '0.5rem',
                                             marginLeft: '0.5rem',
                                         }}
@@ -172,7 +172,7 @@ function BannerTop(props) {
                                 }
                                 onClick={onClickTypeorm}
                                 title={
-                                    <b>{`Book a ${
+                                    <b className='contact-book__bannertop'>{`Book a ${
                                         props.site && props.site.ms_trial === 1
                                             ? 'trial'
                                             : 'free'
@@ -183,7 +183,7 @@ function BannerTop(props) {
                                         icon={faMousePointer}
                                         style={{
                                             color: '#EE7925',
-                                            fontSize: '1rem',
+                                            fontSize: '1.1rem',
                                             marginRight: '0.5rem',
                                             marginLeft: '0.5rem',
                                         }}
