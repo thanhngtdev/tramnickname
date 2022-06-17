@@ -320,7 +320,7 @@ class Utils {
                         siteDetail?.data?.data?.about?.cfg_image;
                     data.about.cfg_mobileBanner =
                         siteDetail?.data?.data?.about?.cfg_mobileBanner;
-                        data.about.cfg_content =
+                    data.about.cfg_content =
                         siteDetail?.data?.data?.about?.cfg_content;
                 }
             }
@@ -380,6 +380,20 @@ class Utils {
 
         return <span>{option.ms_name}</span>;
     }
+
+    convertLocation = (locationsIds, Courses) => {
+        const locations = locationsIds.map((el) => el);
+
+        const group = locations.reduce((previousValue, currentValue) => {
+            const locationGroup = Courses.filter(
+                (el) => el.location_id == currentValue.pa_locationId,
+            );
+            previousValue[currentValue?.ms_address] = locationGroup;
+            return previousValue;
+        }, {});
+
+        return group;
+    };
 }
 
 export default new Utils();

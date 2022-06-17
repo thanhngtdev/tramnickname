@@ -51,22 +51,6 @@ function LDWeeklyTraining(props) {
         }
     }, [props.site]);
 
-    const convertLocation = (locationsIds, weeklyCourses) => {
-        // console.log('locationIDS',locationsIds);
-        // console.log('weeklyCourses',weeklyCourses);
-        const locations = locationsIds.map((el) => el);
-        // console.log('log',locations);
-        const group = locations.reduce((previousValue, currentValue) => {
-            const locationGroup = weeklyCourses.filter(
-                (el) => el.location_id == currentValue.pa_locationId,
-            );
-            previousValue[currentValue?.ms_address] = locationGroup;
-            return previousValue;
-        }, {});
-        // console.log('group:',group);
-        return group;
-    };
-
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
         let isCheck = true;
@@ -77,7 +61,7 @@ function LDWeeklyTraining(props) {
                     // debugger;
 
                     setLstCourse(
-                        convertLocation(
+                        Utils.convertLocation(
                             props.site.ms_addresses,
                             siteReducer.dataCourse,
                         ),

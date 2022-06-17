@@ -84,18 +84,6 @@ function BookTrialTraining1(props) {
     const [notAvailable, setNotAvailable] = useState('');
     const [availableEmail, setAvailableEmail] = useState(false);
 
-    const convertLocation = (locationsIds, weeklyCourses) => {
-        const locations = locationsIds.map((el) => el);
-        const group = locations.reduce((previousValue, currentValue) => {
-            const locationGroup = weeklyCourses.filter(
-                (el) => el.location_id == currentValue.pa_locationId,
-            );
-            previousValue[currentValue?.ms_address] = locationGroup;
-            return previousValue;
-        }, {});
-        return group && Object.entries(group);
-    };
-
     //! useEffect
 
     useEffect(() => {
@@ -150,7 +138,9 @@ function BookTrialTraining1(props) {
 
         if (!isEmpty(siteSelected?.ms_addresses) && !isEmpty(newLstCourse)) {
             const locationIds = [...siteSelected?.ms_addresses];
-            setCourseSatisfied(convertLocation(locationIds, newLstCourse));
+            setCourseSatisfied(
+                Utils.convertLocation(locationIds, newLstCourse),
+            );
             return;
         }
         setCourseSatisfied([]);

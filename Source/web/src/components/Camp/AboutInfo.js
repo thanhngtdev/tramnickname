@@ -13,7 +13,6 @@ import Button from '../Button';
 import Utils from 'src/common/Utils';
 import { PopupButton } from '@typeform/embed-react';
 
-
 AboutInfo.propTypes = {
     lstAcademy: PropTypes.array,
 };
@@ -32,7 +31,7 @@ export default function AboutInfo(props) {
         props.site
             ? [
                   {
-                    label: props.site.ms_addresses,
+                      label: props.site.ms_addresses,
                       value: props.site.ms_id,
                   },
               ]
@@ -54,29 +53,12 @@ export default function AboutInfo(props) {
             : 'Book a free session',
     );
 
-
-    const convertLocation = (locationsIds, weeklyCourses) => {
-        // console.log('locationIDS',locationsIds);
-        // console.log('weeklyCourses',weeklyCourses);
-        const locations = locationsIds.map((el) => el);
-        // console.log('log',locations);
-        const group = locations.reduce((previousValue, currentValue) => {
-            const locationGroup = weeklyCourses.filter(
-                (el) => el.location_id == currentValue.pa_locationId,
-            );
-            previousValue[currentValue?.ms_address] = locationGroup;
-            return previousValue;
-        }, {});
-        // console.log('group: ',group);
-        return group;
-    };
-
     //! UseEffect
     useEffect(() => {
         // const address = document.getElementById('address');
         // address.autoResize = true;
         // console.log('select',selectedAcademy);
-        if (!isEmpty(selectedAcademy?.pa_companyId)){
+        if (!isEmpty(selectedAcademy?.pa_companyId)) {
             const listId = selectedAcademy.ms_addresses
                 .map((item) => item.pa_locationId)
                 .join(',');
@@ -95,18 +77,18 @@ export default function AboutInfo(props) {
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
                 // console.log(siteReducer.data);
                 // console.log('updateData',siteReducer);
-                
+
                 setLstCourse(
-                    convertLocation(
+                    Utils.convertLocation(
                         props.site.ms_addresses,
-                        siteReducer.dataCourse
-                    )
-                )
+                        siteReducer.dataCourse,
+                    ),
+                );
                 // setLstCourse(siteReducer.data);
                 setCourseSelected(siteReducer.data[0]);
             }
         }
-    }, [props.site,siteReducer]);
+    }, [props.site, siteReducer]);
 
     // useEffect(() => {
     //     // console.log(selectedAcademy, 'selectedAcademy');
@@ -149,9 +131,7 @@ export default function AboutInfo(props) {
             course_type: 'course',
         });
         history.push({
-            pathname: PathRoute.WeeklyTrainingWithAlias(
-                option.ms_alias,
-            )
+            pathname: PathRoute.WeeklyTrainingWithAlias(option.ms_alias),
         });
         // getListCourse();
     };
@@ -248,71 +228,81 @@ export default function AboutInfo(props) {
                         </p>
                     </div>
                 )}
-                
+
                 {lstCourse &&
-                     Object.entries(lstCourse).map((item, index) => {
-                        return(
+                    Object.entries(lstCourse).map((item, index) => {
+                        return (
                             <div key={index}>
-                                {item[1].length>0 &&
-                                <div className='wSelect2'>
-                                    <textarea
-                                        id="address"
-                                        // disabled={true}
-                                        value={
-                                            item[0]
-                                        }
-                                        type="text"
-                                        className="outputText"
-                                        ref={textareaRef}
-                                    />
-                                </div>}
+                                {item[1].length > 0 && (
+                                    <div className="wSelect2">
+                                        <textarea
+                                            id="address"
+                                            // disabled={true}
+                                            value={item[0]}
+                                            type="text"
+                                            className="outputText"
+                                            ref={textareaRef}
+                                        />
+                                    </div>
+                                )}
                                 <div className="wSelect2">
                                     {item[1].map((el, idx) => (
                                         <div
-                                        key={idx}
-                                        style={{
-                                            backgroundColor: `${
-                                                idx % 2 === 0 ? '#F7F8F7' : 'white'
-                                            }`,
-                                        }}>
-                                        <div
+                                            key={idx}
                                             style={{
-                                                display: 'flex',
-                                                justifyContent: 'space-between',
-                                                padding: 10,
+                                                backgroundColor: `${
+                                                    idx % 2 === 0
+                                                        ? '#F7F8F7'
+                                                        : 'white'
+                                                }`,
                                             }}>
-                                            <p>{el?.day_of_week}</p>
-                                            <p>
-                                                {dayjs(
-                                                    '2021-03-03T' + el.course_day_time_start,
-                                                ).format('HH:mma')}
-                                                -
-                                                {dayjs(
-                                                    '2021-03-03T' + el.course_day_time_end,
-                                                ).format('HH:mma')}
-                                            </p>
-                                            <p>
-                                                {el.min_age}-{el.max_age}{' '}
-                                                {props.isMobile ? 'y.o.' : 'year olds'}
-                                            </p>
+                                            <div
+                                                style={{
+                                                    display: 'flex',
+                                                    justifyContent:
+                                                        'space-between',
+                                                    padding: 10,
+                                                }}>
+                                                <p>{el?.day_of_week}</p>
+                                                <p>
+                                                    {dayjs(
+                                                        '2021-03-03T' +
+                                                            el.course_day_time_start,
+                                                    ).format('HH:mma')}
+                                                    -
+                                                    {dayjs(
+                                                        '2021-03-03T' +
+                                                            el.course_day_time_end,
+                                                    ).format('HH:mma')}
+                                                </p>
+                                                <p>
+                                                    {el.min_age}-{el.max_age}{' '}
+                                                    {props.isMobile
+                                                        ? 'y.o.'
+                                                        : 'year olds'}
+                                                </p>
+                                            </div>
+                                            <div
+                                                style={{
+                                                    display: 'flex',
+                                                    padding: 10,
+                                                }}>
+                                                <p
+                                                    style={{
+                                                        marginRight: 35,
+                                                    }}>{`£${
+                                                    el.course_price || 0
+                                                } per ${
+                                                    el.course_length || 0
+                                                } sessions`}</p>
+                                                {renderBookingBtn(idx)}
+                                            </div>
                                         </div>
-                                        <div
-                                            style={{
-                                                display: 'flex',
-                                                padding: 10,
-                                            }}>
-                                            <p style={{ marginRight: 35 }}>{`£${
-                                                el.course_price || 0
-                                            } per ${el.course_length || 0} sessions`}</p>
-                                            {renderBookingBtn(idx)}
-                                        </div>
-                                    </div>
                                     ))}
                                 </div>
                             </div>
-                        )
-                     })
-                }
+                        );
+                    })}
                 {/* {lstCourse.length > 0 && (
                     <div className="wSelect2">
                         {lstCourse.map((item, index) => (
