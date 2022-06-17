@@ -41,6 +41,10 @@ function BannerTop(props) {
     const siteName = getFranchiseName(props.site);
     const isMobile = useGetWidth() <= 768;
 
+    const onClickTypeorm = () => {
+        history.push(PathRoute.BookTrialTraining);
+    };
+
     if (props.site) {
         options.push({
             label: props.site.ms_address,
@@ -166,7 +170,7 @@ function BannerTop(props) {
                                         ? defaultTypeform?.default_typeform_id
                                         : null
                                 }
-                                onClick={(evt) => {}}
+                                onClick={onClickTypeorm}
                                 title={
                                     <b>{`Book a ${
                                         props.site && props.site.ms_trial === 1
