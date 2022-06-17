@@ -32,6 +32,10 @@ function LDWeeklyTraining(props) {
     const [lstCourse, setLstCourse] = useState([]);
     const [courseSelected, setCourseSelected] = useState({});
 
+    // const [listCourse,setListCourse] = useState([]);
+
+    // console.log('trainingService',props);
+
     useEffect(() => {
         if (!isEmpty(props.site)) {
             const listId = props.site.ms_addresses
@@ -48,7 +52,10 @@ function LDWeeklyTraining(props) {
     }, [props.site]);
 
     const convertLocation = (locationsIds, weeklyCourses) => {
+        // console.log('locationIDS',locationsIds);
+        // console.log('weeklyCourses',weeklyCourses);
         const locations = locationsIds.map((el) => el);
+        // console.log('log',locations);
         const group = locations.reduce((previousValue, currentValue) => {
             const locationGroup = weeklyCourses.filter(
                 (el) => el.location_id == currentValue.pa_locationId,
@@ -56,11 +63,13 @@ function LDWeeklyTraining(props) {
             previousValue[currentValue?.ms_address] = locationGroup;
             return previousValue;
         }, {});
+        // console.log('group:',group);
         return group;
     };
 
     const siteReducer = useSelector((state) => state.siteReducer);
     useEffect(() => {
+        let isCheck = true;
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
                 // console.log(siteReducer.dataCourse,"data");
@@ -76,6 +85,7 @@ function LDWeeklyTraining(props) {
                 }
             }
         }
+        // console.log('listCourse: ',listCourse);
     }, [siteReducer]);
 
     const newAddressLenght = props.site.ms_addresses.length;

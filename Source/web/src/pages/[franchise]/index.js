@@ -41,7 +41,7 @@ function Franchise({ data, listSite, isSubPage, item }) {
     const router = useRouter();
     const targetRef = useRef(null);
     const { defaultTypeform } = useSelector((state) => state.homeReducer);
-
+    // console.log('data',data.site);
     saveList(listSite);
 
     useEffect(() => {

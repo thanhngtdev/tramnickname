@@ -5,6 +5,7 @@ let PathRoute = {
     OneTraining: '/1-on-1-training',
     BirthdayParty: '/birthday-parties',
     WeeklyTraining: '/weekly-football-training',
+    WeeklyTrainingWithAlias: (alias) => `/${alias}/weekly-football-training`,
     // Franchise: '/franchise/:alias-:id([0-9]+)',
     Franchise: '/:title',
     AboutUs: '/about-us',

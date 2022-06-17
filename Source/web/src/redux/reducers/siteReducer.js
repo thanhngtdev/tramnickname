@@ -105,8 +105,18 @@ const siteReducer = (state = initialState, action) => {
                 data: action.data,
                 dataCourse: action.dataCourse,
                 dataEvent: action.dataEvent,
+                ms_address: action.ms_address,
                 courseType: action.courseType,
             };
+        // case siteActionType.GET_LIST_COURSE_SUCCESS:
+        //     return {
+        //         ...state,
+        //         type: siteActionType.GET_LIST_COURSE_SUCCESS,
+        //         data: action.data,
+        //         dataCourse: action.dataCourse,
+        //         dataEvent: action.dataEvent,
+        //         courseType: action.courseType,
+        //     };
         case siteActionType.GET_LIST_COURSE_FAILED:
             return {
                 ...state,

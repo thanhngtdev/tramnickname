@@ -111,6 +111,7 @@ function ListNearbyAcademy(props) {
                         lstAcademy[highlightAcademy].ms_addresses,
                         siteReducer.dataCourse,
                     ),
+                    // console.log('weekly',weeklyCourse)
                 );
             }
         }
@@ -199,7 +200,6 @@ function ListNearbyAcademy(props) {
                     <div className="service">
                         <div className="weekly-training">
                             <h3>Weekly training schedule:</h3>
-
                             {weeklyCourse &&
                                 Object.entries(weeklyCourse).map(
                                     (item, index) => (
