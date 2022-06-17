@@ -42,7 +42,7 @@ function BannerTop(props) {
     const isMobile = useGetWidth() <= 768;
 
     const onClickTypeorm = () => {
-        history.push(PathRoute.BookTrialTraining);
+        history.push(PathRoute.BookTrialTrainingWithAlias(props.site.ms_alias));
     };
 
     if (props.site) {
@@ -149,7 +149,11 @@ function BannerTop(props) {
                             <Button
                                 style={style}
                                 onClick={(evt) => {}}
-                                title={<b className='contact-book__bannertop'>{props.site.ms_phone}</b>}
+                                title={
+                                    <b className="contact-book__bannertop">
+                                        {props.site.ms_phone}
+                                    </b>
+                                }
                                 icon={
                                     <FontAwesomeIcon
                                         icon={faPhone}
@@ -172,7 +176,7 @@ function BannerTop(props) {
                                 }
                                 onClick={onClickTypeorm}
                                 title={
-                                    <b className='contact-book__bannertop'>{`Book a ${
+                                    <b className="contact-book__bannertop">{`Book a ${
                                         props.site && props.site.ms_trial === 1
                                             ? 'trial'
                                             : 'free'
