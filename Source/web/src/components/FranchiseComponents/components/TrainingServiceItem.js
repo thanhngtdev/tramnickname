@@ -44,7 +44,9 @@ const TrainingServiceItem = (props) => {
                         type: siteActionType.SELECT_ACADEMY,
                         data: props.site,
                     });
-                    history.push(PathRoute.BookTrialTraining);
+                    history.push(
+                        PathRoute.BookTrialTrainingWithAlias(site.ms_alias),
+                    );
                 }}>
                 Book
             </p>
