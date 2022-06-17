@@ -91,23 +91,11 @@ function ListNearbyAcademy(props) {
         // }
     }, [highlightAcademy]);
 
-    const convertLocation = (locationsIds, weeklyCourses) => {
-        const locations = locationsIds.map((el) => el);
-        const group = locations.reduce((previousValue, currentValue) => {
-            const locationGroup = weeklyCourses.filter(
-                (el) => el.location_id == currentValue.pa_locationId,
-            );
-            previousValue[currentValue?.ms_address] = locationGroup;
-            return previousValue;
-        }, {});
-        return group;
-    };
-
     useEffect(() => {
         if (siteReducer?.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
             if (siteReducer.courseType === 'course') {
                 setWeeklyCourse(
-                    convertLocation(
+                    Utils.convertLocation(
                         lstAcademy[highlightAcademy].ms_addresses,
                         siteReducer.dataCourse,
                     ),
