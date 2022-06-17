@@ -1,8 +1,14 @@
 import { PopupButton } from '@typeform/embed-react';
 import dayjs from 'dayjs';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import PathRoute from 'src/common/PathRoute';
+import { siteActionType } from 'src/redux/actions/actionTypes';
 
 const TrainingServiceItem = (props) => {
     const { item, index, site, title } = props;
+    const dispatch = useDispatch();
+    const history = useRouter();
 
     const renderBookingBtn = (index) => {
         if (props.site.ms_use_typeform === 1) {
