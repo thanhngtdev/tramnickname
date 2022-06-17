@@ -195,52 +195,126 @@ function AutocompleteInput(props) {
                             className = 'suggestion-active';
                         }
 
+                        const suggestionLenght = suggestion.ms_addresses.length;
+
+                        const newSuggest = suggestion.ms_addresses;
+
+                        console.log(
+                            suggestion.ms_name,
+                            suggestionLenght,
+                            newSuggest,
+                            'suggestion',
+                        );
                         return (
-                            <li
-                                key={suggestion.ms_id}
-                                onClick={(e) => onClick(e, suggestion)}>
-                                <div className={className}>
-                                    <div className="suggest-title">
-                                        <label className="title-text">
-                                            {suggestion.ms_name}
-                                        </label>
-                                        <div>
-                                            <label className="distance-text">
-                                                {`${
-                                                    suggestion?.distance
-                                                        ? Utils.showDistance(
-                                                              suggestion?.distance,
-                                                          ) + ' kilometers'
-                                                        : ''
-                                                } `}
-                                            </label>
+                            <div>
+                                {suggestionLenght > 1 ? (
+                                    newSuggest.map?.((address) => (
+                                        <li
+                                            key={address.ms_id}
+                                            onClick={(e) =>
+                                                onClick(e, address)
+                                            }>
+                                            <div className={className}>
+                                                <div className="suggest-title">
+                                                    <label className="title-text">
+                                                        {suggestion.ms_name}
+                                                    </label>
+                                                    <div>
+                                                        <label className="distance-text">
+                                                            {`${
+                                                                suggestion?.distance
+                                                                    ? Utils.showDistance(
+                                                                          suggestion?.distance,
+                                                                      ) +
+                                                                      ' kilometers'
+                                                                    : ''
+                                                            } `}
+                                                        </label>
 
-                                            <Link
-                                                href={'/' + suggestion.ms_alias}
-                                                passHref>
-                                                <a>
-                                                    <FontAwesomeIcon
-                                                        icon={faChevronRight}
-                                                        style={{
-                                                            color: '#EE7925',
-                                                            margin: '0 0.8rem',
-                                                            fontSize: '25px',
-                                                        }}
-                                                    />
-                                                </a>
-                                            </Link>
-                                        </div>
-                                    </div>
+                                                        <Link
+                                                            href={
+                                                                '/' +
+                                                                address.ms_alias
+                                                            }
+                                                            passHref>
+                                                            <a>
+                                                                <FontAwesomeIcon
+                                                                    icon={
+                                                                        faChevronRight
+                                                                    }
+                                                                    style={{
+                                                                        color: '#EE7925',
+                                                                        margin: '0 0.8rem',
+                                                                        fontSize:
+                                                                            '25px',
+                                                                    }}
+                                                                />
+                                                            </a>
+                                                        </Link>
+                                                    </div>
+                                                </div>
 
-                                    {suggestion.ms_addresses.map?.(
-                                        (address) => (
+                                                <label className="sub-title">
+                                                    {address?.ms_address || ''}
+                                                </label>
+                                            </div>
+                                        </li>
+                                    ))
+                                ) : (
+                                    <li
+                                        key={newSuggest[0].ms_id}
+                                        onClick={(e) =>
+                                            onClick(e, newSuggest[0])
+                                        }>
+                                        <div className={className}>
+                                            <div className="suggest-title">
+                                                <label className="title-text">
+                                                    {suggestion.ms_name}
+                                                </label>
+                                                <div>
+                                                    <label className="distance-text">
+                                                        {`${
+                                                            suggestion?.distance
+                                                                ? Utils.showDistance(
+                                                                      suggestion.distance,
+                                                                  ) +
+                                                                  ' kilometers'
+                                                                : ''
+                                                        } `}
+                                                    </label>
+
+                                                    <Link
+                                                        href={
+                                                            '/' +
+                                                            newSuggest[0]
+                                                                .ms_alias
+                                                        }
+                                                        passHref>
+                                                        <a>
+                                                            <FontAwesomeIcon
+                                                                icon={
+                                                                    faChevronRight
+                                                                }
+                                                                style={{
+                                                                    color: '#EE7925',
+                                                                    margin: '0 0.8rem',
+                                                                    fontSize:
+                                                                        '25px',
+                                                                }}
+                                                            />
+                                                        </a>
+                                                    </Link>
+                                                </div>
+                                            </div>
+
                                             <label className="sub-title">
-                                                {address?.ms_address || ''}
+                                                {newSuggest[0]?.ms_address ||
+                                                    ''}
                                             </label>
-                                        ),
-                                    )}
-                                </div>
-                            </li>
+                                        </div>
+                                    </li>
+                                )}
+                            </div>
                         );
                     })}
                 </ul>
