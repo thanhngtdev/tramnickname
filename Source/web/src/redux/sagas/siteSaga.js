@@ -193,7 +193,6 @@ function* getListCourse({ company_id, location_id, course_type }) {
             data: response.data,
             dataCourse,
             dataEvent,
-            ms_address,
             courseType: course_type,
         });
     } else {

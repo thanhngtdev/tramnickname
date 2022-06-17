@@ -29,10 +29,10 @@ function LDWeeklyTraining(props) {
     const MAX_LENGTH = props.isMobile ? 2 : 10;
     const dispatch = useDispatch();
     const history = useRouter();
-    // const [lstCourse, setLstCourse] = useState([]);
+    const [lstCourse, setLstCourse] = useState([]);
     const [courseSelected, setCourseSelected] = useState({});
 
-    const [listCourse,setListCourse] = useState([]);
+    // const [listCourse,setListCourse] = useState([]);
 
     // console.log('trainingService',props);
 
@@ -52,7 +52,10 @@ function LDWeeklyTraining(props) {
     }, [props.site]);
 
     const convertLocation = (locationsIds, weeklyCourses) => {
+        // console.log('locationIDS',locationsIds);
+        // console.log('weeklyCourses',weeklyCourses);
         const locations = locationsIds.map((el) => el);
+        // console.log('log',locations);
         const group = locations.reduce((previousValue, currentValue) => {
             const locationGroup = weeklyCourses.filter(
                 (el) => el.location_id == currentValue.pa_locationId,
@@ -60,6 +63,7 @@ function LDWeeklyTraining(props) {
             previousValue[currentValue?.ms_address] = locationGroup;
             return previousValue;
         }, {});
+        // console.log('group:',group);
         return group;
     };
 

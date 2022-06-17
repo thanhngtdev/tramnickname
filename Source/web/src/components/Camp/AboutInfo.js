@@ -11,12 +11,15 @@ import { CommonStyle } from 'src/common/Styles';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import Button from '../Button';
 import Utils from 'src/common/Utils';
+import { PopupButton } from '@typeform/embed-react';
+
 
 AboutInfo.propTypes = {
     lstAcademy: PropTypes.array,
 };
 
 export default function AboutInfo(props) {
+    // console.log('aboutInfoProps',props);
     //! State
     const siteReducer = useSelector((state) => state.siteReducer);
     const history = useRouter();
@@ -29,7 +32,7 @@ export default function AboutInfo(props) {
         props.site
             ? [
                   {
-                      label: props.site.ms_address,
+                    label: props.site.ms_addresses,
                       value: props.site.ms_id,
                   },
               ]
@@ -40,6 +43,9 @@ export default function AboutInfo(props) {
                   },
               ],
     );
+    // console.log('lstAddress',lstAddress);
+    // console.log('selectDefault',selectedAcademy);
+
     const [lstCourse, setLstCourse] = useState([]);
     const [courseSelected, setCourseSelected] = useState({});
     const [titleButton, setTitleButton] = useState(
@@ -48,37 +54,67 @@ export default function AboutInfo(props) {
             : 'Book a free session',
     );
 
+
+    const convertLocation = (locationsIds, weeklyCourses) => {
+        // console.log('locationIDS',locationsIds);
+        // console.log('weeklyCourses',weeklyCourses);
+        const locations = locationsIds.map((el) => el);
+        // console.log('log',locations);
+        const group = locations.reduce((previousValue, currentValue) => {
+            const locationGroup = weeklyCourses.filter(
+                (el) => el.location_id == currentValue.pa_locationId,
+            );
+            previousValue[currentValue?.ms_address] = locationGroup;
+            return previousValue;
+        }, {});
+        // console.log('group: ',group);
+        return group;
+    };
+
     //! UseEffect
     useEffect(() => {
-        const address = document.getElementById('address');
-        address.autoResize = true;
-
-        if (!isEmpty(selectedAcademy?.pa_companyId))
+        // const address = document.getElementById('address');
+        // address.autoResize = true;
+        // console.log('select',selectedAcademy);
+        if (!isEmpty(selectedAcademy?.pa_companyId)){
+            const listId = selectedAcademy.ms_addresses
+                .map((item) => item.pa_locationId)
+                .join(',');
             dispatch({
                 type: siteActionType.GET_LIST_COURSE,
                 company_id: selectedAcademy.pa_companyId,
-                location_id: selectedAcademy.pa_locationId,
+                location_id: listId,
                 course_type: 'course',
             });
-    }, []);
+        }
+    }, [selectedAcademy]);
 
     useEffect(() => {
+        // console.log('address_id',props);
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
                 // console.log(siteReducer.data);
-                setLstCourse(siteReducer.data);
+                // console.log('updateData',siteReducer);
+                
+                setLstCourse(
+                    convertLocation(
+                        props.site.ms_addresses,
+                        siteReducer.dataCourse
+                    )
+                )
+                // setLstCourse(siteReducer.data);
                 setCourseSelected(siteReducer.data[0]);
             }
         }
-    }, [siteReducer]);
+    }, [props.site,siteReducer]);
 
-    useEffect(() => {
-        // console.log(selectedAcademy, 'selectedAcademy');
+    // useEffect(() => {
+    //     // console.log(selectedAcademy, 'selectedAcademy');
 
-        textareaRef.current.style.height = '0px';
-        const scrollHeight = textareaRef.current.scrollHeight;
-        textareaRef.current.style.height = scrollHeight + 'px';
-    }, [selectedAcademy]);
+    //     // textareaRef.current.style.height = '0px';
+    //     const scrollHeight = textareaRef.current.scrollHeight;
+    //     textareaRef.current.style.height = scrollHeight + 'px';
+    // }, [selectedAcademy]);
 
     //! Functions
     const handleOnChange = (option) => {
@@ -87,6 +123,8 @@ export default function AboutInfo(props) {
             siteName: option.ms_name,
             address: '',
         };
+
+        // console.log('option',option);
 
         setSelectedAcademy(option);
         setCourseSelected({});
@@ -97,18 +135,66 @@ export default function AboutInfo(props) {
         );
         setLstAddress([
             {
-                label: option.ms_address,
+                label: option.ms_addresses,
                 value: option.ms_id,
             },
         ]);
-
+        const listId = option.ms_addresses
+            .map((item) => item.pa_locationId)
+            .join(',');
         dispatch({
             type: siteActionType.GET_LIST_COURSE,
             company_id: option.pa_companyId,
-            location_id: option.pa_locationId,
+            location_id: listId,
             course_type: 'course',
         });
+        history.push({
+            pathname: PathRoute.WeeklyTrainingWithAlias(
+                option.ms_alias,
+            )
+        });
         // getListCourse();
+    };
+
+    const renderBookingBtn = (index) => {
+        if (props.site.ms_use_typeform === 1) {
+            return (
+                <PopupButton
+                    id={props.site.ms_typeform_id}
+                    style={{
+                        border: 0,
+                        backgroundColor: `${
+                            index % 2 === 0 ? '#F7F8F7' : 'white'
+                        }`,
+                        padding: 0,
+                        color: '#EE7925',
+                        cursor: 'pointer',
+                    }}
+                    size={90}>
+                    Book
+                </PopupButton>
+            );
+        }
+
+        return (
+            <p
+                style={{ color: '#FF7100', cursor: 'pointer' }}
+                onClick={() => {
+                    global.bookTraining = {
+                        siteId: props.site.ms_id || 0,
+                        siteName: props.site.ms_name || '',
+                        address: '',
+                        preDefined: { item },
+                    };
+                    dispatch({
+                        type: siteActionType.SELECT_ACADEMY,
+                        data: props.site,
+                    });
+                    history.push(PathRoute.BookTrialTraining);
+                }}>
+                Book
+            </p>
+        );
     };
 
     //! Render
@@ -133,20 +219,21 @@ export default function AboutInfo(props) {
                         onChange={handleOnChange}
                     />
                 </div>
-                <div className="wSelect2">
+                {/* <div className="wSelect2">
                     <textarea
-                        id="address"
-                        // disabled={true}
-                        value={
-                            lstAddress.length > 0 && lstAddress[0].label
-                                ? lstAddress[0].label
-                                : ''
-                        }
-                        type="text"
-                        className="outputText"
-                        ref={textareaRef}
-                    />
-                </div>
+                            id="address"
+                            // disabled={true}
+                            value={
+                                lstAddress.length > 0 && lstAddress[0].label
+                                    ? lstAddress[0].label
+                                    : ''
+                            }
+                            type="text"
+                            className="outputText"
+                            ref={textareaRef}
+                        />
+                    
+                </div> */}
                 {selectedAcademy && selectedAcademy.ms_trial === 1 && (
                     <div className="wSelect2">
                         <label>Cost</label>
@@ -161,7 +248,72 @@ export default function AboutInfo(props) {
                         </p>
                     </div>
                 )}
-                {lstCourse.length > 0 && (
+                
+                {lstCourse &&
+                     Object.entries(lstCourse).map((item, index) => {
+                        return(
+                            <div key={index}>
+                                {item[1].length>0 &&
+                                <div className='wSelect2'>
+                                    <textarea
+                                        id="address"
+                                        // disabled={true}
+                                        value={
+                                            item[0]
+                                        }
+                                        type="text"
+                                        className="outputText"
+                                        ref={textareaRef}
+                                    />
+                                </div>}
+                                <div className="wSelect2">
+                                    {item[1].map((el, idx) => (
+                                        <div
+                                        key={idx}
+                                        style={{
+                                            backgroundColor: `${
+                                                idx % 2 === 0 ? '#F7F8F7' : 'white'
+                                            }`,
+                                        }}>
+                                        <div
+                                            style={{
+                                                display: 'flex',
+                                                justifyContent: 'space-between',
+                                                padding: 10,
+                                            }}>
+                                            <p>{el?.day_of_week}</p>
+                                            <p>
+                                                {dayjs(
+                                                    '2021-03-03T' + el.course_day_time_start,
+                                                ).format('HH:mma')}
+                                                -
+                                                {dayjs(
+                                                    '2021-03-03T' + el.course_day_time_end,
+                                                ).format('HH:mma')}
+                                            </p>
+                                            <p>
+                                                {el.min_age}-{el.max_age}{' '}
+                                                {props.isMobile ? 'y.o.' : 'year olds'}
+                                            </p>
+                                        </div>
+                                        <div
+                                            style={{
+                                                display: 'flex',
+                                                padding: 10,
+                                            }}>
+                                            <p style={{ marginRight: 35 }}>{`£${
+                                                el.course_price || 0
+                                            } per ${el.course_length || 0} sessions`}</p>
+                                            {renderBookingBtn(idx)}
+                                        </div>
+                                    </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )
+                     })
+                }
+                {/* {lstCourse.length > 0 && (
                     <div className="wSelect2">
                         {lstCourse.map((item, index) => (
                             <div
@@ -202,7 +354,7 @@ export default function AboutInfo(props) {
                             </div>
                         ))}
                     </div>
-                )}
+                )} */}
 
                 <div style={{ textAlign: 'center' }}>
                     <Button
