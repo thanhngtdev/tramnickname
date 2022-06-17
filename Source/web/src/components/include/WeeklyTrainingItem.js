@@ -10,7 +10,8 @@ import {
 import { PopupButton } from '@typeform/embed-react';
 
 function WeeklTrainingItem(props) {
-    const { item, index, site } = props;
+    const { item, index, site, title, distance } = props;
+
     const dispatch = useDispatch();
     const history = useRouter();
 
@@ -54,22 +55,31 @@ function WeeklTrainingItem(props) {
     };
 
     return (
-        <div className="wrap-course" key={index}>
-            <div className={`${index % 2 === 0 ? 'course-odd' : 'course'}`}>
-                <label className="course-time">
-                    {item.day_of_week}&nbsp;
-                    {item.min_age}-{item.max_age} year olds <br />
-                    {dayjs('2021-03-03T' + item.course_day_time_start).format(
-                        'HH:mma',
-                    )}
-                    -
-                    {dayjs('2021-03-03T' + item.course_day_time_end).format(
-                        'HH:mma',
-                    )}
-                </label>
-                {renderButton()}
+        <>
+            <div>
+                <p>{title}</p>
+                <p>{site.distance.toFixed(2)} kilometers away</p>
+                {item.map((el) => (
+                    <div className="wrap-course">
+                        <div className="course-odd">
+                            <p className="course-time">
+                                {' '}
+                                {el.day_of_week}&nbsp;
+                                {el.min_age}-{el.max_age} year olds <br />
+                                {dayjs(
+                                    '2021-03-03T' + el.course_day_time_start,
+                                ).format('HH:mma')}
+                                -
+                                {dayjs(
+                                    '2021-03-03T' + el.course_day_time_end,
+                                ).format('HH:mma')}
+                            </p>
+                            <div className="book-trial">{renderButton()}</div>
+                        </div>
+                    </div>
+                ))}
             </div>
-        </div>
+        </>
     );
 }
 

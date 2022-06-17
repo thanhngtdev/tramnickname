@@ -67,20 +67,51 @@ function ListNearbyAcademy(props) {
     }, [props.listAcademy]);
 
     useEffect(() => {
+        // if (!isEmpty(lstAcademy[highlightAcademy])) {
+        //     dispatch({
+        //         type: siteActionType.GET_LIST_COURSE,
+        //         company_id: lstAcademy[highlightAcademy].pa_companyId,
+        //         location_id: lstAcademy[highlightAcademy].pa_locationId,
+        //         course_type: 'course',
+        //     });
+        // }
+
         if (!isEmpty(lstAcademy[highlightAcademy])) {
+            const listId = lstAcademy[highlightAcademy].ms_addresses
+                .map((item) => item.pa_locationId)
+                .join(',');
+
             dispatch({
                 type: siteActionType.GET_LIST_COURSE,
                 company_id: lstAcademy[highlightAcademy].pa_companyId,
-                location_id: lstAcademy[highlightAcademy].pa_locationId,
+                location_id: listId,
                 course_type: 'course',
             });
         }
+        // }
     }, [highlightAcademy]);
+
+    const convertLocation = (locationsIds, weeklyCourses) => {
+        const locations = locationsIds.map((el) => el);
+        const group = locations.reduce((previousValue, currentValue) => {
+            const locationGroup = weeklyCourses.filter(
+                (el) => el.location_id == currentValue.pa_locationId,
+            );
+            previousValue[currentValue?.ms_address] = locationGroup;
+            return previousValue;
+        }, {});
+        return group;
+    };
 
     useEffect(() => {
         if (siteReducer?.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
             if (siteReducer.courseType === 'course') {
-                setWeeklyCourse(siteReducer.dataCourse);
+                setWeeklyCourse(
+                    convertLocation(
+                        lstAcademy[highlightAcademy].ms_addresses,
+                        siteReducer.dataCourse,
+                    ),
+                );
             }
         }
     }, [siteReducer]);
@@ -144,6 +175,8 @@ function ListNearbyAcademy(props) {
         </>
     );
 
+    // const addressLenght = lstAcademy[highlightAcademy].ms_addresses.length;
+    // const newAddress = lstAcademy[highlightAcademy].ms_addresses;
     return (
         <div
             ref={chooseAcademyModal}
@@ -159,29 +192,26 @@ function ListNearbyAcademy(props) {
                                     ),
                                 )}
                             </h3>
-                            <label>
-                                {'~'}
-                                {Utils.showDistance(
-                                    lstAcademy[highlightAcademy].distance,
-                                )}
-                                {` kilometers away`}
-                            </label>
-                            <p>{lstAcademy[highlightAcademy].ms_address}</p>
+
                             {!isMobile && renderAddress()}
                         </div>
                     </div>
                     <div className="service">
                         <div className="weekly-training">
                             <h3>Weekly training schedule:</h3>
+
                             {weeklyCourse &&
-                                weeklyCourse.map((item, index) => (
-                                    <WeeklyTrainingItem
-                                        item={item}
-                                        key={index}
-                                        index={index}
-                                        site={lstAcademy[highlightAcademy]}
-                                    />
-                                ))}
+                                Object.entries(weeklyCourse).map(
+                                    (item, index) => (
+                                        <WeeklyTrainingItem
+                                            title={item[0]}
+                                            item={item[1]}
+                                            key={index}
+                                            index={index}
+                                            site={lstAcademy[highlightAcademy]}
+                                        />
+                                    ),
+                                )}
                         </div>
                         {isMobile && renderAddress()}
                     </div>

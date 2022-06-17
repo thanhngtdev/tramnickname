@@ -30,8 +30,6 @@ const PlacesWithStandaloneSearchBox = compose(
                 onPlacesChanged: () => {
                     const places = refs.searchBox.getPlaces();
 
-                    // console.log(places, 'places');
-
                     if (places.length > 0) {
                         const place = places[0];
                         // console.log(place, 'place');

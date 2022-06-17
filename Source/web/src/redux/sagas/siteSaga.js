@@ -173,14 +173,13 @@ function* findNearbyAcademy({ lat, long }) {
     }
 }
 
-function* getListCourse({ company_id, location_id,ms_address, course_type }) {
-    // console.log('location_id',location_id);
+function* getListCourse({ company_id, location_id, course_type }) {
+    // console.log(company_id, location_id, 'djhsdkfhs');
     const response = yield API.getParentAPI(APIConfig.GET_LIST_COURSE, {
         company_id,
         location_id,
         type: course_type,
     });
-    // console.log(response, 'aaaaaa');
     if (response && response.status === 200) {
         let dataCourse = response.data;
         let dataEvent = [];
