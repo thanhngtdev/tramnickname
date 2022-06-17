@@ -26,7 +26,9 @@
     border-radius: 6px;
     padding: 30px;
 }
-
+.contact-book__bannertop {
+    font-size: 1rem;
+}
 .banner-franchise .banner .banner_right .banner_right_box {
     display: flex;
     align-items: center;
