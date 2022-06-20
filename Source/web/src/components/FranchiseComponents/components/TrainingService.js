@@ -94,14 +94,14 @@ function LDWeeklyTraining(props) {
     return (
         <div>
             <div className="group-info" style={{ boxShadow: 'none' }}>
-                <label className="group-name">Address</label>
+                {/* <label className="group-name">Address</label>
                 {newAddressLenght && newAddressLenght > 1 ? (
                     newAddress.map((address) => {
                         return <h4>{address.ms_address}</h4>;
                     })
                 ) : (
                     <h4>{newAddress[0].ms_address}</h4>
-                )}
+                )} */}
             </div>
             {parse(props?.config?.content || '')}
 
