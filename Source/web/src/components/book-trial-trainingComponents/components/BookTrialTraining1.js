@@ -131,13 +131,16 @@ function BookTrialTraining1(props) {
     }, [siteSelected]);
 
     useEffect(() => {
+        
         const newLstCourse = lstCourse.filter(
             (course) =>
                 course.min_age <= ageStudent && ageStudent <= course.max_age,
         );
-
+        
         if (!isEmpty(siteSelected?.ms_addresses) && !isEmpty(newLstCourse)) {
+            
             const locationIds = [...siteSelected?.ms_addresses];
+            
             setCourseSatisfied(
                 Utils.convertLocation(locationIds, newLstCourse),
             );
@@ -413,11 +416,11 @@ function BookTrialTraining1(props) {
                 />
                 <label className="input-error">{dateError}</label>
             </div>
-            {courseSatisfied.length > 0 && siteSelected && !availableEmail ? (
+            {Object.entries(courseSatisfied).length > 0 && siteSelected && !availableEmail ? (
                 <Fragment>
                     <div style={{ backgroundColor: 'white' }}>
                         <div className="wSelect2">
-                            {courseSatisfied.map(([address, value], index) => (
+                            {Object.entries(courseSatisfied).map(([address, value], index) => (
                                 <div>
                                     <div
                                         className="wSelect2 wSelected2"
