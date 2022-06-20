@@ -150,9 +150,18 @@ function BannerTop(props) {
                                 style={style}
                                 onClick={(evt) => {}}
                                 title={
-                                    <b className="contact-book__bannertop">
-                                        {props.site.ms_phone}
-                                    </b>
+                                    <a
+                                        style={{color: "#EF9042"}}
+                                        className="phone"
+                                        href={`tel:${
+                                            props.site
+                                                ? props.site.ms_phone
+                                                : ''
+                                        }`}>
+                                        <b className="contact-book__bannertop">
+                                            {props.site.ms_phone}
+                                        </b>
+                                    </a>
                                 }
                                 icon={
                                     <FontAwesomeIcon
