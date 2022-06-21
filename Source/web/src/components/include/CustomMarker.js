@@ -11,7 +11,6 @@ function CustomMarker(props) {
     const siteReducer = useSelector((state) => state.siteReducer);
     const defaultIcon =
         siteReducer.marker.ms_id === item.ms_id ? SELECTED_ICON : DEFAULT_ICON;
-    console.log('item', item);
     return (
         <Marker
             // animation={window.google.maps.Animation.DROP}

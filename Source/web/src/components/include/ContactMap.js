@@ -2,31 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps';
 import Constants from 'src/common/Constants';
 import CustomMarker from 'src/components/include/CustomMarker';
+import isEmpty from 'lodash/isEmpty';
 
 function ContactMap(props) {
     const { academy } = props;
-
-    const latitude = Number(academy.ms_addresses.map((e) => e.ms_latitude))
-    const longitude = Number(academy.ms_addresses.map((e) => e.ms_longitude))
-
     const [defaultCenter, setdefaultCenter] = useState({
-        lat: latitude,
-        lng: longitude,
+        lat: Constants.DEFAULT_LOCATION.lat,
+        lng: Constants.DEFAULT_LOCATION.lng,
     });
 
-    const [defaultMarker, setdefaultMarker] = useState({
-        ms_latitude: Constants.DEFAULT_LOCATION.lat,
-        ms_longitude: Constants.DEFAULT_LOCATION.lng,
-    });
     useEffect(() => {
-        setdefaultCenter({
-            lat: latitude + 0.13,
-            lng: longitude,
-        });
-        setdefaultMarker({
-            ms_latitude: latitude,
-            ms_longitude: longitude,
-        });
+        if(academy?.ms_addresses?.length) {
+            setdefaultCenter({
+                lat: Number(academy?.ms_addresses[0].ms_latitude) - 0.05,
+                lng: Number(academy?.ms_addresses[0].ms_longitude) -0.13,
+            });
+        }
     }, [academy]);
 
     function renderWMFContact() {
@@ -119,7 +110,12 @@ function ContactMap(props) {
     return (
         <GoogleMap defaultZoom={11} center={defaultCenter}>
             <div className="contact-map">{renderWMFContact()}</div>
-            <CustomMarker item={defaultMarker} />
+            {
+            !isEmpty(academy) && academy?.ms_addresses?.map((e) =><CustomMarker item={{
+                ms_latitude: e.ms_latitude,
+                ms_longitude: e.ms_longitude,
+            }} />)
+            }
         </GoogleMap>
     );
 }
