@@ -60,9 +60,7 @@ export default function AboutInfoCamp(props) {
                     res.data?.data.map((item) => {
                         item?.locations?.map((el) => listCourse.push(el));
                     });
-                    // console.log(listCourse, 'listCourse');
 
-                    // console.log(listSite, 'listSite');
                     if (listCourse && listSite) {
                         // console.log(listCourse, listSite, 'pre-filter');
                         const filterList = [];

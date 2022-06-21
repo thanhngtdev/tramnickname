@@ -11,6 +11,7 @@ export const APIConfig = {
     URL_GET_LIST_SITE: 'site/list-site',
     GET_DETAIL_SITE: 'site/detail-site',
     GET_SITE_HAS_CAMP: 'site/list-site-has-camp',
+    GET_SITE_HAS_CAMP2: 'list-company-has-camp',
     URL_BOOK_TRAINING: 'site/book-training',
     URL_SEARCH_NEARBY: 'site/search-nearby',
     URL_FIND_NEARBY: 'site/near-academy',
