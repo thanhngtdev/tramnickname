@@ -23,20 +23,21 @@ BookTrialTraining2.propTypes = {
 const GENDER = ['Female', 'Male', 'Unspecified'];
 
 function BookTrialTraining2(props) {
-    // console.log(props, 'props');
+    console.log(props, 'props');
+    console.log(global.bookTraining,'global');
     const [gender, setGender] = useState(
         global.bookTraining && global.bookTraining.gender
             ? global.bookTraining.gender
-            : 0,
+            : 1,
     );
     const [firstName, setFirstName] = useState(
-        global.bookTraining && global.bookTraining.child_first_name
-            ? global.bookTraining.child_first_name
+        global.bookTraining && global.bookTraining.parent_first_name
+            ? global.bookTraining.parent_first_name
             : '',
     );
     const [lastName, setLastName] = useState(
-        global.bookTraining && global.bookTraining.child_last_name
-            ? global.bookTraining.child_last_name
+        global.bookTraining && global.bookTraining.parent_last_name
+            ? global.bookTraining.parent_last_name
             : '',
     );
     const [medicalInfo, setMedicalInfo] = useState(
@@ -50,8 +51,8 @@ function BookTrialTraining2(props) {
             : '',
     );
     const [phone, setPhone] = useState(
-        global.bookTraining && global.bookTraining.phone_emergency
-            ? global.bookTraining.phone_emergency
+        global.bookTraining && global.bookTraining.phone_number
+            ? global.bookTraining.phone_number
             : '',
     );
     const [password, setPassword] = useState('');
