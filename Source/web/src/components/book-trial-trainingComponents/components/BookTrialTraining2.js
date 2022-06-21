@@ -23,8 +23,8 @@ BookTrialTraining2.propTypes = {
 const GENDER = ['Female', 'Male', 'Unspecified'];
 
 function BookTrialTraining2(props) {
-    console.log(props, 'props');
-    console.log(global.bookTraining,'global');
+    // console.log(props, 'props');
+    // console.log(global.bookTraining,'global');
     const [gender, setGender] = useState(
         global.bookTraining && global.bookTraining.gender
             ? global.bookTraining.gender
