@@ -6,9 +6,12 @@ import CustomMarker from 'src/components/include/CustomMarker';
 function ContactMap(props) {
     const { academy } = props;
 
+    const latitude = Number(academy.ms_addresses.map((e) => e.ms_latitude))
+    const longitude = Number(academy.ms_addresses.map((e) => e.ms_longitude))
+
     const [defaultCenter, setdefaultCenter] = useState({
-        lat: Number(academy.ms_latitude),
-        lng: Number(academy.ms_longitude),
+        lat: latitude,
+        lng: longitude,
     });
 
     const [defaultMarker, setdefaultMarker] = useState({
@@ -17,12 +20,12 @@ function ContactMap(props) {
     });
     useEffect(() => {
         setdefaultCenter({
-            lat: Number(academy.ms_latitude) + 0.13,
-            lng: Number(academy.ms_longitude),
+            lat: latitude + 0.13,
+            lng: longitude,
         });
         setdefaultMarker({
-            ms_latitude: Number(academy.ms_latitude),
-            ms_longitude: Number(academy.ms_longitude),
+            ms_latitude: latitude,
+            ms_longitude: longitude,
         });
     }, [academy]);
 
