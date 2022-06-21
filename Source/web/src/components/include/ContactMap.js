@@ -30,13 +30,21 @@ function ContactMap(props) {
                 <strong style={{ fontSize: 24, color: '#5E5E5E' }}>
                     {props.footerConfig.map((item) => {
                         if (item.title === 'Phone')
-                            return <p key="phone">{item.des}</p>;
+                            return(
+                                <a key="phone"
+                                    href={`tel:${
+                                        item.des
+                                            ? item.des
+                                            : ''
+                                    }`}>
+                                    <p>{item.des}</p>
+                                </a>
+                            )
                     })}
                 </strong>
                 <h2>Address:</h2>
-                {props.footerConfig.map((item) => {
-                    if (item.title === 'Address')
-                        return <p key="address">{item.des}</p>;
+                {academy.ms_addresses.map((item) => {
+                        return <p key="address">{item.ms_address}</p>;
                 })}
 
                 <div style={{ marginTop: 40 }}>
