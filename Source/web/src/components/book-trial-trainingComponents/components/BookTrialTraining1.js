@@ -38,6 +38,7 @@ function BookTrialTraining1(props) {
     const [lstStartDate, setLstStartDate] = useState([]);
     const [companyId, setCompanyId] = useState(0);
     const [startDate, setStartDate] = useState('');
+    console.log('global:',global.bookTraining);
     const [email, setEmail] = useState(
         global.bookTraining ? global.bookTraining.email : '',
     );
@@ -395,7 +396,7 @@ function BookTrialTraining1(props) {
                     disabled={availableEmail}
                     options={{
                         mode: 'single',
-                        dateFormat: 'm/d/Y',
+                        dateFormat: 'd/m/Y',
                         allowInput: true,
                         enableTime: false,
                         maxDate: dayjs().format('MM/DD/YYYY'),
