@@ -7,7 +7,6 @@ import { PopupButton } from '@typeform/embed-react';
 const AboutInfoItem = (props) => {
     const { item, index, site, title } = props;
     const [courses,setCourses] = useState([])
-
     const renderBookingBtn = (index) => {
         if (props.site.ms_use_typeform === 1) {
             return (
@@ -100,14 +99,18 @@ const AboutInfoItem = (props) => {
   return (
     <div key={index}>
         {item.length > 0 && (
-            <div className="wSelect2">
+            <div className="wSelect2" style={{padding:0}}>
                 <textarea
                     id="address"
                     // disabled={true}
                     value={title}
                     type="text"
                     className="outputText"
-                   
+                    style={{textAlign: 'left',
+                        backgroundColor: '#e7e7e7',
+                        padding:'20px',
+                        borderRadius: 'unset',}}
+
                 />
             </div>
         )}

@@ -18,12 +18,12 @@ BookTrialCamp2.propTypes = {
 };
 
 function BookTrialCamp2(props) {
-    const [gender, setGender] = useState(0);
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [gender, setGender] = useState(1);
+    const [firstName, setFirstName] = useState(props.dataStep1 && props.dataStep1.parent_first_name ? props.dataStep1.parent_first_name : '' );
+    const [lastName, setLastName] = useState(props.dataStep1 && props.dataStep1.parent_last_name ? props.dataStep1.parent_last_name : '');
     const [medicalInfo, setMedicalInfo] = useState('');
     const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
+    const [phone, setPhone] = useState(props.dataStep1 && props.dataStep1.phone_number ? props.dataStep1.phone_number : '');
     const [password, setPassword] = useState('');
     const [showPass, setShowPass] = useState(false);
     const [verifyPass1, setVerifyPass1] = useState(false);
@@ -35,6 +35,8 @@ function BookTrialCamp2(props) {
     const [nameError, setNameError] = useState('');
     const [phoneError, setPhoneError] = useState('');
     const [passError, setPassError] = useState('');
+
+    // console.log('propsCamp2',props);
 
     useEffect(() => {
         if (props.showLogin) {
@@ -99,6 +101,7 @@ function BookTrialCamp2(props) {
                         type="text"
                         className="inputText"
                         placeholder="Example name"
+                        value={firstName}
                         onChange={(event) => setFirstName(event.target.value)}
                     />
                     <label className="input-error">{firstNameError}</label>
@@ -109,6 +112,7 @@ function BookTrialCamp2(props) {
                         type="text"
                         className="inputText"
                         placeholder="Example name"
+                        value={lastName}
                         onChange={(event) => setLastName(event.target.value)}
                     />
                     <label className="input-error">{lastNameError}</label>
