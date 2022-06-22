@@ -26,6 +26,8 @@ import {
 } from 'src/redux/actions/actionTypes';
 import WeeklyTrainingItem from './WeeklyTrainingItem';
 import useGetWidth from 'src/hooks/useGetWidth';
+import CustomMarker from 'src/components/include/CustomMarker';
+
 
 const MapWithAMarker = withScriptjs(
     withGoogleMap((props) => {
@@ -36,14 +38,22 @@ const MapWithAMarker = withScriptjs(
                     lat: parseFloat(props?.highlight?.ms_latitude) || 51,
                     lng: parseFloat(props?.highlight?.ms_longitude) || 51,
                 }}>
-                <Marker
+                {
+                    !isEmpty(props) && props?.highlight?.ms_addresses?.map((e,index) =><Marker key={index} 
+                                                                                        icon={'/static-file/images/marker.png'}
+                                                                                        position={{
+                                                                                            lat:parseFloat(e.ms_latitude),
+                                                                                            lng:parseFloat(e.ms_longitude)
+                                                                                        }}/>)
+                }
+                {/* <Marker
                     // key={index}
                     icon={'/static-file/images/marker.png'}
                     position={{
                         lat: parseFloat(props?.highlight?.ms_latitude) || 51,
                         lng: parseFloat(props?.highlight?.ms_longitude) || 0,
                     }}
-                />
+                /> */}
             </GoogleMap>
         );
     }),
