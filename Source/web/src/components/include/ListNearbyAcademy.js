@@ -174,7 +174,8 @@ function ListNearbyAcademy(props) {
                 <div className="map-view">
                     <div className="main-info wrap-row">
                         <div className="wrap-address">
-                            <h3 style={{ marginTop: 0 }}>
+                            <h3 style={{ marginTop: 0,
+                                        fontSize:'23px' }}>
                                 {parse(
                                     Utils.checkSubname(
                                         lstAcademy[highlightAcademy],
@@ -183,6 +184,22 @@ function ListNearbyAcademy(props) {
                             </h3>
 
                             {!isMobile && renderAddress()}
+                        </div>
+                        <div className="service" style={{
+                            padding:0,
+                            width: '100%',
+                            marginTop:'3rem',
+                        }}>
+                            <div className="service-offered">
+                                <h3>Services offered:</h3>
+                                <ul>
+                                    <li>Weekly training</li>
+                                    <li>Holiday Camps</li>
+                                    <li>Birthday Parties</li>
+                                    <li>1-on-1 training</li>
+                                    <li>School Training</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div className="service">
@@ -226,7 +243,7 @@ function ListNearbyAcademy(props) {
                             highlight={lstAcademy[highlightAcademy]}
                         />
                     </div>
-                    <div className="service">
+                    {/* <div className="service">
                         <div className="service-offered">
                             <h3>Services offered:</h3>
                             <ul>
@@ -237,7 +254,7 @@ function ListNearbyAcademy(props) {
                                 <li>School Training</li>
                             </ul>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             )}
             {lstAcademy.length > 0 && (

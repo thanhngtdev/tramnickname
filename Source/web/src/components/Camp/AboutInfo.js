@@ -20,7 +20,7 @@ AboutInfo.propTypes = {
 
 export default function AboutInfo(props) {
     const { item } = props;
-
+    // console.log('propsAbout',props);
     //! State
     const siteReducer = useSelector((state) => state.siteReducer);
     const history = useRouter();

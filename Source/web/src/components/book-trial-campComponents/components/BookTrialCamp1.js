@@ -644,7 +644,7 @@ function BookTrialCamp1(props) {
                             value={date}
                             options={{
                                 mode: 'single',
-                                dateFormat: 'm/d/Y',
+                                dateFormat: 'd/m/Y',
                                 allowInput: true,
                                 enableTime: false,
                                 maxDate: dayjs().format('MM/DD/YYYY'),
