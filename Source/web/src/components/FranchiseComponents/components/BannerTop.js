@@ -94,13 +94,6 @@ function BannerTop(props) {
             }}>
             <div className="container banner">
                 <div className="right-arrow">
-                    <FontAwesomeIcon
-                        icon={faArrowRight}
-                        style={{
-                            color: '#EE7925',
-                            fontSize: '0.5rem',
-                        }}
-                    />
                 </div>
                 <div className="banner_left">
                     <h1>{parse(checkSubname(props.site))}</h1>
