@@ -30,7 +30,7 @@
 }
 
 .modal-content .wrap-row {
-    padding: 0 6rem;
+    padding: 0 5rem;
 }
 
 .modal-content .close {
@@ -228,7 +228,7 @@
 
 .modal-content .map-view .map {
     /* flex: 4; */
-    width: 50%;
+    width: 100%;
 }
 
 .modal-content .map-view .service {

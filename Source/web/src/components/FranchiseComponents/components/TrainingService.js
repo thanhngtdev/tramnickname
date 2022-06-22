@@ -90,7 +90,7 @@ function LDWeeklyTraining(props) {
             {parse(props?.config?.content || '')}
 
             <h4>Football training times:</h4>
-
+            {console.log('lstCourse:',lstCourse)}
             {lstCourse &&
                 Object.entries(lstCourse).map((item, index) => (
                     <TrainingServiceItem

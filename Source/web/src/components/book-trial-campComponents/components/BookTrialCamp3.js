@@ -123,7 +123,7 @@ function BookTrialCamp3(props) {
                                     <h3
                                         className="title"
                                         style={{ textAlign: 'center' }}>
-                                        The Saturday class is super popular.
+                                        The class you have selected is super popular.
                                         Please join our waiting list
                                     </h3>
                                     <div

@@ -1,14 +1,68 @@
+import React, { useState } from 'react';
 import { PopupButton } from '@typeform/embed-react';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import PathRoute from 'src/common/PathRoute';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import moment from 'moment';
 
 const TrainingServiceItem = (props) => {
     const { item, index, site, title } = props;
+
+    const [courses, setCourses] = useState([]);
     const dispatch = useDispatch();
     const history = useRouter();
+    // console.log('item', item);
+
+    useEffect(() => {
+
+        const dayOfWeek = [
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday',
+            'Sunday',
+        ];
+        let startOfWeek = moment().startOf('week');
+        let endOfWeek = moment().endOf('week');
+        let daysOfWeek = [];
+        let day = startOfWeek;
+        while (day <= endOfWeek) {
+            daysOfWeek.push(day.toDate());
+            day = day.clone().add(1, 'd');
+        }
+
+        const arrCourse = item
+            .map((el) => {
+                let indexDate = dayOfWeek.findIndex(
+                    (d) => d === el.day_of_week,
+                );
+                // console.log('sdkjadha', indexDate);
+                let dateConverted = moment(daysOfWeek[indexDate]).add(
+                    moment.duration(el.course_day_time_start),
+                );
+                // console.log(
+                //     'dateConverted',
+                //     dateConverted.format('DD/MM/YYYY HH:mm'),
+                // );
+                return {
+                    ...el,
+                    dateConverted,
+                };
+            })
+            .sort(
+                (i1, i2) =>
+                    moment(i1.dateConverted).unix() -
+                    moment(i2.dateConverted).unix(),
+            );
+
+            setCourses(arrCourse)
+        
+    }, []);
 
     const renderBookingBtn = (index) => {
         if (props.site.ms_use_typeform === 1) {
@@ -56,7 +110,7 @@ const TrainingServiceItem = (props) => {
     return (
         <>
             <h4>{title}</h4>
-            {item.map((el, idx) => (
+            {courses.map((el, idx) => (
                 <div
                     key={idx}
                     style={{
@@ -74,11 +128,11 @@ const TrainingServiceItem = (props) => {
                         <p>
                             {dayjs(
                                 '2021-03-03T' + el.course_day_time_start,
-                            ).format('HH:mma')}
+                            ).format('h:mma')}
                             -
                             {dayjs(
                                 '2021-03-03T' + el.course_day_time_end,
-                            ).format('HH:mma')}
+                            ).format('h:mma')}
                         </p>
                         <p>
                             {el.min_age}-{el.max_age}{' '}

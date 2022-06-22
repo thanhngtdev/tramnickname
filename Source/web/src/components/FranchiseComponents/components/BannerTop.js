@@ -138,6 +138,7 @@ function BannerTop(props) {
                                 to experience our training
                             </p>
                         </div>
+                        {console.log('propsPhone:',props.site)}
                         <div className="box_contact">
                             <Button
                                 style={style}
