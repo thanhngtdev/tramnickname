@@ -7,7 +7,6 @@ import { PopupButton } from '@typeform/embed-react';
 const AboutInfoItem = (props) => {
     const { item, index, site, title } = props;
     const [courses,setCourses] = useState([])
-    // console.log('isMobile:',props);
     const renderBookingBtn = (index) => {
         if (props.site.ms_use_typeform === 1) {
             return (
@@ -111,6 +110,7 @@ const AboutInfoItem = (props) => {
                         backgroundColor: '#e7e7e7',
                         padding:'20px',
                         borderRadius: 'unset',}}
+
                 />
             </div>
         )}
