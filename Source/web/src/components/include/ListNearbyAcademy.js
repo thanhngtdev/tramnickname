@@ -185,22 +185,43 @@ function ListNearbyAcademy(props) {
 
                             {!isMobile && renderAddress()}
                         </div>
-                        <div className="service" style={{
-                            padding:0,
-                            width: '100%',
-                            marginTop:'3rem',
-                        }}>
-                            <div className="service-offered">
-                                <h3>Services offered:</h3>
-                                <ul>
-                                    <li>Weekly training</li>
-                                    <li>Holiday Camps</li>
-                                    <li>Birthday Parties</li>
-                                    <li>1-on-1 training</li>
-                                    <li>School Training</li>
-                                </ul>
+                        {lstAcademy.length > 0 && (<div>
+                            <div className="service" style={{
+                                padding:0,
+                                width: '100%',
+                                marginTop:'3rem',
+                                marginBottom:'3rem'
+                                }}>
+                                <div className="service-offered">
+                                    <h3>Services offered:</h3>
+                                    <ul>
+                                        <li>Weekly training</li>
+                                        <li>Holiday Camps</li>
+                                        <li>Birthday Parties</li>
+                                        <li>1-on-1 training</li>
+                                        <li>School Training</li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
+                            <div className="map">
+                            <MapWithAMarker
+                                googleMapURL={Constants.GOOGLE_MAP_URL}
+                                loadingElement={<div style={{ height: `100%` }} />}
+                                containerElement={
+                                    <div style={{ height: `100%` }} />
+                                }
+                                mapElement={
+                                    <div
+                                        style={{
+                                            height: `100%`,
+                                            minHeight: 200,
+                                        }}
+                                    />
+                                }
+                                highlight={lstAcademy[highlightAcademy]}
+                            />
+                            </div>
+                        </div>)}
                     </div>
                     <div className="service">
                         <div className="weekly-training">
@@ -223,7 +244,7 @@ function ListNearbyAcademy(props) {
                 </div>
             )}
 
-            {lstAcademy.length > 0 && (
+            {/* {lstAcademy.length > 0 && (
                 <div className="map-view">
                     <div className="map">
                         <MapWithAMarker
@@ -243,7 +264,7 @@ function ListNearbyAcademy(props) {
                             highlight={lstAcademy[highlightAcademy]}
                         />
                     </div>
-                    {/* <div className="service">
+                    <div className="service">
                         <div className="service-offered">
                             <h3>Services offered:</h3>
                             <ul>
@@ -254,9 +275,9 @@ function ListNearbyAcademy(props) {
                                 <li>School Training</li>
                             </ul>
                         </div>
-                    </div> */}
+                    </div>
                 </div>
-            )}
+            )} */}
             {lstAcademy.length > 0 && (
                 <div className="list-academy">
                     <h2>

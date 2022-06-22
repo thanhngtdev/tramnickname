@@ -107,7 +107,7 @@ const AboutInfoItem = (props) => {
                     type="text"
                     className="outputText"
                     style={{textAlign: 'left',
-                        backgroundColor: '#e7e7e7',
+                        backgroundColor: '#ccc',
                         padding:'20px',
                         borderRadius: 'unset',}}
 
@@ -131,7 +131,7 @@ const AboutInfoItem = (props) => {
                             display: 'flex',
                             justifyContent:
                                 'space-between',
-                            padding: 10,
+                            padding: '10px 28px',
                         }}>
                         <p>{el?.day_of_week}</p>
                         <p>
@@ -155,7 +155,7 @@ const AboutInfoItem = (props) => {
                     <div
                         style={{
                             display: 'flex',
-                            padding: 10,
+                            padding: '10px 28px',
                         }}>
                         <p
                             style={{
