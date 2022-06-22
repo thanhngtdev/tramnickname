@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import Flatpickr from 'react-flatpickr';
 import PhoneInput from 'react-phone-number-input';
@@ -29,7 +29,9 @@ function BookTrialCamp1(props) {
     const { emailData } = siteReducer;
     const dispatch = useDispatch();
     const [lstSite, setLstSite] = useState(siteReducer.lstSiteCamp);
+
     const [siteSelected, setSiteSelected] = useState({});
+
     const [lstHoliday, setLstHoliday] = useState([]);
     const [courseSelected, setCourseSelected] = useState(null);
 
@@ -75,6 +77,7 @@ function BookTrialCamp1(props) {
     useEffect(() => {
         if (siteSelected?.pa_companyId) {
             setCompanyId(siteSelected?.pa_companyId);
+
             dispatch(
                 getListCourse({
                     company_id: siteSelected.pa_companyId,
@@ -155,7 +158,28 @@ function BookTrialCamp1(props) {
 
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_SITE_HAS_CAMP_SUCCESS) {
-                setLstSite(siteReducer.lstSiteCamp);
+                let locations = [];
+
+                siteReducer.data.forEach((element) => {
+                    locations = [
+                        ...locations,
+                        ...element.locations.map((elm) => ({
+                            value: elm?.location_id,
+                            label: elm?.location_name,
+                            companyId: parseInt(element.company_id),
+                        })),
+                    ];
+                }),
+                    setLstSite(locations);
+
+                // dispatch(
+                //     getListCourse({
+                //         company_id: siteSelected.pa_companyId,
+                //         location_id: locationId,
+                //         course_type: 'course',
+                //     }),
+                // );
+
                 if (global.bookCamp) {
                     let _currentSite = siteReducer.data.lstSite.filter(
                         function (site) {
@@ -167,8 +191,8 @@ function BookTrialCamp1(props) {
                 }
             }
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
-                // console.log(siteReducer.data);
-                setLstHoliday(siteReducer.data);
+                if (siteReducer.courseType === 'event')
+                    setLstHoliday(siteReducer.dataEvent);
             }
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_FAILED) {
                 // console.log(siteReducer.data);
@@ -177,7 +201,6 @@ function BookTrialCamp1(props) {
                 );
             }
             if (siteReducer.type === siteActionType.EVENT_DATE_SUCCESS) {
-                console.log(siteReducer.data, 'redux');
                 setEventDate(siteReducer.data);
                 setDateSelect(siteReducer.data.map(() => false));
 
@@ -348,23 +371,27 @@ function BookTrialCamp1(props) {
                     Log in here.
                 </a>
             </p>
-            {console.log(lstHoliday, courseSelected, siteSelected, 'ss')}
+
             <div className="wSelect2">
                 <label>Select academy</label>
+
                 <Select
-                    value={siteSelected}
+                    defaultValue="Sss"
+                    // value={siteSelected}
                     options={lstSite}
                     isSearchable={false}
                     isMulti={false}
-                    getOptionLabel={(option) => {
-                        return Utils.renderItem(option);
-                    }}
-                    getOptionValue={(option) => option.ms_id}
                     styles={CommonStyle.select2}
                     onChange={(option) => {
-                        setLstHoliday([]);
                         setCourseSelected(null);
                         setSiteSelected(option);
+                        dispatch({
+                            type: siteActionType.GET_LIST_COURSE,
+                            company_id: option.companyId,
+                            location_id: option.value,
+                            course_type: 'event',
+                        });
+
                         // setCompanyId(option.pa_companyId);
                         // dispatch({
                         //     type: siteActionType.GET_LIST_COURSE,
@@ -378,6 +405,7 @@ function BookTrialCamp1(props) {
             </div>
             <div className="wSelect2">
                 <label>Choose holiday camp</label>
+
                 <Select
                     value={courseSelected}
                     options={lstHoliday}
@@ -397,13 +425,14 @@ function BookTrialCamp1(props) {
                 />
                 <label className="input-error">{courseError}</label>
             </div>
+
             {courseSelected && (
                 <div style={{ backgroundColor: 'white', padding: '2rem' }}>
                     {eventDate.length > 0 ? (
                         <Fragment>
                             <div className="wSelect2">
-                                <label>LOCATION: </label>
                                 <br />
+
                                 <p>{siteSelected.ms_address}</p>
                             </div>
                             <Fragment>

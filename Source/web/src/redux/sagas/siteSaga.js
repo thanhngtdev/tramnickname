@@ -20,7 +20,8 @@ function* getListSite() {
 }
 
 function* getListSiteHasCamp() {
-    const response = yield API.requestGetAPI(APIConfig.GET_SITE_HAS_CAMP);
+    const response = yield API.getParentAPI3(APIConfig.GET_SITE_HAS_CAMP2);
+
     if (response && response.status === 200) {
         yield put({
             type: siteActionType.GET_SITE_HAS_CAMP_SUCCESS,
