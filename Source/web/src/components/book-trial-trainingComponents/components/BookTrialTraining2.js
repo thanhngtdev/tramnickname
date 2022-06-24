@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import PhoneInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
+import Captcha from 'src/components/Captcha';
 // import EyeIcon from './EyeIcon';
 // import Utils from "src/common/Utils";
 // import 'react-phone-number-input/style.css';
@@ -66,7 +67,7 @@ function BookTrialTraining2(props) {
     const [nameError, setNameError] = useState('');
     const [phoneError, setPhoneError] = useState('');
     const [passError, setPassError] = useState('');
-    // console.log(props.dataStep1);
+    const [captcha, setCaptcha] = useState('');
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -94,6 +95,13 @@ function BookTrialTraining2(props) {
             _validate = false;
             setPassError('Please choose your password');
         } else setPassError('');
+
+        let response = window.grecaptcha.getResponse();
+        if (response.length === 0) {
+            _validate = false;
+            setCaptcha('Check captcha.');
+        }
+
         return _validate;
     }
     return (
@@ -303,6 +311,10 @@ function BookTrialTraining2(props) {
                     </a>
                 </div>
             )}
+            <div className="wSelect2">
+                <Captcha />
+                <label className="input-error">{captcha}</label>
+            </div>
             <BorderButton
                 id="btn-submit-step"
                 title={`Book a ${
