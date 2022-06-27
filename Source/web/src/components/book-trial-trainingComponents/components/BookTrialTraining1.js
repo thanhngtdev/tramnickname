@@ -38,7 +38,6 @@ function BookTrialTraining1(props) {
     const [lstStartDate, setLstStartDate] = useState([]);
     const [companyId, setCompanyId] = useState(0);
     const [startDate, setStartDate] = useState('');
-    console.log('global:',global.bookTraining);
     const [email, setEmail] = useState(
         global.bookTraining ? global.bookTraining.email : '',
     );
@@ -66,6 +65,17 @@ function BookTrialTraining1(props) {
     );
     // const [siteSelected, setSiteSelected] = useState({});
     const [siteSelected, setSiteSelected] = useState({});
+    
+    const [widthScreen,setWidthScreen ] = useState();
+    useEffect(() => {
+        const handleResize = () => {
+            setWidthScreen(window.innerWidth);
+        }
+        window.addEventListener('resize',handleResize);
+        handleResize();
+        return () => window.removeEventListener('resize',handleResize)
+    },[])
+
 
     useEffect(() => {
         if (props.defaultAcademyss) {
@@ -485,7 +495,8 @@ function BookTrialTraining1(props) {
                                                             item.course_id ===
                                                             courseSelected.course_id
                                                         }>
-                                                        {item.day_of_week}
+                                                        {widthScreen>465 ? item.day_of_week : item.day_of_week.slice(0,2)}
+                                                        
                                                     </Radiobox>
                                                     <label>
                                                         {dayjs(
@@ -500,13 +511,15 @@ function BookTrialTraining1(props) {
                                                     </label>
                                                     <span>
                                                         {item.min_age}-
-                                                        {item.max_age} year olds
+                                                        {item.max_age} {widthScreen>465 ? 'year olds':'y.o.'}
                                                     </span>
                                                 </div>
                                             ))}
                                     </div>
+                                    
                                 ),
                             )}
+                            
                             {siteSelected.ms_trial === 1 && (
                                 <>
                                     <hr />
