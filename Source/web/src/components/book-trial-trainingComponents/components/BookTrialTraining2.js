@@ -100,6 +100,8 @@ function BookTrialTraining2(props) {
         if (response.length === 0) {
             _validate = false;
             setCaptcha('Check captcha.');
+        } else {
+            setCaptcha('')
         }
 
         return _validate;
@@ -311,7 +313,7 @@ function BookTrialTraining2(props) {
                     </a>
                 </div>
             )}
-            <div className="wSelect2">
+            <div className="wSelect2 wSelect2-captcha">
                 <Captcha />
                 <label className="input-error">{captcha}</label>
             </div>
