@@ -190,6 +190,7 @@
     text-transform: uppercase;
     font-weight: 500;
     font-size: 1rem;
+    
 }
 
 .modal-content .wrap-contact {
@@ -276,16 +277,22 @@
 }
 
 .modal-content .map-view .book-trial {
+    margin: 33px 7px;
     display: flex;
     justify-content: center;
-    align-items: center;
     padding: 0;
-    background-color: #ee7925;
-    color: white;
+    background-color: #ff7531;
+    color: white; 
     text-transform: uppercase;
     cursor: pointer;
-    margin: 0.5rem;
+    align-items:center;
+    font-weight: 500;
+    border: 1px solid #ff7531;
+    border-radius: 6px;
 }
+
+
+
 .modal-content .map-view .book-trial > label{
     font-size: 15px;
     margin: 0;
