@@ -235,7 +235,7 @@
     /* flex: 5; */
     background: white;
     width: 50%;
-    padding: 2rem 0 2rem 2rem;
+    padding: 2rem 2rem 2rem 2rem;
 }
 
 .modal-content .map-view .service h7 {
@@ -284,7 +284,12 @@
     color: white;
     text-transform: uppercase;
     cursor: pointer;
+    margin: 0.5rem;
 }
+.modal-content .map-view .book-trial > label{
+    font-size: 15px;
+    margin: 0;
+} 
 
 .modal-content .map-view .service .service-offered ul {
     list-style: none;

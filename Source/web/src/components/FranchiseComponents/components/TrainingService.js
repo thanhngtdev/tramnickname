@@ -34,7 +34,6 @@ function LDWeeklyTraining(props) {
 
     // const [listCourse,setListCourse] = useState([]);
 
-    // console.log('trainingService',props);
 
     useEffect(() => {
         if (!isEmpty(props.site)) {
