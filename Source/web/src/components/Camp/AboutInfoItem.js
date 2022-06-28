@@ -6,14 +6,18 @@ import { useDispatch } from 'react-redux';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import PathRoute from 'src/common/PathRoute';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 
 const AboutInfoItem = (props) => {
     const { item, index, site, title } = props;
+
+    const { defaultTypeform } = useSelector((state) => state.homeReducer);
+
     const [courses, setCourses] = useState([]);
     const dispatch = useDispatch();
     const history = useRouter();
     const renderBookingBtn = (index) => {
-        if (props.site.ms_use_typeform === 1) {
+        if (defaultTypeform.ms_use_typeform === 1) {
             return (
                 <PopupButton
                     id={props.site.ms_typeform_id}
