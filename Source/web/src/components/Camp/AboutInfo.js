@@ -138,8 +138,6 @@ export default function AboutInfo(props) {
         // getListCourse();
     };
 
-
-
     //! Render
     return (
         <div className="about-info">
@@ -192,17 +190,16 @@ export default function AboutInfo(props) {
                     </div>
                 )}
                 {lstCourse &&
-                     Object.entries(lstCourse).map((item, index) => (
+                    Object.entries(lstCourse).map((item, index) => (
                         <AboutInfoItem
-                        title={item[0]}
-                        item={item[1]}
-                        key={index}
-                        index={index}
-                        site={props.site}/>
-                     ))
+                            title={item[0]}
+                            item={item[1]}
+                            key={index}
+                            index={index}
+                            site={props.site}
+                        />
+                    ))}
 
-                }
-                
                 {/* {lstCourse.length > 0 && (
                     <div className="wSelect2">
                         {lstCourse.map((item, index) => (

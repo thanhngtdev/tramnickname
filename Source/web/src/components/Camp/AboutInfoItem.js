@@ -1,12 +1,17 @@
-
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import dayjs from 'dayjs';
 import { PopupButton } from '@typeform/embed-react';
+import { useDispatch } from 'react-redux';
+import { siteActionType } from 'src/redux/actions/actionTypes';
+import PathRoute from 'src/common/PathRoute';
+import { useRouter } from 'next/router';
 
 const AboutInfoItem = (props) => {
     const { item, index, site, title } = props;
-    const [courses,setCourses] = useState([])
+    const [courses, setCourses] = useState([]);
+    const dispatch = useDispatch();
+    const history = useRouter();
     const renderBookingBtn = (index) => {
         if (props.site.ms_use_typeform === 1) {
             return (
@@ -49,7 +54,6 @@ const AboutInfoItem = (props) => {
     };
 
     useEffect(() => {
-
         const dayOfWeek = [
             'Monday',
             'Tuesday',
@@ -77,10 +81,7 @@ const AboutInfoItem = (props) => {
                 let dateConverted = moment(daysOfWeek[indexDate]).add(
                     moment.duration(el.course_day_time_start),
                 );
-                console.log(
-                    'dateConverted',
-                    dateConverted.format('DD/MM/YYYY HH:mm'),
-                );
+
                 return {
                     ...el,
                     dateConverted,
@@ -92,86 +93,76 @@ const AboutInfoItem = (props) => {
                     moment(i2.dateConverted).unix(),
             );
 
-            setCourses(arrCourse)
-        
+        setCourses(arrCourse);
     }, []);
 
-  return (
-    <div key={index}>
-        {item.length > 0 && (
-            <div className="wSelect2" style={{padding:0}}>
-                <textarea
-                    id="address"
-                    // disabled={true}
-                    value={title}
-                    type="text"
-                    className="outputText"
-                    style={{textAlign: 'left',
-                        backgroundColor: '#ccc',
-                        padding:'20px',
-                        borderRadius: 'unset',}}
-
-                />
-            </div>
-        )}
-        <div className="wSelect2">
-
-            {courses.map((el, idx) => (
-                <div
-                    key={idx}
-                    style={{
-                        backgroundColor: `${
-                            idx % 2 === 0
-                                ? '#F7F8F7'
-                                : 'white'
-                        }`,
-                    }}>
-                    <div
+    return (
+        <div key={index}>
+            {item.length > 0 && (
+                <div className="wSelect2" style={{ padding: 0 }}>
+                    <textarea
+                        id="address"
+                        // disabled={true}
+                        value={title}
+                        type="text"
+                        className="outputText"
                         style={{
-                            display: 'flex',
-                            justifyContent:
-                                'space-between',
-                            padding: '10px 28px',
-                        }}>
-                        <p>{el?.day_of_week}</p>
-                        <p>
-                            {dayjs(
-                                '2021-03-03T' +
-                                    el.course_day_time_start,
-                            ).format('h:mma')}
-                            -
-                            {dayjs(
-                                '2021-03-03T' +
-                                    el.course_day_time_end,
-                            ).format('h:mma')}
-                        </p>
-                        <p>
-                            {el.min_age}-{el.max_age}{' '}
-                            {props.isMobile
-                                ? 'y.o.'
-                                : 'year olds'}
-                        </p>
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            padding: '10px 28px',
-                        }}>
-                        <p
-                            style={{
-                                marginRight: 35,
-                            }}>{`£${
-                            el.course_price || 0
-                        } per ${
-                            el.course_length || 0
-                        } sessions`}</p>
-                        {renderBookingBtn(idx)}
-                    </div>
+                            textAlign: 'left',
+                            backgroundColor: '#ccc',
+                            padding: '20px',
+                            borderRadius: 'unset',
+                        }}
+                    />
                 </div>
-            ))}
+            )}
+            <div className="wSelect2">
+                {courses.map((el, idx) => (
+                    <div
+                        key={idx}
+                        style={{
+                            backgroundColor: `${
+                                idx % 2 === 0 ? '#F7F8F7' : 'white'
+                            }`,
+                        }}>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                padding: '10px 28px',
+                            }}>
+                            <p>{el?.day_of_week}</p>
+                            <p>
+                                {dayjs(
+                                    '2021-03-03T' + el.course_day_time_start,
+                                ).format('h:mma')}
+                                -
+                                {dayjs(
+                                    '2021-03-03T' + el.course_day_time_end,
+                                ).format('h:mma')}
+                            </p>
+                            <p>
+                                {el.min_age}-{el.max_age}{' '}
+                                {props.isMobile ? 'y.o.' : 'year olds'}
+                            </p>
+                        </div>
+                        <div
+                            style={{
+                                display: 'flex',
+                                padding: '10px 28px',
+                            }}>
+                            <p
+                                style={{
+                                    marginRight: 35,
+                                }}>{`£${el.course_price || 0} per ${
+                                el.course_length || 0
+                            } sessions`}</p>
+                            {renderBookingBtn(idx)}
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
-    </div>
-  )
-}
+    );
+};
 
-export default AboutInfoItem
+export default AboutInfoItem;
