@@ -81,10 +81,7 @@ const AboutInfoItem = (props) => {
                 let dateConverted = moment(daysOfWeek[indexDate]).add(
                     moment.duration(el.course_day_time_start),
                 );
-                console.log(
-                    'dateConverted',
-                    dateConverted.format('DD/MM/YYYY HH:mm'),
-                );
+
                 return {
                     ...el,
                     dateConverted,
