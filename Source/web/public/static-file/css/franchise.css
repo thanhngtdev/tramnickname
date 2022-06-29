@@ -72,6 +72,9 @@
     flex-direction: column;
     justify-content: space-around;
 }
+.box_contact.isMobile > button{
+    margin-top: 1rem;
+}
 
 .franchise-review {
     width: 100%;
@@ -292,6 +295,36 @@
     color: #1a1919;
     padding-bottom: 2rem;
 }
+
+.service-group.borderLine{
+    border-top: 2px solid #EE7925;
+}
+.service-group.borderLine:last-child{
+    border-bottom: 2px solid #EE7925;
+}
+.service-mobile .service-group .textAlign{
+    text-align: center;
+}
+.service-mobile .service-group .textAlign>img{
+    width: 48px;
+}
+.service-mobile .service-group .textAlign>span{
+    font-size: 32px;
+}
+.service-mobile .service-group .service-group-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.service-mobile .service-group .service-group-title >img{
+    width: 64px!important;
+}
+.service-mobile .service-group .service-group-title .service-group-title-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .service-mobile .service-group img {
     margin-right: 1.5rem;
 }
@@ -528,6 +561,11 @@
         margin-top: 100px;
     }
 }
+@media only screen and (max-width:402px) {
+    .academy-info{
+        margin-top: 370px!important;
+    }
+}
 @media only screen and (max-width: 768px) and (min-width: 319px) {
     .banner-franchise .banner-top .box-text {
         margin-top: 130px;
@@ -539,7 +577,7 @@
     }
 
     .academy-info {
-        margin-top: 220px;
+        margin-top: 250px;
         display: flow-root;
         /* margin-bottom: 200px; */
     }

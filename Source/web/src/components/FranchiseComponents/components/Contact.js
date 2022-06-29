@@ -5,6 +5,7 @@ import Select from 'react-select';
 import PathRoute from 'src/common/PathRoute';
 import { CommonStyle } from 'src/common/Styles';
 import siteService from 'src/services/siteService';
+import useGetWidth from 'src/hooks/useGetWidth';
 
 export default (props) => {
     const dispatch = useDispatch();
@@ -14,6 +15,8 @@ export default (props) => {
     let alias = franchise;
     let siteName = '';
     let options = [];
+    const isMobile = useGetWidth() <= 768;
+
 
     if (props.site.ms_alias) siteName = props.site.ms_name;
     else if (props.site && props.site.sub_page) {
@@ -55,6 +58,7 @@ export default (props) => {
     return (
         <div className="container">
             <div className="academy-info">
+                {!isMobile &&
                 <div className="group-info">
                     <label className="group-name">Address</label>
                     <div className="wrap-contact">
@@ -72,7 +76,7 @@ export default (props) => {
                             </p>
                         )}
                     </div>
-                </div>
+                </div>}
                 <div className="group-info">
                     <label className="group-name">Contact</label>
                     <div style={{ paddingTop: '6px' }}>

@@ -7,10 +7,12 @@ import { useDispatch } from 'react-redux';
 import PathRoute from 'src/common/PathRoute';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import moment from 'moment';
+import useGetWidth from 'src/hooks/useGetWidth';
 
 const TrainingServiceItem = (props) => {
     const { item, index, site, title } = props;
-
+    const isMobile = useGetWidth() <= 768;
+    
     const [courses, setCourses] = useState([]);
     const dispatch = useDispatch();
     const history = useRouter();
@@ -108,7 +110,7 @@ const TrainingServiceItem = (props) => {
     };
 
     return (
-        <>
+        <>{(!isMobile || props.isHeader) && <>
             <h4>{title}</h4>
             {courses.map((el, idx) => (
                 <div
@@ -151,6 +153,9 @@ const TrainingServiceItem = (props) => {
                     </div>
                 </div>
             ))}
+        
+            </>}
+            
         </>
     );
 };

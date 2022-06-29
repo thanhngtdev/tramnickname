@@ -89,9 +89,6 @@ export default function AboutUs(props) {
     const [des, setDes] = useState(props.data.cfg_des);
     const isMobile = useGetWidth() <= 768;
 
-    // console.log(isMobile, 'isMobiee');
-
-    // console.log(props, 'props');
     //
     useTruspilot();
 
@@ -174,6 +171,7 @@ export default function AboutUs(props) {
                                 )}
                                 // height="1000px"
                             />
+                            {console.log('sdads',props.data)}
                             {props.data.cfg_content &&
                                 props.data.cfg_content.includes(
                                     'youtube.com',
