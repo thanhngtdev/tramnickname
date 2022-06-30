@@ -407,50 +407,26 @@ function TrainingService(props) {
                                     src={Utils.getThumb(list[0].icon)}
                                     style={{ width: '37px' }}
                                 />
-                                {props.isHeader ? (
-                                    <span>{list[0].title}</span>
-                                ) : (
-                                    <div className="service-group-title-text">
-                                        <span
-                                            style={{
-                                                fontWeight: '500',
-                                                color: '#EE7925',
-                                            }}>
-                                            {list[0].title}
-                                        </span>
-                                        <div
-                                            style={{
-                                                display: 'flex',
-                                                fontSize: '18px',
-                                                fontWeight: '300',
-                                                marginTop: '.5rem',
-                                            }}>
-                                            <div style={{ width: '92px' }}>
-                                                {!isOpenText.isWeeklyTraining
-                                                    ? 'Learn more'
-                                                    : 'Close'}
-                                            </div>
-                                            <div
-                                                style={{
-                                                    marginLeft: '1rem',
-                                                    cursor: 'pointer',
-                                                    transition:
-                                                        'all .3s linear',
-                                                }}
-                                                className={`${
-                                                    !isOpenText.isWeeklyTraining
-                                                        ? 'right-arrow'
-                                                        : 'right-arrow rotate180degIcon'
-                                                }`}
-                                                onClick={() =>
-                                                    setIsOpenText((prev) => {
-                                                        return {
-                                                            ...prev,
-                                                            isWeeklyTraining:
-                                                                !isOpenText.isWeeklyTraining,
-                                                        };
-                                                    })
-                                                }>
+                                {props.isHeader ? 
+                                <span >{list[0].title}</span> :
+                                <div className='service-group-title-text'>
+                                    <span style={{fontWeight:'500',
+                                                color:'#EE7925'}}>{list[0].title}</span>
+                                    <div style={{display:'flex',
+                                                fontSize:'18px',
+                                                fontWeight:'300',
+                                                marginTop:'.5rem',
+                                                cursor:'pointer'}}
+                                                onClick={() => setIsOpenText((prev) => {
+                                                    return{
+                                                        ...prev,
+                                                        isWeeklyTraining: !isOpenText.isWeeklyTraining
+                                                    }  
+                                                })}>
+                                        Learn more
+                                        <div style={{marginLeft:'1rem'}} 
+                                            className='right-arrow'
+                                            >
                                                 <FontAwesomeIcon
                                                     icon={faArrowRight}
                                                     style={{
@@ -461,7 +437,7 @@ function TrainingService(props) {
                                             </div>
                                         </div>
                                     </div>
-                                )}
+                                }
                             </div>
                             {isOpenText.isWeeklyTraining && (
                                 <>
@@ -498,67 +474,37 @@ function TrainingService(props) {
                                 </>
                             )}
                         </div>
-
-                        {!props.isHeader && (
-                            <div
-                                className={`${
-                                    !props.isHeader
-                                        ? 'service-group borderLine'
-                                        : 'service-group'
-                                }`}>
-                                <div className="service-group-title">
-                                    <img
-                                        loading="lazy"
-                                        alt=""
-                                        src={Utils.getThumb(list[1].icon)}
-                                        style={{ width: '37px' }}
-                                    />
-                                    {props.isHeader ? (
-                                        <span>{list[1].title}</span>
-                                    ) : (
-                                        <div className="service-group-title-text">
-                                            <span
-                                                style={{
-                                                    fontWeight: '500',
-                                                    color: '#EE7925',
-                                                }}>
-                                                {list[1].title}
-                                            </span>
-                                            <div
-                                                style={{
-                                                    display: 'flex',
-                                                    fontSize: '18px',
-                                                    fontWeight: '300',
-                                                    marginTop: '.5rem',
-                                                }}>
-                                                <div style={{ width: '92px' }}>
-                                                    {!isOpenText.isHolydayCamps
-                                                        ? 'Learn more'
-                                                        : 'Close'}
-                                                </div>
-                                                <div
-                                                    style={{
-                                                        marginLeft: '1rem',
-                                                        cursor: 'pointer',
-                                                        transition:
-                                                            'all .3s linear',
-                                                    }}
-                                                    className={`${
-                                                        !isOpenText.isHolydayCamps
-                                                            ? 'right-arrow'
-                                                            : 'right-arrow rotate180degIcon'
-                                                    }`}
-                                                    onClick={() =>
-                                                        setIsOpenText(
-                                                            (prev) => {
-                                                                return {
-                                                                    ...prev,
-                                                                    isHolydayCamps:
-                                                                        !isOpenText.isHolydayCamps,
-                                                                };
-                                                            },
-                                                        )
-                                                    }>
+                            
+                            
+                        {!props.isHeader &&
+                        <div className={`${!props.isHeader ? "service-group borderLine":"service-group"}`}>
+                            <div className='service-group-title'>
+                                <img
+                                    loading="lazy"
+                                    alt=""
+                                    src={Utils.getThumb(list[1].icon)}
+                                    style={{ width: '37px' }}
+                                />
+                                {props.isHeader ? 
+                                <span >{list[1].title}</span> :
+                                <div className='service-group-title-text'>
+                                    <span style={{fontWeight:'500',
+                                                color:'#EE7925'}}>{list[1].title}</span>
+                                    <div style={{display:'flex',
+                                                fontSize:'18px',
+                                                fontWeight:'300',
+                                                marginTop:'.5rem',
+                                                cursor:'pointer'}}
+                                                onClick={() => setIsOpenText((prev) => {
+                                                    return{
+                                                        ...prev,
+                                                        isHolydayCamps:!isOpenText.isHolydayCamps
+                                                    }
+                                                })}>
+                                        Learn more
+                                        <div style={{marginLeft:'1rem'}}
+                                            className='right-arrow'
+                                            >
                                                     <FontAwesomeIcon
                                                         icon={faArrowRight}
                                                         style={{
@@ -569,7 +515,7 @@ function TrainingService(props) {
                                                 </div>
                                             </div>
                                         </div>
-                                    )}
+                                    }
                                 </div>
                                 {isOpenText.isHolydayCamps && (
                                     <>
@@ -587,8 +533,8 @@ function TrainingService(props) {
                                     </>
                                 )}
                             </div>
-                        )}
-                        {!props.isHeader && (
+                        }
+                        {!props.isHeader &&
                             <div
                                 className={`${
                                     !props.isHeader
@@ -602,52 +548,131 @@ function TrainingService(props) {
                                         src={Utils.getThumb(list[2].icon)}
                                         style={{ width: '37px' }}
                                     />
-                                    {props.isHeader ? (
-                                        <span>{list[2].title}</span>
-                                    ) : (
-                                        <div className="service-group-title-text">
-                                            <span
+                                {props.isHeader ? 
+                                    <span >{list[2].title}</span> :
+                                    <div className='service-group-title-text'>
+                                        <span style={{fontWeight:'500',
+                                                    color:'#EE7925'}}>{list[2].title}</span>
+                                        <div style={{display:'flex',
+                                                    fontSize:'18px',
+                                                    fontWeight:'300',
+                                                    marginTop:'.5rem',
+                                                    cursor:'pointer'}}
+                                                    onClick={() => setIsOpenText((prev) => {
+                                                        return{
+                                                            ...prev,
+                                                            isOneTraining:!isOpenText.isOneTraining
+                                                        }
+                                                    })}>
+                                            Learn more
+                                            <div style={{marginLeft:'1rem'}} 
+                                                className='right-arrow'
+                                                >
+                                                    <FontAwesomeIcon
+                                                        icon={faArrowRight}
+                                                        style={{
+                                                            color: '#EE7925',
+                                                            fontSize: '1rem',
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>}
+                            </div> 
+                            {isOpenText.isOneTraining && <>
+                                <div style={{ height: '2rem' }} />
+                                <LDOneTraining
+                                    site={props.site}
+                                    config={
+                                        props.service && props.service.cfg_value
+                                            ? props.service.cfg_value[2]
+                                            : {}
+                                    }
+                                />
+                            </>}
+                        </div>}
+                        {!props.isHeader &&
+                        <div className={`${!props.isHeader ? "service-group borderLine":"service-group"}`}>
+                            <div className='service-group-title'>
+                                <img
+                                    loading="lazy"
+                                    alt=""
+                                    src={Utils.getThumb(list[3].icon)}
+                                    style={{ width: '37px' }}
+                                />
+                                {props.isHeader ? 
+                                <span >{list[3].title}</span> :
+                                <div className='service-group-title-text'>
+                                    <span style={{fontWeight:'500',
+                                                color:'#EE7925'}}>{list[3].title}</span>
+                                    <div style={{display:'flex',
+                                                fontSize:'18px',
+                                                fontWeight:'300',
+                                                marginTop:'.5rem',
+                                                cursor:'pointer'}}
+                                                onClick={() => setIsOpenText((prev) => {
+                                                    return{
+                                                        ...prev,
+                                                        isBirthDayParty:!isOpenText.isBirthDayParty
+                                                    }
+                                                })}>
+                                        Learn more
+                                        <div style={{marginLeft:'1rem'}}
+                                             className='right-arrow'
+                                             >
+                                            <FontAwesomeIcon
+                                                icon={faArrowRight}
                                                 style={{
                                                     fontWeight: '500',
                                                     color: '#EE7925',
-                                                }}>
-                                                {list[2].title}
-                                            </span>
-                                            <div
-                                                style={{
-                                                    display: 'flex',
-                                                    fontSize: '18px',
-                                                    fontWeight: '300',
-                                                    marginTop: '.5rem',
-                                                }}>
-                                                <div style={{ width: '92px' }}>
-                                                    {!isOpenText.isOneTraining
-                                                        ? 'Learn more'
-                                                        : 'Close'}
-                                                </div>
-                                                <div
-                                                    style={{
-                                                        marginLeft: '1rem',
-                                                        cursor: 'pointer',
-                                                        transition:
-                                                            'all .3s linear',
-                                                    }}
-                                                    className={`${
-                                                        !isOpenText.isOneTraining
-                                                            ? 'right-arrow'
-                                                            : 'right-arrow rotate180degIcon'
-                                                    }`}
-                                                    onClick={() =>
-                                                        setIsOpenText(
-                                                            (prev) => {
-                                                                return {
-                                                                    ...prev,
-                                                                    isOneTraining:
-                                                                        !isOpenText.isOneTraining,
-                                                                };
-                                                            },
-                                                        )
-                                                    }>
+                                                    fontSize: '1rem',
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                </div> }
+                    </div>
+                        {isOpenText.isBirthDayParty && <>
+                            <div style={{ height: '2rem' }} />
+                            <LDBirthdayParty
+                                site={props.site}
+                                config={
+                                    props.service && props.service.cfg_value
+                                        ? props.service.cfg_value[3]
+                                        : {}
+                                }
+                            />
+                        </>}
+                        </div>}
+                        {!props.isHeader &&
+                        <div className={`${!props.isHeader ? "service-group borderLine":"service-group"}`}>
+                            <div className='service-group-title'>
+                                <img
+                                    loading="lazy"
+                                    alt=""
+                                    src={Utils.getThumb(list[4].icon)}
+                                    style={{ width: '37px' }}
+                                />
+                                {props.isHeader ? 
+                                <span >{list[4].title}</span> :
+                                <div className='service-group-title-text'>
+                                    <span style={{fontWeight:'500',
+                                                color:'#EE7925'}}>{list[4].title}</span>
+                                    <div style={{display:'flex',
+                                                fontSize:'18px',
+                                                fontWeight:'300',
+                                                marginTop:'.5rem',
+                                                cursor:'pointer'}}
+                                                onClick={() => setIsOpenText((prev) => {
+                                                    return{
+                                                        ...prev,
+                                                        isSchoolTraining:!isOpenText.isSchoolTraining
+                                                    }
+                                                })}>
+                                        Learn more
+                                        <div style={{marginLeft:'1rem'}} 
+                                             className='right-arrow'
+                                            >
                                                     <FontAwesomeIcon
                                                         icon={faArrowRight}
                                                         style={{
@@ -658,183 +683,7 @@ function TrainingService(props) {
                                                 </div>
                                             </div>
                                         </div>
-                                    )}
-                                </div>
-                                {isOpenText.isOneTraining && (
-                                    <>
-                                        <div style={{ height: '2rem' }} />
-                                        <LDOneTraining
-                                            site={props.site}
-                                            config={
-                                                props.service &&
-                                                props.service.cfg_value
-                                                    ? props.service.cfg_value[2]
-                                                    : {}
-                                            }
-                                        />
-                                    </>
-                                )}
-                            </div>
-                        )}
-                        {!props.isHeader && (
-                            <div
-                                className={`${
-                                    !props.isHeader
-                                        ? 'service-group borderLine'
-                                        : 'service-group'
-                                }`}>
-                                <div className="service-group-title">
-                                    <img
-                                        loading="lazy"
-                                        alt=""
-                                        src={Utils.getThumb(list[3].icon)}
-                                        style={{ width: '37px' }}
-                                    />
-                                    {props.isHeader ? (
-                                        <span>{list[3].title}</span>
-                                    ) : (
-                                        <div className="service-group-title-text">
-                                            <span
-                                                style={{
-                                                    fontWeight: '500',
-                                                    color: '#EE7925',
-                                                }}>
-                                                {list[3].title}
-                                            </span>
-                                            <div
-                                                style={{
-                                                    display: 'flex',
-                                                    fontSize: '18px',
-                                                    fontWeight: '300',
-                                                    marginTop: '.5rem',
-                                                }}>
-                                                <div style={{ width: '92px' }}>
-                                                    {!isOpenText.isBirthDayParty
-                                                        ? 'Learn more'
-                                                        : 'Close'}
-                                                </div>
-                                                <div
-                                                    style={{
-                                                        marginLeft: '1rem',
-                                                        cursor: 'pointer',
-                                                        transition:
-                                                            'all .3s linear',
-                                                    }}
-                                                    className={`${
-                                                        !isOpenText.isBirthDayParty
-                                                            ? 'right-arrow'
-                                                            : 'right-arrow rotate180degIcon'
-                                                    }`}
-                                                    onClick={() =>
-                                                        setIsOpenText(
-                                                            (prev) => {
-                                                                return {
-                                                                    ...prev,
-                                                                    isBirthDayParty:
-                                                                        !isOpenText.isBirthDayParty,
-                                                                };
-                                                            },
-                                                        )
-                                                    }>
-                                                    <FontAwesomeIcon
-                                                        icon={faArrowRight}
-                                                        style={{
-                                                            color: '#EE7925',
-                                                            fontSize: '1rem',
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                                {isOpenText.isBirthDayParty && (
-                                    <>
-                                        <div style={{ height: '2rem' }} />
-                                        <LDBirthdayParty
-                                            site={props.site}
-                                            config={
-                                                props.service &&
-                                                props.service.cfg_value
-                                                    ? props.service.cfg_value[3]
-                                                    : {}
-                                            }
-                                        />
-                                    </>
-                                )}
-                            </div>
-                        )}
-                        {!props.isHeader && (
-                            <div
-                                className={`${
-                                    !props.isHeader
-                                        ? 'service-group borderLine'
-                                        : 'service-group'
-                                }`}>
-                                <div className="service-group-title">
-                                    <img
-                                        loading="lazy"
-                                        alt=""
-                                        src={Utils.getThumb(list[4].icon)}
-                                        style={{ width: '37px' }}
-                                    />
-                                    {props.isHeader ? (
-                                        <span>{list[4].title}</span>
-                                    ) : (
-                                        <div className="service-group-title-text">
-                                            <span
-                                                style={{
-                                                    fontWeight: '500',
-                                                    color: '#EE7925',
-                                                }}>
-                                                {list[4].title}
-                                            </span>
-                                            <div
-                                                style={{
-                                                    display: 'flex',
-                                                    fontSize: '18px',
-                                                    fontWeight: '300',
-                                                    marginTop: '.5rem',
-                                                }}>
-                                                <div style={{ width: '92px' }}>
-                                                    {!isOpenText.isSchoolTraining
-                                                        ? 'Learn more'
-                                                        : 'Close'}
-                                                </div>
-                                                <div
-                                                    style={{
-                                                        marginLeft: '1rem',
-                                                        cursor: 'pointer',
-                                                        transition:
-                                                            'all .3s linear',
-                                                    }}
-                                                    className={`${
-                                                        !isOpenText.isSchoolTraining
-                                                            ? 'right-arrow'
-                                                            : 'right-arrow rotate180degIcon'
-                                                    }`}
-                                                    onClick={() =>
-                                                        setIsOpenText(
-                                                            (prev) => {
-                                                                return {
-                                                                    ...prev,
-                                                                    isSchoolTraining:
-                                                                        !isOpenText.isSchoolTraining,
-                                                                };
-                                                            },
-                                                        )
-                                                    }>
-                                                    <FontAwesomeIcon
-                                                        icon={faArrowRight}
-                                                        style={{
-                                                            color: '#EE7925',
-                                                            fontSize: '1rem',
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
+                                    }
                                 </div>
                                 {isOpenText.isSchoolTraining && (
                                     <>
@@ -851,7 +700,7 @@ function TrainingService(props) {
                                     </>
                                 )}
                             </div>
-                        )}
+                        }
                     </div>
                 </div>
             )
