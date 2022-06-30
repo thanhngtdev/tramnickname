@@ -277,12 +277,12 @@
 }
 
 .modal-content .map-view .book-trial {
-    margin: 33px 7px;
+    margin: 33px 8px;
     display: flex;
     justify-content: center;
     padding: 0;
-    background-color: #ff7531;
-    color: white; 
+    /* background-color: #ff7531; */
+    color: #ff7531; 
     text-transform: uppercase;
     cursor: pointer;
     align-items:center;
@@ -294,8 +294,9 @@
 
 
 .modal-content .map-view .book-trial > label{
-    font-size: 15px;
+    font-size: 13px;
     margin: 0;
+    border: none!important;
 } 
 
 .modal-content .map-view .service .service-offered ul {
