@@ -272,6 +272,10 @@
     padding: 1rem;
 }
 
+.course-time {
+    margin: 0
+}
+
 .modal-content .map-view .course-age {
     text-align: right;
 }
@@ -294,8 +298,9 @@
 
 
 .modal-content .map-view .book-trial > label{
-    font-size: 15px;
-    margin: 0;
+    font-size: 13px;
+    margin: 0;  
+    font-weight: 900;
 } 
 
 .modal-content .map-view .service .service-offered ul {
