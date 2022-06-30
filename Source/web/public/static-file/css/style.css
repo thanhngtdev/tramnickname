@@ -134,7 +134,12 @@ table {
 
 h1 {
 }
-
+.displayNone{
+    display: none!important;
+}
+.bgUnset{
+    background-image: unset!important;
+}
 .subname {
     font-size: 12px;
     font-style: italic;
@@ -541,6 +546,21 @@ h1 {
 
 .banner-top .container {
     position: relative;
+}
+.container.isMobile{
+    padding: 0;
+}
+.container.isMobile > .banner_right{
+    width: 100%!important;
+    padding-top:0!important;
+}
+.container.isMobile> .banner_right .title{
+    text-align: left;
+}
+.container.isMobile> .banner_right .sub_title{
+    text-align: left;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #ccc;
 }
 
 .banner-top .box-text {
@@ -973,6 +993,14 @@ h1 {
 
 .box-slide-review .slick-dots .slick-active button {
     background-color: #fff;
+}
+@media only screen and (max-width: 768px) {
+    .box-slide-review .slick-dots li button{
+        border-color: #000;
+    }
+    .box-slide-review .slick-dots .slick-active button {
+        background-color: #000;
+    }
 }
 
 .box-slide-review .trustpilot {
@@ -3352,4 +3380,7 @@ h1 {
     .menu-left .custom-select {
         display: none;
     }
+}
+@media only screen and (max-width:768px) {
+
 }

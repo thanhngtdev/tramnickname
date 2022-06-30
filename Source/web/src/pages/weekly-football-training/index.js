@@ -21,7 +21,7 @@ const DefaultLayout = dynamic(() => import('src/layout/DefaultLayout'));
 
 function WeeklyTraining({ data, listSite }) {
     saveList(listSite);
-
+    
     if (isEmpty(data)) return <></>;
 
     return (

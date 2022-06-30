@@ -7,10 +7,12 @@ import { useDispatch } from 'react-redux';
 import PathRoute from 'src/common/PathRoute';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import moment from 'moment';
+import useGetWidth from 'src/hooks/useGetWidth';
 
 const TrainingServiceItem = (props) => {
     const { item, index, site, title } = props;
-
+    const isMobile = useGetWidth() <= 768;
+    const isWithTable = useGetWidth() <=402;
     const [courses, setCourses] = useState([]);
     const dispatch = useDispatch();
     const history = useRouter();
@@ -108,8 +110,13 @@ const TrainingServiceItem = (props) => {
     };
 
     return (
-        <>
-            <h4>{title}</h4>
+        <>{(!isMobile || props.isHeader) && <>
+            <h4 style={{
+                padding:'2rem 1rem',
+                fontWeight:'500',
+                backgroundColor:'#ccc',
+                margin:0
+            }}>{title}</h4>
             {courses.map((el, idx) => (
                 <div
                     key={idx}
@@ -122,9 +129,10 @@ const TrainingServiceItem = (props) => {
                         style={{
                             display: 'flex',
                             justifyContent: 'space-between',
-                            padding: 10,
+                            padding: '10px 1.5rem',
                         }}>
-                        <p>{el?.day_of_week}</p>
+                        <p>{isWithTable ? el?.day_of_week.slice(0,2) : el?.day_of_week}</p>
+
                         <p>
                             {dayjs(
                                 '2021-03-03T' + el.course_day_time_start,
@@ -136,13 +144,13 @@ const TrainingServiceItem = (props) => {
                         </p>
                         <p>
                             {el.min_age}-{el.max_age}{' '}
-                            {props.isMobile ? 'y.o.' : 'year olds'}
+                            {isWithTable ? 'y.o.' : 'year olds'}
                         </p>
                     </div>
                     <div
                         style={{
                             display: 'flex',
-                            padding: 10,
+                            padding: '10px 1.5rem',
                         }}>
                         <p style={{ marginRight: 35 }}>{`£${
                             el.course_price || 0
@@ -151,6 +159,9 @@ const TrainingServiceItem = (props) => {
                     </div>
                 </div>
             ))}
+        
+            </>}
+            
         </>
     );
 };

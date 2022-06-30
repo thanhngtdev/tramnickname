@@ -5,6 +5,8 @@ import Slider from 'react-slick';
 import Utils from 'src/common/Utils';
 import { getHome } from 'src/redux/actions/homeAction';
 import { showTruspilot } from 'src/redux/actions/trustpilotAction';
+import useGetWidth from 'src/hooks/useGetWidth';
+
 
 const settings = {
     dots: true,
@@ -42,6 +44,7 @@ function Testimonial(props) {
     //     process.env.STORAGE_URL_API,
     //     'process.env.STORAGE_URL;',
     // );
+    const isMobile = useGetWidth() <= 768;
     const isFirstRun = useRef(true);
     const [lstFb, setLstFb] = useState([]);
     const dispatch = useDispatch();
@@ -85,7 +88,7 @@ function Testimonial(props) {
                                         className="avatar"
                                     />
                                     <div className="info">
-                                        <p className="description">
+                                        <p className="description" style={{color: `${isMobile ? '#000':''}`}}>
                                             {item.fb_content}
                                         </p>
                                         <h3 className="name">
@@ -99,7 +102,8 @@ function Testimonial(props) {
                 <a
                     style={{
                         // cursor: 'pointer',
-                        color: `${props.textColor}`,
+                        color: `${isMobile?'#000':`${props.textColor}`}`
+                        // color: `${props.textColor}`,
                     }}
                     className="trustpilot"
                     target="_blank"
