@@ -270,6 +270,13 @@
     font-size: 1rem;
     flex: 1;
     padding: 1rem;
+    padding-right: 0;
+}
+.modal-content .map-view .course-time {
+    flex: unset;
+    font-size: 16px;
+    font-weight: 500;
+    width: 160px;
 }
 
 .modal-content .map-view .course-age {
@@ -277,7 +284,8 @@
 }
 
 .modal-content .map-view .book-trial {
-    margin: 33px 8px;
+    margin: 36px 22px;
+    flex: 1;
     display: flex;
     justify-content: center;
     padding: 0;
@@ -294,7 +302,7 @@
 
 
 .modal-content .map-view .book-trial > label{
-    font-size: 13px;
+    font-size: 15px;
     margin: 0;
     border: none!important;
 } 
