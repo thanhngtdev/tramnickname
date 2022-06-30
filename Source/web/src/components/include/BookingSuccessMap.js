@@ -1,6 +1,11 @@
 import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
-import { GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps';
+import {
+    GoogleMap,
+    withGoogleMap,
+    withScriptjs,
+    Marker,
+} from 'react-google-maps';
 import { useSelector } from 'react-redux';
 import Constants from 'src/common/Constants';
 import { siteActionType } from 'src/redux/actions/actionTypes';
@@ -16,15 +21,12 @@ function BookingSuccessMap(props) {
     const [bookingInfo, setBookingInfo] = useState({});
 
     const defaultCenter = {
-        lat: +siteSelected.ms_latitude || Constants.DEFAULT_LOCATION.lat,
-        lng: +siteSelected.ms_longitude || Constants.DEFAULT_LOCATION.lng,
-    };
-
-    const defaultMarker = {
-        ms_latitude:
-            +siteSelected.ms_latitude || Constants.DEFAULT_LOCATION.lat,
-        ms_longitude:
-            +siteSelected.ms_longitude || Constants.DEFAULT_LOCATION.lng,
+        lat:
+            Number(siteSelected.ms_addresses[0].ms_latitude) ||
+            Constants.DEFAULT_LOCATION.lat,
+        lng:
+            Number(siteSelected.ms_addresses[0].ms_longitude) ||
+            Constants.DEFAULT_LOCATION.lng,
     };
 
     const siteReducer = useSelector((state) => state.siteReducer);
@@ -87,22 +89,20 @@ function BookingSuccessMap(props) {
                         event={{
                             detail: `${
                                 bookingInfo?.child_name
-                                ? bookingInfo.child_name
-                                : props?.data?.child_first_name +
-                                ' ' +
-                                props?.data?.child_last_name
+                                    ? bookingInfo.child_name
+                                    : props?.data?.child_first_name +
+                                      ' ' +
+                                      props?.data?.child_last_name
                             } is booked in for their ${
                                 props?.siteSelected?.ms_trial === 1
                                     ? 'trial'
                                     : 'free trial'
                             }  session at ${
                                 props?.siteSelected?.ms_address || ''
-                           
                             } on ${
                                 bookingInfo?.start_date
-                                ? bookingInfo.startDate
-                                : props?.data?.start_date
-
+                                    ? bookingInfo.startDate
+                                    : props?.data?.start_date
                             } at ${dayjs(
                                 '2021-03-03T' +
                                     props?.courseSelected
@@ -121,7 +121,16 @@ function BookingSuccessMap(props) {
                     />
                 </div>
             </div>
-            <CustomMarker item={defaultMarker} />
+            <CustomMarker
+                item={{
+                    ms_latitude: parseFloat(
+                        siteSelected.ms_addresses[0].ms_latitude,
+                    ),
+                    ms_longitude: parseFloat(
+                        siteSelected.ms_addresses[0].ms_longitude,
+                    ),
+                }}
+            />
         </GoogleMap>
     );
 }
