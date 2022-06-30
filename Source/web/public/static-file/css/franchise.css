@@ -619,8 +619,8 @@
         margin-top: 80px;
     }
 }
-@media only screen and (max-width:600px){
-    .banner-franchise .academy-info{
+@media only screen and (max-width: 600px) {
+    .banner-franchise .academy-info {
         margin-top: 280px;
     }
 }
