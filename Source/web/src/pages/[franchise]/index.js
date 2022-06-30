@@ -1,6 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import dynamic from 'next/dynamic';
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
@@ -39,16 +39,14 @@ import useGetWidth from 'src/hooks/useGetWidth';
 import useTruspilot from 'src/hooks/useTruspilot';
 import Script from 'next/script';
 
-
 function Franchise({ dataBannerTop, data, listSite, isSubPage, item }) {
     const dispatch = useDispatch();
     const router = useRouter();
     const targetRef = useRef(null);
     const { defaultTypeform } = useSelector((state) => state.homeReducer);
-    console.log('data',data);
-    useTruspilot()
+    console.log('data', data);
+    useTruspilot();
     const isMobile = useGetWidth() <= 768;
-    
 
     saveList(listSite);
 
@@ -92,8 +90,9 @@ function Franchise({ dataBannerTop, data, listSite, isSubPage, item }) {
             <Script
                 src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
                 // strategy=""
-            />  
-            {isMobile && <div className="banner-franchise">
+            />
+            {isMobile && (
+                <div className="banner-franchise">
                     <BannerTop
                         social={data?.site?.socialLink || []}
                         site={data?.site || {}}
@@ -101,9 +100,12 @@ function Franchise({ dataBannerTop, data, listSite, isSubPage, item }) {
                         isSubPage={isSubPage}
                         isHeader={true}
                     />
-                </div>}
-            {isMobile && 
-                <div className="trustpilot-franchise" style={{marginTop:'5rem',marginBottom:'5rem'}}>
+                </div>
+            )}
+            {isMobile && (
+                <div
+                    className="trustpilot-franchise"
+                    style={{ marginTop: '5rem', marginBottom: '5rem' }}>
                     <div
                         className="trustpilot-widget truspilot-big"
                         data-locale="en-GB"
@@ -111,7 +113,7 @@ function Franchise({ dataBannerTop, data, listSite, isSubPage, item }) {
                         data-businessunit-id="5630b23d0000ff000584db47"
                         // data-style-height="200px"
                         data-style-width="100%"
-                        style={{width:'100%'}}
+                        style={{ width: '100%' }}
                         data-theme="light">
                         <a
                             href="https://uk.trustpilot.com/review/wemakefootballers.com"
@@ -120,17 +122,19 @@ function Franchise({ dataBannerTop, data, listSite, isSubPage, item }) {
                             Trustpilot
                         </a>
                     </div>
-                </div>}
-            {isMobile &&
-            <div id="training-services" className="franchise-servive">
-                <TrainingService
-                    onClickLocation={onClickLocation}
-                    site={data?.site || {}}
-                    service={data?.service || {}}
-                    isHeader={true}
-                    // targetRef={targetRef}
-                />
-            </div>}
+                </div>
+            )}
+            {isMobile && (
+                <div id="training-services" className="franchise-servive">
+                    <TrainingService
+                        onClickLocation={onClickLocation}
+                        site={data?.site || {}}
+                        service={data?.service || {}}
+                        isHeader={true}
+                        // targetRef={targetRef}
+                    />
+                </div>
+            )}
 
             <div className="banner-franchise">
                 <BannerTop
@@ -155,14 +159,17 @@ function Franchise({ dataBannerTop, data, listSite, isSubPage, item }) {
                     // targetRef={targetRef}
                 />
             </div>
-            {!isMobile && 
-            <div className="coaching-franchise " style={{ marginTop: '200px' }}>
-                <CoachInfo
-                    coach={data?.coach || {}}
-                    site={data?.site || {}}
-                    isSubPage={isSubPage}
-                />
-            </div>}
+            {!isMobile && (
+                <div
+                    className="coaching-franchise "
+                    style={{ marginTop: '200px' }}>
+                    <CoachInfo
+                        coach={data?.coach || {}}
+                        site={data?.site || {}}
+                        isSubPage={isSubPage}
+                    />
+                </div>
+            )}
 
             <div className="franchise-review">
                 <div className="intro-franchise">
