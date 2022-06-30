@@ -245,6 +245,7 @@
 .birthday-extra .extra-column .extra-item {
     margin-top: 3rem;
     overflow: hidden;
+  
 }
 
 .birthday-extra .extra-column .extra-item p {
@@ -344,7 +345,6 @@ ul.camp-paid li::before {
     font-size: 2rem;
 }
 .content__extra {
-    /* width: 400px; */
     display: flex;
     flex-direction: column;
 }
@@ -406,14 +406,7 @@ ul.camp-paid li::before {
         /* bottom: 0px !important; */
     }
 
-    .training-include .slide-control .slide-number {
-        /* margin: 0 40px;
-         */
-    }
-
-    .training-include .mobile {
-        /* top: 33rem; */
-    }
+    
 
     .football-skill {
         background: white;
