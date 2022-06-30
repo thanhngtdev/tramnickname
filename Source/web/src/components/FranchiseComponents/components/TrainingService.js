@@ -405,18 +405,18 @@ function TrainingService(props) {
                                     <div style={{display:'flex',
                                                 fontSize:'18px',
                                                 fontWeight:'300',
-                                                marginTop:'.5rem'}}>
-                                        <div style={{width:'92px'}}>
-                                            {!isOpenText.isWeeklyTraining?'Learn more' : 'Close'}
-                                        </div>
-                                        <div style={{marginLeft:'1rem',cursor:'pointer',transition:'all .3s linear'}} 
-                                            className={`${!isOpenText.isWeeklyTraining?'right-arrow' : 'right-arrow rotate180degIcon'}`} 
-                                            onClick={() => setIsOpenText((prev) => {
-                                                        return{
-                                                            ...prev,
-                                                            isWeeklyTraining: !isOpenText.isWeeklyTraining
-                                                        }  
-                                                    })}>
+                                                marginTop:'.5rem',
+                                                cursor:'pointer'}}
+                                                onClick={() => setIsOpenText((prev) => {
+                                                    return{
+                                                        ...prev,
+                                                        isWeeklyTraining: !isOpenText.isWeeklyTraining
+                                                    }  
+                                                })}>
+                                        Learn more
+                                        <div style={{marginLeft:'1rem'}} 
+                                            className='right-arrow'
+                                            >
                                             <FontAwesomeIcon
                                                 icon={faArrowRight}
                                                 style={{
@@ -478,18 +478,18 @@ function TrainingService(props) {
                                     <div style={{display:'flex',
                                                 fontSize:'18px',
                                                 fontWeight:'300',
-                                                marginTop:'.5rem'}}>
-                                        <div style={{width:'92px'}}>
-                                            {!isOpenText.isHolydayCamps?'Learn more' : 'Close'}
-                                        </div>
-                                        <div style={{marginLeft:'1rem',cursor:'pointer',transition:'all .3s linear'}} 
-                                            className={`${!isOpenText.isHolydayCamps?'right-arrow' : 'right-arrow rotate180degIcon'}`} 
-                                            onClick={() => setIsOpenText((prev) => {
-                                                        return{
-                                                            ...prev,
-                                                            isHolydayCamps:!isOpenText.isHolydayCamps
-                                                        }
-                                                    })}>
+                                                marginTop:'.5rem',
+                                                cursor:'pointer'}}
+                                                onClick={() => setIsOpenText((prev) => {
+                                                    return{
+                                                        ...prev,
+                                                        isHolydayCamps:!isOpenText.isHolydayCamps
+                                                    }
+                                                })}>
+                                        Learn more
+                                        <div style={{marginLeft:'1rem'}}
+                                            className='right-arrow'
+                                            >
                                             <FontAwesomeIcon
                                                 icon={faArrowRight}
                                                 style={{
@@ -531,18 +531,18 @@ function TrainingService(props) {
                                         <div style={{display:'flex',
                                                     fontSize:'18px',
                                                     fontWeight:'300',
-                                                    marginTop:'.5rem'}}>
-                                            <div style={{width:'92px'}}>
-                                                {!isOpenText.isOneTraining?'Learn more' : 'Close'}
-                                            </div>
-                                            <div style={{marginLeft:'1rem',cursor:'pointer',transition:'all .3s linear'}} 
-                                                className={`${!isOpenText.isOneTraining?'right-arrow' : 'right-arrow rotate180degIcon'}`} 
-                                                onClick={() => setIsOpenText((prev) => {
-                                                            return{
-                                                                ...prev,
-                                                                isOneTraining:!isOpenText.isOneTraining
-                                                            }
-                                                        })}>
+                                                    marginTop:'.5rem',
+                                                    cursor:'pointer'}}
+                                                    onClick={() => setIsOpenText((prev) => {
+                                                        return{
+                                                            ...prev,
+                                                            isOneTraining:!isOpenText.isOneTraining
+                                                        }
+                                                    })}>
+                                            Learn more
+                                            <div style={{marginLeft:'1rem'}} 
+                                                className='right-arrow'
+                                                >
                                                 <FontAwesomeIcon
                                                     icon={faArrowRight}
                                                     style={{
@@ -583,18 +583,18 @@ function TrainingService(props) {
                                     <div style={{display:'flex',
                                                 fontSize:'18px',
                                                 fontWeight:'300',
-                                                marginTop:'.5rem'}}>
-                                        <div style={{width:'92px'}}>
-                                            {!isOpenText.isBirthDayParty?'Learn more' : 'Close'}
-                                        </div>
-                                        <div style={{marginLeft:'1rem',cursor:'pointer',transition:'all .3s linear'}}
-                                             className={`${!isOpenText.isBirthDayParty?'right-arrow' : 'right-arrow rotate180degIcon'}`} 
-                                             onClick={() => setIsOpenText((prev) => {
-                                                        return{
-                                                            ...prev,
-                                                            isBirthDayParty:!isOpenText.isBirthDayParty
-                                                        }
-                                                    })}>
+                                                marginTop:'.5rem',
+                                                cursor:'pointer'}}
+                                                onClick={() => setIsOpenText((prev) => {
+                                                    return{
+                                                        ...prev,
+                                                        isBirthDayParty:!isOpenText.isBirthDayParty
+                                                    }
+                                                })}>
+                                        Learn more
+                                        <div style={{marginLeft:'1rem'}}
+                                             className='right-arrow'
+                                             >
                                             <FontAwesomeIcon
                                                 icon={faArrowRight}
                                                 style={{
@@ -635,18 +635,18 @@ function TrainingService(props) {
                                     <div style={{display:'flex',
                                                 fontSize:'18px',
                                                 fontWeight:'300',
-                                                marginTop:'.5rem'}}>
-                                        <div style={{width:'92px'}}>
-                                            {!isOpenText.isSchoolTraining?'Learn more' : 'Close'}
-                                        </div>
-                                        <div style={{marginLeft:'1rem',cursor:'pointer',transition:'all .3s linear'}} 
-                                             className={`${!isOpenText.isSchoolTraining?'right-arrow' : 'right-arrow rotate180degIcon'}`} 
-                                            onClick={() => setIsOpenText((prev) => {
-                                                        return{
-                                                            ...prev,
-                                                            isSchoolTraining:!isOpenText.isSchoolTraining
-                                                        }
-                                                    })}>
+                                                marginTop:'.5rem',
+                                                cursor:'pointer'}}
+                                                onClick={() => setIsOpenText((prev) => {
+                                                    return{
+                                                        ...prev,
+                                                        isSchoolTraining:!isOpenText.isSchoolTraining
+                                                    }
+                                                })}>
+                                        Learn more
+                                        <div style={{marginLeft:'1rem'}} 
+                                             className='right-arrow'
+                                            >
                                             <FontAwesomeIcon
                                                 icon={faArrowRight}
                                                 style={{
