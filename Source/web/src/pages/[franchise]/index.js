@@ -155,14 +155,14 @@ function Franchise({ dataBannerTop, data, listSite, isSubPage, item }) {
                     // targetRef={targetRef}
                 />
             </div>
-
+            {!isMobile && 
             <div className="coaching-franchise " style={{ marginTop: '200px' }}>
                 <CoachInfo
                     coach={data?.coach || {}}
                     site={data?.site || {}}
                     isSubPage={isSubPage}
                 />
-            </div>
+            </div>}
 
             <div className="franchise-review">
                 <div className="intro-franchise">

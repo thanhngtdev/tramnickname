@@ -175,6 +175,7 @@ function BannerTop(props) {
                         ? data?.bannerTop?.cfg_image
                         : data?.bannerTop?.cfg_mobileBanner,
                 )})`,
+                marginTop:`${isMobile ? '0':'60px'}`
             }}>
         
             
