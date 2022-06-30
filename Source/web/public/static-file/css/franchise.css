@@ -328,6 +328,9 @@
     flex-direction: column;
     justify-content: center;
 }
+.service-group-title-text>div>div{
+    cursor: pointer;
+}
 
 .service-mobile .service-group img {
     margin-right: 1.5rem;
@@ -562,8 +565,45 @@
 
 @media only screen and (max-width: 1000px) and (min-width: 768px) {
     .academy-info {
-        margin-top: 100px;
+        margin-top: 50px;
+        top: 0;
+        flex-direction: column;
     }
+    .academy-info > .group-info{
+        margin: 0!important;
+        margin-bottom: 1.5rem!important;
+    }
+    .container.banner{
+        flex-direction: column;
+    }
+    .banner-franchise .banner .banner_left{
+        margin-top: 50px;
+    }
+    .banner-franchise .banner .banner_left h1{
+        padding-left: 0;
+    }
+    .banner-franchise .banner .banner_left .box-text{
+        padding-left: 0;
+        margin-bottom: 1rem;
+    }
+
+    .banner-franchise .banner .banner_left,
+    .banner-franchise .banner .banner_right{
+        width: 100%;
+    }
+    .banner-franchise .banner .banner_right .box_title{
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+    .banner-franchise .banner .banner_right .box_contact button{
+        margin-bottom: 1rem;
+    }
+    
+    .coach-list .rsub-list{
+        overflow-y: hidden;
+        overflow-x: scroll;
+    }
+
 }
 @media only screen and (max-width: 402px) {
     .academy-info {
