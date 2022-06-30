@@ -29,21 +29,21 @@ export default function AboutInfo(props) {
     const [selectedAcademy, setSelectedAcademy] = useState(
         props.site || props.lstAcademy?.[0] || {},
     );
-    const [lstAddress, setLstAddress] = useState(
-        props.site
-            ? [
-                  {
-                      label: props.site.ms_addresses,
-                      value: props.site.ms_id,
-                  },
-              ]
-            : [
-                  {
-                      label: props.lstAcademy?.[0]?.ms_address || '',
-                      value: props.lstAcademy?.[0]?.ms_id || '',
-                  },
-              ],
-    );
+    // const [lstAddress, setLstAddress] = useState(
+    //     props.site
+    //         ? [
+    //               {
+    //                   label: props.site.ms_addresses,
+    //                   value: props.site.ms_id,
+    //               },
+    //           ]
+    //         : [
+    //               {
+    //                   label: props.lstAcademy?.[0]?.ms_address || '',
+    //                   value: props.lstAcademy?.[0]?.ms_id || '',
+    //               },
+    //           ],
+    // );
     // console.log('lstAddress',lstAddress);
     // console.log('selectDefault',selectedAcademy);
 
@@ -75,20 +75,19 @@ export default function AboutInfo(props) {
 
     useEffect(() => {
         // console.log('address_id',props);
-        if (siteReducer.type) {
-            if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
-                // console.log(siteReducer.data);
-                // console.log('updateData',siteReducer);
 
-                setLstCourse(
-                    Utils.convertLocation(
-                        props.site.ms_addresses,
-                        siteReducer.dataCourse,
-                    ),
-                );
-                // setLstCourse(siteReducer.data);
-                setCourseSelected(siteReducer.data[0]);
-            }
+        if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
+            // console.log(siteReducer.data);
+            // console.log('updateData',siteReducer);
+
+            setLstCourse(
+                Utils.convertLocation(
+                    selectedAcademy.ms_addresses,
+                    siteReducer.dataCourse,
+                ),
+            );
+            // setLstCourse(siteReducer.data);
+            setCourseSelected(siteReducer.data[0]);
         }
     }, [props.site, siteReducer]);
 

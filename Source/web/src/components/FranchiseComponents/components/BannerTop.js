@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PathRoute from 'src/common/PathRoute';
 import Utils from 'src/common/Utils';
@@ -146,7 +146,6 @@ function BannerTop(props) {
                     }</span>`;
         }
 
-
         if (item.sub_name?.text) {
             return `Football training for kids in ${
                 item.location_name.text
@@ -155,9 +154,9 @@ function BannerTop(props) {
                 item.sub_name.text
             }</span>`;
         }
-        
-        if(isMobile){
-            return `${item.ms_name || ''}`
+
+        if (isMobile) {
+            return `${item.ms_name || ''}`;
         }
 
         return `Football training for kids in ${item.location_name.text} <br>
@@ -167,27 +166,35 @@ function BannerTop(props) {
     return (
         <div
             // className="banner-top"
-            className={`${(!props.isHeader && isMobile) ? "banner-top bgUnset": "banner-top"}`}
-            
+            className={`${
+                !props.isHeader && isMobile
+                    ? 'banner-top bgUnset'
+                    : 'banner-top'
+            }`}
             style={{
                 backgroundImage: `url(${Utils.getThumb(
                     !isMobile
                         ? data?.bannerTop?.cfg_image
                         : data?.bannerTop?.cfg_mobileBanner,
                 )})`,
-                marginTop:`${isMobile ? '0':'60px'}`
+                marginTop: `${isMobile ? '0' : '60px'}`,
             }}>
-        
-            
             {/* <div className="container banner"> */}
-            <div className={`${props.isHeader ? 'container banner mobileHeader' : 'container banner'}`}>
+            <div
+                className={`${
+                    props.isHeader
+                        ? 'container banner mobileHeader'
+                        : 'container banner'
+                }`}>
+                <div className="right-arrow"></div>
 
-                <div className="right-arrow">
-                </div>
-                
                 {/* <div className="banner_left"> */}
-                <div className={`${(!props.isHeader && isMobile) ? 'banner_left displayNone': 'banner_left'}`}>
-
+                <div
+                    className={`${
+                        !props.isHeader && isMobile
+                            ? 'banner_left displayNone'
+                            : 'banner_left'
+                    }`}>
                     <h1>{parse(checkSubname(props.site))}</h1>
                     <div className="box-text">
                         {isSubPage
@@ -230,14 +237,19 @@ function BannerTop(props) {
                                 to experience our training
                             </p>
                         </div>
-                        <div className={`${isMobile? 'box_contact isMobile':'box_contact'}`}>
-                        {/* <div className='box_contact'> */}
+                        <div
+                            className={`${
+                                isMobile
+                                    ? 'box_contact isMobile'
+                                    : 'box_contact'
+                            }`}>
+                            {/* <div className='box_contact'> */}
                             <Button
                                 style={style}
                                 onClick={(evt) => {}}
                                 title={
                                     <a
-                                        style={{color: "#EF9042"}}
+                                        style={{ color: '#EF9042' }}
                                         className="phone"
                                         href={`tel:${
                                             props.site
@@ -295,7 +307,9 @@ function BannerTop(props) {
             </div>
             {showVideo &&
                 props.dataBannerTop.about.cfg_content &&
-                props.dataBannerTop.about.cfg_content.includes('youtube.com') && (
+                props.dataBannerTop.about.cfg_content.includes(
+                    'youtube.com',
+                ) && (
                     <PlayVideo
                         url={Utils.getLinkYoutube(
                             props?.dataBannerTop.about?.cfg_content || '',
@@ -305,16 +319,15 @@ function BannerTop(props) {
                         }}
                     />
                 )}
-                {(!props.isHeader && isMobile)  && 
+            {!props.isHeader && isMobile && (
                 <div className="container">
                     <div className="row">
-                        <div
-                            className="col-6">
+                        <div className="col-6">
                             <img
                                 style={{
-                                    width:'100%',
-                                    maxHeight:'250px',
-                                    objectFit:'cover'
+                                    width: '100%',
+                                    maxHeight: '250px',
+                                    objectFit: 'cover',
                                 }}
                                 loading="lazy"
                                 alt=""
@@ -352,11 +365,10 @@ function BannerTop(props) {
                                 )}
                         </div>
                     </div>
-                </div>}
+                </div>
+            )}
         </div>
     );
 }
-
-
 
 export default BannerTop;
