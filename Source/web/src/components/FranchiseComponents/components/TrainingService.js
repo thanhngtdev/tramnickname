@@ -550,26 +550,28 @@ function TrainingService(props) {
                                                 {props.dataBannerTop.about.cfg_content &&
                                                     props.dataBannerTop.about.cfg_content.includes(
                                                         'youtube.com',
-                                                    ) && (
-                                                        <div
-                                                            style={{
-                                                                position: 'absolute',
-                                                                top: '50%',
-                                                                left: '50%',
-                                                                backgroundColor: '#ffffff',
-                                                                borderRadius: '50%',
-                                                                width: '5rem',
-                                                                height: '5rem',
-                                                                alignItems: 'center',
-                                                                display: 'flex',
-                                                                justifyContent: 'center',
-                                                                cursor: 'pointer',
-                                                                transform: 'translate(-50%, -50%)',
-                                                                zIndex: 1,
-                                                            }}
-                                                            onClick={() => setShowVIdeo(true)}>
-                                                            <PlayButton />
-                                                        </div>
+                                                    ) && (<>
+                                                            <div className='title-img'>Experience our training</div>
+                                                            <div
+                                                                style={{
+                                                                    position: 'absolute',
+                                                                    top: '50%',
+                                                                    left: '50%',
+                                                                    backgroundColor: '#ffffff',
+                                                                    borderRadius: '50%',
+                                                                    width: '5rem',
+                                                                    height: '5rem',
+                                                                    alignItems: 'center',
+                                                                    display: 'flex',
+                                                                    justifyContent: 'center',
+                                                                    cursor: 'pointer',
+                                                                    transform: 'translate(-50%, -50%)',
+                                                                    zIndex: 1,
+                                                                }}
+                                                                onClick={() => setShowVIdeo(true)}>
+                                                                <PlayButton />
+                                                            </div>
+                                                        </>
                                                     )}
                                             </div>
                                         
