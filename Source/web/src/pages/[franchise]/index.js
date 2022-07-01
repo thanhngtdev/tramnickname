@@ -131,6 +131,7 @@ function Franchise({ dataBannerTop, data, listSite, isSubPage, item }) {
                         site={data?.site || {}}
                         service={data?.service || {}}
                         isHeader={true}
+                        dataBannerTop={dataBannerTop}
                         // targetRef={targetRef}
                     />
                 </div>

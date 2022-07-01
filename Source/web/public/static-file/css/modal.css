@@ -270,13 +270,14 @@
     font-size: 1rem;
     flex: 1;
     padding: 1rem;
-    padding-left: 0.6rem;
-    display: flex;
-    align-items: center;
+    padding-right: 0;
 }
+.modal-content .map-view .course-time {
+    flex: unset;
+    font-size: 16px;
+    font-weight: 500;
+    width: 160px;
 
-.course-time {
-    margin: 0
 }
 
 .modal-content .map-view .course-age {
@@ -284,11 +285,14 @@
 }
 
 .modal-content .map-view .book-trial {
-    margin: 33px 7px;
+    margin: 36px 22px;
+    flex: 1;
     display: flex;
     justify-content: center;
     padding: 0;
-    background-color: white;
+
+    /* background-color: #ff7531; */
+
     color: #ff7531; 
     text-transform: uppercase;
     cursor: pointer;
@@ -301,13 +305,11 @@
 
 
 .modal-content .map-view .book-trial > label{
-    font-size: 1rem;
-    margin: 0;  
-    font-weight: 500;
-    width: 201px;
-    padding: 0.6rem;
-    padding-left: 0.3rem;
-    border: none;
+
+    font-size: 15px;
+    margin: 0;
+    border: none!important;
+
 } 
 
 .modal-content .map-view .service .service-offered ul {

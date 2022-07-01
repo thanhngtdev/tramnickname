@@ -253,7 +253,10 @@ h1 {
 .col-12 {
     width: 100%;
 }
-
+.paddingNoneImg{
+    padding: 0;
+    margin-bottom: 2rem;
+}
 .red {
     color: #ff0000 !important;
 }
@@ -2238,6 +2241,21 @@ h1 {
 .menu-ft a:last-child {
     padding-right: 0;
 }
+.title-img{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    color: #fff;
+    /* font-weight: 600; */
+    font-size: 1.5rem;
+    letter-spacing: 2.3px;
+    font-family: 'Red Hat Text', Arial, Helvetica, sans-serif;
+    /* text-shadow: 1px 1px 1px #000; */
+    width: 100%;
+    text-align: center;
+}
 
 @media only screen and (min-width: 1500px) {
     .box-insta .box-slide .row {
@@ -2415,7 +2433,9 @@ h1 {
         height: auto;
         padding-bottom: 9px;
     }
-
+    .menu-down{
+        top: 51px;  
+    }
     .banner-top {
         height: 588px;
         /* background: url(../images/hs_photo_pc.jpg) no-repeat center top; */

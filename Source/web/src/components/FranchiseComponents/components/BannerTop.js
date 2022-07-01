@@ -24,76 +24,7 @@ BannerTop.propTypes = {
     site: PropTypes.object,
 };
 
-const PlayButton = () => {
-    return (
-        <svg
-            id="Group_11"
-            data-name="Group 11"
-            xmlns="http://www.w3.org/2000/svg"
-            width="100"
-            height="100"
-            viewBox="0 0 100 100">
-            <path
-                id="Combined_Shape"
-                data-name="Combined Shape"
-                d="M50,0A50,50,0,1,1,0,50,50,50,0,0,1,50,0Z"
-                fill="#fff"
-                opacity="0.7"
-            />
-            <path
-                id="Path"
-                d="M27.5,18.336a2,2,0,0,1,0,3.328L3.109,37.927A2,2,0,0,1,0,36.263V3.737A2,2,0,0,1,3.109,2.073Z"
-                transform="translate(40 30)"
-                fill="#ff7100"
-            />
-        </svg>
-    );
-};
 
-function PlayVideo(props) {
-    return (
-        <div
-            style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                zIndex: 1000,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                width: '100%',
-                height: '100%',
-                padding: '5% 2%',
-            }}>
-            <div
-                style={{
-                    background: 'white',
-                    width: 40,
-                    height: 40,
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    float: 'right',
-                    marginBottom: 10,
-                    cursor: 'pointer',
-                }}
-                onClick={() => {
-                    if (props.onClose) props.onClose();
-                }}>
-                <FontAwesomeIcon
-                    icon={faTimes}
-                    style={{ color: '#EE7925', fontSize: '0.7em' }}
-                />
-            </div>
-            <iframe
-                width="100%"
-                height="100%"
-                src={props.url + '?&autoplay=1'}
-                frameBorder="0"
-                allowFullScreen
-                allow="autoplay"></iframe>
-        </div>
-    );
-}
 
 const style = {
     fontSize: 14,
@@ -177,7 +108,7 @@ function BannerTop(props) {
                         ? data?.bannerTop?.cfg_image
                         : data?.bannerTop?.cfg_mobileBanner,
                 )})`,
-                marginTop: `${isMobile ? '0' : '60px'}`,
+                marginTop: `${isMobile ? '60px' : '0'}`,
             }}>
             {/* <div className="container banner"> */}
             <div
@@ -309,68 +240,6 @@ function BannerTop(props) {
                     </div>
                 </div>
             </div>
-            {showVideo &&
-                props.dataBannerTop.about.cfg_content &&
-                props.dataBannerTop.about.cfg_content.includes(
-                    'youtube.com',
-                ) && (
-                    <PlayVideo
-                        url={Utils.getLinkYoutube(
-                            props?.dataBannerTop.about?.cfg_content || '',
-                        )}
-                        onClose={() => {
-                            setShowVIdeo(false);
-                        }}
-                    />
-                )}
-            {!props.isHeader && isMobile && (
-                <div className="container">
-                    <div className="row">
-                        <div className="col-6">
-                            <img
-                                style={{
-                                    width: '100%',
-                                    maxHeight: '250px',
-                                    objectFit: 'cover',
-                                }}
-                                loading="lazy"
-                                alt=""
-                                src={Utils.getThumb(
-                                    // props.data?.cfg_image,
-                                    !isMobile
-                                        ? props.dataBannerTop.about?.cfg_image
-                                        : props.dataBannerTop.about?.cfg_image,
-                                )}
-                                // height="1000px"
-                            />
-                            {props.dataBannerTop.about.cfg_content &&
-                                props.dataBannerTop.about.cfg_content.includes(
-                                    'youtube.com',
-                                ) && (
-                                    <div
-                                        style={{
-                                            position: 'absolute',
-                                            top: '50%',
-                                            left: '50%',
-                                            backgroundColor: '#ffffff',
-                                            borderRadius: '50%',
-                                            width: '5rem',
-                                            height: '5rem',
-                                            alignItems: 'center',
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            cursor: 'pointer',
-                                            transform: 'translate(-50%, -50%)',
-                                            zIndex: 1,
-                                        }}
-                                        onClick={() => setShowVIdeo(true)}>
-                                        <PlayButton />
-                                    </div>
-                                )}
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 }
