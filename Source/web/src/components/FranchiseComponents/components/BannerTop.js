@@ -270,6 +270,8 @@ function BannerTop(props) {
                                             fontSize: '1.1rem',
                                             marginRight: '0.5rem',
                                             marginLeft: '0.5rem',
+                                            width: '1rem',
+                                            height: '1rem',
                                         }}
                                     />
                                 }
@@ -297,6 +299,8 @@ function BannerTop(props) {
                                             fontSize: '1.1rem',
                                             marginRight: '0.5rem',
                                             marginLeft: '0.5rem',
+                                            width: '1rem',
+                                            height: '1rem',
                                         }}
                                     />
                                 }
