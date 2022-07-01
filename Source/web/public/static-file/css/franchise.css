@@ -332,7 +332,7 @@
     flex-direction: column;
     justify-content: center;
 }
-.service-group-title-text>div>div{
+.service-group-title-text > div > div {
     cursor: pointer;
 }
 
@@ -573,49 +573,48 @@
         top: 0;
         flex-direction: column;
     }
-    .academy-info > .group-info{
-        margin: 0!important;
-        margin-bottom: 1.5rem!important;
+    .academy-info > .group-info {
+        margin: 0 !important;
+        margin-bottom: 1.5rem !important;
     }
-    .container.banner{
+    .container.banner {
         flex-direction: column;
     }
-    .banner-franchise .banner .banner_left{
+    .banner-franchise .banner .banner_left {
         margin-top: 50px;
     }
-    .banner-franchise .banner .banner_left h1{
+    .banner-franchise .banner .banner_left h1 {
         padding-left: 0;
     }
-    .banner-franchise .banner .banner_left .box-text{
+    .banner-franchise .banner .banner_left .box-text {
         padding-left: 0;
         margin-bottom: 1rem;
     }
 
     .banner-franchise .banner .banner_left,
-    .banner-franchise .banner .banner_right{
+    .banner-franchise .banner .banner_right {
         width: 100%;
     }
-    .banner-franchise .banner .banner_right .box_title{
+    .banner-franchise .banner .banner_right .box_title {
         margin-bottom: 1.5rem;
         padding-bottom: 1.5rem;
     }
-    .banner-franchise .banner .banner_right .box_contact button{
+    .banner-franchise .banner .banner_right .box_contact button {
         margin-bottom: 1rem;
     }
-    
-    .coach-list .rsub-list{
+
+    .coach-list .rsub-list {
         overflow-y: hidden;
         overflow-x: scroll;
     }
-
 }
 @media only screen and (max-width: 402px) {
     .academy-info {
         margin-top: 120px !important;
     }
 }
-@media only screen and (max-width:430px) {
-    .franchise-reason{
+@media only screen and (max-width: 430px) {
+    .franchise-reason {
         margin-top: 50px;
     }
 }

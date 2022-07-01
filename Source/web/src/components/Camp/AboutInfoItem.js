@@ -36,6 +36,8 @@ const AboutInfoItem = (props) => {
             );
         }
 
+        const textAreaStyle = () => {};
+
         return (
             <p
                 style={{ color: '#FF7100', cursor: 'pointer' }}
@@ -103,7 +105,7 @@ const AboutInfoItem = (props) => {
     return (
         <div key={index}>
             {item.length > 0 && (
-                <div className="wSelect2" style={{ padding: 0 }}>
+                <div className="wSelect2" style={{ paddingLeft: '0rem 1rem' }}>
                     <textarea
                         id="address"
                         // disabled={true}
@@ -115,6 +117,7 @@ const AboutInfoItem = (props) => {
                             backgroundColor: '#ccc',
                             padding: '20px',
                             borderRadius: 'unset',
+                            resize: 'none',
                         }}
                     />
                 </div>

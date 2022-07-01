@@ -1212,6 +1212,21 @@ h1 {
     transition: 700ms ease-out;
 }
 
+.box-reasons .tab-content > .active img {
+    /* opacity: 0; */
+    animation: fade 2s;
+   
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .box-reasons .tab-content {
     float: right;
     width: 50%;

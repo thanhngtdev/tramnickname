@@ -24,12 +24,11 @@ function CustomMarker(props) {
                     });
                 }
             }}
-            icon={defaultIcon}
+            icon={'/' + defaultIcon}
             position={{
                 lat: parseFloat(item.ms_latitude),
                 lng: parseFloat(item.ms_longitude),
-            }}
-        />
+            }}></Marker>
     );
 }
 
