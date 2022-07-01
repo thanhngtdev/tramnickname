@@ -467,7 +467,7 @@ function TrainingService(props) {
                             className={`${
                                 !props.isHeader
                                     ? 'service-group borderLine'
-                                    : 'service-group'
+                                    : 'service-group padding-0'
                             }`}>
                             <div
                                 className={`${

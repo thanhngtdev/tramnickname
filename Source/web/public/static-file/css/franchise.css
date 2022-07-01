@@ -299,6 +299,9 @@
     color: #1a1919;
     padding-bottom: 2rem;
 }
+.service-mobile .service-group.padding-0{
+    padding: 0!important;
+}
 
 .service-group.borderLine {
     border-top: 2px solid #ee7925;
@@ -615,16 +618,14 @@
         margin-top: 50px;
     }
 }
-@media only screen and (max-width: 370px) {
-    .franchise-reason {
-        margin-top: 80px;
+/* @media only screen and (max-width:350px) {
+    .franchise-reason{
+        margin-top: 20px;
     }
-}
-
+} */
 @media only screen and (max-width:600px){
     .banner-franchise .academy-info{
-        margin-top: 50px;
-
+        margin-top: 20px;
     }
 }
 @media only screen and (max-width: 768px) and (min-width: 319px) {
@@ -782,4 +783,17 @@
     .intro-franchise .box-list-item-card {
         top: 75px !important;
     }
+}
+.banner .banner_right .banner_right_box .box_contact>button:hover{
+    color: white!important;
+    background-color: #ee7925!important;
+    border-color: white!important;
+}
+.banner .banner_right .banner_right_box .box_contact>button:hover svg{
+    color: white!important;
+}
+.banner .banner_right .banner_right_box .box_contact>button:hover a,
+.banner .banner_right .banner_right_box .box_contact>button:hover b{
+    color: white!important;
+    /* text-shadow: 1px 1px 1px #000; */
 }
