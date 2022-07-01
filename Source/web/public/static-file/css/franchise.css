@@ -784,7 +784,7 @@
         top: 75px !important;
     }
 }
-/* .banner .banner_right .banner_right_box .box_contact>button:hover{
+.banner .banner_right .banner_right_box .box_contact>button:hover{
     color: white!important;
     background-color: #ee7925!important;
     border-color: white!important;
@@ -792,6 +792,8 @@
 .banner .banner_right .banner_right_box .box_contact>button:hover svg{
     color: white!important;
 }
-.banner .banner_right .banner_right_box .box_contact>button:hover a{
+.banner .banner_right .banner_right_box .box_contact>button:hover a,
+.banner .banner_right .banner_right_box .box_contact>button:hover b{
     color: white!important;
-} */
+    /* text-shadow: 1px 1px 1px #000; */
+}
