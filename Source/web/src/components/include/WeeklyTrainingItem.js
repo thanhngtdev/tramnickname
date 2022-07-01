@@ -65,6 +65,7 @@ function WeeklTrainingItem(props) {
                             <p className="course-time">
                                 {' '}
                                 {el.day_of_week}&nbsp;<br/>
+
                                 {el.min_age}-{el.max_age} year olds <br />
                                 {dayjs(
                                     '2021-03-03T' + el.course_day_time_start,
