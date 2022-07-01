@@ -20,6 +20,8 @@ import TrainingServiceItem from './TrainingServiceItem';
 import useTruspilot from 'src/hooks/useTruspilot';
 import useGetWidth from 'src/hooks/useGetWidth';
 import Script from 'next/script';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
 
 LDWeeklyTraining.propTypes = {
     site: PropTypes.object,
@@ -27,6 +29,77 @@ LDWeeklyTraining.propTypes = {
     options: PropTypes.array,
     isMobile: PropTypes.bool,
 };
+
+const PlayButton = () => {
+    return (
+        <svg
+            id="Group_11"
+            data-name="Group 11"
+            xmlns="http://www.w3.org/2000/svg"
+            width="100"
+            height="100"
+            viewBox="0 0 100 100">
+            <path
+                id="Combined_Shape"
+                data-name="Combined Shape"
+                d="M50,0A50,50,0,1,1,0,50,50,50,0,0,1,50,0Z"
+                fill="#fff"
+                opacity="0.7"
+            />
+            <path
+                id="Path"
+                d="M27.5,18.336a2,2,0,0,1,0,3.328L3.109,37.927A2,2,0,0,1,0,36.263V3.737A2,2,0,0,1,3.109,2.073Z"
+                transform="translate(40 30)"
+                fill="#ff7100"
+            />
+        </svg>
+    );
+};
+
+function PlayVideo(props) {
+    return (
+        <div
+            style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                zIndex: 1000,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                width: '100%',
+                height: '100%',
+                padding: '5% 2%',
+            }}>
+            <div
+                style={{
+                    background: 'white',
+                    width: 40,
+                    height: 40,
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    float: 'right',
+                    marginBottom: 10,
+                    cursor: 'pointer',
+                }}
+                onClick={() => {
+                    if (props.onClose) props.onClose();
+                }}>
+                <FontAwesomeIcon
+                    icon={faTimes}
+                    style={{ color: '#EE7925', fontSize: '0.7em' }}
+                />
+            </div>
+            <iframe
+                width="100%"
+                height="100%"
+                src={props.url + '?&autoplay=1'}
+                frameBorder="0"
+                allowFullScreen
+                allow="autoplay"></iframe>
+        </div>
+    );
+}
 
 function LDWeeklyTraining(props) {
     const isMobile = useGetWidth() <= 768;
@@ -77,17 +150,17 @@ function LDWeeklyTraining(props) {
     const newAddress = props.site.ms_addresses;
 
     return (
-        <div>
-            <div className="group-info" style={{ boxShadow: 'none' }}>
-                {/* <label className="group-name">Address</label>
+        <>
+            {/* <div className="group-info" style={{ boxShadow: 'none' }}>
+                <label className="group-name">Address</label>
                 {newAddressLenght && newAddressLenght > 1 ? (
                     newAddress.map((address) => {
                         return <h4>{address.ms_address}</h4>;
                     })
                 ) : (
                     <h4>{newAddress[0].ms_address}</h4>
-                )} */}
-            </div>
+                )}
+            </div> */}
             {!props.isHeader ? parse(props?.config?.content || '') : ''}
             {!isMobile && <h4>Football training times:</h4>}
 
@@ -119,7 +192,7 @@ function LDWeeklyTraining(props) {
                     </Link>
                 </p>
             )}
-        </div>
+        </>
     );
 }
 
@@ -342,6 +415,7 @@ function TrainingService(props) {
     const [innerWidth, setInnerWith] = useState(2000);
     const list = props?.service?.cfg_value || [];
     const siteName = getFranchiseName(props.site);
+    const [showVideo, setShowVIdeo] = useState(false);
     const [isOpenText, setIsOpenText] = useState({
         isWeeklyTraining: false,
         isHolydayCamps: false,
@@ -439,6 +513,69 @@ function TrainingService(props) {
                                     </div>
                                 }
                             </div>
+                            {props.isHeader && <>
+                                {showVideo &&
+                                    props.dataBannerTop.about.cfg_content &&
+                                    props.dataBannerTop.about.cfg_content.includes(
+                                        'youtube.com',
+                                    ) && (
+                                        <PlayVideo
+                                            url={Utils.getLinkYoutube(
+                                                props?.dataBannerTop.about?.cfg_content || '',
+                                            )}
+                                            onClose={() => {
+                                                setShowVIdeo(false);
+                                            }}
+                                        />
+                                    )}
+                                    
+                                    
+                                            <div className="col-6 paddingNoneImg">
+                                                <img
+                                                    style={{
+                                                        width: '100%',
+                                                        maxHeight: '250px',
+                                                        objectFit: 'cover',
+                                                    }}
+                                                    loading="lazy"
+                                                    alt=""
+                                                    src={Utils.getThumb(
+                                                        // props.data?.cfg_image,
+                                                        !isMobile
+                                                            ? props.dataBannerTop.about?.cfg_image
+                                                            : props.dataBannerTop.about?.cfg_image,
+                                                    )}
+                                                    // height="1000px"
+                                                />
+                                                {props.dataBannerTop.about.cfg_content &&
+                                                    props.dataBannerTop.about.cfg_content.includes(
+                                                        'youtube.com',
+                                                    ) && (
+                                                        <div
+                                                            style={{
+                                                                position: 'absolute',
+                                                                top: '50%',
+                                                                left: '50%',
+                                                                backgroundColor: '#ffffff',
+                                                                borderRadius: '50%',
+                                                                width: '5rem',
+                                                                height: '5rem',
+                                                                alignItems: 'center',
+                                                                display: 'flex',
+                                                                justifyContent: 'center',
+                                                                cursor: 'pointer',
+                                                                transform: 'translate(-50%, -50%)',
+                                                                zIndex: 1,
+                                                            }}
+                                                            onClick={() => setShowVIdeo(true)}>
+                                                            <PlayButton />
+                                                        </div>
+                                                    )}
+                                            </div>
+                                        
+                                    
+                                
+                            </>}
                             {isOpenText.isWeeklyTraining && (
                                 <>
                                     <div style={{ height: '2rem' }} />
@@ -458,7 +595,7 @@ function TrainingService(props) {
                             )}
                             {props.isHeader && (
                                 <>
-                                    <div style={{ height: '2rem' }} />
+                                    {!props.isHeader&&<div style={{ height: '2rem' }} />}
                                     <LDWeeklyTraining
                                         site={props.site}
                                         options={options}

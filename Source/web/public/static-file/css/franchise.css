@@ -308,6 +308,7 @@
 }
 .service-mobile .service-group .textAlign {
     text-align: center;
+    margin-bottom: 2rem;
 }
 .service-mobile .service-group .textAlign > img {
     width: 48px;
@@ -607,7 +608,7 @@
 }
 @media only screen and (max-width: 402px) {
     .academy-info {
-        margin-top: 370px !important;
+        margin-top: 120px !important;
     }
 }
 @media only screen and (max-width:430px) {
@@ -622,7 +623,7 @@
 }
 @media only screen and (max-width:600px){
     .banner-franchise .academy-info{
-        margin-top: 280px;
+        margin-top: 50px;
     }
 }
 @media only screen and (max-width: 768px) and (min-width: 319px) {
@@ -636,7 +637,7 @@
     }
 
     .academy-info {
-        margin-top: 250px;
+        /* margin-top: 10px; */
         display: flow-root;
         /* margin-bottom: 200px; */
     }

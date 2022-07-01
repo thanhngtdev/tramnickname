@@ -253,7 +253,10 @@ h1 {
 .col-12 {
     width: 100%;
 }
-
+.paddingNoneImg{
+    padding: 0;
+    margin-bottom: 2rem;
+}
 .red {
     color: #ff0000 !important;
 }
@@ -2299,7 +2302,7 @@ h1 {
     .menu-top .menu li a {
         margin-left: 25px;
     }
-
+    
     .banner-top {
         height: 750px;
         /* background: url(../images/hs_photo_pc.jpg) no-repeat center top; */
@@ -2400,7 +2403,9 @@ h1 {
         height: auto;
         padding-bottom: 9px;
     }
-
+    .menu-down{
+        top: 51px;  
+    }
     .banner-top {
         height: 588px;
         /* background: url(../images/hs_photo_pc.jpg) no-repeat center top; */
