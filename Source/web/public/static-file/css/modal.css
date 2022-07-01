@@ -248,7 +248,7 @@
 .modal-content .map-view .course,
 .modal-content .map-view .course-odd {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .modal-content .map-view .course {
@@ -270,6 +270,9 @@
     font-size: 1rem;
     flex: 1;
     padding: 1rem;
+    padding-left: 0.6rem;
+    display: flex;
+    align-items: center;
 }
 
 .course-time {
@@ -285,8 +288,8 @@
     display: flex;
     justify-content: center;
     padding: 0;
-    background-color: #ff7531;
-    color: white; 
+    background-color: white;
+    color: #ff7531; 
     text-transform: uppercase;
     cursor: pointer;
     align-items:center;
@@ -298,9 +301,13 @@
 
 
 .modal-content .map-view .book-trial > label{
-    font-size: 13px;
+    font-size: 1rem;
     margin: 0;  
-    font-weight: 900;
+    font-weight: 500;
+    width: 201px;
+    padding: 0.6rem;
+    padding-left: 0.3rem;
+    border: none;
 } 
 
 .modal-content .map-view .service .service-offered ul {
