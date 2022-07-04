@@ -81,7 +81,7 @@ const TrainingServiceItem = (props) => {
                         cursor: 'pointer',
                     }}
                     size={90}>
-                    Book
+                    Book Free Session
                 </PopupButton>
             );
         }
@@ -104,7 +104,7 @@ const TrainingServiceItem = (props) => {
                         PathRoute.BookTrialTrainingWithAlias(site.ms_alias),
                     );
                 }}>
-                Book
+                Book Free Session
             </p>
         );
     };
