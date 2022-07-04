@@ -39,6 +39,7 @@ const PlayButton = () => {
 };
 
 function PlayVideo(props) {
+    // console.log('propsVideo',props);
     return (
         <div
             style={{
@@ -129,13 +130,13 @@ export default function AboutUs(props) {
             );
         }
     }, []);
-
     return (
         <div className="about-us">
             <Script
                 src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
                 // strategy=""
             />
+            
             {showVideo &&
                 props.data.cfg_content &&
                 props.data.cfg_content.includes('youtube.com') && (
@@ -171,7 +172,7 @@ export default function AboutUs(props) {
                                 )}
                                 // height="1000px"
                             />
-                            {console.log('sdads',props.data)}
+                            
                             {props.data.cfg_content &&
                                 props.data.cfg_content.includes(
                                     'youtube.com',
