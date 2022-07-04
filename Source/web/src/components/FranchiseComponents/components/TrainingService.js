@@ -536,6 +536,8 @@ function TrainingService(props) {
                                                         width: '100%',
                                                         maxHeight: '250px',
                                                         objectFit: 'cover',
+                                                        marginRight:0,
+                                                        display:'block'
                                                     }}
                                                     loading="lazy"
                                                     alt=""

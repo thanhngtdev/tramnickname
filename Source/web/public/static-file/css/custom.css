@@ -45,6 +45,9 @@ a.link {
 .container.banner.mobileHeader > .banner_left {
     width: 100% !important;
 }
+.container.banner.mobileHeader .banner_left .box-text{
+    margin-bottom: 2rem;
+}
 
 .banner-top.bgUnset > .container.banner > .banner_right {
     width: 100% !important;
@@ -57,6 +60,7 @@ a.link {
     text-align: left;
     padding-bottom: 2rem;
     border-bottom: 1px solid #ccc;
+    margin-top: 0;
 }
 .banner-top.bgUnset > .container.banner > .banner_right .banner_right_box {
     border-radius: 0;

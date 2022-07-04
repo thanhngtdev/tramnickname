@@ -8,6 +8,8 @@ import {
     siteActionType,
 } from 'src/redux/actions/actionTypes';
 import { PopupButton } from '@typeform/embed-react';
+import Button from 'src/components/Button';
+
 
 function WeeklTrainingItem(props) {
     const { item, index, site, title, distance } = props;
@@ -20,19 +22,31 @@ function WeeklTrainingItem(props) {
             return (
                 <PopupButton
                     id={site.ms_typeform_id}
-                    className="book-trial"
+                    className="book-trial btn-book-trail"
                     style={{
                         border: 0,
                     }}
                     size={90}>
                     Book a free session
                 </PopupButton>
+                // <label
+                //     id={site.ms_typeform_id}
+                //     // className="book-trial white-hover"
+                //     style={{
+                //         border: 0,
+                //     }}
+                //     size={90}>
+                //     Book a free session
+                // </label>
+                
             );
         }
 
         return (
             <label
-                className="book-trial"
+                // className="book-trial"
+                style={{cursor:'pointer',display: 'block',
+                textAlign:'center',}}
                 onClick={() => {
                     global.bookTraining = {
                         siteId: site.ms_id || 0,
@@ -75,7 +89,7 @@ function WeeklTrainingItem(props) {
                                     '2021-03-03T' + el.course_day_time_end,
                                 ).format('HH:mma')}
                             </p>
-                            <div className="book-trial">{renderButton()}</div>
+                            <div className="book-trial white-hover">{renderButton()}</div>
                         </div>
                     </div>
                 ))}
