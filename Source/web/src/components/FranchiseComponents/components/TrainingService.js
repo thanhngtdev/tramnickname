@@ -21,7 +21,7 @@ import useTruspilot from 'src/hooks/useTruspilot';
 import useGetWidth from 'src/hooks/useGetWidth';
 import Script from 'next/script';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import YouTube from 'react-youtube';
+// import YouTube from 'react-youtube';
 
 
 LDWeeklyTraining.propTypes = {
