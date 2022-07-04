@@ -199,7 +199,7 @@ function ListNearbyAcademy(props) {
                             <div className="service" style={{
                                 padding:0,
                                 width: '100%',
-                                marginTop:'3rem',
+                                // marginTop:'3rem',
                                 marginBottom:'3rem'
                                 }}>
                                 <div className="service-offered">

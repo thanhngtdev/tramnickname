@@ -21,6 +21,7 @@ import useTruspilot from 'src/hooks/useTruspilot';
 import useGetWidth from 'src/hooks/useGetWidth';
 import Script from 'next/script';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import YouTube from 'react-youtube';
 
 
 LDWeeklyTraining.propTypes = {
@@ -415,7 +416,8 @@ function TrainingService(props) {
     const [innerWidth, setInnerWith] = useState(2000);
     const list = props?.service?.cfg_value || [];
     const siteName = getFranchiseName(props.site);
-    const [showVideo, setShowVIdeo] = useState(false);
+    const [showVideo, setShowVIdeo] = useState(true);
+    // console.log('propsss',props.dataBannerTop);
     const [isOpenText, setIsOpenText] = useState({
         isWeeklyTraining: false,
         isHolydayCamps: false,
@@ -433,7 +435,15 @@ function TrainingService(props) {
     function handleWindowSizeChange() {
         setInnerWith(window.innerWidth);
     }
-
+    const opts = {
+        width:'100%',
+        height:'300px',
+        objectFit:'cover',
+        playerVars: {
+          // https://developers.google.com/youtube/player_parameters
+          autoplay: 1
+        }
+    };
     let options = [];
     if (props.site) {
         options.push({
@@ -515,27 +525,41 @@ function TrainingService(props) {
                             </div>
                             {props.isHeader && <>
                                 {showVideo &&
-                                    props.dataBannerTop.about.cfg_content &&
-                                    props.dataBannerTop.about.cfg_content.includes(
+                                    props.dataBannerTop?.about.cfg_content &&
+                                    props.dataBannerTop?.about.cfg_content.includes(
                                         'youtube.com',
                                     ) && (
-                                        <PlayVideo
-                                            url={Utils.getLinkYoutube(
-                                                props?.dataBannerTop.about?.cfg_content || '',
-                                            )}
-                                            onClose={() => {
-                                                setShowVIdeo(false);
-                                            }}
-                                        />
+                                            // <YouTube
+                                            //     videoId={Utils.getLinkYoutube(
+                                            //         props?.dataBannerTop.about?.cfg_content || '',
+                                            //     ).split('/')[Utils.getLinkYoutube(
+                                            //         props?.dataBannerTop.about?.cfg_content || '',
+                                            //     ).split('/').length-1]}
+                                            //     onClose={() => {
+                                            //         setShowVIdeo(false);
+                                            //     }}
+                                            //     opts={opts}
+                                                
+                                            // />
+                                            <iframe
+                                            width="100%"
+                                            height="300px"
+                                            src={Utils.getLinkYoutube(
+                                                        props?.dataBannerTop.about?.cfg_content || '')}
+                                            frameBorder="0"
+                                            allowFullScreen
+                                            allow="autoplay"></iframe>
                                     )}
                                     
                                     
-                                            <div className="col-6 paddingNoneImg">
+                                            {/* <div className="col-6 paddingNoneImg">
                                                 <img
                                                     style={{
                                                         width: '100%',
                                                         maxHeight: '250px',
                                                         objectFit: 'cover',
+                                                        marginRight:0,
+                                                        display:'block'
                                                     }}
                                                     loading="lazy"
                                                     alt=""
@@ -573,7 +597,7 @@ function TrainingService(props) {
                                                             </div>
                                                         </>
                                                     )}
-                                            </div>
+                                            </div> */}
                                         
                                     
                                 
