@@ -417,6 +417,7 @@ function TrainingService(props) {
     const list = props?.service?.cfg_value || [];
     const siteName = getFranchiseName(props.site);
     const [showVideo, setShowVIdeo] = useState(true);
+    // console.log('propsss',props.dataBannerTop);
     const [isOpenText, setIsOpenText] = useState({
         isWeeklyTraining: false,
         isHolydayCamps: false,
@@ -528,19 +529,26 @@ function TrainingService(props) {
                                     props.dataBannerTop?.about.cfg_content.includes(
                                         'youtube.com',
                                     ) && (
-                                            <YouTube
-                                                videoId={Utils.getLinkYoutube(
-                                                    props?.dataBannerTop.about?.cfg_content || '',
-                                                ).split('/')[Utils.getLinkYoutube(
-                                                    props?.dataBannerTop.about?.cfg_content || '',
-                                                ).split('/').length-1]}
-                                                onClose={() => {
-                                                    setShowVIdeo(false);
-                                                }}
-                                                opts={opts}
+                                            // <YouTube
+                                            //     videoId={Utils.getLinkYoutube(
+                                            //         props?.dataBannerTop.about?.cfg_content || '',
+                                            //     ).split('/')[Utils.getLinkYoutube(
+                                            //         props?.dataBannerTop.about?.cfg_content || '',
+                                            //     ).split('/').length-1]}
+                                            //     onClose={() => {
+                                            //         setShowVIdeo(false);
+                                            //     }}
+                                            //     opts={opts}
                                                 
-                                            />
-                                        
+                                            // />
+                                            <iframe
+                                            width="100%"
+                                            height="300px"
+                                            src={Utils.getLinkYoutube(
+                                                        props?.dataBannerTop.about?.cfg_content || '')}
+                                            frameBorder="0"
+                                            allowFullScreen
+                                            allow="autoplay"></iframe>
                                     )}
                                     
                                     
