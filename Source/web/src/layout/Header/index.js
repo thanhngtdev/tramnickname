@@ -72,7 +72,7 @@ function Header() {
     const otherLocales = (locales || []).filter(
         (locale) => locale !== activeLocale,
     );
-
+    
     useEffect(() => {
         if (!isComponentVisible && showSelect) {
             setShowSelect(false);
@@ -143,7 +143,7 @@ function Header() {
     return (
         <div className={`header ${fixHeader ? '' : 'fix-header'}`} style={{}}>
             <div className="head-top-mobile">
-                <div className="container">
+                <div className="container displayFlex">
                     <Link href={PathRoute.Home}>
                         <img
                             // src="/static-file/images/logo.svg"
@@ -155,7 +155,17 @@ function Header() {
                             width={'100%'}
                         />
                     </Link>
-
+                    <ul className='menu-small'>
+                        <li className='menu-link'>
+                            <NearbyAcademy
+                                onChangeLocation={hideMenu}
+                                isHeader={true}
+                                defaultAcademyProps={
+                                    defaultAcademyss
+                                }
+                            />
+                        </li>
+                    </ul>
                     <button
                         className={`btn-button icon-menu ${
                             menuMobile ? 'show' : ''
