@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { headerActionType } from 'src/redux/actions/actionTypes';
 
-function NearbyAcademy({ defaultAcademyProps }) {
+function NearbyAcademy({ defaultAcademyProps,isHeader }) {
     const dispatch = useDispatch();
     const wrapperRef = useRef(null);
     const [defaultAcademy, setDefaultAcademy] = useState();
@@ -49,9 +49,13 @@ function NearbyAcademy({ defaultAcademyProps }) {
                         });
                     }
                 }}>
-                {!isEmpty(defaultAcademy)
+                {!isHeader && 
+                (!isEmpty(defaultAcademy)
                     ? `${defaultAcademy?.location_name?.text}`
-                    : 'Find your nearest academy'}
+                    : 'Find your nearest academy')}
+                {isHeader && <span className='underlineOrange'>{!isEmpty(defaultAcademy)
+                    ? `${defaultAcademy?.location_name?.text}`
+                    : 'Find an academy'}</span>}
             </div>
             <div className={`tooltip ${showSelect ? '' : 'select-hide'}`}>
                 <div className="wrap">
