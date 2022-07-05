@@ -21,6 +21,7 @@ import useTruspilot from 'src/hooks/useTruspilot';
 import useGetWidth from 'src/hooks/useGetWidth';
 import Script from 'next/script';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import useGetWidthWithLoading from 'src/hooks/useGetWidthWithLoading';
 // import YouTube from 'react-youtube';
 
 
@@ -461,7 +462,13 @@ function TrainingService(props) {
             );
     }
 
-    const isMobile = useGetWidth() <= 768;
+    const [loading, width, isMobile] = useGetWidthWithLoading();
+    // wait for loading screen size
+    if (loading) {
+        return <div />;
+    }
+
+    // const isMobile = useGetWidth() <= 768;
 
     // console.log(props.site);
     if (isMobile) {

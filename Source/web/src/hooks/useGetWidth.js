@@ -1,9 +1,9 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const useGetWidth = () => {
     const [width, setWidth] = useState(2000);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         setWidth(window.innerWidth);
         const handleResize = () => {
             setWidth(window.innerWidth);
