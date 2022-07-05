@@ -297,8 +297,10 @@ h1 {
     
 }
 
+
 .underlineOrange{
-    border-bottom: 1px solid #ee7925;
+    color: #FE7531;
+    border-bottom: 1px solid #FE7531;
     padding-bottom: 1px;
 }
 
