@@ -462,13 +462,13 @@ function TrainingService(props) {
             );
     }
 
-    // const [loading, width, isMobile] = useGetWidthWithLoading();
-    // // wait for loading screen size
-    // if (loading) {
-    //     return <div />;
-    // }
+    const [loading, width, isMobile] = useGetWidthWithLoading();
+    // wait for loading screen size
+    if (loading) {
+        return <div />;
+    }
 
-    const isMobile = useGetWidth() <= 768;
+    // const isMobile = useGetWidth() <= 768;
 
     // console.log(props.site);
     if (isMobile) {
