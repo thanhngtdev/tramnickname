@@ -79,6 +79,7 @@ const TrainingServiceItem = (props) => {
                         padding: 0,
                         color: '#EE7925',
                         cursor: 'pointer',
+                        fontSize:'18px'
                     }}
                     size={90}>
                     Book Free Session
