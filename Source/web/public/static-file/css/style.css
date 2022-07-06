@@ -1036,7 +1036,7 @@ h1 {
         background-color: #000;
     }
     .displayMobile{
-        display: unset!important;
+        display: block!important;
     }
 }
 
