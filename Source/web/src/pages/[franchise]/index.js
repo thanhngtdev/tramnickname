@@ -49,7 +49,7 @@ function Franchise({ dataBannerTop, data, listSite, isSubPage, item }) {
     const isMobile = useGetWidth() <= 768;
 
     saveList(listSite);
-
+    
     useEffect(() => {
         if (isEmpty(data)) {
             window.location.href = '/404';
@@ -91,20 +91,20 @@ function Franchise({ dataBannerTop, data, listSite, isSubPage, item }) {
                 src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
                 // strategy=""
             />
-            {isMobile && (
-                <div className="banner-franchise">
-                    <BannerTop
-                        social={data?.site?.socialLink || []}
-                        site={data?.site || {}}
-                        masterData={data?.masterData || {}}
-                        isSubPage={isSubPage}
-                        isHeader={true}
-                    />
-                </div>
-            )}
-            {isMobile && (
+            
+            <div className="banner-franchise displayMobile">
+                <BannerTop
+                    social={data?.site?.socialLink || []}
+                    site={data?.site || {}}
+                    masterData={data?.masterData || {}}
+                    isSubPage={isSubPage}
+                    isHeader={true}
+                />
+            </div>
+            
+            
                 <div
-                    className="trustpilot-franchise"
+                    className="trustpilot-franchise displayMobile"
                     style={{ marginTop: '5rem', marginBottom: '5rem' }}>
                     <div
                         className="trustpilot-widget truspilot-big"
@@ -123,9 +123,9 @@ function Franchise({ dataBannerTop, data, listSite, isSubPage, item }) {
                         </a>
                     </div>
                 </div>
-            )}
-            {isMobile && (
-                <div id="training-services" className="franchise-servive">
+            
+            
+                <div id="training-services" className="franchise-servive displayMobile">
                     <TrainingService
                         onClickLocation={onClickLocation}
                         site={data?.site || {}}
@@ -135,7 +135,7 @@ function Franchise({ dataBannerTop, data, listSite, isSubPage, item }) {
                         // targetRef={targetRef}
                     />
                 </div>
-            )}
+            
 
             <div className="banner-franchise">
                 <BannerTop

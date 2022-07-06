@@ -1025,12 +1025,18 @@ h1 {
 .box-slide-review .slick-dots .slick-active button {
     background-color: #fff;
 }
+.displayMobile{
+    display: none!important;
+}
 @media only screen and (max-width: 768px) {
     .box-slide-review .slick-dots li button{
         border-color: #000;
     }
     .box-slide-review .slick-dots .slick-active button {
         background-color: #000;
+    }
+    .displayMobile{
+        display: unset!important;
     }
 }
 
