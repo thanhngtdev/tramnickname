@@ -7,10 +7,12 @@ import { siteActionType } from 'src/redux/actions/actionTypes';
 import PathRoute from 'src/common/PathRoute';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
+import useGetWidth from 'src/hooks/useGetWidth';
+
 
 const AboutInfoItem = (props) => {
     const { item, index, site, title } = props;
-
+    const isMobile = useGetWidth() <= 550;
     const { defaultTypeform } = useSelector((state) => state.homeReducer);
 
     const [courses, setCourses] = useState([]);
@@ -137,7 +139,7 @@ const AboutInfoItem = (props) => {
                                 justifyContent: 'space-between',
                                 padding: '10px 28px',
                             }}>
-                            <p>{el?.day_of_week}</p>
+                            <p>{isMobile ? el?.day_of_week.slice(0,3) : el?.day_of_week}</p>
                             <p>
                                 {dayjs(
                                     '2021-03-03T' + el.course_day_time_start,
@@ -149,7 +151,7 @@ const AboutInfoItem = (props) => {
                             </p>
                             <p>
                                 {el.min_age}-{el.max_age}{' '}
-                                {props.isMobile ? 'y.o.' : 'year olds'}
+                                {isMobile ? 'y.o.' : 'year olds'}
                             </p>
                         </div>
                         <div

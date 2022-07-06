@@ -1032,8 +1032,9 @@ h1 {
     .box-slide-review .slick-dots .slick-active button {
         background-color: #000;
     }
-    .displayMobile {
-        display: unset !important;
+    .displayMobile{
+        display: block!important;
+
     }
 }
 

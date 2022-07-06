@@ -79,6 +79,7 @@ const TrainingServiceItem = (props) => {
                         padding: 0,
                         color: '#EE7925',
                         cursor: 'pointer',
+                        fontSize:'18px'
                     }}
                     size={90}>
                     Book Free Session
@@ -131,7 +132,7 @@ const TrainingServiceItem = (props) => {
                             justifyContent: 'space-between',
                             padding: '10px 1.5rem',
                         }}>
-                        <p>{isWithTable ? el?.day_of_week.slice(0,2) : el?.day_of_week}</p>
+                        <p>{isWithTable ? el?.day_of_week.slice(0,3) : el?.day_of_week}</p>
 
                         <p>
                             {dayjs(

@@ -8,11 +8,13 @@ import {
     siteActionType,
 } from 'src/redux/actions/actionTypes';
 import { PopupButton } from '@typeform/embed-react';
+import useGetWidth from 'src/hooks/useGetWidth';
 import Button from 'src/components/Button';
 
 
 function WeeklTrainingItem(props) {
     const { item, index, site, title, distance } = props;
+    const isWithTable = useGetWidth() <=402;
 
     const dispatch = useDispatch();
     const history = useRouter();
@@ -78,9 +80,9 @@ function WeeklTrainingItem(props) {
                         <div className="course-odd">
                             <p className="course-time">
                                 {' '}
-                                {el.day_of_week}&nbsp;<br/>
+                                {isWithTable ? el?.day_of_week.slice(0,3) : el?.day_of_week}&nbsp;<br/>
 
-                                {el.min_age}-{el.max_age} year olds <br />
+                                {el.min_age}-{el.max_age} {isWithTable ? 'y.o.' : 'year olds'} <br />
                                 {dayjs(
                                     '2021-03-03T' + el.course_day_time_start,
                                 ).format('HH:mma')}
