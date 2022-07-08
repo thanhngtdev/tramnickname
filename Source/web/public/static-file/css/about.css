@@ -67,10 +67,12 @@
 }
 
 .about-info p {
-    font-size: 20px;
+    /* font-size: 20px; */
+    font-size: 18px;
     color: #5a5a5a;
     clear: both;
-    text-align: center;
+    /* text-align: center; */
+    text-align: left;
 }
 
 .about-info hr {

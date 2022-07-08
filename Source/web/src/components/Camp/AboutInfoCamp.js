@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { size } from 'lodash';
 import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
@@ -18,6 +19,7 @@ AboutInfoCamp.propTypes = {
 };
 
 export default function AboutInfoCamp(props) {
+    console.log('holidayCampProps',props);
     const { listSite } = useSelector((state) => state.listSiteReducer);
     const history = useRouter();
     const dispatch = useDispatch();
@@ -30,7 +32,7 @@ export default function AboutInfoCamp(props) {
     );
 
     const [listCourse, setListCourse] = useState([]);
-
+    console.log(listSite,'propsSite');
     //! useEffect
     useEffect(() => {
         // dispatch({ type: siteActionType.GET_SITE_HAS_CAMP });
@@ -55,34 +57,42 @@ export default function AboutInfoCamp(props) {
         await sendGet(`${PARENT_API + APIConfig.GET_LIST_COMPANY_HAS_CAMP}`)
             .then((res) => {
                 if (res.status === 200 && !isEmpty(res.data?.data)) {
-                    // setListHasCamp(res.data?.data || []);
+                    console.log("tuan", res.data?.data);
+                    setListHasCamp(res.data?.data || []);
                     const listCourse = [];
                     res.data?.data.map((item) => {
                         item?.locations?.map((el) => listCourse.push(el));
                     });
+                    const courses = res.data?.data
+                    console.log('hoat',courses);
 
                     if (listCourse && listSite) {
                         // console.log(listCourse, listSite, 'pre-filter');
                         const filterList = [];
 
                         listSite.map((item) => {
-                            listCourse.map((el) => {
-                                if (
-                                    item.pa_locationId ===
-                                    el.location_id + ''
-                                ) {
-                                    // console.log(el, item, 'ee');
-                                    filterList.push(item);
-                                }
-                            });
+                            item.ms_addresses.map((it) => {
+                                listCourse.map((el) => {
+                                    console.log(el,'el');
+                                    if (
+                                        it.pa_locationId ===
+                                        el.location_id + ''
+                                    ) {
+                                        // console.log(el, item, 'ee');
+                                        filterList.push(item);
+                                    }
+                                });
+
+                            })
                         });
 
                         // console.log(listCourse, 'filter');
-                        setListCourse(listCourse);
+                        setListCourse(courses);
+                        // setListCourse(listCourse);
                         setListHasCamp(filterList);
                     }
-
-                    // console.log(listCourse, 'list');
+                    console.log(listHasCamp,'hascamp');
+                    console.log(listCourse, 'list');
                 }
             })
             .catch((err) => {
@@ -92,15 +102,21 @@ export default function AboutInfoCamp(props) {
     };
 
     const handleSelectedSite = (site, isSiteDefault = false) => {
-        // console.log(site, 'site');
+        console.log(site, 'dsfdsfdsf');
+        console.log('courses',listCourse);
+        // const availableCompany = listCourse.find(
+        //     (item) => item.location_id + '' === site.pa_locationId,
+        // );
+        const availableCompany = listCourse.find((item) => {
+            return item.company_id+''===site.pa_companyId
+        });
+        console.log('hoatasda',availableCompany);
 
-        const availableCompany = listCourse.find(
-            (item) => item.location_id + '' === site.pa_locationId,
-        );
 
-        if (!isEmpty(availableCompany?.holiday_camps)) {
-            setLstCourse(availableCompany.holiday_camps);
-            setTitle(availableCompany.location_name);
+        if (!isEmpty(availableCompany?.locations)) {
+            setLstCourse(availableCompany.locations);
+            // setTitle(availableCompany.location_name);
+            setTitle(`Nearby camps to ${site.ms_name}`);
         } else {
             setLstCourse([]);
             setTitle(
@@ -117,11 +133,12 @@ export default function AboutInfoCamp(props) {
 
         setSelectedAcademy(site);
     };
-
+    console.log('siteSelected',selectedAcademy);
     return (
         <div className="about-info">
             <div className="wrap-info">
                 <p style={{ textAlign: 'center', fontSize: 24 }}>{title}</p>
+                {console.log('hsadnwfw',listHasCamp)}
                 <div className="wSelect2">
                     <Select
                         value={selectedAcademy}
@@ -137,25 +154,31 @@ export default function AboutInfoCamp(props) {
                         onChange={handleSelectedSite}
                     />
                 </div>
+                {console.log(lstCourse,'sadsadsadsa')}
                 {lstCourse.length > 0 && (
                     <div className="wSelect2">
-                        {lstCourse.map((item, index) => (
-                            <div
-                                key={index}
-                                className="classRow"
-                                onClick={() => {
-                                    setCourseSelected(item);
-                                }}
-                                style={{
-                                    backgroundColor: `${
-                                        index % 2 === 0 ? '#F7F8F7' : 'white'
-                                    }`,
-                                }}>
-                                <p>{item.course_title}</p>
-                                <p>
-                                    {item.min_age}-{item.max_age} year olds
-                                </p>
-                            </div>
+                        {lstCourse.map((courseItem, index) => (
+                            courseItem.holiday_camps.map((item,index) => {
+                                console.log('itemCourse',item)
+                                return(
+                                    <div
+                                        key={index}
+                                        className="classRow"
+                                        onClick={() => {
+                                            setCourseSelected(item);
+                                        }}
+                                        style={{
+                                            backgroundColor: `${
+                                                index % 2 === 0 ? '#F7F8F7' : 'white'
+                                            }`,
+                                        }}>
+                                        <p>{item.course_title}</p>
+                                        <p>
+                                            {item.min_age}-{item.max_age} year olds
+                                        </p>
+                                    </div>
+                                )
+                            })
                         ))}
                     </div>
                 )}
