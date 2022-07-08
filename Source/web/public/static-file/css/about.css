@@ -74,6 +74,9 @@
     /* text-align: center; */
     text-align: left;
 }
+.btn-book-camp{
+    color: #EE7925!important;
+}
 
 .about-info hr {
     height: 2px;

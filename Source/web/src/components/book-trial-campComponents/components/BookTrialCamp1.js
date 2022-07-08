@@ -1,7 +1,13 @@
 import dayjs from 'dayjs';
 import isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+import React, {
+    Fragment,
+    useEffect,
+    useLayoutEffect,
+    useRef,
+    useState,
+} from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import Flatpickr from 'react-flatpickr';
 import PhoneInput from 'react-phone-number-input';
@@ -15,6 +21,9 @@ import BorderButton from 'src/components/include/BorderButton';
 import Checkbox from 'src/components/include/Checkbox/Checkbox';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import { checkEmail, getListCourse } from 'src/redux/actions/siteAction';
+import Router, { useRouter } from 'next/router';
+import { find } from 'lodash';
+import { route } from 'next/dist/server/router';
 
 BookTrialCamp1.propTypes = {
     onNext: PropTypes.func,
@@ -25,6 +34,9 @@ const options = {
 };
 
 function BookTrialCamp1(props) {
+    //! State
+    const router = useRouter();
+    let { location_name, course_title } = router.query;
     const siteReducer = useSelector((state) => state.siteReducer);
     const { emailData } = siteReducer;
     const dispatch = useDispatch();
@@ -32,7 +44,7 @@ function BookTrialCamp1(props) {
 
     const [siteSelected, setSiteSelected] = useState({});
 
-    const [lstHoliday, setLstHoliday] = useState([]);
+    const lstHoliday = siteReducer.dataEvent;
     const [courseSelected, setCourseSelected] = useState(null);
 
     const [companyId, setCompanyId] = useState(0);
@@ -59,6 +71,47 @@ function BookTrialCamp1(props) {
     const [dateError, setDateError] = useState('');
     const [disabled, setDisabled] = useState(false);
     const [availableEmail, setAvailableEmail] = useState(false);
+
+    //! Effect
+    useLayoutEffect(() => {
+        if (location_name) {
+            const defaultAcademy = lstSite?.find(
+                (item) => item.label === location_name,
+            );
+
+            if (defaultAcademy) {
+                dispatch({
+                    type: siteActionType.GET_LIST_COURSE,
+                    company_id: defaultAcademy?.companyId,
+                    location_id: defaultAcademy?.value,
+                    course_type: 'event',
+                });
+                setSiteSelected(defaultAcademy);
+            }
+        }
+    }, [lstSite]);
+
+    useLayoutEffect(() => {
+        console.log('course_title', course_title);
+        if (location_name) {
+            if (course_title) {
+                const defaultHoliday = lstHoliday?.find(
+                    (item) => item.course_title === course_title,
+                );
+                console.log('defaultHoliday', defaultHoliday);
+
+                if (defaultHoliday) {
+                    setCourseSelected(defaultHoliday);
+                    dispatch({
+                        type: siteActionType.EVENT_DATE,
+                        course_id: defaultHoliday?.course_id,
+                    });
+                }
+            }
+
+            console.log('routerrouter', router)
+        }
+    }, [lstHoliday]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -116,10 +169,6 @@ function BookTrialCamp1(props) {
     ]);
 
     useEffect(() => {
-        // console.log('====================================');
-        // console.log(date.getFullYear(), dayjs().year());
-
-        // console.log(courseSelected, '====================================');
         if (courseSelected) {
             const old = dayjs().year() - date.getFullYear();
 
@@ -142,7 +191,6 @@ function BookTrialCamp1(props) {
 
     useEffect(() => {
         if (!isEmpty(emailData)) {
-            // console.log(emailData, 'emailData');
             try {
                 const { data } = emailData;
                 if (data.email_exist === 'yes') {
@@ -190,12 +238,11 @@ function BookTrialCamp1(props) {
                     );
                 }
             }
-            if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
-                if (siteReducer.courseType === 'event')
-                    setLstHoliday(siteReducer.dataEvent);
-            }
+            // if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
+            //     if (siteReducer.courseType === 'event')
+            //         setLstHoliday(siteReducer.dataEvent);
+            // }
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_FAILED) {
-                // console.log(siteReducer.data);
                 setSiteError(
                     'The Holiday Camp you have selected is not available',
                 );
@@ -208,7 +255,7 @@ function BookTrialCamp1(props) {
                     siteReducer.data.map(() => {
                         return {
                             id: 0,
-                            price: courseSelected.single_day_price,
+                            price: courseSelected?.single_day_price,
                             checkBox: false,
                         };
                     }),
@@ -248,6 +295,22 @@ function BookTrialCamp1(props) {
         }
     }, [dateCourseSelect]);
 
+    useEffect(() => {
+        let _dateCourse = [...dateCourseSelect];
+        if (!fullCourseSelect) {
+            _dateCourse = _dateCourse.map((item) => {
+                return { ...item, checkBox: false };
+            });
+        } else {
+            _dateCourse = _dateCourse.map((item) => {
+                return { ...item, checkBox: true };
+            });
+        }
+
+        setDateCourseSelect(_dateCourse);
+    }, [fullCourseSelect]);
+
+    //! Function
     function validateData() {
         let _validate = true;
 
@@ -334,27 +397,52 @@ function BookTrialCamp1(props) {
         });
         setDateCourseSelect(_dateCourse);
     }
-
-    useEffect(() => {
-        let _dateCourse = [...dateCourseSelect];
-        // console.log('aaaa', fullCourseSelect);
-        if (!fullCourseSelect) {
-            _dateCourse = _dateCourse.map((item) => {
-                return { ...item, checkBox: false };
-            });
-        } else {
-            _dateCourse = _dateCourse.map((item) => {
-                return { ...item, checkBox: true };
-            });
-        }
-
-        setDateCourseSelect(_dateCourse);
-    }, [fullCourseSelect]);
-
+    
     function handleFullCheckBox() {
         setFullCourseSelect(!fullCourseSelect);
     }
 
+    const setQueryRouter = (obj = {}) => {
+        router.replace({ pathname: window.location.pathname, query: {
+            ...router.query,
+            ...obj,
+        }})
+    }
+
+    const onChangeAcademy = (option) => {
+        setCourseSelected(null);
+        setSiteSelected(option);
+        dispatch({
+            type: siteActionType.GET_LIST_COURSE,
+            company_id: option.companyId,
+            location_id: option.value,
+            course_type: 'event',
+        });
+        setQueryRouter({
+            location_name: option.label,
+            course_title: ""
+        })
+        // setCompanyId(option.pa_companyId);
+        // dispatch({
+        //     type: siteActionType.GET_LIST_COURSE,
+        //     company_id: option.pa_companyId,
+        //     course_type: 'event',
+        // });
+        setSiteError('');
+    }
+
+    const onChangeHolidayCamp = (option) => {
+        setCourseSelected(option);
+        dispatch({
+            type: siteActionType.EVENT_DATE,
+            course_id: option.course_id,
+        });
+        setQueryRouter({
+            course_title: option.course_title,
+        })
+    }
+
+    //! Render
     return (
         <div className="tab-1">
             <h2>Let’s sign you up & book a holiday camp!</h2>
@@ -374,32 +462,14 @@ function BookTrialCamp1(props) {
 
             <div className="wSelect2">
                 <label>Select academy</label>
-
                 <Select
                     defaultValue="Sss"
-                    // value={siteSelected}
+                    value={siteSelected}
                     options={lstSite}
                     isSearchable={false}
                     isMulti={false}
                     styles={CommonStyle.select2}
-                    onChange={(option) => {
-                        setCourseSelected(null);
-                        setSiteSelected(option);
-                        dispatch({
-                            type: siteActionType.GET_LIST_COURSE,
-                            company_id: option.companyId,
-                            location_id: option.value,
-                            course_type: 'event',
-                        });
-
-                        // setCompanyId(option.pa_companyId);
-                        // dispatch({
-                        //     type: siteActionType.GET_LIST_COURSE,
-                        //     company_id: option.pa_companyId,
-                        //     course_type: 'event',
-                        // });
-                        setSiteError('');
-                    }}
+                    onChange={onChangeAcademy}
                 />
                 <label className="input-error">{siteError}</label>
             </div>
@@ -414,14 +484,7 @@ function BookTrialCamp1(props) {
                     getOptionLabel={(option) => option.course_title}
                     getOptionValue={(option) => option.course_id}
                     styles={CommonStyle.select2}
-                    onChange={(option) => {
-                        // console.log(courseSelected, 'course selected');
-                        setCourseSelected(option);
-                        dispatch({
-                            type: siteActionType.EVENT_DATE,
-                            course_id: option.course_id,
-                        });
-                    }}
+                    onChange={onChangeHolidayCamp}
                 />
                 <label className="input-error">{courseError}</label>
             </div>
@@ -472,7 +535,7 @@ function BookTrialCamp1(props) {
                                             <Checkbox
                                                 checked={
                                                     dateCourseSelect[index]
-                                                        .checkBox
+                                                        ?.checkBox
                                                 }
                                                 onChange={() => {
                                                     changeCourse(index);
@@ -511,10 +574,10 @@ function BookTrialCamp1(props) {
                                         </div>
                                         <p>
                                             £
-                                            {dateCourseSelect[index].price +
+                                            {dateCourseSelect[index]?.price +
                                                 `${
                                                     dateCourseSelect[index]
-                                                        .id === 0
+                                                        ?.id === 0
                                                         ? ' per full day'
                                                         : ' per half day'
                                                 }`}
@@ -667,7 +730,6 @@ function BookTrialCamp1(props) {
                             international
                             value={phone}
                             onChange={(event) => {
-                                // console.log(event);
                                 setPhone(event);
                                 setPhoneError('');
                             }}
@@ -679,13 +741,11 @@ function BookTrialCamp1(props) {
                         title="Next step of booking"
                         disabled={disabled}
                         onClick={() => {
-                            // console.log(eventDate, 'event');
-                            // console.log(dateSelect, 'dateSe');
                             let _dates = [];
                             let _lstDate = [];
                             let _lstPrice = [];
 
-                            dateCourseSelect.map((item, index) => {
+                            dateCourseSelect?.map((item, index) => {
                                 if (item.checkBox) {
                                     if (item.id === 0) {
                                         _lstDate.push(
@@ -725,7 +785,6 @@ function BookTrialCamp1(props) {
                                 totalPrice,
                             };
 
-                            // console.log(dataObject);
                             if (validateData()) {
                                 props.onNext(dataObject);
                             }
