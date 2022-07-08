@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
+import { size } from 'lodash';
 import isEmpty from 'lodash/isEmpty';
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,7 +31,6 @@ export default function AboutInfoCamp(props) {
     );
 
     const [listCourse, setListCourse] = useState([]);
-
     //! useEffect
     useEffect(() => {
         // dispatch({ type: siteActionType.GET_SITE_HAS_CAMP });
@@ -40,7 +40,6 @@ export default function AboutInfoCamp(props) {
     }, [listSite]);
 
     useEffect(() => {
-        // console.log(listCourse, '/listCourse');
         if (!isEmpty(listHasCamp)) {
             if (!isEmpty(props.site)) {
                 handleSelectedSite(props.site, true);
@@ -55,52 +54,90 @@ export default function AboutInfoCamp(props) {
         await sendGet(`${PARENT_API + APIConfig.GET_LIST_COMPANY_HAS_CAMP}`)
             .then((res) => {
                 if (res.status === 200 && !isEmpty(res.data?.data)) {
-                    // setListHasCamp(res.data?.data || []);
+                    setListHasCamp(res.data?.data || []);
                     const listCourse = [];
                     res.data?.data.map((item) => {
                         item?.locations?.map((el) => listCourse.push(el));
                     });
+                    const courses = res.data?.data;
 
                     if (listCourse && listSite) {
-                        // console.log(listCourse, listSite, 'pre-filter');
+        
                         const filterList = [];
 
                         listSite.map((item) => {
-                            listCourse.map((el) => {
-                                if (
-                                    item.pa_locationId ===
-                                    el.location_id + ''
-                                ) {
-                                    // console.log(el, item, 'ee');
-                                    filterList.push(item);
-                                }
+                            item.ms_addresses.map((it) => {
+                                listCourse.map((el) => {
+                                    
+                                    if (
+                                        it.pa_locationId ===
+                                        el.location_id + ''
+                                    ) {
+                                       
+                                        filterList.push(item);
+                                    }
+                                });
                             });
                         });
 
-                        // console.log(listCourse, 'filter');
-                        setListCourse(listCourse);
+                        
+                        setListCourse(courses);
+                        // setListCourse(listCourse);
                         setListHasCamp(filterList);
                     }
-
-                    // console.log(listCourse, 'list');
+                    
                 }
             })
             .catch((err) => {
-                // console.log(err);
+              
                 setListHasCamp([]);
             });
     };
 
     const handleSelectedSite = (site, isSiteDefault = false) => {
-        // console.log(site, 'site');
+        
 
-        const availableCompany = listCourse.find(
-            (item) => item.location_id + '' === site.pa_locationId,
-        );
+        // const availableCompany = listCourse.find(
+        //     (item) => item.location_id + '' === site.pa_locationId,
+        // );
+        const availableCompany = listCourse.find((item) => {
+            return item.company_id + '' === site.pa_companyId;
+        });
+        
+        let isCheck = true;
+        availableCompany?.locations.map((el, index) => {
+            let isTest = site.ms_addresses.find(
+                (item) => item.pa_locationId === el.location_id + '',
+            );
+            if (!isTest) {
+                isCheck = false;
+            }
+        });
 
-        if (!isEmpty(availableCompany?.holiday_camps)) {
-            setLstCourse(availableCompany.holiday_camps);
-            setTitle(availableCompany.location_name);
+        if (!isEmpty(availableCompany?.locations)) {
+            // setLstCourse(availableCompany.locations);
+            // setTitle(availableCompany.location_name);
+            let testListCourse = availableCompany.locations.map((courseItem) => {
+                let locationName = courseItem.location_name;
+              
+                let temp = courseItem.holiday_camps.map((item) => {
+                    return{
+                        ...item,
+                        location_name: locationName,
+                    }
+                })
+                
+                return {
+                    ...courseItem,
+                    holidayCamps: [...temp]
+                }
+            })
+            setLstCourse(testListCourse);
+            if (!isCheck) {
+                setTitle(`Nearby camps to ${site.ms_name}`);
+            } else {
+                setTitle(`Holiday Camps in ${site.ms_name}`);
+            }
         } else {
             setLstCourse([]);
             setTitle(
@@ -114,14 +151,17 @@ export default function AboutInfoCamp(props) {
             });
             return;
         }
-
+        
+        
+        
         setSelectedAcademy(site);
     };
-
+    
     return (
         <div className="about-info">
             <div className="wrap-info">
                 <p style={{ textAlign: 'center', fontSize: 24 }}>{title}</p>
+               
                 <div className="wSelect2">
                     <Select
                         value={selectedAcademy}
@@ -137,26 +177,56 @@ export default function AboutInfoCamp(props) {
                         onChange={handleSelectedSite}
                     />
                 </div>
+                
                 {lstCourse.length > 0 && (
                     <div className="wSelect2">
-                        {lstCourse.map((item, index) => (
-                            <div
-                                key={index}
-                                className="classRow"
-                                onClick={() => {
-                                    setCourseSelected(item);
-                                }}
-                                style={{
-                                    backgroundColor: `${
-                                        index % 2 === 0 ? '#F7F8F7' : 'white'
-                                    }`,
-                                }}>
-                                <p>{item.course_title}</p>
-                                <p>
-                                    {item.min_age}-{item.max_age} year olds
-                                </p>
-                            </div>
-                        ))}
+                        {lstCourse.map((courseItem, index) =>
+                            courseItem.holidayCamps.map((item, index) => {
+                                
+                                return (
+                                    <div
+                                        key={index}
+                                        className="classRow"
+                                        onClick={() => {
+                                            setCourseSelected(item);
+                                        }}
+                                        style={{
+                                            backgroundColor: `${
+                                                index % 2 === 0
+                                                    ? '#F7F8F7'
+                                                    : 'white'
+                                            }`,
+                                        }}>
+                                        <p>{item.course_title}</p>
+                                        <p>
+                                            {item.min_age}-{item.max_age} year
+                                            olds
+                                        </p>
+                                        <p
+                                            className="btn-book-camp"
+                                            onClick={() => {
+                                                if (isEmpty(lstCourse)) return;
+
+                                                if (selectedAcademy) {
+                                                    // history.push(PathRoute.BookTrialCamp);
+                                                    history.push({
+                                                        pathname:
+                                                            PathRoute.BookTrialCamp,
+                                                        query: { location_name: item.location_name,
+                                                                course_title:item.course_title},
+                                                    });
+                                                    dispatch({
+                                                        type: siteActionType.SELECT_ACADEMY,
+                                                        data: selectedAcademy,
+                                                    });
+                                                }
+                                            }}>
+                                            Book
+                                        </p>
+                                    </div>
+                                );
+                            }),
+                        )}
                     </div>
                 )}
 
