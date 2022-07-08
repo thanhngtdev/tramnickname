@@ -109,7 +109,7 @@ function BookTrialCamp1(props) {
                 }
             }
 
-            console.log('routerrouter', router)
+            console.log('routerrouter', router);
         }
     }, [lstHoliday]);
 
@@ -397,17 +397,20 @@ function BookTrialCamp1(props) {
         });
         setDateCourseSelect(_dateCourse);
     }
-    
+
     function handleFullCheckBox() {
         setFullCourseSelect(!fullCourseSelect);
     }
 
     const setQueryRouter = (obj = {}) => {
-        router.replace({ pathname: window.location.pathname, query: {
-            ...router.query,
-            ...obj,
-        }})
-    }
+        router.replace({
+            pathname: window.location.pathname,
+            query: {
+                ...router.query,
+                ...obj,
+            },
+        });
+    };
 
     const onChangeAcademy = (option) => {
         setCourseSelected(null);
@@ -420,8 +423,8 @@ function BookTrialCamp1(props) {
         });
         setQueryRouter({
             location_name: option.label,
-            course_title: ""
-        })
+            course_title: '',
+        });
         // setCompanyId(option.pa_companyId);
         // dispatch({
         //     type: siteActionType.GET_LIST_COURSE,
@@ -429,7 +432,7 @@ function BookTrialCamp1(props) {
         //     course_type: 'event',
         // });
         setSiteError('');
-    }
+    };
 
     const onChangeHolidayCamp = (option) => {
         setCourseSelected(option);
@@ -439,8 +442,8 @@ function BookTrialCamp1(props) {
         });
         setQueryRouter({
             course_title: option.course_title,
-        })
-    }
+        });
+    };
 
     //! Render
     return (
