@@ -12,10 +12,8 @@ RelateAreas.propTypes = {
 function RelateAreas(props) {
     const [listNearBy, setListNearBy] = useState([]);
     const [isFull, setIsFull] = useState(false);
-    // console.log(props, 'props');
 
     useEffect(() => {
-        // console.log(props, 'props relate');
         const { site, listSite } = props;
         if (!isEmpty(site) && !isEmpty(listSite)) {
             const list = [...listSite].filter(
@@ -24,26 +22,20 @@ function RelateAreas(props) {
 
             const listNearBy = list.filter(
                 (item) =>
-                    (item.distance = Utils.getDistanceFromLatLonInKm(
-                        site.ms_latitude,
-                        site.ms_longitude,
-                        item.ms_latitude,
-                        item.ms_longitude,
-                    )),
+                    (item.ms_addresses.map((el) => (
+                        el.distance = Utils.getDistanceFromLatLonInKm(
+                            site.ms_latitude,
+                            site.ms_longitude,
+                            el.ms_latitude,
+                            el.ms_longitude
+                        )
+                    )))
             );
 
             listNearBy.sort((a, b) => a.distance - b.distance);
-
-            // console.log('====================================');
-            // console.log(listNearBy, 'list');
-            // console.log('====================================');
             setListNearBy([...listNearBy.slice(0, 10)]);
         }
     }, []);
-
-    useEffect(() => {
-        console.log(listNearBy, 'listNearBy');
-    }, [listNearBy]);
 
     const siteName = getFranchiseName(props.site) || '';
     return (
@@ -89,8 +81,6 @@ function RelateAreas(props) {
                                                         item.ms_avatar,
                                                         'c1',
                                                     )}
-                                                    // height="100px"
-                                                    // width="500px"
                                                 />
                                                 <a
                                                     href={item.ms_alias}
@@ -102,7 +92,7 @@ function RelateAreas(props) {
                                                     }}>
                                                     <p>
                                                         {item.ms_name} -{' '}
-                                                        {item.distance.toFixed(
+                                                        {item.distance?.toFixed(
                                                             2,
                                                         )}
                                                         km
