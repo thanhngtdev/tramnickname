@@ -22,14 +22,12 @@ function RelateAreas(props) {
 
             const listNearBy = list.filter(
                 (item) =>
-                    (item.ms_addresses.map((el) => (
-                        el.distance = Utils.getDistanceFromLatLonInKm(
-                            site.ms_latitude,
-                            site.ms_longitude,
-                            el.ms_latitude,
-                            el.ms_longitude
-                        )
-                    )))
+                    (item.distance = Utils.getDistanceFromLatLonInKm(
+                        site.ms_addresses.map((e) => e.ms_latitude),
+                        site.ms_addresses.map((e) => e.ms_longitude),
+                        item.ms_addresses.map((e) => e.ms_latitude),
+                        item.ms_addresses.map((e) => e.ms_longitude),
+                    )),
             );
 
             listNearBy.sort((a, b) => a.distance - b.distance);
