@@ -65,15 +65,17 @@ export default (props) => {
                         {addressLenght > 1 ? (
                             newAddress.map((address) => {
                                 return (
-                                    <p style={{ margin: '8px 16px' }}>
+                                    <p className='contact-address'>
                                         {address.ms_address}
                                     </p>
                                 );
                             })
                         ) : (
-                            <p style={{ margin: '8px 16px' }}>
+                            <div>
+                                <p className='contact-address'>
                                 {newAddress[0]?.ms_address}
-                            </p>
+                            </p> 
+                            </div> 
                         )}
                     </div>
                 </div>}

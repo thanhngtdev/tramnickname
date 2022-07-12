@@ -1,90 +1,123 @@
-a, .number, .menu-small .custom-select .select-selected,.wrap-contact a, .list .custom-select .select-selected, .footer .Social .icon-fb, .footer .Social .icon-lin, .footer .Social .icon-wt, .academy-info .group-info img, .btn-about, .more, .border-btn, .slick-prev, .slick-next, .btn-right, .qna-contact button, .btn-button-s, .white-hover, .more-info button, .sitemap p{
-  transition: 0.3s;
+a,
+.number,
+.menu-small .custom-select .select-selected,
+.wrap-contact a,
+.list .custom-select .select-selected,
+.footer .Social .icon-fb,
+.footer .Social .icon-lin,
+.footer .Social .icon-wt,
+.academy-info .group-info img,
+.btn-about,
+.more,
+.border-btn,
+.slick-prev,
+.slick-next,
+.btn-right,
+.qna-contact button,
+.btn-button-s,
+.white-hover,
+.more-info button,
+.sitemap p {
+    transition: 0.3s;
 }
 
 /* .box-reasons .nav-tabs .active a {
   transition : 0.4s;
 } */
 
-.menu-down{
-  transition: 0.5s;
+.menu-down {
+    transition: 0.5s;
 }
 
-.menu-link a:hover, .list a:hover, .menu-ft a:hover, .academy a:hover, .sitemap p:hover{
-  color:#EE7925 !important
+.menu-link a:hover,
+.list a:hover,
+.menu-ft a:hover,
+.academy a:hover,
+.sitemap p:hover {
+    color: #ee7925 !important;
 }
 
-.login a:hover, .more-info button:hover{
-  color: white !important;
-  background-color: #EE7925 !important;
+.login a:hover,
+.more-info button:hover {
+    color: white !important;
+    background-color: #ee7925 !important;
 }
 
-.menu-small .custom-select .select-selected:hover{
-  -webkit-box-shadow: -2px 2px 2px 0px rgba(204,204,204,1);
-  -moz-box-shadow: -2px 2px 2px 0px rgba(204,204,204,1);
-  box-shadow: -2px 2px 2px 0px rgba(204,204,204,1);
+.menu-small .custom-select .select-selected:hover {
+    -webkit-box-shadow: -2px 2px 2px 0px rgba(204, 204, 204, 1);
+    -moz-box-shadow: -2px 2px 2px 0px rgba(204, 204, 204, 1);
+    box-shadow: -2px 2px 2px 0px rgba(204, 204, 204, 1);
 }
 
-.list .custom-select .select-selected:hover{
-  border:1px solid #EE7925;
+.list .custom-select .select-selected:hover {
+    border: 1px solid #ee7925;
 }
 
 .footer .Social .icon-fb:hover {
-	background: url(/static-file/images/icon-fb-white.svg) no-repeat left center transparent !important;
+    background: url(/static-file/images/icon-fb-white.svg) no-repeat left center
+        transparent !important;
 }
 
 .footer .Social .icon-lin:hover {
-	background: url(/static-file/images/icon-insta-white.svg) no-repeat left center transparent !important;
+    background: url(/static-file/images/icon-insta-white.svg) no-repeat left
+        center transparent !important;
 }
 
 .footer .Social .icon-wt:hover {
-	background: url(/static-file/images/icon-wt-white.svg) no-repeat left center transparent !important;
+    background: url(/static-file/images/icon-wt-white.svg) no-repeat left center
+        transparent !important;
 }
 /* .academy-info .group-info img:hover{
   transform: scale(1.2);
 } */
 
-.more:hover, .btn-about:hover ,.border-btn:hover{
-  background-color: #EE7925 !important;
-  color: white !important;
+.more:hover,
+.btn-about:hover,
+.border-btn:hover {
+    background-color: #ee7925 !important;
+    color: white !important;
 }
 
 /* turn white button to orange */
-.more:hover,.btn-about:hover,.slick-prev:hover,.slick-next:hover, .btn-right:hover {
-  color: white !important;
-  background-color: #EE7925 !important;
+.more:hover,
+.btn-about:hover,
+.slick-prev:hover,
+.slick-next:hover,
+.btn-right:hover {
+    color: white !important;
+    background-color: #ee7925 !important;
 }
 
-.qna-contact button:hover{
-  color: white !important;
-  background-color: #EE7925 !important;
+.qna-contact button:hover {
+    color: white !important;
+    background-color: #ee7925 !important;
 }
 
 /* turn orange button to white */
-.btn-button-s:hover{
-  color: #EE7925 !important;
-  background-color: white !important;
-  border: 1px solid #EE7925 !important;
+.btn-button-s:hover {
+    color: #ee7925 !important;
+    background-color: white !important;
+    border: 1px solid #ee7925 !important;
 }
 
 .white-hover:hover {
-  color: #EE7925 !important;
-  background-color: white !important;
-  border: 1px solid #EE7925 !important;
+    color: #ee7925 !important;
+    background-color: white !important;
+    border: 1px solid #ee7925 !important;
 }
 
 .slide-button:hover {
-  cursor: pointer;
-  color: white !important;
-  background-color: #EE7925 !important;
+    cursor: pointer;
+    color: white !important;
+    background-color: #ee7925 !important;
 }
 
-.wrap-tab button:hover{
-  cursor: pointer;
+.wrap-tab button:hover {
+    cursor: pointer;
 }
 
-.sitemap p{
-  cursor: pointer;
+.sitemap p {
+    cursor: pointer;
 }
 
 /* button banner hover */
@@ -107,11 +140,11 @@ a, .number, .menu-small .custom-select .select-selected,.wrap-contact a, .list .
 } */
 
 .other-location:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .training-service .nav-tabs li:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 /* .other-location b:hover {
@@ -123,23 +156,28 @@ a, .number, .menu-small .custom-select .select-selected,.wrap-contact a, .list .
   cursor: pointer;
 } */
 
-
 .article-menu li a:active {
-  color: #EE7925;
+    color: #ee7925;
 }
 
 .weekly .box-slide .slick-prev:hover {
-	background: url(/static-file/images/icon-prev.png) no-repeat center center;
+    background: url(/static-file/images/icon-prev.png) no-repeat center center;
 }
 
 .weekly .box-slide .slick-next:hover {
-	background: url(/static-file/images/icon-next.png) no-repeat 110px center;
+    background: url(/static-file/images/icon-next.png) no-repeat 110px center;
 }
 
 .training-include .slide-button:hover .icon {
-  color: #fff;
+    color: #fff;
 }
 
 .qna-contact button:hover {
-  cursor: pointer;
+    cursor: pointer;
+}
+
+.contact-address {
+    border-bottom: 1px solid #ee7925;
+    margin: 8px 16px;
+    padding-bottom: 1rem;
 }
