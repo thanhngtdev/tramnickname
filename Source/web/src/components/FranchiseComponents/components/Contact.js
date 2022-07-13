@@ -72,7 +72,7 @@ export default (props) => {
                             })
                         ) : (
                             <div>
-                                <p className='contact-address'>
+                                <p className='contact-address__one'>
                                 {newAddress[0]?.ms_address}
                             </p> 
                             </div> 
