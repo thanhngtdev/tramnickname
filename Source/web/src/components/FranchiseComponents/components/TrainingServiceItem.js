@@ -12,14 +12,13 @@ import useGetWidth from 'src/hooks/useGetWidth';
 const TrainingServiceItem = (props) => {
     const { item, index, site, title } = props;
     const isMobile = useGetWidth() <= 768;
-    const isWithTable = useGetWidth() <=402;
+    const isWithTable = useGetWidth() <= 402;
     const [courses, setCourses] = useState([]);
     const dispatch = useDispatch();
     const history = useRouter();
     // console.log('item', item);
 
     useEffect(() => {
-
         const dayOfWeek = [
             'Monday',
             'Tuesday',
@@ -62,8 +61,7 @@ const TrainingServiceItem = (props) => {
                     moment(i2.dateConverted).unix(),
             );
 
-            setCourses(arrCourse)
-        
+        setCourses(arrCourse);
     }, []);
 
     const renderBookingBtn = (index) => {
@@ -79,7 +77,7 @@ const TrainingServiceItem = (props) => {
                         padding: 0,
                         color: '#EE7925',
                         cursor: 'pointer',
-                        fontSize:'18px'
+                        fontSize: '18px',
                     }}
                     size={90}>
                     Book Free Session
@@ -111,58 +109,77 @@ const TrainingServiceItem = (props) => {
     };
 
     return (
-        <>{(!isMobile || props.isHeader) && <>
-            <h4 style={{
+        <>
+            {(!isMobile || props.isHeader) && (
+                <>
+                    {/* <h4 style={{
                 padding:'2rem 1rem',
                 fontWeight:'500',
                 backgroundColor:'#ccc',
                 margin:0
-            }}>{title}</h4>
-            {courses.map((el, idx) => (
-                <div
-                    key={idx}
-                    style={{
-                        backgroundColor: `${
-                            idx % 2 === 0 ? '#F7F8F7' : 'white'
-                        }`,
-                    }}>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            padding: '10px 1.5rem',
-                        }}>
-                        <p>{isWithTable ? el?.day_of_week.slice(0,3) : el?.day_of_week}</p>
+            }}>{title}</h4> */}
+                    {courses ? (
+                        <h4
+                            style={{
+                                padding: '2rem 1rem',
+                                fontWeight: '500',
+                                backgroundColor: '#ccc',
+                                margin: 0,
+                            }}>
+                            {title}
+                        </h4>
+                    ) : (
+                        ''
+                    )}
+                    {courses.map((el, idx) => (
+                        <div
+                            key={idx}
+                            style={{
+                                backgroundColor: `${
+                                    idx % 2 === 0 ? '#F7F8F7' : 'white'
+                                }`,
+                            }}>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    padding: '10px 1.5rem',
+                                }}>
+                                <p>
+                                    {isWithTable
+                                        ? el?.day_of_week.slice(0, 3)
+                                        : el?.day_of_week}
+                                </p>
 
-                        <p>
-                            {dayjs(
-                                '2021-03-03T' + el.course_day_time_start,
-                            ).format('h:mma')}
-                            -
-                            {dayjs(
-                                '2021-03-03T' + el.course_day_time_end,
-                            ).format('h:mma')}
-                        </p>
-                        <p>
-                            {el.min_age}-{el.max_age}{' '}
-                            {isWithTable ? 'y.o.' : 'year olds'}
-                        </p>
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            padding: '10px 1.5rem',
-                        }}>
-                        <p style={{ marginRight: 35 }}>{`£${
-                            el.course_price || 0
-                        } per ${el.course_length || 0} sessions`}</p>
-                        {renderBookingBtn(idx)}
-                    </div>
-                </div>
-            ))}
-        
-            </>}
-            
+                                <p>
+                                    {dayjs(
+                                        '2021-03-03T' +
+                                            el.course_day_time_start,
+                                    ).format('h:mma')}
+                                    -
+                                    {dayjs(
+                                        '2021-03-03T' + el.course_day_time_end,
+                                    ).format('h:mma')}
+                                </p>
+                                <p>
+                                    {el.min_age}-{el.max_age}{' '}
+                                    {isWithTable ? 'y.o.' : 'year olds'}
+                                </p>
+                            </div>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    padding: '10px 1.5rem',
+                                }}>
+                                <p style={{ marginRight: 35 }}>{`£${
+                                    el.course_price || 0
+                                } per ${el.course_length || 0} sessions`}</p>
+                                {renderBookingBtn(idx)}
+                            </div>
+                        </div>
+                    ))}
+                </>
+            )}
         </>
     );
 };
