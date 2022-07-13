@@ -198,7 +198,7 @@ function AutocompleteInput(props) {
                         const suggestionLenght = suggestion.ms_addresses.length;
 
                         const newSuggest = suggestion.ms_addresses;
-
+                        console.log('suggestion__', suggestion);
                         console.log(
                             suggestion.ms_name,
                             suggestionLenght,
@@ -210,9 +210,9 @@ function AutocompleteInput(props) {
                                 {suggestionLenght > 1 ? (
                                     newSuggest.map?.((address) => (
                                         <li
-                                            key={address.ms_id}
+                                            key={suggestion.ms_id}
                                             onClick={(e) =>
-                                                onClick(e, address)
+                                                onClick(e, suggestion)
                                             }>
                                             <div className={className}>
                                                 <div className="suggest-title">
@@ -230,27 +230,17 @@ function AutocompleteInput(props) {
                                                                     : ''
                                                             } `}
                                                         </label>
-
-                                                        <Link
-                                                            href={
-                                                                '/' +
-                                                                address.ms_alias
+                                                        <FontAwesomeIcon
+                                                            icon={
+                                                                faChevronRight
                                                             }
-                                                            passHref>
-                                                            <a>
-                                                                <FontAwesomeIcon
-                                                                    icon={
-                                                                        faChevronRight
-                                                                    }
-                                                                    style={{
-                                                                        color: '#EE7925',
-                                                                        margin: '0 0.8rem',
-                                                                        fontSize:
-                                                                            '25px',
-                                                                    }}
-                                                                />
-                                                            </a>
-                                                        </Link>
+                                                            style={{
+                                                                color: '#EE7925',
+                                                                margin: '0 0.8rem',
+                                                                fontSize:
+                                                                    '25px',
+                                                            }}
+                                                        />
                                                     </div>
                                                 </div>
 
@@ -262,10 +252,8 @@ function AutocompleteInput(props) {
                                     ))
                                 ) : (
                                     <li
-                                        key={newSuggest[0].ms_id}
-                                        onClick={(e) =>
-                                            onClick(e, newSuggest[0])
-                                        }>
+                                        key={suggestion.ms_id}
+                                        onClick={(e) => onClick(e, suggestion)}>
                                         <div className={className}>
                                             <div className="suggest-title">
                                                 <label className="title-text">
@@ -283,27 +271,14 @@ function AutocompleteInput(props) {
                                                         } `}
                                                     </label>
 
-                                                    <Link
-                                                        href={
-                                                            '/' +
-                                                            newSuggest[0]
-                                                                .ms_alias
-                                                        }
-                                                        passHref>
-                                                        <a>
-                                                            <FontAwesomeIcon
-                                                                icon={
-                                                                    faChevronRight
-                                                                }
-                                                                style={{
-                                                                    color: '#EE7925',
-                                                                    margin: '0 0.8rem',
-                                                                    fontSize:
-                                                                        '25px',
-                                                                }}
-                                                            />
-                                                        </a>
-                                                    </Link>
+                                                    <FontAwesomeIcon
+                                                        icon={faChevronRight}
+                                                        style={{
+                                                            color: '#EE7925',
+                                                            margin: '0 0.8rem',
+                                                            fontSize: '25px',
+                                                        }}
+                                                    />
                                                 </div>
                                             </div>
 
