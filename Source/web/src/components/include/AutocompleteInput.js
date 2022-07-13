@@ -210,7 +210,7 @@ function AutocompleteInput(props) {
                                 {suggestionLenght > 1 ? (
                                     newSuggest.map?.((address) => (
                                         <li
-                                            key={suggestion.ms_id}
+                                            key={suggestion.ms_alias}
                                             onClick={(e) =>
                                                 onClick(e, suggestion)
                                             }>
@@ -252,7 +252,7 @@ function AutocompleteInput(props) {
                                     ))
                                 ) : (
                                     <li
-                                        key={suggestion.ms_id}
+                                        key={suggestion.ms_alias}
                                         onClick={(e) => onClick(e, suggestion)}>
                                         <div className={className}>
                                             <div className="suggest-title">
