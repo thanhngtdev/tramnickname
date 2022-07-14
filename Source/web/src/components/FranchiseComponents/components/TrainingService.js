@@ -202,11 +202,11 @@ LDHolidayCamp.propTypes = {
     config: PropTypes.object,
 };
 function LDHolidayCamp(props) {
-    // console.log(props, ' props holiday');
     const dispatch = useDispatch();
     const history = useRouter();
 
     const [lstCourse, setLstCourse] = useState([]);
+    const [listNearlyHoliday, setListNearlyHoliday] = useState([]);
     const [courseSelected, setCourseSelected] = useState({});
 
     useEffect(() => {
@@ -224,6 +224,20 @@ function LDHolidayCamp(props) {
     }, [props.site]);
 
     const siteReducer = useSelector((state) => state.siteReducer);
+    let arr = [];
+    const listId = props.site.ms_addresses
+        .map((item) => item.pa_locationId)
+    listId.forEach((el) => {
+        siteReducer?.data?.map((item,index) => {
+            if(el === item.location_id+''){
+                arr.push(item)
+            }
+        })
+    })
+    useEffect(() => {
+        setListNearlyHoliday(arr)
+    }, [siteReducer])
+
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
@@ -233,19 +247,23 @@ function LDHolidayCamp(props) {
         }
     }, [siteReducer]);
 
-    useEffect(() => {
-        // console.log(lstCourse, 'lstCourse');
-    }, [lstCourse]);
-
     return (
         <>
             <h4>{props.config ? props.config.des : ''}</h4>
 
             {parse(props?.config?.content || '')}
 
-            <h5>
-                Upcoming camps by {props.site ? props.site.ms_name + ':' : ''}
-            </h5>
+            {!isEmpty(lstCourse) ? (
+                <h5>
+                    Upcoming camps by{' '}
+                    {props.site ? props.site.ms_name + ':' : ''}
+                </h5>
+            ) : (
+                <h5>
+                    Upcoming camps nearby {''}
+                    {props.site ? props.site.ms_name + ':' : ''}
+                </h5>
+            )}
             {lstCourse?.length ? (
                 <>
                     {lstCourse.map((item, index) => (
@@ -552,7 +570,6 @@ function TrainingService(props) {
                                         props.dataBannerTop?.about.cfg_content.includes(
                                             'youtube.com',
                                         ) && (
-                                            
                                             <iframe
                                                 width="100%"
                                                 height="300px"
@@ -564,8 +581,6 @@ function TrainingService(props) {
                                                 allowFullScreen
                                                 allow="autoplay"></iframe>
                                         )}
-
-                                    
                                 </>
                             )}
                             {isOpenText.isWeeklyTraining && (
