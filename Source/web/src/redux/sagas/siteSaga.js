@@ -203,6 +203,33 @@ function* getListCourse({ company_id, location_id, course_type }) {
         });
     }
 }
+function* getListCourseNearlyHasCamp({ company_id, course_type }) {
+    const response = yield API.getParentAPI(APIConfig.GET_LIST_COURSE_NEARLY, {
+        company_id,
+        type: course_type,
+    });
+    if (response && response.status === 200) {
+        let dataCourse = response.data;
+        let dataEvent = [];
+
+        if (course_type === 'event') {
+            dataEvent = response.data;
+        }
+
+        yield put({
+            type: siteActionType.GET_LIST_COURSE_NEARLY_SUCCESS,
+            data: response.data,
+            dataCourse,
+            dataEvent,
+            courseType: course_type,
+        });
+    } else {
+        yield put({
+            type: siteActionType.GET_LIST_COURSE_NEARLY_FAILED,
+            message: response ? response.message : '',
+        });
+    }
+}
 
 // function* getListCourse({ company_id, location_id, course_type }) {
 //     const response = yield API.getParentAPI(APIConfig.GET_LIST_COURSE, {
@@ -415,6 +442,7 @@ export default function* watcherSiteSaga() {
     yield takeLatest(siteActionType.ADD_WAITING, addWaiting);
     yield takeLatest(siteActionType.BOOK_EVENT_SIGNUP, bookEventSignup);
     yield takeEvery(siteActionType.GET_LIST_COURSE, getListCourse);
+    yield takeEvery(siteActionType.GET_LIST_COURSE, getListCourseNearlyHasCamp);
     yield takeLatest(siteActionType.FIND_NEARBY_ACADEMY, findNearbyAcademy);
     yield takeLatest(siteActionType.FIND_NEARBY, findNearby);
     yield takeLatest(siteActionType.GET_CURRENT_ACADEMY, getCurrentAcademy);

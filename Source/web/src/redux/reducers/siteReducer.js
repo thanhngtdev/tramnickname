@@ -99,9 +99,19 @@ const siteReducer = (state = initialState, action) => {
                 message: action.message,
             };
         case siteActionType.GET_LIST_COURSE_SUCCESS:
-            return {
+            return {    
                 ...state,
                 type: siteActionType.GET_LIST_COURSE_SUCCESS,
+                data: action.data,
+                dataCourse: action.dataCourse,
+                dataEvent: action.dataEvent,
+                ms_address: action.ms_address,
+                courseType: action.courseType,
+            };
+        case siteActionType.GET_LIST_COURSE_NEARLY_SUCCESS:
+            return {    
+                ...state,
+                type: siteActionType.GET_LIST_COURSE_NEARLY_SUCCESS,
                 data: action.data,
                 dataCourse: action.dataCourse,
                 dataEvent: action.dataEvent,
