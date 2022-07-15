@@ -1,7 +1,5 @@
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { PopupButton } from '@typeform/embed-react';
-import dayjs from 'dayjs';
 import parse from 'html-react-parser';
 import isEmpty from 'lodash/isEmpty';
 import Link from 'next/link';
@@ -9,20 +7,13 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Select from 'react-select';
 import PathRoute from 'src/common/PathRoute';
-import { CommonStyle } from 'src/common/Styles';
 import Utils from 'src/common/Utils';
-import SolidButton from 'src/components/include/SolidButton';
 import getFranchiseName from 'src/hooks/useFranchise';
+import useGetWidth from 'src/hooks/useGetWidth';
+import useGetWidthWithLoading from 'src/hooks/useGetWidthWithLoading';
 import { siteActionType } from 'src/redux/actions/actionTypes';
 import TrainingServiceItem from './TrainingServiceItem';
-import useTruspilot from 'src/hooks/useTruspilot';
-import useGetWidth from 'src/hooks/useGetWidth';
-import Script from 'next/script';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import useGetWidthWithLoading from 'src/hooks/useGetWidthWithLoading';
-// import YouTube from 'react-youtube';
 
 LDWeeklyTraining.propTypes = {
     site: PropTypes.object,
@@ -276,12 +267,7 @@ function LDHolidayCamp(props) {
                         <Fragment key={index}>
                             <div
                                 onClick={() => setCourseSelected(item)}
-                                style={{
-                                    borderBottom: '1px solid #F2F2F2',
-                                    fontWeight: 'normal',
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                }}>
+                                className="course-detail">
                                 <div>
                                     <p>{item.date} </p>
                                     <p>
@@ -292,13 +278,7 @@ function LDHolidayCamp(props) {
                                     <p>{item.course_title}</p>
                                 </div>
                                 <div
-                                    style={{
-                                        color: '#EF9042',
-                                        paddingLeft: '20px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        cursor: 'pointer',
-                                    }}
+                                    className="holiday-camp__book"
                                     onClick={() => {
                                         global.bookCamp = {
                                             siteId: props.site.ms_id || 0,
@@ -310,11 +290,11 @@ function LDHolidayCamp(props) {
                                 </div>
                             </div>
 
-                            <div style={{ clear: 'both', marginBottom: 16 }} />
-                            <div>
+                            <div className="under-book" />
+                            <div style={{paddingTop: '1rem'}}>
                                 See more at{' '}
                                 <a
-                                    style={{ color: '#ef9042' }}
+                                    className="seemore"
                                     href={
                                         '/' +
                                         props.site.ms_alias +
@@ -390,12 +370,7 @@ function LDHolidayCamp(props) {
                         <Fragment key={index}>
                             <div
                                 // onClick={() => setCourseSelected(item)}
-                                style={{
-                                    borderBottom: '1px solid #F2F2F2',
-                                    fontWeight: 'normal',
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                }}>
+                                className="course-detail">
                                 <div>
                                     <p>{item.date} </p>
                                     <p>
@@ -407,13 +382,7 @@ function LDHolidayCamp(props) {
                                 </div>
 
                                 <div
-                                    style={{
-                                        color: '#EF9042',
-                                        paddingLeft: '20px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        cursor: 'pointer',
-                                    }}
+                                    className="holiday-camp__book"
                                     onClick={() => {
                                         global.bookCamp = {
                                             siteId: props.site.ms_id || 0,
@@ -424,24 +393,24 @@ function LDHolidayCamp(props) {
                                     Book
                                 </div>
                             </div>
-                            <div style={{ clear: 'both', marginBottom: 16 }} />
-                            <div>
-                                See more at{' '}
-                                <a
-                                    style={{ color: '#ef9042' }}
-                                    href={
-                                        '/' +
-                                        props.site.ms_alias +
-                                        PathRoute.HolidayCamp
-                                    }>
-                                    Holiday Camps
-                                </a>
-                            </div>
+                            <div className="under-book" />
                         </Fragment>
                     ))}
+                    <div style={{paddingTop: '1rem'}}>
+                        See more at{' '}
+                        <a
+                            className="seemore"
+                            href={
+                                '/' +
+                                props.site.ms_alias +
+                                PathRoute.HolidayCamp
+                            }>
+                            Holiday Camps
+                        </a>
+                    </div>
                 </>
             ) : (
-                <p style={{ color: 'red' }}>
+                <p className="no-holidaycamp">
                     {`There are currently no holiday camps available at ${props.site.location_name.text}`}
                 </p>
             )}
@@ -465,9 +434,7 @@ function LDOneTraining(props) {
             <Link
                 href={'/' + props.site.ms_alias + PathRoute.OneTraining}
                 passHref>
-                <a style={{ color: '#EE7925', textDecoration: 'underline' }}>
-                    Find out more
-                </a>
+                <a className="find-out-more">Find out more</a>
             </Link>
         </>
     );
@@ -489,9 +456,7 @@ function LDBirthdayParty(props) {
             <Link
                 href={'/' + props.site.ms_alias + PathRoute.BirthdayParty}
                 passHref>
-                <a style={{ color: '#EE7925', textDecoration: 'underline' }}>
-                    Find out more
-                </a>
+                <a className="find-out-more">Find out more</a>
             </Link>
         </>
     );
@@ -510,9 +475,7 @@ function LDSchoolTraining(props) {
                 }}></p> */}
             {parse(props?.config?.content || '')}
             <Link href={PathRoute.SchoolTraining} passHref>
-                <a style={{ color: '#EE7925', textDecoration: 'underline' }}>
-                    Find out more
-                </a>
+                <a className="find-out-more">Find out more</a>
             </Link>
         </>
     );
@@ -626,13 +589,7 @@ function TrainingService(props) {
                                             {list[0].title}
                                         </span>
                                         <div
-                                            style={{
-                                                display: 'flex',
-                                                fontSize: '18px',
-                                                fontWeight: '300',
-                                                marginTop: '.5rem',
-                                                cursor: 'pointer',
-                                            }}
+                                            className="learn-more"
                                             onClick={() =>
                                                 setIsOpenText((prev) => {
                                                     return {
@@ -735,21 +692,11 @@ function TrainingService(props) {
                                         <span>{list[1].title}</span>
                                     ) : (
                                         <div className="service-group-title-text">
-                                            <span
-                                                style={{
-                                                    fontWeight: '500',
-                                                    color: '#EE7925',
-                                                }}>
+                                            <span className="service-group-title-text__small">
                                                 {list[1].title}
                                             </span>
                                             <div
-                                                style={{
-                                                    display: 'flex',
-                                                    fontSize: '18px',
-                                                    fontWeight: '300',
-                                                    marginTop: '.5rem',
-                                                    cursor: 'pointer',
-                                                }}
+                                                className="learn-more"
                                                 onClick={() =>
                                                     setIsOpenText((prev) => {
                                                         return {
@@ -812,21 +759,11 @@ function TrainingService(props) {
                                         <span>{list[2].title}</span>
                                     ) : (
                                         <div className="service-group-title-text">
-                                            <span
-                                                style={{
-                                                    fontWeight: '500',
-                                                    color: '#EE7925',
-                                                }}>
+                                            <span className="service-group-title-text__small">
                                                 {list[2].title}
                                             </span>
                                             <div
-                                                style={{
-                                                    display: 'flex',
-                                                    fontSize: '18px',
-                                                    fontWeight: '300',
-                                                    marginTop: '.5rem',
-                                                    cursor: 'pointer',
-                                                }}
+                                                className="learn-more"
                                                 onClick={() =>
                                                     setIsOpenText((prev) => {
                                                         return {
@@ -888,21 +825,11 @@ function TrainingService(props) {
                                         <span>{list[3].title}</span>
                                     ) : (
                                         <div className="service-group-title-text">
-                                            <span
-                                                style={{
-                                                    fontWeight: '500',
-                                                    color: '#EE7925',
-                                                }}>
+                                            <span className=".service-group-title-text__small">
                                                 {list[3].title}
                                             </span>
                                             <div
-                                                style={{
-                                                    display: 'flex',
-                                                    fontSize: '18px',
-                                                    fontWeight: '300',
-                                                    marginTop: '.5rem',
-                                                    cursor: 'pointer',
-                                                }}
+                                                className="learn-more"
                                                 onClick={() =>
                                                     setIsOpenText((prev) => {
                                                         return {
@@ -965,21 +892,11 @@ function TrainingService(props) {
                                         <span>{list[4].title}</span>
                                     ) : (
                                         <div className="service-group-title-text">
-                                            <span
-                                                style={{
-                                                    fontWeight: '500',
-                                                    color: '#EE7925',
-                                                }}>
+                                            <span className=".service-group-title-text__small">
                                                 {list[4].title}
                                             </span>
                                             <div
-                                                style={{
-                                                    display: 'flex',
-                                                    fontSize: '18px',
-                                                    fontWeight: '300',
-                                                    marginTop: '.5rem',
-                                                    cursor: 'pointer',
-                                                }}
+                                                className="learn-more"
                                                 onClick={() =>
                                                     setIsOpenText((prev) => {
                                                         return {
@@ -1080,12 +997,7 @@ function TrainingService(props) {
                                 </li>
                             ))}
                     </ul>
-                    <div
-                        className="tab-content"
-                        style={{
-                            borderTop: '1px solid #FF7100',
-                            paddingTop: '2rem',
-                        }}>
+                    <div className="tab-content">
                         <div
                             className={`tab-pane ${
                                 activeIndex === 0 ? 'active' : ''

@@ -37,6 +37,7 @@ import 'slick-carousel/slick/slick.css';
 import '../../public/static-file/css/school-training.css';
 import 'flatpickr/dist/themes/airbnb.css';
 import '../../public/static-file/css/modal.css';
+import '../../public/static-file/css/trainingservice.css'
 import Script from 'next/script';
 
 Router.events.on('routeChangeStart', (url) => {

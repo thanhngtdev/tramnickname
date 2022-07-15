@@ -1,0 +1,49 @@
+.holiday-camp__book {
+    color: #EF9042;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.course-detail {
+    display: flex;
+    justify-items: space-between;
+    font-weight: normal;
+    border-bottom: 1px solid #F2F2F2;
+}
+
+.seemore {
+    color: #EF9042;
+}
+.under-book {
+    clear: both;
+    margin-bottom: 16;
+}
+
+.no-holidaycamp {
+    color: red;
+}
+
+.find-out-more {
+    color: #EE7925;
+    text-decoration: underline;
+}
+
+.learn-more {
+    display: flex;
+    font-size: 18px;
+    font-weight: 300;
+    margin-top: .5rem;
+    cursor: pointer;
+}
+
+.service-group-title-text__small {
+    font-weight: 500;
+    color: #EE7925;
+}
+
+.tab-content {
+    border-top: 1px solid #FF7100;
+    padding-top: 2rem;
+}
