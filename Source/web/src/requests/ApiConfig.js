@@ -28,6 +28,7 @@ export const APIConfig = {
     GET_LIST_ALL_NEWS: 'article/search-news',
 
     GET_LIST_COURSE: 'list-courses',
+    GET_LIST_COURSE_NEARLY: 'list-courses',
     GET_LIST_COURSE_AVAILABLE: 'get-available-course',
     COURSE_START_DATE: 'list-course-start-date',
     BOOK_TRIAL_SIGNUP: 'booking-trial-signup',

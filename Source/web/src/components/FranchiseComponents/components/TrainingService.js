@@ -211,9 +211,9 @@ function LDHolidayCamp(props) {
 
     useEffect(() => {
         if (!isEmpty(props.site)) {
-            const listId = props.site.ms_addresses
-                .map((item) => item.pa_locationId)
-                .join(',');
+            const listId = props.site.ms_addresses.map(
+                (item) => item.pa_locationId,
+            );
             dispatch({
                 type: siteActionType.GET_LIST_COURSE,
                 company_id: props.site.pa_companyId,
@@ -223,26 +223,30 @@ function LDHolidayCamp(props) {
         }
     }, [props.site]);
 
-    const siteReducer = useSelector((state) => state.siteReducer);
-    let arr = [];
-    const listId = props.site.ms_addresses
-        .map((item) => item.pa_locationId)
-    listId.forEach((el) => {
-        siteReducer?.data?.map((item,index) => {
-            if(el === item.location_id+''){
-                arr.push(item)
-            }
-        })
-    })
     useEffect(() => {
-        setListNearlyHoliday(arr)
-    }, [siteReducer])
+        if (!isEmpty(props.site)) {
+            dispatch({
+                type: siteActionType.GET_LIST_COURSE_NEARLY,
+                company_id: props.site.pa_companyId,
+                course_type: 'event',
+            });
+        }
+    }, [props.site]);
+
+    const siteReducer = useSelector((state) => state.siteReducer);
 
     useEffect(() => {
         if (siteReducer.type) {
             if (siteReducer.type === siteActionType.GET_LIST_COURSE_SUCCESS) {
                 if (siteReducer.courseType === 'event')
                     setLstCourse(siteReducer.dataEvent);
+            }
+            if (
+                siteReducer.type ===
+                siteActionType.GET_LIST_COURSE_NEARLY_SUCCESS
+            ) {
+                if (siteReducer.courseType === 'event')
+                    setListNearlyHoliday(siteReducer.dataEvent);
             }
         }
     }, [siteReducer]);
@@ -258,11 +262,13 @@ function LDHolidayCamp(props) {
                     Upcoming camps by{' '}
                     {props.site ? props.site.ms_name + ':' : ''}
                 </h5>
-            ) : (
+            ) : !isEmpty(listNearlyHoliday) ? (
                 <h5>
                     Upcoming camps nearby {''}
                     {props.site ? props.site.ms_name + ':' : ''}
                 </h5>
+            ) : (
+                ''
             )}
             {lstCourse?.length ? (
                 <>
@@ -276,16 +282,50 @@ function LDHolidayCamp(props) {
                                     display: 'flex',
                                     justifyContent: 'space-between',
                                 }}>
-                                <p>
-                                    {item.date} | {item.time} |{' '}
-                                    {item.course_title}
-                                </p>
+                                <div>
+                                    <p>{item.date} </p>
+                                    <p>
+                                        {' '}
+                                        {item.time}
+                                        {''}{' '}
+                                    </p>
+                                    <p>{item.course_title}</p>
+                                </div>
+                                <div
+                                    style={{
+                                        color: '#EF9042',
+                                        paddingLeft: '20px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        cursor: 'pointer',
+                                    }}
+                                    onClick={() => {
+                                        global.bookCamp = {
+                                            siteId: props.site.ms_id || 0,
+                                            siteName: props.site.ms_name || '',
+                                        };
+                                        history.push(PathRoute.BookTrialCamp);
+                                    }}>
+                                    Book
+                                </div>
                             </div>
 
                             <div style={{ clear: 'both', marginBottom: 16 }} />
+                            <div>
+                                See more at{' '}
+                                <a
+                                    style={{ color: '#ef9042' }}
+                                    href={
+                                        '/' +
+                                        props.site.ms_alias +
+                                        PathRoute.HolidayCamp
+                                    }>
+                                    Holiday Camps
+                                </a>
+                            </div>
                         </Fragment>
                     ))}
-                    {!props.isMobile && (
+                    {/* {!props.isMobile && (
                         <Fragment>
                             <h5>How much do camps cost?</h5>
                             {Utils.isEmpty(courseSelected) ? (
@@ -342,7 +382,63 @@ function LDHolidayCamp(props) {
                                 </Fragment>
                             )}
                         </Fragment>
-                    )}
+                    )} */}
+                </>
+            ) : !isEmpty(listNearlyHoliday) ? (
+                <>
+                    {listNearlyHoliday.map((item, index) => (
+                        <Fragment key={index}>
+                            <div
+                                // onClick={() => setCourseSelected(item)}
+                                style={{
+                                    borderBottom: '1px solid #F2F2F2',
+                                    fontWeight: 'normal',
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                }}>
+                                <div>
+                                    <p>{item.date} </p>
+                                    <p>
+                                        {' '}
+                                        {item.time}
+                                        {''}{' '}
+                                    </p>
+                                    <p>{item.course_title}</p>
+                                </div>
+
+                                <div
+                                    style={{
+                                        color: '#EF9042',
+                                        paddingLeft: '20px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        cursor: 'pointer',
+                                    }}
+                                    onClick={() => {
+                                        global.bookCamp = {
+                                            siteId: props.site.ms_id || 0,
+                                            siteName: props.site.ms_name || '',
+                                        };
+                                        history.push(PathRoute.BookTrialCamp);
+                                    }}>
+                                    Book
+                                </div>
+                            </div>
+                            <div style={{ clear: 'both', marginBottom: 16 }} />
+                            <div>
+                                See more at{' '}
+                                <a
+                                    style={{ color: '#ef9042' }}
+                                    href={
+                                        '/' +
+                                        props.site.ms_alias +
+                                        PathRoute.HolidayCamp
+                                    }>
+                                    Holiday Camps
+                                </a>
+                            </div>
+                        </Fragment>
+                    ))}
                 </>
             ) : (
                 <p style={{ color: 'red' }}>

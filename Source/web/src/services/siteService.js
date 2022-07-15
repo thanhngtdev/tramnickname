@@ -111,6 +111,15 @@ class SiteService {
         );
     }
 
+    getListCourseNearlyHasCamp({ company_id, course_type }) {
+        return httpMethod.get(
+            `${APIConfig.GET_LIST_COURSE_NEARLY}${Utils.convertToQuery({
+                company_id: company_id,
+                type: course_type,
+            })}`,
+        );
+    }
+
     checkEmail(body) {
         return httpMethod.post(
             `${PARENT_API}api/v2/email-check

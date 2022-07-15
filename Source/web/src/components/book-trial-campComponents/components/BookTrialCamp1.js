@@ -229,7 +229,7 @@ function BookTrialCamp1(props) {
                 // );
 
                 if (global.bookCamp) {
-                    let _currentSite = siteReducer.data.lstSite.filter(
+                    let _currentSite = siteReducer.data.lstSite?.filter(
                         function (site) {
                             return (
                                 site.ms_id === parseInt(global.bookCamp.siteId)
