@@ -8,7 +8,7 @@
 
 .course-detail {
     display: flex;
-    justify-items: space-between;
+    justify-content: space-between;
     font-weight: normal;
     border-bottom: 1px solid #F2F2F2;
 }

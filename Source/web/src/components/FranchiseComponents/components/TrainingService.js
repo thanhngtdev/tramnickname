@@ -291,20 +291,20 @@ function LDHolidayCamp(props) {
                             </div>
 
                             <div className="under-book" />
-                            <div style={{paddingTop: '1rem'}}>
-                                See more at{' '}
-                                <a
-                                    className="seemore"
-                                    href={
-                                        '/' +
-                                        props.site.ms_alias +
-                                        PathRoute.HolidayCamp
-                                    }>
-                                    Holiday Camps
-                                </a>
-                            </div>
                         </Fragment>
                     ))}
+                    <div style={{ paddingTop: '1rem' }}>
+                        See more at{' '}
+                        <a
+                            className="seemore"
+                            href={
+                                '/' +
+                                props.site.ms_alias +
+                                PathRoute.HolidayCamp
+                            }>
+                            Holiday Camps
+                        </a>
+                    </div>
                     {/* {!props.isMobile && (
                         <Fragment>
                             <h5>How much do camps cost?</h5>
@@ -396,7 +396,7 @@ function LDHolidayCamp(props) {
                             <div className="under-book" />
                         </Fragment>
                     ))}
-                    <div style={{paddingTop: '1rem'}}>
+                    <div style={{ paddingTop: '1rem' }}>
                         See more at{' '}
                         <a
                             className="seemore"
