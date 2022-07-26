@@ -128,12 +128,12 @@ function BookTrialCamp1(props) {
     }, []);
 
     useEffect(() => {
-        if (siteSelected?.pa_companyId) {
-            setCompanyId(siteSelected?.pa_companyId);
+        if (siteSelected?.companyId) {
+            setCompanyId(siteSelected?.companyId);
 
             dispatch(
                 getListCourse({
-                    company_id: siteSelected.pa_companyId,
+                    company_id: siteSelected.companyId,
                     location_id: siteSelected.pa_locationId,
                     course_type: 'event',
                 }),
