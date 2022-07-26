@@ -60,7 +60,7 @@ function* requestGetAPI(url, params, baseApi = BASE_API) {
         return -1;
     } catch (error) {
         // console.log(error);
-        return -1;
+        return error;
     }
 }
 

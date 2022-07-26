@@ -37,7 +37,15 @@ function BookTrialCamp1(props) {
     //! State
     const router = useRouter();
     let { location_name, course_title } = router.query;
-    const siteReducer = useSelector((state) => state.siteReducer);
+    const siteReducer = useSelector((state) => {
+        let errorMessage = '';
+        if (state.siteReducer.type === siteActionType.GET_LIST_COURSE_FAILED) {
+            errorMessage =
+                'The Holiday Camp you have selected is not available';
+        }
+        state.siteReducer['errorMessage'] = errorMessage
+        return state.siteReducer;
+    });
     const { emailData } = siteReducer;
     const dispatch = useDispatch();
     const [lstSite, setLstSite] = useState(siteReducer.lstSiteCamp);
@@ -242,11 +250,12 @@ function BookTrialCamp1(props) {
             //     if (siteReducer.courseType === 'event')
             //         setLstHoliday(siteReducer.dataEvent);
             // }
-            if (siteReducer.type === siteActionType.GET_LIST_COURSE_FAILED) {
-                setSiteError(
-                    'The Holiday Camp you have selected is not available',
-                );
-            }
+            // if (siteReducer.type === siteActionType.GET_LIST_COURSE_FAILED) {
+            //     setSiteError(
+            //         'The Holiday Camp you have selected is not available',
+            //     );
+            // }
+
             if (siteReducer.type === siteActionType.EVENT_DATE_SUCCESS) {
                 setEventDate(siteReducer.data);
                 setDateSelect(siteReducer.data.map(() => false));
@@ -474,7 +483,7 @@ function BookTrialCamp1(props) {
                     styles={CommonStyle.select2}
                     onChange={onChangeAcademy}
                 />
-                <label className="input-error">{siteError}</label>
+                <label className="input-error">{siteReducer['errorMessage']}</label>
             </div>
             <div className="wSelect2">
                 <label>Choose holiday camp</label>

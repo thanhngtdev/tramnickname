@@ -175,7 +175,6 @@ function* findNearbyAcademy({ lat, long }) {
 }
 
 function* getListCourse({ company_id, location_id, course_type }) {
-    // console.log(company_id, location_id, 'djhsdkfhs');
     const response = yield API.getParentAPI(APIConfig.GET_LIST_COURSE, {
         company_id,
         location_id,
@@ -197,10 +196,12 @@ function* getListCourse({ company_id, location_id, course_type }) {
             courseType: course_type,
         });
     } else {
-        yield put({
-            type: siteActionType.GET_LIST_COURSE_FAILED,
-            message: response ? response.message : '',
-        });
+        if (typeof response === 'object') {
+            yield put({
+                type: siteActionType.GET_LIST_COURSE_FAILED,
+                message: response ? response.message : '',
+            });
+        }
     }
 }
 function* getListCourseNearlyHasCamp({ company_id, course_type }) {
