@@ -62,48 +62,37 @@ export default function AboutInfoCamp(props) {
                     const courses = res.data?.data;
 
                     if (listCourse && listSite) {
-        
                         const filterList = [];
 
                         listSite.map((item) => {
                             item.ms_addresses.map((it) => {
                                 listCourse.map((el) => {
-                                    
                                     if (
                                         it.pa_locationId ===
                                         el.location_id + ''
                                     ) {
-                                       
                                         filterList.push(item);
                                     }
                                 });
                             });
                         });
 
-                        
                         setListCourse(courses);
                         // setListCourse(listCourse);
                         setListHasCamp(filterList);
                     }
-                    
                 }
             })
             .catch((err) => {
-              
                 setListHasCamp([]);
             });
     };
 
     const handleSelectedSite = (site, isSiteDefault = false) => {
-        
 
-        // const availableCompany = listCourse.find(
-        //     (item) => item.location_id + '' === site.pa_locationId,
-        // );
         const availableCompany = listCourse.find((item) => {
             return item.company_id + '' === site.pa_companyId;
         });
-        
         let isCheck = true;
         availableCompany?.locations.map((el, index) => {
             let isTest = site.ms_addresses.find(
@@ -115,28 +104,33 @@ export default function AboutInfoCamp(props) {
         });
 
         if (!isEmpty(availableCompany?.locations)) {
-            // setLstCourse(availableCompany.locations);
-            // setTitle(availableCompany.location_name);
-            let testListCourse = availableCompany.locations.map((courseItem) => {
-                let locationName = courseItem.location_name;
-              
-                let temp = courseItem.holiday_camps.map((item) => {
-                    return{
-                        ...item,
-                        location_name: locationName,
-                    }
-                })
-                
-                return {
-                    ...courseItem,
-                    holidayCamps: [...temp]
-                }
-            })
+            let testListCourse = availableCompany.locations.map(
+                (courseItem) => {
+                    let locationName = courseItem.location_name;
+
+                    let temp = courseItem.holiday_camps.map((item) => {
+                        return {
+                            ...item,
+                            location_name: locationName,
+                        };
+                    });
+
+                    return {
+                        ...courseItem,
+                        holidayCamps: [...temp],
+                    };
+                },
+            );
             setLstCourse(testListCourse);
             if (!isCheck) {
                 setTitle(`Nearby camps to ${site.ms_name}`);
             } else {
                 setTitle(`Holiday Camps in ${site.ms_name}`);
+
+                setSelectedAcademy({
+                    ms_name: site.ms_name,
+                });
+                return;
             }
         } else {
             setLstCourse([]);
@@ -151,17 +145,14 @@ export default function AboutInfoCamp(props) {
             });
             return;
         }
-        
-        
-        
+
         setSelectedAcademy(site);
     };
-    
     return (
         <div className="about-info">
             <div className="wrap-info">
                 <p style={{ textAlign: 'center', fontSize: 24 }}>{title}</p>
-               
+
                 <div className="wSelect2">
                     <Select
                         value={selectedAcademy}
@@ -177,12 +168,11 @@ export default function AboutInfoCamp(props) {
                         onChange={handleSelectedSite}
                     />
                 </div>
-                
                 {lstCourse.length > 0 && (
                     <div className="wSelect2">
                         {lstCourse.map((courseItem, index) =>
                             courseItem.holidayCamps.map((item, index) => {
-                                
+                                console.log('item', item);
                                 return (
                                     <div
                                         key={index}
@@ -212,8 +202,12 @@ export default function AboutInfoCamp(props) {
                                                     history.push({
                                                         pathname:
                                                             PathRoute.BookTrialCamp,
-                                                        query: { location_name: item.location_name,
-                                                                course_title:item.course_title},
+                                                        query: {
+                                                            location_name:
+                                                                item.location_name,
+                                                            course_title:
+                                                                item.course_title,
+                                                        },
                                                     });
                                                     dispatch({
                                                         type: siteActionType.SELECT_ACADEMY,
@@ -229,22 +223,55 @@ export default function AboutInfoCamp(props) {
                         )}
                     </div>
                 )}
-
                 <div style={{ textAlign: 'center' }}>
-                    <Button
-                        title="Book now"
-                        onClick={() => {
-                            if (isEmpty(lstCourse)) return;
+                    {lstCourse.length > 1 ? (
+                        <Button
+                            title="Book now"
+                            onClick={() => {
+                                if (isEmpty(lstCourse)) return;
 
-                            if (selectedAcademy) {
-                                history.push(PathRoute.BookTrialCamp);
-                                dispatch({
-                                    type: siteActionType.SELECT_ACADEMY,
-                                    data: selectedAcademy,
-                                });
-                            }
-                        }}
-                    />
+                                if (selectedAcademy) {
+                                    history.push({
+                                        pathname: PathRoute.BookTrialCamp,
+                                        query: {
+                                            location_name:
+                                                courseItem.location_name,
+                                        },
+                                    });
+                                    dispatch({
+                                        type: siteActionType.SELECT_ACADEMY,
+                                        data: selectedAcademy,
+                                    });
+                                }
+                            }}
+                        />
+                    ) : (
+                        lstCourse.map((courseItem, index) => {
+                            return (
+                                <Button
+                                    title="Book now"
+                                    onClick={() => {
+                                        if (isEmpty(lstCourse)) return;
+
+                                        if (selectedAcademy) {
+                                            history.push({
+                                                pathname:
+                                                    PathRoute.BookTrialCamp,
+                                                query: {
+                                                    location_name:
+                                                        courseItem.location_name,
+                                                },
+                                            });
+                                            dispatch({
+                                                type: siteActionType.SELECT_ACADEMY,
+                                                data: selectedAcademy,
+                                            });
+                                        }
+                                    }}
+                                />
+                            );
+                        })
+                    )}
                 </div>
             </div>
         </div>
