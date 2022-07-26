@@ -172,7 +172,6 @@ export default function AboutInfoCamp(props) {
                     <div className="wSelect2">
                         {lstCourse.map((courseItem, index) =>
                             courseItem.holidayCamps.map((item, index) => {
-                                console.log('item', item);
                                 return (
                                     <div
                                         key={index}
