@@ -19,17 +19,34 @@ function RelateAreas(props) {
             const list = [...listSite].filter(
                 (item) => item.ms_id !== site.ms_id,
             );
-
-            const listNearBy = list.filter(
-                (item) =>
-                    (item.distance = Utils.getDistanceFromLatLonInKm(
-                        site.ms_addresses.map((e) => e.ms_latitude),
-                        site.ms_addresses.map((e) => e.ms_longitude),
-                        item.ms_addresses.map((e) => e.ms_latitude),
-                        item.ms_addresses.map((e) => e.ms_longitude),
-                    )),
-            );
-
+            const listNearBy =
+                site.ms_addresses.length > 0
+                    ? list.filter(
+                          (item) =>
+                              (item.distance = Utils.getDistanceFromLatLonInKm(
+                                  site.ms_addresses[0].ms_latitude,
+                                  site.ms_addresses[0].ms_longitude,
+                                  item.ms_addresses[0].ms_latitude,
+                                  item.ms_addresses[0].ms_longitude,
+                              )),
+                      )
+                    : list.filter(
+                          (item) =>
+                              (item.distance = Utils.getDistanceFromLatLonInKm(
+                                  site.ms_addresses[0].map(
+                                      (e) => e.ms_latitude,
+                                  ),
+                                  site.ms_addresses[0].map(
+                                      (e) => e.ms_longitude,
+                                  ),
+                                  item.ms_addresses[0].map(
+                                      (e) => e.ms_latitude,
+                                  ),
+                                  item.ms_addresses[0].map(
+                                      (e) => e.ms_longitude,
+                                  ),
+                              )),
+                      );
             listNearBy.sort((a, b) => a.distance - b.distance);
             setListNearBy([...listNearBy.slice(0, 10)]);
         }
