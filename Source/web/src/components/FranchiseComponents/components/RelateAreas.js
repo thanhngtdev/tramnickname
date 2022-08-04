@@ -33,16 +33,16 @@ function RelateAreas(props) {
                     : list.filter(
                           (item) =>
                               (item.distance = Utils.getDistanceFromLatLonInKm(
-                                  site.ms_addresses[0].map(
+                                  site.ms_addresses.map(
                                       (e) => e.ms_latitude,
                                   ),
-                                  site.ms_addresses[0].map(
+                                  site.ms_addresses.map(
                                       (e) => e.ms_longitude,
                                   ),
-                                  item.ms_addresses[0].map(
+                                  item.ms_addresses.map(
                                       (e) => e.ms_latitude,
                                   ),
-                                  item.ms_addresses[0].map(
+                                  item.ms_addresses.map(
                                       (e) => e.ms_longitude,
                                   ),
                               )),
