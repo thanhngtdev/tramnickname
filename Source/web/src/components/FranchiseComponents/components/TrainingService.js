@@ -13,6 +13,8 @@ import getFranchiseName from 'src/hooks/useFranchise';
 import useGetWidth from 'src/hooks/useGetWidth';
 import useGetWidthWithLoading from 'src/hooks/useGetWidthWithLoading';
 import { siteActionType } from 'src/redux/actions/actionTypes';
+import { APIConfig, PARENT_API } from 'src/requests/ApiConfig';
+import { sendGet } from 'src/services/httpMethodPA';
 import TrainingServiceItem from './TrainingServiceItem';
 
 LDWeeklyTraining.propTypes = {
@@ -100,7 +102,6 @@ function LDWeeklyTraining(props) {
     const history = useRouter();
     const [lstCourse, setLstCourse] = useState([]);
     const [courseSelected, setCourseSelected] = useState({});
-    // const [listCourse,setListCourse] = useState([]);
 
     useEffect(() => {
         if (!isEmpty(props.site)) {
@@ -199,7 +200,73 @@ function LDHolidayCamp(props) {
     const [lstCourse, setLstCourse] = useState([]);
     const [listNearlyHoliday, setListNearlyHoliday] = useState([]);
     const [courseSelected, setCourseSelected] = useState({});
+    const [listCourse, setListCourse] = useState([]);
+    const [listCourseCamps, setListCourseCamps] = useState([]);
+    const { listSite } = useSelector((state) => state.listSiteReducer);
+    useEffect(() => {
+        // dispatch({ type: siteActionType.GET_SITE_HAS_CAMP });
+        if (!isEmpty(listSite)) {
+            getListHasCamp();
+        }
+    }, [listSite]);
 
+    useEffect(() => {
+        handleListSite();
+        // getListHasCamp();
+    }, [listCourse]);
+    const getListHasCamp = async () => {
+        await sendGet(`${PARENT_API + APIConfig.GET_LIST_COMPANY_HAS_CAMP}`)
+            .then((res) => {
+                if (res.status === 200 && !isEmpty(res.data?.data)) {
+                    console.log('res', res);
+                    const listCourse = [];
+                    res.data?.data.map((item) => {
+                        item?.locations?.map((el) => listCourse.push(el));
+                    });
+                    const courses = res.data?.data;
+                    setListCourse(courses);
+                }
+            })
+            .catch((err) => {
+                console.log('err', err);
+            });
+    };
+
+    const handleListSite = () => {
+        const availableCompany = listCourse.find((item) => {
+            return item.company_id + '' === props.site.pa_companyId;
+        });
+        let isCheck = true;
+        availableCompany?.locations.map((el, index) => {
+            let isTest = props.site.ms_addresses.find(
+                (item) => item.pa_locationId === el.location_id + '',
+            );
+            if (!isTest) {
+                isCheck = false;
+            }
+        });
+
+        if (!isEmpty(availableCompany?.locations)) {
+            let testListCourse = availableCompany.locations.map(
+                (courseItem) => {
+                    let locationName = courseItem.location_name;
+
+                    let temp = courseItem.holiday_camps.map((item) => {
+                        return {
+                            ...item,
+                            location_name: locationName,
+                        };
+                    });
+
+                    return {
+                        ...courseItem,
+                        holidayCamps: [...temp],
+                    };
+                },
+            );
+            setListCourseCamps(testListCourse);
+        }
+    };
     useEffect(() => {
         if (!isEmpty(props.site)) {
             const listId = props.site.ms_addresses.map(
@@ -284,7 +351,15 @@ function LDHolidayCamp(props) {
                                             siteId: props.site.ms_id || 0,
                                             siteName: props.site.ms_name || '',
                                         };
-                                        history.push(PathRoute.BookTrialCamp);
+                                        history.push({
+                                            pathname: PathRoute.BookTrialCamp,
+                                            query: {
+                                                location_name:
+                                                    listCourseCamps[0]
+                                                        .location_name,
+                                                course_title: item.course_title,
+                                            },
+                                        });
                                     }}>
                                     Book
                                 </div>

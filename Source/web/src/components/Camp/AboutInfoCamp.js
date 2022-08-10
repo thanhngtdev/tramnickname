@@ -232,10 +232,10 @@ export default function AboutInfoCamp(props) {
                                 if (selectedAcademy) {
                                     history.push({
                                         pathname: PathRoute.BookTrialCamp,
-                                        query: {
-                                            location_name:
-                                                courseItem.location_name,
-                                        },
+                                        // query: {
+                                        //     location_name:
+                                        //         courseItem.location_name,
+                                        // },
                                     });
                                     dispatch({
                                         type: siteActionType.SELECT_ACADEMY,
