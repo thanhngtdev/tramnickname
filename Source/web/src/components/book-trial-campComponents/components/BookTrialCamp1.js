@@ -56,7 +56,7 @@ function BookTrialCamp1(props) {
     const [courseSelected, setCourseSelected] = useState(null);
 
     const [companyId, setCompanyId] = useState(0);
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState();
 
     const [eventDate, setEventDate] = useState([]);
     const [dateSelect, setDateSelect] = useState([]);
