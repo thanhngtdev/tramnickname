@@ -89,41 +89,93 @@ export default function AboutInfoCamp(props) {
     };
 
     const handleSelectedSite = (site, isSiteDefault = false) => {
-
         const availableCompany = listCourse.find((item) => {
             return item.company_id + '' === site.pa_companyId;
         });
         let isCheck = true;
-        availableCompany?.locations.map((el, index) => {
-            let isTest = site.ms_addresses.find(
-                (item) => item.pa_locationId === el.location_id + '',
-            );
-            if (!isTest) {
-                isCheck = false;
-            }
-        });
 
+        for (
+            let index = 0;
+            index < availableCompany?.locations.length;
+            index++
+        ) {
+            const element = availableCompany?.locations[index];
+            let findIndex = site.ms_addresses.findIndex(
+                (item) => item.pa_locationId === element.location_id + '',
+            );
+            if (findIndex === -1) {
+                isCheck = false;
+            } else {
+                isCheck = true;
+                break;
+            }
+        }
+
+        // availableCompany?.locations.map((el, index) => {
+        //     let isTest = site.ms_addresses.findIndex(
+        //         (item) => item.pa_locationId === el.location_id + '',
+        //     );
+        //     console.log('isTest', isTest);
+        //     if (isTest > -1) {
+        //         isCheck = true;
+        //         break;
+        //     } else {
+        //         isCheck = false;
+        //     }
+        // if (!isTest) {
+        //     isCheck = false;
+        // }
+        // });
         if (!isEmpty(availableCompany?.locations)) {
             let testListCourse = availableCompany.locations.map(
                 (courseItem) => {
                     let locationName = courseItem.location_name;
-
-                    let temp = courseItem.holiday_camps.map((item) => {
-                        return {
-                            ...item,
-                            location_name: locationName,
-                        };
-                    });
-
+                    let temp = [];
+                    if (isCheck) {
+                        if (
+                            site.ms_addresses.findIndex(
+                                (item) =>
+                                    item.pa_locationId ===
+                                    courseItem.location_id + '',
+                            ) > -1
+                        ) {
+                            temp = courseItem.holiday_camps.map((item) => {
+                                return {
+                                    ...item,
+                                    location_name: locationName,
+                                };
+                            });
+                        }
+                    } else {
+                        temp = courseItem.holiday_camps.map((item) => {
+                            return {
+                                ...item,
+                                location_name: locationName,
+                            };
+                        });
+                      
+                    }
                     return {
                         ...courseItem,
                         holidayCamps: [...temp],
                     };
+
+                    // let temp = courseItem.holiday_camps.map((item) => {
+                    //     return {
+                    //         ...item,
+                    //         location_name: locationName,
+                    //     };
+                    // });
+                    // console.log('temp', temp);
+                    // return {
+                    //     ...courseItem,
+                    //     holidayCamps: [...temp],
+                    // };
                 },
             );
             setLstCourse(testListCourse);
             if (!isCheck) {
-                setTitle(`Nearby camps to ${site.ms_name}`);
+                setTitle(`The Nearby camps to ${site.ms_name}`);
             } else {
                 setTitle(`Holiday Camps in ${site.ms_name}`);
 
@@ -139,12 +191,12 @@ export default function AboutInfoCamp(props) {
             );
         }
 
-        if (isSiteDefault === true) {
-            setSelectedAcademy({
-                ms_name: 'Select an academy here',
-            });
-            return;
-        }
+        // if (isSiteDefault === true) {
+        //     setSelectedAcademy({
+        //         ms_name: 'Select an academy here',
+        //     });
+        //     return;
+        // }
 
         setSelectedAcademy(site);
     };
