@@ -191,12 +191,12 @@ export default function AboutInfoCamp(props) {
             );
         }
 
-        // if (isSiteDefault === true) {
-        //     setSelectedAcademy({
-        //         ms_name: 'Select an academy here',
-        //     });
-        //     return;
-        // }
+        if (isSiteDefault === true) {
+            setSelectedAcademy({
+                ms_name: 'Select an academy here',
+            });
+            return;
+        }
 
         setSelectedAcademy(site);
     };
