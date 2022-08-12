@@ -43,7 +43,7 @@ function BookTrialCamp1(props) {
             errorMessage =
                 'The Holiday Camp you have selected is not available';
         }
-        state.siteReducer['errorMessage'] = errorMessage
+        state.siteReducer['errorMessage'] = errorMessage;
         return state.siteReducer;
     });
     const { emailData } = siteReducer;
@@ -178,7 +178,7 @@ function BookTrialCamp1(props) {
 
     useEffect(() => {
         if (courseSelected) {
-            const old = dayjs().year() - date.getFullYear();
+            const old = dayjs().year() - date?.getFullYear();
 
             if (old < courseSelected.min_age) {
                 setDisabled(true);
@@ -483,7 +483,9 @@ function BookTrialCamp1(props) {
                     styles={CommonStyle.select2}
                     onChange={onChangeAcademy}
                 />
-                <label className="input-error">{siteReducer['errorMessage']}</label>
+                <label className="input-error">
+                    {siteReducer['errorMessage']}
+                </label>
             </div>
             <div className="wSelect2">
                 <label>Choose holiday camp</label>
@@ -503,7 +505,8 @@ function BookTrialCamp1(props) {
 
             {courseSelected && (
                 <div style={{ backgroundColor: 'white', padding: '2rem' }}>
-                    {eventDate.length > 0 ? (
+                    {siteReducer.isLoadingEventDate ? null : siteReducer.data
+                          .length > 0 ? (
                         <Fragment>
                             <div className="wSelect2">
                                 <br />

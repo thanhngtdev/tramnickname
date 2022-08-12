@@ -8,6 +8,7 @@ const initialState = {
     emailData: {},
     // dataCourse: [],
     // dataEvent: [],
+    isLoadingEventDate: true,
 };
 
 const siteReducer = (state = initialState, action) => {
@@ -210,6 +211,7 @@ const siteReducer = (state = initialState, action) => {
                 ...state,
                 type: siteActionType.EVENT_DATE_SUCCESS,
                 data: action.data,
+                isLoadingEventDate: false,
             };
         case siteActionType.EVENT_DATE_FAILED:
             return {
