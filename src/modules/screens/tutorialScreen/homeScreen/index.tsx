@@ -1,45 +1,24 @@
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import images from 'src/assets/images';
-import {AppButton} from 'src/modules/components/appButton';
-import {AppText} from 'src/modules/components/appText';
-import {AuthStackParamList} from 'src/modules/navigations/AuthStackScreen';
-import {MainStackParamList} from 'src/modules/navigations/MainStackScreen';
-import {RouteNames} from 'src/modules/navigations/routeName';
+import { AppText } from 'src/modules/components/appText';
+import { AuthStackParamList } from 'src/modules/navigations/AuthStackScreen';
+import { RouteNames } from 'src/modules/navigations/routeName';
 import theme from 'src/shared/theme';
 
 const TutorialHomeScreen = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
 
-  console.log('witdh', theme.dimensions.deviceWidth);
-  console.log('heigt', theme.dimensions.deviceHeight);
-
   return (
     <View>
       <Image
         style={styles.img}
-        source={images.screentest}
-        resizeMode={'stretch'}
+        source={images.anhdau}
       />
-      <View style={styles.header}>
-        <Image
-          style={styles.logo}
-          source={images.IconNickname}
-          resizeMode="stretch"
-        />
-        <Image
-          source={images.TextScreen1}
-          style={styles.text}
-        />
-        <Image
-          style={styles.logo}
-          source={images.IconTP}
-          resizeMode="stretch"
-        />
-      </View>
+      
 
       <View
         style={{

@@ -1,7 +1,7 @@
 export default {
     avt: require('./source/image.png'),
     anh1: require('./source/anh1.png'),
-    anh2: require('./source/anh2.png'),
+    anh2: require('./source/anh2.jpg'),
     anh3: require('./source/anh3.png'),
     anh4: require('./source/anh4.png'),
     anh5: require('./source/anh5.png'),
@@ -23,6 +23,7 @@ export default {
     TextScreen3: require('./source/TextScreen3.png'),
     TextScreen4: require('./source/TextScreen4.png'),
     suggest: require('./source/SuggestName.png'),
-    screentest: require('./source/screentest.png'),
+    lastscreen: require('./source/lastscreen.png'),
+    anhdau: require('./source/anhdau.png'),
     
 };

@@ -30,22 +30,9 @@ const ChooseThemeScreen = () => {
     <View style={{flex: 1}}>
       <Image
         style={styles.img}
-        source={images.backgroundImg}
-        resizeMode="stretch"
+        source={images.anh2}
       />
-      <View style={styles.header}>
-        <Image
-          style={styles.logo}
-          source={images.IconNickname}
-          resizeMode="stretch"
-        />
-          <Image style={styles.text} source={images.TextScreen2} />
-        <Image
-          style={styles.logo}
-          source={images.IconTP}
-          resizeMode="stretch"
-        />
-      </View>
+     
 
       <View
         style={{
@@ -53,13 +40,12 @@ const ChooseThemeScreen = () => {
           position: 'absolute',
           width: '100%',
           top: 80,
-          marginLeft: 20,
+          marginLeft: theme.dimensions.makeResponsiveSize(20),
         }}>
         <View
           style={{
             borderBottomWidth: 2,
             width: '15%',
-            marginLeft: 20,
             height: 70,
             borderBottomColor: '#FFF',
             top: theme.dimensions.p4,
@@ -84,7 +70,7 @@ const ChooseThemeScreen = () => {
           justifyContent: 'space-between',
           flexWrap: 'wrap',
           flexDirection: 'row',
-          marginHorizontal: theme.dimensions.makeResponsiveSize(32),
+          marginHorizontal: theme.dimensions.makeResponsiveSize(10),
           bottom: -30,
           marginBottom: theme.dimensions.p16,
         }}>
@@ -101,7 +87,7 @@ const ChooseThemeScreen = () => {
                 })
               }>
               <Image
-                style={{width: 380, height: 220, borderRadius: 30}}
+                style={{width: theme.dimensions.deviceWidth*0.45, height: 220, borderRadius: 30}}
                 source={el.image}
               />
               <AppText

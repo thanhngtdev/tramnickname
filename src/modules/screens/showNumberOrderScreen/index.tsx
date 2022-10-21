@@ -1,22 +1,16 @@
-import {useNavigation, useRoute} from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import {
-  Image,
-  SafeAreaView,
-  StyleSheet,
+  Image, StyleSheet,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
-import {Host} from 'react-native-portalize';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import images from 'src/assets/images';
-import {AppButton} from 'src/modules/components/appButton';
-import {AppInput} from 'src/modules/components/appInput';
-import {AppText} from 'src/modules/components/appText';
+import { AppText } from 'src/modules/components/appText';
+import { AuthStackParamList } from 'src/modules/navigations/AuthStackScreen';
+import { RouteNames } from 'src/modules/navigations/routeName';
 import theme from 'src/shared/theme';
-import {RouteNames} from 'src/modules/navigations/routeName';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {AuthStackParamList} from 'src/modules/navigations/AuthStackScreen';
 
 interface ITest {
   name: string;
@@ -24,24 +18,11 @@ interface ITest {
 
 const ShowNumberOrderScreen = () => {
   const router: any = useRoute();
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
 
   return (
     <View style={{flex: 1}}>
-      <Image style={styles.img} source={images.Screen1} resizeMode="stretch" />
-      <View style={styles.header}>
-        <Image
-          style={styles.logo}
-          source={images.IconNickname}
-          resizeMode="stretch"
-        />
-          <Image style={styles.text} source={images.TextScreen4} />
-        <Image
-          style={styles.logo}
-          source={images.IconTP}
-          resizeMode="stretch"
-        />
-      </View>
+      <Image style={styles.img} source={images.lastscreen}  />
       <View style={{flexDirection: 'row', position: 'absolute', width: '100%'}}>
         <AppText
           children={router.params.stt}

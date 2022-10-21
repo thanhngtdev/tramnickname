@@ -46,10 +46,8 @@ const App = () => {
           }>
           <View style={{flex: 1}}>
             <RootNavigator />
-            {/* <MessageAlert /> */}
-            {/* <Toast position={'bottom'} config={toastConfig} /> */}
             <AppText
-              children="1.0.3"
+              children="1.0.1"
               style={{
                 position: 'absolute',
                 bottom: theme.dimensions.makeResponsiveSize(4),

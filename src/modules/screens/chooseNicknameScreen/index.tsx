@@ -2,7 +2,7 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {Formik} from 'formik';
 import React from 'react';
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Alert, Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import images from 'src/assets/images';
 import {AppButton} from 'src/modules/components/appButton';
@@ -39,26 +39,13 @@ const ChooseNicknameScreen = () => {
 
   return (
     <View style={{flex: 1}}>
-      <Image style={styles.img} source={images.backgroundImg} resizeMode="stretch" />
-      <View style={styles.header}>
-        <Image
-          style={styles.logo}
-          source={images.IconNickname}
-          resizeMode="stretch"
-        />
-          <Image style={styles.text} source={images.TextScreen3} />
-        <Image
-          style={styles.logo}
-          source={images.IconTP}
-          resizeMode="stretch"
-        />
-      </View>
+      <Image style={styles.img} source={images.anh3} resizeMode="stretch" />
       <View
         style={{
           flexDirection: 'row',
           position: 'absolute',
           width: '100%',
-          top: 70,
+          top: 80,
           marginLeft: 20,
 
         }}>
@@ -88,7 +75,7 @@ const ChooseNicknameScreen = () => {
         style={{
           position: 'absolute',
           width: '100%',
-          top:'40%'
+          top:'38%'
         }}>
         <Formik
           initialValues={{input: ''}}
@@ -117,11 +104,12 @@ const ChooseNicknameScreen = () => {
                   placeholderTextColor={'#f7b3ff'}
                   value={values.input}
                   onChangeText={handleChange('input')}
+                  autoCapitalize={"characters"}
                 />
-                    <Image source={images.suggest} style={{}}/>
+                {/* {errors.input ? Alert.alert('Vui lòng nhập nickname') : null} */}
                 <TouchableOpacity
                   onPress={() => handleSubmit()}
-                  style={{alignItems: 'center', position: 'relative'}}>
+                  style={{alignItems: 'center', position: 'relative',top: theme.dimensions.deviceHeight*0.37}}>
                   <Image
                     source={images.button}
                     style={{width: 300, height: 50}}
@@ -171,7 +159,7 @@ const styles = StyleSheet.create({
     top: theme.dimensions.p12,
   },
   logo: {
-    width: theme.dimensions.deviceWidth * 0.2,
+    width: theme.dimensions.deviceWidth * 0.22,
     height: theme.dimensions.deviceHeight * 0.08,
   },
   text: {
